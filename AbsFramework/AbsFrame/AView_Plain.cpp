@@ -85,15 +85,15 @@ void	AView_Plain::EVTDO_DoDraw()
 	{
 		//ウインドウactiveの場合
 		NVMC_PaintRoundedRect(localFrameRect,
-							 mColor,mColor,kGradientType_Horizontal,1.0,1.0,
-							  7.0,false,false,mLeftBottomRounded,mRightBottomRounded);
+							  mColor,mColor,kGradientType_None,1.0,1.0,
+							  7.0,false,false,mLeftBottomRounded,mRightBottomRounded);//#1275 kGradientType_Horizontal→kGradientType_None
 	}
 	else
 	{
 		//ウインドウdeactiveの場合
 		NVMC_PaintRoundedRect(localFrameRect,
-							  mColorDeactive,mColorDeactive,kGradientType_Horizontal,1.0,1.0,
-							  7.0,false,false,mLeftBottomRounded,mRightBottomRounded);
+							  mColorDeactive,mColorDeactive,kGradientType_None,1.0,1.0,
+							  7.0,false,false,mLeftBottomRounded,mRightBottomRounded);//#1275 kGradientType_Horizontal→kGradientType_None
 	}
 	//右サイドバーの場合、左側に分割線を表示
 	if( mForRightSideBarSeparator == true )
