@@ -177,8 +177,8 @@ void	AView_SizeBox::EVTDO_DoDraw()
 	//îwåiìhÇËÇ¬Ç‘Çµ
 	ALocalRect	viewRect = {0};
 	NVM_GetLocalViewRect(viewRect);
-	NVMC_PaintRoundedRect(viewRect,mBackgroundColor,mBackgroundColor,kGradientType_Horizontal,1.0,1.0,
-						  5.0,false,false,false,true);
+	NVMC_PaintRoundedRect(viewRect,mBackgroundColor,mBackgroundColor,kGradientType_None,1.0,1.0,
+						  5.0,false,false,false,true);//#1275 kGradientType_HorizontalÅ®kGradientType_None
 	
 }
 
