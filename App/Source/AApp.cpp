@@ -1781,7 +1781,7 @@ void	AApp::Startup_Phase_UI()
 		//TraceLogWindow #199
 		AWindowDefaultFactory<AWindow_TraceLog>	traceLogWindow;
 		mTraceLogWindowID = NVI_CreateWindow(traceLogWindow);
-		/*#199 mTraceLogWindow*/SPI_GetTraceLogWindow().NVI_Create(kObjectID_Invalid);
+		//#1275 高速化のためウインドウ表示操作するまでは生成しない /*#199 mTraceLogWindow*/SPI_GetTraceLogWindow().NVI_Create(kObjectID_Invalid);
 		
 		//#1217
 		AWindowDefaultFactory<AWindow_JavaScriptModalAlert>	javaScriptModalAlertWindowFactory;
@@ -4164,7 +4164,7 @@ void	AApp::EVTDO_DoInternalEvent( ABool& outUpdateMenu )
 					}
 				  case kInternalEvent_TraceLog:
 					{
-						/*#199 mTraceLogWindow*/SPI_GetTraceLogWindow().NVI_Create(kObjectID_Invalid);
+						//#1275 高速化のためウインドウ表示操作するまでは生成しない /*#199 mTraceLogWindow*/SPI_GetTraceLogWindow().NVI_Create(kObjectID_Invalid);
 						/*#199 mTraceLogWindow*/SPI_GetTraceLogWindow().SPI_AddLog(text);
 						break;
 					}
