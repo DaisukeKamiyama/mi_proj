@@ -942,9 +942,9 @@ void	AModePrefDB::InitMode( const AModeIndex& inModeID, const AFileAcc& inModeFo
 	{
 		//全データ読み込み
 		LoadDB();
+		//suffix.miを保存（次回起動時の高速化のため） #1275 高速化。suffix.miから読み込まなかった場合だけ保存するように修正。
+		SaveSuffixDB();
 	}
-	//suffix.miを保存（次回起動時の高速化のため）
-	SaveSuffixDB();
 	//suffixハッシュを更新
 	UpdateSuffixHash();
 }
