@@ -594,7 +594,7 @@ void	AView_LineNumber::EVTDO_DoDraw()
 					NVMC_FrameRoundedRect(r,kColor_Gray50Percent,1.0,3,true,true,true,true);
 				}
 				*/
-				NVMC_PaintRoundedRect(rect,color,color,kGradientType_Vertical,0.8,0.8,3,true,true,true,true);
+				NVMC_PaintRoundedRect(rect,color,color,kGradientType_None,0.8,0.8,3,true,true,true,true);//#1275 kGradientType_Horizontal→kGradientType_None
 				NVMC_FrameRoundedRect(rect,kColor_Gray50Percent,1.0,3,true,true,true,true);
 			}
 		}
@@ -613,16 +613,16 @@ void	AView_LineNumber::EVTDO_DoDraw()
 			ALocalRect	rect = lineLocalRect;
 			rect.left = 2;
 			rect.right = lineLocalRect.right-2;
-			NVMC_PaintRoundedRect(rect,kColor_Red,kColor_Red,kGradientType_Vertical,0.7,0.7,2,
-								  true,true,true,true);
+			NVMC_PaintRoundedRect(rect,kColor_Red,kColor_Red,kGradientType_None,0.7,0.7,2,
+								  true,true,true,true);//#1275 kGradientType_Horizontal→kGradientType_None
 		}
 		if( GetTextDocumentConst().SPI_GetSyntaxWarning(lineIndex) == true )
 		{
 			ALocalRect	rect = lineLocalRect;
 			rect.left = 2;
 			rect.right = lineLocalRect.right-2;
-			NVMC_PaintRoundedRect(rect,kColor_Yellow,kColor_Yellow,kGradientType_Vertical,0.7,0.7,2,
-								  true,true,true,true);
+			NVMC_PaintRoundedRect(rect,kColor_Yellow,kColor_Yellow,kGradientType_None,0.7,0.7,2,
+								  true,true,true,true);//#1275 kGradientType_Horizontal→kGradientType_None
 		}
 	}
 	//#450 行折りたたみマーク表示
