@@ -1,0 +1,168 @@
+"ToolArray_FileName" = 
+{
+	"U Unordered List",
+	"O Ordered List",
+	"L List Item",
+	"D Definition List"
+}
+"ToolArray_Enabled" = 
+{
+	"true",
+	"true",
+	"true",
+	"true"
+}
+"ToolArray_Shortcut" = 
+{
+	"0",
+	"0",
+	"0",
+	"0"
+}
+"ToolArray_ShortcutModifiers_ControlKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_ShortcutModifiers_ShiftKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_Grayout" = 
+{
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_JapaneseName" = 
+{
+	"U 順序無しリスト <ul>",
+	"O 順序ありリスト <ol>",
+	"L リスト項目 <li>",
+	"D 定義リスト <dl>"
+}
+"ToolArray_EnglishName" = 
+{
+	"U Unordered List <ul>",
+	"O Ordered List <ol>",
+	"L List Item <li>",
+	"D Definition List <dl>"
+}
+"ToolArray_FrenchName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_GermanName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SpanishName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_ItalianName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DutchName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SwedishName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_NorwegianName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DanishName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FinnishName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortugueseName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SimplifiedChineseName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_TraditionalChineseName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_KoreanName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PolishName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortuguesePortugalName" = 
+{
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_RussianName" = 
+{
+	"",
+	"",
+	"",
+	""
+}

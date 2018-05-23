@@ -1,0 +1,208 @@
+#
+# (C) 2013 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+GlobalAttribute_SDFVersion("3.0")
+GlobalAttribute_SDFName("XML")
+
+#XMLタグ外テキスト部分
+GlobalAttribute_SyntaxPart("XML","XML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_&",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_#",
+";"
+)
+#XMLタグ部分
+GlobalAttribute_SyntaxPart("XML Tag","XML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_&",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_#-",
+";"
+)
+#XMLコメントパート（"-"をキーワード構成文字からはずすために、文法パートをXML Tagと分けている。"-"があると、アルファベット＋-->を正常認識できない。）
+GlobalAttribute_SyntaxPart("XML Comment","XML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+
+GlobalAttribute_StartAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$")
+GlobalAttribute_ContinuousAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~")
+
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+GlobalAttribute_ClassString(".");
+GlobalAttribute_InstanceString(".");
+
+#===========XML===========
+
+#idle
+state(idle)
+{
+	StateAttribute_Stable
+	StateAttribute_SyntaxPart("XML")
+	#----------コメント----------
+	{"<!--",{ChangeState(comment)}}
+	#----------タグ開始----------
+	{"<",{ChangeState(tag_start)}}
+}
+
+#----------タグ----------
+# < （"<"直後の状態のみ。要素や"/"で次の状態へ遷移。）
+state(tag_start)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_ColorSlot(6)
+	StateAttribute_IgnoreCase
+	StateAttribute_NotCode
+	#----------終了タグ----------
+	{"/",{ChangeState(endtag)}}
+	#---------- <? および <! ----------
+	{"?",{ChangeState(tag_question)}}
+	{"!",{ChangeState(tag_ex)}}
+	#---------- 文法エラー  <>の中に何もない場合----------
+	{">",{SyntaxError("empty tag")}}
+	#----------その他要素----------
+	{default,{ChangeState(tag)}}
+}
+
+# </ 終了タグ
+state(endtag)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(6)
+	StateAttribute_NotCode
+	#----------タグ終了----------
+	{">",{DecIndentFromCurrent, ChangeStateFromNextChar(idle)}}
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+}
+
+# < 通常タグ
+state(tag)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(6)
+	StateAttribute_NotCode
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#----------空要素----------
+	{"/",{ChangeState(empty)}}
+	#----------タグ終了----------
+	{">",{IncIndentFromNext, ChangeStateFromNextChar(idle)}}
+}
+
+# < 空要素
+state(empty)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(6)
+	StateAttribute_NotCode
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#----------タグ終了----------
+	{">",{ChangeStateFromNextChar(idle)}}
+}
+
+# < ?
+state(tag_question)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(6)
+	StateAttribute_NotCode
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#----------タグ終了----------
+	{">",{ChangeStateFromNextChar(idle)}}
+}
+
+# < !
+state(tag_ex)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(6)
+	StateAttribute_NotCode
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#----------タグ終了----------
+	{">",{ChangeStateFromNextChar(idle)}}
+}
+
+#===========タグ内リテラル===========
+
+# < "
+state(tag_literal_double)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_DisableIndent
+	StateAttribute_NotCode
+	#文字列色で表示
+	StateAttribute_ColorSlot(33)
+	#----------リテラル終了----------
+	{"\"",{PopStateFromNextChar}}
+	#----------エスケープ----------
+	{"\\",{EscapeNextChar}}
+}
+
+# < '
+state(tag_literal_single)
+{
+	StateAttribute_SyntaxPart("XML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_DisableIndent
+	StateAttribute_NotCode
+	#文字列色で表示
+	StateAttribute_ColorSlot(33)
+	#----------リテラル終了----------
+	{"'",{PopStateFromNextChar}}
+	#----------エスケープ----------
+	{"\\",{EscapeNextChar}}
+}
+
+#===========コメント===========
+# <!--
+state(comment)
+{
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_SyntaxPart("XML Comment")
+	#コメント色で表示
+	StateAttribute_ColorSlot(32)
+	#----------コメント終了----------
+	{"-->",{ChangeStateFromNextChar(idle)}}
+}
+

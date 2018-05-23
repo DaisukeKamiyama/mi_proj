@@ -1,0 +1,1 @@
+var <<<CARET HINT(variable name)>>> = new Array();

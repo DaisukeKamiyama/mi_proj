@@ -1,0 +1,4 @@
+function <<<CARET HINT(function name)>>>( <<<HINT(parameter>>> )
+{
+
+}

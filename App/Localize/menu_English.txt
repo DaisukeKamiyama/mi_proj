@@ -1,0 +1,748 @@
+Make Window (Move Window to Left)
+Make Window (Move Window to Left)
+Make Window (Move Window to Right)
+Make Window (Move Window to Right)
+Close Tab
+Close Tab
+Edit URL
+Edit URL
+Edit Comment
+Edit Comment
+New Item (File)
+New Item (File)
+New Item (Comment)
+New Item (Comment)
+New Item (URL)
+New Item (URL)
+New Item (Group)
+New Item (Group)
+Setup Index Window...
+Setup Index Window...
+Remove This Item from Recent History
+Remove This Item from History
+Remove All Not Found Items from Recent History
+Remove Not Found Items from History
+Remove All Items from Recent History
+Remove All Items from History
+Display Identifier Information
+Display Identifier Info
+Dictionary
+Dictionary
+Correct Spell
+Correct Spell
+Edit My Sticky
+Edit Sticky
+Related File
+Related File
+Find
+Find
+Multi-Files Find
+Multi-Files Find
+Next
+Next
+Previous
+Previous
+Transliterate
+Transliterate
+Edit
+Edit
+Hide
+Hide
+Delete...
+Delete...
+Update Display
+Update Display
+Show All Buttons
+Show All Buttons
+Whole Toolbar
+Whole Toolbar
+About mi...
+About mi...
+Mode Preferences...
+Mode Preferences...
+mi
+mi
+New
+New
+Open...
+Open...
+Open Invisible File...
+Open Hidden File...
+Open Selected
+Open Selected
+Clear Menu Items
+Clear Menu Items
+Open Recent
+Open Recent
+Open from Same Folder
+Open from Same Folder
+Open Related File
+Open Related File
+Close
+Close
+Open from Same Project
+Open from Same Project
+Setup Project Folder...
+Setup Project Folder...
+Edit...
+Edit...
+Open from Registered Folder
+Open from Registered Folder
+Open from FTP Folder
+Open from FTP Folder
+Save As FTP Alias
+Save As FTP Alias
+Save
+Save
+Save As...
+Save As...
+Page Setup...
+Page Setup...
+Setup Print Option...
+Setup Print Option...
+Print...
+Print...
+Automatic Test
+Automatic Test
+Automatic Test 2
+Automatic Test 2
+Regular Expression Test
+Regular Expression Test
+Dump ObjectID
+Dump ObjectID
+TraceLog for Analysis
+TraceLog for Analysis
+Test
+Test
+ModePref XML
+ModePref XML
+SDF Debug Mode
+SDF Debug Mode
+LowMemoryTest
+LowMemoryTest
+Compare Folder
+Compare Folder
+Local Identifier Arrow
+Local Identifier Arrow
+Display Analysis Info
+Display Analysis Info
+Debug
+Debug
+File
+File
+Undo
+Undo
+Redo
+Redo
+Cut
+Cut
+Copy
+Copy
+Additional Copy
+Additional Copy
+Paste
+Paste
+Clear
+Clear
+Select All
+Select All
+Rectangle Select Mode
+Rectangle Select Mode
+Paste Rectangle
+Paste Rectangle
+Shift Left
+Shift Left
+Shift Right
+Shift Right
+Automatic Indent
+Indent
+Go to Line
+Go to Line
+Bookmark
+Bookmark
+Go to Bookmark
+Go to Bookmark
+Go to Definition / Declaration
+Go to Definition / Declaration
+Insert Line Break at Wrap Position in Selected Text
+Insert Line Break at Wrap Position in Selected Text
+Tool Input Mode
+Tool Input Mode
+Insert Corresponding Text
+Insert Balance Text
+Lowercase→Uppercase
+Lowercase->Uppercase
+Uppercase→Lowercase
+Uppercase->Lowercase
+Text Count...
+Text Count...
+Compare with Latest Revision in Repository
+Diff with Repository
+Next Changed Point
+Next Changed Point
+Previous Changed Point
+Previous Changed Point
+Refresh All SCM Status and Changed Points
+Refresh All SCM Status and Changed Points
+Insert Backslash
+Insert Backslash
+Find / Replace...
+Find / Replace...
+Find Next
+Find Next
+Find Previous
+Find Previous
+Register Selected Text for Find
+Register Selected Text for Find
+Register Selected Text for Replace
+Register Selected Text for Replace
+Clear Highlight
+Clear Highlight
+Replace
+Replace
+Replace & Find
+Replace & Find
+Replace Next
+Replace Next
+Replace after Caret
+Replace after Caret
+Replace in Selected Text
+Replace in Selected Text
+Replace All
+Replace All
+Multi-File Find...
+Multi-File Find...
+Next Item in Index Window
+Next Item in Index Window
+Previous Item in Index Window
+Previous Item in Index Window
+Display Unavailable Characters List for Current Text Encoding
+Display Text Encoding Error Characters List
+Display Misspell List
+Display Misspell List
+Font
+Font
+6 pt
+6 pt
+8 pt
+8 pt
+9 pt
+9 pt
+9.5 pt
+9.5 pt
+10 pt
+10 pt
+10.5 pt
+10.5 pt
+11 pt
+11 pt
+12 pt
+12 pt
+14 pt
+14 pt
+16 pt
+16 pt
+18 pt
+18 pt
+24 pt
+24 pt
+Others...
+Others...
+Size
+Size
+Mode
+Mode
+Text Encoding
+Text Encoding
+Line Break Code
+Line Break Code
+CR (Mac)
+CR (Mac)
+CR+LF (Windows)
+CR+LF (Windows)
+LF (UNIX)
+LF (UNIX)
+No Wrap
+No Wrap
+Wrap (Window Width)
+Wrap with Window Width
+Wrap (Character Count)...
+Wrap with Characters Count...
+Wrap with Window Width
+Wrap with Window Width
+Wrap with Characters Count...
+Wrap with Characters Count...
+Wrap
+Wrap
+Document Properties...
+Document Properties...
+Reload with another Text Encoding...
+Reload with another Text Encoding...
+Document
+Document
+Show Cross-Caret
+Show Cross-Caret
+Split View
+Split View
+Close View
+Close View
+Re-recognize Syntax
+Re-recognize Syntax
+Display
+Display
+Go Back
+Go Back
+Go Next
+Go Next
+Go to Previous Header
+Go to Previous Header
+Go to Next Header
+Go to Next Header
+Export Headers to Text
+Export Headers to Text
+Jump
+Header
+Tool
+Tool
+Switch Window
+Select Next Window
+Minimize
+Minimize
+Tab Mode
+Tab Mode
+Change All Windows to Tab
+Change All Windows to Tabs
+Change Current Window to Tab
+Move Current Window to Tab
+Change Current Tab to Window
+Open Current Tab in New Window
+Show Jump List
+Show Header List
+Show File List
+Show File List
+Show Identifier Information Window
+Show Identifier Information Window
+Show Sticky List Window
+Show Sticky List Window
+Show FTP Log Window
+Show Remote File Access Log Window
+Window
+Window
+main
+main
+Display Sub Pane
+Change Sub Pane Column Display
+Display Information Pane
+Change Info Pane Column Display
+Refresh Project Folders
+Refresh Project Folders
+Display in Sub Text Pane
+Display in Sub Text Pane
+Switch to Next Tab
+Switch to Next Tab
+Switch to Previous Tab
+Switch to Previous Tab
+Start Key Recording
+Start Key Recording
+Stop Key Recording
+Stop Key Recording
+Play Recorded Key
+Play Recorded Key
+Select between Corresponding Texts
+Select between Corresponding Texts
+Switch Full Screen Mode
+Switch to Full Screen Mode
+Commit...
+Commit...
+&File
+&File
+&Edit
+&Edit
+&Find
+&Find
+&Document
+&Document
+&View
+&View
+&Review
+&Review
+&Changes
+&Compare
+&Jump
+&Header
+&Tool
+&Tool
+&Window
+&Window
+&Setup
+&Setup
+&Help
+&Help
+Export This Group to New Document
+Export This Group to New Document
+Key Recording
+Key Recording
+Attach Sticky
+Attach Sticky
+&Split View
+&Split View
+&Close View
+&Close View
+&Find/Replace\tCtrl+F
+&Find/Replace\tCtrl+F
+Find &Next\tF3
+Find &Next\tF3
+Find &Previous\tShift+F3
+Find &Previous\tShift+F3
+Register Selected Text for Find\tCtrl+E
+Register Selected Text for Find\tCtrl+E
+Clear Highlight\tCtrl+Shift+F
+Clear Highlight\tCtrl+Shift+F
+Multi-File Find...\tCtrl+M
+Multi-File Find...\tCtrl+M
+Next Item in Index Window\tCtrl+F3
+Next Item in Index Window\tCtrl+F3
+Previous Item in Index Window\tCtrl+Shift+F3
+Previous Item in Index Window\tCtrl+Shift+F3
+&Open...\tCtrl+O
+&Open...\tCtrl+O
+Open &Selected\tCtrl+D
+Open &Selected\tCtrl+D
+&Close\tCtrl+W
+&Close\tCtrl+W
+&Save Overwrite\tCtrl+S
+&Save Overwrite\tCtrl+S
+Save &As...
+Save &As...
+Page Set&up...
+Page Set&up...
+Setup Print Op&tion...
+Setup Print Op&tion...
+&Print...\tCtrl+P
+&Print...\tCtrl+P
+E&xit
+E&xit
+&Undo\tCtrl+Z
+&Undo\tCtrl+Z
+&Redo\tCtrl+Y
+&Redo\tCtrl+Y
+Cu&t\tCtrl+X
+Cu&t\tCtrl+X
+Help
+Help
+&About mi
+&About mi
+Setup mi general settings...
+Setup mi general settings...
+Mode Preference...
+Mode Preference...
+&Copy\tCtrl+C
+&Copy\tCtrl+C
+&Paste\tCtrl+V
+&Paste\tCtrl+V
+&Delete
+&Delete
+Rectangle Select Mode\tCtrl+Shift+R
+Rectangle Select Mode\tCtrl+Shift+R
+Paste Rectangle
+Paste Rectangle
+Selecte &All\tCtrl+A
+Selecte &All\tCtrl+A
+&Key Recording
+&Key Recording
+Shift Left\tCtrl+[
+Shift Left\tCtrl+[
+Shift Right\tCtrl+]
+Shift Right\tCtrl+]
+&Indent\tCtrl+T
+&Indent\tCtrl+T
+Tool Input Mode\tCtrl+U
+Tool Input Mode\tCtrl+U
+Insert Corresponding Text\tCtrl+J
+Insert Corresponding Text\tCtrl+J
+Select between Corresponding Texts\tCtrl+Shift+J
+Select between Corresponding Texts\tCtrl+Shift+J
+Insert Backslash\tCtrl+\\
+Insert Backslash\tCtrl+\\
+Sub Pane Mode
+Sub Pane Mode
+Manual
+Manual
+Previous Tab
+Previous Tab
+Same Tab
+Same Tab
+Compare Files...
+Compare Files...
+Changes
+Compare
+Print Selected Paragraphs...
+Print Selected Paragraphs...
+mi Help
+mi Help
+Add / Update Define Value...
+Edit Enabled Define Values...
+Enable Define Values...
+Edit Enabled Define Values...
+Switch Previous Window
+Select Previous Window
+Setup Pane
+Setup Pane Layout
+Copy File Path
+Copy File Path
+Open Lua Console
+Open Lua Console
+Hide All Buttons made by mode creator
+Hide All Buttons made by mode creator
+Hide All Buttons made by user
+Hide All Buttons made by user
+Add Toolbar Button
+Add Toolbar Button...
+Mode Preference
+Mode Preference...
+View
+View
+Header
+Header
+Customize Toolbar
+Customize Toolbar
+Select Compare Target
+Select Compare Target
+No Compare
+No Compare
+Compare with Auto Backup
+Compare with Auto Backup
+Compare with Repository
+Compare with Repository
+Compare with File...
+Compare with File...
+Compare between Selected Text and Clipboard
+Compare between Selected Text and Clipboard
+Every 10 Minutes (6 Generations)
+Every 10 Minutes (6 Generations)
+Hourly (10 Generations)
+Hourly (10 Generations)
+Daily (10 Generations)
+Daily (10 Generations)
+Monthly (24 Generations)
+Monthly (24 Generations)
+Setup Auto Backup...
+Setup Auto Backup...
+Folding
+Folding
+Collapse
+Collapse
+Expand
+Expand
+Collapse All at current level
+Collapse All At Current Level
+Expand All at current level
+Expand All At Current Level
+Collapse All Headers
+Collapse All Headers
+Collapse All Headers with no Changes
+Collapse All Unchanged Headers
+Expand All
+Expand All
+Set Collapsed/Expanded state to Default
+Set Collapsed/Expanded State to Default
+Select current Folding Range
+Select current Folding Range
+Split View Vertically
+Split View Vertically
+Split View Horizontally
+Split View Horizontally
+Go to Parent Header
+Go to Parent Header
+Go to Next Header at same level
+Go to Next Header at same level
+Go to Previous Header at same level
+Go to Previous Header at same level
+Create Tab to Open Document
+Create Tab to Open Document
+Multi-File Replace...
+Multi-File Replace...
+FIFO Clipboard Mode
+FIFO Clipboard Mode
+Search Header
+Search Header
+Search Same Project File
+Search Same Project File
+Search Same Folder File
+Search Same Folder File
+Search Recently Opened File
+Search Recently Opened File
+Search Keyword
+Search Keyword
+Collect All Windows into 1 Window
+Collect All Windows into 1 Window
+Application Preferences...
+Application Preferences...
+About mi Text Editor...
+About mi Text Editor...
+New Recently Open File List
+Recently Open File List
+New Same Folder File List
+Same Folder File List
+New Same Project File List
+Same Project File List
+New Remote File List
+Remote File
+New Header List
+Header List
+New Text Count Window
+Text Information
+New Text Marker Window
+Text Marker
+New Tool List
+Tool List
+New Keyword Info List
+Keyword Information
+New Source Navigation
+Source Navigation
+New Word Referrer List
+Word Referrer List
+New Preview
+Preview
+New Key Record Window
+Key Record/Replay
+New Completion Candidate List
+Completion Candidate List
+Add Recently Open File List
+Recently Open File
+Add Same Folder File List
+Same Folder File
+Add Same Project File List
+Same Project File
+Add Remote File List
+Remote File
+Add Header List
+Header List
+Add Text Count Window
+Text Information
+Add Text Marker Window
+Text Marker
+Add Tool List
+Tool List
+Add Keyword Info List
+Keyword Information
+Add Source Navigation
+Source Navigation
+Add Word Referrer List
+Word Referrer List
+Add Preview
+Preview
+Add Key Record Window
+Key Record/Replay
+Add Completion Candidate List
+Completion Candidate List
+Use Font set in Mode Preferences...
+Use Font set in Mode Preferences...
+Set Font for this Document...
+Set Font for this Document...
+Add New Mode...
+Add New Mode...
+Hide mi Text Editor
+Hide mi Text Editor
+Hide Others
+Hide Others
+Show All
+Show All
+Quit mi Text Editor
+Quit mi Text Editor
+Services
+Services
+Bring All to Front
+Bring All to Front
+Zoom
+Zoom
+Create New Left Side Bar Item
+Create New Left Side Bar Item
+Create New Right Side Bar Item
+Create New Right Side Bar Item
+Compare with File of Sub Text
+Compare with File of Sub Text
+Create New Floating Sub Window
+Create New Floating Sub Window
+mi Text Editor Help
+mi Text Editor Help
+Next Item in Sub Window
+Next Item in Sub Window
+Previous Item in Sub Window
+Previous Item in Sub Window
+Same Mode Files Only
+Same Mode Files Only
+All Files
+All Files
+All Files which have differences
+All Files which have differences
+Add Macro...
+Add Macro...
+Show All Macro
+Show All Macro
+Hide All Macro
+Hide All Macro
+Show Mode Preferences...
+Show Mode Preferences...
+Collapse All for This Item's Level
+Collapse All for This Item's Level
+Setup Sub Windows...
+Setup Sub Windows...
+Display Keyword Information
+Display Keyword Information
+Normal Search
+Normal Search
+Partial Search
+Partial Search
+Set Flag to this document
+Set Flag to this document
+Close All Tabs without Flag
+Close All Tabs without Flag
+Paste at end of each paragraph
+Paste at end of each paragraph
+Show Find / Replace dialog...
+Show Find / Replace dialog...
+Unlock Display of All Sub Windows
+Cancel Display Lock of All Sub Windows
+Reveal macro folder with Finder
+Reveal macro folder by Finder
+Update Change of macro folder by Finder
+Update Change of macro folder by Finder
+Hide All after this Macro
+Hide All after this Macro
+Delete All after this Macro...
+Delete All after this Macro...
+Close All Tabs after this Tab
+Close All Tabs after this Tab
+Compare
+Compare
+Show/Hide All Floating Window
+Show/Hide All Floating Window
+Inhibit/Allow Popup Window
+Inhibit/Allow Popup Window
+Change Font Size temporarily
+Change Font Size temporarily
+Revert Font Size
+Revert Font Size
+Save Tab Set of Current Window...
+Save Tab Set of Current Window...
+Sort Tabs Alphabetically
+Sort Tabs Alphabetically
+Save As Remote File Alias...
+Save As Remote File Alias...
+Word Wrap with Window Width
+Word Wrap with Window Width
+Word Wrap with Characters Count...
+Word Wrap with Characters Count...
+Character Wrap with Window Width
+Character Wrap with Window Width
+Character Wrap with Characters Count...
+Character Wrap with Characters Count...
+Check for Updates…
+Check for Updates…
+Speech
+Speech
+Start Speaking
+Start Speaking
+Stop Speaking
+Stop Speaking

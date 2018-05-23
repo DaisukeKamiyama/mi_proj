@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="mi Text Editor Terminology">
+	
+	<!-- Required suite -->
+	<suite name="Required suite" code="reqd">
+		
+		<!-- command -->
+		
+		<!-- open -->
+		<command name="open" code="aevtodoc" description="Open the specified object(s)">
+			<direct-parameter type="file" description="Objects to open. Can be a list of files or an object specifier."/>
+			<parameter name="as" code="chac" type="text" optional="yes" description="the character code to be used">
+				<cocoa key="as"/>
+			</parameter>
+		</command>
+		
+		<!-- print -->
+		<command name="print" code="aevtpdoc" description="Print the specified object(s)">
+			<direct-parameter type="file" description="Objects to print. Can be a list of files or an object specifier."/>
+		</command>
+		
+		<!-- quit -->
+		<command name="quit" code="aevtquit" description="Quit Navigator">
+			<cocoa class="MIQuitCommand"/>
+		</command>
+	</suite>
+	
+	<!-- Standard suite -->
+	<suite name="Standard suite" code="CoRe" description="Common terms for most applications">
+		
+		<!-- command -->
+		
+		<!-- make -->
+		<command name="make" code="corecrel" description="Create a new object.">
+			<cocoa class="MICreateCommand"/>
+			<parameter name="new" code="kocl" type="type" description="The class of the new object.">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<parameter name="at" code="insh" type="location specifier" optional="yes" description="The location at which to insert the object.">
+				<cocoa key="Location"/>
+			</parameter>
+			<parameter name="with data" code="data" type="any" optional="yes" description="The initial contents of the object.">
+				<cocoa key="ObjectData"/>
+			</parameter>
+			<parameter name="with properties" code="prdt" type="record" optional="yes" description="The initial values for properties of the object.">
+				<cocoa key="KeyDictionary"/>
+			</parameter>
+			<result type="specifier" description="The new object."/>
+		</command>
+		
+		<!-- save -->
+		<command name="save" code="coresave" description="save a set of objects">
+			<cocoa class="MISaveCommand"/>
+			<direct-parameter type="specifier" description="Objects to save."/>
+			<parameter name="in" code="kfil" type="file" optional="yes" description="the file in which to save the object(s)">
+				<cocoa key="in"/>
+			</parameter>
+			<parameter name="as" code="fltp" type="type" optional="yes" description="the file type of the document in which to save the data">
+				<cocoa key="as"/>
+			</parameter>
+		</command>
+		
+		<!-- close -->
+		<command name="close" code="coreclos" description="Close an object">
+			<cocoa class="MICloseCommand"/>
+			<direct-parameter type="specifier" description="the objects to close"/>
+			<parameter name="saving" code="savo" type="savo" optional="yes" description="specifies whether or not changes should be saved before closing">
+				<cocoa key="saving"/>
+			</parameter>
+			<parameter name="in" code="kfil" type="file" optional="yes" description="the file in which to save the object">
+				<cocoa key="in"/>
+			</parameter>
+		</command>
+		
+		<!-- get -->
+		<command name="get" code="coregetd" description="Get the data for an object">
+			<cocoa class="MIGetCommand"/>
+			<direct-parameter type="specifier" description="the object whose data is to be returned"/>
+			<result type="any" description="The data from the object"/>
+		</command>
+		
+		<!-- set -->
+		<command name="set" code="coresetd" description="Set an object’s data">
+			<cocoa class="MISetCommand"/>
+			<direct-parameter type="specifier" description="the object to change"/>
+			<parameter name="to" code="data" type="any" description="the new value">
+				<cocoa key="to"/>
+			</parameter>
+		</command>
+		
+		<!-- delete -->
+		<command name="delete" code="coredelo" description="Delete an element from an object">
+			<cocoa class="MIDeleteCommand"/>
+			<direct-parameter type="specifier" description="the element to delete"/>
+		</command>
+		
+		<!-- count -->
+		<command name="count" code="corecnte" description="Return the number of elements of a particular class within an object">
+			<cocoa class="MICountCommand"/>
+			<direct-parameter type="specifier" description="the object whose elements are to be counted"/>
+			<parameter name="each" code="kocl" type="type" optional="yes" description="The class of objects to be counted." hidden="yes">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<result type="integer" description="the number of elements"/>
+		</command>
+		
+		<!-- select -->
+		<command name="select" code="miscslct" description="Select the specified object">
+			<cocoa class="MISelectCommand"/>
+			<direct-parameter type="specifier" optional="yes" description="the object to select"/>
+			<parameter name="to" code="to  " type="specifier" optional="yes">
+				<cocoa key="to"/>
+			</parameter>
+		</command>
+		
+		<!-- exists -->
+		<command name="exists" code="coredoex" description="Verify if an object exists">
+			<cocoa class="MIExistsCommand"/>
+			<direct-parameter type="specifier" description="the object in question"/>
+			<result type="boolean" description="true if it exists, false if not"/>
+		</command>
+		
+		<!-- collapse -->
+		<command name="collapse" code="corecoll" description="collapse indexgroup">
+			<cocoa class="MICollapseCommand"/>
+			<direct-parameter type="specifier" description="the indexgroup to be collapsed"/>
+		</command>
+		
+		<!-- expand -->
+		<command name="expand" code="coreexpa" description="expand indexgroup">
+			<cocoa class="MIExpandCommand"/>
+			<direct-parameter type="specifier" description="the indexgroup to be expanded"/>
+		</command>
+		
+		<!-- class -->
+		
+		<!-- application -->
+		<class name="application" code="capp" description="An application program">
+			<cocoa class="CocoaApp"/>
+			<element type="window">
+				<cocoa key="asWindowElement"/>
+			</element>
+			<element type="document">
+				<cocoa key="asDocumentElement"/>
+			</element>
+			<element type="indexwindow">
+				<cocoa key="asIndexwindowElement"/>
+			</element>
+			
+			<!-- responds-to -->
+			<responds-to name="open">
+				<cocoa method="handleOpenScriptCommand:"/>
+			</responds-to>
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			
+		</class>
+		
+		<!-- window -->
+		<class name="window" code="cwin" description="A Window">
+			<cocoa class="CASWindow"/>
+			<!-- property -->
+			<property name="bounds" code="pbnd" type="rectangle" access="rw" description="the boundary rectangle for the window">
+				<cocoa key="asBounds"/>
+			</property>
+			<property name="closeable" code="hclb" type="boolean" access="r" description="Does the window have a close box?">
+				<cocoa key="asClosable"/>
+			</property>
+			<property name="titled" code="ptit" type="boolean" access="r" description="Does the window have a title bar?">
+				<cocoa key="asTitled"/>
+			</property>
+			<property name="index" code="pidx" type="integer" access="rw" description="the index of the window in the application">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="floating" code="isfl" type="boolean" access="r" description="Does the window float?">
+				<cocoa key="asFloating"/>
+			</property>
+			<property name="modal" code="pmod" type="boolean" access="r" description="Is the window modal?">
+				<cocoa key="asModal"/>
+			</property>
+			<property name="resizable" code="prsz" type="boolean" access="r" description="Is the window resizable?">
+				<cocoa key="asResizable"/>
+			</property>
+			<property name="zoomable" code="iszm" type="boolean" access="r" description="Is the window zoomable?">
+				<cocoa key="asZoomable"/>
+			</property>
+			<property name="zoomed" code="pzum" type="boolean" access="r" description="Is the window zoomed?">
+				<cocoa key="asZoomed"/>
+			</property>
+			<property name="name" code="pnam" type="text" description="the title of the window">
+				<cocoa key="asName"/>
+			</property>
+			<property name="visible" code="pvis" type="boolean" description="Is the window visible?">
+				<cocoa key="asVisible"/>
+			</property>
+			<property name="position" code="ppos" type="point" access="r" description="upper left coordinates of window">
+				<cocoa key="asPosition"/>
+			</property>
+		</class>
+		
+		<!-- document -->
+		<class name="document" code="docu" description="A Document">
+			<cocoa class="TextDocument"/>
+			<!-- element -->
+			<element type="paragraph">
+				<cocoa key="asParagraphElement"/>
+			</element>
+			<element type="word">
+				<cocoa key="asWordElement"/>
+			</element>
+			<element type="character">
+				<cocoa key="asCharacterElement"/>
+			</element>
+			<element type="insertion point">
+				<cocoa key="asInsertionPointElement"/>
+			</element>
+			<element type="selection object">
+				<cocoa key="asSelectionObjectElement"/>
+			</element>
+			<!-- property -->
+			<property name="content" code="pcnt" type="text" access="rw" description="the content text of the document">
+				<cocoa key="asContent"/>
+			</property>
+			<property name="id" code="ID  " type="integer" access="r">
+				<cocoa key="uniqueid"/>
+			</property>
+			<property name="file" code="file" type="file" access="r" description="the file specification of the document">
+				<cocoa key="asFile"/>
+			</property>
+			<property name="name" code="pnam" type="text" access="rw" description="the file name of the document">
+				<cocoa key="asName"/>
+			</property>
+			<property name="modified" code="imod" type="boolean" access="r" description="Has the document been modified since the last save?">
+				<cocoa key="asModified"/>
+			</property>
+			<property name="mode" code="pmod" type="text" access="rw" description="mode name, for example &quot;HTML&quot; or &quot;TeX&quot; or &quot;C&quot;,etc.">
+				<cocoa key="asMode"/>
+			</property>
+			<property name="text encoding" code="pchc" type="text" access="rw" description="Text Encoding">
+				<cocoa key="asTextEncoding"/>
+			</property>
+			<property name="return code" code="prtc" type="any" access="rw" description="return code">
+				<cocoa key="asReturnCode"/>
+			</property>
+			<property name="filetype" code="pftp" type="text" description="file type">
+				<cocoa key="asType"/>
+			</property>
+			<property name="filecreator" code="pfcr" type="text" description="file creator">
+				<cocoa key="asCreator"/>
+			</property>
+			<property name="windowindex" code="pwin" type="integer" access="rw" description="the index of the window in the application">
+				<cocoa key="asWindowindex"/>
+			</property>
+			<property name="index" code="pidx" type="integer" access="rw" description="the index of the document window">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="font" code="font" type="text" access="rw" description="Font name">
+				<cocoa key="asFont"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" access="rw" description="Size of font">
+				<cocoa key="asSize"/>
+			</property>
+			<property name="selection" code="psel" type="text" access="rw" description="the selected text of the document">
+				<cocoa key="asSelection"/>
+			</property>
+			<property name="selected" code="sele" type="text" access="rw" description="the selected text of the document (depricated)">
+				<cocoa key="asSelected"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="save">
+				<cocoa method="handleSaveScriptCommand:"/>
+			</responds-to>
+			<responds-to name="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- paragraph -->
+		<class name="paragraph" code="cpar" description="A paragraph until carige return code">
+			<cocoa class="CASParagraph"/>
+			<!-- element -->
+			<element type="word">
+				<cocoa key="asWordElement"/>
+			</element>
+			<element type="character">
+				<cocoa key="asCharacterElement"/>
+			</element>
+			<element type="insertion point">
+				<cocoa key="asInsertionPointElement"/>
+			</element>
+			<!-- property -->
+			<property name="index" code="pidx" type="integer" access="r" description="the paragraph number in the document">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="content" code="pcnt" type="text" access="rw" description="the content text of the paragraph">
+				<cocoa key="asContent"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- word -->
+		<class name="word" code="cwor" description="A word (an alphabet sequence) or a non-alphabet (but not space) letter">
+			<cocoa class="CASWord"/>
+			<!-- element -->
+			<element type="character">
+				<cocoa key="asCharacterElement"/>
+			</element>
+			<element type="insertion point">
+				<cocoa key="asInsertionPointElement"/>
+			</element>
+			<!-- property -->
+			<property name="index" code="pidx" type="integer" access="r" description="the word index in the document">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="content" code="pcnt" type="text" description="the content of the word">
+				<cocoa key="asContent"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- character -->
+		<class name="character" code="cha " description="An any kind of character ( 2-byte character is counted as one character )">
+			<cocoa class="CASCharacter"/>
+			<!-- element -->
+			<element type="insertion point">
+				<cocoa key="asInsertionPointElement"/>
+			</element>
+			<!-- property -->
+			<property name="index" code="pidx" type="integer" access="r" description="the character index in the document">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="content" code="pcnt" type="text" description="the content of the character">
+				<cocoa key="asContent"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- insertion point -->
+		<class name="insertion point" code="cins" description="An insertion location between a character">
+			<cocoa class="CASInsertionPoint"/>
+			<!-- property -->
+			<property name="index" code="pidx" type="integer" access="r" description="the insertion point index in the document">
+				<cocoa key="asIndex"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- selection object -->
+		<class name="selection object" code="csel" description="the selection or caret">
+			<cocoa class="CASSelectionObject"/>
+			<!-- element -->
+			<element type="paragraph">
+				<cocoa key="asParagraphElement"/>
+			</element>
+			<element type="word">
+				<cocoa key="asWordElement"/>
+			</element>
+			<element type="character">
+				<cocoa key="asCharacterElement"/>
+			</element>
+			<element type="insertion point">
+				<cocoa key="asInsertionPointElement"/>
+			</element>
+			<!-- property -->
+			<property name="content" code="pcnt" type="text" description="the content string of the selection object">
+				<cocoa key="asContent"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- indexwindow -->
+		<class name="indexwindow" code="idxw" description="An index window">
+			<cocoa class="IndexWindowDocument"/>
+			<!-- element -->
+			<element type="indexrecord">
+				<cocoa key="asIndexrecordElement"/>
+			</element>
+			<element type="indexgroup">
+				<cocoa key="asIndexgroupElement"/>
+			</element>
+			<!-- property -->
+			<property name="content" code="pcnt" type="record" description="the content of the indexwindow">
+				<cocoa key="asContent"/>
+			</property>
+			<property name="index" code="pidx" type="integer" access="rw" description="the index of the indexwindow">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="file" code="file" type="file" access="r" description="the file specification of the indexwindow">
+				<cocoa key="asFile"/>
+			</property>
+			<property name="name" code="pnam" type="text" access="rw" description="the title of the indexwindow">
+				<cocoa key="asName"/>
+			</property>
+			<property name="modified" code="imod" access="r" type="boolean" description="Has the document been modified since the last save?">
+				<cocoa key="asModified"/>
+			</property>
+			<property name="filewidth" code="fwid" access="rw" type="integer" description="width of file tag">
+				<cocoa key="asFilewidth"/>
+			</property>
+			<property name="infowidth" code="iwid" access="rw" type="integer" description="width of comment tag">
+				<cocoa key="asInfowidth"/>
+			</property>
+			<property name="fileorder" code="ford" access="r" type="integer" description="order of file tag">
+				<cocoa key="asFileorder"/>
+			</property>
+			<property name="infoorder" code="iord" access="r" type="integer" description="order of comment tag">
+				<cocoa key="asInfoorder"/>
+			</property>
+			<property name="asksaving" code="asks" type="boolean" access="rw" description="whether ask saving or not when closing">
+				<cocoa key="asAsksaving"/>
+			</property>
+			
+			<property name="windowindex" code="pwin" type="integer" access="rw" description="the index of the window in the application">
+				<cocoa key="asWindowindex"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- index record -->
+		<class name="indexrecord" code="idxr" description="index record of index window">
+			<cocoa class="CASIndexRecord"/>
+			<!-- property -->
+			<property name="content" code="pcnt" type="record" access="rw" description="the content of the indexrecord">
+				<cocoa key="asContent"/>
+			</property>
+			<property name="index" code="pidx" type="integer" access="r" description="the index of the indexrecord">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="file" code="file" type="file" access="rw" description="file information of index">
+				<cocoa key="asFile"/>
+			</property>
+			<property name="startposition" code="spos" access="r" type="integer" description="start position of index">
+				<cocoa key="asStartposition"/>
+			</property>
+			<property name="endposition" code="epos" access="r" type="integer" description="end position of index">
+				<cocoa key="asEndposition"/>
+			</property>
+			<property name="paragraph" code="cpar" access="r" type="integer" description="paragraph number">
+				<cocoa key="asParagraph"/>
+			</property>
+			<property name="comment" code="comm" access="rw" type="text" description="comment of index">
+				<cocoa key="asComment"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- index group -->
+		<class name="indexgroup" code="idxg" description="group of index records">
+			<cocoa class="CASIndexGroup"/>
+			<!-- element -->
+			<element type="indexrecord">
+				<cocoa key="asIndexrecordElement"/>
+			</element>
+			<!-- property -->
+			<property name="content" code="pcnt" type="record" access="rw" description="the content of the indexgroup">
+				<cocoa key="asContent"/>
+			</property>
+			<property name="index" code="pidx" type="integer" access="r" description="the index of the indexgroup">
+				<cocoa key="asIndex"/>
+			</property>
+			<property name="comment" code="comm" type="text" access="rw" description="titile of group">
+				<cocoa key="asComment"/>
+			</property>
+			<!-- responds-to -->
+			<responds-to name="count">
+				<cocoa method="handleCountScriptCommand:"/>
+			</responds-to>
+			<responds-to name="exists">
+				<cocoa method="handleExistsScriptCommand:"/>
+			</responds-to>
+			<responds-to name="delete">
+				<cocoa method="handleDeleteScriptCommand:"/>
+			</responds-to>
+			<responds-to name="select">
+				<cocoa method="handleSelectScriptCommand:"/>
+			</responds-to>
+			<responds-to name="collapse">
+				<cocoa method="handleCollapseScriptCommand:"/>
+			</responds-to>
+			<responds-to name="expand">
+				<cocoa method="handleExpandScriptCommand:"/>
+			</responds-to>
+		</class>
+		
+		<!-- enumeration -->
+		<enumeration name="savo" code="savo">
+			<enumerator name="yes" code="yes " description="Save objects now"/>
+			<enumerator name="no" code="no  " description="Do not save objects"/>
+			<enumerator name="ask" code="ask " description="Ask the user whether to save"/>
+		</enumeration>
+		<enumeration name="retc" code="retc">
+			<enumerator name="CR" code="CR  " description="CR (Mac)"/>
+			<enumerator name="CRLF" code="CRLF" description="CR+LF (Windows)"/>
+			<enumerator name="LF" code="0x4C460000" description="LF (UNIX)"/>
+		</enumeration>
+		<enumeration name="epth" code="epth">
+			<enumerator name="partial" code="part" description="partial path"/>
+			<enumerator name="full" code="full" description="full path"/>
+		</enumeration>
+	</suite>
+</dictionary>

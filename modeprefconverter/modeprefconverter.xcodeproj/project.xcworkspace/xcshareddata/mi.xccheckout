@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>94FA8D43-EC85-48F0-AD25-C2138BC301B6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>mi</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5a5b09e4-d674-11dd-916d-cdb5b9a02863++505</key>
+		<string>svn+ssh://192.168.0.177/svn/mi/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Build_Mac/mi.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5a5b09e4-d674-11dd-916d-cdb5b9a02863++505</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>5a5b09e4-d674-11dd-916d-cdb5b9a02863++505</key>
+		<string>svn+ssh://192.168.0.177/svn/mi</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>svn+ssh://192.168.0.177/svn/mi/trunk/Build_Mac/mi.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5a5b09e4-d674-11dd-916d-cdb5b9a02863++505</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5a5b09e4-d674-11dd-916d-cdb5b9a02863++505</string>
+			<key>IDESourceControlWCCName</key>
+			<string>miedit</string>
+		</dict>
+	</array>
+</dict>
+</plist>

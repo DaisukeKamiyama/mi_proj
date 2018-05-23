@@ -1,0 +1,39 @@
+Regexp List (Regular Expression will be added in Find text by selecting an item.)
+-
+. : Any Character except for Line End
+\w : Alphabet, Number, or Underbar
+\W : Any Character except for Alphabet, Number, or Underbar
+\d : Number
+\D : Any Character except for Number
+\s : Space, Line End, or Tab
+\S : Any Character except for Space, Line End, or Tab
+\t : Tab
+\r : Line End
+[] : Any Character in [ ] (Example: [a-z], [abc])
+[^] : Any Character except for Characters in [^ ] (Example: [^a-z], [^abc])
+\x00 : Hex code (Example: \x5C)
+-
+* : Repeat 0 or more times (Match as possible as long)
+*? : Repeat 0 or more times (Match as possible as short)
++ : Repeat 1 or more times (Match as possible as long)
++? : Repeat 1 or more times (Match as possible as short)
+? : Repeat 0 or 1 time (Match as possible as long)
+?? : Repeat 0 or 1 time (Match as possible as short)
+{n,m} : Repeat from n times to m times (Match as possible as short)
+{n,m}? : Repeat from n times to m times (Match as possible as long)
+-
+| : Any of the previous one or the next one (Example: abc|def)
+-
+() : Group
+(?:) : Group without group number
+\1: String of group 1
+-
+^ : Start of Paragraph
+$ : End of Paragraph
+\b : Border of Words
+\B : Any Position except for Border of Words
+-
+^\r : Empty Line
+(.|\r) : Any Character
+(^.+\r)(\1)+ : Continuous duplicated line
+<(.|\r)+?> : HTML tag

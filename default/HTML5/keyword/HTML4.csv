@@ -1,0 +1,921 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,HTML4用キーワード
+,下記文書に準拠。
+,HTML 4.01 Specification
+,W3C Recommendation 24 December 1999
+,http://www.w3.org/TR/REC-html40/
+
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝Elements＝＝＝＝＝＝＝＝＝＝
+a,"a アンカー （インライン要素）
+【子要素】a以外のインライン要素
+【属性】
+name=""(アンカー名)""
+href=""(リンク先URI)""
+hreflang=""(リンク先langcode)""
+type=""(リンク先MIME type)"" text/html等
+rel=""(リンク先link-types)""
+rev=""(リンク元link-types)""
+charset=""(リンク先charset)""
+target=""frame-target""
+shape, coords
+accesskey, tabindex
+onfocus, onblur
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+abbr,"abbr 略語 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+acronym,"acronym 頭字語 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+address,"address コンタクト情報 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+applet,"applet ＜非推奨　→objectを推奨＞",,element,reserved-word
+area,"area イメージマップ （<map>〜</map>内要素）
+【子要素】なし
+【属性】
+alt=""代替テキスト"" 必須
+shape=""default""|""rect""|""circle""|""poly""
+coords=""(座標)""
+     rect: left-x, top-y, right-x, bottom-y
+     circle: center-x, center-y, radius）
+     poly: x1, y1, x2, y2, ..., xN, yN
+nohref （リンク先が無いことを示す）
+usemap=""(mapのURI)""
+href=""(リンク先URI)""
+target=""frame-target""
+accesskey, tabindex
+onfocus, onblur
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+b,"b ボールド （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+base,"base 相対URIのベースURI <head>〜</head>内要素
+【子要素】なし
+【属性】
+href=""ベースURI"" 必須
+target=""frame-target""
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+basefont,"basefont ＜非推奨＞ （インライン要素）",,element,reserved-word
+bdo,"bdo 文字方向指定 （インライン要素）
+【子要素】インライン要素
+【属性】
+lang=""(langcode)""
+dir=""ltr""|""rtl""必須
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+big,"big ラージフォントで表示 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+blockquote,"blockquote 引用 （ブロック要素）
+【子要素】ブロック要素、script
+【属性】
+cite=""URI""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+body,"body ドキュメント本文 （<html>〜</html>内要素）
+【子要素】ブロック要素、script、ins、del
+【属性】
+background＜非推奨＞
+text＜非推奨＞
+link＜非推奨＞
+vlink＜非推奨＞
+alink＜非推奨＞
+bgcolor＜非推奨＞
+onload, onunload
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】オプショナル　【終了タグ】オプショナル
+",,element,reserved-word
+br,"br 改行 （インライン要素）
+【属性】
+id, class ,title ,style
+clear＜非推奨＞
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+button,"button フォーム内のボタン （インライン要素）
+【子要素】a, 各フォーム内要素, form, fieldset以外
+【属性】
+name = ""コントロール名""
+value = ""送信値""
+type = ""submit""|""button""|""reset""
+disabled
+accesskey ,tabindex
+onfocus, onblur
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+caption,"caption テーブルのキャプション （<table>〜</table>内要素）
+【子要素】インライン要素
+【属性】
+align＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+cite,"cite 引用元 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+code,"code ソースコード （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+col,"col テーブルカラム （<table>〜</table>、<colgroup>〜</colgroup>内要素）
+【子要素】なし
+【属性】
+span = ""列数""
+width = ""幅（ピクセル、％、相対値）""
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+colgroup,"colgroup テーブルカラムグループ （<colgroup>〜</colgroup>内要素）
+【子要素】col
+【属性】
+span = ""列数""
+width = ""幅（ピクセル、％、相対値）""
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+dd,"dd 定義リスト項目 （<dl>〜</dl>内要素）
+【子要素】ブロック要素、インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+del,"del 削除テキスト（履歴）
+【子要素】ブロック要素、インライン要素
+【属性】
+cite = ""ソースURI""
+datetime = ""日時 (YYYY-MM-DDThh:mm:ssTZD)""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+dfn,"dfn 定義 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+dir,"dir ＜非推奨＞ （ブロック要素）",,element,reserved-word
+div,"div ブロック要素コンテナ （ブロック要素）
+【子要素】ブロック要素、インライン要素
+【属性】
+align＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+dl,"dl 定義リスト （ブロック要素）
+【子要素】dt, dd
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word,"dl>
+<dt><<<CARET SELECTED>>></dt>
+<dd></dd>
+</dl>
+"
+dt,"dt 定義リスト項目 （<dl>〜</dl>内要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+em,"em 強調 ※em < strong （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+fieldset,"fieldset フォーム内の項目グループ （ブロック要素）
+【子要素】legend要素、ブロック要素、インライン要素
+【属性】
+align＜非推奨＞
+accesskey
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+font,"font ＜非推奨＞ （インライン要素）",,element,reserved-word
+form,"form フォーム （ブロック要素）
+【子要素】form以外のブロック要素、script
+【属性】
+action = ""(フォーム処理URI)"" 必須
+method = ""get""|""post""
+enctype = ""(MIME type)""
+accept-charset = ""(charset list)""
+accept = ""(MIME typeのリスト)""
+name = ""名前""＜非推奨→idを推奨＞
+onsubmit, onreset
+target=""frame-target""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+frame,"frame フレーム （<frameset>〜</frameset>内要素）
+【子要素】なし
+【属性】
+name = ""フレーム名""
+longdesc = ""URI""
+src = ""フレーム内容URI""
+noresize （boolean属性）（サイズ変更不可を示す）
+scrolling = ""auto""|""yes""|""no""
+frameborder = ""1""|""0""
+marginwidth = ""(ピクセル)""
+marginheight = ""(ピクセル)""
+id, class ,title ,style
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+frameset,"frameset フレームセット （<html>〜</html>内要素）
+【子要素】frameset, frame, noframes
+【属性】
+rows=""高さ（ピクセル、％、相対値）のカンマ区切りリスト"" （例：""30%, 70%""）
+cols=""幅（ピクセル、％、相対値）のカンマ区切りリスト"" 
+onload, onunload
+id, class ,title ,style 
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h1,"h1 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h2,"h2 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h3,"h3 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h4,"h4 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h5,"h5 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+h6,"h6 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+head,"head ドキュメントヘッダ部分 （<html>〜</html>内要素）
+【子要素】title, base, script, style, meta, link, object
+【属性】
+profile=""URI""
+lang, dir
+【開始タグ】オプショナル　【終了タグ】オプショナル
+",,element,reserved-word
+hr,"hr 水平線 （ブロック要素）
+【子要素】なし
+【属性】
+align＜非推奨＞
+noshade＜非推奨＞
+size＜非推奨＞
+width＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+html,"html
+【子要素】head, body
+【属性】
+version＜非推奨＞
+lang, dir
+【開始タグ】オプショナル　【終了タグ】オプショナル
+",,element,reserved-word
+i,"i イタリック （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+iframe,"iframe インラインフレーム （インライン要素）
+【子要素】ブロック要素、インライン要素
+【属性】
+longdesc = ""URI""
+name = ""名前""
+width = ""幅""
+height = ""高さ""
+src = ""フレーム内容URI""
+frameborder = ""1""|""0""
+marginwidth = ""(ピクセル)""
+marginheight = ""(ピクセル)""
+scrolling = ""auto""|""yes""|""no""
+align＜非推奨＞
+id, class ,style, title
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+img,"img イメージ （インライン要素）
+【子要素】なし
+【属性】
+src = ""イメージURI"" 必須
+alt=""代替テキスト"" 必須
+longdesc = ""URI""
+name = ""名前""
+width = ""幅""
+height = ""高さ""
+ismap （boolean属性）（サーバーサイドイメージマップを使うことを示す）
+usemap = ""イメージマップURI""
+align＜非推奨＞
+border＜非推奨＞
+hspace＜非推奨＞
+vspace＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+input,"input フォーム内の各入力コントロール （インライン要素）
+type = ""text""|""password""|""checkbox""|""radio""|""submit""|""reset""|""file""|""hidden""|""image""|""button""
+name = ""コントロール名""
+value = ""サーバーに送信されるコントロールの初期値""
+size = ""幅"" （text, passwordは文字数、その他はピクセル）
+maxlength = ""最大幅""
+src = ""イメージURI"" （image時）
+alt=""代替テキスト""
+checked （boolean属性値）（ボタン初期値ONを示す。）
+disabled （boolean属性値）
+readonly （boolean属性値）
+ismap （boolean属性）（サーバーサイドイメージマップを使うことを示す）
+usemap = ""イメージマップURI""
+accept = ""(MIME typeのリスト)""（ファイルアップロード用）
+align＜非推奨＞
+tabindex ,accesskey
+onfocus, onblur, onselect, onchange
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+ins,"ins 挿入テキスト（履歴）
+【子要素】ブロック要素、インライン要素
+【属性】
+cite = ""ソースURI""
+datetime = ""日時 (YYYY-MM-DDThh:mm:ssTZD)""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+isindex,"isindex＜非推奨＞ （ブロック要素）",,element,reserved-word
+kbd,"kbd ユーザーのキーボード入力 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+label,"label フォーム内の各入力コントロールのラベル （インライン要素）
+【子要素】label以外のインライン要素
+【属性】
+for=""対象コントロールのid""
+accesskey
+onfocus, onblur
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+【例】<input type=""checkbox"" name=""送信名"" value=""送信値"" id=""check1""><label for=""check1"">タイトル</label>
+",,element,reserved-word
+legend,"legend フォーム内項目グループのタイトル （<fieldset>〜</fieldset>内要素）
+【子要素】インライン要素
+【属性】
+align＜非推奨＞
+accesskey
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+li,"li リスト項目 （<ul>〜</ul>、<ol>〜</ol>内要素）
+【子要素】ブロック要素、インライン要素
+【属性】
+type＜非推奨＞
+start＜非推奨＞
+value＜非推奨＞
+compact＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+link,"link 関連ドキュメントへのリンク（主にCSS） （<head>〜</head>内要素）
+【子要素】なし
+【属性】
+href=""(リンク先URI)""
+hreflang=""(リンク先langcode)""
+type=""(リンク先MIME type)"" text/html等
+rel=""(リンク先link-types)""
+rev=""(リンク元link-types)""
+target=""frame-target""
+charset=""(リンク先charset)""
+media = ""(media-descriptors)""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+map,"map イメージマップ （インライン要素）
+【子要素】ブロック要素、area
+【属性】
+name=""(名前)"" 必須
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+menu,"menu ＜非推奨＞ （ブロック要素）",,element,reserved-word
+meta,"meta メタ情報 （<head>〜</head>内要素）
+content = ""内容"" 必須
+http-equiv = ""HTTP応答ヘッダ名""
+name = ""メタ情報名""
+scheme = ""スキーム名""
+lang, dir
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+noframes,"noframes フレーム未サポート時の表示 （ブロック要素）
+【子要素】ブロック要素、インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+noscript,"noscript script未サポート時の表示 （ブロック要素）
+【子要素】ブロック要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+object,"object オブジェクト （インライン要素）
+【子要素】param、ブロック要素、インライン要素
+【属性】
+classid = ""URI""
+codebase = ""URI""
+codetype = ""MIME type""
+data = ""URI""
+type = ""MIME type""
+archive = ""URIリスト""
+declare （boolean属性）
+standby = ""テキスト""
+width = ""幅""
+height = ""高さ""
+usemap = ""イメージマップURI""
+name = ""名前""
+align＜非推奨＞
+border＜非推奨＞
+hspace＜非推奨＞
+vspace＜非推奨＞
+tabindex
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+ol,"ol 順序付きリスト（Ordered List） （ブロック要素）
+【子要素】li
+【属性】
+type＜非推奨＞
+start＜非推奨＞
+value＜非推奨＞
+compact＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word,"ol>
+<li><<<CARET SELECTED>>></li>
+<li></li>
+</ol>
+"
+optgroup,"optgroup フォーム内メニューのサブメニュー有り項目 （<select>〜</select>内要素）
+【子要素】option
+【属性】
+label=""メニュー項目テキスト"" 必須
+disabled （boolean属性）
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+option,"option フォーム内メニュー項目 （<select>〜</select>、<optgroup>〜</optgroup>内要素）
+selected （boolean属性）
+disabled （boolean属性）
+label=""メニュー項目テキスト""
+value=""サーバーに送信されるコントロールの値""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+p,"p 段落 （ブロック要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+param,"param  objectのパラメータ （<object>〜</object>内要素）
+【子要素】なし
+【属性】
+name = ""(パラメータ名)"" 必須
+value = ""(値)""
+valuetype = ""data""|""ref""|""object""
+type = ""(MIME type)""
+id = ""(id)""
+【開始タグ】必須　【終了タグ】なし
+",,element,reserved-word
+pre,"pre 整形済みテキスト （ブロック要素）
+【子要素】img, object, big, small, sub, sup 以外のインライン要素
+【属性】
+width＜非推奨＞
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+q,"q 引用 （インライン要素）
+【子要素】インライン要素
+【属性】
+cite=""ソースURI""
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+s,"s 取消線＜非推奨＞ （インライン要素）",,element,reserved-word
+samp,"samp プログラム・スクリプトの出力 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+script,"script JavaScript等のスクリプト （インライン要素）
+【属性】
+type = ""MIME type"" 必須 （例：""text/javascript""）
+src = ""スクリプトURI""
+language＜非推奨＞
+defer （boolean属性）（document.write()等によりドキュメント内容が生成されないことを示す）
+charset=""(リンク先charset)""
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+select,"select フォーム内メニュー （インライン要素）
+【子要素】optgroup, option
+【属性】
+name = ""コントロール名""
+size = ""メニュー表示行数""
+multiple （boolean属性）（複数選択可を示す）
+disabled （boolean属性）
+tabindex
+onfocus, onblur, onchange
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+small,"small スモールフォントで表示 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+span,"span インライン要素コンテナ （インライン要素）
+【子要素】インライン要素
+【属性】
+align＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+strike,"strike 取消線＜非推奨＞ （インライン要素）",,element,reserved-word
+strong,"strong より強い強調 ※em < strong （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+style,"style スタイルシート （<head>〜</head>内要素）
+【属性】
+type = ""(MIME type)"" 必須 （CSSならtype=""text/css""）
+media = ""(media-descriptors)""
+lang, dir, title
+【開始タグ】必須　【終了タグ】必須
+【例】
+<style type=""text/css"">
+  h1 {border-width: 1; border: solid; text-align: center}
+</style>
+",,element,reserved-word
+sub,"sub 下付き文字 （インライン要素）
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+sup,"sup 上付き文字 （インライン要素）
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+table,"table テーブル （ブロック要素）
+【子要素】下記の順
+caption（0〜1個）
+col（0個以上）または colgroup（0個以上）
+thead（0〜1個）
+tfoot（0〜1個）
+tbody（1個以上。タグ省略可能）
+【属性】
+cellspacing = ""(セル間スペース幅（ピクセル、％）)""
+cellpadding = ""(セル枠線と内容との間のスペース幅（ピクセル、％）)""
+frame = ""void""|""above""|""below""|""hsides""|""lhs""|""rhs""|""vsides""|""box""|""border""
+rules = ""none""|""groups""|""rows""|""cols""|""all""
+border = ""(枠線幅ピクセル)""
+width = ""幅""
+align＜非推奨＞
+bgcolor＜非推奨＞
+summary = ""(概要)""（音声出力等用）
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+tbody,"tbody テーブル本体 （<table>〜</table>内要素）
+【子要素】tr
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】オプショナル　【終了タグ】オプショナル
+",,element,reserved-word
+td,"td テーブルセル （<tr>〜</tr>内要素）
+【子要素】ブロック要素、インライン要素
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+rowspan = ""(結合セル数"" （右方向への結合セル数。""0""は全て）)""
+colspan = ""(結合セル数"" （下方向への結合セル数。""0""は全て）)""
+headers = ""ヘッダセルのid""
+scope = ""scope-name"" (row, col, rowgroup, colgroup)
+abbr = ""省略形（音声出力等用）""
+axis = ""カテゴリ（音声出力等用）""
+nowrap＜非推奨＞
+width＜非推奨＞
+height＜非推奨＞
+bgcolor＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+textarea,"textarea フォーム内複数行テキスト入力フィールド （インライン要素）
+rows = ""(表示行数)"" 必須
+cols = ""(表示列数)"" 必須
+name = ""(コントロール名)""
+readonly （boolean属性）
+disabled （boolean属性）
+tabindex, accesskey
+onfocus, onblur, onselect, onchange
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+tfoot,"tfoot テーブルフッタ （<table>〜</table>内要素）
+【子要素】tr
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+th,"th ヘッダ用テーブルセル （<tr>〜</tr>内要素）
+【子要素】ブロック要素、インライン要素
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+rowspan = ""(結合セル数"" （右方向への結合セル数。""0""は全て）)""
+colspan = ""(結合セル数"" （下方向への結合セル数。""0""は全て）)""
+headers = ""ヘッダセルのid""
+scope = ""scope-name"" (row, col, rowgroup, colgroup)
+abbr = ""省略形（音声出力等用）""
+axis = ""カテゴリ（音声出力等用）""
+nowrap＜非推奨＞
+width＜非推奨＞
+height＜非推奨＞
+bgcolor＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+thead,"thead テーブルヘッダ （<table>〜</table>内要素）
+【子要素】tr
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+title,"title ドキュメントタイトル （<head>〜</head>内要素）
+【属性】lang, dir
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+tr,"tr テーブル行（<thead>〜</thead>、<tfoot>〜</tfoot>、<tbody>〜</tbody>内要素）
+【子要素】th, td
+【属性】
+align = ""left""|""center""|""right""|""justify""|""char""
+char = ""(桁揃え文字)""
+charoff = ""(桁揃え位置（％）)""
+valign = ""top""|""middle""|""bottom""|""baseline""
+bgcolor＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】オプショナル
+",,element,reserved-word
+tt,"tt 等幅 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+u,"u アンダーライン＜非推奨＞ （インライン要素）",,element,reserved-word
+ul,"ul 順序なしリスト（Unordered List） （ブロック要素）
+【子要素】li
+【属性】
+type＜非推奨＞
+start＜非推奨＞
+value＜非推奨＞
+compact＜非推奨＞
+id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word
+var,"var プログラムの変数 （インライン要素）
+【子要素】インライン要素
+【属性】id, class, style, title, lang, dir, 各イベント
+【開始タグ】必須　【終了タグ】必須
+",,element,reserved-word,"ul>
+<li><<<CARET SELECTED>>></li>
+<li></li>
+</ul>
+"
+,＝＝＝＝＝＝＝＝＝＝
+top,,,"valign",other2
+middle,,,"valign",other2
+bottom,,,"valign",other2
+baseline,,,"valign",other2
+left,"align",,"align",other2
+center,"align",,"align",other2
+right,"align",,"align",other2
+justify,"align",,"align",other2
+char,"align",,"align",other2
+,＝＝＝＝＝＝＝＝＝＝Link types＝＝＝＝＝＝＝＝＝＝
+alternate,"link-types",,"link-types",other2
+stylesheet,"link-types",,"link-types",other2
+start,"link-types",,"link-types",other2
+next,"link-types",,"link-types",other2
+prev,"link-types",,"link-types",other2
+contents,"link-types",,"link-types",other2
+index,"link-types",,"link-types",other2
+glossary,"link-types",,"link-types",other2
+copyright,"link-types",,"link-types",other2
+chapter,"link-types",,"link-types",other2
+section,"link-types",,"link-types",other2
+subsection,"link-types",,"link-types",other2
+appendix,"link-types",,"link-types",other2
+help,"link-types",,"link-types",other2
+bookmark,"link-types",,"link-types",other2
+,＝＝＝＝＝＝＝＝＝＝Frame target names＝＝＝＝＝＝＝＝＝＝
+_blank,"frame-target",,"frame-target",other2
+_self,"frame-target",,"frame-target",other2
+_parent,"frame-target",,"frame-target",other2
+_top,"frame-target",,"frame-target",other2
+,＝＝＝＝＝＝＝＝＝＝Attributes＝＝＝＝＝＝＝＝＝＝
+abbr,,,,property
+accept-charset,,,,property
+accept,,,,property
+accesskey,,,,property
+action,,,,property
+align,,,,property,"align=""<<<CARET HINT(""align"")>>>"""
+alink,,,,property
+alt,,,,property
+archive,,,,property
+axis,,,,property
+background,,,,property
+bgcolor,,,,property
+border,,,,property
+cellpadding,,,,property
+cellspacing,,,,property
+char,,,,property
+charoff,,,,property
+charset,,,,property
+checked,,,,property
+cite,,,,property
+class,,,,property
+classid,,,,property
+clear,,,,property
+code,,,,property
+codebase,,,,property
+codetype,,,,property
+color,,,,property
+cols,,,,property
+colspan,,,,property
+compact,,,,property
+content,,,,property
+coords,,,,property
+coords,,,,property
+data,,,,property
+datetime,,,,property
+declare,,,,property
+defer,,,,property
+dir,,,,property
+dir,,,,property
+disabled,,,,property
+enctype,,,,property
+face,,,,property
+for,,,,property
+frame,,,,property
+frameborder,,,,property
+headers,,,,property
+height,,,,property
+href,,,,property
+hreflang,,,,property
+hspace,,,,property
+http-equiv,,,,property
+id,,,,property
+ismap,,,,property
+label,,,,property
+lang,,,,property
+language,,,,property
+link,,,,property
+longdesc,,,,property
+longdesc,,,,property
+marginheight,,,,property
+marginwidth,,,,property
+maxlength,,,,property
+media,,,,property
+media,,,,property
+method,,,,property
+multiple,,,,property
+name,,,,property
+nohref,,,,property
+noresize,,,,property
+noshade,,,,property
+nowrap,,,,property
+object,,,,property
+onblur,,,,property
+onchange,,,,property
+onclick,,,,property
+ondblclick,,,,property
+onfocus,,,,property
+onkeydown,,,,property
+onkeypress,,,,property
+onkeyup,,,,property
+onload,,,,property
+onload,,,,property
+onmousedown,,,,property
+onmousemove,,,,property
+onmouseout,,,,property
+onmouseover,,,,property
+onmouseup,,,,property
+onreset,,,,property
+onselect,,,,property
+onsubmit,,,,property
+onunload,,,,property
+onunload,,,,property
+profile,,,,property
+prompt,,,,property
+readonly,,,,property
+readonly,,,,property
+rel,,,,property
+rev,,,,property
+rows,,,,property
+rowspan,,,,property
+rules,,,,property
+scheme,,,,property
+scope,,,,property
+scrolling,,,,property
+selected,,,,property
+shape,,,,property
+shape,,,,property
+size,,,,property
+span,,,,property
+span,,,,property
+src,,,,property
+standby,,,,property
+start,,,,property
+style,,,,property
+summary,,,,property
+tabindex,,,,property
+target,,,,property
+text,,,,property
+title,,,,property
+type,,,,property
+usemap,,,,property
+valign,,,,property
+value,,,,property
+valuetype,,,,property
+version,,,,property
+vlink,,,,property
+vspace,,,,property
+width,,,,property
+
+

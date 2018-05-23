@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'mi-edit' target in the 'mi-edit' project.
+//
+
+#include <Carbon/Carbon.h>
+
+#define IMPLEMENTATION_FOR_MACOSX 1

@@ -1,0 +1,425 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,JavaScript用キーワード
+,Ecma-262 5.1 Edition / June 2011 ECMAScript Language Specificationを基に作成
+,http://www.ecma-international.org/publications/standards/Ecma-262.htm
+,Ecma-262のライセンス表示
+,Copyright notice
+,Copyright © 2011 Ecma International
+,Ecma International Rue du Rhone 114 CH-1204 Geneva Tel: +41 22 849 6000 Fax: +41 22 849 6001 Web: http://www.ecma-international.org
+,This document and possible translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to Ecma International, except as needed for the purpose of developing any document or deliverable produced by Ecma International (in which case the rules applied to copyrights must be followed) or as required to translate it into languages other than English.
+,The limited permissions granted above are perpetual and will not be revoked by Ecma International or its successors or assigns.
+,This document and the information contained herein is provided on an ""AS IS"" basis and ECMA INTERNATIONAL DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.""
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝予約語 (7.6)＝＝＝＝＝＝＝＝＝＝
+break,,,,reserved-word
+case,,,,reserved-word
+catch,,,,reserved-word
+continue,,,,reserved-word
+debugger,,,,reserved-word
+default,,,,reserved-word
+delete,,,,reserved-word
+do,,,,reserved-word
+else,,,,reserved-word
+finally,,,,reserved-word
+for,,,,reserved-word
+function,,,,reserved-word
+if,,,,reserved-word
+in,,,,reserved-word
+instanceof,,,,reserved-word
+typeof,,,,reserved-word
+new,,,,reserved-word
+var,,,,reserved-word
+return,,,,reserved-word
+void,,,,reserved-word
+switch,,,,reserved-word
+while,,,,reserved-word
+this,,,,reserved-word
+with,,,,reserved-word
+throw,,,,reserved-word
+try,,,,reserved-word
+class,,,,reserved-word
+enum,,,,reserved-word
+const,,,,reserved-word
+export,,,,reserved-word
+extends,,,,reserved-word
+super,,,,reserved-word
+import,,,,reserved-word
+implements,,,,reserved-word
+let,,,,reserved-word
+private,,,,reserved-word
+public,,,,reserved-word
+yield,,,,reserved-word
+interface,,,,reserved-word
+package,,,,reserved-word
+protected,,,,reserved-word
+static,,,,reserved-word
+null,,,,reserved-word
+true,,,,reserved-word
+false,,,,reserved-word
+,＝＝＝＝＝＝＝＝＝＝The Global Objects (15.1)＝＝＝＝＝＝＝＝＝＝
+undefined,,,Global,reserved-word
+NaN,"Not a Number",,Global,reserved-word
+Infinity,,,Global,reserved-word
+,----------クラス----------
+Object,,Object,Global,class
+Function,,Function,Global,class
+Array,,Array,Global,class
+String,,String,Global,class
+Boolean,,Boolean,Global,class
+Number,,Number,Global,class
+Date,,Date,Global,class
+RegExp,,RegExp,Global
+Error,,Error,Global,class
+EvalError,,EvalError,Global,class
+RangeError,,RangeError,Global,class
+SyntaxError,,SyntaxError,Global,class
+TypeError,,TypeError,Global,class
+URIError,,URIError,Global,class
+Math,,Math,Global,class
+JSON,,JSON,Global,class
+,----------メソッド----------
+eval,"eval (x)
+xをJavaScriptコードとして実行",,Global,method
+parseInt,"parseInt (string [, radix])
+stringを整数に変換。radix: 基数（省略時は10）。",Number,Global,method
+parseFloat,"parseFloat (string)
+stringを浮動小数点数に変換。",Number,Global,method
+isNaN,"isNaN (number)
+numberがNaNならtrue",Boolean,Global,method
+isFinite,"isFinite (number)
+numberがNaN, +∞, -∞ 以外ならtrue",Boolean,Global,method
+decodeURI,"decodeURI (encodedURI)
+encodedURIをURIデコード（;/?:@&=+$#は変換しない）",String,Global,method
+decodeURIComponent,"decodeURIComponent (encodedURIComponent)
+encodedURIComponentをURIデコード（;/?:@&=+$#も変換する）",String,Global,method
+encodeURI (uri),"encodeURI (uri)
+uriをURIエンコード（;/?:@&=+$#は変換しない）",String,Global,method
+encodeURIComponent,"encodeURIComponent (uriComponent)
+uriComponentをURIエンコード（;/?:@&=+$#も変換する）",String,Global,method
+,＝＝＝＝＝＝＝＝＝＝Object Objects (15.2)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+getPrototypeOf,"getPrototypeOf ( O )",Object,Object,method
+getOwnPropertyDescriptor,"getOwnPropertyDescriptor ( O, P )",Object,Object,method
+getOwnPropertyNames,"getOwnPropertyNames ( O )",Array,Object,method
+create,"create ( O [, Properties] )",Object,Object,method
+defineProperty,"defineProperty ( O, P, Attributes )",Object,Object,method
+defineProperties,"defineProperties ( O, Properties )",Object,Object,method
+seal,"seal ( O )",Object,Object,method
+freeze,"freeze ( O )",Object,Object,method
+preventExtensions,"preventExtensions ( O )",Object,Object,method
+isSealed,"isSealed ( O )",Boolean,Object,method
+isFrozen,"isFrozen ( O )",Boolean,Object,method
+isExtensible,"isExtensible ( O )",Boolean,Object,method
+keys,"keys ( O )",Array,Object,method
+toString,"toString ( )",String,Object,method
+toLocaleString,"toLocaleString ( )",String,Object,method
+valueOf,"valueOf ( )",Object,Object,method
+hasOwnProperty,"hasOwnProperty (V)",Boolean,Object,method
+isPrototypeOf,"isPrototypeOf (V)",Boolean,Object,method
+propertyIsEnumerable,"propertyIsEnumerable (V)",Boolean,Object,method
+,＝＝＝＝＝＝＝＝＝＝Function Objects (15.3)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+toString,"toString ( )",String,Function,method
+apply,"apply (thisArg, argArray)",,Function,method
+call,"call (thisArg [ , arg1 [ , arg2, ... ] ] )",,Function,method
+bind,"bind (thisArg [, arg1 [, arg2, ...]])",,Function,method
+,----------Function Instance（＝クラス）のプロパティ----------
+length,"length",Number,,property
+prototype,"prototype",Object,,property
+,＝＝＝＝＝＝＝＝＝＝Array Objects (15.4)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+isArray,"isArray ( arg )",Boolean,Array,method
+toString,"toString ( )",String,Array,method
+toLocaleString,"toLocaleString ( )",String,Array,method
+concat,"concat ( [ item1 [ , item2 [ , ... ] ] ] )
+item1, item2, ...を連結して新規Arrayを生成",String,Array,method
+join,"join (separator)
+要素をseparatorで区切ってつなげた文字列を生成",String,Array,method
+pop,"pop ( )
+最後の要素を取得して削除",,Array,method
+push,"push ( [ item1 [ , item2 [ , ... ] ] ] )
+要素を最後に追加",Number,Array,method
+reverse,"reverse ( )
+要素を反転",,Array,method
+shift,"shift ( )
+最初の要素を取得して削除",,Array,method
+slice,"slice (start, end)
+配列の一部を抽出",Array,Array,method
+sort,"sort ([comparefn])
+配列をソート。comparefn：比較関数（省略可能）。",,Array,method
+splice,"splice (start, deleteCount [ , item1 [ , item2 [ , ... ] ] ] )
+配列の一部を置換",Array,Array,method
+unshift,"unshift ( [ item1 [ , item2 [ , ... ] ] ] )
+要素を最初に追加",Number,Array,method
+indexOf,"indexOf ( searchElement [ , fromIndex ] )",Number,Array,method
+lastIndexOf,"lastIndexOf ( searchElement [ , fromIndex ] )",Number,Array,method
+every,"every ( callbackfn [ , thisArg ] )",,Array,method
+some,"some ( callbackfn [ , thisArg ] )",Boolean,Array,method
+forEach,"forEach ( callbackfn [ , thisArg ] )",,Array,method
+map,"map ( callbackfn [ , thisArg ] )",Array,Array,method
+filter,"filter ( callbackfn [ , thisArg ] )",Array,Array,method
+reduce,"reduce ( callbackfn [ , initialValue ] )",,Array,method
+reduceRight,"reduceRight ( callbackfn [ , initialValue ] )",,Array,method
+,----------プロパティ----------
+length,,Number,Array,property
+,＝＝＝＝＝＝＝＝＝＝String Objects (15.5)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+fromCharCode,"fromCharCode ( [ char0 [ , char1 [ , ... ] ] ] )",String,String,method
+charAt,"charAt (pos)
+posの位置の文字を取得",String,String,method
+charCodeAt,"charCodeAt (pos)
+posの位置の文字のコードを取得",Number,String,method
+concat,"concat ( [ string1 [ , string2 [ , ... ] ] ] )
+string1, string2を連結して新規Stringを生成",String,String,method
+indexOf,"indexOf (searchString [, position])
+位置position以降で、文字列searchStringを検索し、位置を返す。見つからなければ-1を返す。position: 省略時は最初から検索。",Number,String,method
+lastIndexOf,"lastIndexOf (searchString [, position])
+位置position以前で、文字列searchStringを検索し、位置を返す。見つからなければ-1を返す。position: 省略時は最後から検索。",Number,String,method
+localeCompare,"localeCompare (that)",Number,String,method
+match,"match (regexp)
+正規表現regexpに一致する文字列をすべて取得し、配列を返す。",Array,String,method
+replace,"replace (searchValue, replaceValue)
+正規表現searchValueに一致する文字列をreplaceValue",,String,method
+search,"search (regexp)
+正規表現regexpに一致する文字列の位置を返す。",Number,String,method
+slice,"slice (start [, end])
+文字列の一部を抽出。end:省略時は最後まで。",String,String,method
+split,"split (separator [, limit])
+正規表現または文字列separatorで分割した文字列の配列を返す。limit: 分割最大数（省略時は制限無し）",Array,String,method
+substring,"substring (start[, end])
+文字列の一部を抽出。end:省略時は最後まで。",String,String,method
+toLowerCase,"toLowerCase ( )
+小文字に変換した文字列を生成",String,String,method
+toLocaleLowerCase,"toLocaleLowerCase ( )
+小文字に変換した文字列を生成",String,String,method
+toUpperCase,"toUpperCase ( )
+大文字に変換した文字列を生成",String,String,method
+toLocaleUpperCase,"toLocaleUpperCase ( )
+大文字に変換した文字列を生成",String,String,method
+trim,"trim ( )",String,String,method
+,----------プロパティ----------
+length,,Number,String,property
+,＝＝＝＝＝＝＝＝＝＝Boolean Objects (15.6)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+toString,"toString ( )",String,Boolean,method
+,＝＝＝＝＝＝＝＝＝＝Number Objects (15.7)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+toPrecision,"toPrecision ([precision])",Number,Number,method
+toString,"toString ( [ radix ] )
+文字列に変換。radix: 基数（省略時は10）",String,Number,method
+toLocaleString,"toLocaleString()",String,Number,method
+toFixed,"toFixed ([fractionDigits])
+小数点fractionDigits位までにする。（小数点第(fractionDigits+1)位を四捨五入）。fractionDigits省略時は0（整数化）。",Number,Number,method
+toExponential,"toExponential ([fractionDigits])",String,Number,method
+,----------プロパティ----------
+MAX_VALUE,,Number,Number,property
+MIN_VALUE,,Number,Number,property
+NaN,"Not a Number",Number,Number,property
+NEGATIVE_INFINITY,"-∞",Number,Number,property
+POSITIVE_INFINITY,"+∞",Number,Number,property
+,＝＝＝＝＝＝＝＝＝＝Math Objects (15.8)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+E,"e",Number,Math,property
+LN10,"LN10",Number,Math,property
+LN2,"LN2",Number,Math,property
+LOG2E,"LOG2E",Number,Math,property
+LOG10E,"LOG10E",Number,Math,property
+PI,"円周率",Number,Math,property
+SQRT1_2,"√(1/2)",Number,Math,property
+SQRT2,"√2",Number,Math,property
+abs,"abs (x)",Number,Math,method
+acos,"acos (x)",Number,Math,method
+asin,"asin (x)",Number,Math,method
+atan,"atan (x)",Number,Math,method
+atan2,"atan2 (y, x)",Number,Math,method
+ceil,"ceil (x)
+小数点以下切り上げ",Number,Math,method
+cos,"cos (x)",Number,Math,method
+exp,"exp (x)",Number,Math,method
+floor,"floor (x)
+小数点以下切り捨て",Number,Math,method
+log,"log (x)",Number,Math,method
+max,"max ( [ value1 [ , value2 [ , ... ] ] ] )
+最大値取得",Number,Math,method
+min,"min ( [ value1 [ , value2 [ , ... ] ] ] )
+最小値取得",Number,Math,method
+pow,"pow (x, y)
+xのy乗",Number,Math,method
+random,"random ( )
+0以上1未満の乱数取得",Number,Math,method
+round,"round (x)
+丸め（小数点第1位を四捨五入）",Number,Math,method
+sin,"sin (x)",Number,Math,method
+sqrt,"sqrt (x)
+平方根",Number,Math,method
+tan,"tan (x)",Number,Math,method
+,＝＝＝＝＝＝＝＝＝＝Date Objects (15.9)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+parse,"parse (string)
+stringを日付文字列として解析し、1970/01/01 00:00:00からの経過ミリ秒を取得（静的メソッド）",Number,Date,method
+UTC,"UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] )
+引き数で指定した日時の、1970/01/01 00:00:00からの経過ミリ秒を取得（静的メソッド）",Number,Date,method
+now,"now ( )
+今の1970/01/01 00:00:00からの経過ミリ秒を取得（静的メソッド）",Number,Date,method
+toString,"toString ( )
+日時を文字列に変換",String,Date,method
+toDateString,"toDateString ( )
+日時のうちの日付部分のみを文字列に変換",String,Date,method
+toTimeString,"toTimeString ( )
+日時のうちの時刻部分のみを文字列に変換",String,Date,method
+toLocaleString,"toLocaleString ( )
+日時を文字列に変換（現在のロケールに従った文字列に変換）",String,Date,method
+toLocaleDateString,"toLocaleDateString ( )
+日時のうちの日付部分のみを文字列に変換（現在のロケールに従った文字列に変換）",String,Date,method
+toLocaleTimeString,"toLocaleTimeString ( )
+日時のうちの時刻部分のみを文字列に変換（現在のロケールに従った文字列に変換）",String,Date,method
+valueOf,"valueOf ( )",Number,Date,method
+getTime,"getTime ( )
+1970/01/01 00:00:00からの経過ミリ秒を取得",Number,Date,method
+getFullYear,"getFullYear ( )
+年を取得（ローカル時間）",Number,Date,method
+getUTCFullYear,"getUTCFullYear ( )
+年を取得（UTC時間）",Number,Date,method
+getMonth,"getMonth ( )
+月を取得（ローカル時間）",Number,Date,method
+getUTCMonth,"getUTCMonth ( )
+月を取得（UTC時間）",Number,Date,method
+getDate,"getDate ( )
+日を取得（ローカル時間）",Number,Date,method
+getUTCDate,"getUTCDate ( )
+日を取得（UTC時間）",Number,Date,method
+getDay,"getDay ( )
+曜日を取得（0:日曜〜6:土曜）（ローカル時間）",Number,Date,method
+getUTCDay,"getUTCDay ( )
+曜日を取得（0:日曜〜6:土曜）（UTC時間）",Number,Date,method
+getHours,"getHours ( )
+時間を取得（ローカル時間）",Number,Date,method
+getUTCHours,"getUTCHours ( )
+時間を取得（UTC時間）",Number,Date,method
+getMinutes,"getMinutes ( )
+分を取得（ローカル時間）",Number,Date,method
+getUTCMinutes,"getUTCMinutes ( )
+分を取得（UTC時間）",Number,Date,method
+getSeconds,"getSeconds ( )
+秒を取得（ローカル時間）",Number,Date,method
+getUTCSeconds,"getUTCSeconds ( )
+秒を取得（UTC時間）",Number,Date,method
+getMilliseconds,"getMilliseconds ( )
+ミリ秒を取得（ローカル時間）",Number,Date,method
+getUTCMilliseconds,"getUTCMilliseconds ( )
+ミリ秒を取得（UTC時間）",Number,Date,method
+getTimezoneOffset,"getTimezoneOffset ( )
+UTCとの時差を分で取得",Number,Date,method
+setTime,"setTime (time)
+日時を1970/01/01 00:00:00からの経過ミリ秒で設定",Number,Date,method
+setMilliseconds,"setMilliseconds (ms)
+ミリ秒を設定（ローカル時間）",Number,Date,method
+setUTCMilliseconds,"setUTCMilliseconds (ms)
+ミリ秒を設定（UTC時間）",Number,Date,method
+setSeconds,"setSeconds (sec [, ms ] )
+秒を設定（ローカル時間）",Number,Date,method
+setUTCSeconds,"setUTCSeconds (sec [, ms ] )
+秒を設定（UTC時間）",Number,Date,method
+setMinutes,"setMinutes (min [, sec [, ms ] ] )
+分を設定（ローカル時間）",Number,Date,method
+setUTCMinutes,"setUTCMinutes (min [, sec [, ms ] ] )
+分を設定（UTC時間）",Number,Date,method
+setHours,"setHours (hour [, min [, sec [, ms ] ] ] )
+時間を設定（ローカル時間）",Number,Date,method
+setUTCHours,"setUTCHours (hour [, min [, sec [, ms ] ] ] )
+時間を設定（UTC時間）",Number,Date,method
+setDate,"setDate (date)
+日を設定（ローカル時間）",Number,Date,method
+setUTCDate,"setUTCDate (date)
+日を設定（UTC時間）",Number,Date,method
+setMonth,"setMonth (month [, date ] )
+月を設定（ローカル時間）",Number,Date,method
+setUTCMonth,"setUTCMonth (month [, date ] )
+月を設定（UTC時間）",Number,Date,method
+setFullYear,"setFullYear (year [, month [, date ] ] )
+年を設定（ローカル時間）",Number,Date,method
+setUTCFullYear,"setUTCFullYear (year [, month [, date ] ] )
+年を設定（UTC時間）",Number,Date,method
+toUTCString,"toUTCString ( )
+文字列に変換（UTC時間）",String,Date,method
+toISOString,"toISOString ( )
+文字列に変換（UTC時間・ISO形式）",String,Date,method
+toJSON,"toJSON ( key )",String,Date,method
+,＝＝＝＝＝＝＝＝＝＝RegExp Objects (15.10)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+RegExp,"RegExp(pattern, flags)",RegExp,RegExp,method
+exec,"exec(string)
+文字列string内で正規表現検索を実行し、一致文字列を取得。一致しなければnull。（前回検索実行時の位置以降で検索）",Array,RegExp,method
+test,"test(string)
+文字列string内で正規表現検索を実行し、一致文字列があればtrue。（前回検索実行時の位置以降で検索）",Boolean,RegExp,method
+toString,"toString()
+文字列に変換",String,RegExp,method
+source",source
+正規表現文字列",String,RegExp,method
+,----------プロパティ----------
+global,"global
+gフラグ",Boolean,RegExp,property
+ignoreCase,"ignoreCase
+iフラグ",Boolean,RegExp,property
+multiline,"multiline
+mフラグ",Boolean,RegExp,property
+lastIndex,"lastIndex
+次のexec()/test()で検索する開始位置",Number,RegExp,property
+$0,"$0
+前回一致した正規表現全体（静的プロパティ）",String,RegExp,property
+$1,"$1
+前回一致した正規表現のグループ1（静的プロパティ）",String,RegExp,property
+$2,"$2
+前回一致した正規表現のグループ2（静的プロパティ）",String,RegExp,property
+$3,"$3
+前回一致した正規表現のグループ3（静的プロパティ）",String,RegExp,property
+$4,"$4
+前回一致した正規表現のグループ4（静的プロパティ）",String,RegExp,property
+$5,"$5
+前回一致した正規表現のグループ5（静的プロパティ）",String,RegExp,property
+$6,"$6
+前回一致した正規表現のグループ6（静的プロパティ）",String,RegExp,property
+$7,"$7
+前回一致した正規表現のグループ7（静的プロパティ）",String,RegExp,property
+$8,"$8
+前回一致した正規表現のグループ8（静的プロパティ）",String,RegExp,property
+$9,"$9
+前回一致した正規表現のグループ9（静的プロパティ）",String,RegExp,property
+,＝＝＝＝＝＝＝＝＝＝Error Objects (15.11)＝＝＝＝＝＝＝＝＝＝
+,----------プロパティ----------
+name,"name",String,Error,property
+message,"message",String,Error,property
+,----------メソッド----------
+toString,"toString ( )
+文字列に変換",String,Error,method
+,＝＝＝＝＝＝＝＝＝＝JSON Objects (15.12)＝＝＝＝＝＝＝＝＝＝
+,----------メソッド----------
+parse,"parse ( text [ , reviver ] )
+JSON形式テキストtextを読み込んでJSONオブジェクトを生成",JSON,JSON,method
+stringify,"stringify ( value [ , replacer [ , space ] ] )
+JSON形式テキストに変換",String,JSON,method
+
+

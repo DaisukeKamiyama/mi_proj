@@ -1,0 +1,79 @@
+# Markdown 用文法定義スクリプト
+
+GlobalAttribute_SDFVersion("3.0")
+GlobalAttribute_SDFName("Markdown")
+
+GlobalAttribute_SyntaxPart("Markdown","Markdown",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+"")
+
+state(idle)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	{"_", {PushState(underbar1)}}
+	{"__", {PushState(underbar2)}}
+	{"___", {PushState(underbar3)}}
+	
+	{"*", {PushState(asterisk1)}}
+	{"**", {PushState(asterisk2)}}
+	{"***", {PushState(asterisk3)}}
+	
+	{"`", {PushState(backquote1)}}
+}
+
+state(underbar1)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"_",{PopStateFromNextChar}}
+}
+state(underbar2)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"__",{PopStateFromNextChar}}
+}
+state(underbar3)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"___",{PopStateFromNextChar}}
+}
+
+state(asterisk1)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"*",{PopStateFromNextChar}}
+}
+state(asterisk2)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"**",{PopStateFromNextChar}}
+}
+state(asterisk3)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(3)
+	{"***",{PopStateFromNextChar}}
+}
+
+state(backquote1)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	StateAttribute_ColorSlot(33)
+	{"`",{PopStateFromNextChar}}
+}
+
+
+

@@ -1,0 +1,176 @@
+#
+# MASM用文法定義スクリプト
+# サンプルバージョン Ver.0.01
+#
+# (C) 2010 MimikakiProject(daisuke), All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+GlobalAttribute_SDFVersion("3.0")
+GlobalAttribute_SDFName("MASM")
+
+GlobalAttribute_ImportLinkToProjectAll
+GlobalAttribute_StartAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_@");
+GlobalAttribute_ContinuousAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_@");
+
+state(idle)
+{
+	StateAttribute_Stable
+	#コメント／リテラル／エスケープ
+	{";",{SetVarStartOrContinue(lastcomment),ChangeState(linecomment)}}
+	#
+	{lineend,{SetVarStartFromNextChar(lastcomment),ChangeState(idle)}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStart(info),ChangeState(idle_after1token)}}
+}
+
+state(idle_after1token)
+{
+	{"PROC",{SetVarLastWord(keyword),ChangeState(proc)}}
+	{"proc",{SetVarLastWord(keyword),ChangeState(proc)}}
+	{"EQU",{SetVarLastWord(keyword),ChangeState(equ)}}
+	{"equ",{SetVarLastWord(keyword),ChangeState(equ)}}
+	{"DB",{SetVarLastWord(keyword),ChangeState(data)}}
+	{"db",{SetVarLastWord(keyword),ChangeState(data)}}
+	{"DW",{SetVarLastWord(keyword),ChangeState(data)}}
+	{"dw",{SetVarLastWord(keyword),ChangeState(data)}}
+	{"STRUC",{SetVarLastWord(keyword),ChangeState(struct)}}
+	{"struc",{SetVarLastWord(keyword),ChangeState(struct)}}
+	{":",{SetVarLastWord(keyword), AddLocalId([Label], keyword, keyword,"",""),ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{";",{SetVarStartOrContinue(lastcomment),ChangeState(linecomment)}}
+	#
+	{lineend,{ChangeState(idle)}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{ChangeState(idle_after2token)}}
+}
+
+state(idle_after2token)
+{
+	#コメント／リテラル／エスケープ
+	{";",{SetVarStartOrContinue(lastcomment),ChangeState(linecomment)}}
+	#
+	{lineend,{ChangeState(idle)}}
+}
+
+state(proc)
+{
+	{";",{SetVarEnd(info), AddGlobalId([PROC], keyword, keyword, info,lastcomment,"","",""),ChangeState(linecomment)}}
+	{lineend,{SetVarEnd(info), AddGlobalId([PROC], keyword, keyword, info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+state(equ)
+{
+	{";",{ChangeState(equ_linecomment)}}
+	{lineend,{SetVarEnd(info), AddGlobalId([EQU], keyword, "", info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+state(data)
+{
+	{";",{ChangeState(data_linecomment)}}
+	{lineend,{SetVarEnd(info), AddGlobalId([Data], keyword, "", info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+state(struct)
+{
+	{";",{SetVarEnd(info), AddGlobalId([STRUC], keyword, "", info,lastcomment,"","",""),ChangeState(linecomment)}}
+	{lineend,{SetVarEnd(info), AddGlobalId([STRUC], keyword, "", info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+state(linecomment)
+{
+	StateAttribute_NotCode
+	StateAttribute_NoMemory
+	StateAttribute_Comment
+	StateAttribute_DefaultColor("FF0000")
+	StateAttribute_DisplayName("コメント")
+	{lineend,{SetVarEndAtNextChar(lastcomment),ChangeState(idle)}}
+}
+
+state(data_linecomment)
+{
+	StateAttribute_NotCode
+	StateAttribute_NoMemory
+	StateAttribute_Comment
+	StateAttribute_SameStateAs(linecomment)
+	{lineend,{SetVarEnd(info), AddGlobalId([Data], keyword, "", info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+state(equ_linecomment)
+{
+	StateAttribute_NotCode
+	StateAttribute_NoMemory
+	StateAttribute_Comment
+	StateAttribute_SameStateAs(linecomment)
+	{lineend,{SetVarEnd(info), AddGlobalId([EQU], keyword, "", info,lastcomment,"","",""),ChangeState(idle)}}
+}
+
+category[PROC]
+{ 
+	CategoryAttribute_DefaultColor("008800")
+	CategoryAttribute_DefaultImportColor("006800")
+	CategoryAttribute_DefaultLocalColor("00A800")
+}
+
+category[EQU]
+{
+	CategoryAttribute_DefaultColor("C88700")
+	CategoryAttribute_DefaultImportColor("A86700")
+	CategoryAttribute_DefaultLocalColor("E8A700")
+}
+
+category[Data]
+{
+	CategoryAttribute_DefaultColor("005B99")
+	CategoryAttribute_DefaultImportColor("003B79")
+	CategoryAttribute_DefaultLocalColor("007BB9")
+}
+
+category[Label]
+{
+	CategoryAttribute_DefaultColor("005B99")
+	CategoryAttribute_DefaultImportColor("003B79")
+	CategoryAttribute_DefaultLocalColor("007BB9")
+}
+
+category[STRUC]
+{
+	CategoryAttribute_DefaultColor("C88700")
+	CategoryAttribute_DefaultImportColor("A86700")
+	CategoryAttribute_DefaultLocalColor("E8A700")
+}
+
+category[予約語A] 
+{
+	CategoryAttribute_DefaultColor("0000FF")
+	CategoryAttribute_DefaultKeyword("PROC","RET",
+	"proc","ret")
+}
+
+category[予約語B] 
+{
+	CategoryAttribute_DefaultColor("FF0000")
+	CategoryAttribute_DefaultKeyword("PUSH","POP",
+	"push","pop")
+}

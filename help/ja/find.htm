@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>検索置換</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="find.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1>検索・置換</h1>
+			
+			<h2><a name="find">検索・置換</a></h2>
+			<p>
+				メニューから<span class="menu">検索→検索・置換</span>を選択すると、検索／置換ウインドウが表示されます。
+			</p>
+			<p>
+				下記の操作手順により検索ができます。
+			</p>
+			<ol>
+				<li>検索文字列を入力します。</li>
+				<li>「次を検索」「前を検索」「最初から」のいずれかのボタンをクリックします。</li>
+			</ol>
+			<p>
+				下記の操作手順により置換ができます。
+			</p>
+			<ol>
+				<li>検索文字列を入力します。</li>
+				<li>置換文字列を入力します。</li>
+				<li>置換範囲を「次」「キャレット以降」「選択範囲内」「全て」のいずれかから選択します。</li>
+				<li>「〜を置換」のボタンをクリックします。</li>
+			</ol>
+			
+			<h2><a name="multifilefind">マルチファイル検索 (grep)</a></h2>
+			<p>
+				メニューから<span class="menu">検索→マルチファイル検索 (grep)</span>を選択すると、マルチファイル検索ウインドウが表示されます。<br>
+				指定したフォルダ内の全て（または一部）のファイルから検索することができます。
+			</p>
+			<p>
+				フォルダの指定方法には以下の方法があります。
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>指定方法</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top">同じフォルダ</td><td>
+							<p>
+								最前面のドキュメントのファイルが格納されたフォルダと同じフォルダ内を検索します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">1つ上のフォルダ</td><td>
+							<p>
+								最前面のドキュメントのファイルが格納されたフォルダの1つ上のフォルダ内を検索します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">同じプロジェクト</td><td>
+							<p>
+								最前面のドキュメントのファイルが格納されたフォルダと同じプロジェクト内を検索します。<br>
+								プロジェクトについては<a href="topic.htm#project">プロジェクトフォルダの説明</a>を参照してください。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">パス指定</td><td>
+							<p>
+								パスを指定します。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<p>
+				また、指定したワイルドカード・正規表現に前方一致するファイル名のファイルのみを検索対象にすることが可能です。
+			</p>
+			
+			<h2><a name="multifilereplace">マルチファイル置換</a></h2>
+			<p>
+				マルチファイル検索ウインドウの「マルチファイル置換用画面を開く」ボタンをクリックすると、
+				指定フォルダ内の一致文字列を一括置換するための画面を開きます。
+			</p>
+			
+			<h2><a name="option">検索オプション</a></h2>
+			<p>
+				検索ウインドウ、マルチファイル検索ウインドウには以下の検索オプションがあります。<br>
+				検索オプションのデフォルトは、<span class="pref">環境設定ウインドウ→検索タブ</span>で設定可能です。
+				
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>項目</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top">大文字小文字を無視</td><td>
+							<p>
+								Onにすると、大文字小文字を無視して検索します。<br>
+								つまり、「apple」を検索すると、「Apple」も「apple」も「APPle」も全て一致対象になります。<br>
+								キリル文字等の大文字小文字にも適用されます。（Unicodeの定義に従います。）
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">単語が一致する場合のみ</td><td>
+							<p>
+								Onにすると、検索文字列が英数字のときは、単語全体が一致する場合のみ一致します。<br>
+								つまり、「a」を検索した場合、「apple」は検索対象にならず、
+								単語としての「a」または、「a1」など前後にアルファベット以外の文字が附随しているもののみが一致対象となります。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">スペース・タブ・改行を無視</td><td>
+							<p>
+								Onにすると、スペース・タブ・改行の有無を無視して一致します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">\と¥を区別</td><td>
+							<p>
+								Onにすると、\(バックスラッシュ)と¥(半角円記号)を区別します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">正規表現検索</td><td>
+							<p>
+								Onにすると、「検索文字列」に入力した正規表現に一致する文字列を検索します。<br>
+								また、置換時に、置換文字列内の$0を一致した文字列全体、$1〜を各グループに一致した文字列に置き換えてから、置換処理を行います。<br>
+								正規表現の詳細は、<a href="regexp.htm#_">正規表現の説明</a>を参照してください。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">最後まで検索したら最初から</td><td>
+							<p>
+								Onにすると、ドキュメントの最後まで検索して一致する文字が見つからなかった場合、ドキュメントの最初から検索します。
+								それでも見つからない場合のみビープ音が鳴ります。<br>
+								Offにすると、ドキュメントの最後まで検索して一致する文字が見つからなかった場合、ビープ音が鳴ります。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">曖昧検索</td><td>
+							<p>
+								Onにすると、全角・半角やかな表現揺らぎなどの違いを無視して一致します。<br>
+							</p>
+							<p>
+								下記の種類があります。それぞれ、<span class="pref">環境設定ウインドウ→検索タブ</span>でOn/Off設定可能です。
+							</p>
+							<ul>
+								<li>「異体字・全角半角 (Unicode NFKD準拠）」：
+								全角カナと半角カナ、全角英数字と半角英数字、異体字の違いを無視して一致します。
+								（Unicodeの定義上、Compatibleと定義されているものを全て一致対象とします）</li>
+								<li>「ひらがな／カタカナ」：ひらがな／カタカナの違いを無視して一致します。</li>
+								<li>「音引き有無」：音引き有無を無視して一致します。</li>
+								<li>「かな揺らぎ表現」：「ヴァイオリン」「バイオリン」等のかな揺らぎ表現を一致として扱います</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">サブフォルダも検索</td><td>
+							<p>
+								Onにすると、指定フォルダのサブフォルダも検索対象とします。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">見出しタイトルを結果に表示する</td><td>
+							<p>
+								Onにすると、結果表示時に、場所（見出し）も表示します。<br>
+								場所を表示しない方がやや高速です。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">可視ファイルのみ</td><td>
+							<p>
+								Onにすると、不可視ファイル（名前がピリオドで始まるファイル等）、および、不可視フォルダ内のファイルを、
+								検索対象にしません。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">テキストファイルのみ</td><td>
+							<p>
+								Onにすると、<span class="pref">環境設定ウインドウ→機能タブ</span>の「非テキストファイルの定義」で設定した非テキストファイルを、
+								検索対象にしません。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			
+		</div>
+	</body>
+</html>
+

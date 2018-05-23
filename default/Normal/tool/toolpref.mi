@@ -1,0 +1,341 @@
+"VersionText" = ""
+"ToolArray_FileName" = 
+{
+	"Assign Ordered Number.js",
+	"Remove Line Break in Selected Lines",
+	"Convert from code to unicode character.js",
+	"Remove Duplicated Paragraphs.js",
+	"Select Double Quatation (Escape=Backslash).js",
+	"Select Double Quatation (Escape=Double Quatation).js",
+	"Sort Selected Paragraphs.js",
+	"Sort Selected Paragraphs (number).js",
+	"Open Clipboard.scpt",
+	"Reveal with Finder.scpt",
+	"Capitalize.js"
+}
+"ToolArray_Enabled" = 
+{
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true"
+}
+"ToolArray_Shortcut" = 
+{
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0"
+}
+"ToolArray_ShortcutModifiers_ControlKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_ShortcutModifiers_ShiftKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_Grayout" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_EnabledForMacroBar" = 
+{
+
+}
+"ToolArray_JapaneseName" = 
+{
+	"選択範囲の数値を順に＋１する",
+	"選択範囲から改行コードを取り除く",
+	"選択範囲の 16 進数 Unicode を文字に変換",
+	"重複段落を削除する",
+	"ダブルクオーテーション内を選択（エスケープ：バックスラッシュ）",
+	"ダブルクオーテーション内を選択（エスケープ：ダブルクオーテーション）",
+	"選択範囲をソート",
+	"選択範囲を数値ソート",
+	"クリップボードを開く",
+	"Finderで開く",
+	"キャピタライズ"
+}
+"ToolArray_EnglishName" = 
+{
+	"",
+	"Remove Line Break in Selected Lines",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"Open Clipboard",
+	"Reveal with Finder",
+	""
+}
+"ToolArray_FrenchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_GermanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SpanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_ItalianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DutchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SwedishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_NorwegianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FinnishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortugueseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SimplifiedChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_TraditionalChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_KoreanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PolishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortuguesePortugalName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_RussianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}

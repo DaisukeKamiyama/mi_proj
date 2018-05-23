@@ -1,0 +1,748 @@
+Make Window (Move Window to Left)
+ウインドウ化（ウインドウを左へ移動）
+Make Window (Move Window to Right)
+ウインドウ化（ウインドウを右へ移動）
+Close Tab
+タブを閉じる
+Edit URL
+URL編集
+Edit Comment
+コメント編集
+New Item (File)
+新規項目（ファイル）
+New Item (Comment)
+新規項目（コメント）
+New Item (URL)
+新規項目（URL）
+New Item (Group)
+新規項目（グループ）
+Setup Index Window...
+インデックスウインドウの設定...
+Remove This Item from Recent History
+この項目を履歴から削除
+Remove All Not Found Items from Recent History
+見つからない項目を履歴から削除
+Remove All Items from Recent History
+すべての項目を履歴から削除
+Display Identifier Information
+識別子情報表示
+Dictionary
+辞書で調べる
+Correct Spell
+スペル修正
+Edit My Sticky
+付箋紙編集
+Related File
+関連するファイル
+Find
+検索
+Multi-Files Find
+マルチファイル検索
+Next
+次
+Previous
+前
+Transliterate
+文字種変換
+Edit
+編集
+Hide
+非表示にする
+Delete...
+削除...
+Update Display
+表示更新
+Show All Buttons
+ボタンをすべて表示
+Whole Toolbar
+ツールバー全体
+About mi...
+mi について...
+Mode Preferences...
+モード毎の設定...
+mi
+mi
+New
+新規
+Open...
+開く...
+Open Invisible File...
+不可視ファイルを開く...
+Open Selected
+選択部分を開く
+Clear Menu Items
+メニューを消去
+Open Recent
+最近開いたファイルを開く
+Open from Same Folder
+同じフォルダから開く
+Open Related File
+関連するファイルを開く
+Close
+閉じる
+Open from Same Project
+同じプロジェクトから開く
+Setup Project Folder...
+プロジェクトフォルダの設定...
+Edit...
+編集...
+Open from Registered Folder
+登録フォルダから開く
+Open from FTP Folder
+FTP フォルダから開く
+Save As FTP Alias
+FTP エイリアスとして保存...
+Save
+保存
+Save As...
+別名で保存...
+Page Setup...
+ページ設定...
+Setup Print Option...
+プリントオプション設定...
+Print...
+プリント...
+Automatic Test
+自動テスト
+Automatic Test 2
+自動テスト（簡易）
+Regular Expression Test
+正規表現テスト
+Dump ObjectID
+ObjectIDダンプ
+TraceLog for Analysis
+解析用トレースログ
+Test
+テスト
+ModePref XML
+モード設定XML表示
+SDF Debug Mode
+SDFデバッグモード
+LowMemoryTest
+LowMemoryTest
+Compare Folder
+フォルダ比較
+Local Identifier Arrow
+ローカル識別子参照関係
+Display Analysis Info
+解析情報表示
+Debug
+Debug
+File
+ファイル
+Undo
+アンドゥ
+Redo
+リドゥ
+Cut
+カット
+Copy
+コピー
+Additional Copy
+追加コピー
+Paste
+ペースト
+Clear
+削除
+Select All
+すべてを選択
+Rectangle Select Mode
+矩形選択モード
+Paste Rectangle
+矩形ペースト
+Shift Left
+左シフト
+Shift Right
+右シフト
+Automatic Indent
+インデント
+Go to Line
+行移動...
+Bookmark
+しおり
+Go to Bookmark
+しおりへ移動
+Go to Definition / Declaration
+定義・宣言場所へ移動
+Insert Line Break at Wrap Position in Selected Text
+選択部分を行折り返し位置で改行
+Tool Input Mode
+ツール入力モード
+Insert Corresponding Text
+対応文字列入力
+Lowercase→Uppercase
+小文字→大文字
+Uppercase→Lowercase
+大文字→小文字
+Text Count...
+テキストカウント...
+Compare with Latest Revision in Repository
+レポジトリと比較
+Next Changed Point
+次の変更箇所
+Previous Changed Point
+前の変更箇所
+Refresh All SCM Status and Changed Points
+状態表示・変更箇所表示をすべて更新
+Insert Backslash
+バックスラッシュ入力
+Find / Replace...
+検索・置換...
+Find Next
+次を検索
+Find Previous
+前を検索
+Register Selected Text for Find
+選択部分を検索に使用
+Register Selected Text for Replace
+選択部分を置換に使用
+Clear Highlight
+ハイライト表示消去
+Replace
+置換
+Replace & Find
+置換後次を検索
+Replace Next
+次を置換
+Replace after Caret
+キャレット以降を置換
+Replace in Selected Text
+選択範囲内を置換
+Replace All
+すべてを置換
+Multi-File Find...
+マルチファイル検索 (grep)...
+Next Item in Index Window
+インデックスウインドウ・次へ
+Previous Item in Index Window
+インデックスウインドウ・前へ
+Display Unavailable Characters List for Current Text Encoding
+テキストエンコーディングエラー文字の一覧を表示
+Display Misspell List
+スペルミスを一覧表示
+Font
+フォント
+6 pt
+6 pt
+8 pt
+8 pt
+9 pt
+9 pt
+9.5 pt
+9.5 pt
+10 pt
+10 pt
+10.5 pt
+10.5 pt
+11 pt
+11 pt
+12 pt
+12 pt
+14 pt
+14 pt
+16 pt
+16 pt
+18 pt
+18 pt
+24 pt
+24 pt
+Others...
+その他...
+Size
+サイズ
+Mode
+モード
+Text Encoding
+テキストエンコーディング
+Line Break Code
+改行コード
+CR (Mac)
+CR (Mac)
+CR+LF (Windows)
+CR+LF (Windows)
+LF (UNIX)
+LF (UNIX)
+No Wrap
+折り返しなし
+Wrap (Window Width)
+折り返しあり（ウインドウ幅）
+Wrap (Character Count)...
+折り返しあり（文字数指定）...
+Wrap with Window Width
+折り返しあり（ウインドウ幅）
+Wrap with Characters Count...
+折り返しあり（文字数指定）...
+Wrap
+行折り返し
+Document Properties...
+ドキュメントの各種設定...
+Reload with another Text Encoding...
+エンコーディングを変更して再読み込み...
+Document
+ドキュメント
+Show Cross-Caret
+クロスキャレットを表示
+Split View
+ビューを分割する
+Close View
+ビューを閉じる
+Re-recognize Syntax
+文法再認識
+Display
+表示
+Go Back
+戻る
+Go Next
+進む
+Go to Previous Header
+前の見出しへ移動
+Go to Next Header
+次の見出しへ移動
+Export Headers to Text
+見出しをテキストに書き出し
+Jump
+見出し
+Tool
+ツール
+Switch Window
+次のウインドウを選択
+Minimize
+しまう
+Tab Mode
+タブウインドウモード
+Change All Windows to Tab
+すべてのウインドウをタブ化
+Change Current Window to Tab
+現在のウインドウをタブ化
+Change Current Tab to Window
+現在のタブをウインドウ化
+Show Jump List
+見出しリストを表示
+Show File List
+ファイルリストを表示
+Show Identifier Info Window
+識別子情報ウインドウを表示
+Show Sticky List Window
+付箋紙リストウインドウを表示
+Show FTP Log Window
+リモートファイル接続ログを表示
+Window
+ウインドウ
+main
+main
+Display Sub Pane
+サブペインカラム表示切替
+Display Information Pane
+情報ペインカラム表示切替
+Refresh Project Folders
+プロジェクトフォルダ構成更新
+Display in Sub Text Pane
+サブテキストペインに表示
+Switch to Next Tab
+次のタブを選択
+Switch to Previous Tab
+前のタブを選択
+Start Key Recording
+キー記録・開始
+Stop Key Recording
+キー記録・停止
+Play Recorded Key
+キー記録・再生
+Select between Corresponding Texts
+対応文字列間を選択
+Switch Full Screen Mode
+フルスクリーンモード切替
+Commit...
+コミット...
+&File
+ファイル(&F)
+&Edit
+編集(&E)
+&Find
+検索(&F)
+&Document
+ドキュメント(&D)
+&View
+表示(&V)
+&Review
+レビュー(&R)
+&Changes
+比較(&C)
+&Jump
+見出し(&H)
+&Tool
+ツール(&T)
+&Window
+ウインドウ(&W)
+&Setup
+設定(&S)
+&Help
+ヘルプ(&H)
+Export This Group to New Document
+このグループを新規ドキュメントへ書き出し
+Key Recording
+キー記録
+Attach Sticky
+付箋紙をつける
+&Split View
+ビューを分割する(&S)
+&Close View
+ビューを閉じる(&C)
+&Find/Replace\tCtrl+F
+検索・置換(&F)\tCtrl+F
+Find &Next\tF3
+次を検索(&N)\tF3
+Find &Previous\tShift+F3
+前を検索(&P)\tShift+F3
+Register Selected Text for Find\tCtrl+E
+選択部分を検索に使用\tCtrl+E
+Clear Highlight\tCtrl+Shift+F
+ハイライト表示消去\tCtrl+Shift+F
+Multi-File Find...\tCtrl+M
+マルチファイル検索...\tCtrl+M
+Next Item in Index Window\tCtrl+F3
+インデックスウインドウの次の項目\tCtrl+F3
+Previous Item in Index Window\tCtrl+Shift+F3
+インデックスウインドウの前の項目\tCtrl+Shift+F3
+&Open...\tCtrl+O
+開く(&O)...\tCtrl+O
+Open &Selected\tCtrl+D
+選択部分を開く(&S)\tCtrl+D
+&Close\tCtrl+W
+閉じる(&C)\tCtrl+W
+&Save Overwrite\tCtrl+S
+上書き保存(&S)\tCtrl+S
+Save &As...
+名前を付けて保存(&A)...
+Page Set&up...
+ページ設定(&U)...
+Setup Print Op&tion...
+印刷オプション設定(&T)...
+&Print...\tCtrl+P
+印刷(&P)...\tCtrl+P
+E&xit
+終了(&X)
+&Undo\tCtrl+Z
+元に戻す(&U)\tCtrl+Z
+&Redo\tCtrl+Y
+やり直し(&R)\tCtrl+Y
+Cu&t\tCtrl+X
+切り取り(&T)\tCtrl+X
+Help
+ヘルプ
+&About mi
+バージョン情報(&A)
+Setup mi general settings...
+mi 全体の環境設定...
+Mode Preference...
+モードごとの設定...
+&Copy\tCtrl+C
+コピー(&C)\tCtrl+C
+&Paste\tCtrl+V
+貼り付け(&P)\tCtrl+V
+&Delete
+削除(&D)
+Rectangle Select Mode\tCtrl+Shift+R
+矩形選択モード\tCtrl+Shift+R
+Paste Rectangle
+矩形貼り付け
+Selecte &All\tCtrl+A
+すべて選択(&A)\tCtrl+A
+&Key Recording
+キー記録(&K)
+Shift Left\tCtrl+[
+左シフト\tCtrl+[
+Shift Right\tCtrl+]
+右シフト\tCtrl+]
+&Indent\tCtrl+T
+インデント(&I)\tCtrl+T
+Tool Input Mode\tCtrl+U
+ツール入力モード\tCtrl+U
+Insert Corresponding Text\tCtrl+J
+対応文字列入力\tCtrl+J
+Select between Corresponding Texts\tCtrl+Shift+J
+対応文字列間を選択\tCtrl+Shift+J
+Insert Backslash\tCtrl+\\
+バックスラッシュ入力\tCtrl+\\
+Sub Pane Mode
+サブペインモード
+Manual
+マニュアル
+Previous Tab
+前のタブ
+Same Tab
+同じタブ
+Compare Files...
+ファイル比較...
+Changes
+比較
+Print Selected Paragraphs...
+選択中の段落を印刷...
+mi Help
+mi ヘルプ
+Add / Update Define Value...
+有効 define 値を編集...
+Enable Define Values...
+有効 define 値を編集...
+Switch Previous Window
+前のウインドウを選択
+Setup Pane
+ペインレイアウト設定
+Copy File Path
+ファイルパスをコピー
+Open Lua Console
+Lua コンソールを開く
+Hide All Buttons made by mode creator
+モード作者作成ボタンをすべて非表示
+Hide All Buttons made by user
+ユーザー作成ボタンをすべて非表示
+Add Toolbar Button
+ツールバーボタンを追加...
+Mode Preference
+モード毎の設定...
+View
+表示
+Header
+見出し
+Customize Toolbar
+ツールバーをカスタマイズ...
+Select Compare Target
+比較対象を選択
+No Compare
+比較しない
+Compare with Auto Backup
+自動バックアップと比較
+Compare with Repository
+レポジトリと比較
+Compare with File...
+ファイルと比較...
+Compare between Selected Text and Clipboard
+選択テキストとクリップボードとを比較
+Every 10 Minutes (6 Generations)
+10 分毎 (6 世代)
+Hourly (10 Generations)
+1 時間毎 (10 世代)
+Daily (10 Generations)
+1 日毎 (10 世代)
+Monthly (24 Generations)
+1 ヶ月毎 (24 世代)
+Setup Auto Backup...
+自動バックアップの設定...
+Folding
+折りたたみ
+Collapse
+折りたたむ
+Expand
+展開する
+Collapse All at current level
+現在行と同じレベルをすべて折りたたむ
+Expand All at current level
+現在行と同じレベルをすべて展開する
+Collapse All Headers
+すべての見出しを折りたたむ
+Collapse All Headers with no Changes
+差分の無いすべての見出しを折りたたむ
+Expand All
+すべて展開する
+Set Collapsed/Expanded state to Default
+すべての折りたたみ状態をデフォルト状態にする
+Select current Folding Range
+現在の折りたたみ範囲を選択する
+Split View Vertically
+ビューを縦分割する
+Split View Horizontally
+左側にサブテキスト画面を表示する
+Go to Parent Header
+親見出しへ移動
+Go to Next Header at same level
+同じレベルの次の見出しへ移動
+Go to Previous Header at same level
+同じレベルの前の見出しへ移動
+Create Tab to Open Document
+ドキュメントはタブに開く（タブモード）
+Multi-File Replace...
+マルチファイル置換...
+FIFO Clipboard Mode
+FIFO クリップボードモード
+Search Header
+見出しを検索
+Search Same Project File
+同じプロジェクトのファイルを検索
+Search Same Folder File
+同じフォルダのファイルを検索
+Search Recently Opened File
+最近開いたファイルを検索
+Search Keyword
+キーワードを検索
+Collect All Windows into 1 Window
+すべてのウインドウを 1 つのウインドウに集める
+Application Preferences...
+アプリケーションの環境設定...
+About mi Text Editor...
+mi テキストエディタについて...
+New Recently Open File List
+最近開いたファイル
+New Same Folder File List
+同じフォルダのファイル
+New Same Project File List
+同じプロジェクトのファイル
+New Remote File List
+リモートファイル
+New Header List
+見出しリスト
+New Text Count Window
+テキスト情報
+New Text Marker Window
+テキストハイライト
+New Tool List
+ツール
+New Keyword Info List
+キーワード情報
+New Source Navigation
+ソースナビゲーション
+New Word Referrer List
+単語使用箇所検索
+New Preview
+プレビュー
+New Key Record Window
+キー操作の記録／再生
+New Completion Candidate List
+補完候補リスト
+Add Recently Open File List
+最近開いたファイル
+Add Same Folder File List
+同じフォルダのファイル
+Add Same Project File List
+同じプロジェクトのファイル
+Add Remote File List
+リモートファイル
+Add Header List
+見出しリスト
+Add Text Count Window
+テキスト情報
+Add Text Marker Window
+テキストハイライト
+Add Tool List
+ツール
+Add Keyword Info List
+キーワード情報
+Add Source Navigation
+ソースナビゲーション
+Add Word Referrer List
+単語使用箇所検索
+Add Preview
+プレビュー
+Add Key Record Window
+キー操作の記録／再生
+Add Completion Candidate List
+補完候補リスト
+Use Font set in Mode Preferences...
+モード設定に設定されたフォントを使用する...
+Set Font for this Document...
+このドキュメント個別のフォントを設定する...
+Add New Mode...
+新規モード追加...
+Hide mi Text Editor
+mi テキストエディタを隠す
+Hide Others
+ほかを隠す
+Show All
+すべてを表示
+Quit mi Text Editor
+mi テキストエディタを終了
+Services
+サービス
+Bring All to Front
+すべてを手前に移動
+Zoom
+拡大／縮小
+Create New Left Side Bar Item
+新規左サイドバー項目
+Create New Right Side Bar Item
+新規右サイドバー項目
+Compare with File of Sub Text
+サブテキストのファイルと比較
+Create New Floating Sub Window
+新規フローティングサブウインドウ
+mi Text Editor Help
+mi テキストエディタヘルプ
+Next Item in Sub Window
+サブウインドウ内の次の項目へ移動
+Previous Item in Sub Window
+サブウインドウ内の前の項目へ移動
+Same Mode Files Only
+同じモードのファイルのみを表示
+All Files
+すべてのモードのファイルを表示
+All Files which have differences
+差分のあるファイルのみを表示
+Add Macro...
+マクロを追加...
+Show All Macro
+すべてのマクロを表示
+Hide All Macro
+すべてのマクロを非表示にする
+Show Mode Preferences...
+現在のモードのモード設定を開く...
+Collapse All for This Item's Level
+現在のレベルですべて折りたたむ
+Setup Sub Windows...
+サブウインドウの設定...
+Display Keyword Information
+キーワード情報を表示
+Normal Search
+前方一致
+Partial Search
+部分一致
+Set Flag to this document
+このドキュメントにフラグを付ける
+Close All Tabs without Flag
+フラグのないタブをすべて閉じる
+Paste at end of each paragraph
+各段落の最後にペーストする
+Show Find / Replace dialog...
+検索／置換ダイアログを表示...
+Unlock Display of All Sub Windows
+すべてのサブウインドウの表示ロックを解除する
+Reveal macro folder with Finder
+Finder でマクロ項目が格納されたフォルダを開く
+Update Change of macro folder by Finder
+Finder で行った変更を反映する
+Hide All after this Macro
+このマクロ以降をすべて非表示にする
+Delete All after this Macro...
+このマクロ以降をすべて削除する...
+Close All Tabs after this Tab
+このタブ以降をすべて閉じる
+Compare
+比較
+Show/Hide All Floating Window
+フローティングウインドウをすべて一時的に非表示／表示
+Inhibit/Allow Popup Window
+ポップアップウインドウを表示禁止／許可
+Change Font Size temporarily
+一時的にフォントサイズ変更
+Revert Font Size
+フォントサイズを元に戻す
+Save Tab Set of Current Window...
+現在のウインドウのタブセットを保存...
+Sort Tabs Alphabetically
+タブをアルファベット順にソートする
+Save As Remote File Alias...
+リモートファイルエイリアスとして保存...
+Word Wrap with Window Width
+ウインドウ幅折り返し（単語ごと）
+Word Wrap with Characters Count...
+文字数指定折り返し（単語ごと）...
+Character Wrap with Window Width
+ウインドウ幅折り返し（文字ごと）
+Character Wrap with Characters Count...
+文字数指定折り返し（文字ごと）...
+Check for Updates…
+アップデートを確認…
+Speech
+スピーチ
+Start Speaking
+読み上げを開始
+Stop Speaking
+読み上げを停止

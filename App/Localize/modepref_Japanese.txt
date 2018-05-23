@@ -1,0 +1,770 @@
+Setup suffixes to be opened with this mode.
+このモードで開くファイルの拡張子と、保存時のデフォルト拡張子を設定します
+Text Color :
+文字色：
+Background Color :
+背景色：
+Color Scheme :
+カラースキーム：
+Use Color Scheme
+カラースキームを使う
+Set Font&Colors for this mode. 
+このモード用のフォントと色を設定します。
+Font & Colors
+フォントと色
+Suffix for This Mode
+このモードの拡張子
+File Suffixes :
+ファイル拡張子：
+Information
+情報
+Mode Explanation :
+モードの説明：
+Use same settings as Normal mode
+標準モードと同じ設定を使用する
+Color is set by Color Scheme
+（色はカラースキームにより設定されています）
+Colors are set by Color Scheme
+（色はカラースキームにより設定されています）
+(Example: ".html")
+（例：".html"）
+Enable this mode
+このモードを有効にする
+Open Normal Mode Preferences
+標準モードの設定を開く
+The first item will be also used for a default suffix of a new file.
+最初の項目は新規ファイル保存時のデフォルトの拡張子にも使用されます。
+If checkbox is checked, Color scheme colors are used for Text Color, Background Color, and Syntax Colors.
+チェックボックスを ON にすると、選択したカラースキームに従った色が、文字色、背景色、文法色に使用されます。
+Select...
+選択...
+Tab Display Width :
+タブ表示幅：
+Line Margin :
+行間：
+Background Display
+背景表示
+Background Image :
+背景画像：
+Draw Background Image
+背景画像を表示
+File Path : 
+ファイルパス：
+Transparency : 
+透過度：
+Background Grid :
+マス目：
+Draw Background Grid
+マス目を表示
+Layout
+レイアウト
+Ruler :
+ルーラー：
+Display Ruler
+ルーラー表示
+Ruler Base Character : 
+目盛の基準となる文字：
+Mark Interval : 
+大きい目盛り：
+Macro Bar :
+マクロバー：
+Display Macro Bar
+マクロバー表示
+Line Number :
+行番号：
+Display Each Line Number
+各行の行番号を表示
+Line Number Type :
+行番号表示タイプ：
+Text Data Properties
+テキストデータのプロパティ
+Input Settings
+入力設定
+Spell Check
+スペルチェック
+Select inside the following characters by Quad-Click
+４回クリックで下記の文字に囲まれた部分を選択する
+Input Backslash when press ¥ key
+￥キーだけを押した時バックスラッシュを入力する
+When press ⌘ + ¥ key, ¥ is Input.
+（⌘キーを押しながら ¥ キーを押したときは半角 ¥ を入力）
+Prior to Syntax/Header Color
+文法・見出し色より優先
+Bold
+ボールド
+Italic
+イタリック
+Underline
+アンダーライン
+If checked, keyword color is prior to syntax/header color such as comment color.
+ONにすると、コメント等の箇所内でもキーワードの色が表示されます。
+Font :
+フォント：
+Text Display
+テキスト表示
+characters
+文字
+pixels
+ピクセル
+Select File...
+ファイル選択...
+Line Number
+行番号
+Paragraph Number
+段落番号
+5 characters
+5文字ごと
+Tab Width
+タブ文字数ごと
+Text Encoding :
+テキストエンコーディング：
+Return Code :
+改行コード：
+Wrap Mode :
+行折り返し：
+No Wrap
+行折り返しなし
+Wrap with Window Width
+行折り返しあり（ウインドウ幅）
+Wrap with Characters Count
+行折り返しあり（文字数指定）
+UTF-8 BOM :
+UTF-8 BOM：
+Attach BOM when save UTF-8 file
+UTF-8 のファイルは BOM を付けて保存する
+Unchecked may be better, but it may need to set checked for some apps.
+OFF の方が良い場合が多いですが、アプリケーションによっては ON にする必要があります。
+Balance Check :
+括弧対応チェック：
+Highlight Balanced Parenthesis
+括弧入力時に対応する括弧をハイライトする
+Quad-Click :
+４回クリック：
+Select inside the following characters by Quad-Click
+４回クリックで右記の文字に囲まれた部分を選択する
+¥ Key :
+￥キー：
+Input Backslash when press ¥ key
+￥キーだけを押した時バックスラッシュを入力する
+Smart Drag&Drop :
+スマート Drag&Drop :
+Adjust space characters when dragging words
+英単語のドラッグ＆ドロップ時に前後のスペースを調整する
+Double-click :
+ダブルクリック：
+Select word according to syntax definition
+文法定義に従って単語を選択する
+Spell Check Language :
+スペルチェック言語：
+Spell Check :
+スペルチェック：
+Display Red Underline at Misspell Word
+スペルミスの単語に赤点線を表示する
+English (US)
+英語
+English (Australia)
+英語（オーストラリア）
+English (UK)
+英語（イギリス）
+English (Canada)
+英語（カナダ）
+German
+ドイツ語
+Spanish
+スペイン語
+French
+フランス語
+Italian
+イタリア語
+Dutch
+オランダ語
+Portuguese
+ポルトガル語
+Portuguese (Brazil)
+ポルトガル語（ブラジル）
+Swedish
+スウェーデン語
+Keyword
+キーワード
+Register keywords to colorize keyword and input keyword completion.
+登録したキーワードは、色付け、補完入力、キーワード情報表示などに使用されます。
+Import...
+インポート...
+Export...
+エクスポート...
+Available Characters for Keyword
+キーワードを構成する文字
+If document-specific Font is set by menu [Document - Font - Set Font for this Document], document-specific font is prior to this setting.
+メニュー[ドキュメント→フォント→このドキュメント個別のフォントを設定する]でドキュメント個別のフォントが設定されている場合、そちらが優先されます。
+These settings are applied when a new document is created, or when the properties of opened document is not clear.
+これらの設定は、新規ドキュメント生成時、および、開いたドキュメントの各プロパティを確定できない場合に適用されます。
+Keywords : 
+キーワード：
+Use Keywords written in the Edit Box
+エディットボックスにキーワードを入力する
+Load Keywords from CSV File
+CSV ファイルからキーワードを読み込む
+Keywords List : 
+キーワードリスト：
+Input Keywords by separating with return.
+キーワードは改行で区切って入力します
+Ignore Case
+大文字小文字を無視
+Sort
+ソート
+Save
+保存
+Define keywords using Regular Expression
+正規表現を使ってキーワードを定義する
+* Word which matches Regular Expression written at 1st line in Keywords List will be colored.
+* キーワードリストの 1 行目に入力した正規表現に一致する単語を色付けします
+Text Color : 
+文字色：
+Text Style : 
+文字スタイル：
+Display Priority : 
+表示優先度：
+Validity : 
+有効／無効：
+Set Disable
+無効にする
+Characters in Keyword :
+キーワードを構成する文字：
+Characters for the first :
+最初にのみなり得る文字：
+Characters for the Last :
+最後にのみなり得る文字：
+CSV File : 
+CSV ファイル：
+Keyword Column Number : 
+キーワードの列番号：
+Explanation Column Number : 
+キーワードの説明テキストの列番号：
+Parent Keyword Column Number :
+キーワードの親キーワードの列番号：
+Header Color : 
+見出し表示色：
+Colorize Header
+見出し行に色をつける
+Header definition : 
+見出しの定義：
+Define Header line with Regular Expression
+正規表現を使って見出し行を定義する
+Define Header with simpler setting
+より簡単な設定方法で見出し行を定義する
+Update Document
+変更を反映
+Headers
+見出し
+Register headers to display in Header list and menu.
+見出しリストやメニューに表示する見出しを登録します
+Regular Exp. : 
+正規表現：
+Line which matches this Regular Exp. will be recognized as Header.
+この正規表現に前方一致する行が見出しとして認識されます。（行頭のタブ等も正規表現に含める必要があります）
+Header List : 
+見出しリスト：
+Add to Header List and Header Menu
+見出しリストと見出しメニューに表示する
+List Item Text : 
+リストに表示する文字列：
+Keyword : 
+キーワード：
+Add word which matches Regular Exp. Group
+正規表現グループに一致する単語をキーワードにする
+Regular Exp. Group :  
+正規表現グループ：
+Keyword Color : 
+キーワード文字色：
+Outline Level : 
+アウトラインレベル：
+Line Start Text : 
+行開始文字列：
+Line which starts by the following text will be recognized as Header.
+下記の文字列で始まる行が見出しとして認識されます
+Header List : 
+見出しリスト
+Syntax Display
+文法表示
+Colorize syntax according to selected syntax definition.
+選択した文法定義に従って色付け等を行います。
+Syntax :
+文法：
+Select Syntax Definitions from the following menu
+下記のメニューから文法定義を選択する
+Set Syntax manually
+文法を手動で設定する
+Syntax Colors and Styles
+文法に従った色とスタイル
+Comment : 
+コメント：
+Literal : 
+文字列：
+Header : 
+見出し：
+Function : 
+関数：
+Variable : 
+変数：
+Class / Type : 
+クラス／タイプ：
+Macro / #define : 
+マクロ／#define：
+Property / Member : 
+プロパティ／メンバ：
+Darken Import Keywords and Lighten Local Keywords
+インポートファイルのキーワードは暗い色、ローカルは明るい色で表示する
+Import Files
+インポートファイル
+Load Import Files from the following Folders always
+常にインポートファイルを次のフォルダから読み込む
+Directive Display
+ディレクティブの表示
+Directive : 
+ディレクティブ：
+Colorize a disabled part according to condition directive such as #if.
+#if などの条件ディレクティブに従って無効な部分を色付けします。
+Recognize Compile Condition Directive
+コンパイル条件ディレクティブを認識する
+Deactivated Color :
+無効時の色：
+* 2 or more Folder Paths can be input by separating with return.
+* 複数のフォルダーパスをを改行で区切って入力できます
+System Headers : 
+システムヘッダ：
+Folding
+行折りたたみ
+Folding :
+行折りたたみ：
+Enable Line Folding
+行折りたたみを有効にする
+Default Folding :
+デフォルト状態：
+Collapse when Line starts with any of the following text by default
+下記テキストのいずれかで始まる行をデフォルトで折りたたむ
+Insert Text :
+挿入文字列：
+Open Dropped File
+ドロップしたファイルを開く
+Insert File Path
+絶対ファイルパスを挿入する
+Insert Relative File Path
+相対ファイルパスを挿入する
+If no Suffix matches :
+拡張子に一致しない場合：　
+Corresponding Text Input
+対応する文字列の自動入力
+Key Bind :
+キーバインド：
+Set Difference from Application's Default Key Bind
+アプリケーションのデフォルトキーバインドからの差分を設定する
+Set Difference from Normal mode Key Bind
+標準モードのキーバインドからの差分を設定する
+Set Difference from OS Key Bind
+OS のキーバインドからの差分を設定する
+Control Key
+コントロールキー
+Option Key
+オプションキー
+Command Key
+コマンドキー
+Shift Key
+シフトキー
+Action :
+動作：
+Insert Text :
+挿入文字列：
+Update
+反映
+Tool Name : 
+ツール名：
+Shortcut Key : 
+ショートカット：
+Insert Text : 
+挿入文字列：
+Display : 
+表示：
+Display in Tool menu
+ツールメニューに表示する
+Display as gray menu item
+グレー項目として表示する
+Tool Setup using Finder
+Finder を使ってツール設定
+Open tool folder with Finder
+Finder で tool フォルダを開く
+Update Change of tool folder by Finder
+Finder で変更した tool フォルダの変更を反映する
+Multi Language Name
+各言語ごとのツール名
+If the following name for each language is set, it is prior to the above name.
+下記の各言語毎の名称を設定すると、上で設定したツール名よりも優先されます
+Mode Name :
+モード名：
+Backup :
+バックアップ：
+Backup Mode Data
+モードデータをバックアップする
+Multi Language Name : 
+各言語ごとのモード名：
+Check Text Encoding consistency with "charset"
+テキストエンコーディングと"charset" との一致をチェックする
+Set the following Creator Code for New File
+新規ファイルに下記のクリエータコードを設定する
+Creator Code :
+クリエータコード：
+Syntax Definition :
+文法定義：
+Use User-Defined Syntax Definition Script
+ユーザー定義の文法定義スクリプトを使う
+Path :
+パス：
+Mode Update :
+モードの更新：
+Update Mode
+モードを更新する
+File Paths :
+ファイルパス：
+Indent Options
+インデントのオプション
+Indent Width :
+インデント幅：
+characters per 1 indent level
+文字／ 1 インデントレベル
+Indent Character :
+インデント文字：
+Input Space Characters instead of Tab Code
+タブコードの代わりにスペース文字を入力する
+Input Full-width Space Characters instead of 2 Spaces for Indent
+インデント時、2 つのスペース文字の代わりに全角スペース文字を入力する
+Indent Display Width :
+インデント表示幅：
+Display Indent using "Tab Display Width"
+スペースによるインデントを「タブ表示幅」で表示する
+Set to no indent if line is empty
+空行の場合インデント量を 0 にする
+Empty Line Indent :
+空行のインデント：
+Indent for Pasted Text :
+ペースト時のインデント：
+Indent automatically for pasted text
+ペーストされたテキストを自動的にインデントする
+Characters for Auto Indent :
+インデントを実行する文字：
+Indent Calculation Method
+インデントの計算方法
+Indent Calculation Method :
+インデントの計算方法：
+No Indent (Indent manually always)
+常に手動でインデントする
+Same Indent level as the previous line
+前行と同じだけインデントする
+Indent defined by Syntax definition
+文法定義の定義に従ってインデントする
+Indent according to pre-defined Syntax selected in "Syntax" tab
+「文法」タブで選択した文法に定義されたインデント量でインデントします。
+Indent defined by Regular Expression Indent Rule
+正規表現で記述したインデントルールに従ってインデントする
+Define Indent Level according to the table.
+テーブルに記述したルールに従ってインデントします。
+On the way of sentence : 
+文の途中（複文）の行：
+Indent to the 2nd level tab
+文の最初の行の行頭以外のタブの位置にインデントする
+Indent Level for Label : 
+ラベル行：
+Tab Character
+タブ文字
+Space Characters
+スペース文字
+characters rightward
+文字右へ
+Justify Single Colon
+単一のコロン文字の位置を合わせる
+Indent to the Parenthesis Start Position
+括弧の開始位置へインデントする
+Other than above : 
+上記以外の場合：
+Specific Indent
+個別のインデント
+Update Indent Character automatically according to Document
+インデント文字をドキュメントに合わせて自動的に設定する
+Set mi's Creator/Type automatically for all of opened files
+開いたすべてのファイルに mi のクリエータ／タイプを設定する
+Display "¥" for Ascii Code 0x5C for SJIS/JIS/EUC file
+SJIS/JIS/EUC ファイルの場合、アスキーコード 0x5C の文字を "¥" で表示する
+Keyword Color Type :
+キーワード色タイプ：
+Valid Syntax Part :
+有効な文法パート：
+Keywords are valid only in the selected syntax part.
+選択した文法パート内でのみキーワードが有効になります。
+0. Reserved Word : 
+0. 予約語：
+1. Method / Function : 
+1. メソッド／関数：
+2. Property / Member : 
+2. プロパティ／メンバ：
+3. Variable : 
+3. 変数：
+4. Class / Type : 
+4. クラス／タイプ：
+5. Macro : 
+5. マクロ：
+6. Other 1 : 
+6. その他 1：
+7. Other 2 : 
+7. その他 2：
+Find Highlight :
+検索一致文字列ハイライト：
+Previous Find Highlight :
+前回の一致文字列ハイライト：
+Current Word Highlight :
+現在選択中の単語のハイライト：
+Text Marker :
+テキストハイライト：
+First Select Highlight :
+検索結果等から選択したとき：
+0. Reserved Word color
+0. 予約語の色
+1. Method / Function color
+1. メソッド／関数の色
+2. Property / Member color
+2. プロパティ／メンバの色
+3. Variable color
+3. 変数の色
+4. Class / Type color
+4. クラス／タイプの色
+5. Macro color
+5. マクロの色
+6. Other 1 color
+6. その他 1 の色
+7. Other 2 color
+7. その他 2 の色
+Current Revision : 
+現在のリビジョン：
+Open Page
+ページを開く
+Mode Management
+モード管理
+Detail
+詳細
+¥/Backslash Display :
+¥/バックスラッシュ表示：
+Open CSV File
+CSV ファイルを開く
+Select how to register keywords.
+キーワードの登録方法を選択します
+Column Number
+カラム番号
+Input column number (1-) of CSV file.
+CSV ファイルの列番号(1〜)を入力します
+(optional) 
+（必須項目ではありません）
+Explanation Text : 
+キーワードを説明するテキスト：
+Type Name :
+型名：
+Parent Keyword :
+親キーワード：
+Local File or Remote File at a web server can used for the CSV file. Input url "http://..." to use Remote File at a web server.
+ローカルファイル、または、Web サーバー上のファイルを、CSV ファイルとして設定可能です。Web サーバー上のファイルを使うには "http://〜"を入力してください。
+Open Tool File
+ツールファイルを開く
+Menu Display : 
+メニュー表示：
+Enable this tool
+このツールを有効にする
+Current Path : 
+現在のパス：
+Tool
+ツール
+Move to Parent Menu
+親フォルダへ移動
+Add Sub Menu
+サブメニューを追加
+Set Font for this mode. 
+テキストのフォントを設定します
+Setup for each type file types (= Mode).
+ファイルの種類（＝モード）ごとに設定を行います。
+Mode is decided by its suffix basically. If file does not match any suffixes, it belongs to "Normal" mode.
+モードは拡張子等によって決定されます。もし各モードのどの拡張子にも一致しないときは、「標準」モードになります。
+Several settings can be set to same as "Normal" mode to reduce items to be set. 
+いくつかの設定は、「標準モードと同じ」とすることができます。（「標準」モードで共通の設定を行い、差分だけ各モードで設定することができます。）
+Mode Validity
+モードの有効／無効：
+If disabled, this mode is not assigned to any file.
+無効の場合、このモードはどのファイルにも適用されません。（設定は可能）
+About Mode
+モードについて
+Font
+フォント
+Set Colors for this mode. 
+色を設定します。カラースキームから一括設定することも可能です。
+Export Color Scheme :
+現在の色をエクスポート：
+Apply to colors
+カラースキームを適用
+Diff Display Opacity : 
+差分表示色の濃さ：
+Set text data properties such as default text encoding.
+デフォルトのテキストエンコーディングなどを設定します。
+Set text input setting.
+テキストの入力に関する設定を行います。
+Set properties for misspell display and spell correction.
+スペルミス表示やスペル修正のための設定を行います。
+Set text display settings.
+テキストの表示に関する設定を行います。
+Set background display settings.
+背景の表示に関する設定を行います。
+Setup each control layout.
+各コントロールのレイアウトを設定します。
+File Drag&Drop
+ファイルのドラッグ＆ドロップ
+Setup text inserted when a file is dropped into text area.
+テキスト画面にファイルをドロップしたときに挿入するテキストを設定します。
+Corresponding Text
+対応文字列
+Setup corresponding text for [Find - Insert Corresponding Text].
+[検索→対応文字列入力]等で使用する対応文字列を設定します。
+Setup line folding settings such as default folding.
+デフォルトでの折りたたみ状態など、行折りたたみに関する設定を行います。
+Setup Key Bind.
+キーバインドを設定します。
+Setup Tool menu.
+ツールメニューを設定します。
+You can setup tool files and their hierarchy using Finder.
+Finder を使ってツールファイルや階層構造を設定することができます。
+Update Mode data from Application when Application is updated.
+アプリケーション更新時に、キーワードとツールをアプリケーションから更新する。
+Update Mode data from Web when the button is clicked.
+下のボタンをクリックしたら Web からキーワードとツールを更新する。
+Update Mode from Web
+Web からモードデータを更新
+Update Source :
+更新元：
+Keyword data and Tool will be updated if available.
+更新元データから、キーワードとツールを更新することができます。
+Start text is Reg exp
+開始文字列は正規表現
+Comment/Literal
+コメント／リテラル
+Comment : 
+コメント：
+to
+から
+(end)
+まで
+to Line End
+から行末まで
+Literal : 
+リテラル：
+Escape Characters : 
+エスケープ文字：
+Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
+実際の色は「色」タブで設定します。なお、CSV ファイルで色タイプ設定済みの場合はそちらが優先されます。
+Column Number : 
+列番号：
+Optional Columns : 
+必須ではない列の列番号：
+Explanation : 
+説明：
+Completion :
+補完：
+Color Type :
+色タイプ：
+URL :
+URL：
+Case Sensitivity :
+大文字小文字：
+This text will be added as a list item. Text can include Regular Exp. Group ("$0" - "$9") to replace with found text.
+設定したテキストがリスト項目として登録されます。テキスト内に記述した"$0"〜"$9"は、一致した正規表現グループに置換されます。
+* Because Tab and Space at line start are ignored automatically, you do not need to input.
+※行頭のタブ／スペースは無視して一致するため、上記テキストに記述する必要はありません。
+Enable Corresponding Text defined in Syntax Definition
+文法定義で定義された対応文字列を有効にする
+Set Enable
+有効にする
+You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder. (Highlight colors and opacities can be set only by csv files.)
+ColorScheme フォルダに csv ファイル、または、epf ファイルを置くことでカラースキームメニュー項目を追加できます。
+Selection Opacity : 
+選択色の濃さ：
+Open ColorScheme folder
+ColorScheme フォルダを開く
+Update menu
+メニューを更新
+If File Paths are set, only if File Suffixes AND File Paths are matched, this Mode is assigned.
+下記のファイルパスを設定した場合、拡張子とファイルパスが両方一致する場合のみ、このモードで開きます。
+Copy to User Tool and Edit
+ユーザーツールにコピーし、編集
+Set letters which consist of word.
+単語を構成する文字を設定します。
+Keyword Characters
+キーワード構成文字
+Keywords are colorized only when whole word is matched according to the following definition. 
+キーワードは下記の定義に従って単語全体に一致する場合のみ色付けされます。
+Set comment / literal syntax.
+コメント／リテラルの文法を設定します。
+Setup detail.
+詳細を設定します。
+Manage mode data.
+モードデータを管理します。
+Return Code
+改行コード
+Tab Code
+タブコード
+Half-width Space
+半角スペース
+Full-width Space
+全角スペース
+Control Code Display :
+制御文字の表示：
+Default Syntax Part
+デフォルト文法パート
+Set syntax part at start of document.
+ドキュメントの最初の文法パートを指定します。
+Syntax Part :
+文法パート：
+Setup indent options.
+インデントのオプションを設定します。
+Setup how to calculate indent.
+インデントの計算方法を設定します。
+Shift Left by backspace :
+前一文字削除時の左シフト：
+Shift left by backspace at line start
+行頭で前一文字削除したときは左シフトする
+Syntax
+文法
+Key Bind
+キーバインド
+Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file.
+JIS 系エンコーディング時、アスキーコード 0x5C をどちらで表示するかを選択します
+Keyword column is mandatory, others are optional.
+キーワードの列のみ必須です。
+Parent :
+親キーワード：
+Colors
+色
+Block Start Reg. Exp. : 
+折りたたみ開始正規表現：
+Block End Reg. Exp. : 
+折りたたみ終了正規表現：
+Enable or disable plugin.
+プラグインを有効／無効にします。
+Plugin
+プラグイン
+Display Name : 
+表示名：
+Vertical Draw :
+縦書き：
+Draw Vertical (Available with Mac OS X 10.7 or later)
+縦書き表示する（Mac OS X 10.7 以降のみ有効）
+Word Wrap with Window Width
+ウインドウ幅折り返し（単語ごと）
+Word Wrap with Characters Count...
+文字数指定折り返し（単語ごと）...
+Character Wrap with Window Width
+ウインドウ幅折り返し（文字ごと）
+Character Wrap with Characters Count...
+文字数指定折り返し（文字ごと）...
+Control Code Color :
+制御コード文字色：

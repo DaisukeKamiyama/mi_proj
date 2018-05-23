@@ -1,0 +1,707 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,ツールコマンド用キーワード
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ABBREV-NEXT,"ABBREV-NEXT"
+ABBREV-PREV,"ABBREV-PREV"
+ADDITIONAL-COPY,"ADDITIONAL-COPY
+選択範囲を追加コピー（既存のクリップボードの内容に追加）します。選択中でない場合は、何もしません。"
+ADDITIONAL-COPY-TEXT,"ADDITIONAL-COPY-TEXT
+ADDITIONAL-COPY-TEXT(""text"")
+既存のクリップボードの内容に文字列textを追加します。"
+ADDITIONAL-CUT,"ADDITIONAL-CUT
+選択範囲を追加カット（既存のクリップボードの内容に追加）します。選択中でない場合は、何もしません。"
+ADDITIONAL-CUT-ENDOFPARAGRAPH,"ADDITIONAL-CUT-ENDOFPARAGRAPH
+現在の段落の終わりまでを追加カット（既存のクリップボードの内容に追加）します。キャレット位置が段落末のときは、改行コードを追加カットします。"
+AMPM,"AMPM
+「AM」か「PM」の文字列を挿入します。"
+ARROWTODEF,"ARROWTODEF
+ローカル識別子の定義・参照関係を表示します。"
+AUTOINDENTMODE,"AUTOINDENTMODE"
+AUTOTAB,"AUTOTAB
+現在の行のインデント量を、設定に関わらず、前の行と同じインデント量にします。"
+BROWSE,"BROWSE
+BROWSE(appname)
+appnameという名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションでブラウズします。"
+CARET,"CARET
+ツール実行後、CARETを記述した位置にキャレットを移動させます。"
+CHANGECREATOR,"CHANGECREATOR"
+CHANGEFONT,"CHANGEFONT
+CHANGEFONT(fontname)
+ドキュメントのフォントをfontnameに変更します。"
+CHANGEFONT-MODEDEFAULT,"CHANGEFONT-MODEDEFAULT
+フォントとフォントサイズをモード設定の「デフォルト」タブで設定した値に設定します。"
+CHANGEMODE,"CHANGEMODE
+CHANGEMODE(modename)
+ドキュメントのモードをmodenameに変更します。"
+CHANGESIZE,"CHANGESIZE
+CHANGESIZE(fontsize)
+ドキュメントのフォントサイズをfontsizeポイントに変更します。"
+CHANGETO,"CHANGETO
+CHANGETO(encoding)
+ドキュメントのテキストエンコーディングをencodingに変更します。
+encodingには、"UTF-8"等、ドキュメント→テキストエンコーディングメニューで表示される文字列を指定します。"
+CHANGETO-CR,"CHANGETO-CR
+ドキュメントの改行コードをCRに設定します。"
+CHANGETO-CRLF,"CHANGETO-CRLF
+ドキュメントの改行コードをCR+LFに設定します。"
+CHANGETO-LF,"CHANGETO-LF
+ドキュメントの改行コードをLFに設定します。"
+CHANGETO-NOWRAP,"CHANGETO-NOWRAP
+ドキュメントを行折り返し無しに設定します。"
+CHANGETO-WORDWRAP,"CHANGETO-WORDWRAP
+ドキュメントを行折り返しあり（ウインドウ幅）に設定します。"
+CHANGETYPE,"CHANGETYPE"
+CLOSE,"CLOSE
+ファイルを閉じます。"
+CLOSE-AND-DROP,"CLOSE-AND-DROP"
+CLOSE-SPLITVIEW,"CLOSE-SPLITVIEW
+分割したビューを閉じます。"
+CLOSEDROP,"CLOSEDROP
+まず、ドキュメントを強制保存した後、ドキュメントを閉じます。
+次に、appnameという名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションで開きます。
+そして、miが再度アクティブになったときに、再度そのファイルを開きます。"
+COMMAND,"COMMAND"
+COMPILE-TEX,"COMPILE-TEX"
+COMPILEPREVIEW-TEX,"COMPILEPREVIEW-TEX"
+CONCATALL-INPROJECT,"CONCATALL-INPROJECT"
+COPY,"COPY
+選択範囲をコピーします。選択中でない場合は、何もしません。"
+COPY-WITHHTMLCOLOR,"COPY-WITHHTMLCOLOR
+選択行をHTML形式の色情報を付加してコピーします。（miのテキストウインドウで表示中の色情報がそのまま反映されます。）"
+CORRESPONDENCE,"CORRESPONDENCE
+対応文字列を挿入します。"
+CUT,"CUT
+選択範囲をカットします。選択中でない場合は、何もしません。"
+CUT-ENDOFLINE,"CUT-ENDOFLINE
+現在行の最後までをカットします。"
+CUT-ENDOFPARAGRAPH,"CUT-ENDOFPARAGRAPH
+現在の段落の終わりまでをカットします。キャレット位置が段落末のときは、改行コードをカットします。"
+CUT-STARTOFLINE,"CUT-STARTOFLINE
+現在行の最初までをカットします。"
+DATE,"DATE
+システム環境設定の「言語とテキスト」で設定された、「すべて」の形式（例：「2010年1月5日火曜日」）で、現在日付を挿入します。"
+DATE-6,"DATE-6
+「080105」の形式で現在の日付を挿入します。（0を補完して常に6桁で表示します）"
+DATE-LONG,"DATE-LONG
+システム環境設定の「言語とテキスト」で設定された、「すべて」の形式（例：「2010年1月5日火曜日」）で、現在日付を挿入します。（DATEと同じ。）"
+DATE-SHORT,"DATE-SHORT
+「2008/1/5」の形式で現在の日付を挿入します。"
+DAY,"DAY
+「5」の形式で現在の日を挿入します。"
+DAY-2,"DAY-2
+「05」の形式で現在の日を挿入します。（0を補完して常に2桁で表示します）"
+DAYOFWEEK,"DAYOFTHEWEEK"
+DAYOFWEEK-LONG,"DAYOFWEEK-LONG"
+DELETE-ENDOFLINE,"DELETE-ENDOFLINE
+現在行の終わりまでを削除します。"
+DELETE-ENDOFPARAGRAPH,"DELETE-ENDOFPARAGRAPH
+現在の段落の終わりまでを削除します。キャレット位置が段落末のときは、改行コードを削除します。"
+DELETE-MARK,"DELETE-MARK"
+DELETE-NEXT,"DELETE-NEXT
+次の文字を削除します。"
+DELETE-PREV,"DELETE-PREV
+前の文字を削除します。"
+DELETE-PREV-DECOMP,"DELETE-PREV-DECOMP"
+DELETE-SELECTED,"DELETE-SELECTED
+選択範囲を削除します。選択中でない場合は、何もしません。"
+DELETE-STARTOFLINE,"DELETE-STARTOFLINE"
+DELETE-STARTOFPARAGRAPH,"DELETE-STARTOFPARAGRAPH"
+DELETE-WHOLE-PARAGRAPH,"DELETE-WHOLE-PARAGRAPH
+現在の段落全部を削除します。"
+DICT,"DICT
+現在選択中の単語について辞書アプリケーションで調べます。"
+DICT-POPUP,"DICT-POPUP
+現在選択中の単語について辞書アプリケーションの結果をポップアップ表示します。
+Mac OS X 10.5以降のみで動作します。 また「辞書」アプリケーションの環境設定で「コンテクストメニュー」を「辞書パネルを開く」に設定しておく必要があります。"
+DIFF-REPOSITORY,"DIFF-REPOSITORY"
+DIRECTORY,"DIRECTORY
+現在のドキュメントのファイルの親フォルダの名称を挿入します。"
+DROP,"DROP
+DROP(appname)
+appnameという名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションで開きます。
+DROP(appname)(suffix)
+appnameという名前のアプリケーションを起動し、現在編集中のファイルのファイル名の拡張子をsuffixに変更したファイルを、 起動したアプリケーションで開きます。"
+DUMP-UNICODE-CHARCODE,"DUMP-UNICODE-CHARCODE"
+DUPLICATE-LINE,"DUPLICATE-LINE"
+FILENAME,"FILENAME
+現在のドキュメントのファイルの名称を挿入します。
+ファイル名未確定の場合は、現在のドキュメントのタイトル（「名称未設定」等）を挿入します。"
+FILENAME-NOSUFFIX,"FILENAME-NOSUFFIX
+現在のドキュメントのファイルの名称から拡張子（ピリオド含む）を削除した文字列を挿入します。
+例えばファイル名がtest.htmlなら""test""を挿入します。
+ファイル名未確定の場合は、現在のドキュメントのタイトル（「名称未設定」等）を挿入します。"
+FIND-DIALOG,"FIND-DIALOG
+検索ダイアログを開きます。（選択中の文字列を検索文字列に設定します。）"
+FIND-EXTRACT,"FIND-EXTRACT"
+FIND-REGEXP-FROMFIRST,"FIND-REGEXP-FROMFIRST
+次の行に記述した正規表現に一致する部分を、ドキュメントの最初から検索し、その部分を選択します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+FIND-REGEXP-NEXT,"FIND-REGEXP-NEXT
+次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）から後方に検索し、その部分を選択します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+FIND-REGEXP-PREV,"FIND-REGEXP-PREV
+次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の左端）から前方に検索し、その部分を選択します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+FIND-SELECTED-NEXT,"FIND-SELECTED-NEXT
+ドキュメント上で現在選択中の文字列を検索文字列として、後方検索します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+FIND-SELECTED-PREV,"FIND-SELECTED-PREV
+ドキュメント上で現在選択中の文字列を検索文字列として、前方検索します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+FIND-TEXT-FROMFIRST,"FIND-TEXT-FROMFIRST"
+FIND-TEXT-NEXT,"FIND-TEXT-NEXT"
+FIND-TEXT-PREV,"FIND-TEXT-PREV"
+FULL-PATH,"FULL-PATH"
+GETVAR,"GETVAR
+GETVAR(varname)
+varnameという名前の変数内の文字列を挿入します。"
+GT1,"GT1"
+GT3,"GT3
+文字列「>>>」を挿入します。"
+HANDTOOL,"HANDTOOL"
+HIGHLIGHT-CLEAR,"HIGHLIGHT-CLEAR
+ハイライト表示を消去します。"
+HIGHLIGHT-SELECTED,"HIGHLIGHT-SELECTED
+選択中の文字列をハイライト表示します。"
+HINT,"HINT"
+HOUR,"HOUR
+「20」の形式で現在の時刻の「時」（24時間表示）を挿入します。"
+HOUR-2,"HOUR-2
+「20」の形式で現在の時刻の「時」（24時間表示）を挿入します。（0を補完して常に2桁で表示します）"
+HOUR12,"HOUR12
+「8」の形式で現在の時刻の「時」（12時間表示）を挿入します。"
+HOUR12-2,"HOUR12-2
+「08」の形式で現在の時刻の「時」（12時間表示）を挿入します。（0を補完して常に2桁で表示します）"
+IDINFO,"IDINFO
+現在選択中の識別子の識別子情報を表示します。"
+IMAGEHEIGHT,"IMAGEHEIGHT"
+IMAGEWIDTH,"IMAGEWIDTH"
+INDENT,"INDENT
+現在の行のインデント量を、設定に従ったインデント量にします。"
+INDENT-BYSPACE,"INDENT-BYSPACE"
+INDENT-BYSPACE-RETURN,"INDENT-BYSPACE-RETURN"
+INDENT-BYSPACE-TAB,"INDENT-BYSPACE-TAB"
+INDENT-BYSPACE-TAB-BYSPACE,"INDENT-BYSPACE-TAB-BYSPACE"
+INDENT-ONLYNEWLINE-BYSPACE-RETURN,"INDENT-ONLYNEWLINE-BYSPACE-RETURN"
+INDENT-ONLYNEWLINE-RETURN,"INDENT-ONLYNEWLINE-RETURN"
+INDENT-RETURN,"INDENT-RETURN
+改行を挿入し、改行を挿入した行とその次行のインデント量を、設定に従ったインデント量にします。"
+INDENT-TAB,"INDENT-TAB
+設定に従ったインデント量より左側にキャレットがある場合は、設定に従ったインデント量にして、キャレットをインデント位置に移動します
+それ以外の場合は、タブを挿入します。"
+INDEXWINDOW-NEXT,"INDEXWINDOW-NEXT
+検索結果ウインドウで現在選択中の項目の次の項目へ移動します。"
+INDEXWINDOW-PREV,"INDEXWINDOW-PREV
+検索結果ウインドウで現在選択中の項目の前の項目へ移動します。"
+INSERT-LINE,"INSERT-LINE"
+KEY,"KEY"
+KEYRECORD-PLAY,"KEYRECORD-PLAY
+記録したキー操作をリプレイします。"
+KEYRECORD-START,"KEYRECORD-START
+キー操作の記録を開始します。キー記録ウインドウは表示しません。"
+KEYRECORD-START-WITHWINDOW,"KEYRECORD-START-WITHWINDOW
+キー操作の記録を開始し、キー記録ウインドウを表示します。"
+KEYRECORD-STOP,"KEYRECORD-STOP
+キー操作の記録を停止します。"
+KEYTOOL,"KEYTOOL
+KEYTOOL(string)
+ツール入力モード（ ⌘ ＋ Ｙ ）に移行し、stringをツール選択用文字としてツールを起動します。"
+LAUNCH,"LAUNCH
+LAUNCH(appname)
+appnameという名前のアプリケーションを起動します。"
+LT3,"LT3
+文字列「<<<」を挿入します。"
+MINUTE,"MINUTE
+「5」の形式で現在の時刻の「分」を挿入します。"
+MINUTE-2,"MINUTE-2
+「05」の形式で現在の時刻の「分」を挿入します。（0を補完して常に2桁で表示します）"
+MODIFYTO,"MODIFYTO
+MODIFYTO(encoding)
+テキストエンコーディングをencodingとして、ファイルを再読み込みします
+ファイルオープン／保存後、全く編集していない場合のみ有効です。
+encodingには、""UTF-8""等、ドキュメント→テキストエンコーディングメニューで表示される文字列を指定します。"
+MONTH,"MONTH
+「1」の形式で現在の月を挿入します。"
+MONTH-2,"MONTH-2"
+MOVECARET-COLUMN,"MOVECARET-COLUMN
+MOVECARET-COLUMN(n)
+キャレットを現在行のn文字目に移動します。"
+MOVECARET-DOWN,"MOVECARET-DOWN
+キャレットを下に移動します。（下矢印キーのデフォルト動作と同等。）"
+MOVECARET-END,"MOVECARET-END
+キャレットをドキュメントの最後に移動します。（⌘キー＋下矢印キーのデフォルト動作と同等。）"
+MOVECARET-ENDOFLINE,"MOVECARET-ENDOFLINE
+キャレットを行末に移動します。（⌘キー＋右矢印キーのデフォルト動作と同等。）"
+MOVECARET-ENDOFPARAGRAPH,"MOVECARET-ENDOFPARAGRAPH
+キャレットを段落の最後に移動します。"
+MOVECARET-HERE,"MOVECARET-HERE"
+MOVECARET-HOME,"MOVECARET-HOME
+キャレットをドキュメントの最初に移動します。（⌘キー＋上矢印キーのデフォルト動作と同等。）"
+MOVECARET-LEFT,"MOVECARET-LEFT
+キャレットを左に移動します。（左矢印キーのデフォルト動作と同等。）"
+MOVECARET-LINE,"MOVECARET-LINE
+MOVECARET-LINE(n)
+キャレットをn行目の最初に移動します。"
+MOVECARET-NEXTDIFF,"MOVECARET-NEXTDIFF
+変更箇所表示中の場合、次の変更箇所に移動します。"
+MOVECARET-NEXTPAGE,"MOVECARET-NEXTPAGE
+キャレットを1ページ後に移動します。"
+MOVECARET-NEXTWORD,"MOVECARET-NEXTWORD
+キャレットを一つ後の単語の右端に移動します。（オプションキー＋右矢印キーのデフォルト動作と同等。）"
+MOVECARET-NEXTWORD-LINESTOP,"MOVECARET-NEXTWORD-LINESTOP
+キャレットを一つ後の単語の右端、もしくは、行末に移動します。"
+MOVECARET-PARAGRAPH,"MOVECARET-PARAGRAPH
+MOVECARET-PARAGRAPH(n)
+キャレットをn段落目の最初に移動します。"
+MOVECARET-PREVDIFF,"MOVECARET-PREVDIFF
+変更箇所表示中の場合、前の変更箇所に移動します。"
+MOVECARET-PREVPAGE,"MOVECARET-PREVPAGE
+キャレットを1ページ前に移動します。"
+MOVECARET-PREVWORD,"MOVECARET-PREVWORD
+キャレットを一つ前の単語の左端に移動します。（オプションキー＋左矢印キーのデフォルト動作と同等。）"
+MOVECARET-PREVWORD-LINESTOP,"MOVECARET-PREVWORD-LINESTOP
+キャレットを一つ前の単語の左端、もしくは、行頭に移動します。"
+MOVECARET-RIGHT,"MOVECARET-RIGHT
+キャレットを右に移動します。（右矢印キーのデフォルト動作と同等。）"
+MOVECARET-STARTOFLINE,"MOVECARET-STARTOFLINE
+キャレットを行頭に移動します。（⌘キー＋左矢印キーのデフォルト動作と同等。）"
+MOVECARET-STARTOFPARAGRAPH,"MOVECARET-STARTOFPARAGRAPH
+キャレットを段落の最初に移動します。"
+MOVECARET-UP,"MOVECARET-UP
+キャレットを上に移動します。（上矢印キーのデフォルト動作と同等。）"
+MULTIFILEFIND-DIALOG,"MULTIFILEFIND-DIALOG"
+MULTIFILEFIND-REGEXP,"MULTIFILEFIND-REGEXP"
+MULTIFILEFIND-SELECTED,"MULTIFILEFIND-SELECTED
+ドキュメント上で現在選択中の文字列を検索文字列として、マルチファイル検索します。
+対象となるフォルダは、現在のドキュメントと同じフォルダ内です。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+MULTIFILEFIND-SELECTED-INPROJECT,"MULTIFILEFIND-SELECTED-INPROJECT
+ドキュメント上で現在選択中の文字列を検索文字列として、マルチファイル検索します。
+対象となるフォルダは、現在のドキュメントと同じプロジェクト内です。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+NAV-NEXT,"NAV-NEXT
+キャレット位置履歴の次の項目へ進みます。"
+NAV-PREV,"NAV-PREV
+キャレット位置履歴の前の項目へ戻ります。"
+NEWDOCUMENT,"NEWDOCUMENT
+新規ドキュメントを作成します。"
+NEWDOCUMENT-MOVETARGET,"NEWDOCUMENT-MOVETARGET
+新規ドキュメントを作成し、新規ドキュメント内でツール実行を継続します。"
+NEWDOCUMENT-SAMEMODE,"NEWDOCUMENT-SAMEMODE
+現在のドキュメントと同じモードで新規ドキュメントを生成します。"
+NEWDOCUMENT-SAMEMODE-MOVETARGET,"NEWDOCUMENT-SAMEMODE-MOVETARGET
+現在のドキュメントと同じモードで新規ドキュメントを生成し、新規ドキュメント内でツール実行を継続します。"
+NUMBER-REGEXP-SELECTED,"NUMBER-REGEXP-SELECTED
+次の行に記述された正規表現を検索文字列、その次の行に記述された文字列を置換文字列、 さらにその次の行に記述された数字を開始番号として、選択範囲内で正規表現に一致した部分に順に番号文字列を記述します。
+置換文字列には%d等のprintf形式で番号文字列挿入箇所・フォーマットを指定します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+OPEN,"OPEN"
+OPEN-DIALOG,"OPEN-DIALOG
+ファイル選択ダイアログを表示し、ファイルを開きます。"
+OPEN-FILE,"OPEN-FILE
+次の行に記述された絶対パスのファイルを開きます。"
+OPEN-SELECTED,"OPEN-SELECTED
+選択部分を部分パス名としてファイルを開きます。（ ⌘ ＋ Ｄ と同じ。）"
+OPEN-URL,"OPEN-URL
+次の行に記述されたURLをデフォルトのWebブラウザで開きます。"
+PASTE,"PASTE
+ペーストします。"
+PATH,"PATH"
+PREVIEW-TEX,"PREVIEW-TEX"
+RECENTER,"RECENTER
+キャレット位置をウインドウ中央に持ってくるようにスクロールします。"
+REDO,"REDO
+Redoします。
+なお、ツール実行時、このツールコマンドより後は無視されます。"
+REPLACE-REGEXP-AFTERCARET,"REPLACE-REGEXP-AFTERCARET
+次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）以降で検索し、 一致した部分を全て、次の次の行に記述した文字列に置換します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+REPLACE-REGEXP-ALL,"REPLACE-REGEXP-ALL
+次の行に記述した正規表現に一致する部分を、ドキュメントの最初から全て検索し、 一致した部分を全て、次の次の行に記述した文字列に置換します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+REPLACE-REGEXP-NEXT,"REPLACE-REGEXP-NEXT
+次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）から後方に検索し、 最初に一致した部分を、次の次の行に記述した文字列に置換します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+REPLACE-REGEXP-SELECTED,"REPLACE-REGEXP-SELECTED
+次の行に記述した正規表現に一致する部分を、現在の選択範囲内で検索し、 一致した部分を全て、次の次の行に記述した文字列に置換します。
+
+ツールコマンドの直後に()を記述し、その中に検索オプションを記述可能です。
+【検索オプション（共通）】
+  CASESENSITIVE: 大文字小文字を区別します。
+  WHOLEWORD: 単語全体が一致する場合のみ一致とみなします。
+  NOFUZZY: 曖昧検索を行いません。
+  BACKSLASHYENSENSITIVE: 半角バックスラッシュと半角円記号を区別します。
+【検索オプション（マルチファイル検索では無効）】
+  LOOP: ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。
+【検索オプション（マルチファイル検索でのみ有効）】
+  NORECURSIVE: サブフォルダも検索します。
+  ONLYVISIBLEFILE: 可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。
+  ONLYTEXTFILE: テキストファイルのみを検索し、テキスト以外のファイルを検索しません。
+  NODISPLAYPOSITION: 検索結果に見出し情報を表示しません。
+  FILTER""regexp"": 正規表現regexpに一致するファイル名のみ検索対象にします。"
+REPLACE-TEXT-AFTERCARET,"REPLACE-TEXT-AFTERCARET"
+REPLACE-TEXT-ALL,"REPLACE-TEXT-ALL"
+REPLACE-TEXT-INSELECTION,"REPLACE-TEXT-INSELECTION"
+REPLACE-TEXT-NEXT,"REPLACE-TEXT-NEXT"
+REPLACE-TEXT-SELECTEDIFMATCHED,"REPLACE-TEXT-SELECTEDIFMATCHED"
+RETURN,"RETURN
+改行を挿入します。（インデント処理は行いません。）"
+REVERTFONT,"REVERTFONT
+フォントとフォントサイズをファイルを開いたときの値に設定します。"
+SAMELETTER-UP,"SAMELETTER-UP
+一行前の同じカラム位置にある文字と同じ文字をキャレット位置に挿入します。"
+SAVE,"SAVE
+保存を行います。"
+SAVEAS,"SAVEAS
+新規保存を行います。"
+SCM-COMMIT,"SCM-COMMIT"
+SCM-COMPARE-WITH-LATEST,"SCM-COMPARE-WITH-LATEST
+現在のドキュメントとレポジトリ最新版を比較し、変更箇所を表示します。
+メニューから[編集→レポジトリ最新版と比較]を選択したときと同じ動作を行います。
+ドキュメントが未編集、または、保存済みの状態である場合のみ、使用可能です。それ以外の場合は何もしません。"
+SCROLL-DOWN,"SCROLL-DOWN
+下方向に１行スクロールします。"
+SCROLL-END,"SCROLL-END
+ドキュメントの最後にスクロールします。"
+SCROLL-HOME,"SCROLL-HOME
+ドキュメントの最初にスクロールします。"
+SCROLL-LEFT,"SCROLL-LEFT
+左方向に30ピクセルスクロールします。"
+SCROLL-NEXTPAGE,"SCROLL-NEXTPAGE
+下方向に１ページスクロールします。"
+SCROLL-PREVPAGE,"SCROLL-PREVPAGE
+上方向に１ページスクロールします。"
+SCROLL-RIGHT,"SCROLL-RIGHT
+右方向に30ピクセルスクロールします。"
+SCROLL-UP,"SCROLL-UP
+上方向に１行スクロールします。"
+SECOND,"SECOND
+「3」の形式で現在の時刻の「秒」を挿入します。"
+SECOND-2,"SECOND-2
+「03」の形式で現在の時刻の「秒」を挿入します。（0を補完して常に2桁で表示します）"
+SELECT-ALL,"SELECT-ALL
+ドキュメント全体を選択します。"
+SELECT-BRACE,"SELECT-BRACE
+現在のキャレット位置／選択範囲を囲む括弧内を選択します。"
+SELECT-CORRESPONDENCE,"SELECT-CORRESPONDENCE"
+SELECT-DOWN,"SELECT-DOWN
+選択範囲の始点（終点）を下に移動します。（シフトキー＋下矢印キーのデフォルト動作と同等。）"
+SELECT-END,"SELECT-END
+選択範囲の始点（終点）をドキュメントの最後に移動します。（シフトキー＋⌘キー＋下矢印キーのデフォルト動作と同等。）"
+SELECT-ENDOFLINE,"SELECT-ENDOFLINE
+選択範囲の始点（終点）を行末に移動します。（シフトキー＋⌘キー＋右矢印キーのデフォルト動作と同等。）"
+SELECT-ENDOFPARAGRAPH,"SELECT-ENDOFPARAGRAPH"
+SELECT-HOME,"SELECT-HOME
+選択範囲の始点（終点）をドキュメントの最初に移動します。（シフトキー＋⌘キー＋上矢印キーのデフォルト動作と同等。）"
+SELECT-MARK,"SELECT-MARK"
+SELECT-LEFT,"SELECT-LEFT
+選択範囲の始点（終点）を左に移動します。（シフトキー＋左矢印キーのデフォルト動作と同等。）"
+SELECT-NEXTHEADER,"SELECT-NEXTHEADER
+次の見出しを選択します。"
+SELECT-NEXTWORD,"SELECT-NEXTWORD
+選択範囲の始点（終点）を一つ後の単語の右端に移動します。（シフトキー＋オプションキー＋右矢印キーのデフォルト動作と同等。）"
+SELECT-NEXTWORD-LINESTOP,"SELECT-NEXTWORD-LINESTOP
+選択範囲の始点（終点）を一つ後の単語の右端、もしくは、行末に移動します。"
+SELECT-PREVHEADER,"SELECT-PREVHEADER
+前の見出しを選択します。"
+SELECT-PREVWORD,"SELECT-PREVWORD
+選択範囲の始点（終点）を一つ前の単語の左端に移動します。（シフトキー＋オプションキー＋左矢印キーのデフォルト動作と同等。）"
+SELECT-PREVWORD-LINESTOP,"SELECT-PREVWORD-LINESTOP
+選択範囲の始点（終点）を一つ前の単語の左端、もしくは、行頭に移動します。"
+SELECT-RIGHT,"SELECT-RIGHT
+選択範囲の始点（終点）を右に移動します。（シフトキー＋右矢印キーのデフォルト動作と同等。）"
+SELECT-STARTOFLINE,"SELECT-STARTOFLINE
+選択範囲の始点（終点）を行頭に移動します。（シフトキー＋⌘キー＋左矢印キーのデフォルト動作と同等。）"
+SELECT-STARTOFPARAGRAPH,"SELECT-STARTOFPARAGRAPH"
+SELECT-UP,"SELECT-UP
+選択範囲の始点（終点）を上に移動します。（シフトキー＋上矢印キーのデフォルト動作と同等。）"
+SELECT-WHOLE-LINE,"SELECT-WHOLE-LINE
+現在の行全体を選択します。"
+SELECT-WHOLE-PARAGRAPH,"SELECT-WHOLE-PARAGRAPH
+現在の段落全体を選択します。"
+SELECT-WHOLE-PARAGRAPH-NOLINEEND,"SELECT-WHOLE-PARAGRAPH-NOLINEEND
+現在の段落全体を選択します。ただし、最後の改行コードは選択しません。"
+SELECT-WORD,"SELECT-WORD"
+SELECTED,"SELECTED
+SELECTED-PLACEHOLDER(alttext)
+ツール起動時にテキストウインドウ上で選択されていた文字列を挿入します。
+ツール実行途中の選択文字列を挿入したい場合は、 後述のSETVAR-SELECTED()とGETVAR()を使用して下さい。"
+SELECTED-PLACEHOLDER,"SELECTED-PLACEHOLDER
+SELECTED-PLACEHOLDER(alttext)
+ツール起動時にテキストウインドウ上で選択されていた文字列を挿入します。
+文字列が選択されていなかった場合は、括弧内の文字列alttextを挿入します。"
+SELECTMODE,"SELECTMODE
+選択モードのOn/Offを切り替えます。
+選択モードOnのときは、カーソル移動時、常に選択の動作を行います。"
+SEND-SELECTED,"SEND-SELECTED
+SENDSELECTED(xxxxyyyyzzzz)
+クリエータxxxxのアプリケーションに、 アップルイベント（クラス：yyyy、ID：zzzz、ダイレクトパラメータ：ドキュメントで選択中のテキスト）を送ります。"
+SEND-SELECTED-NEWDOCUMENT,"SEND-SELECTED-NEWDOCUMENT"
+SEND-SELECTED-REPLACE,"SEND-SELECTED-REPLACE"
+SENDSELECTED,"SENDSELECTED"
+SENDSELECTEDN,"SENDSELECTEDN"
+SENDSELECTEDR,"SENDSELECTEDR
+SENDSELECTEDR(xxxxyyyyzzzz)
+クリエータxxxxのアプリケーションに、 アップルイベント（クラス：yyyy、ID：zzzz、ダイレクトパラメータ：ドキュメントで選択中のテキスト）を送り、 そのアプリケーションから返ってきた結果文字列をドキュメントに挿入します。"
+SETMARK,"SETMARK"
+SETVAR-SELECTED,"SETVAR-SELECTED
+SETVAR-SELECTED(varname)
+選択文字列をvarnameという名前の変数に格納します。
+変数はmi内で共通です。また、miを終了するまで記憶されます。"
+SHIFT-LEFT,"SHIFT-LEFT
+現在の行のインデント量を、１インデント分減らします。"
+SHIFT-RIGHT,"SHIFT-RIGHT
+現在の行のインデント量を、１インデント分増やします。"
+SHOW-DEFINITION,"SHOW-DEFINITION
+現在選択中の識別子について、編集→定義・宣言場所へ移動メニューの最初の項目を、 分割ビューか別ウインドウ／タブで表示します。"
+SHOW-LINEDIALOG,"SHOW-LINEDIALOG"
+SHOWHIDE-INFOPANECOLUMN,"SHOWHIDE-INFOPANECOLUMN
+右サイドバーの表示・非表示を切り替えます。"
+SHOWHIDE-SUBPANECOLUMN,"SHOWHIDE-SUBPANECOLUMN
+左サイドバーの表示・非表示を切り替えます。"
+SPACE,"SPACE"
+SPLITVIEW,"SPLITVIEW
+ビューを分割します。"
+SWAPLINE,"SWAPLINE
+選択行の奇数行と偶数行を入れ替えます。"
+SWAPLETTER,"SWAPLETTER
+キャレットの前後の文字を入れ替えます。"
+SWAPMARK,"SWAPMARK"
+SWITCH-NEXTSPLITVIEW,"SWITCH-NEXTSPLITVIEW
+次のビューへフォーカスを移動します。"
+SWITCH-NEXTTAB,"SWITCH-NEXTTAB
+次のタブを選択します。"
+SWITCH-PREVSPLITVIEW,"SWITCH-PREVSPLITVIEW
+前のビューへフォーカスを移動します。"
+SWITCH-PREVTAB,"SWITCH-PREVTAB
+前のタブを選択します。"
+SWITCH-PREVWINDOW,"SWITCH-PREVWINDOW"
+SWITCH-WINDOW,"SWITCH-WINDOW
+ウインドウを順に切り替えます。"
+TAB,"TAB
+タブを挿入します。（インデント処理は行いません。）"
+TAB-BYSPACE,"TAB-BYSPACE"
+TABTOWINDOW,"TABTOWINDOW
+現在のタブをウインドウ化します。
+現在のウインドウが画面の中よりも右にあるときは左側に、そうでないときは右側に表示します。"
+TIME,"TIME
+システム環境設定の「言語とテキスト」で設定された、「中」形式（例：「20:01:37」）で、現在時刻を挿入します。"
+TITLE,"TITLE"
+TOOL,"TOOL
+TOOL(path)
+モード設定フォルダ（モード設定ウインドウ→モード設定フォルダを開くクリックで開かれる、 ""mode""という名前のフォルダ）からの相対パスpathで指定されたツールを実行します。"
+TRANSLITERATE-REGEXP-SELECTED,"TRANSLITERATE-REGEXP-SELECTED
+TRANSLITERATE-SELECTED(title)
+次の行に記述された正規表現を検索文字列として、選択範囲内を検索し、一致した箇所を文字種変換します。
+titleには、編集→文字種変換メニューで表示される文字列のいずれかを記述します。"
+TRANSLITERATE-SELECTED,"TRANSLITERATE-SELECTED
+TRANSLITERATE-REGEXP-SELECTED(title)
+選択範囲を文字種変換します。
+titleには、編集→文字種変換メニューで表示される文字列のいずれかを記述します。"
+UNDO,"UNDO
+Undoします。
+なお、ツール実行時、このツールコマンドより後は無視されます。"
+URL,"URL"
+URL-NOURLENCODE,"URL-NOURLENCODE"
+WAIT,"WAIT
+次にmiがアクティブになるまで、ツールの実行を中断します。"
+WAIT-ACTIVATE,"WAIT-ACTIVATE"
+WINDOWTOTAB,"WINDOWTOTAB
+現在のウインドウをタブ化します。"
+YANK,"YANK"
+YEAR,"YEAR
+「2008」の形式で現在の年を挿入します。"
+YEAR-2,"YEAR-2
+「08」の形式で現在の年を挿入します。（西暦の下2桁を表示します）"
+YEAR-4,"YEAR-4
+「2008」の形式で現在の年を挿入します。（YEARと同じ。）"
+,
+CASESENSITIVE
+WHOLEWORD
+SPACESSENSITIVE
+BACKSLASHYENSENSITIVE
+LOOP
+NOFUZZY
+NORECURSIVE
+ONLYVISIBLEFILE
+ONLYTEXTFILE
+NODISPLAYPOSITION
+FILTER

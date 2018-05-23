@@ -1,0 +1,533 @@
+"UseRegExpCommentStart" = "false"
+"UseRegExpCommentEnd" = "false"
+"BackgroundImageTransparency" = "85"
+"WrapWithLetterCount LetterCount" = "80"
+"Convert5CToA5WhenOpenJIS" = "false"
+"DefaultEnableAntiAlias" = "true"
+"DisplayBackgroundImage" = "false"
+"DisplayInformationHeader" = "true"
+"DisplayToolbar" = "true"
+"DisplayPositionButton" = "true"
+"DisplayJumpList" = "false"
+"DisplayRuler" = "false"
+"RulerScaleWithTabLetter" = "false"
+"DisplayReturnCode" = "true"
+"DisplayTabCode" = "true"
+"DisplaySpaceCode" = "true"
+"DisplayZenkakuSpaceCode" = "true"
+"DisplayGenkoyoshi" = "false"
+"CheckBrace" = "true"
+"SelectInsideBraceByDoubleClick" = "true"
+"SelectInsideByQuadClick" = "false"
+"KinsokuBuraasge" = "true"
+"InputSpacesByTabKey" = "false"
+"AddRemoveSpaceByDragDrop" = "false"
+"InputBackslashByYenKey" = "false"
+"DontSaveResouceFork" = "true"
+"SaveUTF8BOM" = "false"
+"CheckCharsetWhenSave" = "true"
+"SaveDOSEOF" = "false"
+"SaveWindowPosition" = "true"
+"SniffTextEncoding_BOM" = "true"
+"SniffTextEncoding_Charset" = "true"
+"SniffTextEncoding_Legacy" = "true"
+"ShowDialogWhenTextEncodingNotDecided" = "true"
+"ApplyCharsForWordToDoubleClick" = "true"
+"UseCIndent" = "false"
+"UseCSyntaxColor" = "false"
+"UseBuiltinSyntaxDefinitionFile" = "true"
+"BuiltinSyntaxDefinitionName" = "Ruby"
+"DisplayLineNumberButton" = "true"
+"DisplayLineNumberButton_AsParagraph" = "true"
+"DisplayEachLineNumber" = "true"
+"DisplayEachLineNumber_AsParagraph" = "true"
+"DefaultPrintOption_UsePrintFont" = "false"
+"DefaultPrintOption_PrintPageNumber" = "true"
+"DefaultPrintOption_PrintFileName" = "true"
+"DefaultPrintOption_PrintLineNumber" = "true"
+"DefaultPrintOption_PrintSeparateLine" = "true"
+"DefaultPrintOption_ForceWordWrap" = "true"
+"LetterColor" = "000000"
+"BackgroundColor" = "FFFFFF"
+"SpecialCodeColor" = "CCCCCC"
+"CommentColor" = "FF0000"
+"LiteralColor" = "757575"
+"CSyntaxColor_Function" = "00FF00"
+"CSyntaxColor_ExternalFunction" = "00FF00"
+"CSyntaxColor_Class" = "FFFF00"
+"CSyntaxColor_GlobalVariable" = "0000FF"
+"CSyntaxColor_LocalVariable" = "0000FF"
+"CSyntaxColor_ExternalVariable" = "0000FF"
+"CSyntaxColor_EnumType" = "FFFF00"
+"CSyntaxColor_Enum" = "FFFF00"
+"CSyntaxColor_Typedef" = "FFFF00"
+"CSyntaxColor_Struct" = "FFFF00"
+"CSyntaxColor_Union" = "FFFF00"
+"CSyntaxColor_Define" = "757575"
+"RulerBaseLetter" = "a"
+"QuadClickText" = ""
+"CommentStart" = ""
+"CommentEnd" = ""
+"CommentLineStart" = ""
+"LiteralStart1" = ""
+"LiteralEnd1" = ""
+"LiteralStart2" = ""
+"LiteralEnd2" = ""
+"EscapeString" = ""
+"OtherStart1" = ""
+"OtherEnd1" = ""
+"OtherStart2" = ""
+"OtherEnd2" = ""
+"CharsForWord" = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+"CharsForHeadOfWord" = ""
+"CharsForTailOfWord" = ""
+"TeXCompiler" = "/usr/local/bin/platex"
+"TeXPreviewer" = ""
+"DefaultFontNameUni" = "Monaco"
+"DefaultFontName" = "Monaco"
+"DefaultFontSize" = "9"
+"DefaultTabWidth" = "4"
+"IndentWidth" = "4"
+"DefaultWindowWidth" = "900"
+"DefaultWindowHeight" = "800"
+"DefaultPrintOption_PrintFontNameUni" = "default"
+"DefaultPrintOption_PrintFontName" = "Monaco"
+"DefaultPrintOption_PrintFontSize" = "12"
+"DefaultPrintOption_PageNumberFontNameUni" = "default"
+"DefaultPrintOption_PageNumberFontName" = "Monaco"
+"DefaultPrintOption_PageNumberFontSize" = "12"
+"DefaultPrintOption_FileNameFontNameUni" = "default"
+"DefaultPrintOption_FileNameFontName" = "Monaco"
+"DefaultPrintOption_FileNameFontSize" = "12"
+"DefaultPrintOption_LineNumberFontNameUni" = "default"
+"DefaultPrintOption_LineNumberFontName" = "Monaco"
+"DefaultPrintOption_LineMargin" = "0"
+"LineMargin" = "0"
+"CIndent_Normal" = "4"
+"CIndent_Fukubun" = "8"
+"CIndent_Label" = "-2"
+"kDefaultTextEncoding" = "UTF-8"
+"DefaultWrapMode" = "0"
+"DefaultWrapMode_LetterCount" = "80"
+"DefaultReturnCode" = "2"
+"BackgroundImageFile" = ""
+"IndentOnTheWay" = "8"
+"IndentForLabel" = "-2"
+"IndentOnTheWaySecondIndent" = "true"
+"IndentOnTheWay_ParenthesisStartPos" = "true"
+"IndentOnTheWay_SingleColon" = "true"
+"UseSyntaxDefinitionIndent" = "true"
+"UseRegExpIndent" = "false"
+"NoIndent" = "false"
+"IndentExeLetters" = ""
+"SetDefaultCreator" = "true"
+"kDefaultCreator" = "MMKE"
+"ForceMiTextFile" = "false"
+"DisplaySpellCheck" = "false"
+"SpellCheckLanguage" = "0"
+"SetDefaultTextEncodingWhenNotDecided" = "false"
+"IdInfoWindowDisplayComment" = "true"
+"DisplayAbbrevCandidateWindow" = "true"
+"HitCountForAbbrevCandidiateWindow" = "3"
+"SaveTextEncodingToEA" = "true"
+"DefaultDisplayCrossCaret" = "false"
+"ModeSelectFilePath" = 
+{
+
+}
+"PrintMargin_Left" = "10"
+"PrintMargin_Right" = "10"
+"PrintMargin_Top" = "10"
+"PrintMargin_Bottom" = "10"
+"DragDrop_ActionForNoSuffix" = "0"
+"UseDefaultSuffixForSave" = "true"
+"DefaultSuffixForSaveText" = ""
+"StartSpaceToIndent" = "false"
+"IndentTabIsAlwaysTabIfIndentOff" = "true"
+"ZenkakuSpaceIndent" = "false"
+"SaveDocumentPrefToResource" = "false"
+"SaveDocumentPrefToAppPref" = "true"
+"ImportSystemHeaderFiles" = "false"
+"SystemHeaderFiles" = ""
+"UseEmbeddedSDF" = "true"
+"UseUserDefinedSDF" = "false"
+"UserDefinedSDFFilePath" = ""
+"JapaneseName" = ""
+"EnglishName" = ""
+"FrenchName" = ""
+"GermanName" = ""
+"SpanishName" = ""
+"ItalianName" = ""
+"DutchName" = ""
+"SwedishName" = ""
+"NorwegianName" = ""
+"DanishName" = ""
+"FinnishName" = ""
+"PortugueseName" = ""
+"SimplifiedChineseName" = ""
+"TraditionalChineseName" = ""
+"KoreanName" = ""
+"PolishName" = ""
+"PortuguesePortugalName" = ""
+"RussianName" = ""
+"ModeComment" = "Ruby 言語用のモードです。\r"
+"ModeUpdateURL" = ""
+"SDFHeaderDisplayMultiply" = "100"
+"RecognizeConditionalCompileDirective" = "false"
+"ConditionalCompileDisabledColor" = "C3C3C3"
+"ShowUnderlineAtCurrentLine" = "false"
+"CurrentLineUnderlineColor" = "C3C3C3"
+"AutoUpdateRevisionText" = ""
+"LastAutoUpdateDateTime" = ""
+"EnableAutoUpdateTool" = "true"
+"EnableAutoUpdateToolbar" = "true"
+"EnableAutoUpdateKeyword" = "true"
+"EnableAutoUpdateJumpSetup" = "true"
+"EnableUserTool" = "true"
+"EnableUserToolbar" = "true"
+"EnableUserKeyword" = "true"
+"EnableUserJumpSetup" = "true"
+"Indent0ForEmptyLine" = "false"
+"IndentWhenPaste" = "true"
+"EnableMode" = "true"
+"SameAsNormalMode_Font" = "true"
+"SameAsNormalMode_Colors" = "true"
+"SameAsNormalMode_TextDisplay" = "false"
+"SameAsNormalMode_BackgroundDisplay" = "true"
+"SameAsNormalMode_TextLayout" = "true"
+"SameAsNormalMode_TextProperty" = "true"
+"SameAsNormalMode_InputtSettings" = "true"
+"SameAsNormalMode_SpellCheck" = "true"
+"SyntaxColorSlot0_Color" = "0000DD"
+"SyntaxColorSlot1_Color" = "008000"
+"SyntaxColorSlot2_Color" = "2080D0"
+"SyntaxColorSlot3_Color" = "2080D0"
+"SyntaxColorSlot4_Color" = "B09000"
+"SyntaxColorSlot5_Color" = "333333"
+"SyntaxColorSlot6_Color" = "B9A300"
+"SyntaxColorSlot7_Color" = "0000FF"
+"SyntaxColorSlotComment_Color" = "FF0000"
+"SyntaxColorSlotLiteral_Color" = "555555"
+"SyntaxColorSlot0_Bold" = "false"
+"SyntaxColorSlot1_Bold" = "false"
+"SyntaxColorSlot2_Bold" = "false"
+"SyntaxColorSlot3_Bold" = "false"
+"SyntaxColorSlot4_Bold" = "false"
+"SyntaxColorSlot5_Bold" = "false"
+"SyntaxColorSlot6_Bold" = "false"
+"SyntaxColorSlot7_Bold" = "false"
+"SyntaxColorSlotComment_Bold" = "false"
+"SyntaxColorSlotLiteral_Bold" = "false"
+"SyntaxColorSlot0_Italic" = "false"
+"SyntaxColorSlot1_Italic" = "false"
+"SyntaxColorSlot2_Italic" = "false"
+"SyntaxColorSlot3_Italic" = "false"
+"SyntaxColorSlot4_Italic" = "false"
+"SyntaxColorSlot5_Italic" = "false"
+"SyntaxColorSlot6_Italic" = "false"
+"SyntaxColorSlot7_Italic" = "false"
+"SyntaxColorSlotComment_Italic" = "false"
+"SyntaxColorSlotLiteral_Italic" = "false"
+"SyntaxColorSlot0_Underline" = "false"
+"SyntaxColorSlot1_Underline" = "false"
+"SyntaxColorSlot2_Underline" = "false"
+"SyntaxColorSlot3_Underline" = "false"
+"SyntaxColorSlot4_Underline" = "false"
+"SyntaxColorSlot5_Underline" = "false"
+"SyntaxColorSlot6_Underline" = "false"
+"SyntaxColorSlot7_Underline" = "false"
+"SyntaxColorSlotComment_Underline" = "false"
+"SyntaxColorSlotLiteral_Underline" = "false"
+"UseLineFolding" = "true"
+"UseDefaultFoldingSetting" = "false"
+"DefaultFoldingLineText" = "#if 0"
+"ColorSchemeName" = "mi-default"
+"DarkenImportLightenLocal" = "true"
+"FindHighlightColor" = "FDE900"
+"FindHighlightColorPrev" = "E6E6FA"
+"CurrentWordHighlightColor" = "FFFF00"
+"TextMarkerHightlightColor" = "FFCD96"
+"SelectionColorForFind" = "FFD700"
+"IndentAutoDetect" = "true"
+"KeyBindDefaultIsNormalMode" = "false"
+"KeyBindDefaultIsOSKeyBind" = "false"
+"EnableModeUpdateFromWeb" = "false"
+"EnableSDFCorrespond" = "true"
+"ModeUpdateSourceModeName" = ""
+"AutoUpdateFromAppDateTimeText" = "2013/03/14 14:59:37"
+"DiffColorOpacity" = "30"
+"SelectionOpacity" = "80"
+"DefaultSyntaxPart" = "自動"
+"ShiftleftByBackspace" = "true"
+"AdditionalCategory_Name" = 
+{
+	"Ruby"
+}
+"AdditionalCategory_Color" = 
+{
+	"0000FF"
+}
+"AdditionalCategory_Bold" = 
+{
+	"false"
+}
+"AdditionalCategory_RegExp" = 
+{
+	"false"
+}
+"AdditionalCategory_IgnoreCase" = 
+{
+	"false"
+}
+"AdditionalCategory_Underline" = 
+{
+	"false"
+}
+"AdditionalCategory_Italic" = 
+{
+	"false"
+}
+"AdditionalCategory_PriorToOtherColor" = 
+{
+	"false"
+}
+"AdditionalCategory_Disabled" = 
+{
+	"false"
+}
+"AdditionalCategory_AutoUpdate" = 
+{
+	"false"
+}
+"AdditionalCategory_Keywords" = 
+{
+	""
+}
+"AdditionalCategory_UseCSV" = 
+{
+	"true"
+}
+"AdditionalCategory_CSVPath" = 
+{
+	"Ruby.csv"
+}
+"AdditionalCategory_KeywordColumn" = 
+{
+	"1"
+}
+"AdditionalCategory_ExplanationColumn" = 
+{
+	"2"
+}
+"AdditionalCategory_TypeTextColumn" = 
+{
+	"3"
+}
+"AdditionalCategory_ParentKeywordColumn" = 
+{
+	"4"
+}
+"AdditionalCategory_ColorTypeColumn" = 
+{
+	"5"
+}
+"AdditionalCategory_CompletionTextColumn" = 
+{
+	"6"
+}
+"AdditionalCategory_URLColumn" = 
+{
+	"7"
+}
+"AdditionalCategory_ColorSlot" = 
+{
+	"0"
+}
+"AdditionalCategory_ValidSyntaxPart" = 
+{
+	"すべての文法パート"
+}
+"DragDrop_Suffix" = 
+{
+
+}
+"DragDrop_Text" = 
+{
+
+}
+"Correspond_StartText" = 
+{
+
+}
+"Correspond_EndText" = 
+{
+
+}
+"Indent_RegExp" = 
+{
+
+}
+"Indent_OffsetCurrentLine" = 
+{
+
+}
+"Indent_OffsetNextLine" = 
+{
+
+}
+"JumpSetup_Name" = 
+{
+
+}
+"JumpSetup_RegExp" = 
+{
+
+}
+"JumpSetup_MenuText" = 
+{
+
+}
+"JumpSetup_SelectionGroup" = 
+{
+
+}
+"JumpSetup_KeywordGroup" = 
+{
+
+}
+"JumpSetup_AnchorGroup" = 
+{
+
+}
+"JumpSetup_ColorizeLine" = 
+{
+
+}
+"JumpSetup_LineColor" = 
+{
+
+}
+"JumpSetup_KeywordColor" = 
+{
+
+}
+"JumpSetup_RegisterToMenu" = 
+{
+
+}
+"JumpSetup_RegisterAsKeyword" = 
+{
+
+}
+"JumpSetup_DisplayMultiply" = 
+{
+
+}
+"JumpSetup_AutoUpdate" = 
+{
+
+}
+"JumpSetup_ColorizeRegExpGroup" = 
+{
+
+}
+"JumpSetup_ColorizeRegExpGroup_Number" = 
+{
+
+}
+"JumpSetup_ColorizeRegExpGroup_Color" = 
+{
+
+}
+"JumpSetup_OutlineLevel" = 
+{
+
+}
+"JumpSetup_SimplerSetting" = 
+{
+
+}
+"JumpSetup_LineStartText" = 
+{
+
+}
+"JumpSetup_RegisterToMenu2" = 
+{
+
+}
+"JumpSetup_KeywordColorSlot" = 
+{
+
+}
+"JumpSetup_Enable" = 
+{
+
+}
+"Suffix" = 
+{
+	".rb"
+}
+"KeyBind_Key" = 
+{
+
+}
+"KeyBind_ControlKey" = 
+{
+
+}
+"KeyBind_OptionKey" = 
+{
+
+}
+"KeyBind_CommandKey" = 
+{
+
+}
+"KeyBind_ShiftKey" = 
+{
+
+}
+"KeyBind_Action" = 
+{
+
+}
+"KeyBind_Text" = 
+{
+
+}
+"SyntaxDefinitionCategory_Name" = 
+{
+
+}
+"SyntaxDefinitionCategory_Color" = 
+{
+
+}
+"SyntaxDefinitionCategory_ImportColor" = 
+{
+
+}
+"SyntaxDefinitionCategory_LocalColor" = 
+{
+
+}
+"SyntaxDefinitionCategory_Bold" = 
+{
+
+}
+"SyntaxDefinitionCategory_Italic" = 
+{
+
+}
+"SyntaxDefinitionCategory_Underline" = 
+{
+
+}
+"SyntaxDefinitionState_Name" = 
+{
+
+}
+"SyntaxDefinitionState_Color" = 
+{
+
+}

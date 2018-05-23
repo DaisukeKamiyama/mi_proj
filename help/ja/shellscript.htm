@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>シェルスクリプト</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="shellscript.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1><a name="shellscript">シェルスクリプト機能について</a></h1>
+			<p>
+				ツール、もしくは、ツールボタンが、<code>#!</code>で始まるテキストファイルであった場合に、
+				それをUNIX上でシェルスクリプトとして起動させることができます。
+			</p>
+			<p>
+				まず、<span class="pref">環境設定ウインドウ→ツールタブ→#!で始まるツールをUNIXシェルスクリプトとして実行する</span>
+				をOnにしてください。
+			</p>
+			<p>
+				そして、ツールにシェルスクリプトを記述します。<a href="topic.htm#edittool">ツールの作成方法</a>は、通常のツールと変わりません。
+				ただし、<em>改行コードを必ずLFに設定してください。</em>
+			</p>
+			<p>
+				例えば、次のように記述されたツールを実行すると、現在のプロセス情報を新規ドキュメントに表示します。
+				（ツールにコピー＆ペーストすれば実行できますが、<em>改行コードをLFに設定する</em>こと、<em>最後の行にも改行が必要</em>なこと、に注意してください。）
+			</p>
+			<div class="sample">
+				<pre>#!/bin/tcsh<br>#new<br>ps -aux<br><br></pre>
+			</div>
+			<h1><a name="arg">シェルスクリプトに渡される引数</a></h1>
+			<p>
+				シェルスクリプトには以下の引数が渡されます。
+			</p>
+			<p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>引数</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top">第一引数</td><td>
+							<p>
+								編集中のファイルのパス(UNIX形式のパス)
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">第二引数</td><td>
+							<p>
+								選択中の文字列（テキストエンコーディングはUTF-8）
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			
+			<h1><a name="howtowrite">シェルスクリプトの記述方法</a></h1>
+			<p>
+				1行目には、#!の後に、実行するコマンド（シェル）を記述して下さい。
+			</p>
+			<p>
+				2行目には、#の後に、以下の表のオプションを記述することにより、miの動作を指定することができます。<br>
+				複数のオプションをスペースで区切って記述することが可能です。同時に実行できないものは後の記述の方が優先されます。
+			</p>
+			<p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>オプション</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top"><code>replace_all</code></td><td>
+							<p>
+								現在編集中のドキュメントの内容全てを、シェルスクリプトの標準出力の内容に置き換えます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>replace_selected</code></td><td>
+							<p>
+								現在編集中のドキュメントの選択範囲を、シェルスクリプトの標準出力の内容に置き換えます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>new</code></td><td>
+							<p>
+								新規ドキュメントを開いて、そこにシェルスクリプトの標準出力の内容を表示します。<br>
+								<span class="pref">環境設定ウインドウ→ツールタブ→標準出力を表示するモード</span>
+								により、どのモードで新規ドキュメントを開くかを設定することができます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>window xxx</code></td><td>
+							<p>
+								xxxというタイトルのウインドウに標準出力の内容を表示します。<br>
+								(xxxは改行、タブ、スペースを含まない任意の文字列)<br>
+								ウインドウが存在していない場合は新規作成します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>timeout=n</code></td><td>
+							<p>
+								miはシェルスクリプトの終了まで処理をブロックするのですが、timeoutオプションを設定すると、終了待ちのタイムアウトをn秒間に設定します。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>send_selected_maccode</code></td><td>
+							<p>
+								第二引数に渡す文字列を、現在のフォントに従ったMacOSレガシーのテキストエンコーディング
+								（日本語フォントならShift_JIS）で送信します。<br>
+								このオプションを指定しない場合は、UTF-8で送信されます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><code>result_encoding=xxx</code></td><td>
+							<p>
+								シェルスクリプトが返す標準出力のテキストエンコーディングがxxxであることをmiに指示します。<br>
+								miはこのオプションに従って、標準出力をmi内部のテキストエンコーディングに変換します。<br>
+								このオプションを指定しない場合は、テキストエンコーディング自動認識を行いますが、
+								文字数が少ない場合は文字化けする可能性があります。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			
+		</div>
+	</body>
+</html>
+

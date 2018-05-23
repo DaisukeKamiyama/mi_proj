@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Auto Encode</key>
+	<string>FALSE</string>
+	<key>Auto Open</key>
+	<string>TRUE</string>
+	<key>Background Image Path</key>
+	<string>bgimage.png</string>
+	<key>Build Format</key>
+	<string>DMG (OS X only)</string>
+	<key>Custom Icon Path</key>
+	<string></string>
+	<key>Disk Image Name</key>
+	<string>mi3.0.1b1.dmg</string>
+	<key>Encode Format</key>
+	<string>None</string>
+	<key>Encryption Type</key>
+	<string>None</string>
+	<key>Finalize Format</key>
+	<string>Read-only with compression</string>
+	<key>Font Size</key>
+	<string>12</string>
+	<key>Icon Size</key>
+	<string>116</string>
+	<key>Image Size Extra</key>
+	<string>0</string>
+	<key>Image Size Type</key>
+	<string>Automatic</string>
+	<key>Internet Enable</key>
+	<string>FALSE</string>
+	<key>Item List</key>
+	<array>
+		<dict>
+			<key>Hidden</key>
+			<false/>
+			<key>Origin</key>
+			<string>{104, 275}</string>
+			<key>Path</key>
+			<string>app/mi.app</string>
+			<key>Type</key>
+			<string>File Item</string>
+		</dict>
+		<dict>
+			<key>Hidden</key>
+			<false/>
+			<key>Origin</key>
+			<string>{343, 268}</string>
+			<key>Path</key>
+			<string>Applications</string>
+			<key>Type</key>
+			<string>File Item</string>
+		</dict>
+	</array>
+	<key>License List</key>
+	<array/>
+	<key>Lock Frame</key>
+	<string>FALSE</string>
+	<key>Project File Path</key>
+	<string>/Users/mi/mi/mi_proj/Build_Mac/</string>
+	<key>Remove SVN Files</key>
+	<string>FALSE</string>
+	<key>Show Toolbar</key>
+	<string>FALSE</string>
+	<key>Volume Name</key>
+	<string>mi3.0.1</string>
+	<key>Window Frame</key>
+	<string>{{79, 43}, {600, 486}}</string>
+</dict>
+</plist>

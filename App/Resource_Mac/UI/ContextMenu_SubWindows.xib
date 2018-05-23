@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment version="1060" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
+            <connections>
+                <outlet property="contextualMenu" destination="3" id="7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <menu autoenablesItems="NO" id="3">
+            <items>
+                <menuItem image="iconTbSubwindows" tag="5000" enabled="NO" id="42">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Recently Open File List" image="iconSwBox_R" tag="5601" id="44">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Same Folder File List" image="iconSwBox_S" tag="5602" id="45">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Same Project File List" image="iconSwBox_P" tag="5603" id="46">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Remote File List" image="iconSwBox_R" tag="5604" id="47">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Header List" image="iconSwList" tag="5605" id="48">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Text Count Window" image="iconSwTextCount" tag="5606" id="49">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Text Marker Window" image="iconSwMarkerPen" tag="5607" id="50">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Keyword Info List" image="iconSwKeyWord" tag="5610" id="53">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Preview" image="iconSwPreview" tag="5612" id="56">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="New Key Record Window" image="iconTbKeyRecord.Template" tag="5614" id="57">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+        </menu>
+    </objects>
+    <resources>
+        <image name="iconSwBox_P" width="16" height="16"/>
+        <image name="iconSwBox_R" width="16" height="16"/>
+        <image name="iconSwBox_S" width="16" height="16"/>
+        <image name="iconSwKeyWord" width="16" height="16"/>
+        <image name="iconSwList" width="16" height="16"/>
+        <image name="iconSwMarkerPen" width="16" height="16"/>
+        <image name="iconSwPreview" width="16" height="16"/>
+        <image name="iconSwTextCount" width="16" height="16"/>
+        <image name="iconTbKeyRecord.Template" width="18" height="18"/>
+        <image name="iconTbSubwindows" width="18" height="19"/>
+    </resources>
+</document>

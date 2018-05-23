@@ -1,0 +1,648 @@
+Add Tool Button
+ツールボタン追加
+Add
+追加
+User-Defined Tool Button
+ユーザー定義ツールボタン
+Name : 
+名前：
+Icon : 
+アイコン：
+Menu Type Tool Button
+メニュー形式ツールボタン
+Text Encoding
+テキストエンコーディング
+Line Break Code
+改行コード
+Wrap
+行折り返し
+Mode
+モード
+Folder
+フォルダ
+Cancel
+キャンセル
+Select...
+選択...
+Standard Tool Button
+標準ツールボタン
+Import
+インポート
+Importing Mode / Tool includes Application, AppleScript, or ShellScript
+インポートしようとしているモード／ツールには、アプリケーション、 AppleScript、シェルスクリプト等が含まれています。
+Is it OK to continue Import?
+インポートを続けてもよろしいですか？
+Display Detail Report in Text Window
+詳細レポートをテキストウインドウで表示
+File List : 
+ファイルのリスト：
+Detail Report : 
+詳細レポート：
+Dialog
+ダイアログ
+OK
+OK
+Print Option
+印刷オプション
+Print Font / Size
+印刷用フォント／サイズ
+Font : 
+フォント：　
+Print Page Number
+ページ番号を印刷する
+Print File Name
+ファイル名を印刷する
+Size : 
+サイズ：
+pt
+ポイント
+Print Separate Line
+区切り線を印刷
+Print Each Line Number
+各行の行番号を印刷する
+Line Space : 
+行間：
+Always Wrap with Paper Width regardless of Document Property
+ドキュメント設定に関わらず常に行折り返しあり（用紙幅）にする
+Window
+Window
+File is not Saved
+ファイル未保存です
+Save and Execute
+保存して実行
+Execute without Save
+保存せずに実行
+mi
+mi
+Web Site
+Web Site
+Version
+バージョン
+Some Icons use "Fugue Icons" made by
+一部アイコンにYusuke Kamiyamane様作成の
+Mr. Yusuke Kamiyamane.
+"Fugue Icons"を使用しています
+Link:
+リンク先：
+http://www.pinvoke.com/
+http://p.yusukekamiyamane.com/
+Warning
+Warning
+Static Text
+Static Text
+Compare Folder
+フォルダ比較
+Compare
+比較
+Font Size : 
+フォントサイズ：
+Wrap Letter Count : 
+行折り返し文字数：
+characters
+文字
+Setup Project Folder
+プロジェクトフォルダ設定
+folder
+folder
+Folder : 
+Folder : 
+By setting Project Folder, Multi-File Find or other Features can be executed for the Folder and its sub-Folders.
+プロジェクトフォルダを設定すると、そのフォルダ単位でマルチファイル検索等の処理を行うことができます。
+Select Folder...
+フォルダ選択...
+Add Mode
+モードの追加
+New
+新規
+Import From Mode File
+モードファイルからインポート
+Select File...
+ファイル選択...
+Mode Name : 
+モードの名前：
+Copy from Existing Mode
+既存モードからコピー
+Message 1
+メッセージ１
+Message 2
+メッセージ２
+New FTP File
+FTP 新規ファイル
+New File
+新規ファイル
+Path : 
+パス：
+Move Line : 
+行移動：
+Move
+移動
+/999
+/999
+Text Count
+テキストカウント
+Count
+カウント
+File Name
+ファイル名
+If 1 Line is
+１行
+characters,
+文字なら
+lines
+行
+If 1 Page is
+１枚
+lines,
+行なら
+pages
+枚
+(Selected Range)
+（選択部分）
+Comment : 
+コメント率：
+%
+%
+For Zenkaku and Hankaku, one character is counted as 1
+全角も半角も１つ１文字
+One Zenkaku character is counted as 2, Hankaku is 1
+全角１つは２文字、半角１つは１文字
+One Zenkaku character is counted as 1, Hankaku is 0.5
+全角１つは１文字、半角１つは0.5文字
+Count Method :
+カウント方法：
+Paragraphs
+段落
+Counted as 1 for Hankaku Space / Tab
+半角スペース・タブも１文字として数える
+Counted as 1 for Line Break Code
+改行コードも１文字として数える
+Multi-File Find Proceeding
+マルチファイル検索実行中
+Abort
+中断
+Trace Log
+トレースログ
+Edit Registered Folder Menu
+登録フォルダメニューの編集
+Item
+項目
+Delete
+削除
+IndexWindow
+IndexWindow
+Change
+変更
+* Tool Command TOOLBARICON is prior to this setting.
+※ツールコマンドTOOLBARICONによる設定のほうが優先されます
+FTP Log
+リモートファイル接続ログ
+Save Changes before Close
+閉じる前に変更内容を保存する
+Do you Save Changes?
+変更した設定内容を保存しますか？
+Save
+保存
+Discard
+保存しない
+Name
+名前
+Case
+大小
+Word
+単語
+Ambi.
+曖昧
+Reg.
+正規
+Loop
+巡回
+Close
+閉じる
+Automatic Recognition
+自動認識
+Text Encoding : 
+テキストエンコーディング：　
+Edit FTP Folder Menu
+FTPフォルダメニューの編集
+Server Address : 
+サーバーアドレス：
+User Name : 
+ユーザー名　　　：
+Path : 
+パス　　　　　　：
+* User Name cannot contain Colon + Password
+※ユーザー名にコロン＋パスワードを含むことは出来ません
+Level : 
+階層　　　　　　：
+levels
+階層まで
+Copy this FTP Account Data
+↑この FTP アカウントのデータをコピー
+Setting for the Item
+項目ごとの設定
+This Document is changed by Other Application
+このドキュメントは他のアプリケーションで変更されました
+"^0" is changed by Other Application
+"^0" は他のアプリケーションで変更されました。
+Read Changed Result by Other Application
+他のアプリケーションでの編集結果を読み込む
+Do Not Read Changed Result by Other Application
+他のアプリケーションでの編集結果を読み込まない
+Apply to All Other Documents
+他のすべてのドキュメントに適用
+FTP
+FTP
+FTP Access in Progress
+リモートファイルアクセス中
+Text Encoding
+テキストエンコーディング：
+Font
+Font
+Font : 
+フォント　　　　：　
+Default Setting in Mode Preferences
+モード設定のデフォルトに従う
+ON
+ON
+OFF
+OFF
+Anti Alias : 
+アンチエイリアス：　
+Tab Code Width : 
+タブコード表示幅：
+This is applied to Tab Code Display Width.
+タブコードの表示幅に適用されます
+This is applied to Indent or Shift Left/Right.
+インデントや左右シフト実行時に適用されます
+Creator : 
+クリエータ　　　：
+Type : 
+タイプ　　　　　：
+Display
+表示
+Size : 
+サイズ　　　　　：
+Set Creator / Type
+クリエータ／タイプを設定する
+Indent Amount : 
+インデント量：
+Project Folder Setup is Needed
+プロジェクトフォルダの設定が必要です
+TextWindow
+TextWindow
+Multi-File Find
+マルチファイル検索 (grep)
+Find
+検索
+Ambiguous Find
+曖昧検索
+Find Sub-Folders
+サブフォルダも検索
+Display Position
+結果に場所を表示する
+Only Visible File
+可視ファイルのみ
+Only No-Type or TEXT File
+テキストファイルのみ
+Find Text : 
+検索文字列：
+Recent Find Text : 
+最近検索した文字列
+Path
+パス指定
+Recent Find Folder : 
+最近検索したフォルダ
+Same Folder as Active Text Window
+Same Folder as Active Text Window
+Parent Folder of Active Text Window
+Parent Folder of Active Text Window
+Same Project Folder as Active Text Window
+Same Project Folder as Active Text Window
+Recently Used Condition : 
+最近使った一致条件
+File Name Match Condition : (RegExp)
+ファイル名一致条件：
+Confirmation for File Open
+ファイルオープンの確認
+This File Size is Big.
+サイズの大きいファイルを開こうとしています
+Open
+開く
+Application, AppleScript, and/or ShellScript may be executed
+ツール、ツールバー、キーバインド機能から、
+from Tool, Toolbar, and/or Keybind features.
+アプリケーション、AppleScript、シェルスクリプト等が実行される可能性がありますが、
+Do you really want to import?
+インポートしてもよろしいですか？
+This document is not saved.
+このドキュメントは保存されていません。
+Changes are not reflected if you execute the tool without save.
+保存せずにツールを実行すると変更が反映されません。
+Copyright © 2009 MimikakiProject (daisuke), 
+Copyright © 2012 Daisuke Kamiyama, 
+If project folder is set, mi will create file "miproj" in the folder.
+プロジェクトフォルダを設定すると、そのフォルダに miproj という名前のファイルを作成します。
+If you want to cancel project folder setup, please delete the file "miproj".
+プロジェクトフォルダ設定を解除したいときは、そのファイルを削除してください。
+If you click this button, Reload from the current file.
+このボタンを押すと、現在のファイルの内容を読み込みます。
+You can undo the reload.
+mi 上での前回のオープン／保存以降の変更が消えますが、アンドゥにより元に戻すことは可能です。
+If you click this button, Do not reload from the current file.
+このボタンを押すと、現在のファイルの内容を読み込みません。
+Therefore, if you save in mi, changes of other application will be DELETED by overwrite.
+そのため、mi で上書き保存すると、他のアプリケーション上で行った変更が上書きされて消えてしまいます。
+Project Folder should be setup to use this feature.
+この機能を使用するためにはプロジェクトフォルダの設定が必要です。
+Do you setup Project Folder?
+設定しますか？
+It may take much time to open.
+開くのに時間がかかる可能性がありますが、
+Do you really want to open?
+それでも開きますか？
+Regexp
+正規表現
+Filter
+ワイルドカード
+Commit to : 
+コミット先 : 
+Message :
+メッセージ :
+Additional Args :
+追加引数 :
+Result :
+結果 :
+Commit
+コミット
+Recent Message
+最近記述したメッセージ
+Copy from Default Mode embedded in mi
+mi 内組み込みのデフォルトモードからコピー
+Distinguish \\ and yen mark
+\\ とバックスラッシュを区別
+Document Properties
+ドキュメントのプロパティ
+Version Information
+バージョン情報
+Change Icon
+アイコン変更
+Font Size
+フォントサイズ
+Progress
+進捗状況
+Importing Mode / Tool includes Applications and/or other executables.
+インポートしようとしているモード／ツールにはアプリケーション等が含まれています
+Applications and/or other executables may be executed from Tool, Toolbar, and/or Keybind features. Do you really want to import?
+ツール、ツールバー、キーバインド機能から、アプリケーション等がが実行される可能性がありますが、インポートしてもよろしいですか？
+Security Confirmation
+セキュリティ確認
+Move Line
+行移動
+Printing "^0"
+"^0" を印刷中
+Printing
+印刷中
+Print will be aborted when Abort is clicked.
+中止ボタンを押すと印刷を中止します。
+Wrap Letter Count
+行折り返し文字数
+Left (Read Only) : 
+左 (Read Only) : 
+Right (Edit) : 
+右 (編集ドキュメント) : 
+File Compare
+ファイル比較
+Browse...
+参照...
+Compare File
+ファイル比較
+Compare Automatically when File in the following Working Folder is opened.
+自動比較先フォルダ設定 （「Working フォルダ」内のファイルを開いたとき、自動的に「比較元フォルダ」内の対応するファイルとの比較を行います）
+Left (Source Folder) :
+左 (比較元フォルダ) :
+Right (Working Folder) :
+右 (Working フォルダ) :
+Update to All Documents
+すべてのドキュメントに反映
+Enabled Defines
+有効 define 値の編集
+Add / Update Value
+追加／値の更新
+Update All Documents
+設定を反映
+Define : 
+Define ：
+Value :
+値：
+Error Characters List
+エラー文字一覧
+mi text editor
+mi テキストエディタ
+Click the following button to display copyright notices.
+mi が使用しているソフトウエア・ドキュメントの著作権は下記に表示しています。
+Show Copyright
+著作権表示
+Get From Web
+Web から取得
+Mode name is duplicated with another mode.
+モード名が他のモードと重複しています。
+Find : 
+検索：
+Press ctrl+return to input return code
+改行・タブは control を押しながら入力します
+Find From First
+最初から検索
+Replace
+置換
+Replace : 
+置換：
+Range : 
+範囲：
+Find Options
+検索オプション
+Find / Replace
+検索／置換
+Next
+次
+After Caret
+キャレット以降
+Inside Select
+選択範囲内
+All
+すべて
+Distinguish \ and ¥
+\ と ¥ を区別
+Ignore Spaces/Tabs/Returns
+スペース・タブ・改行を無視
+Ignore Cases
+大文字小文字を無視
+Whole Word Only
+単語が一致する場合のみ
+Regular Expression
+正規表現検索
+Find From First after Document End
+最後まで検索したら最初から
+Fuzzy Search
+曖昧検索
+Find Sub Folders Recursively
+サブフォルダも再帰的に検索する
+Display Header Title in Result
+見出しタイトルを結果に表示する
+Visible File Only
+可視ファイルのみ
+Text File Only
+テキストファイルのみ
+Find Memory
+検索メモリー
+Make Macro for this Find parameters
+現在の検索パラメータでマクロを生成する
+Make Macro for this Replace parameters
+現在の置換パラメータでマクロを生成する
+Find Next
+次を検索
+Find Previous
+前を検索
+List
+一覧
+Replace Next
+次を置換
+Replace&Find
+置換＆検索
+Add To Macro
+マクロに追加
+Close Screen for Replace
+マルチファイル置換用画面を閉じる
+Open Screen for Replace
+マルチファイル置換用画面を開く
+Folder : 
+フォルダ：
+Same Folder as Active Document
+同じフォルダ
+Parent Folder of Active Document
+１つ上のフォルダ
+Same Project Folder as Active Document
+同じプロジェクト
+Select Folder
+フォルダ指定
+Target : 
+対象：
+All Files
+全ファイル
+Only Files which matches the Wild Card
+指定ワイルドカードに一致するファイルのみ
+Only Files which mathces the Reg. Exp.
+指定正規表現に一致するファイルのみ
+Setup
+設定
+Multi File Find Replace
+マルチファイル置換
+Step 1 : Find
+ステップ１：検索
+Find Result :
+検索結果
+Step 2 : Select Files to replace
+ステップ２：置換を実行するファイルを選択
+Folder :
+フォルダ：
+Replace Target Files :
+置換対象ファイル：
+Exclusion Files :
+置換除外ファイル：
+Replace will be executed for these files.
+これらのファイルに対して置換が実行されます。
+Replace will NOT be executed for these files.
+これらのファイルに対しては置換が実行されません。
+Step 3 : Execute Replace
+ステップ３：置換実行
+Replace Text : 
+置換テキスト：
+Backup : 
+バックアップ：
+Backup Files before replace
+置換を実行する前にファイルをバックアップする
+Backup Folder :
+バックアップフォルダ：
+Set Default
+デフォルトを設定
+Cancel Replace
+置換をキャンセル
+Execute Replace
+置換を実行
+Multi-File Find Replace
+マルチファイル置換
+Replace selected text using file: Find string is written at odd lines and replace string is written at even lines.
+選択範囲をファイルを使って一致置換します。ファイルには、奇数行に検索文字列、偶数行に置換文字列を記述します。
+Extract matched text to new document. If replace string is specified, it is extracted after replaced.
+一致テキストを新規ドキュメントに抽出します。置換文字列が指定されている場合は、置換後の文字列を抽出します。
+Extract matched text to new document.
+一致テキストを新規ドキュメントに抽出します。
+Advanced Search
+特殊な検索
+To prevent unexpected replace, replace using the following 3 steps.
+間違って関係ないファイルを置換してしまうのを防止するため、下記の 3 ステップにより、対象を確認しながら、置換を行います。
+At First, find string in the folder.
+まず、マルチファイル検索を実行します。
+Select Replace Target Files from files which were found at Step 1.
+ステップ１で見つかったファイルから、置換の対象とするファイルを選択します。
+Execute replace against Replace Target Files.
+置換対象ファイルに対して置換を実行します。
+Repository : 
+レポジトリ：
+Commit this document to repository.
+このドキュメントをレポジトリにコミットします。
+Move to the specified paragraph.
+指定段落へ移動します。
+New File will be created on Remote Folder.
+リモートフォルダ上に新規ファイルを生成します。
+File Name : 
+ファイル名：
+Add New Mode.
+新規モードを追加します。
+Source : 
+元となるモード：
+Import from Mode Folder
+選択したフォルダのモードからインポート
+Project Folder
+プロジェクトフォルダ
+Folder : 
+フォルダ：
+Set letter count to be wrapped.
+行折り返しする文字数を設定します。
+Letter Count : 
+文字数：
+Reload File with the selected Text Encoding.
+選択したテキストエンコーディングでファイルを再読み込みします。
+Macro
+マクロ
+New Macro bar item will be added.
+新規マクロバー項目を追加します。
+Macro Title : 
+マクロタイトル：
+Add macro of this replace
+この置換をマクロとして追加する
+Extract to New Document
+新規ドキュメントに抽出
+Extract Matched Text to New Document
+一致文字列を新規ドキュメントに抽出
+Batch Replace...
+一括置換...
+Modify Text Encoding
+再読み込み
+Text Encoding :
+テキストエンコーディング：
+Diff :
+差分：
+Mode :
+モード：
+Path :
+パス：
+Setup compile options (#define) is enabled.
+コンパイルオプション（#define）有効／無効を設定します。
+Enabled Defines : 
+有効な定義：
+Create New Remote File
+新規リモートファイル作成
+Don't Save
+保存しない
+Add New Mode
+新規モード追加

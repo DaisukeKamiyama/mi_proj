@@ -1,0 +1,1665 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>AppleScript</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="applescript.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1>AppleScript</h1>
+			<h1><a name="gaiyo">miのAppleScriptの概要</a></h1>
+			<p>
+				miはAppleScriptに対応しています。（ただし、recordableではないので手動で行った動作を記録することはできません。）<br>
+				AppleScriptとはアプリケーションやOSの動作をコントロールするための Mac OS X 用のスクリプト言語であり、
+				OS標準添付の「スクリプトエディタ」（"アプリケーション"フォルダの"AppleScript"フォルダ内にあります）等を使用して、処理を自動化するスクリプトを記述することができます。
+			</p>
+			<h3>オブジェクトとコマンド</h3>
+			<p>
+				AppleScriptでは、段落や文字といった対象（「オブジェクト」）に対して、
+				値の設定(set)、値の取得(get)、新規作成(make new)、削除(delete)などの「コマンド」を送ることによって、
+				編集中のドキュメントの内容を参照・編集することができます。
+				<div class="sample">
+					<p>記述例："set"がコマンド、"document 1"がオブジェクト</p>
+					<pre><code>set document 1 to "test"</code></pre>
+				</div>
+			</p>
+			<h3>オブジェクトの指定方法</h3>
+			<p>
+				オブジェクトには、document, paragraph, word, characterなどがあり、通常、オブジェクトはインデックスで指定します。
+				<div class="sample">
+					<p>記述例：最前面のドキュメント</p>
+					<pre><code>document 1</code></pre>
+				</div>
+			</p>
+			<h3>プロパティ</h3>
+			<p>
+				各オブジェクトは、それぞれ内容や名前などの「プロパティ」情報を保持しています。<br>
+				プロパティにアクセスするにはofを使います。
+				<div class="sample">
+					<p>記述例：最前面のドキュメントの名前</p>
+					<pre><code>name of document 1</code></pre>
+				</div>
+			</p>
+			<h3>オブジェクトの階層構造</h3>
+			<p>
+				オブジェクトは「ドキュメント1の中の2段落目」などの、階層構造を持ちます。
+				親オブジェクトの中に含まれる子オブジェクトを「エレメント」と呼びます。
+			</p>
+			<p>
+				オブジェクトの中のオブジェクトを指定するときは、ofでつなげて指定するか、<code>tell</code>〜<code>end tell</code>内に記述します。
+				<div class="sample">
+					<p>記述例：最前面のドキュメントの2段落目を取得する</p>
+					<pre><code>get paragraph 2 of document 1</code></pre>
+				</div>
+			</p>
+			<p>
+				上記記述例は<code>tell</code>〜<code>end tell</code>を使って、以下のようにも記述できます。
+			</p>
+			<div class="sample">
+				<p>記述例：最前面のドキュメントの2段落目を取得する</p>
+				<pre><code>tell document 1<br>  get paragraph 2<br>end tell</code></pre>
+			</div>
+			<p>
+				下図は、1段落目に"abc"、2段落目に"これはサンプルです。"と記述されたドキュメントにおける、各オブジェクトの指定方法の例です。<br>
+			</p>
+			<img src="applescriptobjects1.png">
+			<p>
+				１つの対象を指定するのに、複数の記述方法があります。たとえば上図において、<code>character 1 of word 1 of paragraph 2 of document 1</code>
+				と記述しても、<code>character 5 of document 1</code>と記述しても、指し示す対象は同じ「こ」となります。
+			</p>
+			
+			<h3>本ページの説明の記述方法について</h3>
+			<p>
+				「AppleScriptコマンド」と「AppleScriptオブジェクト」の章に分けて説明しています。
+			</p>
+			
+			<p>
+				「AppleScriptコマンド」の章の「文法」には、コマンドの文法を記述しています。
+				<ul>
+					<li><code>[ ]</code>内は省略可能です。</li>
+					<li><code>/</code>で区切った単語・節はいずれかを記述します。</li>
+					<li>斜体で示した部分には、実際にスクリプトを記述する際には、状況に応じたオブジェクトや値などを記述します。</li>
+					<li>複数行に分けて記述していますが、実際にスクリプトを記述する際には、1行(1段落)で記述してください。</li>
+				</ul>
+			</p>
+			<p>
+				「記述例」には、サンプルコードを示しています。<br>
+				<ul>
+					<li>「AppleScriptコマンド」の章のサンプルコードは、「スクリプトエディタ」にそのままコピー＆ペーストして実行できるようになっています。</li>
+					<li> ¬ という記号は、文が次の行に続くことを意味する記号です。 ¬ を削除して同じ行に続けて書いても全く同じ動作となります。</li>
+				</ul>
+			</p>
+			
+			<h1>AppleScriptコマンド</h1>
+			<h2><a name="makenew">make new - 新規オブジェクトの作成</a></h2>
+			<p>
+				新規オブジェクトを作成します。<br>
+				以下、新規作成するオブジェクトの種類毎に説明します。
+			</p>
+			<h3><a name="makenewdocument">1. 新規ドキュメントの作成</a></h3>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">make new document</span><br>
+				[ <span class="fix">with data</span> <span class="var">text</span> ]<br>
+				[ <span class="fix">with properties</span> <span class="var">record</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				新規ドキュメントを作成します。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">with data</span> <span class="var">text</span></span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの内容（テキスト）を設定します。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">with properties</span> <span class="var">record</span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの各種プロパティを設定します。
+					</p></td>
+				</tr>
+			</table>
+			<ul>
+				<li><span class="sample">with data text</span>は
+				<span class="sample">with properties {contents:text}</span>と同じ動作になります。</li>
+				<li>パラメータ<span class="syntax"><span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span></span>
+				には未対応です。</li>
+				<li><span class="sample">make new window</span>
+				でドキュメントを作成することはできません。</li>
+			</ul>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  make new document with properties¬<br>  { contents:"test", mode:"HTML" }<br>end tell<br></code></pre>
+				<p>→実行結果：内容が"test"、モードがHTMLの、新規ドキュメントを作成します。</p>
+			</div>
+			
+			<h3><a name="makenewparagraph">2. 新規段落／単語／文字の作成</a></h3>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">make new paragraph/word/character</span><br>
+				[ <span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span> ]<br>
+				[ <span class="fix">with data</span> <span class="var">text</span> ]<br>
+				[ <span class="fix">with properties</span> <span class="var">record</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				新規段落／単語／文字を作成します。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at before</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							段落／単語／文字の作成位置を指定します。<br>
+							<span class="var">object</span>がparagraphオブジェクトの場合、前の段落の最後に作成されます。<br>
+							それ以外の場合、オブジェクト<span class="var">object</span>の最初に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at after</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							段落／単語／文字の作成位置を指定します。<br>
+							<span class="var">object</span>がparagraphオブジェクトの場合、次の段落の最初に作成されます。<br>
+							それ以外の場合、オブジェクト<span class="var">object</span>の最後に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at beginning of</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							段落／単語／文字の作成位置を指定します。<br>
+							オブジェクト<span class="var">object</span>の最初に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at end of</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							段落／単語／文字の作成位置を指定します。<br>
+							オブジェクト<span class="var">object</span>の最後に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">with data</span> <span class="var">text</span></span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの内容（テキスト）を設定します。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">with properties</span> <span class="var">record</span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの各種プロパティを設定します。ただし、設定可能なプロパティはcontentsプロパティのみです。
+					</p></td>
+				</tr>
+			</table>
+			<ul>
+				<li><span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span>
+				の<span class="var">object</span>には、paragraph, word, characterオブジェクトが使用可能です。</li>
+				<li><span class="sample">with data text</span>は
+				<span class="sample">with properties {contents:text}</span>と同じ動作になります。</li>
+				<li>単語／文字を作成する場合、<span class="sample">with data text</span>または
+				<span class="sample">with properties {contents:text}</span> を必ず指定しなくてはなりません。</li>
+				<li>単語を作成する場合、前後の文字がアルファベットのときは、半角スペースが自動的に挿入されます。</li>
+				<li>文字を作成する場合、<span class="sample">with data text</span>等で指定するテキストには、一文字だけでなく、複数の文字からなる文字列を指定可能です。</li>
+			</ul>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    make new paragraph with data "test"¬<br>    at after paragraph 1<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：2段落目に、内容が"test"である新規段落を作成します。</p>
+			</div>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    make new character with data "test"¬<br>    at beginning of paragraph 2<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：2段落目の最初に、文字列"test"を挿入します。</p>
+			</div>
+			
+			
+			<h3><a name="makenewindexwindow">3. 新規検索結果ウインドウの作成</a></h3>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">make new indexwindow</span><br>
+				[ <span class="fix">with properties</span> <span class="var">record</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				新規検索結果ウインドウを作成します。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">with properties</span> <span class="var">record</span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの各種プロパティを設定します。書き込み可能なプロパティ全てを設定できます。
+					</p></td>
+				</tr>
+			</table>
+			<ul>
+				<li>パラメータ<span class="syntax"><span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span></span>
+				には未対応です。</li>
+				<li>パラメータ<span class="syntax"><span class="fix">with data</span> <span class="var">text</span></span>
+				には未対応です。</li>
+			</ul>
+			
+			
+			<h3><a name="makenewindexrecord">4. 新規インデックレコード／インデックスグループの作成</a></h3>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">make new indexrecord/indexgroup</span><br>
+				[ <span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span> ]<br>
+				[ <span class="fix">with properties</span> <span class="var">record</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				新規インデックレコード／インデックスグループを作成します。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at before</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							インデックレコード／インデックスグループの作成位置を指定します。<br>
+							<span class="var">object</span>がindexgroupオブジェクトの場合、前のグループの最後に作成されます。<br>
+							それ以外の場合、オブジェクト<span class="var">object</span>の最初に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at after</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							インデックレコード／インデックスグループの作成位置を指定します。<br>
+							<span class="var">object</span>がindexgroupオブジェクトの場合、次のグループの最初に作成されます。<br>
+							それ以外の場合、オブジェクト<span class="var">object</span>の最後に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at beginning of</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							インデックレコード／インデックスグループの作成位置を指定します。<br>
+							オブジェクト<span class="var">object</span>の最初に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="syntax"><span class="fix">at end of</span> <span class="var">object</span></span>
+					</p></td>
+					<td><p>
+							インデックレコード／インデックスグループの作成位置を指定します。<br>
+							オブジェクト<span class="var">object</span>の最後に作成されます。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">with properties</span> <span class="var">record</span>
+					</p></td>
+					<td><p>
+							作成するドキュメントの各種プロパティを設定します。<br>
+							indexgroupオブジェクトのプロパティは、comment, contentsが設定可能です。<br>
+							indexrecordオブジェクトのプロパティの設定方法は<a href="#indexrecord">indexrecordオブジェクト</a>の説明を参照してください。
+					</p></td>
+				</tr>
+			</table>
+			<ul>
+				<li><span class="fix">at before/after/beginning of/end of</span> <span class="var">object</span>
+				の<span class="var">object</span>には、indexgroup, indexrecordオブジェクトが使用可能です。</li>
+				<li>パラメータ<span class="syntax"><span class="fix">with data</span> <span class="var">text</span></span>
+				には未対応です。</li>
+			</ul>
+			
+			
+			<h2><a name="set">set - 設定</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">set</span> <span class="var">object</span> <span class="fix">to</span> <span class="var">anything</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトやプロパティに値を設定します。<br>
+				典型的には、以下のような使い方があります。
+			</p>
+			<h3>1. 段落／単語／文字を新しい文字列で置き換えます</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    set first word of paragraph 3 to "test"<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：3段落目の最初の単語を"test"に置き換えます。</p>
+			</div><!--実行確認済み-->
+			
+			<h3>2. 挿入位置に文字列を挿入します</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    tell paragraph 2<br>      set first insertion point to "test"<br>    end tell<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：2段落目の最初に"test"を挿入します。</p>
+			</div><!--実行確認済み-->
+			
+			<h3>3. プロパティの値を設定します</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    set text encoding to "UTF-8"<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：最前面のドキュメントのテキストエンコーディングをUTF-8に設定します。</p>
+			</div><!--実行確認済み-->
+			
+			<h3>4. オブジェクトの値を取得して変数等に設定します</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    set text1 to paragraph 1<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：変数text1に1段落目の内容を格納します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="get">get - 取得</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">get</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトやプロパティに値を取得します。<br>
+				典型的には、以下のような使い方があります。
+			</p>
+			<h3>1. ドキュメント／段落／単語／文字／選択範囲のテキストを取得します</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    display dialog (get first paragraph)<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：1段落目の内容をダイアログに表示します。</p>
+			</div><!--実行確認済み-->
+			
+			<h3>2. プロパティの値を取得します</h3>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    if((get mode)="HTML") then display dialog "test"<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：最前面のドキュメントのモードがHTMLならダイアログを表示します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="count">count - オブジェクトの数を数える</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">count</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトの数を数えます。<br>
+				以下のオブジェクトを数えることができます。
+			</p>
+			<ul>
+				<li>ドキュメントの中の段落／単語／文字</li>
+				<li>段落の中の単語／文字</li>
+				<li>単語の中の文字</li>
+				<li>ドキュメント</li>
+				<li>検索結果ウインドウ</li>
+				<li>ウインドウ</li>
+			</ul>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    repeat with n from 1 to (count paragraph)<br>      make new character with data (n as string)¬<br>      at beginning of paragraph n<br>    end repeat<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：各段落の頭に1から順に番号文字列を挿入します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="select">select - オブジェクトを選択する</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">select</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトを選択する。
+				<table class="param" border="1" cellpadding="2" cellspacing="0">
+					<tr><th>パラメータ</th><th>説明</th></tr>
+					<tr>
+						<td><p>
+								<span class="syntax"><span class="fix">to </span> <span class="var">object</span></span>
+						</p></td>
+						<td><p>
+								<span class="var">object</span>までを選択します。
+						</p></td>
+					</tr>
+				</table>
+			</p>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    select paragraph 1 to paragraph 5<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：1段落目から5段落目までを選択します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="delete">delete - オブジェクトの削除</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">delete</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトを削除します。
+			</p>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  delete paragraph 1 of document 1<br>end tell<br></code></pre>
+				<p>→実行結果：最初の段落を削除します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="open">open - ファイルを開く</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">open</span> <span class="var">alias</span><br>
+				[ <span class="fix">as</span> <span class="var">encoding</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				ファイルを開きます。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">as</span> <span class="var">encoding</span>
+					</p></td>
+					<td><p>
+							テキストエンコーディングを指定します。<br>
+							（開くファイルが<span class="var">encoding</span>で記述されているとみなして開きます。）<br>
+							ただし、そのファイルが指定テキストエンコーディングで正しくエンコードされていないときは、
+							別のテキストエンコーディングで開きます。
+					</p></td>
+				</tr>
+			</table>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>set file1 to (POSIX file "/Users/daisuke/test.html")<br>tell application "mi"<br>  open file1<br>end tell<br></code></pre>
+				<p>→実行結果：ユーザーdaisukeのホームフォルダにあるtest.htmlという名前のファイルをmiで開きます。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="close">close - オブジェクトを閉じる</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">close</span> <span class="var">object</span><br>
+				[ <span class="fix">saving yes/no/ask</span> ]<br>
+				[ <span class="fix">in</span> <span class="var">alias/text</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				ドキュメント／検索結果ウインドウを閉じます。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">saving yes</span>
+					</p></td>
+					<td><p>
+							未保存(dirty)の場合、保存します。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">saving no</span>
+					</p></td>
+					<td><p>
+							未保存(dirty)の場合でも、保存しません。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">saving ask</span>
+					</p></td>
+					<td><p>
+							未保存(dirty)の場合、保存するかどうかユーザーに確認します。<br>
+							<span class="fix">saving</span>節を省略した場合は、この動作になります。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">in</span> <span class="var">alias/text</span>
+					</p></td>
+					<td><p>
+							保存先のファイルを設定します。<br>
+							ファイル指定は、aliasタイプ、または、絶対パスを記述した文字列が使用可能です。<br>
+							既存ファイルをワーニング無しで上書きしますので、注意して使用して下さい。<br>
+							（必要であれば、スクリプト内でワーニングを表示してください。）
+					</p></td>
+				</tr>
+			</table>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  close first document saving yes<br>end tell</code></pre>
+				<p>→実行結果：最前面のドキュメントを強制保存して閉じます。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="save">save - 保存</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">save</span> <span class="var">object</span><br>
+				[ <span class="fix">in</span> <span class="var">alias/text</span> ]<br>
+				[ <span class="fix">as</span> <span class="var">type</span> ]
+			</div>
+			<h4>説明</h4>
+			<p>
+				ドキュメント／検索結果ウインドウを保存します。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>パラメータ</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">in</span> <span class="var">alias/text</span>
+					</p></td>
+					<td><p>
+							保存先のファイルを設定します。<br>
+							ファイル指定は、aliasタイプ、または、絶対パスを記述した文字列が使用可能です。<br>
+							既存ファイルをワーニング無しで上書きしますので、注意して使用して下さい。<br>
+							（必要であれば、スクリプト内でワーニングを表示してください。）
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">as</span> <span class="var">type</span>
+					</p></td>
+					<td><p>
+							ファイルタイプ("TEXT"等)を設定します。
+					</p></td>
+				</tr>
+			</table>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  save first document<br>end tell</code></pre>
+				<p>→実行結果：最前面のドキュメントを保存します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="exists">exists - オブジェクトが存在するかどうかを取得</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="var">object</span> <span class="fix">exists</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				オブジェクトが存在するかどうかを取得します。
+			</p>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  tell document 1<br>    if( paragraph 2 exists ) then delete paragraph 2<br>  end tell<br>end tell<br></code></pre>
+				<p>→実行結果：2段落目が存在していたら、それを削除します。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="collapse">collapse</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">collapse</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				検索結果ウインドウのグループ内の行を折りたたんだ状態にします。
+			</p>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  collapse indexgroup 1 of indexwindow 1<br>end tell</code></pre>
+				<p>→実行結果：検索結果ウインドウの最初のグループの行を折りたたんだ状態にします。</p>
+			</div><!--実行確認済み-->
+			
+			
+			<h2><a name="expand">expand</a></h2>
+			<h4>文法</h4>
+			<div class="syntax">
+				<span class="fix">expand</span> <span class="var">object</span>
+			</div>
+			<h4>説明</h4>
+			<p>
+				検索結果ウインドウのグループ内の行を広げた状態にします。
+			</p>
+			<h4>記述例</h4>
+			<div class="sample">
+				<pre><code>tell application "mi"<br>  expand indexgroup 1 of indexwindow 1<br>end tell</code></pre>
+				<p>→実行結果：検索結果ウインドウの最初のグループの行を広げた状態にします。</p>
+			</div><!--実行確認済み-->
+			
+			
+			
+			<h1>AppleScriptオブジェクト</h1>
+			
+			<h2><a name="document">document</a></h2>
+			<h4>説明</h4>
+			<p>
+				ドキュメントのオブジェクトです。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							ウインドウ／タブの最前面からの順番で指定します。（ドキュメント以外のウインドウはカウントしません。）<br>
+							最前面のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>document 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							名前
+					</p></td>
+					<td><p>
+							ドキュメントの名前（ファイル名）で指定します。<br>
+							同じ名前のドキュメントが複数存在した場合、先に開かれた方を選択します。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>document "test.c"</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>paragraph, word, character, insertion point, selection object</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">file</span>
+					</p></td>
+					<td><p>
+							alias
+					</p></td>
+					<td><p>
+							ドキュメントのファイルです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">name</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントの名前です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">modified</span>
+					</p></td>
+					<td><p>
+							boolean
+					</p></td>
+					<td><p>
+							編集後未保存の場合trueとなります。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントの内容（テキスト）です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントのインデックスです。<br>
+							（ドキュメントウインドウ中での最前面からの順番）
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">selection</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							選択範囲のテキストです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">mode</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントのモードです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">text encoding</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントのテキストエンコーディングです。<br>
+							（<span class="menu">ドキュメント→テキストエンコーディング</span>で表示されている文字列（"UTF-8"等）で設定・取得します。）
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set text encoding of¬<br> document 1 to "UTF-8"</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">return code</span>
+					</p></td>
+					<td><p>
+							enum<br>
+							(CR / LF / CRLF)
+					</p></td>
+					<td><p>
+							ドキュメントの改行コードです。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set return code of¬<br> document 1 to CRLF</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">font</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントのフォントです。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set font of document 1¬<br> to "Monaco"</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">size</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントのフォントサイズです。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set size of document 1¬<br> to 9</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">type</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ファイルのタイプです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">creator</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ファイルのクリエータです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">windowindex</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							mi内の全てのウインドウの最前面からのインデックスです。<br>
+							windowオブジェクトにアクセスするには、このインデックスを使ってwindowオブジェクトを指定してください。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set bounds of window ¬<br> (get windowindex of document 1)¬<br> to {100,100,400,300}</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">header</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							情報欄に表示されるテキストです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="paragraph">paragraph</a></h2>
+			<h4>説明</h4>
+			<p>
+				段落のオブジェクトです。（最後の改行コードを含みます。）
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							親オブジェクト（ドキュメント／選択部分）の中の、段落番号で指定します。<br>
+							最初の段落のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>paragraph 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>word, character, insertion point</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							内容（テキスト）です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントの最初の段落からのインデックスです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="word">word</a></h2>
+			<h4>説明</h4>
+			<p>
+				単語のオブジェクトです。<br>
+				単語＝ダブルクリック時に選択される範囲、となります。<br>
+				記号やスペースなども1単語として数えます。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							親オブジェクト（ドキュメント／段落／選択部分）の中の単語の位置で指定します。<br>
+							最初の単語のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>word 1 of paragraph 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>character, insertion point</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							内容（テキスト）です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントの最初の単語からのインデックスです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="character">character</a></h2>
+			<h4>説明</h4>
+			<p>
+				文字のオブジェクトです。<br>
+				1つの文字（Unicode文字）が1つのオブジェクトに対応します。<br>
+				改行コードも1文字に含まれます。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							親オブジェクト（ドキュメント／段落／単語）の中の文字の位置で指定します。<br>
+							最初の文字のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>character 1 of paragraph 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>insertion point</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							内容（テキスト）です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントの最初からのインデックスです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="insertionpoint">insertion point</a></h2>
+			<h4>説明</h4>
+			<p>
+				挿入位置（＝文字と文字の間）のオブジェクトです。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							親オブジェクト（ドキュメント／段落／単語）の中の挿入位置の位置で指定します。<br>
+							最初の挿入位置のインデックスが1です。<br>
+							各オブジェクトの前後の挿入位置がそれぞれ最初と最後の挿入位置であり、first, lastで指定可能です。
+							たとえば1つの文字であれば、文字の前後に2つの挿入位置があります。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>insertion point 30 of document 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>なし</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							内容（テキスト）です。<br>
+							読み込んだ（取得した）場合は空のテキストとなります。<br>
+							書き込んだ（設定した）場合は挿入位置にテキストを追加することとなります。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ドキュメントの最初からのインデックスです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="selectionobject">selection object</a></h2>
+			<h4>説明</h4>
+			<p>
+				選択部分のオブジェクトです。<br>
+				ドキュメント上の現在の選択範囲、または、キャレット位置を指します。<br>
+				1つのドキュメントには、1つの選択部分オブジェクトが存在します。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							1のみ指定可能です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>selection object 1 of document 1</code></pre>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>paragraph, word, character, insertion point</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							内容（テキスト）です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+			</table>
+			
+			<h4>参考</h4>
+			<p>
+				document, paragraph, word, character, insertion point, selection objectのオブジェクト間の関係を
+				UMLクラス図で示すと下図のようになります。
+			</p>
+			<img src="applescriptobjectclasschart.png">
+			
+			<h2><a name="window">window</a></h2>
+			<h4>説明</h4>
+			<p>
+				ウインドウのオブジェクトです。<br>
+				documentやindexwindowの内容を表示するためのウインドウです。<br>
+				ウインドウの表示位置やサイズなどを制御するときに使用します。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							アプリケーション内のすべてのウインドウの中での最前面からの順番で指定します。
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>なし</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">bounds</span>
+					</p></td>
+					<td><p>
+							rect
+					</p></td>
+					<td><p>
+							ウインドウの表示位置です。<br>
+							rect型は下記例のように記述し、左端、上端、右端、下端の順です。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set bounds of window 1¬<br> to {100,100,600,400}</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">zoomed</span>
+					</p></td>
+					<td><p>
+							boolean
+					</p></td>
+					<td><p>
+							ウインドウがズームされている状態がtrueとなります。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>set zoomed of window 1 to true</code></pre>
+							</div>
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">name</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ウインドウの名前です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							mi内の全てのウインドウの最前面からのインデックスです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="indexwindow">indexwindow</a></h2>
+			<h4>説明</h4>
+			<p>
+				検索結果ウインドウのオブジェクトです。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							ウインドウの最前面からの順番で指定します。（検索結果ウインドウ以外のウインドウはカウントしません。）<br>
+							最前面のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							名前
+					</p></td>
+					<td><p>
+							検索結果ウインドウの名前で指定します。<br>
+							同じ名前のドキュメントが複数存在した場合、先に開かれた方を選択します。
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>なし</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">file</span>
+					</p></td>
+					<td><p>
+							alias
+					</p></td>
+					<td><p>
+							ドキュメントのファイルです。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">name</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							ドキュメントの名前です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">modified</span>
+					</p></td>
+					<td><p>
+							boolean
+					</p></td>
+					<td><p>
+							編集後未保存の場合trueとなります。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">contents</span>
+					</p></td>
+					<td><p>
+							list
+					</p></td>
+					<td><p>
+							検索結果ウインドウに含まれるインデックスレコードです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">filewidth</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							ファイルフィールドの幅です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">infowidth</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							情報フィールドの幅です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">index</span>
+					</p></td>
+					<td><p>
+							integer
+					</p></td>
+					<td><p>
+							検索結果ウインドウのインデックスです。<br>
+							（検索結果ウインドウ中での最前面からの順番）
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">windowindex</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							mi内の全てのウインドウの最前面からのインデックスです。<br>
+							windowオブジェクトにアクセスするには、このインデックスを使ってwindowオブジェクトを指定してください。
+					</p></td>
+					<td><p>
+							×
+					</p></td>
+				</tr>
+			</table>
+			
+			
+			<h2><a name="indexrecord">indexrecord</a></h2>
+			<h4>説明</h4>
+			<p>
+				検索結果ウインドウの各行のオブジェクトです。<br>
+				グループ行はindexrecordオブジェクトに含まれません。indexgroupオブジェクトを使用します。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							リスト上部からのインデックスで指定します。<br>
+							グループ行はカウントされません。<br>
+							最初の行のインデックスが1です。<br>
+							first, lastでの指定が可能です。
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>なし</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">file</span>
+					</p></td>
+					<td><p>
+							alias
+					</p></td>
+					<td><p>
+							各行からリンクされるファイルです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">paragraph</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							各行からリンクされる部分の段落番号です。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">startposition</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							各行からリンクされる部分の開始位置です。<br>
+							ファイルの最初からのバイト数のインデックス(1〜)で指定します。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">endposition</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							各行からリンクされる部分の終了位置です。<br>
+							ファイルの最初からのバイト数のインデックス(1〜)で指定します。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">comment</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							各行に表示されるコメントです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+			</table>
+			<p>
+				パラメータfile, paragraph, startposition, endpositionへの書き込みは、
+				以下のいずれかのセットで、レコード形式（<code>{}</code>内にカンマで区切って「プロパティ:値」を記述します。記述例を参考にして下さい。）で設定してください。
+			</p>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティのセット</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">fileのみ</span>
+					</p></td>
+					<td><p>
+							クリックすると、指定ファイルの1段落目を選択するインデックス行となります。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>tell application "mi"<br>  set file1 to (file of document 1)<br>  make new indexwindow<br>  tell indexwindow 1<br>    make new indexrecord ¬<br>     at beginning of indexgroup 1<br>    set indexrecord 1 to ¬<br>     {file:file1}<br>  end tell<br>end tell</code></pre>
+								<p>→実行結果：最前面のドキュメントの1段落目を選択するインデックス行を作成します。</p>
+							</div>
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">file, paragraph</span>
+					</p></td>
+					<td><p>
+							クリックすると、指定ファイルの指定段落を選択するインデックス行となります。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>tell application "mi"<br>  set file1 to (file of document 1)<br>  make new indexwindow<br>  tell indexwindow 1<br>    make new indexrecord ¬<br>     at beginning of indexgroup 1<br>    set indexrecord 1 to ¬<br>     {file:file1, paragraph:3}<br>  end tell<br>end tell</code></pre>
+								<p>→実行結果：最前面のドキュメントの3段落目を選択するインデックス行を作成します。</p>
+							</div>
+					</p></td>
+				</tr>
+				<tr>
+					<td><p>
+							<span class="fix">file, startposition, endposition</span>
+					</p></td>
+					<td><p>
+							クリックすると、指定ファイルのstartpositionバイト目〜endpositionバイト目を選択するインデックス行となります。
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>tell application "mi"<br>  set file1 to (file of document 1)<br>  make new indexwindow<br>  tell indexwindow 1<br>    make new indexrecord ¬<br>     at beginning of indexgroup 1<br>    set indexrecord 1 to ¬<br>     {file:file1, ¬<br>     startposition:3, ¬<br>     endposition:5}<br>  end tell<br>end tell</code></pre>
+								<p>→実行結果：最前面のドキュメントの3バイト目〜5バイト目を選択するインデックス行を作成します。</p>
+							</div>
+					</p></td>
+				</tr>
+			</table>
+			
+			<h2><a name="indexgroup">indexgroup</a></h2>
+			<h4>説明</h4>
+			<p>
+				検索結果ウインドウの各行をまとめるグループのオブジェクトです。
+			</p>
+			<h4>指定方法</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>指定方法</th><th>説明</th></tr>
+				<tr>
+					<td><p>
+							インデックス
+					</p></td>
+					<td><p>
+							リスト上部からのインデックスで指定します。<br>
+							最初のグループのインデックスが1です。<br>
+							first, lastでの指定が可能です。
+					</p></td>
+				</tr>
+			</table>
+			<h4>エレメント</h4>
+			<p>なし</p>
+			<h4>プロパティ</h4>
+			<table class="param" border="1" cellpadding="2" cellspacing="0">
+				<tr><th>プロパティ</th><th>型</th><th>説明</th><th>書込</th></tr>
+				<tr>
+					<td><p>
+							<span class="fix">comment</span>
+					</p></td>
+					<td><p>
+							text
+					</p></td>
+					<td><p>
+							各行に表示されるコメントです。
+					</p></td>
+					<td><p>
+							○
+					</p></td>
+				</tr>
+			</table>
+			
+		</div>
+	</body>
+</html>
+

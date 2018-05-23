@@ -1,0 +1,1 @@
+font: <<<CARET HINT(font-style)>>> <<<HINT(font-variant)>>> <<<HINT(font-weight)>>> <<<HINT(font-size) HINT(/行の高さ)>>> <<<HINT(font-family)>>>;

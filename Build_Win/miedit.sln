@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mi", "miedit.vcproj", "{57A85F93-20D5-4A20-9B12-0EFD2367669B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup", "..\Installer_Win\setup\setup.vdproj", "{060FB0C9-9D7A-44FA-99FC-E8667DFB2690}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcurl", "..\libcurl\lib\vc6libcurl.vcproj", "{217D3973-5AA8-4E4E-9CE4-CB4337776912}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sat_jp", "sat_jp\sat_jp.vcproj", "{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DLL Release|Win32 = DLL Release|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.Debug|Win32.Build.0 = Debug|Win32
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.DLL Release|Win32.ActiveCfg = Release|Win32
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.DLL Release|Win32.Build.0 = Release|Win32
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.Release|Win32.ActiveCfg = Release|Win32
+		{57A85F93-20D5-4A20-9B12-0EFD2367669B}.Release|Win32.Build.0 = Release|Win32
+		{060FB0C9-9D7A-44FA-99FC-E8667DFB2690}.Debug|Win32.ActiveCfg = Debug
+		{060FB0C9-9D7A-44FA-99FC-E8667DFB2690}.DLL Release|Win32.ActiveCfg = Release
+		{060FB0C9-9D7A-44FA-99FC-E8667DFB2690}.DLL Release|Win32.Build.0 = Release
+		{060FB0C9-9D7A-44FA-99FC-E8667DFB2690}.Release|Win32.ActiveCfg = Release
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.Debug|Win32.ActiveCfg = DLL Debug|Win32
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.Debug|Win32.Build.0 = DLL Debug|Win32
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.DLL Release|Win32.ActiveCfg = DLL Release|Win32
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.DLL Release|Win32.Build.0 = DLL Release|Win32
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.Release|Win32.ActiveCfg = LIB Release|Win32
+		{217D3973-5AA8-4E4E-9CE4-CB4337776912}.Release|Win32.Build.0 = LIB Release|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.Debug|Win32.Build.0 = Debug|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.DLL Release|Win32.ActiveCfg = Release|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.DLL Release|Win32.Build.0 = Release|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.Release|Win32.ActiveCfg = Release|Win32
+		{9D49DA4F-9813-4240-85D7-D66ED6EE7CC3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

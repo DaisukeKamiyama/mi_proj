@@ -1,0 +1,1 @@
+static_cast<<<LT1 CARET HINT(destination type) GT1>>>(<<<HINT(expression)>>>)

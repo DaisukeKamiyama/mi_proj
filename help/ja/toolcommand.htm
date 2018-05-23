@@ -1,0 +1,2617 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>ツールコマンド</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="toolcommand.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1><a name="gaiyo">ツールコマンドについて</a></h1>
+			<p>
+				ツールコマンドは、ツール等に特定の文字列を埋め込むことにより、キャレット移動や現在の日付文字列挿入などの動作をさせることができるものです。<br>
+				以下のいずれかの中で、<code>&lt;&lt;&lt;</code>と<code>&gt;&gt;&gt;</code>の間にツールコマンドを記述することで動作します。<br>
+			</p>
+			<ul>
+				<li>ツール</li>
+				<li>ツールバーのボタン</li>
+				<li>キーバインド動作の「文字列挿入」</li>
+			</ul>
+			<p>
+				（なお、以下の説明では、”ツール、または、ツールボタン、または、キーバインド動作の「文字列挿入」”と記述すると読みづらいので、単に”ツール”と記述します。）
+			</p>
+			<p>
+				ツールコマンドの記述方法は簡単です。記述ルールを以下に説明します。
+			</p>
+			
+			<h2>記述ルール１</h2>
+			<p>
+				ツールは、ふつうは記述されたテキストをそのままドキュメントに挿入するのですが、
+				<code>&lt;&lt;&lt;</code>と<code>&gt;&gt;&gt;</code>に囲まれた部分はドキュメントに挿入されず、特定の動作を実行します。
+				<div class="sample">
+					<p>ツール記述例：</p>
+					<pre>&lt;p&gt;&lt;&lt;&lt;CARET&gt;&gt;&gt;&lt;/p&gt;</pre>
+						<p>→実行結果：ドキュメントに「<samp>&lt;p&gt;&lt;/p&gt;</samp>」を挿入し、
+					キャレットを<samp>&lt;p&gt;</samp>と<samp>&lt;/p&gt;</samp>の間に置きます。</p>
+				</div>
+			</p>
+			<h2>記述ルール２</h2>
+			<p>
+				１つのツール内に、複数のツールコマンドを記述できます。この場合、テキスト挿入、および、ツールコマンド実行は記述した順に実行されます。
+				<div class="sample">
+					<p>ツール記述例：</p>
+					<pre>&lt;&lt;&lt;MOVECARET-DOWN&gt;&gt;&gt;A&lt;&lt;&lt;MOVECARET-LEFT&gt;&gt;&gt;</pre>
+					<p>→実行結果：キャレットを１つ下に移動し、「A」を挿入後、キャレットを１つ左に移動します</p>
+				</div>
+			</p>
+			<h2>記述ルール３</h2>
+			<p>
+				複数のツールコマンドを<code>&lt;&lt;&lt;</code><code>&gt;&gt;&gt;</code>内にスペースで区切って連続して記述できます。
+				<div class="sample">
+					<p>ツール記述例：</p>
+					<pre>&lt;p&gt;&lt;&lt;&lt;CARET SELECTED&gt;&gt;&gt;&lt;/p&gt;</pre>
+				</div>
+			</p>
+			<h2>その他のルール</h2>
+			<ul>
+				<li>ツールコマンドの大文字小文字は区別されます。表に記載の通りに記述してください。</li>
+				<li>ツールの最後の&gt;&gt;&gt;は記述しなくても構いません。</li>
+				<li><code>()</code>内で、<code>)</code>を記述したい場合は<code>\)</code>と記述してください。また、<code>\</code>を記述したい場合は<code>\\</code>と記述してください。</li>
+				<li>ツール内で<code>&lt;&lt;&lt;</code>や<code>&gt;&gt;&gt;</code>自体を文字列として挿入したい場合は、ツールコマンド<code>LT3</code>、<code>GT3</code>を使用してください。
+				<li><code>&lt;&lt;&lt;&gt;&gt;&gt;</code>内での、ツールコマンド以外の文字列は無視されます。</li>
+			</ul>
+			
+			<div class="ref">
+				<h2><a name="kihon">基本動作</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="CARET"><p><code>CARET</code></p></a></td><td>
+							<p>
+								ツール実行後、<code>CARET</code>を記述した位置にキャレットを移動させます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECTED"><p><code>SELECTED</code></p></a></td><td>
+							<p>ツール起動時にテキストウインドウ上で選択されていた文字列を挿入します。<br>
+								ツール実行途中の選択文字列を挿入したい場合は、
+							後述の<code>SETVAR-SELECTED()</code>と<code>GETVAR()</code>を使用して下さい。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="datetime">現在の日付／時刻文字列</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="DATE"><p><code>DATE</code></p></a></td><td>
+							<p>
+								システム環境設定の「言語とテキスト」で設定された、「すべて」の形式（例：「<samp>2010年1月5日火曜日</samp>」）で、現在日付を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DATE-LONG"><p><code>DATE-LONG</code></p></a></td><td>
+							<p>
+								システム環境設定の「言語とテキスト」で設定された、「すべて」の形式（例：「<samp>2010年1月5日火曜日</samp>」）で、現在日付を挿入します。（<code>DATE</code>と同じ。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DATE-SHORT"><p><code>DATE-SHORT</code></p></a></td><td>
+							<p>
+								「<samp>2008/1/5</samp>」の形式で現在の日付を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DATE-6"><p><code>DATE-6</code></p></a></td><td>
+							<p>
+								「<samp>080105</samp>」の形式で現在の日付を挿入します。（0を補完して常に6桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="YEAR"><p><code>YEAR</code></p></a></td><td>
+							<p>
+								「<samp>2008</samp>」の形式で現在の年を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="YEAR-4"><p><code>YEAR-4</code></p></a></td><td>
+							<p>
+								「<samp>2008</samp>」の形式で現在の年を挿入します。（<code>YEAR</code>と同じ。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="YEAR-2"><p><code>YEAR-2</code></p></a></td><td>
+							<p>
+								「<samp>08</samp>」の形式で現在の年を挿入します。（西暦の下2桁を表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MONTH"><p><code>MONTH</code></p></a></td><td>
+							<p>
+								「<samp>1</samp>」の形式で現在の月を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MONTH-2"><p><code>MONTH-2</code></p></a></td><td>
+							<p>
+								「<samp>01</samp>」の形式で現在の月を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DAY"><p><code>DAY</code></p></a></td><td>
+							<p>
+								「<samp>5</samp>」の形式で現在の日を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DAY-2"><p><code>DAY-2</code></p></a></td><td>
+							<p>
+								「<samp>05</samp>」の形式で現在の日を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DAYOFWEEK"><p><code>DAYOFWEEK</code></p></a></td><td>
+							<p>
+								「<samp>日</samp>」（英語の場合"SUN"）の形式で現在の曜日を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DAYOFWEEK-LONG"><p><code>DAYOFWEEK-LONG</code></p></a></td><td>
+							<p>
+								「<samp>日曜日</samp>」（英語の場合"Sunday"）の形式で現在の曜日を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="TIME"><p><code>TIME</code></p></a></td><td>
+							<p>
+								システム環境設定の「言語とテキスト」で設定された、「中」形式（例：「<samp>20:01:37</samp>」）で、現在時刻を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HOUR"><p><code>HOUR</code></p></a></td><td>
+							<p>
+								「<samp>20</samp>」の形式で現在の時刻の「時」（24時間表示）を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HOUR12"><p><code>HOUR12</code></p></a></td><td>
+							<p>
+								「<samp>8</samp>」の形式で現在の時刻の「時」（12時間表示）を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HOUR-2"><p><code>HOUR-2</code></p></a></td><td>
+							<p>
+								「<samp>20</samp>」の形式で現在の時刻の「時」（24時間表示）を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HOUR12-2"><p><code>HOUR12-2</code></p></a></td><td>
+							<p>
+								「<samp>08</samp>」の形式で現在の時刻の「時」（12時間表示）を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="AMPM"><p><code>AMPM</code></p></a></td><td>
+							<p>
+								「AM」か「PM」の文字列を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MINUTE"><p><code>MINUTE</code></p></a></td><td>
+							<p>
+								「5」の形式で現在の時刻の「分」を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MINUTE-2"><p><code>MINUTE-2</code></p></a></td><td>
+							<p>
+								「05」の形式で現在の時刻の「分」を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SECOND"><p><code>SECOND</code></p></a></td><td>
+							<p>
+								「3」の形式で現在の時刻の「秒」を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SECOND-2"><p><code>SECOND-2</code></p></a></td><td>
+							<p>
+								「03」の形式で現在の時刻の「秒」を挿入します。（0を補完して常に2桁で表示します）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h2><a name="findreplace">検索／置換</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-TEXT-NEXT"><p><code>FIND-TEXT-NEXT</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を後方検索します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;FIND-TEXT-NEXT()<br>abc</pre>
+									<p>→実行結果：abcに一致する部分を後方検索します。</p>
+								</div>
+							</p>
+							<p>
+								検索文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-TEXT-PREV"><p><code>FIND-TEXT-PREV</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を前方検索します。
+							</p>
+							<p>
+								検索文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-TEXT-FROMFIRST"><p><code>FIND-TEXT-FROMFIRST</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列をドキュメントの最初から検索します。
+							</p>
+							<p>
+								検索文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-TEXT-NEXT"><p><code>REPLACE-TEXT-NEXT</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を、次の次の行に記述した文字列で置換します。（置換対象：キャレット以降で最初に一致した文字列）
+							</p>
+							<p>
+								検索文字列・置換文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-TEXT-INSELECTION"><p><code>REPLACE-TEXT-INSELECTION</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を、次の次の行に記述した文字列で置換します。（置換対象：選択範囲内の一致文字列）
+							</p>
+							<p>
+								検索文字列・置換文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-TEXT-AFTERCARET"><p><code>REPLACE-TEXT-AFTERCARET</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を、次の次の行に記述した文字列で置換します。（置換対象：キャレット以降全ての一致文字列）
+							</p>
+							<p>
+								検索文字列・置換文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-TEXT-ALL"><p><code>REPLACE-TEXT-ALL</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を、次の次の行に記述した文字列で置換します。（置換対象：ドキュメント内全ての一致文字列）
+							</p>
+							<p>
+								検索文字列・置換文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-TEXT-SELECTEDIFMATCHED"><p><code>REPLACE-TEXT-SELECTEDIFMATCHED</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列を、次の次の行に記述した文字列で置換します。（置換対象：選択範囲全体（それが検索文字列に一致する場合））
+							</p>
+							<p>
+								検索文字列・置換文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-EXTRACT"><p><code>FIND-EXTRACT</code></p></a></td><td>
+							<p>
+								次の行に記述した文字列をドキュメント内で全て検索し、新規ドキュメントに抽出します。<br>
+								（次の次の行に記述した文字列で置換して抽出します。）
+							</p>
+							<p>
+								検索文字列に改行、バックスラッシュを記述したい場合は、それぞれ"\r"、"\\"と記述します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-REGEXP-NEXT"><p><code>FIND-REGEXP-NEXT</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）から後方に検索し、その部分を選択します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;FIND-REGEXP-NEXT<br>&lt;/.*?&gt;</pre>
+									<p>→実行結果：正規表現&lt;/.*?&gt;に一致する部分を後方検索します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-REGEXP-PREV"><p><code>FIND-REGEXP-PREV</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の左端）から前方に検索し、その部分を選択します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;FIND-REGEXP-PREV<br>&lt;[^/].*?&gt;</pre>
+									<p>→実行結果：正規表現&lt;/.*?&gt;に一致する部分を前方検索します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-REGEXP-FROMFIRST"><p><code>FIND-REGEXP-FROMFIRST</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、ドキュメントの最初から検索し、その部分を選択します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-REGEXP-NEXT"><p><code>REPLACE-REGEXP-NEXT</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）から後方に検索し、
+								最初に一致した部分を、次の次の行に記述した文字列に置換します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;REPLACE-REGEXP-NEXT<br>$<br>&lt;br&gt;</pre>
+									<p>→実行結果：現在行の行末に<samp>&lt;br&gt;</samp>を挿入します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-REGEXP-SELECTED"><p><code>REPLACE-REGEXP-SELECTED</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、現在の選択範囲内で検索し、
+								一致した部分を全て、次の次の行に記述した文字列に置換します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;REPLACE-REGEXP-SELECTED<br>$<br>&lt;br&gt;</pre>
+									<p>→実行結果：選択範囲内の行末に<samp>&lt;br&gt;</samp>を挿入します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-REGEXP-AFTERCARET"><p><code>REPLACE-REGEXP-AFTERCARET</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、現在のキャレット位置（もしくは選択範囲の右端）以降で検索し、
+								一致した部分を全て、次の次の行に記述した文字列に置換します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;REPLACE-REGEXP-AFTERCARET<br>$<br>&lt;br&gt;</pre>
+									<p>→実行結果：キャレット以降の行末に<samp>&lt;br&gt;</samp>を挿入します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REPLACE-REGEXP-ALL"><p><code>REPLACE-REGEXP-ALL</code></p></a></td><td>
+							<p>
+								次の行に記述した正規表現に一致する部分を、ドキュメントの最初から全て検索し、
+								一致した部分を全て、次の次の行に記述した文字列に置換します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;REPLACE-REGEXP-ALL<br>$<br>&lt;br&gt;</pre>
+									<p>→実行結果：全ての行末に<samp>&lt;br&gt;</samp>を挿入します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-SELECTED-NEXT"><p><code>FIND-SELECTED-NEXT</code></p></a></td><td>
+							<p>
+								ドキュメント上で現在選択中の文字列を検索文字列として、後方検索します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-SELECTED-PREV"><p><code>FIND-SELECTED-PREV</code></p></a></td><td>
+							<p>
+								ドキュメント上で現在選択中の文字列を検索文字列として、前方検索します。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MULTIFILEFIND-SELECTED"><p><code>MULTIFILEFIND-SELECTED</code></p></a></td><td>
+							<p>
+								ドキュメント上で現在選択中の文字列を検索文字列として、マルチファイル検索します。<br>
+								対象となるフォルダは、現在のドキュメントと同じフォルダ内です。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MULTIFILEFIND-SELECTED-INPROJECT"><p><code>MULTIFILEFIND-SELECTED-INPROJECT</code></p></a></td><td>
+							<p>
+								ドキュメント上で現在選択中の文字列を検索文字列として、マルチファイル検索します。<br>
+								対象となるフォルダは、現在のドキュメントと同じプロジェクト内です。
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NUMBER-REGEXP-SELECTED"><p><code>NUMBER-REGEXP-SELECTED</code></p></a></td><td>
+							<p>
+								次の行に記述された正規表現を検索文字列、その次の行に記述された文字列を置換文字列、 
+								さらにその次の行に記述された数字を開始番号として、選択範囲内で正規表現に一致した部分に順に番号文字列を記述します。<br>
+								置換文字列には%d等のprintf形式で番号文字列挿入箇所・フォーマットを指定します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;NUMBER-REGEXP-SELECTED<br>《》<br>《%04d》<br>1</pre>
+									<p>→実行結果：選択範囲内で《》を検索し、見つかった《》内に0001から順に4桁の番号を記述します。</p>
+								</div>
+							</p>
+							<p>
+								ツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。記述方法については、<a href="#findoption">検索オプション</a>を参照して下さい。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FIND-DIALOG"><p><code>FIND-DIALOG</code></p></a></td><td>
+							<p>
+								検索ダイアログを開きます。（選択中の文字列を検索文字列に設定します。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HIGHLIGHT-SELECTED"><p><code>HIGHLIGHT-SELECTED</code></p></a></td><td>
+							<p>
+								選択中の文字列をハイライト表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HIGHLIGHT-CLEAR"><p><code>HIGHLIGHT-CLEAR</code></p></a></td><td>
+							<p>
+								ハイライト表示を消去します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h3><a name="findoption">検索オプション</a></h3>
+				<p>
+					各検索オプションのツールコマンドの直後に<code>()</code>を記述し、その中に検索オプションを記述可能です。<br>
+					検索オプションはスペースで区切って複数記述可能です。
+					<div class="sample">
+						<p>ツール記述例：</p>
+						<pre>&lt;&lt;&lt;MULTIFILEFIND-SELECTED-INPROJECT(ONLYVISIBLEFILE WHOLEWORD)</pre>
+						<p>→実行結果：プロジェクト内の可視ファイル内で、単語全体が選択中の文字列に一致する単語を検索します。</p>
+					</div>
+				</p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>検索オプション</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="CASESENSITIVE"><p><code>CASESENSITIVE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、大文字小文字を区別します。<br>
+								このオプションを記述しない場合、大文字小文字を区別しません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="WHOLEWORD"><p><code>WHOLEWORD</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、単語全体が一致する場合のみ一致とみなします。<br>
+								このオプションを記述しない場合、単語の一部が一致したら一致とみなします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SPACESSENSITIVE"><p><code>SPACESSENSITIVE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、スペース・タブ・改行を無視しません。<br>
+								このオプションを記述しない場合、スペース・タブ・改行を無視します（スペース等の有無に関わらず一致します）。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="BACKSLASHYENSENSITIVE"><p><code>BACKSLASHYENSENSITIVE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、半角バックスラッシュと半角円記号を区別します。<br>
+								このオプションを記述しない場合、半角バックスラッシュと半角円記号を区別しません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="LOOP"><p><code>LOOP</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、ドキュメントの最後まで検索して見つからないときに、ドキュメントの最初から検索します。<br>
+								このオプションを記述しない場合、ドキュメントの最後まで検索して見つからないときは検索を終了します。<br>
+								マルチファイル検索では無効なオプションです。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NOFUZZY"><p><code>NOFUZZY</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、曖昧検索を行いません。<br>
+								このオプションを記述しない場合、曖昧検索を行います。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NORECURSIVE"><p><code>NORECURSIVE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、サブフォルダを検索しません。<br>
+								このオプションを記述しない場合、サブフォルダも検索します。<br>
+								マルチファイル検索のみで有効なオプションです。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ONLYVISIBLEFILE"><p><code>ONLYVISIBLEFILE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、可視ファイルのみを検索し、不可視ファイル・不可視フォルダ内のファイルを検索しません。<br>
+								このオプションを記述しない場合、不可視ファイル・フォルダも検索します。<br>
+								マルチファイル検索のみで有効なオプションです。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ONLYTEXTFILE"><p><code>ONLYTEXTFILE</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、テキストファイルのみを検索し、テキスト以外のファイルを検索しません。<br>
+								このオプションを記述しない場合、テキスト以外のファイルも検索します。<br>
+								マルチファイル検索のみで有効なオプションです。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NODISPLAYPOSITION"><p><code>NODISPLAYPOSITION</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、検索結果に見出し情報を表示しません。<br>
+								このオプションを記述しない場合、検索結果に見出し情報を表示します。<br>
+								マルチファイル検索のみで有効なオプションです。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FILTER"><p><code>FILTER"<i>regexp</i>"</code></p></a></td><td>
+							<p>
+								このオプションを記述した場合、<i>regexp</i>に一致するファイル名のみ検索対象にします。<br>
+								マルチファイル検索のみで有効なオプションです。
+								<div class="sample">
+									<p>記述例：</p>
+									<pre>FILTER".+(cpp|h|html|php|txt)$"</pre>
+									<p>→cpp, h, html, php, txtで終わるファイル名のみを検索対象にします</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="transliterate">文字種変換</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="TRANSLITERATE-SELECTED"><p><code>TRANSLITERATE-SELECTED(<i>title</i>)</code></p></a></td><td>
+							<p>
+								選択範囲を文字種変換します。<br>
+								<i>title</i>には、<span class="menu">編集→文字種変換</span>メニューで表示される文字列のいずれかを記述します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;TRANSLITERATE-SELECTED(大文字→小文字)</pre>
+									<p>→実行結果：選択範囲のアルファベットの大文字を小文字に変換します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="TRANSLITERATE-REGEXP-SELECTED"><p><code>TRANSLITERATE-REGEXP-SELECTED(<i>title</i>)</code></p></a></td><td>
+							<p>
+								次の行に記述された正規表現を検索文字列として、選択範囲内を検索し、一致した箇所を文字種変換します。<br>
+								<i>title</i>には、<span class="menu">編集→文字種変換</span>メニューで表示される文字列のいずれかを記述します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;TRANSLITERATE-REGEXP-SELECTED(大文字→小文字)<br>&lt;.+?&gt;</pre>
+									<p>→実行結果：選択範囲内の&lt;&gt;内のアルファベットの大文字を小文字に変換します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="tabindent">タブ・インデント・改行</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="INDENT"><p><code>INDENT</code></p></a></td><td>
+							<p>
+								現在の行のインデント量を、設定に従ったインデント量にします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="AUTOTAB"><p><code>AUTOTAB</code></p></a></td><td>
+							<p>
+								現在の行のインデント量を、設定に関わらず、前の行と同じインデント量にします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHIFT-LEFT"><p><code>SHIFT-LEFT</code></p></a></td><td>
+							<p>
+								現在の行のインデント量を、１インデント分減らします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHIFT-RIGHT"><p><code>SHIFT-RIGHT</code></p></a></td><td>
+							<p>
+								現在の行のインデント量を、１インデント分増やします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="INDENT-RETURN"><p><code>INDENT-RETURN</code></p></a></td><td>
+							<p>
+								改行を挿入し、改行を挿入した行とその次行のインデント量を、設定に従ったインデント量にします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="RETURN"><p><code>RETURN</code></p></a></td><td>
+							<p>
+								改行を挿入します。（インデント処理は行いません。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="INDENT-TAB"><p><code>INDENT-TAB</code></p></a></td><td>
+							<p>
+								設定に従ったインデント量より左側にキャレットがある場合は、設定に従ったインデント量にして、キャレットをインデント位置に移動します<br>
+								それ以外の場合は、タブを挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="TAB"><p><code>TAB</code></p></a></td><td>
+							<p>
+								タブを挿入します。（インデント処理は行いません。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="movecaret">キャレット移動</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-UP"><p><code>MOVECARET-UP</code></p></a></td><td>
+							<p>
+								キャレットを上に移動します。（上矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-DOWN"><p><code>MOVECARET-DOWN</code></p></a></td><td>
+							<p>
+								キャレットを下に移動します。（下矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-LEFT"><p><code>MOVECARET-LEFT</code></p></a></td><td>
+							<p>
+								キャレットを左に移動します。（左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-RIGHT"><p><code>MOVECARET-RIGHT</code></p></a></td><td>
+							<p>
+								キャレットを右に移動します。（右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-HOME"><p><code>MOVECARET-HOME</code></p></a></td><td>
+							<p>
+								キャレットをドキュメントの最初に移動します。（⌘キー＋上矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-END"><p><code>MOVECARET-END</code></p></a></td><td>
+							<p>
+								キャレットをドキュメントの最後に移動します。（⌘キー＋下矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-STARTOFLINE"><p><code>MOVECARET-STARTOFLINE</code></p></a></td><td>
+							<p>
+								キャレットを行頭に移動します。（⌘キー＋左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-ENDOFLINE"><p><code>MOVECARET-ENDOFLINE</code></p></a></td><td>
+							<p>
+								キャレットを行末に移動します。（⌘キー＋右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-PREVWORD"><p><code>MOVECARET-PREVWORD</code></p></a></td><td>
+							<p>
+								キャレットを一つ前の単語の左端に移動します。（オプションキー＋左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-NEXTWORD"><p><code>MOVECARET-NEXTWORD</code></p></a></td><td>
+							<p>
+								キャレットを一つ後の単語の右端に移動します。（オプションキー＋右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-PREVWORD-LINESTOP"><p><code>MOVECARET-PREVWORD-LINESTOP</code></p></a></td><td>
+							<p>
+								キャレットを一つ前の単語の左端、もしくは、行頭に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-NEXTWORD-LINESTOP"><p><code>MOVECARET-NEXTWORD-LINESTOP</code></p></a></td><td>
+							<p>
+								キャレットを一つ後の単語の右端、もしくは、行末に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-PREVPAGE"><p><code>MOVECARET-PREVPAGE</code></p></a></td><td>
+							<p>
+								キャレットを1ページ前に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-NEXTPAGE"><p><code>MOVECARET-NEXTPAGE</code></p></a></td><td>
+							<p>
+								キャレットを1ページ後に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-LINE"><p><code>MOVECARET-LINE(<i>n</i>)</code></p></a></td><td>
+							<p>
+								キャレットを<i>n</i>行目の最初に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-PARAGRAPH"><p><code>MOVECARET-PARAGRAPH(<i>n</i>)</code></p></a></td><td>
+							<p>
+								キャレットを<i>n</i>段落目の最初に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-COLUMN"><p><code>MOVECARET-COLUMN(<i>n</i>)</code></p></a></td><td>
+							<p>
+								キャレットを現在行の<i>n</i>文字目に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-STARTOFPARAGRAPH"><p><code>MOVECARET-STARTOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								キャレットを段落の最初に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MOVECARET-ENDOFPARAGRAPH"><p><code>MOVECARET-ENDOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								キャレットを段落の最後に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="select">選択</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-UP"><p><code>SELECT-UP</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を上に移動します。（シフトキー＋上矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-DOWN"><p><code>SELECT-DOWN</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を下に移動します。（シフトキー＋下矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-LEFT"><p><code>SELECT-LEFT</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を左に移動します。（シフトキー＋左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-RIGHT"><p><code>SELECT-RIGHT</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を右に移動します。（シフトキー＋右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-HOME"><p><code>SELECT-HOME</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）をドキュメントの最初に移動します。（シフトキー＋⌘キー＋上矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-END"><p><code>SELECT-END</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）をドキュメントの最後に移動します。（シフトキー＋⌘キー＋下矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-STARTOFLINE"><p><code>SELECT-STARTOFLINE</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を行頭に移動します。（シフトキー＋⌘キー＋左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-ENDOFLINE"><p><code>SELECT-ENDOFLINE</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を行末に移動します。（シフトキー＋⌘キー＋右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-STARTOFPARAGRAPH"><p><code>SELECT-STARTOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を段落頭に移動します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-ENDOFPARAGRAPH"><p><code>SELECT-ENDOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を段落末に移動します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-PREVWORD"><p><code>SELECT-PREVWORD</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を一つ前の単語の左端に移動します。（シフトキー＋オプションキー＋左矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-NEXTWORD"><p><code>SELECT-NEXTWORD</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を一つ後の単語の右端に移動します。（シフトキー＋オプションキー＋右矢印キーのデフォルト動作と同等。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-WORD"><p><code>SELECT-WORD</code></p></a></td><td>
+							<p>
+								現在の選択範囲周辺の単語全体を選択します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-PREVWORD-LINESTOP"><p><code>SELECT-PREVWORD-LINESTOP</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を一つ前の単語の左端、もしくは、行頭に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-NEXTWORD-LINESTOP"><p><code>SELECT-NEXTWORD-LINESTOP</code></p></a></td><td>
+							<p>
+								選択範囲の始点（終点）を一つ後の単語の右端、もしくは、行末に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-WHOLE-LINE"><p><code>SELECT-WHOLE-LINE</code></p></a></td><td>
+							<p>
+								現在の行全体を選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-WHOLE-PARAGRAPH"><p><code>SELECT-WHOLE-PARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落全体を選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-WHOLE-PARAGRAPH-NOLINEEND"><p><code>SELECT-WHOLE-PARAGRAPH-NOLINEEND</code></p></a></td><td>
+							<p>
+								現在の段落全体を選択します。ただし、最後の改行コードは選択しません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-ALL"><p><code>SELECT-ALL</code></p></a></td><td>
+							<p>
+								ドキュメント全体を選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-BRACE"><p><code>SELECT-BRACE</code></p></a></td><td>
+							<p>
+								現在のキャレット位置／選択範囲を囲む括弧内を選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECTMODE"><p><code>SELECTMODE</code></p></a></td><td>
+							<p>
+								選択モードのOn/Offを切り替えます。<br>
+								選択モードOnのときは、カーソル移動時、常に選択の動作を行います。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h2><a name="mark">マーク</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="SETMARK"><p><code>SETMARK</code></p></a></td><td>
+							<p>
+								現在の選択範囲にマークを設定します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWAPMARK"><p><code>SWAPMARK</code></p></a></td><td>
+							<p>
+								現在の選択範囲とマークを入れ替えます。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-MARK"><p><code>SELECT-MARK</code></p></a></td><td>
+							<p>
+								マークの範囲を選択します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-MARK"><p><code>DELETE-MARK</code></p></a></td><td>
+							<p>
+								マークの範囲を削除します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="scroll">スクロール</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-UP"><p><code>SCROLL-UP</code></p></a></td><td>
+							<p>
+								上方向に１行スクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-DOWN"><p><code>SCROLL-DOWN</code></p></a></td><td>
+							<p>
+								下方向に１行スクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-LEFT"><p><code>SCROLL-LEFT</code></p></a></td><td>
+							<p>
+								左方向に30ピクセルスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-RIGHT"><p><code>SCROLL-RIGHT</code></p></a></td><td>
+							<p>
+								右方向に30ピクセルスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-HOME"><p><code>SCROLL-HOME</code></p></a></td><td>
+							<p>
+								ドキュメントの最初にスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-END"><p><code>SCROLL-END</code></p></a></td><td>
+							<p>
+								ドキュメントの最後にスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-PREVPAGE"><p><code>SCROLL-PREVPAGE</code></p></a></td><td>
+							<p>
+								上方向に１ページスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCROLL-NEXTPAGE"><p><code>SCROLL-NEXTPAGE</code></p></a></td><td>
+							<p>
+								下方向に１ページスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="RECENTER"><p><code>RECENTER</code></p></a></td><td>
+							<p>
+								キャレット位置をウインドウ中央に持ってくるようにスクロールします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="documentattr">ドキュメント属性変更</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGEFONT"><p><code>CHANGEFONT(<i>fontname</i>)</code></p></a></td><td>
+							<p>
+								ドキュメントのフォントを<i>fontname</i>に変更します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;CHANGEFONT(Monaco)</pre>
+									<p>→実行結果：フォントをMonacoに変更します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGESIZE"><p><code>CHANGESIZE(<i>fontsize</i>)</code></p></a></td><td>
+							<p>
+								ドキュメントのフォントサイズを<i>fontsize</i>ポイントに変更します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;CHANGESIZE(9)</pre>
+									<p>→実行結果：フォントサイズを9ptに変更します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGEMODE"><p><code>CHANGEMODE(<i>modename</i>)</code></p></a></td><td>
+							<p>
+								ドキュメントのモードを<i>modename</i>に変更します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;CHANGEMODE(HTML)</pre>
+									<p>→実行結果：モードをHTMLに変更します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO"><p><code>CHANGETO(<i>encoding</i>)</code></p></a></td><td>
+							<p>
+								ドキュメントのテキストエンコーディングを<i>encoding</i>に変更します。<br>
+								<i>encoding</i>には、"UTF-8"等、<span class="menu">ドキュメント→テキストエンコーディング</span>メニューで表示される文字列を指定します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;CHANGETO(UTF-8)</pre>
+									<p>→実行結果：テキストエンコーディングをUTF-8に変更します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="MODIFYTO"><p><code>MODIFYTO(<i>encoding</i>)</code></p></a></td><td>
+							<p>
+								テキストエンコーディングを<i>encoding</i>として、ファイルを再読み込みします<br>
+								ファイルオープン／保存後、全く編集していない場合のみ有効です。<br>
+								<i>encoding</i>には、"UTF-8"等、<span class="menu">ドキュメント→テキストエンコーディング</span>メニューで表示される文字列を指定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO-CR"><p><code>CHANGETO-CR</code></p></a></td><td>
+							<p>
+								ドキュメントの改行コードをCRに設定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO-LF"><p><code>CHANGETO-LF</code></p></a></td><td>
+							<p>
+								ドキュメントの改行コードをLFに設定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO-CRLF"><p><code>CHANGETO-CRLF</code></p></a></td><td>
+							<p>
+								ドキュメントの改行コードをCR+LFに設定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO-NOWRAP"><p><code>CHANGETO-NOWRAP</code></p></a></td><td>
+							<p>
+								ドキュメントを行折り返し無しに設定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CHANGETO-WORDWRAP"><p><code>CHANGETO-WORDWRAP</code></p></a></td><td>
+							<p>
+								ドキュメントを行折り返しあり（ウインドウ幅）に設定します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="file">ファイル</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="FILENAME"><p><code>FILENAME</code></p></a></td><td>
+							<p>
+								現在のドキュメントのファイルの名称を挿入します。<br>
+								ファイル名未確定の場合は、現在のドキュメントのタイトル（「名称未設定」等）を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="FILENAME-NOSUFFIX"><p><code>FILENAME-NOSUFFIX</code></p></a></td><td>
+							<p>
+								現在のドキュメントのファイルの名称から拡張子（ピリオド含む）を削除した文字列を挿入します。<br>
+								例えばファイル名がtest.htmlなら"test"を挿入します。<br>
+								ファイル名未確定の場合は、現在のドキュメントのタイトル（「名称未設定」等）を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DIRECTORY"><p><code>DIRECTORY</code></p></a></td><td>
+							<p>
+								現在のドキュメントのファイルの親フォルダの名称を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="OPEN-FILE"><p><code>OPEN-FILE</code></p></a></td><td>
+							<p>
+								次の行に記述された絶対パスのファイルを開きます。<br>
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;OPEN-FILE<br>/Users/username/Sites/index.html</pre>
+									<p>→実行結果：絶対パス"/Users/username/Sites/index.html"のファイルを開きます。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="OPEN-SELECTED"><p><code>OPEN-SELECTED</code></p></a></td><td>
+							<p>
+								選択部分を部分パス名としてファイルを開きます。（ ⌘ ＋ Ｄ と同じ。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SAVE"><p><code>SAVE</code></p></a></td><td>
+							<p>
+								保存を行います。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SAVEAS"><p><code>SAVEAS</code></p></a></td><td>
+							<p>
+								新規保存を行います。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NEWDOCUMENT"><p><code>NEWDOCUMENT</code></p></a></td><td>
+							<p>
+								新規ドキュメントを作成します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NEWDOCUMENT-MOVETARGET"><p><code>NEWDOCUMENT-MOVETARGET</code></p></a></td><td>
+							<p>
+								新規ドキュメントを作成し、新規ドキュメント内でツール実行を継続します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NEWDOCUMENT-SAMEMODE"><p><code>NEWDOCUMENT-SAMEMODE</code></p></a></td><td>
+							<p>
+								現在のドキュメントと同じモードで新規ドキュメントを生成します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NEWDOCUMENT-SAMEMODE-MOVETARGET"><p><code>NEWDOCUMENT-SAMEMODE-MOVETARGET</code></p></a></td><td>
+							<p>
+								現在のドキュメントと同じモードで新規ドキュメントを生成し、新規ドキュメント内でツール実行を継続します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="OPEN-DIALOG"><p><code>OPEN-DIALOG</code></p></a></td><td>
+							<p>
+								ファイル選択ダイアログを表示し、ファイルを開きます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CLOSE"><p><code>CLOSE</code></p></a></td><td>
+							<p>
+								ファイルを閉じます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="edit">編集</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-NEXT"><p><code>DELETE-NEXT</code></p></a></td><td>
+							<p>
+								次の文字を削除します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-PREV"><p><code>DELETE-PREV</code></p></a></td><td>
+							<p>
+								前の文字を削除します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-PREV-DECOMP"><p><code>DELETE-PREV-DECOMP</code></p></a></td><td>
+							<p>
+								前の文字を削除します。Unicodeのdecomposition文字があれば、decomposition文字一文字のみを削除します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-STARTOFLINE"><p><code>DELETE-STARTOFLINE</code></p></a></td><td>
+							<p>
+								現在行の最初までを削除します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-ENDOFLINE"><p><code>DELETE-ENDOFLINE</code></p></a></td><td>
+							<p>
+								現在行の終わりまでを削除します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-STARTOFPARAGRAPH"><p><code>DELETE-STARTOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落の最初までを削除します。キャレット位置が段落頭のときは、改行コードを削除します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-ENDOFPARAGRAPH"><p><code>DELETE-ENDOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落の終わりまでを削除します。キャレット位置が段落末のときは、改行コードを削除します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-WHOLE-PARAGRAPH"><p><code>DELETE-WHOLE-PARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落全部を削除します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DELETE-SELECTED"><p><code>DELETE-SELECTED</code></p></a></td><td>
+							<p>
+								選択範囲を削除します。選択中でない場合は、何もしません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CUT"><p><code>CUT</code></p></a></td><td>
+							<p>
+								選択範囲をカットします。選択中でない場合は、何もしません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ADDITIONAL-CUT"><p><code>ADDITIONAL-CUT</code></p></a></td><td>
+							<p>
+								選択範囲を追加カット（既存のクリップボードの内容に追加）します。選択中でない場合は、何もしません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CUT-ENDOFLINE"><p><code>CUT-ENDOFLINE</code></p></a></td><td>
+							<p>
+								現在行の最後までをカットします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CUT-ENDOFPARAGRAPH"><p><code>CUT-ENDOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落の終わりまでをカットします。キャレット位置が段落末のときは、改行コードをカットします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ADDITIONAL-CUT-ENDOFPARAGRAPH"><p><code>ADDITIONAL-CUT-ENDOFPARAGRAPH</code></p></a></td><td>
+							<p>
+								現在の段落の終わりまでを追加カット（既存のクリップボードの内容に追加）します。キャレット位置が段落末のときは、改行コードを追加カットします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CUT-STARTOFLINE"><p><code>CUT-STARTOFLINE</code></p></a></td><td>
+							<p>
+								現在行の最初までをカットします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="COPY"><p><code>COPY</code></p></a></td><td>
+							<p>
+								選択範囲をコピーします。選択中でない場合は、何もしません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ADDITIONAL-COPY"><p><code>ADDITIONAL-COPY</code></p></a></td><td>
+							<p>
+								選択範囲を追加コピー（既存のクリップボードの内容に追加）します。選択中でない場合は、何もしません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ADDITIONAL-COPY-TEXT"><p><code>ADDITIONAL-COPY-TEXT("<i>text</i>")</code></p></a></td><td>
+							<p>
+								既存のクリップボードの内容に文字列<i>text</i>を追加します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="PASTE"><p><code>PASTE</code></p></a></td><td>
+							<p>
+								ペーストします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="UNDO"><p><code>UNDO</code></p></a></td><td>
+							<p>
+								Undoします。<br>
+								なお、ツール実行時、このツールコマンドより後は無視されます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REDO"><p><code>REDO</code></p></a></td><td>
+							<p>
+								Redoします。<br>
+								なお、ツール実行時、このツールコマンドより後は無視されます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CORRESPONDENCE"><p><code>CORRESPONDENCE</code></p></a></td><td>
+							<p>
+								対応文字列を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SAMELETTER-UP"><p><code>SAMELETTER-UP</code></p></a></td><td>
+							<p>
+								一行前の同じカラム位置にある文字と同じ文字をキャレット位置に挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWAPLINE"><p><code>SWAPLINE</code></p></a></td><td>
+							<p>
+								選択行の奇数行と偶数行を入れ替えます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWAPLETTER"><p><code>SWAPLETTER</code></p></a></td><td>
+							<p>
+								キャレットの前後の文字を入れ替えます。
+							</p>
+						</td>
+						<td>
+							3.0.0b11で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="GT3"><p><code>GT3</code></p></a></td><td>
+							<p>
+								文字列「&gt;&gt;&gt;」を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="LT3"><p><code>LT3</code></p></a></td><td>
+							<p>
+								文字列「&lt;&lt;&lt;」を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="GT1"><p><code>GT1</code></p></a></td><td>
+							<p>
+								文字列「&gt;」を挿入します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="LT1"><p><code>LT1</code></p></a></td><td>
+							<p>
+								文字列「&lt;」を挿入します。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="YANK"><p><code>YANK</code></p></a></td><td>
+							<p>
+								キルバッファに入っているテキストを挿入します。
+							</p>
+							<p>
+								キルバッファには、行末まで削除等を実行した場合に、テキストが格納されます。
+							</p>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="windowviewtab">ウインドウ・ビュー・タブ</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-NEXTWINDOW"><p><code>SWITCH-NEXTWINDOW</code></p></a></td><td>
+							<p>
+								次のウインドウを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-PREVWINDOW"><p><code>SWITCH-PREVWINDOW</code></p></a></td><td>
+							<p>
+								前のウインドウを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-NEXTSPLITVIEW"><p><code>SWITCH-NEXTSPLITVIEW</code></p></a></td><td>
+							<p>
+								次のビューへフォーカスを移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-PREVSPLITVIEW"><p><code>SWITCH-PREVSPLITVIEW</code></p></a></td><td>
+							<p>
+								前のビューへフォーカスを移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-NEXTTAB"><p><code>SWITCH-NEXTTAB</code></p></a></td><td>
+							<p>
+								次のタブを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SWITCH-PREVTAB"><p><code>SWITCH-PREVTAB</code></p></a></td><td>
+							<p>
+								前のタブを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SPLITVIEW"><p><code>SPLITVIEW</code></p></a></td><td>
+							<p>
+								ビューを分割します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CLOSE-SPLITVIEW"><p><code>CLOSE-SPLITVIEW</code></p></a></td><td>
+							<p>
+								分割したビューを閉じます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHOWHIDE-SUBPANECOLUMN"><p><code>SHOWHIDE-SUBPANECOLUMN</code></p></a></td><td>
+							<p>
+								左サイドバーの表示・非表示を切り替えます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHOWHIDE-INFOPANECOLUMN"><p><code>SHOWHIDE-INFOPANECOLUMN</code></p></a></td><td>
+							<p>
+								右サイドバーの表示・非表示を切り替えます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="TABTOWINDOW"><p><code>TABTOWINDOW</code></p></a></td><td>
+							<p>
+								現在のタブをウインドウ化します。<br>
+								現在のウインドウが画面の中よりも右にあるときは左側に、そうでないときは右側に表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="WINDOWTOTAB"><p><code>WINDOWTOTAB</code></p></a></td><td>
+							<p>
+								現在のウインドウをタブ化します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="scm">比較</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="DIFF-REPOSITORY"><p><code>DIFF-REPOSITORY</code></p></a></td><td>
+							<p>
+								現在のドキュメントとレポジトリを比較し、変更箇所を表示します。<br>
+								メニューから<span class="menu">比較→レポジトリと比較</span>を選択したときと同じ動作を行います。<br>
+								ドキュメントが未編集、または、保存済みの状態である場合のみ、使用可能です。それ以外の場合は何もしません。<br>
+								詳細は、環境設定ウインドウの比較タブの説明を参照してください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td valign="top"><a name="MOVECARET-NEXTDIFF"><p><code>MOVECARET-NEXTDIFF</code></p></a></td><td>
+							<p>
+								変更箇所表示中の場合、次の変更箇所に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td valign="top"><a name="MOVECARET-PREVDIFF"><p><code>MOVECARET-PREVDIFF</code></p></a></td><td>
+							<p>
+								変更箇所表示中の場合、前の変更箇所に移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h2><a name="interapplication">他のアプリケーションとの連携</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="BROWSE"><p><code>BROWSE(<i>appname</i>)</code></p></a></td><td>
+							<p>
+								<i>appname</i>という名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションでブラウズします。<br>
+								<i>appname</i>の記述方法については<a href="#appname">アプリケーションの指定方法</a>を参照してください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="LAUNCH"><p><code>LAUNCH(<i>appname</i>)</code></p></a></td><td>
+							<p>
+								<i>appname</i>という名前のアプリケーションを起動します。<br>
+								<i>appname</i>の記述方法については<a href="#appname">アプリケーションの指定方法</a>を参照してください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DROP"><p><code>DROP(<i>appname</i>)</code></p></a></td><td>
+							<p>
+								<i>appname</i>という名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションで開きます。<br>
+								<i>appname</i>の記述方法については<a href="#appname">アプリケーションの指定方法</a>を参照してください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><p><code>DROP(<i>appname</i>)(<i>suffix</i>)</code></p></td><td>
+							<p>
+								<i>appname</i>という名前のアプリケーションを起動し、現在編集中のファイルのファイル名の拡張子を<i>suffix</i>に変更したファイルを、
+								起動したアプリケーションで開きます。<br>
+								<i>appname</i>の記述方法については<a href="#appname">アプリケーションの指定方法</a>を参照してください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="CLOSEDROP"><p><code>CLOSEDROP(<i>appname</i>)</code></p></a></td><td>
+							<p>
+								まず、ドキュメントを強制保存した後、ドキュメントを閉じます。<br>
+								次に、<i>appname</i>という名前のアプリケーションを起動し、現在編集中のファイルを、起動したアプリケーションで開きます。<br>
+								そして、miが再度アクティブになったときに、再度そのファイルを開きます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="OPEN-URL"><p><code>OPEN-URL</code></p></a></td><td>
+							<p>
+								次の行に記述されたURLをデフォルトのWebブラウザで開きます。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;OPEN-URL<br>http://www.mimikaki.net</pre>
+									<p>→実行結果：http://www.mimikaki.netをWebブラウザで開きます。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SENDSELECTED"><p><code>SENDSELECTED(<i>xxxxyyyyzzzz</i>)</code></p></a></td><td>
+							<p>
+								クリエータ<i>xxxx</i>のアプリケーションに、
+								アップルイベント（クラス：<i>yyyy</i>、ID：<i>zzzz</i>、ダイレクトパラメータ：ドキュメントで選択中のテキスト）を送ります。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SENDSELECTEDR"><p><code>SENDSELECTEDR(<i>xxxxyyyyzzzz</i>)</code></p></a></td><td>
+							<p>
+								クリエータ<i>xxxx</i>のアプリケーションに、
+								アップルイベント（クラス：<i>yyyy</i>、ID：<i>zzzz</i>、ダイレクトパラメータ：ドキュメントで選択中のテキスト）を送り、
+								そのアプリケーションから返ってきた結果文字列をドキュメントに挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="WAIT"><p><code>WAIT</code></p></a></td><td>
+							<p>
+								次にmiがアクティブになるまで、ツールの実行を中断します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="COMPILE-TEX"><p><code>COMPILE-TEX</code></p></a></td><td>
+							<p>
+								環境設定の「詳細」タブで設定したTeXタイプセットコマンドで、現在編集中のファイルをタイプセットし、
+								TeXタイプセットが終了したら、logファイルからエラー／ワーニングを抜き出して検索結果ウインドウへ表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="PREVIEW-TEX"><p><code>PREVIEW-TEX</code></p></a></td><td>
+							<p>
+								環境設定の「詳細」タブで設定したTeX dvi から pdf へ変換コマンドで、pdfファイルを作成し、そのpdfファイルを開きます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="COMPILEPREVIEW-TEX"><p><code>COMPILEPREVIEW-TEX</code></p></a></td><td>
+							<p>
+								COMPILE-TEXの動作を行った後、PREVIEW-TEXの動作を行います。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h3><a name="appname">アプリケーションの指定方法</a></h3>
+				<p>
+					<code>BROWSE</code>等のコマンドにおいて、<i>appname</i>には、アプリケーションの名前を指定します。<br>
+					アプリケーションの名前とは、"Safari"、"TextEdit"等です。拡張子".app"はつけてもつけなくても構いません。
+					<div class="sample">
+						<p>ツール記述例：</p>
+						<pre>&lt;&lt;&lt;BROWSE(Safari)</pre>
+					</div>
+				</p>
+				<p>
+					起動できない場合、Finderから、そのアプリケーションを選択した後、⌘キー + Iキーを押し（または、右クリック→[情報を見る]）、
+					「名前と拡張子」の欄を確認してください。たとえば、「テキストエディット」の場合、"TextEdit.app"と表示されていると思いますので、
+					"TextEdit"または"TextEdit.app"を<i>appname</i>に記述して下さい。
+					<div class="sample">
+						<p>ツール記述例：</p>
+						<pre>&lt;&lt;&lt;DROP(TextEdit.app)</pre>
+					</div>
+				</p>
+				<p>
+					また、アプリケーションの絶対パスを記述することにより、そのアプリケーションを指定することができます。
+					<div class="sample">
+						<p>ツール記述例：</p>
+						<pre>&lt;&lt;&lt;LAUNCH(/Developer/Applications/Xcode)</pre>
+					</div>
+				</p>
+				<p>
+					なお、アプリケーションのクリエータによって指定することも一応可能ですが、 Mac OS X では動作しないことも多いので、非推奨です。
+				</p>
+				
+				<h2><a name="var">変数</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="SETVAR-SELECTED"><p><code>SETVAR-SELECTED(<i>varname</i>)</code></p></a></td><td>
+							<p>
+								選択文字列を<i>varname</i>という名前の変数に格納します。<br>
+								変数はmi内で共通です。また、miを終了するまで記憶されます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="GETVAR"><p><code>GETVAR(<i>varname</i>)</code></p></a></td><td>
+							<p>
+								<i>varname</i>という名前の変数内の文字列を挿入します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="keyrecord">キー記録</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="KEYRECORD-START-WITHWINDOW"><p><code>KEYRECORD-START-WITHWINDOW</code></p></a></td><td>
+							<p>
+								キー操作の記録を開始し、キー記録ウインドウを表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="KEYRECORD-START"><p><code>KEYRECORD-START</code></p></a></td><td>
+							<p>
+								キー操作の記録を開始します。キー記録ウインドウは表示しません。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="KEYRECORD-STOP"><p><code>KEYRECORD-STOP</code></p></a></td><td>
+							<p>
+								キー操作の記録を停止します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="KEYRECORD-PLAY"><p><code>KEYRECORD-PLAY</code></p></a></td><td>
+							<p>
+								記録したキー操作をリプレイします。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+				</table>
+				
+				<h2><a name="other">その他</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col><col>
+					<tr><th>コマンド</th><th>説明</th><th>備考</th></tr>
+					
+					<tr>
+						<td valign="top"><a name="TOOL"><p><code>TOOL(<i>path</i>)</code></p></a></td><td>
+							<p>
+								モード設定フォルダ（<span class="pref">モード設定ウインドウ→モード設定フォルダを開く</span>クリックで開かれる、
+								"<code>mode</code>"という名前のフォルダ）からの相対パス<i>path</i>で指定されたツールを実行します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;TOOL(HTML/tool/L リンク)</pre>
+									<p>→実行結果：HTMLモードのツール"L リンク"を実行します。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="KEYTOOL"><p><code>KEYTOOL(<i>string</i>)</code></p></a></td><td>
+							<p>
+								ツール入力モード（ ⌘ ＋ Ｙ ）に移行し、<i>string</i>をツール選択用文字としてツールを起動します。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;KEYTOOL(SB)</pre>
+									<p>→実行結果： ⌘ ＋ Y, S, Bと同等。</p>
+								</div>
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHOW-DEFINITION"><p><code>SHOW-DEFINITION</code></p></a></td><td>
+							<p>
+								現在選択中の識別子について、<span class="menu">編集→定義・宣言場所へ移動</span>メニューの最初の項目を、
+								分割ビューか別ウインドウ／タブで表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="COPY-WITHHTMLCOLOR"><p><code>COPY-WITHHTMLCOLOR</code></p></a></td><td>
+							<p>
+								選択行をHTML形式の色情報を付加してコピーします。（miのテキストウインドウで表示中の色情報がそのまま反映されます。）
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					
+					<tr>
+						<td valign="top"><a name="IDINFO"><p><code>IDINFO</code></p></a></td><td>
+							<p>
+								現在選択中の識別子の識別子情報を表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DICT"><p><code>DICT</code></p></a></td><td>
+							<p>
+								現在選択中の単語について辞書アプリケーションで調べます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="DICT-POPUP"><p><code>DICT-POPUP</code></p></a></td><td>
+							<p>
+								現在選択中の単語について辞書アプリケーションの結果をポップアップ表示します。<br>
+								Mac OS X 10.5以降のみで動作します。
+								また「辞書」アプリケーションの環境設定で「コンテクストメニュー」を「辞書パネルを開く」に設定しておく必要があります。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="ARROWTODEF"><p><code>ARROWTODEF</code></p></a></td><td>
+							<p>
+								ローカル識別子・ラベルの定義・参照関係を表示します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="INDEXWINDOW-NEXT"><p><code>INDEXWINDOW-NEXT</code></p></a></td><td>
+							<p>
+								検索結果ウインドウで現在選択中の項目の次の項目へ移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="INDEXWINDOW-PREV"><p><code>INDEXWINDOW-PREV</code></p></a></td><td>
+							<p>
+								検索結果ウインドウで現在選択中の項目の前の項目へ移動します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NAV-NEXT"><p><code>NAV-NEXT</code></p></a></td><td>
+							<p>
+								<a href="topic.htm#nav">キャレット位置履歴</a>の次の項目へ進みます。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="NAV-PREV"><p><code>NAV-PREV</code></p></a></td><td>
+							<p>
+								<a href="topic.htm#nav">キャレット位置履歴</a>の前の項目へ戻ります。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-NEXTHEADER"><p><code>SELECT-NEXTHEADER</code></p></a></td><td>
+							<p>
+								次の見出しを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECT-PREVHEADER"><p><code>SELECT-PREVHEADER</code></p></a></td><td>
+							<p>
+								前の見出しを選択します。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SELECTED-PLACEHOLDER"><p><code>SELECTED-PLACEHOLDER(<i>alttext</i>)</code></p></a></td><td>
+							<p>ツール起動時にテキストウインドウ上で選択されていた文字列を挿入します。<br>
+							文字列が選択されていなかった場合は、括弧内の文字列<i>alttext</i>を挿入します。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					
+					<tr>
+						<td valign="top"><a name="CHANGEFONT-MODEDEFAULT"><p><code>CHANGEFONT-MODEDEFAULT</code></p></a></td><td>
+							<p>フォントとフォントサイズをモード設定の「デフォルト」タブで設定した値に設定します。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="REVERTFONT"><p><code>REVERTFONT</code></p></a></td><td>
+							<p>フォントとフォントサイズをファイルを開いたときの値に設定します。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SCM-COMMIT"><p><code>SCM-COMMIT</code></p></a></td><td>
+							<p>Subversion / git にコミットするためのダイアログを開きます。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HANDTOOL"><p><code>HANDTOOL</code></p></a></td><td>
+							<p>手のひらツールモード／通常モードを切り替えます。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="SHOW-LINEDIALOG"><p><code>SHOW-LINEDIALOG</code></p></a></td><td>
+							<p>行／段落移動ダイアログを表示します。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="AUTOINDENTMODE"><p><code>AUTOINDENTMODE</code></p></a></td><td>
+							<p>自動インデント（改行時の自動インデント実行）のON/OFFを切り替えます。</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><a name="HINT"><p><code>HINT(<i>hint text</i>)</code></p></a></td><td>
+							<p>テキスト編集のヒントとなるテキストを表示します。<br>
+								ヒントテキストはドキュメントには保存されません。また、その位置でテキストを入力するとヒントテキストは削除されます。
+							</p>
+							<div class="sample">
+								<p>ツール記述例：</p>
+								<pre>background-color: &lt;&lt;&lt;CARET HINT(color)&gt;&gt;&gt;;</pre>
+							</div>
+						</td>
+						<td>
+							3.0.0b1で追加
+						</td>
+					</tr>
+					
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
+

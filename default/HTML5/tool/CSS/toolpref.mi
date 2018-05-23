@@ -1,0 +1,432 @@
+"ToolArray_FileName" = 
+{
+	"S Selector",
+	"C color",
+	"B Border",
+	"M Margin",
+	"P Padding",
+	"G Background",
+	"F Font",
+	"T Text",
+	"L Float",
+	"P Position position",
+	"E Element Size",
+	"Z Table",
+	"M cursor",
+	"O Others",
+	"* Comment"
+}
+"ToolArray_Enabled" = 
+{
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true"
+}
+"ToolArray_Shortcut" = 
+{
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0"
+}
+"ToolArray_ShortcutModifiers_ControlKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_ShortcutModifiers_ShiftKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_Grayout" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_JapaneseName" = 
+{
+	"S セレクタ",
+	"C 文字色 color",
+	"B 枠線 border:",
+	"M 余白 margin:",
+	"P パディング padding:",
+	"G 背景 background",
+	"F フォント font:",
+	"T テキスト",
+	"L 回り込み float",
+	"P 位置指定 position",
+	"E 要素サイズ・配置",
+	"Z テーブル関連",
+	"M カーソル",
+	"",
+	"* コメント"
+}
+"ToolArray_EnglishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FrenchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_GermanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SpanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_ItalianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DutchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SwedishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_NorwegianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FinnishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortugueseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SimplifiedChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_TraditionalChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_KoreanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PolishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortuguesePortugalName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_RussianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}

@@ -1,0 +1,77 @@
+/* mi Help main CSS */
+
+/* general */
+p { font:normal 10pt sans-serif; border:none; padding:5px 0 10px 5px; margin:0; line-height:1.3em;/*letter-spacing:1px;*/ }
+a:link { text-decoration:none; border:none; color:/*#442200*/#302000; } 
+a:visited { text-decoration:none; border:none; color:#302000; } 
+a:hover { text-decoration:none; border:none; color:#302000; text-decoration:underline; } 
+em { font-style:normal; font-weight:bold }
+
+p.kome { font:normal 8pt sans-serif; border:none; padding:5px 0 10px 5px; margin:0; line-height:1.2em; }
+
+/* content frame */
+div.content { position:absolute; left:0; top:10; padding:0 20px 20px 10px; }
+div.content h1 { border-bottom:3px solid orange; font:bold 12pt sans-serif; padding:4px 1px 4px; margin:18px 2px 12px 0px; }
+div.content h2 { border-bottom:2px solid orange; font:bold 10pt sans-serif; padding:3px 1px 3px; margin:18px 2px 12px 0px; }
+div.content h3 { /*border-bottom:1px solid orange;*/ font:bold 9pt sans-serif; text-decoration:underline; padding:2px 1px 2px; margin: 12px 2px 3px 0px; color:#005500; }
+div.content h4 { font:bold 8pt sans-serif; text-decoration:underline; padding:4px 6px 3px; margin:2px;  }
+
+div.content table { border-collapse:collapse; }
+
+div.content code { font:normal 8pt Monaco; }
+div.content samp { font:normal 8pt Monaco; }
+
+div.content th { font:bold 10pt sans-serif; background-color:#EEEEEE; }
+div.content td { font:normal 10pt sans-serif; padding:3px 2px 1px; }
+div.content p { padding:3px 0 3px 16px; }
+div.content td p { padding:3px 2px 3px; }
+div.content li { font:normal 10pt sans-serif; padding:3px; }
+div.content img { padding:3px 0 3px 16px; }
+div.content a:link { text-decoration:none; border:none; color:black; border-bottom:1px dashed #777777; } 
+div.content a:visited { text-decoration:none; border:none; color:black; border-bottom:1px dashed #777777; } 
+div.content a:hover { text-decoration:none; border:none; color:#7788EE; border-bottom:1px dashed #777777; } 
+div.content pre { padding:3px 0 3px 16px; line-height:1.5em }
+
+div.sample p { font:normal 8pt sans-serif; padding:0 5px 0; margin:2px 5px 2px 16px; }
+div.sample pre { font:normal 8pt Monaco; border:1px solid #C5C5D9; background-color:#E9E9FF; padding:5px; margin:5px 5px 5px 16px; }
+span.sample { font:normal 8pt Monaco; }
+
+span.icon img { padding:2px; vertical-align:bottom; }
+
+/* リファレンス部分用 */
+div.ref p { padding:3px 0 3px 3px; }
+div.ref pre { padding:3px 0 3px 3px; }
+
+div.syntax { font: normal 10pt Monaco; border:1px solid #CCCCCC; background-color:#F2F2F2; padding:5px; margin:5px 5px 5px 20px;  }
+span.syntax { font-weight: normal; font-family:Monaco;  }
+span.fix { font: bold 9pt Monaco; }
+span.var { font: italic 9pt Monaco; }
+
+span.menu { font: bold 9pt sans-serif; background-color:/*#FFCC00*/#FFF4B5; }
+span.menu:before { content:"[ "; }
+span.menu:after { content:" ]"; }
+
+span.pref { font: bold 9pt sans-serif; background-color:#D3F5C3; }
+span.pref:before { content:"「"; }
+span.pref:after { content:"」"; }
+
+
+table.param { margin:5px 5px 5px 20px; }
+
+/* toc frame */
+div.toc { font:normal 9pt sans-serif; border:none; padding:10px; width:163px; position:absolute; top:0; left:0; border:1px solid gray; background-color:#FFFAED;  }
+
+div.toc h1 { font:bold 18pt sans-serif; padding:0px; margin:2px 0px 15px; }
+div.chapter { margin:0 0 10px; }
+div.chapter ul { margin:0; padding:0; }
+div.chapter li { margin:0 0 5px 20px ; padding:0; list-style-type:none }
+div.chapter li.item { font:bold 8pt sans-serif; margin:0 0 5px 20px ; padding:0; list-style-type:none; line-height:1.5em;  }
+div.chapter li.smallitem { font:normal 7pt Monaco; margin:0 0 5px 20px ; padding:0; list-style-type:none; line-height:1.5em;  }
+div.chapter h2 { font:bold 9pt sans-serif; padding:0px; margin:2px 0px 5px 2px; cursor:pointer; background-image:url(rightarrow.gif); background-repeat:no-repeat; text-indent:16px;}
+div.chapter h3 { font:bold 8pt sans-serif; padding:0px; margin:2px 0px 5px 18px; cursor:pointer; }
+
+div.nav { font:normal 9pt sans-serif; border:none; padding:10px; border:1px solid gray; background-color:#FFFAED;  }
+p.nav a:link { font:bold 9pt sans-serif; text-decoration:none; border:none; color:/*#442200*/#302000; } 
+p.nav a:visited { font:bold 9pt sans-serif; text-decoration:none; border:none; color:#302000; } 
+p.nav a:hover { font:bold 9pt sans-serif; text-decoration:none; border:none; color:#302000; text-decoration:underline; } 
+

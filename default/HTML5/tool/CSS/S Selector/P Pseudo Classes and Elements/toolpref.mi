@@ -1,0 +1,384 @@
+"ToolArray_FileName" = 
+{
+	"Pseudo-classes",
+	"C First Child",
+	"F Focused",
+	"H Mouse Hover",
+	"L Not Yet Visited Link",
+	"P Pressing Mouse Button",
+	"Q lang",
+	"V Visited Link",
+	"Pseudo-elements",
+	"E First Line",
+	"R First Letter",
+	"B Insert content before element",
+	"A Insert content after element"
+}
+"ToolArray_Enabled" = 
+{
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true",
+	"true"
+}
+"ToolArray_Shortcut" = 
+{
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0",
+	"0"
+}
+"ToolArray_ShortcutModifiers_ControlKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_ShortcutModifiers_ShiftKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_Grayout" = 
+{
+	"true",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"false",
+	"true",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_JapaneseName" = 
+{
+	"疑似クラス",
+	"C 最初の子要素",
+	"F フォーカス",
+	"H マウスホバー",
+	"L 未訪問リンク",
+	"P マウスボタン押下中",
+	"Q lang",
+	"V 訪問済リンク",
+	"疑似要素",
+	"E 最初の行",
+	"R 最初の文字",
+	"B 要素の前にテキスト等を追加",
+	"A 要素の後にテキスト等を追加"
+}
+"ToolArray_EnglishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FrenchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_GermanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SpanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_ItalianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DutchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SwedishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_NorwegianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FinnishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortugueseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SimplifiedChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_TraditionalChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_KoreanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PolishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortuguesePortugalName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_RussianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	""
+}

@@ -1,0 +1,3 @@
+<<<CARET HINT(element)>>>:after {
+content:<<<HINT(content)>>>;
+}

@@ -1,0 +1,1642 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,jQuery用キーワード
+,jQuery1.8用jQueryAPI.xmlより抽出して作成
+,以下にjQuery projectのライセンスを表示します。
+,Copyright 2013 jQuery Foundation and other contributors
+,http://jquery.com/
+,
+,Permission is hereby granted, free of charge, to any person obtaining
+,a copy of this software and associated documentation files (the
+,"Software"), to deal in the Software without restriction, including
+,without limitation the rights to use, copy, modify, merge, publish,
+,distribute, sublicense, and/or sell copies of the Software, and to
+,permit persons to whom the Software is furnished to do so, subject to
+,the following conditions:
+,
+,The above copyright notice and this permission notice shall be
+,included in all copies or substantial portions of the Software.
+,
+,THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+,EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+,MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+,NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+,LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+,OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+,WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+$,,jQuery,jQuery,method
+delegateTarget,"delegateTarget
+The element where the currently-called jQuery event handler was attached.
+",Element,event,property
+off,"off(events,selector,handler(eventObject))
+Add and remove event handlers on the colored button.
+  events : String : One or more space-separated event types and optional namespaces, or just namespaces, such as ""click"","keydown.myPlugin", or "".myPlugin"".
+  selector : String : A selector which should match the one originally passed to <code>.on()</code> when attaching event handlers.
+  handler(eventObject) : Function : A handler function previously attached for the event(s), or the special value <code>false</code>.
+",jQuery,jQuery,method
+off,"off(events-map,selector)
+Add and remove event handlers on the colored button.
+  events-map : Map : A map where the string keys represent one or more space-separated event types and optional namespaces, and the values represent handler functions previously attached for the event(s).
+  selector : String : A selector which should match the one originally passed to <code>.on()</code> when attaching event handlers.
+",jQuery,jQuery,method
+on,"on(events,selector,data,handler(eventObject))
+Display a paragraph's text in an alert when it is clicked:
+  events : String : One or more space-separated event types and optional namespaces, such as ""click"" or ""keydown.myPlugin"".
+  selector : String : A selector string to filter the descendants of the selected elements that trigger the event. If the selector is <code>null</code> or omitted, the event is always triggered when it reaches the selected element.
+  data : Anything : Data to be passed to the handler in <a href=""http://api.jquery.com/event.data/""><code>event.data</code></a> when an event is triggered.
+  handler(eventObject) : Function : A function to execute when the event is triggered. The value <code>false</code> is also allowed as a shorthand for a function that simply does <code>return false</code>.
+",jQuery,jQuery,method
+on,"on(events-map,selector,data)
+Display a paragraph's text in an alert when it is clicked:
+  events-map : Map : A map in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
+  selector : String : A selector string to filter the descendants of the selected elements that will call the handler. If the selector is null or omitted, the handler is always called when it reaches the selected element.
+  data : Anything : Data to be passed to the handler in <a href=""http://api.jquery.com/event.data/""><code>event.data</code></a> when an event occurs.
+",jQuery,jQuery,method
+isNumeric,"isNumeric(value)
+Sample return values of $.isNumeric with various inputs.
+  value : Object : The value to be tested.
+",Boolean,jQuery,method
+removeProp,"removeProp(propertyName)
+Remove a property for the set of matched elements.
+  propertyName : String : The name of the property to set.
+",jQuery,jQuery,method
+prop,"prop(propertyName)
+Get the value of a property for the first element in the set of matched elements.
+  propertyName : String : The name of the property to get.
+",String,jQuery,method
+prop,"prop(propertyName,value)
+Set one or more properties for the set of matched elements.
+  propertyName : String : The name of the property to set.
+  value : String, Number, Boolean : A value to set for the property.
+",jQuery,jQuery,method
+prop,"prop(map)
+Set one or more properties for the set of matched elements.
+  map : Map : A map of property-value pairs to set.
+",jQuery,jQuery,method
+prop,"prop(propertyName,function(index, oldPropertyValue))
+Set one or more properties for the set of matched elements.
+  propertyName : String : The name of the property to set.
+  function(index, oldPropertyValue) : Function : A function returning the value to set. Receives the index position of the element in the set and the old property value as arguments. Within the function, the keyword <code>this</code> refers to the current element.
+",jQuery,jQuery,method
+ajaxPrefilter,"ajaxPrefilter(dataTypes,handler(options, originalOptions, jqXHR))
+undefined
+  dataTypes : String : An optional string containing one or more space-separated dataTypes
+  handler(options, originalOptions, jqXHR) : Function : A handler to set default values for future Ajax requests.
+",undefined,jQuery,method
+holdReady,"holdReady(hold)
+Delay the ready event until a custom plugin has loaded.
+  hold : Boolean : Indicates whether the ready hold is being requested or released
+",undefined,jQuery,method
+hasData,"hasData(element)
+Determine whether an element has any jQuery data associated with it.
+  element : Element : A DOM element to be checked for data.
+",Boolean,jQuery,method
+now,"now()
+Return a number representing the current time.
+",Number,jQuery,method
+cssHooks,"cssHooks
+Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.
+",Object,jQuery,property
+parseXML,"parseXML(data)
+Create a jQuery object using an XML string and obtain the value of the title node.
+  data : String : a well-formed XML string to be parsed
+",XMLDocument,jQuery,method
+when,"when(deferreds)
+Provides a way to execute callback functions based on one or more objects, usually <a href=""/category/deferred-object/"">Deferred</a> objects that represent asynchronous events.
+  deferreds : Deferred : One or more Deferred objects, or plain JavaScript objects.
+",Promise,jQuery,method
+sub,"sub()
+Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.
+",jQuery,jQuery,method
+fadeToggle,"fadeToggle(duration,easing,callback)
+Fades first paragraph in or out, completing the animation within 600 milliseconds and using a linear easing. Fades last paragraph in or out for 200 milliseconds, inserting a ""finished"" message upon completion. 
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Function : A function to call once the animation is complete.
+",jQuery,jQuery,method
+type,"type(obj)
+Determine the internal JavaScript [[Class]] of an object.
+  obj : Object : Object to get the internal JavaScript [[Class]] of.
+",String,jQuery,method
+isWindow,"isWindow(obj)
+Determine whether the argument is a window.
+  obj : Object : Object to test whether or not it is a window.
+",boolean,jQuery,method
+toggle,"toggle(handler(eventObject),handler(eventObject),handler(eventObject))
+Click to toggle highlight on the list item.
+  handler(eventObject) : Function : A function to execute every even time the element is clicked.
+  handler(eventObject) : Function : A function to execute every odd time the element is clicked.
+  handler(eventObject) : Function : Additional handlers to cycle through after clicks.
+",jQuery,jQuery,method
+fx.interval,"fx.interval
+Cause all animations to run with less frames.
+",Number,jQuery,property
+namespace,"namespace
+The namespace specified when the event was triggered.
+",String,event,property
+undelegate,"undelegate()
+Can bind and unbind events to the colored button.
+",jQuery,jQuery,method
+undelegate,"undelegate(selector,eventType)
+Can bind and unbind events to the colored button.
+  selector : String : A selector which will be used to filter the event results.
+  eventType : String : A string containing a JavaScript event type, such as ""click"" or ""keydown""
+",jQuery,jQuery,method
+undelegate,"undelegate(selector,eventType,handler(eventObject))
+Can bind and unbind events to the colored button.
+  selector : String : A selector which will be used to filter the event results.
+  eventType : String : A string containing a JavaScript event type, such as ""click"" or ""keydown""
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+undelegate,"undelegate(selector,events)
+Can bind and unbind events to the colored button.
+  selector : String : A selector which will be used to filter the event results.
+  events : Map : A map of one or more event types and previously bound functions to unbind from them.
+",jQuery,jQuery,method
+undelegate,"undelegate(namespace)
+Can bind and unbind events to the colored button.
+  namespace : String : A string containing a namespace to unbind all events from.
+",jQuery,jQuery,method
+delegate,"delegate(selector,eventType,handler(eventObject))
+Click a paragraph to add another. Note that .delegate() attaches a click event handler to all paragraphs - even new ones.
+  selector : String : A selector to filter the elements that trigger the event.
+  eventType : String : A string containing one or more space-separated JavaScript event types, such as ""click"" or ""keydown," or custom event names.
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+delegate,"delegate(selector,eventType,eventData,handler(eventObject))
+Click a paragraph to add another. Note that .delegate() attaches a click event handler to all paragraphs - even new ones.
+  selector : String : A selector to filter the elements that trigger the event.
+  eventType : String : A string containing one or more space-separated JavaScript event types, such as ""click"" or ""keydown," or custom event names.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+delegate,"delegate(selector,events)
+Click a paragraph to add another. Note that .delegate() attaches a click event handler to all paragraphs - even new ones.
+  selector : String : A selector to filter the elements that trigger the event.
+  events : Map : A map of one or more event types and functions to execute for them.
+",jQuery,jQuery,method
+parseJSON,"parseJSON(json)
+Takes a well-formed JSON string and returns the resulting JavaScript object.
+  json : String : The JSON string to parse.
+",Object,jQuery,method
+proxy,"proxy(function,context)
+Takes a function and returns a new one that will always have a particular context.
+  function : Function : The function whose context will be changed.
+  context : Object : The object to which the context (<code>this</code>) of the function should be set.
+",Function,jQuery,method
+proxy,"proxy(context,name)
+Takes a function and returns a new one that will always have a particular context.
+  context : Object : The object to which the context of the function should be set.
+  name : String : The name of the function whose context will be changed (should be a property of the <code>context</code> object).
+",Function,jQuery,method
+focusout,"focusout(handler(eventObject))
+Watch for a loss of focus to occur inside paragraphs and note the difference between the <code>focusout</code> count and the <code>blur</code> count.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+focusout,"focusout(eventData,handler(eventObject))
+Watch for a loss of focus to occur inside paragraphs and note the difference between the <code>focusout</code> count and the <code>blur</code> count.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+focusin,"focusin(handler(eventObject))
+Watch for a focus to occur within the paragraphs on the page.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+focusin,"focusin(eventData,handler(eventObject))
+Watch for a focus to occur within the paragraphs on the page.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+has,"has(selector)
+Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.
+  selector : String : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+has,"has(contained)
+Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.
+  contained : Element : A DOM element to match elements against.
+",jQuery,jQuery,method
+contains,"contains(container,contained)
+Check to see if a DOM element is within another DOM element.
+  container : Element : The DOM element that may contain the other element.
+  contained : Element : The DOM element that may be contained by the other element.
+",Boolean,jQuery,method
+noop,"noop()
+An empty function.
+",Function,jQuery,method
+delay,"delay(duration,queueName)
+Set a timer to delay execution of subsequent items in the queue.
+  duration : Integer : An integer indicating the number of milliseconds to delay execution of the next item in the queue.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",jQuery,jQuery,method
+parentsUntil,"parentsUntil(selector,filter)
+Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
+  selector : Selector : A string containing a selector expression to indicate where to stop matching ancestor elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+parentsUntil,"parentsUntil(element,filter)
+Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
+  element : Element : A DOM node or jQuery object indicating where to stop matching ancestor elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+prevUntil,"prevUntil(selector,filter)
+Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.
+  selector : Selector : A string containing a selector expression to indicate where to stop matching preceding sibling elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+prevUntil,"prevUntil(element,filter)
+Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.
+  element : Element : A DOM node or jQuery object indicating where to stop matching preceding sibling elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+nextUntil,"nextUntil(selector,filter)
+Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.
+  selector : Selector : A string containing a selector expression to indicate where to stop matching following sibling elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+nextUntil,"nextUntil(element,filter)
+Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.
+  element : Element : A DOM node or jQuery object indicating where to stop matching following sibling elements.
+  filter : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+isImmediatePropagationStopped,"isImmediatePropagationStopped()
+  Returns whether event.stopImmediatePropagation() was ever called on this event object. 
+",Boolean,event,method
+isPropagationStopped,"isPropagationStopped()
+  Returns whether <a href=""/event.stopPropagation"">event.stopPropagation()</a> was ever called on this event object. 
+",Boolean,event,method
+isDefaultPrevented,"isDefaultPrevented()
+Returns whether <a href=""/event.preventDefault"">event.preventDefault()</a> was ever called on this event object. 
+",Boolean,event,method
+timeStamp,"timeStamp
+The difference in milliseconds between the time the browser created the event and January 1, 1970.
+",Number,event,property
+result,"result
+ The last value returned by an event handler that was triggered by this event, unless the value was <code>undefined</code>.  
+",Object,event,property
+which,"which
+ For key or mouse events, this property indicates the specific key or button that was pressed.  
+",Number,event,property
+pageY,"pageY
+The mouse position relative to the top edge of the document. 
+",Number,event,property
+pageX,"pageX
+The mouse position relative to the left edge of the document. 
+",Number,event,property
+currentTarget,"currentTarget
+ The current DOM element within the event bubbling phase.  
+",Element,event,property
+relatedTarget,"relatedTarget
+  The other DOM element involved in the event, if any. 
+",Element,event,property
+target,"target
+ The DOM element that initiated the event.  
+",Element,event,property
+type,"type
+ Describes the nature of the event.  
+",String,event,property
+fx.off,"fx.off
+Toggle animation on and off
+",Boolean,jQuery,property
+each,"each(function(index, Element))
+Iterate over a jQuery object, executing a function for each matched element. 
+  function(index, Element) : Function : A function to execute for each matched element.
+",jQuery,jQuery,method
+pushStack,"pushStack(elements)
+Add a collection of DOM elements onto the jQuery stack.
+  elements : Array : An array of elements to push onto the stack and make into a new jQuery object.
+",jQuery,jQuery,method
+pushStack,"pushStack(elements,name,arguments)
+Add a collection of DOM elements onto the jQuery stack.
+  elements : Array : An array of elements to push onto the stack and make into a new jQuery object.
+  name : String : The name of a jQuery method that generated the array of elements.
+  arguments : Array : The arguments that were passed in to the jQuery method (for serialization).
+",jQuery,jQuery,method
+isXMLDoc,"isXMLDoc(node)
+Check to see if a DOM node is within an XML document (or is an XML document).
+  node : Element : The DOM node that will be checked to see if it's in an XML document.
+",Boolean,jQuery,method
+removeData,"removeData(element,name)
+Remove a previously-stored piece of data.
+  element : Element : A DOM element from which to remove data.
+  name : String : A string naming the piece of data to remove.
+",jQuery,jQuery,method
+data,"data(element,key,value)
+Store arbitrary data associated with the specified element. Returns the value that was set.
+  element : Element : The DOM element to associate with the data.
+  key : String : A string naming the piece of data to set.
+  value : Object : The new data value.
+",Object,jQuery,method
+data,"data(element,key)
+Returns value at named data store for the element, as set by <code>jQuery.data(element, name, value)</code>, or the full data store for the element.
+  element : Element : The DOM element to query for the data.
+  key : String : Name of the data stored.
+",Object,jQuery,method
+data,"data(element)
+Returns value at named data store for the element, as set by <code>jQuery.data(element, name, value)</code>, or the full data store for the element.
+  element : Element : The DOM element to query for the data.
+",Object,jQuery,method
+dequeue,"dequeue(element,queueName)
+Execute the next function on the queue for the matched element.
+  element : Element : A DOM element from which to remove and execute a queued function.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",undefined,jQuery,method
+queue,"queue(element,queueName)
+Show the queue of functions to be executed on the matched element.
+  element : Element : A DOM element to inspect for an attached queue.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",Array,jQuery,method
+queue,"queue(element,queueName,newQueue)
+Manipulate the queue of functions to be executed on the matched element.
+  element : Element : A DOM element where the array of queued functions is attached.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+  newQueue : Array : An array of functions to replace the current queue contents.
+",jQuery,jQuery,method
+queue,"queue(element,queueName,callback())
+Manipulate the queue of functions to be executed on the matched element.
+  element : Element : A DOM element on which to add a queued function.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+  callback() : Function : The new function to add to the queue.
+",jQuery,jQuery,method
+clearQueue,"clearQueue(queueName)
+Remove from the queue all items that have not yet been run.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",jQuery,jQuery,method
+toArray,"toArray()
+Retrieve all the DOM elements contained in the jQuery set, as an array.
+",Array,jQuery,method
+isEmptyObject,"isEmptyObject(object)
+Check to see if an object is empty (contains no properties).
+  object : Object : The object that will be checked to see if it's empty.
+",Boolean,jQuery,method
+isPlainObject,"isPlainObject(object)
+Check to see if an object is a plain object (created using ""{}"" or ""new Object"").
+  object : Object : The object that will be checked to see if it's a plain object.
+",Boolean,jQuery,method
+keydown,"keydown(handler(eventObject))
+Bind an event handler to the ""keydown"" JavaScript event, or trigger that event on an element.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keydown,"keydown(eventData,handler(eventObject))
+Bind an event handler to the ""keydown"" JavaScript event, or trigger that event on an element.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keydown,"keydown()
+Bind an event handler to the ""keydown"" JavaScript event, or trigger that event on an element.
+",jQuery,jQuery,method
+index,"index()
+Search for a given element from among the matched elements.
+",Number,jQuery,method
+index,"index(selector)
+Search for a given element from among the matched elements.
+  selector : Selector : A selector representing a jQuery collection in which to look for an element.
+",Number,jQuery,method
+index,"index(element)
+Search for a given element from among the matched elements.
+  element : Element, jQuery : The DOM element or first element within the jQuery object to look for.
+",Number,jQuery,method
+removeData,"removeData(name)
+Remove a previously-stored piece of data.
+  name : String : A string naming the piece of data to delete.
+",jQuery,jQuery,method
+removeData,"removeData(list)
+Remove a previously-stored piece of data.
+  list : Array,String : An array or space-separated string naming the pieces of data to delete.
+",jQuery,jQuery,method
+data,"data(key,value)
+Store arbitrary data associated with the matched elements.
+  key : String : A string naming the piece of data to set.
+  value : Object : The new data value; it can be any Javascript type including Array or Object.
+",jQuery,jQuery,method
+data,"data(obj)
+Store arbitrary data associated with the matched elements.
+  obj : Object : An object of key-value pairs of data to update.
+",jQuery,jQuery,method
+data,"data(key)
+Returns value at named data store for the first element in the jQuery collection, as set by data(name, value).
+  key : String : Name of the data stored.
+",Object,jQuery,method
+data,"data()
+Returns value at named data store for the first element in the jQuery collection, as set by data(name, value).
+",Object,jQuery,method
+get,"get(index)
+Retrieve the DOM elements matched by the jQuery object.
+  index : Number : A zero-based integer indicating which element to retrieve.
+",Element, Array,jQuery,method
+size,"size()
+Return the number of elements in the jQuery object.
+",Number,jQuery,method
+noConflict,"noConflict(removeAll)
+Relinquish jQuery's control of the <code>$</code> variable.
+  removeAll : Boolean : A Boolean indicating whether to remove all jQuery variables from the global scope (including jQuery itself).
+",Object,jQuery,method
+scroll,"scroll(handler(eventObject))
+To do something when your page is scrolled:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+scroll,"scroll(eventData,handler(eventObject))
+To do something when your page is scrolled:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+scroll,"scroll()
+To do something when your page is scrolled:
+",jQuery,jQuery,method
+resize,"resize(handler(eventObject))
+To see the window width while (or after) it is resized, try:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+resize,"resize(eventData,handler(eventObject))
+To see the window width while (or after) it is resized, try:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+resize,"resize()
+To see the window width while (or after) it is resized, try:
+",jQuery,jQuery,method
+dequeue,"dequeue(queueName)
+Execute the next function on the queue for the matched elements.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",jQuery,jQuery,method
+queue,"queue(queueName)
+Show the queue of functions to be executed on the matched elements.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+",Array,jQuery,method
+queue,"queue(queueName,newQueue)
+Manipulate the queue of functions to be executed on the matched elements.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+  newQueue : Array : An array of functions to replace the current queue contents.
+",jQuery,jQuery,method
+queue,"queue(queueName,callback( next ))
+Manipulate the queue of functions to be executed on the matched elements.
+  queueName : String : A string containing the name of the queue. Defaults to <code>fx</code>, the standard effects queue.
+  callback( next ) : Function : The new function to add to the queue, with a function to call that will dequeue the next item.
+",jQuery,jQuery,method
+keyup,"keyup(handler(eventObject))
+Show the event object for the keyup handler (using a simple $.print plugin) when a key is released in the input.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keyup,"keyup(eventData,handler(eventObject))
+Show the event object for the keyup handler (using a simple $.print plugin) when a key is released in the input.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keyup,"keyup()
+Show the event object for the keyup handler (using a simple $.print plugin) when a key is released in the input.
+",jQuery,jQuery,method
+keypress,"keypress(handler(eventObject))
+Show the event object when a key is pressed in the input. Note: This demo relies on a simple $.print() plugin (http://api.jquery.com/scripts/events.js) for the event object's output.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keypress,"keypress(eventData,handler(eventObject))
+Show the event object when a key is pressed in the input. Note: This demo relies on a simple $.print() plugin (http://api.jquery.com/scripts/events.js) for the event object's output.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+keypress,"keypress()
+Show the event object when a key is pressed in the input. Note: This demo relies on a simple $.print() plugin (http://api.jquery.com/scripts/events.js) for the event object's output.
+",jQuery,jQuery,method
+submit,"submit(handler(eventObject))
+If you'd like to prevent forms from being submitted unless a flag variable is set, try:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+submit,"submit(eventData,handler(eventObject))
+If you'd like to prevent forms from being submitted unless a flag variable is set, try:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+submit,"submit()
+If you'd like to prevent forms from being submitted unless a flag variable is set, try:
+",jQuery,jQuery,method
+select,"select(handler(eventObject))
+To do something when text in input boxes is selected:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+select,"select(eventData,handler(eventObject))
+To do something when text in input boxes is selected:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+select,"select()
+To do something when text in input boxes is selected:
+",jQuery,jQuery,method
+change,"change(handler(eventObject))
+Attaches a change event to the select that gets the text for each selected option and writes them in the div.  It then triggers the event for the initial text draw.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+change,"change(eventData,handler(eventObject))
+Attaches a change event to the select that gets the text for each selected option and writes them in the div.  It then triggers the event for the initial text draw.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+change,"change()
+Attaches a change event to the select that gets the text for each selected option and writes them in the div.  It then triggers the event for the initial text draw.
+",jQuery,jQuery,method
+blur,"blur(handler(eventObject))
+To trigger the blur event on all paragraphs:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+blur,"blur(eventData,handler(eventObject))
+To trigger the blur event on all paragraphs:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+blur,"blur()
+To trigger the blur event on all paragraphs:
+",jQuery,jQuery,method
+focus,"focus(handler(eventObject))
+Fire focus.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+focus,"focus(eventData,handler(eventObject))
+Fire focus.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+focus,"focus()
+Fire focus.
+",jQuery,jQuery,method
+mousemove,"mousemove(handler(eventObject))
+Show the mouse coordinates when the mouse is moved over the yellow div.  Coordinates are relative to the window, which in this case is the iframe.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mousemove,"mousemove(eventData,handler(eventObject))
+Show the mouse coordinates when the mouse is moved over the yellow div.  Coordinates are relative to the window, which in this case is the iframe.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mousemove,"mousemove()
+Show the mouse coordinates when the mouse is moved over the yellow div.  Coordinates are relative to the window, which in this case is the iframe.
+",jQuery,jQuery,method
+hover,"hover(handlerIn(eventObject),handlerOut(eventObject))
+To add a special style to list items that are being hovered over, try:
+  handlerIn(eventObject) : Function : A function to execute when the mouse pointer enters the element.
+  handlerOut(eventObject) : Function : A function to execute when the mouse pointer leaves the element.
+",jQuery,jQuery,method
+hover,"hover(handlerInOut(eventObject))
+Slide the next sibling LI up or down on hover, and toggle a class.
+  handlerInOut(eventObject) : Function : A function to execute when the mouse pointer enters or leaves the element.
+",jQuery,jQuery,method
+mouseleave,"mouseleave(handler(eventObject))
+A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseleave,"mouseleave(eventData,handler(eventObject))
+A map of data that will be passed to the event handler.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseleave,"mouseleave()
+A map of data that will be passed to the event handler.
+",jQuery,jQuery,method
+mouseenter,"mouseenter(handler(eventObject))
+A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseenter,"mouseenter(eventData,handler(eventObject))
+A map of data that will be passed to the event handler.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseenter,"mouseenter()
+A map of data that will be passed to the event handler.
+",jQuery,jQuery,method
+mouseout,"mouseout(handler(eventObject))
+A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseout,"mouseout(eventData,handler(eventObject))
+A map of data that will be passed to the event handler.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseout,"mouseout()
+A map of data that will be passed to the event handler.
+",jQuery,jQuery,method
+mouseover,"mouseover(handler(eventObject))
+A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseover,"mouseover(eventData,handler(eventObject))
+A map of data that will be passed to the event handler.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseover,"mouseover()
+A map of data that will be passed to the event handler.
+",jQuery,jQuery,method
+dblclick,"dblclick(handler(eventObject))
+To bind a ""Hello World!"" alert box the dblclick event on every paragraph on the page:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+dblclick,"dblclick(eventData,handler(eventObject))
+To bind a ""Hello World!"" alert box the dblclick event on every paragraph on the page:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+dblclick,"dblclick()
+To bind a ""Hello World!"" alert box the dblclick event on every paragraph on the page:
+",jQuery,jQuery,method
+click,"click(handler(eventObject))
+Hide paragraphs on a page when they are clicked:
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+click,"click(eventData,handler(eventObject))
+Hide paragraphs on a page when they are clicked:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+click,"click()
+Hide paragraphs on a page when they are clicked:
+",jQuery,jQuery,method
+mouseup,"mouseup(handler(eventObject))
+Show texts when mouseup and mousedown event triggering.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseup,"mouseup(eventData,handler(eventObject))
+Show texts when mouseup and mousedown event triggering.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mouseup,"mouseup()
+Show texts when mouseup and mousedown event triggering.
+",jQuery,jQuery,method
+mousedown,"mousedown(handler(eventObject))
+Show texts when mouseup and mousedown event triggering.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mousedown,"mousedown(eventData,handler(eventObject))
+Show texts when mouseup and mousedown event triggering.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+mousedown,"mousedown()
+Show texts when mouseup and mousedown event triggering.
+",jQuery,jQuery,method
+error,"error(handler(eventObject))
+To hide the ""broken image"" icons for IE users, you can try:
+  handler(eventObject) : Function : A function to execute when the event is triggered.
+",jQuery,jQuery,method
+error,"error(eventData,handler(eventObject))
+To hide the ""broken image"" icons for IE users, you can try:
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+unload,"unload(handler(eventObject))
+Bind an event handler to the ""unload"" JavaScript event.
+  handler(eventObject) : Function : A function to execute when the event is triggered.
+",jQuery,jQuery,method
+unload,"unload(eventData,handler(eventObject))
+Bind an event handler to the ""unload"" JavaScript event.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+load,"load(handler(eventObject))
+Run a function when the page is fully loaded including graphics.
+  handler(eventObject) : Function : A function to execute when the event is triggered.
+",jQuery,jQuery,method
+load,"load(eventData,handler(eventObject))
+Run a function when the page is fully loaded including graphics.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+ready,"ready(handler)
+Display a message when the DOM is loaded.
+  handler : Function : A function to execute after the DOM is ready.
+",jQuery,jQuery,method
+die,"die()
+jQuery
+",jQuery,jQuery,method
+die,"die(eventType,handler)
+Can bind and unbind events to the colored button.
+  eventType : String : A string containing a JavaScript event type, such as <code>click</code> or <code>keydown</code>.
+  handler : String : The function that is no longer to be executed.
+",jQuery,jQuery,method
+die,"die(eventTypes)
+Can bind and unbind events to the colored button.
+  eventTypes : Map : A map of one or more event types, such as <code>click</code> or <code>keydown</code> and their corresponding functions that are no longer to be executed.
+",jQuery,jQuery,method
+browser,"browser
+Contains flags for the useragent, read from navigator.userAgent. <strong>We recommend against using this property; please try to use feature detection instead (see jQuery.support). jQuery.browser may be moved to a plugin in a future release of jQuery.</strong> 
+",Map,jQuery,property
+browser.version,"browser.version
+The version number of the rendering engine for the user's browser.
+",String,jQuery,property
+live,"live(events,handler(eventObject))
+Click a paragraph to add another. Note that .live() binds the click event to all paragraphs - even new ones.
+  events : String : A string containing a JavaScript event type, such as ""click"" or ""keydown."" As of jQuery 1.4 the string can contain multiple, space-separated event types or custom event names.
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+live,"live(events,data,handler(eventObject))
+Click a paragraph to add another. Note that .live() binds the click event to all paragraphs - even new ones.
+  events : String : A string containing a JavaScript event type, such as ""click"" or ""keydown."" As of jQuery 1.4 the string can contain multiple, space-separated event types or custom event names.
+  data : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+live,"live(events-map)
+Click a paragraph to add another. Note that .live() binds the click event to all paragraphs - even new ones.
+  events-map : Object : A map of one or more JavaScript event types and functions to execute for them.
+",jQuery,jQuery,method
+triggerHandler,"triggerHandler(eventType,extraParameters)
+If you called .triggerHandler() on a focus event - the browser's default focus action would not be triggered, only the event handlers bound to the focus event.
+  eventType : String : A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
+  extraParameters : Array : An array of additional parameters to pass along to the event handler.
+",Object,jQuery,method
+trigger,"trigger(eventType,extraParameters)
+Clicks to button #2 also trigger a click for button #1.
+  eventType : String : A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
+  extraParameters : Object : Additional parameters to pass along to the event handler.
+",jQuery,jQuery,method
+trigger,"trigger(event)
+Clicks to button #2 also trigger a click for button #1.
+  event : Event : A <a href=""http://api.jquery.com/category/events/event-object/""><code>jQuery.Event</code></a> object.
+",jQuery,jQuery,method
+ajaxComplete,"ajaxComplete(handler(event, XMLHttpRequest, ajaxOptions))
+Register a handler to be called when Ajax requests complete. This is an <a href='http://docs.jquery.com/Ajax_Events'>Ajax Event</a>.
+  handler(event, XMLHttpRequest, ajaxOptions) : Function : The function to be invoked.
+",jQuery,jQuery,method
+one,"one(events,data,handler(eventObject))
+Tie a one-time click to each div.
+  events : String : A string containing one or more JavaScript event types, such as ""click"" or ""submit,"" or custom event names.
+  data : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute at the time the event is triggered.
+",jQuery,jQuery,method
+one,"one(events,selector,data,handler(eventObject))
+Tie a one-time click to each div.
+  events : String : One or more space-separated event types and optional namespaces, such as ""click"" or ""keydown.myPlugin"".
+  selector : String : A selector string to filter the descendants of the selected elements that trigger the event. If the selector is <code>null</code> or omitted, the event is always triggered when it reaches the selected element.
+  data : Anything : Data to be passed to the handler in <a href=""/event.data""><code>event.data</code></a> when an event is triggered.
+  handler(eventObject) : Function : A function to execute when the event is triggered. The value <code>false</code> is also allowed as a shorthand for a function that simply does <code>return false</code>.
+",jQuery,jQuery,method
+one,"one(events-map,selector,data)
+Tie a one-time click to each div.
+  events-map : Map : A map in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
+  selector : String : A selector string to filter the descendants of the selected elements that will call the handler. If the selector is null or omitted, the handler is always called when it reaches the selected element.
+  data : Anything : Data to be passed to the handler in <a href=""http://api.jquery.com/event.data""><code>event.data</code></a> when an event occurs.
+",jQuery,jQuery,method
+serializeArray,"serializeArray()
+Encode a set of form elements as an array of names and values.
+",Array,jQuery,method
+serialize,"serialize()
+Encode a set of form elements as a string for submission.
+",String,jQuery,method
+ajaxSuccess,"ajaxSuccess(handler(event, XMLHttpRequest, ajaxOptions))
+Attach a function to be executed whenever an Ajax request completes successfully. This is an <a href='http://docs.jquery.com/Ajax_Events'>Ajax Event</a>.
+  handler(event, XMLHttpRequest, ajaxOptions) : Function : The function to be invoked.
+",jQuery,jQuery,method
+ajaxStop,"ajaxStop(handler())
+Hide a loading message after all the Ajax requests have stopped.
+  handler() : Function : The function to be invoked.
+",jQuery,jQuery,method
+ajaxStart,"ajaxStart(handler())
+Register a handler to be called when the first Ajax request begins. This is an <a href='http://docs.jquery.com/Ajax_Events'>Ajax Event</a>.
+  handler() : Function : The function to be invoked.
+",jQuery,jQuery,method
+ajaxSend,"ajaxSend(handler(event, jqXHR, ajaxOptions))
+Attach a function to be executed before an Ajax request is sent. This is an <a href='http://docs.jquery.com/Ajax_Events'>Ajax Event</a>.
+  handler(event, jqXHR, ajaxOptions) : Function : The function to be invoked.
+",jQuery,jQuery,method
+ajaxError,"ajaxError(handler(event, jqXHR, ajaxSettings, thrownError))
+Register a handler to be called when Ajax requests complete with an error. This is an <a href='http://docs.jquery.com/Ajax_Events'>Ajax Event</a>.
+  handler(event, jqXHR, ajaxSettings, thrownError) : Function : The function to be invoked.
+",jQuery,jQuery,method
+unbind,"unbind(eventType,handler(eventObject))
+Can bind and unbind events to the colored button.
+  eventType : String : A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
+  handler(eventObject) : Function : The function that is to be no longer executed.
+",jQuery,jQuery,method
+unbind,"unbind(eventType,false)
+Can bind and unbind events to the colored button.
+  eventType : String : A string containing a JavaScript event type, such as <code>click</code> or <code>submit</code>.
+  false : Boolean : Unbinds the corresponding 'return false' function that was bound using <code>.bind( eventType, false )</code>.
+",jQuery,jQuery,method
+unbind,"unbind(event)
+Can bind and unbind events to the colored button.
+  event : Object : A JavaScript event object as passed to an event handler.
+",jQuery,jQuery,method
+bind,"bind(eventType,eventData,handler(eventObject))
+Attach a handler to an event for the elements.
+  eventType : String : A string containing one or more DOM event types, such as ""click"" or ""submit,"" or custom event names.
+  eventData : Object : A map of data that will be passed to the event handler.
+  handler(eventObject) : Function : A function to execute each time the event is triggered.
+",jQuery,jQuery,method
+bind,"bind(eventType,eventData,preventBubble)
+Attach a handler to an event for the elements.
+  eventType : String : A string containing one or more DOM event types, such as ""click"" or ""submit,"" or custom event names.
+  eventData : Object : A map of data that will be passed to the event handler.
+  preventBubble : Boolean : Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
+",jQuery,jQuery,method
+bind,"bind(events)
+Attach a handler to an event for the elements.
+  events : Object : A map of one or more DOM event types and functions to execute for them.
+",jQuery,jQuery,method
+first,"first()
+Reduce the set of matched elements to the first in the set.
+",jQuery,jQuery,method
+last,"last()
+Reduce the set of matched elements to the final one in the set.
+",jQuery,jQuery,method
+slice,"slice(start,end)
+Reduce the set of matched elements to a subset specified by a range of indices.
+  start : Integer : An integer indicating the 0-based position at which the elements begin to be selected. If negative, it indicates an offset from the end of the set.
+  end : Integer : An integer indicating the 0-based position at which the elements stop being selected. If negative, it indicates an offset from the end of the set. If omitted, the range continues until the end of the set.
+",jQuery,jQuery,method
+jQuery,"jQuery(context)
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+  context : Element, jQuery : A DOM Element, Document, or jQuery to use as context
+",jQuery,jQuery,method
+jQuery,"jQuery(element)
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+  element : Element : A DOM element to wrap in a jQuery object.
+",jQuery,jQuery,method
+jQuery,"jQuery(object)
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+  object : Object : A plain object to wrap in a jQuery object.
+",jQuery,jQuery,method
+jQuery,"jQuery(elementArray)
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+  elementArray : Array : An array containing a set of DOM elements to wrap in a jQuery object.
+",jQuery,jQuery,method
+jQuery,"jQuery(jQuery object)
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+  jQuery object : Object : An existing jQuery object to clone.
+",jQuery,jQuery,method
+jQuery,"jQuery()
+Accepts a string containing a CSS selector which is then used to match a set of elements.
+",jQuery,jQuery,method
+jQuery,"jQuery(html,ownerDocument)
+Creates DOM elements on the fly from the provided string of raw HTML.
+  html : String : A string of HTML to create on the fly. Note that this parses HTML, <strong>not</strong> XML.
+  ownerDocument : document : A document in which the new elements will be created
+",jQuery,jQuery,method
+jQuery,"jQuery(html,props)
+Creates DOM elements on the fly from the provided string of raw HTML.
+  html : String : A string defining a single, standalone, HTML element (e.g. &lt;div/&gt; or &lt;div&gt;&lt;/div&gt;).
+  props : Object : An map of attributes, events, and methods to call on the newly-created element.
+",jQuery,jQuery,method
+jQuery,"jQuery(callback)
+Binds a function to be executed when the DOM has finished loading.
+  callback : Function : The function to execute when the DOM is ready.
+",jQuery,jQuery,method
+stop,"stop(clearQueue,jumpToEnd)
+Click the Go button once to start the animation, then click the STOP button to stop it where it's currently positioned.  Another option is to click several buttons to queue them up and see that stop just kills the currently playing one.
+  clearQueue : Boolean : A Boolean indicating whether to remove queued animation as well. Defaults to <code>false</code>.
+  jumpToEnd : Boolean : A Boolean indicating whether to complete the current animation immediately. Defaults to <code>false</code>.
+",jQuery,jQuery,method
+stop,"stop(queue,clearQueue,jumpToEnd)
+Click the Go button once to start the animation, then click the STOP button to stop it where it's currently positioned.  Another option is to click several buttons to queue them up and see that stop just kills the currently playing one.
+  queue : String : The name of the queue in which to stop animations.
+  clearQueue : Boolean : A Boolean indicating whether to remove queued animation as well. Defaults to <code>false</code>.
+  jumpToEnd : Boolean : A Boolean indicating whether to complete the current animation immediately. Defaults to <code>false</code>.
+",jQuery,jQuery,method
+end,"end()
+End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.
+",jQuery,jQuery,method
+andSelf,"andSelf()
+Add the previous set of elements on the stack to the current set.
+",jQuery,jQuery,method
+siblings,"siblings(selector)
+Get the siblings of each element in the set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+animate,"animate(properties,duration,easing,complete)
+Click the button to animate the div with a number of different properties.
+  properties : Map : A map of CSS properties that the animation will move toward.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  complete : Function : A function to call once the animation is complete.
+",jQuery,jQuery,method
+animate,"animate(properties)
+Click the button to animate the div with a number of different properties.
+  properties : Map : A map of CSS properties that the animation will move toward.
+",jQuery,jQuery,method
+prevAll,"prevAll(selector)
+Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+prev,"prev(selector)
+Get the immediately preceding sibling of each element in the set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+fadeTo,"fadeTo(duration,opacity,callback)
+Animates first paragraph to fade to an opacity of 0.33 (33%, about one third visible), completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  opacity : Number : A number between 0 and 1 denoting the target opacity.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+fadeTo,"fadeTo(duration,opacity,easing,callback)
+Animates first paragraph to fade to an opacity of 0.33 (33%, about one third visible), completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  opacity : Number : A number between 0 and 1 denoting the target opacity.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+fadeOut,"fadeOut(duration,callback)
+Animates all paragraphs to fade out, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+fadeOut,"fadeOut(duration,easing,callback)
+Animates all paragraphs to fade out, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+parents,"parents(selector)
+Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+fadeIn,"fadeIn(duration,callback)
+Animates hidden divs to fade in one by one, completing each animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+fadeIn,"fadeIn(duration,easing,callback)
+Animates hidden divs to fade in one by one, completing each animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+parent,"parent(selector)
+Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+offsetParent,"offsetParent()
+Get the closest ancestor element that is positioned.
+",jQuery,jQuery,method
+slideToggle,"slideToggle(duration,callback)
+Animates all paragraphs to slide up or down, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+slideToggle,"slideToggle(duration,easing,callback)
+Animates all paragraphs to slide up or down, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+post,"post(url,data,success(data, textStatus, jqXHR),dataType)
+Load data from the server using a HTTP POST request.
+  url : String : A string containing the URL to which the request is sent.
+  data : Map, String : A map or string that is sent to the server with the request.
+  success(data, textStatus, jqXHR) : Function : A callback function that is executed if the request succeeds.
+  dataType : String : The type of data expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
+",jqXHR,jQuery,method
+slideUp,"slideUp(duration,callback)
+Animates all divs to slide up, completing the animation within 400 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+slideUp,"slideUp(duration,easing,callback)
+Animates all divs to slide up, completing the animation within 400 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+nextAll,"nextAll(selector)
+Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.
+  selector : String : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+next,"next(selector)
+Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+slideDown,"slideDown(duration,callback)
+Animates all divs to slide down and show themselves over 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+slideDown,"slideDown(duration,easing,callback)
+Animates all divs to slide down and show themselves over 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+find,"find(selector)
+Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+find,"find(jQuery object)
+Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
+  jQuery object : Object : A jQuery object to match elements against.
+",jQuery,jQuery,method
+find,"find(element)
+Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
+  element : Element : An element to match elements against.
+",jQuery,jQuery,method
+getScript,"getScript(url,success(script, textStatus, jqXHR))
+Load a JavaScript file from the server using a GET HTTP request, then execute it.
+  url : String : A string containing the URL to which the request is sent.
+  success(script, textStatus, jqXHR) : Function : A callback function that is executed if the request succeeds.
+",jqXHR,jQuery,method
+contents,"contents()
+Get the children of each element in the set of matched elements, including text and comment nodes.
+",jQuery,jQuery,method
+closest,"closest(selector)
+Get the first element that matches the selector, beginning at the current element and progressing up through the DOM tree.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+closest,"closest(selector,context)
+Get the first element that matches the selector, beginning at the current element and progressing up through the DOM tree.
+  selector : Selector : A string containing a selector expression to match elements against.
+  context : Element : A DOM element within which a matching element may be found. If no context is passed in then the context of the jQuery set will be used instead.
+",jQuery,jQuery,method
+closest,"closest(jQuery object)
+Get the first element that matches the selector, beginning at the current element and progressing up through the DOM tree.
+  jQuery object : jQuery : A jQuery object to match elements against.
+",jQuery,jQuery,method
+closest,"closest(element)
+Get the first element that matches the selector, beginning at the current element and progressing up through the DOM tree.
+  element : Element : An element to match elements against.
+",jQuery,jQuery,method
+closest,"closest(selectors,context)
+Gets an array of all the elements and selectors matched against the current element up through the DOM tree.
+  selectors : Array : An array or string containing a selector expression to match elements against (can also be a jQuery object).
+  context : Element : A DOM element within which a matching element may be found. If no context is passed in then the context of the jQuery set will be used instead.
+",Array,jQuery,method
+getJSON,"getJSON(url,data,success(data, textStatus, jqXHR))
+Load JSON-encoded data from the server using a GET HTTP request.
+  url : String : A string containing the URL to which the request is sent.
+  data : Map : A map or string that is sent to the server with the request.
+  success(data, textStatus, jqXHR) : Function : A callback function that is executed if the request succeeds.
+",jqXHR,jQuery,method
+get,"get(url,data,success(data, textStatus, jqXHR),dataType)
+Load data from the server using a HTTP GET request.
+  url : String : A string containing the URL to which the request is sent.
+  data : Map, String : A map or string that is sent to the server with the request.
+  success(data, textStatus, jqXHR) : Function : A callback function that is executed if the request succeeds.
+  dataType : String : The type of data expected from the server. Default: Intelligent Guess (xml, json, script, or html).
+",jqXHR,jQuery,method
+load,"load(url,data,complete(responseText, textStatus, XMLHttpRequest))
+Load data from the server and place the returned HTML into the matched element.
+  url : String : A string containing the URL to which the request is sent.
+  data : Map, String : A map or string that is sent to the server with the request.
+  complete(responseText, textStatus, XMLHttpRequest) : Function : A callback function that is executed when the request completes.
+",jQuery,jQuery,method
+ajax,"ajax(url,settings)
+Perform an asynchronous HTTP (Ajax) request.
+  url : String : A string containing the URL to which the request is sent.
+  settings : Map : A set of key/value pairs that configure the Ajax request. All settings are optional. A default can be set for any option with <a href=""/jQuery.ajaxSetup"">$.ajaxSetup()</a>. See <a href=""#jQuery-ajax-settings"">jQuery.ajax( settings )</a> below for a complete list of all settings. 
+",jqXHR,jQuery,method
+ajax,"ajax(settings)
+Perform an asynchronous HTTP (Ajax) request.
+  settings : Map : A set of key/value pairs that configure the Ajax request. All settings are optional. A default can be set for any option with <a href=""/jQuery.ajaxSetup"">$.ajaxSetup()</a>.
+",jqXHR,jQuery,method
+length,"length
+The number of elements in the jQuery object.
+",Number,jQuery,property
+children,"children(selector)
+Get the children of each element in the set of matched elements, optionally filtered by a selector.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+add,"add(selector)
+Add elements to the set of matched elements.
+  selector : Selector : A string representing a selector expression to find additional elements to add to the set of matched elements.
+",jQuery,jQuery,method
+add,"add(elements)
+Add elements to the set of matched elements.
+  elements : Elements : One or more elements to add to the set of matched elements.
+",jQuery,jQuery,method
+add,"add(html)
+Add elements to the set of matched elements.
+  html : HTML : An HTML fragment to add to the set of matched elements.
+",jQuery,jQuery,method
+add,"add(jQuery object)
+Add elements to the set of matched elements.
+  jQuery object : jQuery object  : An existing jQuery object to add to the set of matched elements.
+",jQuery,jQuery,method
+add,"add(selector,context)
+Add elements to the set of matched elements.
+  selector : Selector : A string representing a selector expression to find additional elements to add to the set of matched elements.
+  context : Element : The point in the document at which the selector should begin matching; similar to the context argument of the <code>$(selector, context)</code> method.
+",jQuery,jQuery,method
+context,"context
+The DOM node context originally passed to <code>jQuery()</code>; if none was passed then context will likely be the document.
+",Element,jQuery,property
+not,"not(selector)
+Remove elements from the set of matched elements.
+  selector : Selector : A string containing a selector expression to match elements against.
+",jQuery,jQuery,method
+not,"not(elements)
+Remove elements from the set of matched elements.
+  elements : Elements : One or more DOM elements to remove from the matched set.
+",jQuery,jQuery,method
+not,"not(function(index))
+Remove elements from the set of matched elements.
+  function(index) : Function : A function used as a test for each element in the set. <code>this</code> is the current DOM element.
+",jQuery,jQuery,method
+not,"not(jQuery object)
+Remove elements from the set of matched elements.
+  jQuery object : Object : An existing jQuery object to match the current set of elements against.
+",jQuery,jQuery,method
+outerWidth,"outerWidth(includeMargin)
+Get the current computed width for the first element in the set of matched elements, including padding and border.
+  includeMargin : Boolean : A Boolean indicating whether to include the element's margin in the calculation.
+",Integer,jQuery,method
+outerHeight,"outerHeight(includeMargin)
+Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns an integer (without ""px"") representation of the value or null if called on an empty set of elements.
+  includeMargin : Boolean : A Boolean indicating whether to include the element's margin in the calculation.
+",Integer,jQuery,method
+toggle,"toggle(duration,callback)
+Toggles all paragraphs.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+toggle,"toggle(duration,easing,callback)
+Toggles all paragraphs.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+toggle,"toggle(showOrHide)
+Toggles all paragraphs.
+  showOrHide : Boolean : A Boolean indicating whether to show or hide the elements.
+",jQuery,jQuery,method
+innerWidth,"innerWidth()
+Get the current computed width for the first element in the set of matched elements, including padding but not border.
+",Integer,jQuery,method
+innerHeight,"innerHeight()
+Get the current computed height for the first element in the set of matched elements, including padding but not border.
+",Integer,jQuery,method
+param,"param(obj)
+Create a serialized representation of an array or object, suitable for use in a URL query string or Ajax request. 
+  obj : Array, Object : An array or object to serialize.
+",String,jQuery,method
+param,"param(obj,traditional)
+Create a serialized representation of an array or object, suitable for use in a URL query string or Ajax request. 
+  obj : Array, Object : An array or object to serialize.
+  traditional : Boolean : A Boolean indicating whether to perform a traditional ""shallow"" serialization.
+",String,jQuery,method
+hide,"hide()
+Hides all paragraphs then the link on click.
+",jQuery,jQuery,method
+hide,"hide(duration,callback)
+Hides all paragraphs then the link on click.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+hide,"hide(duration,easing,callback)
+Hides all paragraphs then the link on click.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+width,"width()
+Get the current computed width for the first element in the set of matched elements.
+",Integer,jQuery,method
+width,"width(value)
+Set the CSS width of each element in the set of matched elements.
+  value : String, Number : An integer representing the number of pixels, or an integer along with an optional unit of measure appended (as a string).
+",jQuery,jQuery,method
+width,"width(function(index, width))
+Set the CSS width of each element in the set of matched elements.
+  function(index, width) : Function : A function returning the width to set. Receives the index position of the element in the set and the old width as arguments. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+height,"height()
+Get the current computed height for the first element in the set of matched elements.
+",Integer,jQuery,method
+height,"height(value)
+Set the CSS height of every matched element.
+  value : String, Number : An integer representing the number of pixels, or an integer with an optional unit of measure appended (as a string).
+",jQuery,jQuery,method
+height,"height(function(index, height))
+Set the CSS height of every matched element.
+  function(index, height) : Function : A function returning the height to set. Receives the index position of the element in the set and the old height as arguments. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+show,"show()
+Animates all hidden paragraphs to show slowly, completing the animation within 600 milliseconds.
+",jQuery,jQuery,method
+show,"show(duration,callback)
+Animates all hidden paragraphs to show slowly, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+show,"show(duration,easing,callback)
+Animates all hidden paragraphs to show slowly, completing the animation within 600 milliseconds.
+  duration : String,Number : A string or number determining how long the animation will run.
+  easing : String : A string indicating which easing function to use for the transition.
+  callback : Callback : A function to call once the animation is complete.
+",jQuery,jQuery,method
+scrollLeft,"scrollLeft()
+Get the current horizontal position of the scroll bar for the first element in the set of matched elements.
+",Integer,jQuery,method
+scrollLeft,"scrollLeft(value)
+Set the current horizontal position of the scroll bar for each of the set of matched elements.
+  value : Number : An integer indicating the new position to set the scroll bar to.
+",jQuery,jQuery,method
+trim,"trim(str)
+Remove the whitespace from the beginning and end of a string.
+  str : String : The string to trim.
+",String,jQuery,method
+isFunction,"isFunction(obj)
+Determine if the argument passed is a Javascript function object. 
+  obj : Object : Object to test whether or not it is a function.
+",boolean,jQuery,method
+isArray,"isArray(obj)
+Determine whether the argument is an array.
+  obj : Object : Object to test whether or not it is an array.
+",boolean,jQuery,method
+unique,"unique(array)
+Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.
+  array : Array : The Array of DOM elements.
+",Array,jQuery,method
+merge,"merge(first,second)
+Merges two arrays, altering the first argument.
+  first : Array : The first array to merge, the elements of second added.
+  second : Array : The second array to merge into the first, unaltered.
+",Array,jQuery,method
+inArray,"inArray(value,array,fromIndex)
+Search for a specified value within an array and return its index (or -1 if not found).
+  value : Any : The value to search for.
+  array : Array : An array through which to search.
+  fromIndex : Number : The index of the array at which to begin the search. The default is 0, which will search the whole array.
+",Number,jQuery,method
+map,"map(array,callback(elementOfArray, indexInArray))
+Translate all items in an array or object to new array of items.
+  array : Array : The Array to translate.
+  callback(elementOfArray, indexInArray) : Function : The function to process each item against.  The first argument to the function is the array item, the second argument is the index in array The function can return any value. Within the function, <code>this</code> refers to the global (window) object.
+",Array,jQuery,method
+map,"map(arrayOrObject,callback( value, indexOrKey ))
+Translate all items in an array or object to new array of items.
+  arrayOrObject : Array,Object : The Array or Object to translate.
+  callback( value, indexOrKey ) : Function : The function to process each item against.  The first argument to the function is the value; the second argument is the index or key of the array or object property. The function can return any value to add to the array. A returned array will be flattened into the resulting array. Within the function, <code>this</code> refers to the global (window) object. 
+",Array,jQuery,method
+makeArray,"makeArray(obj)
+Convert an array-like object into a true JavaScript array.
+  obj : Object : Any object to turn into a native Array.
+",Array,jQuery,method
+grep,"grep(array,function(elementOfArray, indexInArray),invert)
+Filters the original array of numbers leaving that are not 5 and have an index greater than 4.  Then it removes all 9s.
+  array : Array : The array to search through.
+  function(elementOfArray, indexInArray) : Function : The function to process each item against.  The first argument to the function is the item, and the second argument is the index.  The function should return a Boolean value.  <code>this</code> will be the global window object.
+  invert : Boolean : If ""invert"" is false, or not provided, then the function returns an array consisting of all elements for which ""callback"" returns true.  If ""invert"" is true, then the function returns an array consisting of all elements for which ""callback"" returns false.
+",Array,jQuery,method
+extend,"extend(target,object1,objectN)
+Merge the contents of two or more objects together into the first object.
+  target : Object :  An object that will receive the new properties if additional objects are passed in or that will extend the jQuery namespace if it is the sole argument.
+  object1 : Object : An object containing additional properties to merge in.
+  objectN : Object : Additional objects containing properties to merge in.
+",Object,jQuery,method
+extend,"extend(deep,target,object1,objectN)
+Merge the contents of two or more objects together into the first object.
+  deep : Boolean : If true, the merge becomes recursive (aka. deep copy).
+  target : Object : The object to extend. It will receive the new properties.
+  object1 : Object : An object containing additional properties to merge in.
+  objectN : Object : Additional objects containing properties to merge in.
+",Object,jQuery,method
+each,"each(collection,callback(indexInArray, valueOfElement))
+A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
+  collection : Object : The object or array to iterate over.
+  callback(indexInArray, valueOfElement) : Function : The function that will be executed on every object.
+",Object,jQuery,method
+boxModel,"boxModel
+<strong>Deprecated in jQuery 1.3 (see <a href=""/jQuery.support"">jQuery.support</a>)</strong>. States if the current page, in the user's browser, is being rendered using the <a href=""http://www.w3.org/TR/REC-CSS2/box.html"">W3C CSS Box Model</a>.
+",Boolean,jQuery,property
+scrollTop,"scrollTop()
+Get the current vertical position of the scroll bar for the first element in the set of matched elements.
+",Integer,jQuery,method
+scrollTop,"scrollTop(value)
+Set the current vertical position of the scroll bar for each of the set of matched elements.
+  value : Number : An integer indicating the new position to set the scroll bar to.
+",jQuery,jQuery,method
+support,"support
+A collection of properties that represent the presence of different browser features or bugs. Primarily intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance.
+",Object,jQuery,property
+position,"position()
+Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.
+",Object,jQuery,method
+offset,"offset()
+Get the current coordinates of the first element in the set of matched elements, relative to the document.
+",Object,jQuery,method
+offset,"offset(coordinates)
+Set the current coordinates of every element in the set of matched elements, relative to the document.
+  coordinates : Object : An object containing the properties <code>top</code> and <code>left</code>, which are integers indicating the new top and left coordinates for the elements.
+",jQuery,jQuery,method
+offset,"offset(function(index, coords))
+Set the current coordinates of every element in the set of matched elements, relative to the document.
+  function(index, coords) : Function : A function to return the coordinates to set. Receives the index of the element in the collection as the first argument and the current coordinates as the second argument. The function should return an object with the new <code>top</code> and <code>left</code> properties.
+",jQuery,jQuery,method
+css,"css(propertyName)
+Get the value of a style property for the first element in the set of matched elements.
+  propertyName : String : A CSS property.
+",String,jQuery,method
+css,"css(propertyName,value)
+Set one or more CSS properties for the  set of matched elements.
+  propertyName : String : A CSS property name.
+  value : String, Number : A value to set for the property.
+",jQuery,jQuery,method
+css,"css(propertyName,function(index, value))
+Set one or more CSS properties for the  set of matched elements.
+  propertyName : String : A CSS property name.
+  function(index, value) : Function : A function returning the value to set. <code>this</code> is the current element. Receives the index position of the element in the set and the old value as arguments.
+",jQuery,jQuery,method
+css,"css(map)
+Set one or more CSS properties for the  set of matched elements.
+  map : Map : A map of property-value pairs to set.
+",jQuery,jQuery,method
+unwrap,"unwrap()
+Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.
+",jQuery,jQuery,method
+detach,"detach(selector)
+Remove the set of matched elements from the DOM.
+  selector : Selector : A selector expression that filters the set of matched elements to be removed.
+",jQuery,jQuery,method
+clone,"clone(withDataAndEvents)
+Create a deep copy of the set of matched elements.
+  withDataAndEvents : Boolean : A Boolean indicating whether event handlers should be copied along with the elements. As of jQuery 1.4, element data will be copied as well.
+",jQuery,jQuery,method
+clone,"clone(withDataAndEvents,deepWithDataAndEvents)
+Create a deep copy of the set of matched elements.
+  withDataAndEvents : Boolean : A Boolean indicating whether event handlers and data should be copied along with the elements. The default value is <code>false</code>. <em>*In jQuery 1.5.0 the default value was incorrectly <code>true</code>; it was changed back to <code>false</code> in 1.5.1 and up.</em>
+  deepWithDataAndEvents : Boolean : A Boolean indicating whether event handlers and data for all children of the cloned element should be copied. By default its value matches the first argument's value (which defaults to <code>false</code>).
+",jQuery,jQuery,method
+remove,"remove(selector)
+Remove the set of matched elements from the DOM.
+  selector : String : A selector expression that filters the set of matched elements to be removed.
+",jQuery,jQuery,method
+empty,"empty()
+Remove all child nodes of the set of matched elements from the DOM.
+",jQuery,jQuery,method
+replaceAll,"replaceAll(target)
+Replace each target element with the set of matched elements.
+  target : Selector : A selector expression indicating which element(s) to replace.
+",jQuery,jQuery,method
+replaceWith,"replaceWith(newContent)
+Replace each element in the set of matched elements with the provided new content.
+  newContent : String, Element, jQuery : The content to insert. May be an HTML string, DOM element, or jQuery object.
+",jQuery,jQuery,method
+replaceWith,"replaceWith(function)
+Replace each element in the set of matched elements with the provided new content.
+  function : Function : A function that returns content with which to replace the set of matched elements.
+",jQuery,jQuery,method
+wrapInner,"wrapInner(wrappingElement)
+Wrap an HTML structure around the content of each element in the set of matched elements.
+  wrappingElement : String : An HTML snippet, selector expression, jQuery object, or DOM element specifying the structure to wrap around the content of the matched elements.
+",jQuery,jQuery,method
+wrapInner,"wrapInner(function(index))
+Wrap an HTML structure around the content of each element in the set of matched elements.
+  function(index) : Function : A callback function which generates a structure to wrap around the content of the matched elements. Receives the index position of the element in the set as an argument. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+wrapAll,"wrapAll(wrappingElement)
+Wrap an HTML structure around all elements in the set of matched elements.
+  wrappingElement : String, Selector, Element, jQuery : An HTML snippet, selector expression, jQuery object, or DOM element specifying the structure to wrap around the matched elements.
+",jQuery,jQuery,method
+wrap,"wrap(wrappingElement)
+Wrap an HTML structure around each element in the set of matched elements.
+  wrappingElement : String, Selector, Element, jQuery : An HTML snippet, selector expression, jQuery object, or DOM element specifying the structure to wrap around the matched elements.
+",jQuery,jQuery,method
+wrap,"wrap(function(index))
+Wrap an HTML structure around each element in the set of matched elements.
+  function(index) : Function : A callback function returning the HTML content or jQuery object to wrap around the matched elements. Receives the index position of the element in the set as an argument. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+insertBefore,"insertBefore(target)
+Insert every element in the set of matched elements before the target.
+  target : Selector, Element, jQuery : A selector, element, HTML string, or jQuery object; the matched set of elements will be inserted before the element(s) specified by this parameter.
+",jQuery,jQuery,method
+before,"before(content,content)
+Insert content, specified by the parameter, before each element in the set of matched elements.
+  content : String, Element, jQuery : HTML string, DOM element, or jQuery object to insert before each element in the set of matched elements.
+  content : String, Element, Array, jQuery : One or more additional DOM elements, arrays of elements, HTML strings, or jQuery objects to insert before each element in the set of matched elements.
+",jQuery,jQuery,method
+before,"before()
+Insert content, specified by the parameter, before each element in the set of matched elements.
+",jQuery,jQuery,method
+insertAfter,"insertAfter(target)
+Insert every element in the set of matched elements after the target.
+  target : Selector, Element, jQuery : A selector, element, HTML string, or jQuery object; the matched set of elements will be inserted after the element(s) specified by this parameter.
+",jQuery,jQuery,method
+after,"after(content,content)
+Insert content, specified by the parameter, after each element in the set of matched elements.
+  content : String, Element, jQuery : HTML string, DOM element, or jQuery object to insert after each element in the set of matched elements.
+  content : String, Element, Array, jQuery : One or more additional DOM elements, arrays of elements, HTML strings, or jQuery objects to insert after each element in the set of matched elements.
+",jQuery,jQuery,method
+after,"after(function(index))
+Insert content, specified by the parameter, after each element in the set of matched elements.
+  function(index) : Function : A function that returns an HTML string, DOM element(s), or jQuery object to insert after each element in the set of matched elements. Receives the index position of the element in the set as an argument. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+prependTo,"prependTo(target)
+Insert every element in the set of matched elements to the beginning of the target.
+  target : Selector, Element, jQuery : A selector, element, HTML string, or jQuery object; the matched set of elements will be inserted at the beginning of the element(s) specified by this parameter.
+",jQuery,jQuery,method
+prepend,"prepend(content,content)
+Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
+  content : String, Element, jQuery : DOM element, array of elements, HTML string, or jQuery object to insert at the beginning of each element in the set of matched elements.
+  content : String, Element, jQuery : One or more additional DOM elements, arrays of elements, HTML strings, or jQuery objects to insert at the beginning of each element in the set of matched elements.
+",jQuery,jQuery,method
+prepend,"prepend(function(index, html))
+Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
+  function(index, html) : Function : A function that returns an HTML string, DOM element(s), or jQuery object to insert at the beginning of each element in the set of matched elements. Receives the index position of the element in the set and the old HTML value of the element as arguments. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+appendTo,"appendTo(target)
+Insert every element in the set of matched elements to the end of the target.
+  target : Selector, Element, jQuery : A selector, element, HTML string, or jQuery object; the matched set of elements will be inserted at the end of the element(s) specified by this parameter.
+",jQuery,jQuery,method
+append,"append(content,content)
+Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+  content : String, Element, jQuery : DOM element, HTML string, or jQuery object to insert at the end of each element in the set of matched elements.
+  content : String, Element, Array, jQuery : One or more additional DOM elements, arrays of elements, HTML strings, or jQuery objects to insert at the end of each element in the set of matched elements.
+",jQuery,jQuery,method
+append,"append()
+Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+",jQuery,jQuery,method
+val,"val()
+Get the current value of the first element in the set of matched elements.
+",String, Number, Array,jQuery,method
+val,"val(value)
+Set the value of each element in the set of matched elements.
+  value : String : A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
+",jQuery,jQuery,method
+val,"val(function(index, value))
+Set the value of each element in the set of matched elements.
+  function(index, value) : Function : A function returning the value to set. <code>this</code> is the current element. Receives the index position of the element in the set and the old value as arguments.
+",jQuery,jQuery,method
+text,"text()
+Get the combined text contents of each element in the set of matched elements, including their descendants.
+",String,jQuery,method
+text,"text(textString)
+Set the content of each element in the set of matched elements to the specified text.
+  textString : String : A string of text to set as the content of each matched element.
+",jQuery,jQuery,method
+text,"text(function(index, text))
+Set the content of each element in the set of matched elements to the specified text.
+  function(index, text) : Function : A function returning the text content to set. Receives the index position of the element in the set and the old text value as arguments.
+",jQuery,jQuery,method
+html,"html()
+Get the HTML contents of the first element in the set of matched elements.
+",String,jQuery,method
+html,"html(htmlString)
+Set the HTML contents of each element in the set of matched elements.
+  htmlString : String : A string of HTML to set as the content of each matched element.
+",jQuery,jQuery,method
+html,"html(function(index, oldhtml))
+Set the HTML contents of each element in the set of matched elements.
+  function(index, oldhtml) : Function : A function returning the HTML content to set. Receives the index position of the element in the set and the old HTML value as arguments. jQuery empties the element before calling the function; use the oldhtml argument to reference the previous content. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+map,"map(callback(index, domElement))
+Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
+  callback(index, domElement) : Function : A function object that will be invoked for each element in the current set.
+",jQuery,jQuery,method
+is,"is(selector)
+Check the current matched set of elements against a selector, element, or jQuery object and return <code>true</code> if at least one of these elements matches the given arguments.
+  selector : Selector : A string containing a selector expression to match elements against.
+",Boolean,jQuery,method
+is,"is(function(index))
+Check the current matched set of elements against a selector, element, or jQuery object and return <code>true</code> if at least one of these elements matches the given arguments.
+  function(index) : Function : A function used as a test for the set of elements. It accepts one argument, <code>index</code>, which is the element's index in the jQuery collection.Within the function, <code>this</code> refers to the current DOM element. 
+",Boolean,jQuery,method
+is,"is(jQuery object)
+Check the current matched set of elements against a selector, element, or jQuery object and return <code>true</code> if at least one of these elements matches the given arguments.
+  jQuery object : Object : An existing jQuery object to match the current set of elements against.
+",Boolean,jQuery,method
+is,"is(element)
+Check the current matched set of elements against a selector, element, or jQuery object and return <code>true</code> if at least one of these elements matches the given arguments.
+  element : Element : An element to match the current set of elements against.
+",Boolean,jQuery,method
+eq,"eq(index)
+Reduce the set of matched elements to the one at the specified index.
+  index : Integer : An integer indicating the 0-based position of the element. 
+",jQuery,jQuery,method
+eq,"eq(-index)
+Reduce the set of matched elements to the one at the specified index.
+  -index : Integer : An integer indicating the position of the element, counting backwards  from the last element in the set. 
+",jQuery,jQuery,method
+filter,"filter(selector)
+Reduce the set of matched elements to those that match the selector or pass the function's test. 
+  selector : Selector : A string containing a selector expression to match the current set of elements against.
+",jQuery,jQuery,method
+filter,"filter(function(index))
+Reduce the set of matched elements to those that match the selector or pass the function's test. 
+  function(index) : Function : A function used as a test for each element in the set. <code>this</code> is the current DOM element.
+",jQuery,jQuery,method
+filter,"filter(element)
+Reduce the set of matched elements to those that match the selector or pass the function's test. 
+  element : Element : An element to match the current set of elements against.
+",jQuery,jQuery,method
+filter,"filter(jQuery object)
+Reduce the set of matched elements to those that match the selector or pass the function's test. 
+  jQuery object : Object : An existing jQuery object to match the current set of elements against.
+",jQuery,jQuery,method
+toggleClass,"toggleClass(className)
+Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+  className : String : One or more class names (separated by spaces) to be toggled for each element in the matched set.
+",jQuery,jQuery,method
+toggleClass,"toggleClass(className,switch)
+Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+  className : String : One or more class names (separated by spaces) to be toggled for each element in the matched set.
+  switch : Boolean : A Boolean (not just truthy/falsy) value to determine whether the class should be added or removed.
+",jQuery,jQuery,method
+toggleClass,"toggleClass(switch)
+Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+  switch : Boolean : A boolean value to determine whether the class should be added or removed.
+",jQuery,jQuery,method
+toggleClass,"toggleClass(function(index, class, switch),switch)
+Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+  function(index, class, switch) : Function : A function that returns class names to be toggled in the class attribute of each element in the matched set. Receives the index position of the element in the set, the old class value, and the switch as arguments.
+  switch : Boolean : A boolean value to determine whether the class should be added or removed.
+",jQuery,jQuery,method
+removeClass,"removeClass(className)
+Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
+  className : String : One or more space-separated classes to be removed from the class attribute of each matched element.
+",jQuery,jQuery,method
+removeClass,"removeClass(function(index, class))
+Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
+  function(index, class) : Function : A function returning one or more space-separated class names to be removed. Receives the index position of the element in the set and the old class value as arguments.
+",jQuery,jQuery,method
+hasClass,"hasClass(className)
+Determine whether any of the matched elements are assigned the given class.
+  className : String : The class name to search for.
+",Boolean,jQuery,method
+removeAttr,"removeAttr(attributeName)
+Remove an attribute from each element in the set of matched elements.
+  attributeName : String : An attribute to remove; as of version 1.7, it can be a space-separated list of attributes.
+",jQuery,jQuery,method
+attr,"attr(attributeName)
+Get the value of an attribute for the first element in the set of matched elements.
+  attributeName : String : The name of the attribute to get.
+",String,jQuery,method
+attr,"attr(attributeName,value)
+Set one or more attributes for the set of matched elements.
+  attributeName : String : The name of the attribute to set.
+  value : String,Number : A value to set for the attribute.
+",jQuery,jQuery,method
+attr,"attr(map)
+Set one or more attributes for the set of matched elements.
+  map : Map : A map of attribute-value pairs to set.
+",jQuery,jQuery,method
+attr,"attr(attributeName,function(index, attr))
+Set one or more attributes for the set of matched elements.
+  attributeName : String : The name of the attribute to set.
+  function(index, attr) : Function : A function returning the value to set. <code>this</code> is the current element. Receives the index position of the element in the set and the old attribute value as arguments.
+",jQuery,jQuery,method
+addClass,"addClass(className)
+Adds the specified class(es) to each of the set of matched elements.
+  className : String : One or more class names to be added to the class attribute of each matched element.
+",jQuery,jQuery,method
+addClass,"addClass(function(index, currentClass))
+Adds the specified class(es) to each of the set of matched elements.
+  function(index, currentClass) : Function : A function returning one or more space-separated class names to be added to the existing class name(s). Receives the index position of the element in the set and the existing class name(s) as arguments. Within the function, <code>this</code> refers to the current element in the set.
+",jQuery,jQuery,method
+tmpl,"tmpl(template,data,options)
+Render the specified HTML content as a template, using the specified data.
+  template : String, Element, jQuery : The HTML markup or text to use as a template.
+  data : Object : The data to render. This can be any JavaScript type, including Array or Object.
+  options : Options : An optional map of user-defined key-value pairs. Extends the <code>tmplItem</code> data structure, available to the template during rendering.
+",jQuery,jQuery,method
+tmplItem,"tmplItem()
+Return the <code>tmplItem</code> data structure for the rendered template that the matched element is part of.
+",tmplItem,jQuery,method
+template,"template(name)
+Compile the contents of the matched element as a reusable compiled template.
+  name : String : A string naming the compiled template.
+",function,jQuery,method
+unlink,"unlink(target)
+Remove a previously created link.
+  target : Element, Object : An object to unlink.
+",jQuery,jQuery,method
+link,"link(target,settings)
+Link changes to the matched elements to an object.
+  target : Element, Object : An object to link changes to.
+  settings : Object : A map describing the fields to link.
+",jQuery,jQuery,method
+tmplItem,"tmplItem(element)
+Return the <code>tmplItem</code> data structure for the rendered template that the specified element is part of.
+  element : Element, jQuery : An HTML element (or jQuery object that wraps an element)
+",tmplItem,jQuery,method
+template,"template(name,template)
+Create a reusable named template (compiled from markup).
+  name : String : A string naming the compiled template.
+  template : String, Element, jQuery : The HTML markup and/or text to be used as template. Can be a string, or an HTML element (or jQuery object wrapping an element) whose content is to be used as template
+",function,jQuery,method
+template,"template(template)
+Returns a compiled-template function.
+  template : String : The template markup to be compiled, or a string corresponding to a named template.
+",function,jQuery,method
+.tmpl,".tmpl(data,options)
+Take the first element in the matched set and render its content as a template, using the specified data.
+  data : Object : The data to render. This can be any JavaScript type, including Array or Object.
+  options : Options : An optional map of user-defined key-value pairs. Extends the <code>tmplItem</code> data structure, available to the template during rendering.
+",jQuery,jQuery,method

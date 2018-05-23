@@ -1,0 +1,192 @@
+"ToolArray_FileName" = 
+{
+	"A array",
+	"E equation - 1 line, numbered",
+	"F equation - 1 line",
+	"G equation - multi line, numbered",
+	"G equation - multi line"
+}
+"ToolArray_Enabled" = 
+{
+	"true",
+	"true",
+	"true",
+	"true",
+	"true"
+}
+"ToolArray_Shortcut" = 
+{
+	"0",
+	"0",
+	"0",
+	"0",
+	"0"
+}
+"ToolArray_ShortcutModifiers_ControlKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_ShortcutModifiers_ShiftKey" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_Grayout" = 
+{
+	"false",
+	"false",
+	"false",
+	"false",
+	"false"
+}
+"ToolArray_JapaneseName" = 
+{
+	"A 行列",
+	"E 数式（１行・番号）",
+	"F 数式（１行）",
+	"G 数式（複数行・番号）",
+	"H 数式（複数行）"
+}
+"ToolArray_EnglishName" = 
+{
+	"A array",
+	"E equation - 1 line, numbered",
+	"F equation - 1 line",
+	"G equation - multi line, numbered",
+	"G equation - multi line"
+}
+"ToolArray_FrenchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_GermanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SpanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_ItalianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DutchName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SwedishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_NorwegianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_DanishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_FinnishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortugueseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_SimplifiedChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_TraditionalChineseName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_KoreanName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PolishName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_PortuguesePortugalName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}
+"ToolArray_RussianName" = 
+{
+	"",
+	"",
+	"",
+	"",
+	""
+}

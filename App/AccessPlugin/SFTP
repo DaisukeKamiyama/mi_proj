@@ -1,0 +1,151 @@
+#!/usr/bin/expect -f
+
+# 第1引数：処理タイプ("list"/"get"/"put"いずれか)
+set PROC_TYPE [lindex $argv 0]
+# 第2引数：サーバーアドレス
+set SERVER_ADDRESS [lindex $argv 1]
+# 第3引数：ポート番号（ポート指定が無い場合は、0）
+set PORT_NUMBER [lindex $argv 2]
+# 第4引数：ユーザー名
+set USER_NAME [lindex $argv 3]
+# 第5引数：パスワード（パスワード設定が空の場合は、半角スペース一文字）
+set PASSWORD [lindex $argv 4]
+# 第6引数：リモートファイルパス
+set REMOTE_FILE [lindex $argv 5]
+# 第7引数：ローカルファイルパス
+set LOCAL_FILE [lindex $argv 6]
+# 第8引数：SFTP鍵ファイルパス（鍵ファイルがない場合は、半角スペース一文字）
+set KEY_FILE [lindex $argv 7]
+# 第9引数：SFTPサーバーフィンガープリント（このフィンガープリントに一致する場合は、known_hostsに登録がなくても、新規にサーバー接続し、known_hostsへ登録）
+set FINGERPRINT [lindex $argv 8]
+
+# ポート指定引数生成
+set port_number_arg "-oPort=22"
+if {$PORT_NUMBER > 0} {
+	set port_number_arg "-oPort=$PORT_NUMBER"
+}
+
+# 鍵ファイル指定引数生成
+set key_file_arg $port_number_arg
+if {$KEY_FILE != " "} {
+	set key_file_arg "-oIdentityFile=$KEY_FILE"
+}
+
+# ========== ログイン ==========
+
+# タイムアウト値60s（古いMac OS Xだとパスワードをダイアログでしか入力できないので、パスワード入力時間が必要）
+set timeout 60
+# sftp
+spawn sftp $port_number_arg $key_file_arg $USER_NAME@$SERVER_ADDRESS
+# fingerprintが引数に指定されている場合は、fingerprintが一致したらyesを返す
+if {$FINGERPRINT != " "} {
+	expect {
+		"$FINGERPRINT" {
+			expect {
+				"(yes/no)" {
+					send "yes\n"
+				}
+				timeout {
+					send_error "SFTP-AP(99): Timeout.\n"
+					exit 99
+				}
+			}
+		}
+		timeout {
+			send_error "SFTP-AP(99): Timeout for fingerprint.\n"
+			exit 99
+		}
+	}
+}
+# パスワード等入力
+expect {
+	-regexp "(P|p)assword:" {
+		send "$PASSWORD\n"
+		expect {
+			"sftp>" {
+			}
+			-regexp "(P|p)assword:" {
+				send_error "SFTP-AP(1): Password error.\n"
+				exit 1
+			}
+			timeout {
+				send_error "SFTP-AP(1): Password error.\n"
+				exit 1
+			}
+		}
+	}
+	-regexp "Enter passphrase for key '.+':" {
+		send "$PASSWORD\n"
+		exp_continue
+	}
+	"(yes/no)" {
+		send "no\n"
+		send_error "SFTP-AP(2): Unknown server.\n"
+		exit 2
+	}
+	"sftp>" {
+	}
+	"Could not resolve hostname" {
+		send_error "SFTP-AP(95): Could not resolve hostname.\n"
+		exit 95
+	}
+	"bad permissions" {
+		send_error "SFTP-AP(96): Bad permissions.\n"
+		exit 96
+	}
+	"Permission denied" {
+		send_error "SFTP-AP(97): Permission denied.\n"
+		exit 97
+	}
+	"Connection closed" {
+		send_error "SFTP-AP(98): Connection closed.\n"
+		exit 98
+	}
+	timeout {
+		send_error "SFTP-AP(99): Timeout.\n"
+		exit 99
+	}
+}
+
+# ========== タイプ別処理 ==========
+
+# list処理
+if {$PROC_TYPE == "list"} {
+    set timeout 5
+	send "ls -la \"$REMOTE_FILE\" \n"
+	expect {
+		"sftp>" {
+			send "exit\n"
+			send_error "SFTP-AP(0): LIST OK.\n"
+			exit 0
+		}
+	}
+}
+
+# get処理
+if {$PROC_TYPE == "get"} {
+    set timeout 20
+	send "get \"$REMOTE_FILE\" \"$LOCAL_FILE\" \n"
+	expect {
+		"sftp>" {
+			send "exit\n"
+			send_error "SFTP-AP(0): GET OK.\n"
+			exit 0
+		}
+	}
+}
+
+# get処理
+if {$PROC_TYPE == "put"} {
+    set timeout 20
+	send "put \"$LOCAL_FILE\" \"$REMOTE_FILE\" \n"
+	expect {
+		"sftp>" {
+			send "exit\n"
+			send_error "SFTP-AP(0): PUT OK.\n"
+			exit 0
+		}
+	}
+}
+
+

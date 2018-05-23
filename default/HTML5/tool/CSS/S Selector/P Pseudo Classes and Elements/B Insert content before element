@@ -1,0 +1,3 @@
+<<<CARET HINT(element)>>>:before {
+content:<<<HINT(content)>>>;
+}

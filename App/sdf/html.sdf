@@ -1,0 +1,1942 @@
+#
+# (C) 2010 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+GlobalAttribute_SDFVersion("3.0")
+GlobalAttribute_SDFName("HTML")
+
+#HTMLタグ外テキスト部分
+#HTML5の閉じタグの有無は8.1.2 Elementsを参考に作成
+GlobalAttribute_SyntaxPart("HTML","HTML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_&#",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_;",
+";",
+"<a","</a>","<abbr","</abbr>","<acronym","</acronym>","<address","</address>","<applet","</applet>",
+"<area","","<b","</b>","<base","","<basefont","","<bdo","</bdo>","<big","</big>","<blockquote","</blockquote>",
+"<body","</body>","<br","","<button","</button>","<caption","</caption>","<center","</center>","<cite","</cite>",
+"<code","</code>","<col","","<colgroup","</colgroup>","<dd","</dd>","<del","</del>","<dfn","</dfn>","<dir","</dir>",
+"<div","</div>","<dl","</dl>","<dt","</dt>","<em","</em>","<fieldset","</fieldset>","<font","</font>",
+"<form","</form>","<frame","","<frameset","</frameset>","<h1","</h1>","<h2","</h2>","<h3","</h3>",
+"<h4","</h4>","<h5","</h5>","<h6","</h6>","<head","</head>","<hr","","<html","</html>","<i","</i>",
+"<iframe","</iframe>","<img","","<input","","<ins","</ins>","<isindex","",
+"<kbd","</kbd>","<label","</label>","<legend","</legend>","<li","</li>","<link","",
+"<map","</map>","<menu","</menu>","<meta","","<noframes","</noframes>","<noscript","</noscript>",
+"<object","</object>","<ol","</ol>","<optgroup","</optgroup>","<option","</option>","<p","</p>",
+"<param","","<pre","</pre>","<q","</q>","<s","</s>","<samp","</samp>","<script","</script>",
+"<select","</select>","<small","</small>","<span","</span>","<strike","</strike>","<strong","</strong>",
+"<style","</style>","<sub","</sub>","<sup","</sup>","<table","</table>","<tbody","</tbody>","<td","</td>",
+"<textarea","</textarea>","<tfoot","</tfoot>","<th","</th>","<thead","</thead>","<title","</title>",
+"<tr","</tr>","<tt","</tt>","<u","</u>","<ul","</ul>","<var","</var>",
+
+"<article","</article>","<aside","</aside>","<audio","</audio>","<bdi","</bdi>",
+"<canvas","</canvas>","<command","","<datalist","</datalist>","<details","</details>",
+"<dialog","</dialog>",
+"<embed","","<figcaption","</figcaption>","<figure","</figure>","<footer","</footer>",
+"<header","</header>","<hgroup","</hgroup>","<keygen","",
+"<mark","</mark>","<meter","</meter>","<nav","</nav>","<output","</output>",
+"<progress","</progress>","<ruby","</ruby>","<rt","</rt>","<rp","</rp>","<section","</section>",
+"<source","","<summary","</summary>","<time","</time>","<track","","<video","</video>","<wbr","",
+
+"<A","</A>","<ABBR","</ABBR>","<ACRONYM","</ACRONYM>","<ADDRESS","</ADDRESS>","<APPLET","</APPLET>",
+"<AREA","","<B","</B>","<BASE","","<BASEFONT","","<BDO","</BDO>","<BIG","</BIG>","<BLOCKQUOTE","</BLOCKQUOTE>",
+"<BODY","</BODY>","<BR","","<BUTTON","</BUTTON>","<CAPTION","</CAPTION>","<CENTER","</CENTER>","<CITE","</CITE>",
+"<CODE","</CODE>","<COL","","<COLGROUP","</COLGROUP>","<DD","</DD>","<DEL","</DEL>","<DFN","</DFN>","<DIR","</DIR>",
+"<DIV","</DIV>","<DL","</DL>","<DT","</DT>","<EM","</EM>","<FIELDSET","</FIELDSET>","<FONT","</FONT>",
+"<FORM","</FORM>","<FRAME","","<FRAMESET","</FRAMESET>","<H1","</H1>","<H2","</H2>","<H3","</H3>",
+"<H4","</H4>","<H5","</H5>","<H6","</H6>","<HEAD","</HEAD>","<HR","","<HTML","</HTML>","<I","</I>",
+"<IFRAME","</IFRAME>","<IMG","","<INPUT","","<INS","</INS>","<ISINDEX","",
+"<KBD","</KBD>","<LABEL","</LABEL>","<LEGEND","</LEGEND>","<LI","</LI>","<LINK","",
+"<MAP","</MAP>","<MENU","</MENU>","<META","","<NOFRAMES","</NOFRAMES>","<NOSCRIPT","</NOSCRIPT>",
+"<OBJECT","</OBJECT>","<OL","</OL>","<OPTGROUP","</OPTGROUP>","<OPTION","</OPTION>","<P","</P>",
+"<PARAM","","<PRE","</PRE>","<Q","</Q>","<S","</S>","<SAMP","</SAMP>","<SCRIPT","</SCRIPT>",
+"<SELECT","</SELECT>","<SMALL","</SMALL>","<SPAN","</SPAN>","<STRIKE","</STRIKE>","<STRONG","</STRONG>",
+"<STYLE","</STYLE>","<SUB","</SUB>","<SUP","</SUP>","<TABLE","</TABLE>","<TBODY","</TBODY>","<TD","</TD>",
+"<TEXTAREA","</TEXTAREA>","<TFOOT","</TFOOT>","<TH","</TH>","<THEAD","</THEAD>","<TITLE","</TITLE>",
+"<TR","</TR>","<TT","</TT>","<U","</U>","<UL","</UL>","<VAR","</VAR>",
+
+"<ARTICLE","</ARTICLE>","<ASIDE","</ASIDE>","<AUDIO","</AUDIO>","<BDI","</BDI>",
+"<CANVAS","</CANVAS>","<COMMAND","","<DATALIST","</DATALIST>","<DETAILS","</DETAILS>",
+"<DIALOG","</DIALOG>",
+"<EMBED","","<FIGCAPTION","</FIGCAPTION>","<FIGURE","</FIGURE>","<FOOTER","</FOOTER>",
+"<HEADER","</HEADER>","<HGROUP","</HGROUP>","<KEYGEN","",
+"<MARK","</MARK>","<METER","</METER>","<NAV","</NAV>","<OUTPUT","</OUTPUT>",
+"<PROGRESS","</PROGRESS>","<RUBY","</RUBY>","<RT","</RT>","<RP","</RP>","<SECTION","</SECTION>",
+"<SOURCE","","<SUMMARY","</SUMMARY>","<TIME","</TIME>","<TRACK","","<VIDEO","</VIDEO>","<WBR",""
+)
+#HTMLタグパート
+GlobalAttribute_SyntaxPart("HTML Tag","HTML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-",
+"",
+"<a","</a>","<abbr","</abbr>","<acronym","</acronym>","<address","</address>","<applet","</applet>",
+"<area","","<b","</b>","<base","","<basefont","","<bdo","</bdo>","<big","</big>","<blockquote","</blockquote>",
+"<body","</body>","<br","","<button","</button>","<caption","</caption>","<center","</center>","<cite","</cite>",
+"<code","</code>","<col","","<colgroup","</colgroup>","<dd","</dd>","<del","</del>","<dfn","</dfn>","<dir","</dir>",
+"<div","</div>","<dl","</dl>","<dt","</dt>","<em","</em>","<fieldset","</fieldset>","<font","</font>",
+"<form","</form>","<frame","","<frameset","</frameset>","<h1","</h1>","<h2","</h2>","<h3","</h3>",
+"<h4","</h4>","<h5","</h5>","<h6","</h6>","<head","</head>","<hr","","<html","</html>","<i","</i>",
+"<iframe","</iframe>","<img","","<input","","<ins","</ins>","<isindex","",
+"<kbd","</kbd>","<label","</label>","<legend","</legend>","<li","</li>","<link","",
+"<map","</map>","<menu","</menu>","<meta","","<noframes","</noframes>","<noscript","</noscript>",
+"<object","</object>","<ol","</ol>","<optgroup","</optgroup>","<option","</option>","<p","</p>",
+"<param","","<pre","</pre>","<q","</q>","<s","</s>","<samp","</samp>","<script","</script>",
+"<select","</select>","<small","</small>","<span","</span>","<strike","</strike>","<strong","</strong>",
+"<style","</style>","<sub","</sub>","<sup","</sup>","<table","</table>","<tbody","</tbody>","<td","</td>",
+"<textarea","</textarea>","<tfoot","</tfoot>","<th","</th>","<thead","</thead>","<title","</title>",
+"<tr","</tr>","<tt","</tt>","<u","</u>","<ul","</ul>","<var","</var>",
+
+"<article","</article>","<aside","</aside>","<audio","</audio>","<bdi","</bdi>",
+"<canvas","</canvas>","<command","","<datalist","</datalist>","<details","</details>",
+"<dialog","</dialog>",
+"<embed","","<figcaption","</figcaption>","<figure","</figure>","<footer","</footer>",
+"<header","</header>","<hgroup","</hgroup>","<keygen","",
+"<mark","</mark>","<meter","</meter>","<nav","</nav>","<output","</output>",
+"<progress","</progress>","<ruby","</ruby>","<section","</section>",
+"<source","","<summary","</summary>","<time","</time>","<track","","<video","</video>","<wbr","",
+
+"<A","</A>","<ABBR","</ABBR>","<ACRONYM","</ACRONYM>","<ADDRESS","</ADDRESS>","<APPLET","</APPLET>",
+"<AREA","","<B","</B>","<BASE","","<BASEFONT","","<BDO","</BDO>","<BIG","</BIG>","<BLOCKQUOTE","</BLOCKQUOTE>",
+"<BODY","</BODY>","<BR","","<BUTTON","</BUTTON>","<CAPTION","</CAPTION>","<CENTER","</CENTER>","<CITE","</CITE>",
+"<CODE","</CODE>","<COL","","<COLGROUP","</COLGROUP>","<DD","</DD>","<DEL","</DEL>","<DFN","</DFN>","<DIR","</DIR>",
+"<DIV","</DIV>","<DL","</DL>","<DT","</DT>","<EM","</EM>","<FIELDSET","</FIELDSET>","<FONT","</FONT>",
+"<FORM","</FORM>","<FRAME","","<FRAMESET","</FRAMESET>","<H1","</H1>","<H2","</H2>","<H3","</H3>",
+"<H4","</H4>","<H5","</H5>","<H6","</H6>","<HEAD","</HEAD>","<HR","","<HTML","</HTML>","<I","</I>",
+"<IFRAME","</IFRAME>","<IMG","","<INPUT","","<INS","</INS>","<ISINDEX","",
+"<KBD","</KBD>","<LABEL","</LABEL>","<LEGEND","</LEGEND>","<LI","</LI>","<LINK","",
+"<MAP","</MAP>","<MENU","</MENU>","<META","","<NOFRAMES","</NOFRAMES>","<NOSCRIPT","</NOSCRIPT>",
+"<OBJECT","</OBJECT>","<OL","</OL>","<OPTGROUP","</OPTGROUP>","<OPTION","</OPTION>","<P","</P>",
+"<PARAM","","<PRE","</PRE>","<Q","</Q>","<S","</S>","<SAMP","</SAMP>","<SCRIPT","</SCRIPT>",
+"<SELECT","</SELECT>","<SMALL","</SMALL>","<SPAN","</SPAN>","<STRIKE","</STRIKE>","<STRONG","</STRONG>",
+"<STYLE","</STYLE>","<SUB","</SUB>","<SUP","</SUP>","<TABLE","</TABLE>","<TBODY","</TBODY>","<TD","</TD>",
+"<TEXTAREA","</TEXTAREA>","<TFOOT","</TFOOT>","<TH","</TH>","<THEAD","</THEAD>","<TITLE","</TITLE>",
+"<TR","</TR>","<TT","</TT>","<U","</U>","<UL","</UL>","<VAR","</VAR>",
+
+"<ARTICLE","</ARTICLE>","<ASIDE","</ASIDE>","<AUDIO","</AUDIO>","<BDI","</BDI>",
+"<CANVAS","</CANVAS>","<COMMAND","","<DATALIST","</DATALIST>","<DETAILS","</DETAILS>",
+"<DIALOG","</DIALOG>",
+"<EMBED","","<FIGCAPTION","</FIGCAPTION>","<FIGURE","</FIGURE>","<FOOTER","</FOOTER>",
+"<HEADER","</HEADER>","<HGROUP","</HGROUP>","<KEYGEN","",
+"<MARK","</MARK>","<METER","</METER>","<NAV","</NAV>","<OUTPUT","</OUTPUT>",
+"<PROGRESS","</PROGRESS>","<RUBY","</RUBY>","<SECTION","</SECTION>",
+"<SOURCE","","<SUMMARY","</SUMMARY>","<TIME","</TIME>","<TRACK","","<VIDEO","</VIDEO>","<WBR",""
+)
+#HTMLコメントパート（"-"をキーワード構成文字からはずすために、文法パートをHTML Tagと分けている。"-"があると、アルファベット＋-->を正常認識できない。）
+GlobalAttribute_SyntaxPart("HTML Comment","HTML",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+#JavaScriptパート
+GlobalAttribute_SyntaxPart("JavaScript","JavaScript",javascript,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+#PHPパート
+GlobalAttribute_SyntaxPart("PHP","PHP",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+#CSSパート
+GlobalAttribute_SyntaxPart("CSS","CSS",css,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-@",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-",
+"")
+
+#GlobalAttribute_ImportLinkToProjectAll
+GlobalAttribute_InitialState(".js",javascript);
+GlobalAttribute_InitialState(".css",css);
+
+GlobalAttribute_StartAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$")
+GlobalAttribute_ContinuousAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~")
+
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+GlobalAttribute_ClassString(".","::");
+GlobalAttribute_InstanceString(".","->");
+
+#GlobalAttribute_TagStart("HTML","<")
+#GlobalAttribute_TagEnd("HTML",">")
+#GlobalAttribute_TagDelimiter("HTML"," ")
+
+#===========HTML===========
+
+#idle
+state(idle)
+{
+	StateAttribute_Stable
+	StateAttribute_SyntaxPart("HTML")
+	#StateAttribute_DisableAllCategory
+	#----------コメント----------
+	{"<!--",{ChangeState(comment)}}
+	#タグ開始
+	{"<",{SetVarStart(textFromTagStart),ChangeState(tag_start)}}
+}
+
+# < （"<"直後の状態のみ。要素や"/"で次の状態へ遷移。）
+state(tag_start)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#----------終了タグ----------
+	#（"/html"等で条件一致すると、行折り返しで/とhtmlに分かれるばあいに、現状、文法認識が行毎なので次の行で"html"を認識してしまう）
+	{"/",{ChangeState(endtag)}}
+	#----------見出し登録タグ----------
+	#html, head, body
+	{"html",{IncIndentFromNext,AddGlobalId([html], "","html", "","","","","",1),ChangeState(generaltag)}}
+	{"head",{IncIndentFromNext,AddGlobalId([html], "","head", "","","","","",1),ChangeState(generaltag)}}
+	{"body",{IncIndentFromNext,AddGlobalId([html], "","body", "","","","","",1),ChangeState(generaltag)}}
+	#article, aside, footer, header, nav, section [HTML5]
+	{"article",{IncIndentFromNext,AddGlobalId([html], "","article", "","","","","",2),ChangeState(generaltag)}}
+	{"aside",{IncIndentFromNext,AddGlobalId([html], "","aside", "","","","","",2),ChangeState(generaltag)}}
+	{"footer",{IncIndentFromNext,AddGlobalId([html], "","footer", "","","","","",2),ChangeState(generaltag)}}
+	{"header",{IncIndentFromNext,AddGlobalId([html], "","header", "","","","","",2),ChangeState(generaltag)}}
+	{"nav",{IncIndentFromNext,AddGlobalId([html], "","nav", "","","","","",2),ChangeState(generaltag)}}
+	{"section",{IncIndentFromNext,AddGlobalId([html], "","section", "","","","","",2),ChangeState(generaltag)}}
+	#----------h1-h6タグ----------
+	#h1-h6
+	{"h1",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	{"h2",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	{"h3",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	{"h4",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	{"h5",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	{"h6",{SetVar(headerText,textFromTagStart),IncIndentFromNext,ChangeState(generaltag)}}
+	#----------divタグ----------
+	#div
+	{"div",{IncIndentFromNext,ChangeState(divtag)}}
+	#----------linkタグ----------
+	#link
+	{"link",{ChangeState(linktag)}}
+	#----------preタグ----------
+	#pre
+	{"pre",{ChangeStateFromNextChar(pretag)}}#variation0
+	#{"pre",{ChangeState(generaltag)}}#variation1
+	#----------その他インデントするタグ----------
+	#p
+	{"p",{IncIndentFromNext,ChangeState(generaltag)}}
+	#各種タグ（開始タグ、終了タグ両方必須なもの）
+	{"a",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"abbr",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"acronym",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"address",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"b",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"bdo",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"big",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"blockquote",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"button",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"align",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"cite",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"code",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"del",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"dfn",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"dl",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"dt",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"em",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"fieldset",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"form",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"frameset",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"i",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"iframe",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"ins",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"kbd",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"label",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"legend",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"noframes",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"noscript",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"object",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"ol",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"optgroup",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"q",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"samp",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"select",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"small",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"span",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"strong",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"sub",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"sup",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"table",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"textarea",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"title",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"tt",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"ul",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"var",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"colgroup",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"figure",{IncIndentFromNext,ChangeState(generaltag)}}
+	#
+	{"tr",{IncIndentFromNext,ChangeState(generaltag)}}
+	{"td",{IncIndentFromNext,ChangeState(generaltag)}}
+	#----------script(JavaScript)/style(CSS)----------
+	#script
+	{"script",{AddGlobalId([html], "","script", "","","","","",9),
+	IncIndentFromNext,ChangeState(scripttag)}}
+	#style
+	{"style",{AddGlobalId([html], "","style", "","","","","",9),
+	IncIndentFromNext,ChangeState(styletag)}}
+	#----------<?----------
+	{"?",{ChangeState(tag_question)}}
+	#----------<!----------
+	{"!",{ChangeState(tag_ex)}}
+	#文法エラー  <>の中に何もない場合
+	{">",{SyntaxError("empty tag")}}
+	#----------その他要素----------
+	{default,{ChangeState(generaltag)}}
+}
+
+# </ 終了タグ
+state(endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#----------見出し登録タグ----------
+	#html, head, body
+	{"html",{DecIndentFromCurrent}}
+	{"head",{DecIndentFromCurrent}}
+	{"body",{DecIndentFromCurrent}}
+	#article, aside, footer, header, nav, section [HTML5]
+	{"article",{DecIndentFromCurrent}}
+	{"aside",{DecIndentFromCurrent}}
+	{"footer",{DecIndentFromCurrent}}
+	{"header",{DecIndentFromCurrent}}
+	{"nav",{DecIndentFromCurrent}}
+	{"section",{DecIndentFromCurrent}}
+	#----------h1-h6タグ----------
+	#h1-h6
+	{"h1",{ChangeState(h1endtag)}}
+	{"h2",{ChangeState(h2endtag)}}
+	{"h3",{ChangeState(h3endtag)}}
+	{"h4",{ChangeState(h4endtag)}}
+	{"h5",{ChangeState(h5endtag)}}
+	{"h6",{ChangeState(h6endtag)}}
+	#----------divタグ----------
+	#div
+	{"div",{DecIndentFromCurrent}}
+	#----------その他インデントするタグ----------
+	#p
+	{"p",{DecIndentFromCurrent}}
+	#各種タグ（開始タグ、終了タグ両方必須なもの）
+	{"a",{DecIndentFromCurrent}}
+	{"abbr",{DecIndentFromCurrent}}
+	{"acronym",{DecIndentFromCurrent}}
+	{"address",{DecIndentFromCurrent}}
+	{"b",{DecIndentFromCurrent}}
+	{"bdo",{DecIndentFromCurrent}}
+	{"big",{DecIndentFromCurrent}}
+	{"blockquote",{DecIndentFromCurrent}}
+	{"button",{DecIndentFromCurrent}}
+	{"align",{DecIndentFromCurrent}}
+	{"cite",{DecIndentFromCurrent}}
+	{"code",{DecIndentFromCurrent}}
+	{"del",{DecIndentFromCurrent}}
+	{"dfn",{DecIndentFromCurrent}}
+	{"dl",{DecIndentFromCurrent}}
+	{"dt",{DecIndentFromCurrent}}
+	{"em",{DecIndentFromCurrent}}
+	{"fieldset",{DecIndentFromCurrent}}
+	{"form",{DecIndentFromCurrent}}
+	{"frameset",{DecIndentFromCurrent}}
+	{"i",{DecIndentFromCurrent}}
+	{"iframe",{DecIndentFromCurrent}}
+	{"ins",{DecIndentFromCurrent}}
+	{"kbd",{DecIndentFromCurrent}}
+	{"label",{DecIndentFromCurrent}}
+	{"legend",{DecIndentFromCurrent}}
+	{"noframes",{DecIndentFromCurrent}}
+	{"noscript",{DecIndentFromCurrent}}
+	{"object",{DecIndentFromCurrent}}
+	{"ol",{DecIndentFromCurrent}}
+	{"optgroup",{DecIndentFromCurrent}}
+	{"q",{DecIndentFromCurrent}}
+	{"samp",{DecIndentFromCurrent}}
+	{"select",{DecIndentFromCurrent}}
+	{"small",{DecIndentFromCurrent}}
+	{"span",{DecIndentFromCurrent}}
+	{"strong",{DecIndentFromCurrent}}
+	{"sub",{DecIndentFromCurrent}}
+	{"sup",{DecIndentFromCurrent}}
+	{"table",{DecIndentFromCurrent}}
+	{"textarea",{DecIndentFromCurrent}}
+	{"title",{DecIndentFromCurrent}}
+	{"tt",{DecIndentFromCurrent}}
+	{"ul",{DecIndentFromCurrent}}
+	{"var",{DecIndentFromCurrent}}
+	{"colgroup",{DecIndentFromCurrent}}
+	{"figure",{DecIndentFromCurrent}}
+	#
+	{"tr",{DecIndentFromCurrent}}
+	{"td",{DecIndentFromCurrent}}
+	#----------script（JavaScript以外のスクリプト用）----------
+	{"script",{DecIndentFromCurrent}}
+	#----------タグ終了----------
+	{">",{ChangeState(idle)}}
+	#----------リテラル----------
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+}
+
+#===========各タグ===========
+
+# < ! （<!DOCTYPE等）
+state(tag_ex)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#リテラル
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# < ?
+state(tag_question)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#
+	{"php",{ChangeState(php)}}
+	#
+	{default, {ChangeState(tag_start)}}
+}
+
+# < 通常タグ
+state(generaltag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#id/class/name
+	{"id",{PushState(id)}}
+	#{"class",{PushState(class)}}
+	{"name",{PushState(name)}}
+	#リテラル
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# </h1
+state(h1endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",1),ChangeState(idle)}}
+}
+
+# </h2
+state(h2endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",2),ChangeState(idle)}}
+}
+
+# </h3
+state(h3endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",3),ChangeState(idle)}}
+}
+
+# </h4
+state(h4endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",4),ChangeState(idle)}}
+}
+
+# </h5
+state(h5endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",5),ChangeState(idle)}}
+}
+
+# </h6
+state(h6endtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(headerText),DecIndentFromCurrent,
+	AddGlobalId([html], headerText,headerText,"","","","","",6),ChangeState(idle)}}
+}
+
+# < div 
+state(divtag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#id/class/name
+	{"id",{PushState(id)}}
+	#{"class",{PushState(class)}}
+	{"name",{PushState(name)}}
+	#divタグ終了（見出しに<div 〜>を登録）
+	{">",{SetVarEndAtNextChar(textFromTagStart),
+	AddGlobalId([html], "",textFromTagStart,"","","","","",9),ChangeState(idle)}}
+}
+
+#----------linkタグ----------
+
+# < link
+state(linktag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#id/class
+	{"id",{PushState(id)}}
+	#{"class",{PushState(class)}}
+	{"name",{PushState(name)}}
+	#href
+	{"href",{ChangeState(linktag_href)}}
+	#リテラル
+	{"\"",{PushState(tag_literal_double)}}
+	{"'",{PushState(tag_literal_single)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# < link href 
+state(linktag_href)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#href="
+	{"\"",{SetVarStartFromNextChar(path),ChangeState(linktag_hreffilepath_double)}}
+	{"'",{SetVarStartFromNextChar(path),ChangeState(linktag_hreffilepath_single)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+# < link href "
+state(linktag_hreffilepath_double)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#デリミタ
+	{"\"", {SetVarEnd(path),Import(path),  ChangeState(linktag)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+state(linktag_hreffilepath_single)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#デリミタ
+	{"'", {SetVarEnd(path),Import(path),  ChangeState(linktag)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+#----------preタグ----------
+
+# < pre
+state(pretag)
+{
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#タグ終了
+	{">",{ChangeStateFromNextChar(insidepre)}}
+}
+
+#
+state(insidepre)
+{
+	StateAttribute_SyntaxPart("HTML")
+	StateAttribute_IgnoreCase
+	StateAttribute_DisableIndent
+	StateAttribute_NotCode
+	#文字列色で表示
+	StateAttribute_ColorSlot(33)
+	#
+	{"</pre>",{ChangeState(idle)}}
+}
+
+#=========== id / class / name ===========
+
+#----------id----------
+
+# id
+state(id)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#id="
+	{"\"",{SetVarStartFromNextChar(keyword),ChangeState(id_id_double)}}
+	{"'",{SetVarStartFromNextChar(keyword),ChangeState(id_id_single)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# id = "
+state(id_id_double)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#クオーテーション終了
+	{"\"",{SetVarEnd(keyword),AddGlobalId([id], keyword, "", "","","id","","",9),PopStateFromNextChar}}
+}
+state(id_id_single)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#クオーテーション終了
+	{"'",{SetVarEnd(keyword),AddGlobalId([id], keyword, "", "","","id","","",9),PopStateFromNextChar}}
+}
+
+#----------class----------
+
+## class
+#state(class)
+#{
+#	#StateAttribute_IndentOnTheWay
+#	StateAttribute_SyntaxPart("HTML Tag")
+#	StateAttribute_IgnoreCase
+#	#class="
+#	{"\"",{SetVarStartFromNextChar(keyword),ChangeState(class_class)}}
+#	{"'",{SetVarStartFromNextChar(keyword),ChangeState(class_class)}}
+#	#タグ終了
+#	{">",{ChangeState(idle)}}
+#}
+#
+## class = "
+#state(class_class)
+#{
+#	#StateAttribute_IndentOnTheWay
+#	StateAttribute_SyntaxPart("HTML Tag")
+#	StateAttribute_IgnoreCase
+#	StateAttribute_ColorSlot(33)
+#	#クオーテーション終了
+#	{"\"",{SetVarEnd(keyword),AddGlobalId([class], keyword, "", "","","class","","",9),PopStateFromNextChar}}
+#	{"'",{SetVarEnd(keyword),AddGlobalId([class], keyword, "", "","","class","","",9),PopStateFromNextChar}}
+#}
+
+#----------name----------
+
+# name
+state(name)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#name="
+	{"\"",{SetVarStartFromNextChar(keyword),ChangeState(name_name_double)}}
+	{"'",{SetVarStartFromNextChar(keyword),ChangeState(name_name_single)}}
+	#>タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# name = "
+state(name_name_double)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#クオーテーション終了
+	{"\"",{SetVarEnd(keyword),AddGlobalId([name], keyword, "~!anchor", "","","name","","",9),PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+state(name_name_single)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#クオーテーション終了
+	{"'",{SetVarEnd(keyword),AddGlobalId([name], keyword, "~!anchor", "","","name","","",9),PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#===========タグ内リテラル===========
+
+# < "
+state(tag_literal_double)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_DisableIndent
+	StateAttribute_NotCode
+	#文字列色で表示
+	StateAttribute_ColorSlot(33)
+	#
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+state(tag_literal_single)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_DisableIndent
+	StateAttribute_NotCode
+	#文字列色で表示
+	StateAttribute_ColorSlot(33)
+	#
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#=========== script (JavaScript) ===========
+
+# < script
+state(scripttag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#JavaScript用テキスト発見（タグ終了後、JavaScriptへ移行）
+	{"text/javascript",{ChangeState(scripttag_javascript)}}
+	#src
+	{"src",{ChangeState(scripttag_src)}}
+	#タグ終了（text/javascriptが無かったので、JavaScriptへは移行せず、</script>まで読み飛ばす）
+	{">",{ChangeState(otherscript)}}
+}
+
+# < script text/javascript
+state(scripttag_javascript)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#タグ終了→JavaScriptへ移行
+	{">",{ChangeState(javascript)}}
+}
+
+# < script src
+state(scripttag_src)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	# script src = "
+	{"\"",{SetVarStartFromNextChar(path),ChangeState(scripttag_srcfilepath)}}
+	#タグ終了
+	{">",{ChangeState(idle)}}
+}
+
+# < script src "
+state(scripttag_srcfilepath)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	StateAttribute_ColorSlot(33)
+	#デリミタ
+	{"\"", {SetVarEnd(path),Import(path),  ChangeState(scripttag)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+# JavaScript以外のscript
+state(otherscript)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#
+	{"</script>",{DecIndentFromCurrent,ChangeState(idle)}}
+}
+
+#=========== style (CSS) ===========
+
+# < style
+state(styletag)
+{
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_SyntaxPart("HTML Tag")
+	StateAttribute_IgnoreCase
+	#タグ終了（CSSへ移行）
+	{">",{ChangeState(css)}}
+}
+
+#===========コメント===========
+# <!--
+state(comment)
+{
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_SyntaxPart("HTML Comment")
+	StateAttribute_ColorSlot(32)
+	#コメント終了
+	{"-->",{ChangeStateFromNextChar(idle)}}
+}
+
+#===========JavaScript===========
+
+#javascript idle
+state(javascript)
+{
+	StateAttribute_Stable
+	StateAttribute_SyntaxPart("JavaScript")
+	#var
+	{"var",{ChangeState(javascript_var)}}
+	#関数（通常定義）
+	{"function",{SetVarStart(jsInfoText),ChangeState(javascript_function)}}
+	#イコール（その後にnew, function, 等が続く場合の処理）
+	{"=",{SetVarStartAtPrevToken(jsInfoText),SetVarLastWord(jsKeyword), ChangeState(javascript_equal)}}
+	#プロトタイプメソッド（クラス名を格納、後でプロトタイプ登録で使う）
+	{".prototype",{SetVarWithTokenStack(jsClassName,-2)}}
+	#property//★
+	{":",{SetVarStartAtPrevToken(jsInfoText),SetVarLastWord(jsKeyword), SetVarLastWord(menuname), ChangeState(javascript_property)}}
+	{"?",{ChangeState(javascript_triterm)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#script終了
+	{"</script>",{DecIndentFromCurrent,ChangeState(idle)}}
+	{"</SCRIPT>",{DecIndentFromCurrent,ChangeState(idle)}}
+}
+
+#javascript/triterm 三項演算子（:によるプロパティ認識を避けるため）
+state(javascript_triterm)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#
+	{";",{ChangeState(javascript)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#javascript/function
+state(javascript_function)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#
+	{"(",{SetVarLastWord(jsKeyword), IncIndentFromNext, ChangeState(javascript_function_arg)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#javascript/function
+state(javascript_function_arg)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#
+	{")",{SetVarEndAtNextChar(jsInfoText), 
+		AddGlobalId([JavaScript Function], jsKeyword, jsKeyword, jsInfoText,jsCommentText,"","","function",3), 
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+		DecIndentFromCurrent, ChangeState(javascript)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#JavaScript
+#var
+state(javascript_var)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{SetVar(jsTypeName,"RegExp"),PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#イコール（その後にnew, function, 等が続く場合の処理）
+	{"=",{SetVarStartAtPrevToken(jsInfoText),SetVarLastWord(jsKeyword), ChangeState(javascript_varequal)}}
+	#var定義(undefined)
+	{";",{SetVarLastWord(jsKeyword),
+			AddGlobalId([JavaScript Variable], jsKeyword, "", "", jsCommentText,"","","",5),
+			ClearVar(jsKeyword), ClearVar(jsCommentText), 
+			ChangeState(javascript)}}
+	{"in",{SetVarLastWord(jsKeyword),
+			AddGlobalId([JavaScript Variable], jsKeyword, "", "", jsCommentText,"","","",5),
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+			ChangeState(javascript)}}
+	{";",{ChangeState(javascript)}}
+}
+
+#JavaScript
+#varイコール 最初のtoken
+state(javascript_varequal)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'", {SetVar(jsTypeName,"String"),PushState(javascript_singlequotation)}}
+	{"\"",{SetVar(jsTypeName,"String"),PushState(javascript_doublequotation)}}
+	{"/", {SetVar(jsTypeName,"RegExp"),PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#=new インスタンス生成
+	{"new",{ChangeState(javascript_equalnew)}}
+	#=function 関数代入／プロトタイプ（クラス定義）
+	{"function",{ChangeState(javascript_equalfunction)}}
+	#={ 連想記憶／オブジェクト リテラル
+	{"{", {SetVar(jsTypeName,"Object"),IncIndentFromNext,
+			AddGlobalId([JavaScript Object], jsKeyword, "", "", jsCommentText,jsClassName,jsTypeName,"prototype",5),
+			ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+			ChangeState(javascript)}}#オブジェクト／連想配列のプロパティは通常状態内でコロンをトリガーにして認識する
+	#=[ 配列 リテラル
+	{"[", {SetVar(jsTypeName,"Array"),ChangeState(javascript_arrayliteral)}}
+	#boolean
+	{"true", {SetVar(jsTypeName,"Boolean")}}
+	{"false", {SetVar(jsTypeName,"Boolean")}}
+	#
+	{";", {SetVarEnd(jsInfoText), 
+			AddGlobalId([JavaScript Variable], jsKeyword, "", jsInfoText, jsCommentText,"",jsTypeName,"",5),
+			ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+			ChangeState(javascript)}}
+	{default,{ChangeState(javascript_varequal_after1token)}}
+}
+
+#JavaScript
+#varイコール 2つめ以降のtoken
+state(javascript_varequal_after1token)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{PushState(javascript_comment)}}
+	{"//",{PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#関数の結果を代入（この場合、関数の型をjsTypeNameに設定する）
+	{"(", {IncIndentFromNext,SetVarLastWord(jsTypeName),SetVarTypeOfVar(jsTypeName)}}
+	#
+	{";", {SetVarEnd(jsInfoText), 
+			AddGlobalId([JavaScript Variable], jsKeyword, "", jsInfoText, jsCommentText,"",jsTypeName,"",5),
+			ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+			ChangeState(javascript)}}
+	{",", {SetVarEnd(jsInfoText), 
+			AddGlobalId([JavaScript Variable], jsKeyword, "", jsInfoText, jsCommentText,"",jsTypeName,"",5),
+			ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+			ChangeState(javascript)}}
+}
+
+#JavaScript
+#varなしイコール
+state(javascript_equal)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{";", {ChangeState(javascript)}}
+	#=new インスタンス生成
+	{"new",{ChangeState(javascript_equalnew)}}
+	#=function 関数代入／プロトタイプ（クラス定義）
+	{"function",{ChangeState(javascript_equalfunction)}}
+	#={ 連想記憶／オブジェクト リテラル
+	{"{", {SetVar(jsTypeName,"Object"),IncIndentFromNext,
+		AddGlobalId([JavaScript Object], jsKeyword, "", "", jsCommentText,"","","prototype",5),
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsTypeName),
+		ChangeState(javascript)}}#オブジェクト／連想配列のプロパティは通常状態内でコロンをトリガーにして認識する
+	#=[ 配列 リテラル
+	{"[", {SetVar(jsTypeName,"Array"),ChangeState(javascript_arrayliteral)}}
+	#
+	{default,{ChangeState(javascript_equal_after1token)}}
+}
+
+#JavaScript
+#varなしイコール
+state(javascript_equal_after1token)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{";", {ChangeState(javascript)}}
+}
+
+#JavaScript
+#配列リテラル(=[)
+state(javascript_arrayliteral)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'", {PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/", {PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{";", {SetVarEnd(jsInfoText),
+		AddGlobalId([JavaScript Array], jsKeyword, "", jsInfoText, jsCommentText,jsClassName,jsTypeName,"prototype",5),
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+		ChangeState(javascript)}}
+}
+
+#JavaScript
+#匿名関数代入／プロトタイプ（クラス定義）
+state(javascript_equalfunction)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"}", {DecIndentFromCurrent}} 
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"{", {IncIndentFromNext,ChangeState(javascript)}}
+	{";", {ChangeState(javascript)}}
+	#
+	{"(", {IncIndentFromNext, ChangeState(javascript_class_args)}}
+}
+
+#JavaScript
+#匿名関数／プロトタイプ（クラス定義） コンストラクタ引数
+state(javascript_class_args)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{",", {SetVarLastWord(argkeyword), AddLocalId([JavaScript Argument], argkeyword, "","","")}}
+	{")", {DecIndentFromNext, 
+		SetVarLastWord(argkeyword), AddLocalId([JavaScript Argument], argkeyword, "","","function"),
+		SetVarEndAtNextChar(jsInfoText),
+		AddGlobalId([JavaScript Prototype], jsKeyword, "", jsInfoText, jsCommentText,jsClassName,"","",5),
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+		ChangeState(javascript)}}
+}
+
+#JavaScript
+#インスタンス生成(Instance = new＜ここ＞ ClassName() {})
+state(javascript_equalnew)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{default,{SetVarCurrentToken(jsTypeName),ChangeState(javascript_newinstance)}}
+}
+
+#JavaScript
+#インスタンス生成(Instance = new ClassName＜ここ＞() {})
+state(javascript_newinstance)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#インデント
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"{", {IncIndentFromNext,ChangeState(javascript)}}
+	{";", {ChangeState(javascript)}}
+	#
+	{")", {DecIndentFromCurrent,
+		SetVarEndAtNextChar(jsInfoText),
+		AddGlobalId([JavaScript Variable], jsKeyword, "", jsInfoText,jsCommentText,"",jsTypeName,"",9),
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsClassName), ClearVar(jsTypeName),
+		ChangeState(javascript)}}
+}
+
+#javascript/property
+state(javascript_property)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	{"function",{ChangeState(javascript_property_function_arg)}}
+	{default,{SetVarEndAtPrevToken(jsInfoText), 
+		AddGlobalId([JavaScript Property], jsKeyword, "", jsInfoText,jsCommentText,jsClassName,jsTypeName,"",9), 
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsTypeName),
+		ChangeState(javascript)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromCurrent}} 
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#javascript/property
+state(javascript_property_function_arg)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	#
+	{")",{SetVarEndAtNextChar(jsInfoText), 
+		AddGlobalId([JavaScript Prototype], jsKeyword, "", jsInfoText,jsCommentText,jsClassName,jsTypeName,"",9), 
+		ClearVar(jsKeyword), ClearVar(jsInfoText), ClearVar(jsCommentText), ClearVar(jsTypeName),
+		DecIndentFromCurrent, ChangeState(javascript)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"(", {IncIndentFromNext}}
+	#コメント・リテラル
+	{"/*",{SetVarStart(jsCommentText),PushState(javascript_comment)}}
+	{"//",{SetVarStart(jsCommentText),PushState(javascript_linecomment)}}
+	{"'",{PushState(javascript_singlequotation)}}
+	{"\"",{PushState(javascript_doublequotation)}}
+	#{"/",{PushState(javascript_regexp)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(javascript_comment)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"*/",{SetVarEndAtNextChar(jsCommentText),PopStateFromNextChar}}
+}
+
+state(javascript_linecomment)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{lineend,{SetVarEndAtNextChar(jsCommentText),PopStateFromNextChar}}
+}
+
+state(javascript_singlequotation)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(javascript_doublequotation)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(javascript_regexp)
+{
+	StateAttribute_SyntaxPart("JavaScript")
+	StateAttribute_NotCode
+	#StateAttribute_NoSpellCheck
+	{"/",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+	{lineend,{PopStateFromNextChar}}
+}
+
+category[JavaScript Function]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"JavaScript 関数")
+}
+
+category[JavaScript Variable]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"JavaScript 変数")
+}
+
+category[JavaScript Object]
+{
+	CategoryAttribute_ColorSlot(3)
+}
+
+category[JavaScript Array]
+{
+	CategoryAttribute_ColorSlot(3)
+}
+
+category[JavaScript Argument]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"JavaScript 引数")
+}
+
+category[JavaScript Prototype]
+{
+	CategoryAttribute_ColorSlot(1)
+}
+
+category[JavaScript Property]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"JavaScript プロパティ")
+}
+
+#===========php===========
+
+#===========phpグローバルidle===========
+#php グローバルidle
+state(php)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_Stable
+	#関数
+	{"function",{SetVarStart(info),ChangeState(php_function)}}
+	#イコール（変数）
+	{"=",{SetVarStartAtPrevToken(info), SetVarLastWord(varname), ChangeState(php_varequal)}}
+	{"==",{}}
+	{"===",{}}
+	{"!=",{}}
+	{"!==",{}}
+	{"<=",{}}
+	{">=",{}}
+	{"+=",{}}
+	{"-=",{}}
+	{"*=",{}}
+	{"/=",{}}
+	{".=",{}}
+	{"%=",{}}
+	{"&=",{}}
+	{"|=",{}}
+	{"^=",{}}
+	{"<<=",{}}
+	{">>=",{}}
+	{"=>",{}}
+	#クラス
+	{"class",{BlockStart(phpclassblock),ChangeState(php_classname)}}
+	{"interface",{BlockStart(phpclassblock),ChangeState(php_classname)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========phpクラス===========
+#php クラス  "class"の後〜クラス名
+state(php_classname)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#
+	{default,{SetVarCurrentToken(classname),AddGlobalId([PHP Class], classname, "", info,"","","","",9),
+	ChangeState(php_classaftername)}}
+}
+
+#php クラス  クラス名の後〜"{"
+state(php_classaftername)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#クラス定義開始
+	{"{", {IncIndentFromNext,ChangeState(php_class)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+}
+
+#php クラス  最初の"{"の後〜対応する"}"
+state(php_class)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#クラス終了
+	{"}", {DecIndentFromCurrent,ChangeStateIfBlockEnd(phpclassblock,php)}}
+	#状態開始時処理（infoを初期化）
+	{start,{SetVarStart(info)}}
+	#メソッド
+	{"function",{SetVarStart(info),ChangeState(php_method)}}
+	#$〜
+	{regexp"\\$(\\w+)",{SetVarCurrentToken(varname),SetVarRegExpGroup1(varname2)}}
+	#プロパティ（$付きと$無し両方を登録する。::の後は$付き、->の後は$無しで記述するので、どちらも色づけ出来るように）
+	{";",{SetVarEnd(info), AddGlobalId([PHP Property], varname, "", info,"",classname,"","",9),
+	AddGlobalId([PHP Property], varname2, "", info,"",classname,"","",9),ChangeState(php_class)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========php関数===========
+#php 関数
+state(php_function)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	{"(",{SetVarLastWord(funcname), ChangeState(php_function_arg)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#php 関数
+state(php_function_arg)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	#
+	{")",{SetVarEndAtNextChar(info), AddGlobalId([PHP Function], funcname, funcname, info,lastcomment,"","","",3)}}
+	#引数
+	{regexp"\\$\\w+",{SetVarCurrentToken(varname),AddLocalId([PHP Variable], varname, "","","")}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {BlockStart(funcblock), IncIndentFromNext,ChangeState(php_funcidle)}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========php関数idle===========
+#php 関数idle
+state(php_funcidle)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_Stable
+	#StateAttribute_NoSpellCheck
+	#イコール（ローカル変数）
+	{"=",{SetVarStartAtPrevToken(info), SetVarLastWord(varname), ChangeState(php_funclocalvarequal)}}
+	{"==",{}}
+	{"===",{}}
+	{"!=",{}}
+	{"!==",{}}
+	{"<=",{}}
+	{">=",{}}
+	{"+=",{}}
+	{"-=",{}}
+	{"*=",{}}
+	{"/=",{}}
+	{".=",{}}
+	{"%=",{}}
+	{"&=",{}}
+	{"|=",{}}
+	{"^=",{}}
+	{"<<=",{}}
+	{">>=",{}}
+	{"=>",{}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent,ChangeStateIfBlockEnd(funcblock,php)}}
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========php関数ローカル変数===========
+#php 関数ローカル変数  = 以降
+state(php_funclocalvarequal)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#
+	{";",{SetVarEnd(info),AddLocalId([PHP Variable], varname, info,"",""), ChangeState(php_funcidle)}}
+	#new
+	{"new",{ChangeState(php_funclocalvarnew)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#php 関数ローカル変数 クラスインスタンス  new 以降
+state(php_funclocalvarnew)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	{"(",{SetVarLastWord(classname)}}
+	{";",{SetVarEnd(info),AddLocalId([PHP Variable], varname, info,classname,""), ChangeState(php_funcidle)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========phpメソッド===========
+#php メソッド
+state(php_method)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#引数
+	{"(",{SetVarLastWord(funcname), ChangeState(php_method_arg)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#php メソッド
+state(php_method_arg)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#
+	{")",{SetVarEndAtNextChar(info), AddGlobalId([PHP Method], funcname, funcname, info,lastcomment,classname,"","",3)}}
+	#引数
+	{regexp"\\$\\w+",{SetVarCurrentToken(varname),AddLocalId([PHP Variable], varname, "","","")}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {BlockStart(methodblock), IncIndentFromNext,ChangeState(php_methodidle)}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========phpメソッドidle===========
+#php メソッドidle
+state(php_methodidle)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#イコール（ローカル変数）
+	{"=",{SetVarStartAtPrevToken(info), SetVarLastWord(varname), ChangeState(php_methodlocalvarequal)}}
+	{"==",{}}
+	{"===",{}}
+	{"!=",{}}
+	{"!==",{}}
+	{"<=",{}}
+	{">=",{}}
+	{"+=",{}}
+	{"-=",{}}
+	{"*=",{}}
+	{"/=",{}}
+	{".=",{}}
+	{"%=",{}}
+	{"&=",{}}
+	{"|=",{}}
+	{"^=",{}}
+	{"<<=",{}}
+	{">>=",{}}
+	{"=>",{}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent,ChangeStateIfBlockEnd(methodblock,php)}}
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========phpメソッドローカル変数===========
+#php メソッドローカル変数  = 以降
+state(php_methodlocalvarequal)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#
+	{";",{SetVarEnd(info),AddLocalId([PHP Variable], varname, info,"",""), ChangeState(php_methodidle)}}
+	#new
+	{"new",{ChangeState(php_methodlocalvarnew)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#php メソッドローカル変数 クラスインスタンス  new 以降
+state(php_methodlocalvarnew)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	{"(",{SetVarLastWord(classname)}}
+	{";",{SetVarEnd(info),AddLocalId([PHP Variable], varname, info,classname,""), ChangeState(php_methodidle)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	#リテラル
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+}
+
+#===========phpグローバル変数===========
+#php  = 以降
+state(php_varequal)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	{";",{SetVarEnd(info),AddGlobalId([PHP Variable], varname, "", info,"","","","",9), ChangeState(php)}}
+	#new
+	{"new",{ChangeState(php_varnew)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#php/var クラスインスタンス  new 以降
+state(php_varnew)
+{
+	StateAttribute_SyntaxPart("PHP")
+	#StateAttribute_NoSpellCheck
+	{"(",{SetVarLastWord(classname)}}
+	{";",{SetVarEnd(info),
+	AddGlobalId([PHP Variable], varname, "", info,"","",classname,"",9), ChangeState(php)}}
+	#PHP終了
+	{"?>",{ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#ヒアドキュメント
+	{"<<<", {PushState(php_heredocument_start)}}
+	#コメント
+	{"/*",{SetVarStart(lastcomment),PushState(php_comment)}}
+	{"//",{SetVarStart(lastcomment),PushState(php_linecomment)}}
+	{"'",{PushState(php_singlequotation)}}
+	{"\"",{PushState(php_doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#===========phpコメント／リテラル===========
+#php 行コメント
+state(php_linecomment)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	#StateAttribute_NoSpellCheck
+	StateAttribute_ColorSlot(32)
+	{lineend,{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+#php コメント
+state(php_comment)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	#StateAttribute_NoSpellCheck
+	StateAttribute_ColorSlot(32)
+	{"*/",{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+#php シングルクオーテーション（変数展開・エスケープシーケンス無し。ただし、\\と\'だけは認識。）
+state(php_singlequotation)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	#StateAttribute_NoSpellCheck
+	StateAttribute_ColorSlot(33)
+	StateAttribute_DisableIndent
+	{"\\\\",{}}
+	{"\\'",{}}
+	{"'",{PopStateFromNextChar}}
+}
+
+#php ダブルクオーテーション（変数展開・エスケープシーケンス有り。）
+state(php_doublequotation)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	#StateAttribute_NoSpellCheck
+	StateAttribute_DisableIndent
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#php ヒアドキュメント
+state(php_heredocument_start)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	#StateAttribute_NoSpellCheck
+	{"\'",{PushState(php_heredocument_start_quotation)}}
+	{"\"",{PushState(php_heredocument_start_quotation)}}
+	{default,{SetVarCurrentToken(heredocumentid),ChangeState(php_heredocument)}}
+}
+
+#php ヒアドキュメント（IDをクオーテーションでくくっている場合）
+state(php_heredocument_start_quotation)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	#StateAttribute_NoSpellCheck
+	{default,{SetVarCurrentToken(heredocumentid),ChangeState(php_heredocument)}}
+}
+
+#php ヒアドキュメント
+state(php_heredocument)
+{
+	StateAttribute_SyntaxPart("PHP")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	#StateAttribute_NoSpellCheck
+	StateAttribute_DisableIndent
+	{heredocumentend,{PopState}}
+}
+
+category[PHP Function]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"PHP 関数")
+}
+
+category[PHP Variable]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"PHP 変数")
+}
+
+category[PHP Class]
+{
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"PHP クラス")
+}
+
+category[PHP Method]
+{
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"PHP メソッド")
+}
+
+category[PHP Property]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"PHP プロパティ")
+}
+
+#===========css===========
+
+state(css)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_Stable
+	#StateAttribute_NoSpellCheck
+	#
+	{"{",{IncIndentFromNext,ChangeState(css_prop)}}
+	#コメント
+	{"/*",{PushState(css_comment)}}
+	#style終了
+	{"</style>",{DecIndentFromCurrent,ChangeState(idle)}}
+	{"</STYLE>",{DecIndentFromCurrent,ChangeState(idle)}}
+	#文法エラー
+	{"}",{SyntaxError("} before {")}}
+}
+#★クラスのrecompletion
+
+#CSSプロパティ（{の後）
+state(css_prop)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_Stable
+	#StateAttribute_NoSpellCheck
+	#
+	{":",{IncIndentFromNext,ChangeState(css_value)}}
+	#
+	{"}",{DecIndentFromCurrent,ChangeState(css)}}
+	#コメント
+	{"/*",{PushState(css_comment)}}
+}
+
+#CSS値（:の後）
+state(css_value)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_Stable
+	#StateAttribute_NoSpellCheck
+	StateAttribute_EnableRecompletion
+	#
+	{";",{DecIndentFromNext,ChangeState(css_prop)}}
+	#
+	{"}",{DecIndentFromCurrent, DecIndentFromCurrent,ChangeState(css)}}
+	#コメント
+	{"/*",{PushState(css_comment)}}
+	#リテラル
+	{"\"",{PushState(css_literal)}}
+	#文法エラー
+	{"{",{SyntaxError("{ without value")}}
+	{":",{SyntaxError(": without value")}}
+}
+
+#CSSコメント
+state(css_comment)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"*/",{PopStateFromNextChar}}
+}
+
+#CSSリテラル
+state(css_literal)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	#
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+category[id]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[class]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[name]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[html]
+{
+	CategoryAttribute_ColorSlot(0)
+}
+

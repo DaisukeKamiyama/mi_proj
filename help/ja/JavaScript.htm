@@ -1,0 +1,798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>JavaScript</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="kihon.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1><a name="tool">ツールをJavaScriptで記述する</a></h1>
+			
+			<p>
+				miのツールを、JavaScriptで記述することが出来ます。<br>
+				ツールの拡張子を.jsにすると、JavaScriptファイルとして実行します。<br>
+				JavaScriptからは、miのテキストや各種情報を取得／変更するmi テキストエディタ APIが使用可能です。
+			</p>
+			<p>
+				標準モードのツールのいくつか（「選択範囲の数値を順に＋１する」など）はJavaScriptで記述されていますので、ご参考にしてください。<br>
+				（ツールメニューの項目をoptionキーを押しながら選択すると、中身を参照することができます。）
+			</p>
+			<p>
+				HTML5モードのキーワードカテゴリー「mi JavaScript」を有効にすると、mi テキストエディタ APIの関数が色付け、キーワード情報表示されます。
+			</p>
+			
+			<h1><a name="plugin">プラグインをJavaScriptで記述する</a></h1>
+			<p>
+				miのプラグインを、JavaScriptで記述することが出来ます。<br>
+				拡張子.jsのファイルをモード設定フォルダの"plugins"フォルダに格納することで、mi起動時に自動的に実行されます。<br>
+				このプラグインファイルに、イベントリスナーを登録するコードを記述することで、ファイルオープン時や保存時に
+				特定のJavaScriptコードを実行することが出来ます。
+			</p>
+			
+			<h1><a name="api">mi テキストエディタ API</a></h1>
+			
+			<h2><a name="app">アプリケーションクラス</a></h2>
+			<p>
+				miアプリケーションに対応するクラスです。<br>
+				あらかじめ、グローバル変数"mi"にインスタンス（唯一のインスタンス）が生成済みです。
+			</p>
+			<h3>ドキュメント制御</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getCurrentDocument">
+							<p><code>
+									getCurrentDocument()
+							</code></p>
+					</a></td><td>
+						<p>
+							現在編集中のドキュメントオブジェクトを取得します。
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc = mi.getCurrentDocument();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="createDocument">
+							<p><code>
+									createDocument()
+							</code></p>
+					</a></td><td>
+						<p>
+							新規ドキュメントを生成して、そのドキュメントオブジェクトを取得します。
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc = mi.createDocument();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>ダイアログの表示</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="showDialog">
+							<p><code>
+									showDialog(<i>title</i>, <i>message</i>)<br><br>
+									<i>title</i>: String : タイトル<br>
+									<i>message</i>: String : メッセージ<br>
+							</code></p>
+					</a></td><td>
+						<p>
+							OKボタンを持つダイアログを表示します。<br>
+							（ダイアログの左下に、ツール実行を中断するボタンも表示されます。）
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.showDialog("タイトル","メッセージ");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top">
+							<p><code>
+									showDialog(<i>title</i>, <i>message</i>, <i>okButton</i>)<br><br>
+									<i>title</i>: String : タイトル<br>
+									<i>message</i>: String : メッセージ<br>
+									<i>okButton</i>: String : OKボタンのタイトル<br>
+							</code></p>
+					</a></td><td>
+						<p>
+							OKボタンを持つダイアログを表示します。<br>
+							OKボタンのタイトルを指定できます。<br>
+							（ダイアログの左下に、ツール実行を中断するボタンも表示されます。）
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.showDialog("タイトル","メッセージ","おっけー");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top">
+							<p><code>
+									showDialog(<i>title</i>, <i>message</i>, <i>okButton</i>, <i>cancelButton</i>)<br><br>
+									<i>title</i>: String : タイトル<br>
+									<i>message</i>: String : メッセージ<br>
+									<i>okButton</i>: String : OKボタンのタイトル<br>
+									<i>cancelButton</i>: String : Cancelボタンのタイトル<br>
+									<i>返り値</i>: String : クリックされたボタンのタイトル<br>
+							</code></p>
+					</a></td><td>
+						<p>
+							OK, Cancelボタンを持つダイアログを表示します。<br>
+							OK, Cancelボタンのタイトルを指定できます。<br>
+							（ダイアログの左下に、ツール実行を中断するボタンも表示されます。）
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>if( mi.showDialog("タイトル","メッセージ","続行","キャンセル") == "キャンセル" )   break;</pre>
+								<p>→実行結果：ユーザーがキャンセルをクリックしたらbreakします。</p>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>JavaScript</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="loadModule">
+							<p><code>
+									loadModule(<i>path</i>)<br><br>
+									<i>path</i>: String : 相対ファイルパス<br>
+							</code></p>
+					</a></td><td>
+						<p>
+							JavaScriptファイルをロード（スクリプト実行）します。
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.loadModule("./script/jshint.js");</pre>
+								<p>→実行結果：同じフォルダ内のscriptフォルダ内のjshint.jsの内容を実行します。</p>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>プラグイン制御</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="registerPlugin">
+							<p><code>
+									registerPlugin(<i>modeName</i>,<i>id</i>, <i>name</i>, <i>defaultEnabled</i>, <i>defaultOptions</i>)<br><br>
+									<i>modeName</i>: String: 対象モードの名称<br>
+									<i>id</i> : String: プラグインのID（他のプラグインと重複しないユニークなID。例："std.jshint.mimikaki.net"）<br>
+									<i>name</i> : プラグイン名称<br>
+									<i>defaultEnabled</i> : デフォルトのON/OFF状態<br>
+									<i>defaultOptions</i> : デフォルトのオプション文字列
+					</code></p></a></td><td>
+						<p>
+							プラグインを登録します。<br>
+							（プラグインの登録の効果は、モードに設定データを作成し、モード設定ウインドウに設定を表示することのみです。イベントリスナーの登録などは、addEventListener()などで行います。）<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.registerPlugin(modeName,"std.jshint.mimikaki.net","JSHINT",false,"");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="setPluginDisplayName">
+							<p><code>
+									setPluginDisplayName(<i>modeName</i>,<i>id</i>,<i>lang</i>,<i>displayName</i>)<br><br>
+									<i>modeName</i>: String: 対象モードの名称<br>
+									<i>id</i> : String: プラグインのID<br>
+									<i>lang</i> : String: 言語名（現状、"ja"のみ対応）<br>
+									<i>displayName</i> : 表示名
+					</code></p></a></td><td>
+						<p>
+							プラグインの英語以外での表示名を設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.setPluginDisplayName(modeName,pluginId,"ja","JSHINT (JavaScript 文法チェック)");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getPluginEnabled">
+							<p><code>
+									getPluginEnabled(<i>modeName</i>,<i>id</i>)<br><br>
+									<i>modeName</i>: String: 対象モードの名称<br>
+									<i>id</i> : String: プラグインのID<br>
+					</code></p></a></td><td>
+						<p>
+							モード設定でプラグインがONに設定されているかどうかを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>if( mi.getPluginEnabled(modeName,pluginId) === true ) { 
+（イベントリスナー登録などの処理） }</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getCurrentModeNameForPluginLoad">
+							<p><code>
+									getCurrentModeNameForPluginLoad()<br>
+					</code></p></a></td><td>
+						<p>
+							現在ロード中の対象モードの名称を取得します。プラグインロード処理内でのみ使用可能です。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>modeName = mi.getCurrentModeNameForPluginLoad();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>イベントリスナー制御</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="addEventListener">
+							<p><code>
+									addEventListener(<i>modeName</i>, <i>id</i>, <i>events</i>, <i>fn</i>)<br><br>
+									<i>modeName</i>: String: 対象モードの名称<br>
+									<i>id</i> : String: プラグインのID<br>
+									<i>events</i> : Array of String : 対象イベント<br>
+									<i>fn</i> : function(doc,event,parameter) : 関数
+					</code></p></a></td><td>
+						<p>
+							ドキュメント保存等のイベント発生時に処理する関数を登録します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.addEventListener(modeName,pluginId,["onSaved","onOpened"],
+function(doc,event,parameter) {
+（処理）}
+</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="removeEventListeners">
+							<p><code>
+									addEventListener(<i>modeName</i>, <i>id</i>, <i>events</i>, <i>fn</i>)<br><br>
+									<i>modeName</i>: String: 対象モードの名称<br>
+									<i>id</i> : String: プラグインのID<br>
+					</code></p></a></td>
+					<td>
+						<p>
+							ドキュメント保存等のイベント発生時に処理する関数を登録解除します。<br>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h4>イベントの種類</h4>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>イベント</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="onOpened">
+							<p><code>onOpened</code></p></a></td><td>
+						<p>
+							ドキュメントをオープンしたとき
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="onSaved">
+							<p><code>onSaved</code></p></a></td><td>
+						<p>
+							ドキュメントを保存したとき
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>デバッグ</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="outputToStderr">
+							<p><code>
+									outputToStderr(<i>text</i>)<br><br>
+									<i>text</i>: String: テキスト
+					</code></p></a></td><td>
+						<p>
+							標準エラー出力にテキストを出力します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>mi.outputToStderr("test");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h2><a name="doc">ドキュメントクラス</a></h2>
+			<p>
+				ドキュメントに対応するクラスです。
+			</p>
+			
+			<h3>テキスト編集</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getText">
+							<p><code>
+									getText(<i>start</i>, <i>end</i>)<br><br>
+									<i>start</i> : Number: 開始位置(0始まり）<br>
+									<i>end</i> : Number: 終了位置(0始まり）<br>
+									<i>返り値</i> : String
+					</code></p></a></td><td>
+						<p>
+							指定範囲のテキストを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>text = doc.getText(s,e);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="setText">
+							<p><code>
+									setText(<i>start</i>, <i>end</i>, <i>text</i>)<br><br>
+									<i>start</i> : Number: 開始位置(0始まり）<br>
+									<i>end</i> : Number: 終了位置(0始まり）<br>
+									<i>text</i> : String: テキスト
+					</code></p></a></td><td>
+						<p>
+							指定範囲にテキストを設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setText(start,end,"abc");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getTextPointFromPos">
+							<p><code>
+									getTextPointFromPos(<i>pos</i>)<br><br>
+									<i>pos</i> : Number: テキスト挿入位置(0始まり）<br>
+									<i>返り値</i> : 連想配列(x:Number, y:Number)
+					</code></p></a></td><td>
+						<p>
+							テキスト挿入位置から、テキストポイントを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>textpt = doc.getTextPointFromPos(textindex);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getPosFromTextPoint">
+							<p><code>
+									getPosFromTextPoint(<i>x</i>, <i>y</i>)<br><br>
+									<i>x</i> : Number: 段落内のテキスト挿入位置(0始まり）<br>
+									<i>y</i> : Number: 段落番号(0始まり）<br>
+									<i>返り値</i> : Number
+					</code></p></a></td><td>
+						<p>
+							テキストポイントから、テキスト挿入位置を取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>textindex = doc.getPosFromTextPoint(textpt.x,textpt.y);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>ドキュメント全体の編集</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getLength">
+							<p><code>
+									getLength()<br><br>
+									<i>返り値</i> : Number
+					</code></p></a></td><td>
+						<p>
+							ドキュメントの文字数を取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>len = doc.getLength();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getContent">
+							<p><code>
+									getContent()<br><br>
+									<i>返り値</i> : String
+					</code></p></a></td><td>
+						<p>
+							ドキュメント全体のテキストを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>text = doc.getContent();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="setContent">
+							<p><code>
+									setContent(<i>text</i>)<br><br>
+									<i>text</i> : String: テキスト
+					</code></p></a></td><td>
+						<p>
+							ドキュメント全体にテキストを設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setContent("abc");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>段落</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getParagraphCount">
+							<p><code>
+									getParagraphCount()<br><br>
+									<i>返り値</i> : Number
+					</code></p></a></td><td>
+						<p>
+							ドキュメントの段落数を取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>paraCount = doc.getParagraphCount();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><a name="getParagraphRange">
+							<p><code>
+									getParagraphRange(<i>paraindex</i>)<br><br>
+									<i>paraindex</i> : Number: 段落のインデックス(0始まり）<br>
+									<i>返り値</i> : 連想配列(start:Number, end:Number)
+					</code></p></a></td><td>
+						<p>
+							段落の範囲を取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>pararange = doc.getParagraphRange(0);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getParagraphText">
+							<p><code>
+									getParagraphText(<i>paraindex</i>)<br><br>
+									<i>paraindex</i> : Number: 段落のインデックス(0始まり）<br>
+									<i>返り値</i> : String
+					</code></p></a></td><td>
+						<p>
+							段落のテキストを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>paratext = doc.getParagraphText(0);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td valign="top"><a name="setParagraphText">
+							<p><code>
+									setParagraphText(<i>paraindex</i>, <i>text</i>)<br><br>
+									<i>paraindex</i> : Number: 段落番号(0始まり）<br>
+									<i>text</i> : String: テキスト
+					</code></p></a></td><td>
+						<p>
+							段落にテキストを設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setParagraphText(paraindex,"abc");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>選択範囲・キャレット</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getSelectionRange">
+							<p><code>
+									getSelectionRange(<i>selindex</i>)<br><br>
+									<i>selindex</i> : 選択範囲のインデックス(0始まり）（省略可）<br>
+									<i>返り値</i> : 連想配列(start:Number, end:Number)
+					</code></p></a></td><td>
+						<p>
+							現在の選択範囲を取得します。（矩形選択の場合のみ、複数の選択範囲が存在します。）<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>sel = doc.getSelectionRange();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getSelectionRangeArray">
+							<p><code>
+									getSelectionRangeArray()<br><br>
+									<i>返り値</i> : Array of 連想配列(start:Number, end:Number)
+					</code></p></a></td><td>
+						<p>
+							現在の選択範囲の配列を取得します。（矩形選択の場合のみ、複数の選択範囲が存在します。）<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>selarray = doc.getSelectionRangeArray();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getSelectionCount">
+							<p><code>
+									getSelectionCount()<br><br>
+									<i>返り値</i> : Number
+					</code></p></a></td><td>
+						<p>
+							現在の選択範囲の個数を取得します。（矩形選択の場合のみ、複数の選択範囲が存在します。）<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>selcount = doc.getSelectionCount();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getSelectionText">
+							<p><code>
+									getSelectionText()<br><br>
+									<i>返り値</i> : String
+					</code></p></a></td><td>
+						<p>
+							現在の選択範囲のテキストを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>text = doc.getSelectionText();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="setSelectionRange">
+							<p><code>
+									setSelectionRange(<i>start</i>, <i>end</i>)<br><br>
+									<i>start</i> : Number: 開始位置(0始まり）<br>
+									<i>end</i> : Number: 終了位置(0始まり）<br>
+					</code></p></a></td><td>
+						<p>
+							選択範囲を設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setSelectionRange(start,end);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getCaretPos">
+							<p><code>
+									getCaretPos()<br><br>
+									<i>返り値</i>: Number
+					</code></p></a></td><td>
+						<p>
+							現在のキャレット位置を取得します。<br>
+							mi.getSelectionRange().startと同等です。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>pos = doc.getCaretPos();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="setCaretPos">
+							<p><code>
+									setCaretPos(<i>pos</i>)<br><br>
+									<i>pos</i>: Number: テキスト挿入位置
+					</code></p></a></td><td>
+						<p>
+							現在のキャレット位置を設定します。<br>
+							mi.setSelectionRange(pos,pos)と同等です。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setCaretPos(pos);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>ドキュメント情報</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="getModeName">
+							<p><code>
+									getModeName()<br><br>
+									<i>返り値</i>: String
+					</code></p></a></td><td>
+						<p>
+							ドキュメントのモード名を取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>modeName = doc.getModeName();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="getURL">
+							<p><code>
+									getURL()<br><br>
+									<i>返り値</i>: String
+					</code></p></a></td><td>
+						<p>
+							ドキュメントファイルのURLを取得します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>url = doc.getURL();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>文法チェッカー</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				
+				<tr>
+					<td valign="top"><a name="clearSyntaxCheckerWarnings">
+							<p><code>
+									clearSyntaxCheckerWarnings()<br><br>
+					</code></p></a></td><td>
+						<p>
+							文法チェッカーワーニングを全て消去します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.clearSyntaxCheckerWarnings();</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td valign="top"><a name="addSyntaxCheckerWarning">
+							<p><code>
+									addSyntaxCheckerWarning(<i>para</i>, <i>col</i>, <i>title</i>, <i>detail</i>, <i>type</i>, <i>displayInTextView</i>)<br><br>
+									<i>para</i> : Number : 段落番号<br>
+									<i>col</i> : Number : 段落内の文字挿入位置(0始まり)<br>
+									<i>title</i> : String : ワーニングタイトル<br>
+									<i>detail</i> : String : ワーニング内容<br>
+									<i>type</i> : Number : タイプ（1: Information, 2: Warning, 3: Error）<br>
+									<i>displayInTextView</i> : Boolean : テキストビュー内にもワーニング表示するかどうか
+					</code></p></a></td><td>
+						<p>
+							文法チェッカーワーニングを追加します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.addSyntaxCheckerWarning(lineIndex,colIndex,reason,detail,2,true);</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<h3>その他</h3>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>関数</th><th>説明</th></tr>
+				<tr>
+					<td valign="top"><a name="setDocInfoText">
+							<p><code>
+									setDocInfoText(<i>text</i>)<br><br>
+									<i>text</i>: String: 情報テキスト
+					</code></p></a></td><td>
+						<p>
+							テキスト情報ウインドウに表示するテキストを設定します。<br>
+							<div class="sample">
+								<p>コード例：</p>
+								<pre>doc.setDocInfoText("情報");</pre>
+							</div>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
+

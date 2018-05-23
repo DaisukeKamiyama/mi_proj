@@ -1,0 +1,876 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,CSS用キーワード
+,下記文書に準拠
+,Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification
+,W3C Recommendation 07 June 2011
+,http://www.w3.org/TR/2011/REC-CSS2-20110607/
+
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+azimuth,"音の方向
+<angle> | [[ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards | inherit",,"property",class
+background-attachment,"背景画像をスクロールするか固定するか
+scroll | fixed | inherit
+【初期値】scroll
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background-attachment: <<<CARET HINT(background-attachment)>>>;"
+background-color,"背景色
+<color> | transparent | inherit
+【初期値】transparent
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background-color: <<<CARET HINT(color)>>>;"
+background-image,"背景画像
+<uri> | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background-image: url(""<<<CARET HINT(URL)>>>"");"
+background-position,"背景画像の位置
+[ [ <percentage> | <length> | left | center | right ] [ <percentage> | <length> | top | center | bottom ]? ] | [ [ left | center | right ] || [ top | center | bottom ] ] | inherit
+【初期値】0% 0%
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background-position: <<<CARET HINT(background-position-left)>>> <<<HINT(background-position-top)>>>;"
+background-repeat,"背景画像の繰り返し有無
+repeat | repeat-x | repeat-y | no-repeat | inherit
+【初期値】repeat
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background-repeat: <<<CARET HINT(background-repeat)>>>;"
+background,"背景
+[background-color || background-image || background-repeat || background-attachment || background-position] | inherit
+各値は省略可、順不同
+【初期値】transparent none repeat scroll 0% 0%
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"background: <<<CARET HINT(background-color)>>> <<<HINT(background-image \(url\(\)\))>>> <<<HINT(background-repeat)>>> <<<HINT(background-attachment)>>> <<<HINT(background-position-left)>>> <<<HINT(background-position-top)>>>;"
+border-collapse,"テーブル枠線をセル枠線と分けるかどうか
+collapse | separate | inherit
+【初期値】separate
+【対象要素】table
+【子要素への値継承】有り
+",,"property",class,"border-collapse: <<<CARET HINT(border-collapse)>>>;"
+border-color,"枠線の色
+[ <color> | transparent ]{1,4} | inherit
+値1個：上下左右同じ値
+値2個：上下、左右の順
+値3個：上、左右、下の順
+値4個：上、右、下、左の順
+【初期値】colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-color: <<<CARET HINT(border-color)>>>;"
+border-spacing,"テーブルの枠線余白
+<length> <length>? | inherit
+値1個：水平/垂直同じ値
+値2個：水平、垂直の順
+【初期値】0
+【対象要素】table
+【子要素への値継承】有り
+",,"property",class,"border-spacing: <<<CARET HINT(長さ（水平方向余白）)>>> <<<HINT(長さ（垂直方向余白）)>>>;"
+border-style,"枠線スタイル
+<border-style>{1,4} | inherit
+値1個：上下左右同じ値
+値2個：上下、左右の順
+値3個：上、左右、下の順
+値4個：上、右、下、左の順
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-style: <<<CARET HINT(border-style)>>>;"
+border-top,"枠線（上）
+[ <border-width> || <border-style> || border-color ] | inherit
+各値は省略可、順不同
+【初期値】medium none colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-top: <<<CARET HINT(border-width)>>> <<<HINT(border-style)>>> <<<HINT(border-color)>>>;"
+border-right,"枠線（右）
+[ <border-width> || <border-style> || border-color ] | inherit
+各値は省略可、順不同
+【初期値】medium none colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-right: <<<CARET HINT(border-width)>>> <<<HINT(border-style)>>> <<<HINT(border-color)>>>;"
+border-bottom,"枠線（下）
+[ <border-width> || <border-style> || border-color ] | inherit
+各値は省略可、順不同
+【初期値】medium none colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-bottom: <<<CARET HINT(border-width)>>> <<<HINT(border-style)>>> <<<HINT(border-color)>>>;"
+border-left,"枠線（左）
+[ <border-width> || <border-style> || border-color ] | inherit
+各値は省略可、順不同
+【初期値】medium none colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-left: <<<CARET HINT(border-width)>>> <<<HINT(border-style)>>> <<<HINT(border-color)>>>;"
+border-top-color,"枠線の色（上）
+<color> | transparent | inherit
+【初期値】colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-top-color: <<<CARET HINT(border-color)>>>;"
+border-right-color,"枠線の色（右）
+<color> | transparent | inherit
+【初期値】colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-right-color: <<<CARET HINT(border-color)>>>;"
+border-bottom-color,"枠線の色（下）
+<color> | transparent | inherit
+【初期値】colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-bottom-color: <<<CARET HINT(border-color)>>>;"
+border-left-color,"枠線の色（左）
+<color> | transparent | inherit
+【初期値】colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-left-color: <<<CARET HINT(border-color)>>>;"
+border-top-style,"枠線スタイル（上）
+<border-style> | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-top-style: <<<CARET HINT(border-style)>>>;"
+border-right-style,"枠線スタイル（右）
+<border-style> | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-right-style: <<<CARET HINT(border-style)>>>;"
+border-bottom-style,"枠線スタイル（下）
+<border-style> | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-bottom-style: <<<CARET HINT(border-style)>>>;"
+border-left-style,"枠線スタイル（左）
+<border-style> | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-left-style: <<<CARET HINT(border-style)>>>;"
+border-top-width,"枠線の幅（上）
+<border-width> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-top-width: <<<CARET HINT(border-width)>>>;"
+border-right-width,"枠線の幅（右）
+<border-width> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-right-width: <<<CARET HINT(border-width)>>>;"
+border-bottom-width,"枠線の幅（下）
+<border-width> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-bottom-width: <<<CARET HINT(border-width)>>>;"
+border-left-width,"枠線の幅（左）
+<border-width> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-left-width: <<<CARET HINT(border-width)>>>;"
+border-width,"枠線の幅
+<border-width>{1,4} | inherit
+値1個：上下左右同じ値
+値2個：上下、左右の順
+値3個：上、左右、下の順
+値4個：上、右、下、左の順
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border-width: <<<CARET HINT(border-width)>>>;"
+border,"枠線
+[ <border-width> || <border-style> || border-color ] | inherit
+各値は省略可、順不同
+【初期値】medium none colorプロパティの値
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"border: <<<CARET HINT(border-width)>>> <<<HINT(border-style)>>> <<<HINT(border-color)>>>;"
+bottom,"positionプロパティを指定したときのbottomからの位置
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】全て（ただしpositionプロパティを指定したときのみ）
+【子要素への値継承】無し
+",,"property",class,"bottom: <<<CARET HINT(長さ or % or auto)>>>;"
+caption-side,"テーブルのキャプションの位置
+top | bottom | inherit
+【初期値】top
+【対象要素】caption
+【子要素への値継承】有り
+",,"property",class,"caption-side: <<<CARET HINT(top or bottom)>>>;"
+clear,"floatによる回り込みの解除
+none | left | right | both | inherit
+【初期値】none
+【対象要素】ブロック要素
+【子要素への値継承】無し
+",,"property",class,"clear: <<<CARET HINT(none or left or right or both)>>>;"
+clip,"要素内の可視範囲を指定
+<shape> | auto | inherit
+※<shape>はrect(top,right,bottom,left)のみ使用可能。right,bottomは左辺、上辺からの長さ。
+【初期値】auto
+【対象要素】positionプロパティでabsoluteを指定した要素
+【子要素への値継承】無し
+",,"property",class,"clip: rect(<<<CARET HINT(top)>>>, <<<HINT(right)>>>, <<<HINT(bottom)>>>, <<<HINT(left)>>>);"
+color,"文字色
+<color> | inherit
+【初期値】ブラウザによる
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"color: <<<CARET HINT(color)>>>;"
+content,":before, :after疑似要素内の内容
+normal | none | [ <string> | <uri> | <counter> | attr(<identifier>) | open-quote | close-quote | no-open-quote | no-close-quote ]+ | inherit
+【初期値】normal
+【対象要素】:before, :after疑似要素
+【子要素への値継承】無し
+",,"property",class,"content: ""<<<CARET>>>"";"
+counter-increment,"章番号等のためのカウンタを＋１
+[ <identifier> <integer>? ]+ | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+【例】body { counter-reset:chapter; }
+h1:before { content: ""Chapter "" counter(chapter); counter-increment:chapter; }
+",,"property",class,"counter-increment: <<<CARET HINT(カウンタ名)>>>;"
+counter-reset,"章番号等のためのカウンタをリセット
+[ <identifier> <integer>? ]+ | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"counter-reset: <<<CARET HINT(カウンタ名)>>>;"
+cue-after,"要素の後で再生する音
+<uri> | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+cue-before,"要素の前に再生する音
+<uri> | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+cue,"要素の前に再生する音、要素の後で再生する音
+[ cue-before || cue-after ] | inherit
+【初期値】none none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+cursor,"マウスカーソル
+[ [<uri> ,]* [ auto | crosshair | default | pointer | move | e-resize | ne-resize | nw-resize | n-resize | se-resize | sw-resize | s-resize | w-resize | text | wait | help | progress ] ] | inherit
+【初期値】auto
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"cursor: <<<CARET HINT(cursor)>>>;"
+direction,"文字の表示方向
+ltr | rtl | inherit
+【初期値】ltr
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class
+display,"表示形式の指定
+inline | block | list-item | inline-block | table | inline-table | table-row-group | table-header-group | table-footer-group | table-row | table-column-group | table-column | table-cell | table-caption | none | inherit
+【初期値】inline
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+elevation,"音の上下方向
+<angle> | below | level | above | higher | lower | inherit
+【初期値】level
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class
+empty-cells,"空セルの枠線表示有無
+show | hide | inherit
+【初期値】show
+【対象要素】td, th
+【子要素への値継承】有り
+",,"property",class
+float,"指定要素の周りに他の要素を回り込みさせる
+left | right | none | inherit
+【初期値】none
+【対象要素】全て（ただし、display, positionの値によっては適用されない）
+【子要素への値継承】無し
+",,"property",class,"float: <<<CARET HINT(float)>>>;"
+font-family,"フォント名
+[[ <family-name> | <generic-family> ] [, <family-name>| <generic-family>]* ] | inherit
+複数のフォント名をカンマで区切って記述可
+【初期値】ブラウザによる
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font-family: <<<CARET HINT(font-family)>>>;"
+font-size,"フォントサイズ
+<absolute-size> | <relative-size> | <length> | <percentage> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font-size: <<<CARET HINT(font-size)>>>;"
+font-style,"フォントスタイル（イタリック）
+normal | italic | oblique | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font-style: <<<CARET HINT(font-style)>>>;"
+font-variant,"フォントにSmall-capsを指定
+normal | small-caps | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font-variant: <<<CARET HINT(font-variant)>>>;"
+font-weight,"フォントの太さ
+normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
+【初期値】normal (=400)
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font-weight: <<<CARET HINT(font-weight)>>>;"
+font,"フォント
+[ [ font-style || font-variant || font-weight ]? font-size [ / line-height ]? font-family ] | caption | icon | menu | message-box | small-caption | status-bar | inherit
+下記の順に記述（もしくは、system-font名のみ）
+1. スタイル（font-style, font-variant, font-weightのうち0個〜3個。順不同）
+2. サイズ（font-sizeのみ、または、font-size/line-height）
+3. フォント名
+【初期値】normal medium
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"font: <<<CARET HINT(font-style （省略可）)>>> <<<HINT(font-variant （省略可）)>>> <<<HINT(font-weight （省略可）)>>> <<<HINT(font-size) HINT(/行の高さ （省略可）)>>> <<<HINT(font-family)>>>;"
+height,"要素の高さ
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】non-replacedなインライン要素、列、列グループ以外全て
+【子要素への値継承】無し
+",,"property",class,"height: <<<CARET HINT(長さ or ％ or auto)>>>;"
+left,"positionプロパティを指定したときのbottomからの位置
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】全て（ただしpositionプロパティを指定したときのみ）
+【子要素への値継承】無し
+",,"property",class,"left: <<<CARET HINT(長さ or % or auto)>>>;"
+letter-spacing,"文字幅
+normal | <length> | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"letter-spacing: <<<CARET HINT(normal or 長さ)>>>;"
+line-height,"行の高さ
+normal | <number> | <length> | <percentage> | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"line-height: <<<CARET HINT(normal or 実数 or 長さ or ％)>>>;"
+list-style-image,"リスト項目マーカー画像
+<uri> | none | inherit
+【初期値】none
+【対象要素】'display: list-item'の項目
+【子要素への値継承】有り
+",,"property",class
+list-style-position,"リスト項目マーカー位置
+inside | outside | inherit
+【初期値】outside
+【対象要素】'display: list-item'の項目
+【子要素への値継承】有り
+",,"property",class
+list-style-type,"リスト項目マーカーのタイプ
+disc | circle | square | decimal | decimal-leading-zero | lower-roman | upper-roman | lower-greek | lower-latin | upper-latin | armenian | georgian | lower-alpha | upper-alpha | none | inherit
+【初期値】disc
+【対象要素】'display: list-item'の項目
+【子要素への値継承】有り
+",,"property",class
+list-style,"リスト項目マーカー
+[ list-style-type || list-style-position || list-style-image ] | inherit
+各値は省略可、順不同
+【初期値】disc outside none
+【対象要素】'display: list-item'の項目
+【子要素への値継承】有り
+",,"property",class
+margin-left,"左余白（枠線の外側）
+<margin-width> | inherit
+【初期値】0
+【対象要素】table, caption以外全て
+【子要素への値継承】無し
+",,"property",class,"margin-left: <<<CARET HINT(長さ or ％ or auto)>>>;"
+margin-right,"右余白（枠線の外側）
+<margin-width> | inherit
+【初期値】0
+【対象要素】table, caption以外全て
+【子要素への値継承】無し
+",,"property",class,"margin-right: <<<CARET HINT(長さ or ％ or auto)>>>;"
+margin-top,"上余白（枠線の外側）
+<margin-width> | inherit
+【初期値】0
+【対象要素】table, caption以外全て
+【子要素への値継承】無し
+",,"property",class,"margin-top: <<<CARET HINT(長さ or ％ or auto)>>>;"
+margin-bottom,"下余白（枠線の外側）
+<margin-width> | inherit
+【初期値】0
+【対象要素】table, caption以外全て
+【子要素への値継承】無し
+",,"property",class,"margin-bottom: <<<CARET HINT(長さ or ％ or auto)>>>;"
+margin,"余白
+<margin-width>{1,4} | inherit
+値1個：上下左右同じ値
+値2個：上下、左右の順
+値3個：上、左右、下の順
+値4個：上、右、下、左の順
+【初期値】全て0
+【対象要素】table, caption以外全て
+【子要素への値継承】無し
+",,"property",class,"margin: <<<CARET HINT(margin)>>>;"
+max-height,"要素の最大高さ
+<length> | <percentage> | none | inherit
+【初期値】none
+【対象要素】non-replacedなインライン要素、table列、列グループ以外全て
+【子要素への値継承】無し
+",,"property",class
+max-width,"要素の最大幅
+<length> | <percentage> | none | inherit
+【初期値】none
+【対象要素】non-replacedなインライン要素、table行、行グループ以外全て
+【子要素への値継承】無し
+",,"property",class
+min-height,"要素の最小高さ
+<length> | <percentage> | inherit
+【初期値】0
+【対象要素】non-replacedなインライン要素、table列、列グループ以外全て
+【子要素への値継承】無し
+",,"property",class
+min-width,"要素の最小幅
+<length> | <percentage> | inherit
+【初期値】0
+【対象要素】non-replacedなインライン要素、table行、行グループ以外全て
+【子要素への値継承】無し
+",,"property",class
+orphans,"<integer> | inherit"
+outline-color,"コントロールのフォーカス輪郭線の色
+<color> | invert | inherit
+【初期値】invert
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+outline-style,"コントロールのフォーカス輪郭線のスタイル
+<border-style> | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+outline-width,"コントロールのフォーカス輪郭線の幅
+<border-width> | inherit
+【初期値】medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+outline,"コントロールのフォーカス輪郭線
+[ outline-color || outline-style || outline-width ] | inherit
+【初期値】invert none medium
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+overflow,"内容がボックス内に表示しきれないときの表示方法
+visible | hidden | scroll | auto | inherit
+【初期値】visible
+【対象要素】ブロック要素
+【子要素への値継承】無し
+",,"property",class,"overflow: <<<CARET HINT(overflow)>>>;"
+padding-top,"上側パディング（枠線と内容の間）
+<padding-width> | inherit
+【初期値】0
+【対象要素】table行グループ、ヘッダグループ、フッタグループ、行、列グループ、列以外全て
+【子要素への値継承】無し
+",,"property",class,"padding-top: <<<CARET HINT(padding-width)>>>;"
+padding-right,"右側パディング（枠線と内容の間）
+<padding-width> | inherit
+【初期値】0
+【対象要素】table行グループ、ヘッダグループ、フッタグループ、行、列グループ、列以外全て
+【子要素への値継承】無し
+",,"property",class,"padding-right: <<<CARET HINT(padding-width)>>>;"
+padding-bottom,"下側パディング（枠線と内容の間）
+<padding-width> | inherit
+【初期値】0
+【対象要素】table行グループ、ヘッダグループ、フッタグループ、行、列グループ、列以外全て
+【子要素への値継承】無し
+",,"property",class,"padding-bottom: <<<CARET HINT(padding-width)>>>;"
+padding-left,"左側パディング（枠線と内容の間）
+<padding-width> | inherit
+【初期値】0
+【対象要素】table行グループ、ヘッダグループ、フッタグループ、行、列グループ、列以外全て
+【子要素への値継承】無し
+",,"property",class,"padding-left: <<<CARET HINT(padding-width)>>>;"
+padding,"パディング（枠線と内容の間）
+<padding-width>{1,4} | inherit
+【初期値】全て0
+【対象要素】table行グループ、ヘッダグループ、フッタグループ、行、列グループ、列以外全て
+【子要素への値継承】無し
+値1個：上下左右同じ値
+値2個：上下、左右の順
+値3個：上、左右、下の順
+値4個：上、右、下、左の順
+",,"property",class,"padding: <<<CARET HINT(padding-width)>>>;"
+page-break-after,"要素の後で改ページ
+auto | always | avoid | left | right | inherit
+",,"property",class
+page-break-before,"要素の前で改ページ
+auto | always | avoid | left | right | inherit
+",,"property",class
+page-break-inside,"要素内で改ページ
+avoid | auto | inherit
+",,"property",class
+pause-after,"要素後の読み上げ停止時間
+<time> | <percentage> | inherit
+",,"property",class
+pause-before,"要素前の読み上げ停止時間
+<time> | <percentage> | inherit
+",,"property",class
+pause,"読み上げ停止時間
+[ [<time> | <percentage>]{1,2} ] | inherit
+",,"property",class
+pitch-range,"読み上げ音声のピッチ（周波数）の範囲
+<number> | inherit
+",,"property",class
+pitch,"読み上げ音声の平均ピッチ（周波数）
+<frequency> | x-low | low | medium | high | x-high | inherit
+",,"property",class
+play-during,"読み上げ中のBGM
+<uri> [ mix || repeat ]? | auto | none | inherit
+",,"property",class
+position,"要素位置を指定する
+static | relative | absolute | fixed | inherit
+static: 通常の位置（top/right/bottom/leftプロパティは適用されない）
+relative: 通常の位置からの相対位置（top/right/bottom/leftプロパティで相対位置を指定）
+absolute: 絶対位置指定（top/right/bottom/leftプロパティで絶対位置を指定）
+fixed: 固定位置（スクロールしても固定）（top/right/bottom/leftプロパティで絶対位置を指定）
+【初期値】static
+",,"property",class,"position: <<<CARET HINT(position)>>>;"
+quotes,"引用マーク
+[<string> <string>]+ | none | inherit
+【初期値】ブラウザによる
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"quotes: '<<<CARET HINT(開始文字)>>>' '<<<HINT(終了文字)>>>';"
+richness,"読み上げ音声の明瞭さ
+<number> | inherit
+",,"property",class
+right,"positionプロパティを指定したときのbottomからの位置
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】全て（ただしpositionプロパティを指定したときのみ）
+【子要素への値継承】無し
+",,"property",class,"right: <<<CARET HINT(長さ or % or auto)>>>;"
+speak-header,"表のヘッダの読み上げ方法
+once | always | inherit
+",,"property",class
+speak-numeral,"数値の読み上げ方法
+digits | continuous | inherit
+",,"property",class
+speak-punctuation,"句読点の読み上げ方法
+code | none | inherit
+",,"property",class
+speak,"読み上げ方法
+normal | none | spell-out | inherit
+",,"property",class
+speech-rate,"読み上げスピード
+<number> | x-slow | slow | medium | fast | x-fast | faster | slower | inherit
+",,"property",class
+stress,"読み上げアクセントの強さ
+<number> | inherit
+",,"property",class
+table-layout,"テーブル幅の計算方法
+auto | fixed | inherit
+【初期値】auto
+【対象要素】table
+【子要素への値継承】無し
+",,"property",class
+text-align,"テキストの横方向配置
+left | right | center | justify | inherit
+【初期値】文字方向がltrならleft、rtlならright
+【対象要素】ブロック要素
+【子要素への値継承】有り
+",,"property",class,"text-align: <<<CARET HINT(text-align)>>>;"
+text-decoration,"テキストの装飾（下線等）
+none | [ underline || overline || line-through || blink ] | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class,"text-decoration: <<<CARET HINT(text-decoration)>>>;"
+text-indent,"段落の1行目の字下げ
+<length> | <percentage> | inherit
+【初期値】0
+【対象要素】ブロック要素
+【子要素への値継承】有り
+",,"property",class,"text-indent: <<<CARET HINT(length or %)>>>;"
+text-transform,"大文字・小文字化して表示
+capitalize | uppercase | lowercase | none | inherit
+【初期値】none
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"text-transform: <<<CARET HINT(text-transform)>>>;"
+top,"positionプロパティを指定したときのbottomからの位置
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】全て（ただしpositionプロパティを指定したときのみ）
+【子要素への値継承】無し
+",,"property",class,"top: <<<CARET HINT(長さ or % or auto)>>>;"
+unicode-bidi,"normal | embed | bidi-override | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】無し
+",,"property",class
+vertical-align,"垂直方向配置
+baseline | sub | super | top | text-top | middle | bottom | text-bottom | <percentage> | <length> | inherit
+【初期値】baseline
+【対象要素】インライン要素、テーブルセル
+【子要素への値継承】無し
+",,"property",class,"vertical-align: <<<CARET HINT(vertical-align)>>>;"
+visibility,"要素の表示有無
+visible | hidden | collapse | inherit
+【初期値】visible
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"visibility: <<<CARET HINT(visibility)>>>;"
+voice-family,"読み上げ音声の名前
+[[<specific-voice> | <generic-voice> ],]* [<specific-voice> | <generic-voice> ] | inherit"
+volume,"読み上げ音声のボリューム
+<number> | <percentage> | silent | x-soft | soft | medium | loud | x-loud | inherit"
+white-space,"空白文字や折り返しの処理方法
+normal | pre | nowrap | pre-wrap | pre-line | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"white-space: <<<CARET HINT(white-space)>>>;"
+widows,"<integer> | inherit"
+width,"要素の幅
+<length> | <percentage> | auto | inherit
+【初期値】auto
+【対象要素】non-replacedなインライン要素、行、行グループ以外全て
+【子要素への値継承】無し
+",,"property",class,"width: <<<CARET HINT(長さ or ％ or auto)>>>;"
+word-spacing,"単語間の幅
+normal | <length> | inherit
+【初期値】normal
+【対象要素】全て
+【子要素への値継承】有り
+",,"property",class,"word-spacing: <<<CARET HINT(normal or 長さ)>>>;"
+z-index,"positionプロパティを指定したときのz-index
+auto | <integer> | inherit
+【初期値】auto
+【対象要素】全て（ただしpositionプロパティを指定したときのみ）
+【子要素への値継承】無し
+",,"property",class
+,＝＝＝＝＝＝＝＝＝＝
+scroll,"background-attachment",,"background-attachment",macro
+fixed,"background-attachment",,"background-attachment",macro
+,＝＝＝＝＝＝＝＝＝＝
+left,"background-position-left",,"background-position-left",macro
+center,"background-position-left",,"background-position-left",macro
+right,"background-position-left",,"background-position-left",macro
+（%で指定）,"〜％",,"background-position-left",macro
+（長さで指定）,"〜em/ex/in/cm/mm/pt/pc/px",,"background-position-left",macro
+,＝＝＝＝＝＝＝＝＝＝
+top,"background-position-top",,"background-position-top",macro
+center,"background-position-top",,"background-position-top",macro
+bottom,"background-position-top",,"background-position-top",macro
+（%で指定）,"〜％",,"background-position-top",macro
+（長さで指定）,"〜em/ex/in/cm/mm/pt/pc/px",,"background-position-top",macro
+,＝＝＝＝＝＝＝＝＝＝
+repeat,"background-repeat",,"background-repeat",macro
+repeat-x,"background-repeat",,"background-repeat",macro
+repeat-y,"background-repeat",,"background-repeat",macro
+no-repeat,"background-repeat",,"background-repeat",macro
+,＝＝＝＝＝＝＝＝＝＝
+collapse,"border-collapse",,"border-collapse",macro
+separate,"border-collapse",,"border-collapse",macro
+,＝＝＝＝＝＝＝＝＝＝
+none,"枠線なし",,"border-style",macro
+hidden,"枠線なし（テーブルの場合の結合処理以外はnoneと同じ）border-style",,"border-style",macro
+dotted,"点線",,"border-style",macro
+dashed,"破線",,"border-style",macro
+solid,"実線",,"border-style",macro
+double,"二重線",,"border-style",macro
+groove,"へこんで見える枠線",,"border-style",macro
+ridge,"盛り上がって見える枠線",,"border-style",macro
+inset,"要素全体がへこんで見える枠線",,"border-style",macro
+outset,"要素全体が盛り上がって見える枠線",,"border-style",macro
+,＝＝＝＝＝＝＝＝＝＝
+thin,"細い枠線",,"border-width",macro
+medium,"標準幅の枠線",,"border-width",macro
+thick,"太い枠線",,"border-width",macro
+（長さで指定）,"〜em/ex/in/cm/mm/pt/pc/px",,"border-width",macro
+,＝＝＝＝＝＝＝＝＝＝
+static,"通常の位置（top/right/bottom/leftプロパティは適用されない）",,"position",macro
+relative,"通常の位置からの相対位置（top/right/bottom/leftプロパティで相対位置を指定）",,"position",macro
+absolute,"絶対位置指定（top/right/bottom/leftプロパティで絶対位置を指定）",,"position",macro
+fixed,"固定位置（スクロールしても固定）（top/right/bottom/leftプロパティで絶対位置を指定）",,"position",macro
+,＝＝＝＝＝＝＝＝＝＝
+auto,"ポイント位置に応じた通常のカーソル",,"cursor",macro
+crosshair,"クロスヘア（＋）カーソル",,"cursor",macro
+default,"プラットフォームのデフォルト（通常は矢印）カーソル",,"cursor",macro
+pointer,"リンクを示すポインタカーソル",,"cursor",macro
+move,"移動されることを示すカーソル",,"cursor",macro
+e-resize,"右辺でのリサイズ用カーソル",,"cursor",macro
+ne-resize,"右上でのリサイズ用カーソル",,"cursor",macro
+nw-resize,"左上でのリサイズ用カーソル",,"cursor",macro
+n-resize,"上辺でのリサイズ用カーソル",,"cursor",macro
+se-resize,"右下でのリサイズ用カーソル",,"cursor",macro
+sw-resize,"左下でのリサイズ用カーソル",,"cursor",macro
+s-resize,"下辺でのリサイズ用カーソル",,"cursor",macro
+w-resize,"左辺リサイズ用カーソル",,"cursor",macro
+text,"テキスト用（通常はIビーム）カーソル",,"cursor",macro
+wait,"ビジーを示す（時計など）カーソル",,"cursor",macro
+help,"ヘルプ用カーソル",,"cursor",macro
+progress,"プログレス表示カーソル",,"cursor",macro
+,＝＝＝＝＝＝＝＝＝＝
+inline,"display",,"display",macro
+block,"display",,"display",macro
+list-item,"display",,"display",macro
+inline-block,"display",,"display",macro
+table,"display",,"display",macro
+inline-table,"display",,"display",macro
+table-row-group,"display",,"display",macro
+table-header-group,"display",,"display",macro
+table-footer-group,"display",,"display",macro
+table-row,"display",,"display",macro
+table-column-group,"display",,"display",macro
+table-column,"display",,"display",macro
+table-cell,"display",,"display",macro
+table-caption,"display",,"display",macro
+none,"display",,"display",macro
+,＝＝＝＝＝＝＝＝＝＝
+left,"float",,"float",macro
+right,"float",,"float",macro
+none,"float",,"float",macro
+,＝＝＝＝＝＝＝＝＝＝
+serif,"明朝体など",,"font-family",macro
+sans-serif,"ゴシック体など",,"font-family",macro
+monospace,"等幅",,"font-family",macro
+（フォント名で指定）,"""Helvetica""等",,"font-family",macro
+,＝＝＝＝＝＝＝＝＝＝
+xx-small,"font-size",,"font-size",macro
+x-small,"font-size",,"font-size",macro
+small,"font-size",,"font-size",macro
+medium,"font-size",,"font-size",macro
+large,"font-size",,"font-size",macro
+x-large,"font-size",,"font-size",macro
+xx-large,"font-size",,"font-size",macro
+larger,"親要素よりも大きく",,"font-size",macro
+smaller,"親要素よりも小さく",,"font-size",macro
+（%で指定）,"〜％",,"font-size",macro
+（長さで指定）,"〜em/ex/in/cm/mm/pt/pc/px",,"font-size",macro
+,＝＝＝＝＝＝＝＝＝＝
+normal,"font-style",,"font-style",macro
+italic,"font-style",,"font-style",macro
+oblique,"font-style",,"font-style",macro
+,＝＝＝＝＝＝＝＝＝＝
+normal,"font-variant",,"font-variant",macro
+small-caps,"font-variant",,"font-variant",macro
+,＝＝＝＝＝＝＝＝＝＝
+normal,"font-weight",,"font-weight",macro
+bold,"font-weight",,"font-weight",macro
+bolder,"font-weight",,"font-weight",macro
+lighter,"font-weight",,"font-weight",macro
+100,"font-weight",,"font-weight",macro
+200,"font-weight",,"font-weight",macro
+300,"font-weight",,"font-weight",macro
+400,"font-weight",,"font-weight",macro
+500,"font-weight",,"font-weight",macro
+600,"font-weight",,"font-weight",macro
+700,"font-weight",,"font-weight",macro
+800,"font-weight",,"font-weight",macro
+900,"font-weight",,"font-weight",macro
+,＝＝＝＝＝＝＝＝＝＝
+caption,"system-font",,"system-font",macro
+icon,"system-font",,"system-font",macro
+menu,"system-font",,"system-font",macro
+message-box,"system-font",,"system-font",macro
+small-caption,"system-font",,"system-font",macro
+status-bar,"system-font",,"system-font",macro
+,＝＝＝＝＝＝＝＝＝＝
+visible,"はみだしてもブロックボックス外に表示される",,"overflow",macro
+hidden,"はみだした部分は表示されない",,"overflow",macro
+scroll,"常にスクロールバー等が表示される",,"overflow",macro
+auto,"はみだす場合のみスクロールバー等が表示される",,"overflow",macro
+,＝＝＝＝＝＝＝＝＝＝
+left,"text-align",,"text-align",macro
+right,"text-align",,"text-align",macro
+center,"text-align",,"text-align",macro
+justify,"text-align",,"text-align",macro
+,＝＝＝＝＝＝＝＝＝＝
+underline,"text-decoration",,"text-decoration",macro
+overline,"text-decoration",,"text-decoration",macro
+line-through,"text-decoration",,"text-decoration",macro
+blink,"text-decoration",,"text-decoration",macro
+,＝＝＝＝＝＝＝＝＝＝
+baseline,"vertical-align",,"vertical-align",macro
+sub,"vertical-align",,"vertical-align",macro
+super,"vertical-align",,"vertical-align",macro
+top,"vertical-align",,"vertical-align",macro
+text-top,"vertical-align",,"vertical-align",macro
+middle,"vertical-align",,"vertical-align",macro
+bottom,"vertical-align",,"vertical-align",macro
+text-bottom,"vertical-align",,"vertical-align",macro
+,＝＝＝＝＝＝＝＝＝＝
+visible,"visibility",,"visibility",macro
+hidden,"visibility",,"visibility",macro
+collapse,"visibility",,"visibility",macro
+,＝＝＝＝＝＝＝＝＝＝
+normal,"空白文字：1つの半角スペースにまとめる／行折り返し：行端のみ",,"white-space",macro
+pre,"空白文字：記述した数だけ表示／行折り返し：改行コードの箇所のみ",,"white-space",macro
+nowrap,"空白文字：1つの半角スペースにまとめる／行折り返し：全く折り返ししない",,"white-space",macro
+pre-wrap,"空白文字：記述した数だけ表示／行折り返し：改行コードの箇所、および、行端",,"white-space",macro
+pre-line,"空白文字：1つの半角スペースにまとめる／行折り返し：改行コードの箇所、および、行端",,"white-space",macro
+,＝＝＝＝＝＝＝＝＝＝
+url,"url(""URL"")",,,macro
+rect,"rect(top,right,bottom,left)",,,macro
+counter,"counter(""カウンタ名"")",,,macro
+rgb,"rgb(0〜255,0〜255,0〜255)、または、rgb(0%〜100%,0%〜100%,0%〜100%)",,,macro
+,＝＝＝＝＝＝＝＝＝＝
+@charset,"@charset ""テキストエンコーディング名"";
+",,,reserved-word,"@charset ""<<<CARET HINT(text-encoding)>>>"";"
+@import,"@import url(""URL"");
+",,,reserved-word,"@import url(""<<<CARET HINT(URL)>>>"");"
+@media,,,,reserved-word
+,＝＝＝＝＝＝＝＝＝＝5.11 Pseudo-classes
+first-child,"pseudo-class",,"pseudo-class",reserved-word
+link,"pseudo-class",,"pseudo-class",reserved-word
+visited,"pseudo-class",,"pseudo-class",reserved-word
+hover,"pseudo-class",,"pseudo-class",reserved-word
+active,"pseudo-class",,"pseudo-class",reserved-word
+focus,"pseudo-class",,"pseudo-class",reserved-word
+lang,"pseudo-class",,"pseudo-class",reserved-word
+,＝＝＝＝＝＝＝＝＝＝5.12 Pseudo-elements
+first-line,"pseudo-element",,"pseudo-element",reserved-word
+first-letter,"pseudo-element",,"pseudo-element",reserved-word
+before,"pseudo-element",,"pseudo-element",reserved-word
+after,"pseudo-element",,"pseudo-element",reserved-word
+
+

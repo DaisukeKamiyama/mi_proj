@@ -1,0 +1,366 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,HTML5用キーワード
+,下記文書に準拠。
+,HTML5
+,W3C Candidate Recommendation 17 December 2012
+,http://www.w3.org/TR/html5/
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝Elements＝＝＝＝＝＝＝＝＝＝
+a,"Hyperlink",,,reserved-word
+abbr,"abbr 略語",,,reserved-word
+address,"address コンタクト情報",,,reserved-word
+area,"area イメージマップ",,,reserved-word
+article,"article 記事セクション [HTML5]",,,reserved-word
+aside,"aside 付加情報 [HTML5]",,,reserved-word
+audio,"audio 音声プレイヤー [HTML5]",,,reserved-word
+b,"b キーワード、製品名など太字等で強調（文章の意味は変化しない）",,,reserved-word
+base,"base 相対URIのベースURI",,,reserved-word
+bdi,"bdi Text directionality isolation [HTML5]",,,reserved-word
+bdo,"bdo 文字方向指定",,,reserved-word
+blockquote,"blockquote 引用",,,reserved-word
+body,"body ドキュメント本文",,,reserved-word
+br,"br 改行",,,reserved-word
+button,"button フォーム内のボタン",,,reserved-word
+canvas,"Scriptable bitmap canvas [HTML5]",,,reserved-word
+caption,"caption テーブルのキャプション",,,reserved-word
+cite,"cite 作品のタイトル",,,reserved-word
+code,"code ソースコード",,,reserved-word
+col,"col テーブルカラム",,,reserved-word
+colgroup,"colgroup テーブルカラムグループ",,,reserved-word
+command,"command メニューコマンド [HTML5]",,,reserved-word
+datalist,"datalist  コンボボックスのオプションのコンテナ [HTML5]",,,reserved-word
+dd,"dd  Description リスト項目内容",,,reserved-word
+del,"del 削除テキスト（履歴）",,,reserved-word
+details,"details 詳細項目を隠すためのディスクロージャーコントロール [HTML5]",,,reserved-word
+dfn,"dfn 定義",,,reserved-word
+dialog,"dialog ダイアログボックス [HTML5]",,,reserved-word
+div,"div flow コンテナ",,,reserved-word
+dl,"dl Description リスト",,,reserved-word,"dl>
+<dt><<<CARET SELECTED>>></dt>
+<dd></dd>
+</dl>
+"
+dt,"dd  Description リスト項目タイトル",,,reserved-word
+em,"em 意味的強調",,,reserved-word
+embed,"embed プラグイン [HTML5]",,,reserved-word
+fieldset,"fieldset フォーム内の項目グループ",,,reserved-word
+figcaption,"figcaption 図表のキャプション [HTML5]",,,reserved-word
+figure,"figure 図表 [HTML5]",,,reserved-word
+footer,"footer ページ／セクションのフッタ [HTML5]",,,reserved-word
+form,"form フォーム",,,reserved-word
+h1,"h1",,,reserved-word
+h2,"h2",,,reserved-word
+h3,"h3",,,reserved-word
+h4,"h4",,,reserved-word
+h5,"h5",,,reserved-word
+h6,"h6",,,reserved-word
+head,"head ドキュメントヘッダ部分",,,reserved-word
+header,"ページ／セクションのヘッダ [HTML5]",,,reserved-word
+hgroup,"h1〜h6のグループ [HTML5]",,,reserved-word
+hr,"テーマ的区切り",,,reserved-word
+html,"html",,,reserved-word
+i,"i Alternate voice",,,reserved-word
+iframe,"iframe  Nested browsing context",,,reserved-word
+img,"img イメージ",,,reserved-word
+input,"input フォーム内の各入力コントロール",,,reserved-word
+ins,"ins 挿入テキスト（履歴）",,,reserved-word
+kbd,"kbd ユーザーのキーボード入力",,,reserved-word
+keygen,"keygen 暗号キーペアを生成するフォームコントロール [HTML5]",,,reserved-word
+label,"label フォーム内の各入力コントロールのラベル",,,reserved-word
+legend,"legend フォーム内項目グループ(fieldset)のタイトル",,,reserved-word
+li,"li リスト項目",,,reserved-word
+link,"link 関連ドキュメントへのリンク",,,reserved-word
+map,"map イメージマップ",,,reserved-word
+mark,"ハイライト表示 [HTML5]",,,reserved-word
+menu,"menu コマンドメニュー [HTML5]",,,reserved-word
+meta,"meta メタ情報",,,reserved-word
+meter,"meter メーター（ゲージ） [HTML5]",,,reserved-word
+nav,"nav ナビゲーションリンク [HTML5]",,,reserved-word
+noscript,"noscript script未サポート時の表示",,,reserved-word
+object,"object オブジェクト",,,reserved-word
+ol,"ol 順序付きリスト（Ordered List）",,,reserved-word,"ol>
+<li><<<CARET SELECTED>>></li>
+<li></li>
+</ol>
+"
+optgroup,"optgroup フォーム内メニューのサブメニュー有り項目",,,reserved-word
+option,"option フォーム内メニュー項目",,,reserved-word
+output,"output 計算結果 [HTML5]",,,reserved-word
+p,"p 段落",,,reserved-word
+param,"param  objectのパラメータ",,,reserved-word
+pre,"pre 整形済みテキスト",,,reserved-word
+progress,"progress プログレスバー [HTML5]",,,reserved-word
+q,"q 引用",,,reserved-word
+rp,"rp ルビ未対応ブラウザ用括弧 [HTML5]",,,reserved-word
+rt,"rt ルビ（ルビテキスト） [HTML5]",,,reserved-word
+ruby,"ruby ルビ（ルビを付ける部分） [HTML5]",,,reserved-word
+s,"s 既に不正確な記述",,,reserved-word
+samp,"samp プログラム・スクリプトの出力",,,reserved-word
+script,"script JavaScript等のスクリプト",,,reserved-word
+section,"section セクション [HTML5]",,,reserved-word
+select,"select フォーム内メニュー",,,reserved-word
+small,"コピーライト等小さな文字で書かれるような部分",,,reserved-word
+source,"source video/audio 要素のソース [HTML5]",,,reserved-word
+span,"フレーズコンテナ",,,reserved-word
+strong,"重要を示す（文の意味は変えない）",,,reserved-word
+style,"style スタイルシート",,,reserved-word
+sub,"sub 下付き文字",,,reserved-word
+summary,"summary  details 要素のキャプション [HTML5]",,,reserved-word
+sup,"Superscript 上付き文字",,,reserved-word
+table,"table テーブル",,,reserved-word
+tbody,"tbody テーブル本体",,,reserved-word
+td,"td テーブルセル",,,reserved-word
+textarea,"textarea フォーム内複数行テキスト入力フィールド",,,reserved-word
+tfoot,"tfoot テーブルフッタ",,,reserved-word
+th,"th ヘッダ用テーブルセル",,,reserved-word
+thead,"thead テーブルヘッダ",,,reserved-word
+time,"time 日時データ [HTML5]",,,reserved-word
+title,"title ドキュメントタイトル",,,reserved-word
+tr,"tr テーブル行",,,reserved-word
+track,"track テキストトラック [HTML5]",,,reserved-word
+u,"u unarticulated text",,,reserved-word
+ul,"ul 順序なしリスト（Unordered List）",,,reserved-word,"ul>
+<li><<<CARET SELECTED>>></li>
+<li></li>
+</ul>
+"
+var,"var プログラムの変数",,,reserved-word
+video,"video ビデオプレイヤー [HTML5]",,,reserved-word
+wbr,"改行可能箇所 [HTML5]",,,reserved-word
+,＝＝＝＝＝＝＝＝＝＝Attributes＝＝＝＝＝＝＝＝＝＝
+abbr,"",,,property
+accept,"",,,property
+accept-charset,"",,,property
+accesskey,"",,,property
+action,"",,,property
+alt,"",,,property
+async,"",,,property
+autocomplete,"",,,property
+autofocus,"",,,property
+autoplay,"",,,property
+border,"",,,property
+challenge,"",,,property
+charset,"",,,property
+charset,"",,,property
+checked,"",,,property
+cite,"",,,property
+class,"",,,property
+cols,"",,,property
+colspan,"",,,property
+command,"",,,property
+content,"",,,property
+contenteditable,"",,,property
+contextmenu,"",,,property
+controls,"",,,property
+coords,"",,,property
+crossorigin,"",,,property
+data,"",,,property
+datetime,"",,,property
+datetime,"",,,property
+default,"",,,property
+defer,"",,,property
+dir,"",,,property
+dirname,"",,,property
+disabled,"",,,property
+draggable,"",,,property
+dropzone,"",,,property
+enctype,"",,,property
+for,"",,,property
+for,"",,,property
+form,"",,,property
+formaction,"",,,property
+formenctype,"",,,property
+formmethod,"",,,property
+formnovalidate,"",,,property
+formtarget,"",,,property
+headers,"",,,property
+height,"",,,property
+hidden,"",,,property
+high,"",,,property
+href,"",,,property
+href,"",,,property
+href,"",,,property
+hreflang,"",,,property
+http-equiv,"",,,property
+icon,"",,,property
+id,"",,,property
+ismap,"",,,property
+keytype,"",,,property
+kind,"",,,property
+label,"",,,property
+lang,"",,,property
+list,"",,,property
+loop,"",,,property
+low,"",,,property
+manifest,"",,,property
+max,"",,,property
+max,"",,,property
+maxlength,"",,,property
+media,"",,,property
+mediagroup,"",,,property
+method,"",,,property
+min,"",,,property
+min,"",,,property
+multiple,"",,,property
+muted,"",,,property
+name,"",,,property
+name,"",,,property
+name,"",,,property
+name,"",,,property
+name,"",,,property
+name,"",,,property
+novalidate,"",,,property
+open,"",,,property
+open,"",,,property
+optimum,"",,,property
+pattern,"",,,property
+placeholder,"",,,property
+poster,"",,,property
+preload,"",,,property
+radiogroup,"",,,property
+readonly,"",,,property
+rel,"",,,property
+required,"",,,property
+reversed,"",,,property
+rows,"",,,property
+rowspan,"",,,property
+sandbox,"",,,property
+spellcheck,"",,,property
+scope,"",,,property
+scoped,"",,,property
+seamless,"",,,property
+selected,"",,,property
+shape,"",,,property
+size,"",,,property
+sizes,"",,,property
+span,"",,,property
+src,"",,,property
+srcdoc,"",,,property
+srclang,"",,,property
+start,"",,,property
+step,"",,,property
+style,"",,,property
+tabindex,"",,,property
+target,"",,,property
+target,"",,,property
+target,"",,,property
+title,"",,,property
+title,"",,,property
+title,"",,,property
+title,"",,,property
+title,"",,,property
+translate,"",,,property
+type,"",,,property
+type,"",,,property
+type,"",,,property
+type,"",,,property
+type,"",,,property
+type,"",,,property
+typemustmatch,"",,,property
+usemap,"",,,property
+value,"",,,property
+value,"",,,property
+value,"",,,property
+value,"",,,property
+value,"",,,property
+value,"",,,property
+width,"",,,property
+wrap,"",,,property
+,＝＝＝＝＝＝＝＝＝＝event handlers＝＝＝＝＝＝＝＝＝＝
+onabort,"",,,property
+onafterprint,"",,,property
+onbeforeprint,"",,,property
+onbeforeunload,"",,,property
+onblur,"",,,property
+onblur,"",,,property
+oncancel,"",,,property
+oncanplay,"",,,property
+oncanplaythrough,"",,,property
+onchange,"",,,property
+onclick,"",,,property
+onclose,"",,,property
+oncontextmenu,"",,,property
+oncuechange,"",,,property
+ondblclick,"",,,property
+ondrag,"",,,property
+ondragend,"",,,property
+ondragenter,"",,,property
+ondragleave,"",,,property
+ondragover,"",,,property
+ondragstart,"",,,property
+ondrop,"",,,property
+ondurationchange,"",,,property
+onemptied,"",,,property
+onended,"",,,property
+onerror,"",,,property
+onerror,"",,,property
+onfocus,"",,,property
+onfocus,"",,,property
+onhashchange,"",,,property
+oninput,"",,,property
+oninvalid,"",,,property
+onkeydown,"",,,property
+onkeypress,"",,,property
+onkeyup,"",,,property
+onload,"",,,property
+onload,"",,,property
+onloadeddata,"",,,property
+onloadedmetadata,"",,,property
+onloadstart,"",,,property
+onmessage,"",,,property
+onmousedown,"",,,property
+onmousemove,"",,,property
+onmouseout,"",,,property
+onmouseover,"",,,property
+onmouseup,"",,,property
+onmousewheel,"",,,property
+onoffline,"",,,property
+ononline,"",,,property
+onpagehide,"",,,property
+onpageshow,"",,,property
+onpause,"",,,property
+onplay,"",,,property
+onplaying,"",,,property
+onpopstate,"",,,property
+onprogress,"",,,property
+onratechange,"",,,property
+onreset,"",,,property
+onresize,"",,,property
+onscroll,"",,,property
+onscroll,"",,,property
+onseeked,"",,,property
+onseeking,"",,,property
+onselect,"",,,property
+onshow,"",,,property
+onstalled,"",,,property
+onstorage,"",,,property
+onsubmit,"",,,property
+onsuspend,"",,,property
+ontimeupdate,"",,,property
+onunload,"",,,property
+onvolumechange,"",,,property
+onwaiting,"",,,property
+

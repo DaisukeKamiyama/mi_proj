@@ -1,0 +1,2279 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,Ruby用キーワード
+,本csvデータはRubyリファレンスマニュアル Ruby 1.9.3版からテキストを抽出して作成しています
+,http://doc.ruby-lang.org/ja/1.9.3/doc/index.html
+,Rubyリファレンスマニュアル Ruby 1.9.3版は以下のライセンスによって配布されています。
+,Creative Commons — Attribution 3.0 Unported
+,http://creativecommons.org/licenses/by/3.0/
+,
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝予約語＝＝＝＝＝＝＝＝＝＝
+BEGIN
+class
+ensure
+nil
+self
+when
+END
+def
+false
+not
+super
+while
+alias
+defined?
+for
+or
+then
+yield
+and
+do
+if
+redo
+true
+__LINE__
+begin
+else
+in
+rescue
+undef
+__FILE__
+break
+elsif
+module
+retry
+unless
+__ENCODING__
+case
+end
+next
+return
+until
+,＝＝＝＝＝＝＝＝＝＝組み込みライブラリ＝＝＝＝＝＝＝＝＝＝
+,＝＝＝＝＝＝＝＝＝＝クラス＝＝＝＝＝＝＝＝＝＝
+BasicObject,,,,class
+Object,,,,class
+ARGF,,,,class
+Array,,,,class
+Binding,,,,class
+Dir,,,,class
+Encoding,,,,class
+Encoding::Converter,,,,class
+Enumerator,,,,class
+FalseClass,,,,class
+Fiber,,,,class
+File::Stat,,,,class
+Hash,,,,class
+IO,,,,class
+File,,,,class
+MatchData,,,,class
+Method,,,,class
+Module,,,,class
+Class,,,,class
+Mutex,,,,class
+NilClass,,,,class
+Numeric,,,,class
+Complex,,,,class
+Float,,,,class
+Integer,,,,class
+Bignum,,,,class
+Fixnum,,,,class
+Rational,,,,class
+Proc,,,,class
+Process::Status,,,,class
+Random,,,,class
+Range,,,,class
+Regexp,,,,class
+String,,,,class
+Struct,,,,class
+Struct::Tms,,,,class
+Symbol,,,,class
+Thread,,,,class
+ThreadGroup,,,,class
+Time,,,,class
+TrueClass,,,,class
+UnboundMethod,,,,class
+Enumerable,,,,class
+File::Constants,,,,class
+FileTest,,,,class
+GC,,,,class
+GC::Profiler,,,,class
+Kernel,,,,class
+Marshal,,,,class
+Math,,,,class
+ObjectSpace,,,,class
+Process,,,,class
+Process::GID,,,,class
+Process::Sys,,,,class
+Process::UID,,,,class
+Signal,,,,class
+ENV,,,,class
+Exception,,,,class
+,＝＝＝＝＝＝＝＝＝＝BasicObject＝＝＝＝＝＝＝＝＝＝
+__id__,"__id__ -> Integer",,BasicObject,method
+__send__,"__send__(name, *args) -> object",,BasicObject,method
+__send__,"__send__(name, *args) { .... } -> object",,BasicObject,method
+equal,"equal?(other) -> bool",,BasicObject,method
+instance_eval,"instance_eval(expr, filename = '(eval)', lineno = 1) -> object",,BasicObject,method
+instance_eval,"instance_eval {|obj| ... } -> object",,BasicObject,method
+instance_exec,"instance_exec(*args) {|*vars| ... } -> object",,BasicObject,method
+method_missing,"method_missing(name, *args) -> object",,BasicObject,method
+singleton_method_added,"singleton_method_added(name) -> object",,BasicObject,method
+singleton_method_removed,"singleton_method_removed(name) -> object",,BasicObject,method
+singleton_method_undefined,"singleton_method_undefined(name) -> object",,BasicObject,method
+,＝＝＝＝＝＝＝＝＝＝Object＝＝＝＝＝＝＝＝＝＝
+new,"new -> Object",,Object,method
+send,"send(name, *args) -> object",,Object,method
+send,"send(name, *args) { .... } -> object",,Object,method
+__send__,"__send__(name, *args) -> object",,Object,method
+__send__,"__send__(name, *args) { .... } -> object",,Object,method
+_dump,"_dump(limit) -> String",,Object,method
+class,"class -> Class",,Object,method
+clone,"clone -> object",,Object,method
+dup,"dup -> object",,Object,method
+display,"display(out = $stdout) -> nil",,Object,method
+to_enum,"to_enum(method = :each, *args) -> Enumerator",,Object,method
+enum_for,"enum_for(method = :each, *args) -> Enumerator",,Object,method
+eql,"eql?(other) -> bool",,Object,method
+equal,"equal?(other) -> bool",,Object,method
+extend,"extend(*modules) -> self",,Object,method
+freeze,"freeze -> self",,Object,method
+frozen,"frozen? -> bool",,Object,method
+hash,"hash -> Fixnum",,Object,method
+inspect,"inspect -> String",,Object,method
+instance_of,"instance_of?(klass) -> bool",,Object,method
+instance_variable_defined,"instance_variable_defined?(var) -> bool",,Object,method
+instance_variable_get,"instance_variable_get(var) -> object|nil",,Object,method
+instance_variable_set,"instance_variable_set(var, value) -> object",,Object,method
+instance_variables,"instance_variables -> [Symbol]",,Object,method
+is_a,"is_a?(mod) -> bool",,Object,method
+kind_of,"kind_of?(mod) -> bool",,Object,method
+marshal_dump,"marshal_dump -> object",,Object,method
+marshal_load,"marshal_load(obj) -> object",,Object,method
+method,"method(name) -> Method",,Object,method
+methods,"methods(include_inherited = true) -> [Symbol]",,Object,method
+nil,"nil? -> bool",,Object,method
+object_id,"object_id -> Integer",,Object,method
+private_methods,"private_methods(include_inherited = true) -> [Symbol]",,Object,method
+protected_methods,"protected_methods(include_inherited = true) -> [Symbol]",,Object,method
+public_methods,"public_methods(include_inherited = true) -> [Symbol]",,Object,method
+public_send,"public_send(name, *args) -> object",,Object,method
+respond_to,"respond_to?(name, include_private = false) -> bool",,Object,method
+respond_to_missing,"respond_to_missing?(symbol, include_private) -> bool",,Object,method
+singleton_class,"singleton_class -> Class",,Object,method
+singleton_methods,"singleton_methods(inherited_too = true) -> [Symbol]",,Object,method
+taint,"taint -> self",,Object,method
+tainted,"tainted? -> bool",,Object,method
+tap,"tap {|x| ... } -> self",,Object,method
+to_a,"to_a -> Array",,Object,method
+to_ary,"to_ary -> Array",,Object,method
+to_hash,"to_hash -> Hash",,Object,method
+to_int,"to_int -> Integer",,Object,method
+to_io,"to_io -> IO",,Object,method
+to_proc,"to_proc -> Proc",,Object,method
+to_regexp,"to_regexp -> Regexp",,Object,method
+to_s,"to_s -> String",,Object,method
+to_str,"to_str -> String",,Object,method
+trust,"trust -> self",,Object,method
+untaint,"untaint -> self",,Object,method
+untrust,"untrust -> self",,Object,method
+untrusted,"untrusted? -> bool",,Object,method
+initialize,"initialize(*args, &block) -> object",,Object,method
+initialize_copy,"initialize_copy(obj) -> object",,Object,method
+remove_instance_variable,"remove_instance_variable(name) -> object",,Object,method
+,＝＝＝＝＝＝＝＝＝＝ARGF＝＝＝＝＝＝＝＝＝＝
+binmode,"binmode -> self",,ARGF,method
+bytes,"bytes { |char| ... } -> self",,ARGF,method
+bytes,"bytes -> Enumerator",,ARGF,method
+chars,"chars { |c| ... } -> self",,ARGF,method
+chars,"chars -> Enumerator",,ARGF,method
+close,"close -> self",,ARGF,method
+closed,"closed? -> bool",,ARGF,method
+each,"each(rs = $/) {|line| ... } -> self",,ARGF,method
+each_line,"each_line(rs = $/) {|line| ... } -> self",,ARGF,method
+each,"each(rs = $/) -> Enumerator",,ARGF,method
+each_line,"each_line(rs = $/) -> Enumerator",,ARGF,method
+each_byte,"each_byte {|char| ...} -> self",,ARGF,method
+each_byte,"each_byte -> Enumerator",,ARGF,method
+each_char,"each_char {|c| ... } -> self",,ARGF,method
+each_char,"each_char -> Enumerator",,ARGF,method
+eof,"eof -> bool",,ARGF,method
+eof,"eof? -> bool",,ARGF,method
+file,"file -> IO",,ARGF,method
+filename,"filename -> String",,ARGF,method
+path,"path -> String",,ARGF,method
+fileno,"fileno -> Integer",,ARGF,method
+to_i,"to_i -> Integer",,ARGF,method
+getbyte,"getbyte -> Integer | nil",,ARGF,method
+getc,"getc -> Integer | nil",,ARGF,method
+gets,"gets -> String | nil",,ARGF,method
+lineno,"lineno -> Integer",,ARGF,method
+lineno,"lineno=(number)",,ARGF,method
+lines,"lines(rs = $/) { |line| ... } -> self",,ARGF,method
+lines,"lines(limit) { |line| ... } -> self",,ARGF,method
+lines,"lines(rs, limit) { |line| ... } -> self",,ARGF,method
+lines,"lines(rs = $/) -> Enumerator",,ARGF,method
+lines,"lines(limit) -> Enumerator",,ARGF,method
+lines,"lines(rs, limit) -> Enumerator",,ARGF,method
+pos,"pos -> Integer",,ARGF,method
+tell,"tell -> Integer",,ARGF,method
+pos,"pos=(n)",,ARGF,method
+read,"read(length = nil, str = nil) -> String",,ARGF,method
+readbyte,"readbyte -> Integer",,ARGF,method
+readchar,"readchar -> Integer",,ARGF,method
+readline,"readline -> String",,ARGF,method
+readlines,"readlines(rs = $/) -> [String]",,ARGF,method
+to_a,"to_a(rs = $/) -> [String]",,ARGF,method
+readpartial,"readpartial(length, str = nil) -> String",,ARGF,method
+rewind,"rewind -> 0",,ARGF,method
+seek,"seek(offset, whence = IO::SEEK_SET) -> 0",,ARGF,method
+skip,"skip -> self",,ARGF,method
+to_io,"to_io -> IO",,ARGF,method
+to_s,"to_s -> String",,ARGF,method
+,＝＝＝＝＝＝＝＝＝＝Array＝＝＝＝＝＝＝＝＝＝
+new,"new(size = 0, val = nil) -> Array",,Array,method
+new,"new(ary) -> Array",,Array,method
+new,"new(size) {|index| ... } -> Array",,Array,method
+try_convert,"try_convert(obj) -> Array | nil",,Array,method
+at,"at(nth) -> object | nil",,Array,method
+assoc,"assoc(key) -> Array | nil",,Array,method
+clear,"clear -> self",,Array,method
+clone,"clone -> Array",,Array,method
+dup,"dup -> Array",,Array,method
+collect,"collect! {|item| ..} -> self",,Array,method
+map,"map! {|item| ..} -> self",,Array,method
+collect,"collect! -> Enumerator",,Array,method
+map,"map! -> Enumerator",,Array,method
+combination,"combination(n) {|c| block } -> Array",,Array,method
+combination,"combination(n) -> Enumerator",,Array,method
+compact,"compact -> Array",,Array,method
+compact,"compact! -> self | nil",,Array,method
+concat,"concat(other) -> self",,Array,method
+cycle,"cycle(n=nil) {|obj| block } -> nil",,Array,method
+cycle,"cycle(n=nil) -> Enumerator",,Array,method
+delete,"delete(val) -> object | nil",,Array,method
+delete,"delete(val) { ... } -> object",,Array,method
+delete_at,"delete_at(pos) -> object | nil",,Array,method
+delete_if,"delete_if {|x| ... } -> self",,Array,method
+reject,"reject! {|x| ... } -> self | nil",,Array,method
+delete_if,"delete_if -> Enumerator",,Array,method
+reject,"reject! -> Enumerator",,Array,method
+each,"each {|item| .... } -> self",,Array,method
+each,"each -> Enumerator",,Array,method
+each_index,"each_index {|index| .... } -> self",,Array,method
+each_index,"each_index -> Enumerator",,Array,method
+empty,"empty? -> bool",,Array,method
+eql,"eql?(other) -> bool",,Array,method
+fetch,"fetch(nth) -> object",,Array,method
+fetch,"fetch(nth, ifnone) -> object",,Array,method
+fetch,"fetch(nth) {|nth| ... } -> object",,Array,method
+fill,"fill(val) -> self",,Array,method
+fill,"fill {|index| ... } -> self",,Array,method
+fill,"fill(val, start, length = nil) -> self",,Array,method
+fill,"fill(val, range) -> self",,Array,method
+fill,"fill(start, length = nil) {|index| ... } -> self",,Array,method
+fill,"fill(range) {|index| ... } -> self",,Array,method
+first,"first -> object | nil",,Array,method
+first,"first(n) -> Array",,Array,method
+flatten,"flatten(lv = nil) -> Array",,Array,method
+flatten,"flatten!(lv = nil) -> self | nil",,Array,method
+hash,"hash -> Integer",,Array,method
+include,"include?(val) -> bool",,Array,method
+index,"index(val) -> Integer | nil",,Array,method
+index,"index {|item| ...} -> Integer | nil",,Array,method
+index,"index -> Enumerator",,Array,method
+insert,"insert(nth, *val) -> self",,Array,method
+to_s,"to_s -> String",,Array,method
+inspect,"inspect -> String",,Array,method
+join,"join(sep = $,) -> String",,Array,method
+keep_if,"keep_if {|item| ... } -> self",,Array,method
+keep_if,"keep_if -> Enumerator",,Array,method
+last,"last -> object | nil",,Array,method
+last,"last(n) -> Array",,Array,method
+length,"length -> Integer",,Array,method
+size,"size -> Integer",,Array,method
+pack,"pack(template) -> String",,Array,method
+permutation,"permutation(n = self.length) { |p| block } -> Array",,Array,method
+permutation,"permutation(n = self.length) -> Enumerator",,Array,method
+pop,"pop -> object | nil",,Array,method
+pop,"pop(n) -> Array",,Array,method
+product,"product(*lists) -> Array",,Array,method
+product,"product(*lists) { |e| ... } -> self",,Array,method
+push,"push(*obj) -> self",,Array,method
+rassoc,"rassoc(obj) -> Array | nil",,Array,method
+repeated_combination,"repeated_combination(n) { |c| ... } -> Array",,Array,method
+repeated_combination,"repeated_combination(n) -> Enumerator",,Array,method
+repeated_permutation,"repeated_permutation(n) { |p| ... } -> Array",,Array,method
+repeated_permutation,"repeated_permutation(n) -> Enumerator",,Array,method
+replace,"replace(another) -> self",,Array,method
+reverse,"reverse -> Array",,Array,method
+reverse,"reverse! -> self",,Array,method
+reverse_each,"reverse_each {|item| ... } -> self",,Array,method
+reverse_each,"reverse_each -> Enumerator",,Array,method
+rindex,"rindex(val) -> Integer | nil",,Array,method
+rindex,"rindex {|item| ... } -> Integer | nil",,Array,method
+rindex,"rindex -> Enumerator",,Array,method
+rotate,"rotate(cnt = 1) -> Array",,Array,method
+rotate,"rotate!(cnt = 1) -> self",,Array,method
+sample,"sample -> object | nil",,Array,method
+sample,"sample(n) -> Array",,Array,method
+sample,"sample(random: rng) -> object | nil",,Array,method
+sample,"sample(n, random: rng) -> Array",,Array,method
+select,"select! {|item| block } -> self | nil",,Array,method
+select,"select! -> Enumerator",,Array,method
+shift,"shift -> object | nil",,Array,method
+shift,"shift(n) -> Array",,Array,method
+shuffle,"shuffle -> Array",,Array,method
+shuffle,"shuffle(random: rng) -> Array",,Array,method
+shuffle,"shuffle! -> self",,Array,method
+shuffle,"shuffle!(random: rng) -> self",,Array,method
+slice,"slice(nth) -> object | nil",,Array,method
+slice,"slice(pos, len) -> Array | nil",,Array,method
+slice,"slice(range) -> Array | nil",,Array,method
+slice,"slice!(nth) -> object | nil",,Array,method
+slice,"slice!(start, len) -> Array | nil",,Array,method
+slice,"slice!(range) -> Array | nil",,Array,method
+sort,"sort -> Array",,Array,method
+sort,"sort! -> self",,Array,method
+sort,"sort {|a, b| ... } -> Array",,Array,method
+sort,"sort! {|a, b| ... } -> self",,Array,method
+sort_by,"sort_by! -> Enumerator",,Array,method
+sort_by,"sort_by! {|item| ... } -> self",,Array,method
+to_a,"to_a -> Array",,Array,method
+to_ary,"to_ary -> self",,Array,method
+transpose,"transpose -> Array",,Array,method
+uniq,"uniq -> Array",,Array,method
+uniq,"uniq! -> self | nil",,Array,method
+uniq,"uniq {|item| ... } -> Array",,Array,method
+uniq,"uniq! {|item| ... } -> self | nil",,Array,method
+unshift,"unshift(*obj) -> self",,Array,method
+values_at,"values_at(*selectors) -> Array",,Array,method
+zip,"zip(*lists) -> [[object]]",,Array,method
+zip,"zip(*lists) {|v1, v2, ...| ...} -> nil",,Array,method
+,＝＝＝＝＝＝＝＝＝＝Binding＝＝＝＝＝＝＝＝＝＝
+eval,"eval(expr, fname = __FILE__, lineno = 1) -> object",,Binding,method
+,＝＝＝＝＝＝＝＝＝＝Dir＝＝＝＝＝＝＝＝＝＝
+glob,"glob(pattern, flags = 0) -> [String]",,Dir,method
+glob,"glob(pattern, flags = 0) {|file| ...} -> nil",,Dir,method
+chdir,"chdir -> 0",,Dir,method
+chdir,"chdir(path) -> 0",,Dir,method
+chdir,"chdir {|path| ... } -> object",,Dir,method
+chdir,"chdir(path) {|path| ... } -> object",,Dir,method
+chroot,"chroot(path) -> 0",,Dir,method
+delete,"delete(path) -> 0",,Dir,method
+rmdir,"rmdir(path) -> 0",,Dir,method
+unlink,"unlink(path) -> 0",,Dir,method
+entries,"entries(path) -> [String]",,Dir,method
+exist,"exist?(file_name) -> bool",,Dir,method
+exists,"exists?(file_name) -> bool",,Dir,method
+foreach,"foreach(path) {|file| ...} -> nil",,Dir,method
+foreach,"foreach -> Enumerator",,Dir,method
+getwd,"getwd -> String",,Dir,method
+pwd,"pwd -> String",,Dir,method
+home,"home -> String | nil",,Dir,method
+home,"home(user) -> String | nil",,Dir,method
+mkdir,"mkdir(path, mode = 0777) -> 0",,Dir,method
+new,"new(path) -> Dir",,Dir,method
+open,"open(path) -> Dir",,Dir,method
+open,"open(path) {|dir| ...} -> object",,Dir,method
+close,"close -> nil",,Dir,method
+each,"each {|item| ... } -> self",,Dir,method
+each,"each -> Enumerator",,Dir,method
+path,"path -> String",,Dir,method
+pos,"pos -> Integer",,Dir,method
+tell,"tell -> Integer",,Dir,method
+pos,"pos=(pos)",,Dir,method
+seek,"seek(pos) -> self",,Dir,method
+read,"read -> String | nil",,Dir,method
+rewind,"rewind -> self",,Dir,method
+,＝＝＝＝＝＝＝＝＝＝Encoding＝＝＝＝＝＝＝＝＝＝
+aliases,"aliases -> Hash",,Encoding,method
+compatible,"compatible?(obj1, obj2) -> Encoding | nil",,Encoding,method
+default_external,"default_external -> Encoding",,Encoding,method
+default_external,"default_external=(encoding)",,Encoding,method
+default_internal,"default_internal -> Encoding | nil",,Encoding,method
+default_internal,"default_internal=(encoding)",,Encoding,method
+find,"find(name) -> Encoding",,Encoding,method
+list,"list -> [Encoding]",,Encoding,method
+locale_charmap,"locale_charmap -> String | nil",,Encoding,method
+name_list,"name_list -> [String]",,Encoding,method
+ascii_compatible,"ascii_compatible? -> bool",,Encoding,method
+dummy,"dummy? -> bool",,Encoding,method
+inspect,"inspect -> String",,Encoding,method
+name,"name -> String",,Encoding,method
+to_s,"to_s -> String",,Encoding,method
+names,"names -> String",,Encoding,method
+replicate,"replicate(name) -> Encoding",,Encoding,method
+US_ASCII,"US_ASCII -> Encoding",,Encoding,method
+ASCII,"ASCII -> Encoding",,Encoding,method
+ANSI_X3_4_1968,"ANSI_X3_4_1968 -> Encoding",,Encoding,method
+ASCII_8BIT,"ASCII_8BIT -> Encoding",,Encoding,method
+BINARY,"BINARY -> Encoding",,Encoding,method
+Big5,"Big5 -> Encoding",,Encoding,method
+BIG5,"BIG5 -> Encoding",,Encoding,method
+Big5_HKSCS,"Big5_HKSCS -> Encoding",,Encoding,method
+BIG5_HKSCS,"BIG5_HKSCS -> Encoding",,Encoding,method
+BIG5_HKSCS_2008,"BIG5_HKSCS_2008 -> Encoding",,Encoding,method
+Big5_HKSCS_2008,"Big5_HKSCS_2008 -> Encoding",,Encoding,method
+BIG5_UAO,"BIG5_UAO -> Encoding",,Encoding,method
+Big5_UAO,"Big5_UAO -> Encoding",,Encoding,method
+Windows_1250,"Windows_1250 -> Encoding",,Encoding,method
+CP1250,"CP1250 -> Encoding",,Encoding,method
+WINDOWS_1250,"WINDOWS_1250 -> Encoding",,Encoding,method
+Windows_1251,"Windows_1251 -> Encoding",,Encoding,method
+CP1251,"CP1251 -> Encoding",,Encoding,method
+WINDOWS_1251,"WINDOWS_1251 -> Encoding",,Encoding,method
+Windows_1252,"Windows_1252 -> Encoding",,Encoding,method
+CP1252,"CP1252 -> Encoding",,Encoding,method
+WINDOWS_1252,"WINDOWS_1252 -> Encoding",,Encoding,method
+Windows_1253,"Windows_1253 -> Encoding",,Encoding,method
+CP1253,"CP1253 -> Encoding",,Encoding,method
+WINDOWS_1253,"WINDOWS_1253 -> Encoding",,Encoding,method
+Windows_1254,"Windows_1254 -> Encoding",,Encoding,method
+CP1254,"CP1254 -> Encoding",,Encoding,method
+WINDOWS_1254,"WINDOWS_1254 -> Encoding",,Encoding,method
+Windows_1255,"Windows_1255 -> Encoding",,Encoding,method
+CP1255,"CP1255 -> Encoding",,Encoding,method
+WINDOWS_1255,"WINDOWS_1255 -> Encoding",,Encoding,method
+Windows_1256,"Windows_1256 -> Encoding",,Encoding,method
+CP1256,"CP1256 -> Encoding",,Encoding,method
+WINDOWS_1256,"WINDOWS_1256 -> Encoding",,Encoding,method
+Windows_1257,"Windows_1257 -> Encoding",,Encoding,method
+CP1257,"CP1257 -> Encoding",,Encoding,method
+WINDOWS_1257,"WINDOWS_1257 -> Encoding",,Encoding,method
+Windows_1258,"Windows_1258 -> Encoding",,Encoding,method
+CP1258,"CP1258 -> Encoding",,Encoding,method
+WINDOWS_1258,"WINDOWS_1258 -> Encoding",,Encoding,method
+IBM437,"IBM437 -> Encoding",,Encoding,method
+CP437,"CP437 -> Encoding",,Encoding,method
+CP50220,"CP50220 -> Encoding",,Encoding,method
+CP50221,"CP50221 -> Encoding",,Encoding,method
+CP51932,"CP51932 -> Encoding",,Encoding,method
+UTF_7,"UTF_7 -> Encoding",,Encoding,method
+CP65000,"CP65000 -> Encoding",,Encoding,method
+UTF_8,"UTF_8 -> Encoding",,Encoding,method
+CP65001,"CP65001 -> Encoding",,Encoding,method
+IBM737,"IBM737 -> Encoding",,Encoding,method
+CP737,"CP737 -> Encoding",,Encoding,method
+IBM775,"IBM775 -> Encoding",,Encoding,method
+CP775,"CP775 -> Encoding",,Encoding,method
+CP850,"CP850 -> Encoding",,Encoding,method
+IBM850,"IBM850 -> Encoding",,Encoding,method
+IBM852,"IBM852 -> Encoding",,Encoding,method
+CP852,"CP852 -> Encoding",,Encoding,method
+IBM855,"IBM855 -> Encoding",,Encoding,method
+CP855,"CP855 -> Encoding",,Encoding,method
+IBM857,"IBM857 -> Encoding",,Encoding,method
+CP857,"CP857 -> Encoding",,Encoding,method
+IBM860,"IBM860 -> Encoding",,Encoding,method
+CP860,"CP860 -> Encoding",,Encoding,method
+IBM861,"IBM861 -> Encoding",,Encoding,method
+CP861,"CP861 -> Encoding",,Encoding,method
+IBM862,"IBM862 -> Encoding",,Encoding,method
+CP862,"CP862 -> Encoding",,Encoding,method
+IBM863,"IBM863 -> Encoding",,Encoding,method
+CP863,"CP863 -> Encoding",,Encoding,method
+IBM864,"IBM864 -> Encoding",,Encoding,method
+CP864,"CP864 -> Encoding",,Encoding,method
+IBM865,"IBM865 -> Encoding",,Encoding,method
+CP865,"CP865 -> Encoding",,Encoding,method
+IBM866,"IBM866 -> Encoding",,Encoding,method
+CP866,"CP866 -> Encoding",,Encoding,method
+IBM869,"IBM869 -> Encoding",,Encoding,method
+CP869,"CP869 -> Encoding",,Encoding,method
+Windows_874,"Windows_874 -> Encoding",,Encoding,method
+CP874,"CP874 -> Encoding",,Encoding,method
+WINDOWS_874,"WINDOWS_874 -> Encoding",,Encoding,method
+KOI8_R,"KOI8_R -> Encoding",,Encoding,method
+CP878,"CP878 -> Encoding",,Encoding,method
+Windows_31J,"Windows_31J -> Encoding",,Encoding,method
+CP932,"CP932 -> Encoding",,Encoding,method
+CSWINDOWS31J,"CSWINDOWS31J -> Encoding",,Encoding,method
+CsWindows31J,"CsWindows31J -> Encoding",,Encoding,method
+WINDOWS_31J,"WINDOWS_31J -> Encoding",,Encoding,method
+PCK,"PCK -> Encoding",,Encoding,method
+SJIS,"SJIS -> Encoding",,Encoding,method
+GBK,"GBK -> Encoding",,Encoding,method
+CP936,"CP936 -> Encoding",,Encoding,method
+CP949,"CP949 -> Encoding",,Encoding,method
+CP950,"CP950 -> Encoding",,Encoding,method
+CP951,"CP951 -> Encoding",,Encoding,method
+EMACS_MULE,"EMACS_MULE -> Encoding",,Encoding,method
+Emacs_Mule,"Emacs_Mule -> Encoding",,Encoding,method
+EUC_CN,"EUC_CN -> Encoding",,Encoding,method
+EUCCN,"EUCCN -> Encoding",,Encoding,method
+EucCN,"EucCN -> Encoding",,Encoding,method
+EUC_JP,"EUC_JP -> Encoding",,Encoding,method
+EucJP,"EucJP -> Encoding",,Encoding,method
+EUCJP,"EUCJP -> Encoding",,Encoding,method
+EUCJP_MS,"EUCJP_MS -> Encoding",,Encoding,method
+EucJP_ms,"EucJP_ms -> Encoding",,Encoding,method
+EUC_JP_MS,"EUC_JP_MS -> Encoding",,Encoding,method
+EUC_KR,"EUC_KR -> Encoding",,Encoding,method
+EUCKR,"EUCKR -> Encoding",,Encoding,method
+EucKR,"EucKR -> Encoding",,Encoding,method
+EUC_TW,"EUC_TW -> Encoding",,Encoding,method
+EUCTW,"EUCTW -> Encoding",,Encoding,method
+EucTW,"EucTW -> Encoding",,Encoding,method
+GB12345,"GB12345 -> Encoding",,Encoding,method
+GB18030,"GB18030 -> Encoding",,Encoding,method
+GB1988,"GB1988 -> Encoding",,Encoding,method
+ISO_2022_JP,"ISO_2022_JP -> Encoding",,Encoding,method
+ISO2022_JP,"ISO2022_JP -> Encoding",,Encoding,method
+ISO_2022_JP_2,"ISO_2022_JP_2 -> Encoding",,Encoding,method
+ISO2022_JP2,"ISO2022_JP2 -> Encoding",,Encoding,method
+ISO_8859_1,"ISO_8859_1 -> Encoding",,Encoding,method
+ISO8859_1,"ISO8859_1 -> Encoding",,Encoding,method
+ISO_8859_10,"ISO_8859_10 -> Encoding",,Encoding,method
+ISO8859_10,"ISO8859_10 -> Encoding",,Encoding,method
+ISO_8859_11,"ISO_8859_11 -> Encoding",,Encoding,method
+ISO8859_11,"ISO8859_11 -> Encoding",,Encoding,method
+ISO_8859_13,"ISO_8859_13 -> Encoding",,Encoding,method
+ISO8859_13,"ISO8859_13 -> Encoding",,Encoding,method
+ISO_8859_14,"ISO_8859_14 -> Encoding",,Encoding,method
+ISO8859_14,"ISO8859_14 -> Encoding",,Encoding,method
+ISO_8859_15,"ISO_8859_15 -> Encoding",,Encoding,method
+ISO8859_15,"ISO8859_15 -> Encoding",,Encoding,method
+ISO_8859_16,"ISO_8859_16 -> Encoding",,Encoding,method
+ISO8859_16,"ISO8859_16 -> Encoding",,Encoding,method
+ISO_8859_2,"ISO_8859_2 -> Encoding",,Encoding,method
+ISO8859_2,"ISO8859_2 -> Encoding",,Encoding,method
+ISO_8859_3,"ISO_8859_3 -> Encoding",,Encoding,method
+ISO8859_3,"ISO8859_3 -> Encoding",,Encoding,method
+ISO_8859_4,"ISO_8859_4 -> Encoding",,Encoding,method
+ISO8859_4,"ISO8859_4 -> Encoding",,Encoding,method
+ISO_8859_5,"ISO_8859_5 -> Encoding",,Encoding,method
+ISO8859_5,"ISO8859_5 -> Encoding",,Encoding,method
+ISO_8859_6,"ISO_8859_6 -> Encoding",,Encoding,method
+ISO8859_6,"ISO8859_6 -> Encoding",,Encoding,method
+ISO_8859_7,"ISO_8859_7 -> Encoding",,Encoding,method
+ISO8859_7,"ISO8859_7 -> Encoding",,Encoding,method
+ISO_8859_8,"ISO_8859_8 -> Encoding",,Encoding,method
+ISO8859_8,"ISO8859_8 -> Encoding",,Encoding,method
+ISO_8859_9,"ISO_8859_9 -> Encoding",,Encoding,method
+ISO8859_9,"ISO8859_9 -> Encoding",,Encoding,method
+ISO_2022_JP_KDDI,"ISO_2022_JP_KDDI -> Encoding",,Encoding,method
+KOI8_U,"KOI8_U -> Encoding",,Encoding,method
+MacCentEuro,"MacCentEuro -> Encoding",,Encoding,method
+MACCENTEURO,"MACCENTEURO -> Encoding",,Encoding,method
+MacCroatian,"MacCroatian -> Encoding",,Encoding,method
+MACCROATIAN,"MACCROATIAN -> Encoding",,Encoding,method
+MacCyrillic,"MacCyrillic -> Encoding",,Encoding,method
+MACCYRILLIC,"MACCYRILLIC -> Encoding",,Encoding,method
+MacGreek,"MacGreek -> Encoding",,Encoding,method
+MACGREEK,"MACGREEK -> Encoding",,Encoding,method
+MacIceland,"MacIceland -> Encoding",,Encoding,method
+MACICELAND,"MACICELAND -> Encoding",,Encoding,method
+MacJapanese,"MacJapanese -> Encoding",,Encoding,method
+MACJAPAN,"MACJAPAN -> Encoding",,Encoding,method
+MACJAPANESE,"MACJAPANESE -> Encoding",,Encoding,method
+MacJapan,"MacJapan -> Encoding",,Encoding,method
+MacRoman,"MacRoman -> Encoding",,Encoding,method
+MACROMAN,"MACROMAN -> Encoding",,Encoding,method
+MacRomania,"MacRomania -> Encoding",,Encoding,method
+MACROMANIA,"MACROMANIA -> Encoding",,Encoding,method
+MacThai,"MacThai -> Encoding",,Encoding,method
+MACTHAI,"MACTHAI -> Encoding",,Encoding,method
+MacTurkish,"MacTurkish -> Encoding",,Encoding,method
+MACTURKISH,"MACTURKISH -> Encoding",,Encoding,method
+MacUkraine,"MacUkraine -> Encoding",,Encoding,method
+MACUKRAINE,"MACUKRAINE -> Encoding",,Encoding,method
+Shift_JIS,"Shift_JIS -> Encoding",,Encoding,method
+SHIFT_JIS,"SHIFT_JIS -> Encoding",,Encoding,method
+SJIS_DOCOMO,"SJIS_DOCOMO -> Encoding",,Encoding,method
+SJIS_DoCoMo,"SJIS_DoCoMo -> Encoding",,Encoding,method
+SJIS_KDDI,"SJIS_KDDI -> Encoding",,Encoding,method
+SJIS_SOFTBANK,"SJIS_SOFTBANK -> Encoding",,Encoding,method
+SJIS_SoftBank,"SJIS_SoftBank -> Encoding",,Encoding,method
+STATELESS_ISO_2022_JP,"STATELESS_ISO_2022_JP -> Encoding",,Encoding,method
+Stateless_ISO_2022_JP,"Stateless_ISO_2022_JP -> Encoding",,Encoding,method
+STATELESS_ISO_2022_JP_KDDI,"STATELESS_ISO_2022_JP_KDDI -> Encoding",,Encoding,method
+Stateless_ISO_2022_JP_KDDI,"Stateless_ISO_2022_JP_KDDI -> Encoding",,Encoding,method
+TIS_620,"TIS_620 -> Encoding",,Encoding,method
+UTF_16BE,"UTF_16BE -> Encoding",,Encoding,method
+UCS_2BE,"UCS_2BE -> Encoding",,Encoding,method
+UTF_32BE,"UTF_32BE -> Encoding",,Encoding,method
+UCS_4BE,"UCS_4BE -> Encoding",,Encoding,method
+UTF_32LE,"UTF_32LE -> Encoding",,Encoding,method
+UCS_4LE,"UCS_4LE -> Encoding",,Encoding,method
+UTF8_DOCOMO,"UTF8_DOCOMO -> Encoding",,Encoding,method
+UTF8_DoCoMo,"UTF8_DoCoMo -> Encoding",,Encoding,method
+UTF8_KDDI,"UTF8_KDDI -> Encoding",,Encoding,method
+UTF8_MAC,"UTF8_MAC -> Encoding",,Encoding,method
+UTF_8_MAC,"UTF_8_MAC -> Encoding",,Encoding,method
+UTF_8_HFS,"UTF_8_HFS -> Encoding",,Encoding,method
+UTF8_SOFTBANK,"UTF8_SOFTBANK -> Encoding",,Encoding,method
+UTF8_SoftBank,"UTF8_SoftBank -> Encoding",,Encoding,method
+UTF_16,"UTF_16 -> Encoding",,Encoding,method
+UTF_16LE,"UTF_16LE -> Encoding",,Encoding,method
+UTF_32,"UTF_32 -> Encoding",,Encoding,method
+,＝＝＝＝＝＝＝＝＝＝Encoding::Converter＝＝＝＝＝＝＝＝＝＝
+asciicompat_encoding,"asciicompat_encoding(string) -> Encoding | nil",,Encoding::Converter,method
+asciicompat_encoding,"asciicompat_encoding(encoding) -> Encoding | nil",,Encoding::Converter,method
+new,"new(source_encoding, destination_encoding) -> Encoding::Converter",,Encoding::Converter,method
+new,"new(source_encoding, destination_encoding, options) -> Encoding::Converter",,Encoding::Converter,method
+new,"new(convpath) -> Encoding::Converter",,Encoding::Converter,method
+convert,"convert(source_string) -> String",,Encoding::Converter,method
+convpath,"convpath -> Array",,Encoding::Converter,method
+destination_encoding,"destination_encoding -> Encoding",,Encoding::Converter,method
+finish,"finish -> String",,Encoding::Converter,method
+insert_output,"insert_output(string) -> nil",,Encoding::Converter,method
+inspect,"inspect -> String",,Encoding::Converter,method
+last_error,"last_error -> Exception | nil",,Encoding::Converter,method
+primitive_convert,"primitive_convert(source_buffer, destination_buffer) -> Symbol",,Encoding::Converter,method
+primitive_convert,"primitive_convert(source_buffer, destination_buffer, destination_byteoffset) -> Symbol",,Encoding::Converter,method
+primitive_convert,"primitive_convert(source_buffer, destination_buffer, destination_byteoffset, destination_bytesize) -> Symbol",,Encoding::Converter,method
+primitive_convert,"primitive_convert(source_buffer, destination_buffer, destination_byteoffset, destination_bytesize, options) -> Symbol",,Encoding::Converter,method
+primitive_errinfo,"primitive_errinfo -> Array",,Encoding::Converter,method
+putback,"putback -> String",,Encoding::Converter,method
+putback,"putback(max_numbytes) -> String",,Encoding::Converter,method
+replacement,"replacement -> String",,Encoding::Converter,method
+replacement,"replacement=(string)",,Encoding::Converter,method
+source_encoding,"source_encoding -> Encoding",,Encoding::Converter,method
+,＝＝＝＝＝＝＝＝＝＝Enumerator＝＝＝＝＝＝＝＝＝＝
+new,"new(obj, method = :each, *args) -> Enumerator",,Enumerator,method
+new,"new {|y| ... } -> Enumerator",,Enumerator,method
+each,"each {...} -> object",,Enumerator,method
+feed,"feed(obj) -> nil",,Enumerator,method
+next,"next -> object",,Enumerator,method
+next_values,"next_values -> Array",,Enumerator,method
+peek,"peek -> object",,Enumerator,method
+peek_values,"peek_values -> Array",,Enumerator,method
+rewind,"rewind -> self",,Enumerator,method
+with_index,"with_index(offset = 0) {|(*args), idx| ... } -> object",,Enumerator,method
+with_index,"with_index(offset = 0) -> Enumerator",,Enumerator,method
+with_object,"with_object(obj) -> Enumerator",,Enumerator,method
+with_object,"with_object(obj) {|(*args), memo_obj| ... } -> object",,Enumerator,method
+,＝＝＝＝＝＝＝＝＝＝FalseClass＝＝＝＝＝＝＝＝＝＝
+to_s,"to_s -> String",,FalseClass,method
+,＝＝＝＝＝＝＝＝＝＝Fiber＝＝＝＝＝＝＝＝＝＝
+new,"new {|obj| ... } -> Fiber",,Fiber,method
+yield,"yield(*arg = nil) -> object",,Fiber,method
+resume,"resume(*arg = nil) -> object",,Fiber,method
+,＝＝＝＝＝＝＝＝＝＝File::Stat＝＝＝＝＝＝＝＝＝＝
+new,"new(path) -> File::Stat",,File::Stat,method
+self,"self <=> o -> Fixnum | nil",,File::Stat,method
+atime,"atime -> Time",,File::Stat,method
+blksize,"blksize -> Integer",,File::Stat,method
+blockdev,"blockdev? -> bool",,File::Stat,method
+blocks,"blocks -> Integer",,File::Stat,method
+chardev,"chardev? -> bool",,File::Stat,method
+ctime,"ctime -> Time",,File::Stat,method
+dev,"dev -> String",,File::Stat,method
+dev_major,"dev_major -> Integer",,File::Stat,method
+dev_minor,"dev_minor -> Integer",,File::Stat,method
+directory,"directory? -> bool",,File::Stat,method
+executable,"executable? -> bool",,File::Stat,method
+executable_real,"executable_real? -> bool",,File::Stat,method
+file,"file? -> bool",,File::Stat,method
+ftype,"ftype -> String",,File::Stat,method
+gid,"gid -> Integer",,File::Stat,method
+grpowned,"grpowned? -> bool",,File::Stat,method
+ino,"ino -> Integer",,File::Stat,method
+mode,"mode -> Integer",,File::Stat,method
+mtime,"mtime -> Time",,File::Stat,method
+nlink,"nlink -> Integer",,File::Stat,method
+owned,"owned? -> bool",,File::Stat,method
+pipe,"pipe? -> bool",,File::Stat,method
+rdev,"rdev -> Integer",,File::Stat,method
+rdev_major,"rdev_major -> Integer",,File::Stat,method
+rdev_minor,"rdev_minor -> Integer",,File::Stat,method
+readable,"readable? -> bool",,File::Stat,method
+readable_real,"readable_real? -> bool",,File::Stat,method
+setgid,"setgid? -> bool",,File::Stat,method
+setuid,"setuid? -> bool",,File::Stat,method
+size,"size -> Integer",,File::Stat,method
+size,"size? -> Integer | nil",,File::Stat,method
+socket,"socket? -> bool",,File::Stat,method
+sticky,"sticky? -> bool",,File::Stat,method
+symlink,"symlink? -> false",,File::Stat,method
+uid,"uid -> Integer",,File::Stat,method
+world_readable,"world_readable? -> Fixnum | nil",,File::Stat,method
+world_writable,"world_writable? -> Fixnum | nil",,File::Stat,method
+writable,"writable? -> bool",,File::Stat,method
+writable_real,"writable_real? -> bool",,File::Stat,method
+zero,"zero? -> bool",,File::Stat,method
+,＝＝＝＝＝＝＝＝＝＝Hash＝＝＝＝＝＝＝＝＝＝
+new,"new(ifnone = nil) -> Hash",,Hash,method
+new,"new {|hash, key| ... } -> Hash",,Hash,method
+try_convert,"try_convert(obj) -> Hash | nil",,Hash,method
+eql,"eql?(other) -> bool",,Hash,method
+store,"store(key, value) -> object",,Hash,method
+assoc,"assoc(key) -> Array | nil",,Hash,method
+clear,"clear -> self",,Hash,method
+clone,"clone -> Hash",,Hash,method
+dup,"dup -> Hash",,Hash,method
+compare_by_identity,"compare_by_identity -> self",,Hash,method
+compare_by_identity,"compare_by_identity? -> bool",,Hash,method
+default,"default -> object | nil",,Hash,method
+default,"default(key) -> object | nil",,Hash,method
+default,"default=(value)",,Hash,method
+default_proc,"default_proc -> Proc | nil",,Hash,method
+default_proc,"default_proc=(pr)",,Hash,method
+delete,"delete(key) -> object | nil",,Hash,method
+delete,"delete(key) {|key| ... } -> object",,Hash,method
+delete_if,"delete_if -> Enumerator",,Hash,method
+reject,"reject! -> Enumerator",,Hash,method
+delete_if,"delete_if {|key, value| ... } -> self",,Hash,method
+reject,"reject! {|key, value| ... } -> self|nil",,Hash,method
+each,"each {|key, value| ... } -> self",,Hash,method
+each_pair,"each_pair {|key, value| ... } -> self",,Hash,method
+each,"each -> Enumerator",,Hash,method
+each_pair,"each_pair -> Enumerator",,Hash,method
+each_key,"each_key {|key| ... } -> self",,Hash,method
+each_key,"each_key -> Enumerator",,Hash,method
+each_value,"each_value {|value| ... } -> self",,Hash,method
+each_value,"each_value -> Enumerator",,Hash,method
+empty,"empty? -> bool",,Hash,method
+equal,"equal?(other) -> bool",,Hash,method
+fetch,"fetch(key, default = nil) {|key| ... } -> object",,Hash,method
+flatten,"flatten(level = 1) -> Array",,Hash,method
+has_key,"has_key?(key) -> bool",,Hash,method
+include,"include?(key) -> bool",,Hash,method
+key,"key?(key) -> bool",,Hash,method
+member,"member?(key) -> bool",,Hash,method
+has_value,"has_value?(value) -> bool",,Hash,method
+value,"value?(value) -> bool",,Hash,method
+hash,"hash -> Integer",,Hash,method
+key,"key(val) -> object",,Hash,method
+index,"index(val) -> object",,Hash,method
+to_s,"to_s -> String",,Hash,method
+inspect,"inspect -> String",,Hash,method
+invert,"invert -> Hash",,Hash,method
+keep_if,"keep_if {|key, value| ... } -> self",,Hash,method
+select,"select! {|key, value| ... } -> self | nil",,Hash,method
+keep_if,"keep_if -> Enumerator",,Hash,method
+select,"select! -> Enumerator",,Hash,method
+keys,"keys -> [object]",,Hash,method
+length,"length -> Integer",,Hash,method
+size,"size -> Integer",,Hash,method
+merge,"merge(other) -> Hash",,Hash,method
+merge,"merge(other) {|key, self_val, other_val| ... } -> Hash",,Hash,method
+merge,"merge!(other) -> self",,Hash,method
+merge,"merge!(other) {|key, self_val, other_val| ... } -> self",,Hash,method
+rassoc,"rassoc(value) -> Array | nil",,Hash,method
+rehash,"rehash -> self",,Hash,method
+reject,"reject {|key, value| ... } -> Hash",,Hash,method
+reject,"reject -> Enumerable::Enumerator",,Hash,method
+replace,"replace(other) -> self",,Hash,method
+select,"select -> Enumerator",,Hash,method
+select,"select {|key, value| ... } -> Hash",,Hash,method
+shift,"shift -> [object, object]",,Hash,method
+sort,"sort -> Array",,Hash,method
+sort,"sort {|a, b| ... } -> Array",,Hash,method
+to_a,"to_a -> [Array]",,Hash,method
+to_hash,"to_hash -> self",,Hash,method
+update,"update(other) -> self",,Hash,method
+update,"update(other) {|key, self_val, other_val| ... } -> self",,Hash,method
+values,"values -> [object]",,Hash,method
+values_at,"values_at(*keys) -> [object]",,Hash,method
+,＝＝＝＝＝＝＝＝＝＝IO＝＝＝＝＝＝＝＝＝＝
+binread,"binread(path, length = nil, offset = 0) -> String | nil",,IO,method
+binwrite,"binwrite(path, string, offset=nil) -> Integer",,IO,method
+copy_stream,"copy_stream(src, dst, copy_length = nil) -> Integer",,IO,method
+copy_stream,"copy_stream(src, dst, copy_length, src_offset) -> Integer",,IO,method
+new,"new(fd, mode = 'r', opt={}) -> IO",,IO,method
+for_fd,"for_fd(fd, mode = 'r', opt={}) -> IO",,IO,method
+open,"open(fd, mode = 'r', opt={}) -> IO",,IO,method
+open,"open(fd, mode = 'r' opt={}) {|io| ... } -> object",,IO,method
+foreach,"foreach(path, rs = $/) {|line| ... } -> nil",,IO,method
+foreach,"foreach(path, rs = $/) -> Enumerator",,IO,method
+pipe,"pipe -> [IO]",,IO,method
+pipe,"pipe(ext_enc) -> [IO]",,IO,method
+pipe,"pipe(enc_str, opts={}) -> [IO]",,IO,method
+pipe,"pipe(ext_enc, int_enc, opts={}) -> [IO]",,IO,method
+pipe,"pipe {|read_io, write_io| ... } -> object",,IO,method
+pipe,"pipe(ext_enc) {|read_io, write_io| ... } -> object",,IO,method
+pipe,"pipe(enc_str, opt={}) {|read_io, write_io| ... } -> object",,IO,method
+pipe,"pipe(ext_enc, int_enc, opt={}) {|read_io, write_io| ... } -> object",,IO,method
+popen,"popen(command, mode = 'r', opt={}) -> IO",,IO,method
+popen,"popen(command, mode = 'r', opt={}) {|io| ... } -> object",,IO,method
+popen,"popen('-', mode = 'r', opt={}) -> IO",,IO,method
+popen,"popen('-', mode = 'r', opt={}) {|io| ... } -> object",,IO,method
+read,"read(path, opt = {}) -> String | nil",,IO,method
+read,"read(path, length = nil, opt = {}) -> String | nil",,IO,method
+read,"read(path, length = nil, offset = 0, opt = {}) -> String | nil",,IO,method
+readlines,"readlines(path, rs = $/, opts={})",,IO,method
+readlines,"readlines(path, limit, opts={})",,IO,method
+readlines,"readlines(path, rs, limit, opts={})",,IO,method
+select,"select(reads, writes = [], excepts = [], timeout = nil) -> [[IO]] | nil",,IO,method
+sysopen,"sysopen(path, mode = 'r', perm = 0666) -> Integer",,IO,method
+try_convert,"try_convert(obj) -> IO | nil",,IO,method
+write,"write(path, string, offset=nil, opt={}) -> Integer",,IO,method
+advise,"advise(advice, offset=0, len=0) -> nil",,IO,method
+autoclose,"autoclose=(bool)",,IO,method
+autoclose,"autoclose? -> bool",,IO,method
+binmode,"binmode -> self",,IO,method
+binmode,"binmode? -> bool",,IO,method
+bytes,"bytes {|ch| ... } -> self",,IO,method
+bytes,"bytes -> Enumerator",,IO,method
+chars,"chars {|c| ... } -> self",,IO,method
+chars,"chars -> Enumerator",,IO,method
+clone,"clone -> IO",,IO,method
+dup,"dup -> IO",,IO,method
+close,"close -> nil",,IO,method
+close_on_exec,"close_on_exec=(bool)",,IO,method
+close_on_exec,"close_on_exec? -> bool",,IO,method
+close_read,"close_read -> nil",,IO,method
+close_write,"close_write -> nil",,IO,method
+closed,"closed? -> bool",,IO,method
+codepoints,"codepoints {|c| ... } -> self",,IO,method
+codepoints,"codepoints -> Enumerator",,IO,method
+each_byte,"each_byte {|ch| ... } -> self",,IO,method
+each_byte,"each_byte -> Enumerator",,IO,method
+each_char,"each_char {|c| ... } -> self",,IO,method
+each_char,"each_char -> Enumerator",,IO,method
+each_codepoint,"each_codepoint {|c| ... } -> self",,IO,method
+each_codepoint,"each_codepoint -> Enumerator",,IO,method
+each_line,"each_line(rs = $/) {|line| ... } -> self",,IO,method
+each_line,"each_line(limit) {|line| ... } -> self",,IO,method
+each_line,"each_line(rs, limit) {|line| ... } -> self",,IO,method
+each_line,"each_line(rs = $/) -> Enumerator",,IO,method
+each_line,"each_line(limit) -> Enumerator",,IO,method
+each_line,"each_line(rs, limit) -> Enumerator",,IO,method
+eof,"eof -> bool",,IO,method
+eof,"eof? -> bool",,IO,method
+external_encoding,"external_encoding -> Encoding | nil",,IO,method
+fcntl,"fcntl(cmd, arg = 0) -> Integer",,IO,method
+fdatasync,"fdatasync -> 0 | nil",,IO,method
+fileno,"fileno -> Integer",,IO,method
+to_i,"to_i -> Integer",,IO,method
+flush,"flush -> self",,IO,method
+fsync,"fsync -> 0 | nil",,IO,method
+getbyte,"getbyte -> Integer | nil",,IO,method
+getc,"getc -> String | nil",,IO,method
+gets,"gets(rs = $/) -> String | nil",,IO,method
+gets,"gets(limit) -> String | nil",,IO,method
+gets,"gets(rs, limit) -> String | nil",,IO,method
+internal_encoding,"internal_encoding -> Encoding | nil",,IO,method
+ioctl,"ioctl(cmd, arg = 0) -> Integer",,IO,method
+isatty,"isatty -> bool",,IO,method
+tty,"tty? -> bool",,IO,method
+lineno,"lineno -> Integer",,IO,method
+lineno,"lineno=(number)",,IO,method
+lines,"lines(rs = $/) {|line| ... } -> self",,IO,method
+lines,"lines(limit) {|line| ... } -> self",,IO,method
+lines,"lines(rs, limit) {|line| ... } -> self",,IO,method
+lines,"lines(rs = $/) -> Enumerator",,IO,method
+lines,"lines(limit) -> Enumerator",,IO,method
+lines,"lines(rs, limit) -> Enumerator",,IO,method
+pid,"pid -> Integer | nil",,IO,method
+pos,"pos -> Integer",,IO,method
+tell,"tell -> Integer",,IO,method
+pos,"pos=(n)",,IO,method
+print,"print(*arg) -> nil",,IO,method
+printf,"printf(format, *arg) -> nil",,IO,method
+putc,"putc(ch) -> object",,IO,method
+puts,"puts(*obj) -> nil",,IO,method
+read,"read(length = nil, outbuf = '') -> String | nil",,IO,method
+read_nonblock,"read_nonblock(maxlen, outbuf = '') -> String",,IO,method
+readbyte,"readbyte -> Integer",,IO,method
+readchar,"readchar -> String",,IO,method
+readline,"readline(rs = $/) -> String",,IO,method
+readline,"readline(limit) -> String",,IO,method
+readline,"readline(rs, limit) -> String",,IO,method
+readlines,"readlines(rs = $/) -> [String]",,IO,method
+readlines,"readlines(limit) -> [String]",,IO,method
+readlines,"readlines(rs = $/, limit) -> [String]",,IO,method
+readpartial,"readpartial(maxlen, outbuf = '') -> String",,IO,method
+reopen,"reopen(io) -> self",,IO,method
+reopen,"reopen(path) -> self",,IO,method
+reopen,"reopen(path, mode) -> self",,IO,method
+rewind,"rewind -> 0",,IO,method
+seek,"seek(offset, whence = IO::SEEK_SET) -> 0",,IO,method
+set_encoding,"set_encoding(enc_str, opt={}) -> self",,IO,method
+set_encoding,"set_encoding(ext_enc) -> self",,IO,method
+set_encoding,"set_encoding(ext_enc, int_enc, opt={}) -> self",,IO,method
+stat,"stat -> File::Stat",,IO,method
+sync,"sync -> bool",,IO,method
+sync,"sync=(newstate)",,IO,method
+sysread,"sysread(maxlen, outbuf = '') -> String",,IO,method
+sysseek,"sysseek(offset, whence = IO::SEEK_SET) -> Integer",,IO,method
+syswrite,"syswrite(string) -> Integer",,IO,method
+to_io,"to_io -> self",,IO,method
+ungetbyte,"ungetbyte(c) -> nil",,IO,method
+ungetc,"ungetc(char) -> nil",,IO,method
+write,"write(str) -> Integer",,IO,method
+write_nonblock,"write_nonblock(string) -> Integer",,IO,method
+SEEK_CUR,"SEEK_CUR -> Fixnum",,IO,method
+SEEK_END,"SEEK_END -> Fixnum",,IO,method
+SEEK_SET,"SEEK_SET -> Fixnum",,IO,method
+,＝＝＝＝＝＝＝＝＝＝File＝＝＝＝＝＝＝＝＝＝
+absolute_path,"absolute_path(file_name, dir_string=nil) -> String",,File,method
+atime,"atime(filename) -> Time",,File,method
+basename,"basename(filename, suffix = '') -> String",,File,method
+blockdev,"blockdev?(path) -> bool",,File,method
+chardev,"chardev?(path) -> bool",,File,method
+chmod,"chmod(mode, *filename) -> Integer",,File,method
+chown,"chown(owner, group, *filename) -> Integer",,File,method
+ctime,"ctime(filename) -> Time",,File,method
+delete,"delete(*filename) -> Integer",,File,method
+unlink,"unlink(*filename) -> Integer",,File,method
+directory,"directory?(path) -> bool",,File,method
+dirname,"dirname(filename) -> String",,File,method
+executable,"executable?(path) -> bool",,File,method
+executable_real,"executable_real?(path) -> bool",,File,method
+exist,"exist?(path) -> bool",,File,method
+exists,"exists?(path) -> bool",,File,method
+expand_path,"expand_path(path, default_dir = '.') -> String",,File,method
+extname,"extname(filename) -> String",,File,method
+file,"file?(path) -> bool",,File,method
+fnmatch,"fnmatch(pattern, path, flags = 0) -> bool",,File,method
+fnmatch,"fnmatch?(pattern, path, flags = 0) -> bool",,File,method
+ftype,"ftype(filename) -> String",,File,method
+grpowned,"grpowned?(path) -> bool",,File,method
+identical,"identical?(filename1, filename2) -> bool",,File,method
+join,"join(*item) -> String",,File,method
+lchmod,"lchmod(mode, *filename) -> Integer",,File,method
+lchown,"lchown(owner, group, *filename) -> Integer",,File,method
+link,"link(old, new) -> 0",,File,method
+lstat,"lstat(filename) -> File::Stat",,File,method
+mtime,"mtime(filename) -> Time",,File,method
+new,"new(path, mode = 'r', perm = 0666) -> File",,File,method
+open,"open(path, mode = 'r', perm = 0666) -> File",,File,method
+open,"open(path, mode = 'r', perm = 0666) {|file| ... } -> object",,File,method
+owned,"owned?(path) -> bool",,File,method
+path,"path(filename) -> String",,File,method
+pipe,"pipe?(path) -> bool",,File,method
+readable,"readable?(path) -> bool",,File,method
+readable_real,"readable_real?(path) -> bool",,File,method
+readlink,"readlink(path) -> String",,File,method
+realdirpath,"realdirpath(pathname, basedir = nil) -> String",,File,method
+realpath,"realpath(pathname, basedir = nil) -> String",,File,method
+rename,"rename(from, to) -> 0",,File,method
+setgid,"setgid?(path) -> bool",,File,method
+setuid,"setuid?(path) -> bool",,File,method
+size,"size(path) -> Integer",,File,method
+size,"size?(path) -> bool",,File,method
+socket,"socket?(path) -> bool",,File,method
+split,"split(pathname) -> [String]",,File,method
+stat,"stat(filename) -> File::Stat",,File,method
+sticky,"sticky?(path) -> bool",,File,method
+symlink,"symlink(old, new) -> 0",,File,method
+symlink,"symlink?(path) -> bool",,File,method
+truncate,"truncate(path, length) -> 0",,File,method
+umask,"umask -> Integer",,File,method
+umask,"umask(umask) -> Integer",,File,method
+utime,"utime(atime, mtime, *filename) -> Integer",,File,method
+world_readable,"world_readable?(path) -> Integer | nil",,File,method
+world_writable,"world_writable?(path) -> bool",,File,method
+writable,"writable?(path) -> bool",,File,method
+writable_real,"writable_real?(path) -> bool",,File,method
+zero,"zero?(path) -> bool",,File,method
+atime,"atime -> Time",,File,method
+chmod,"chmod(mode) -> 0",,File,method
+chown,"chown(owner, group) -> 0",,File,method
+ctime,"ctime -> Time",,File,method
+flock,"flock(operation) -> 0 | false",,File,method
+lstat,"lstat -> File::Stat",,File,method
+mtime,"mtime -> Time",,File,method
+path,"path -> String",,File,method
+to_path,"to_path -> String",,File,method
+size,"size -> Integer",,File,method
+truncate,"truncate(length) -> 0",,File,method
+ALT_SEPARATOR,"ALT_SEPARATOR -> '\\' | nil",,File,method
+PATH_SEPARATOR,"PATH_SEPARATOR -> ';' | ',' | ':'",,File,method
+SEPARATOR,"SEPARATOR -> '/'",,File,method
+Separator,"Separator -> '/'",,File,method
+,＝＝＝＝＝＝＝＝＝＝MatchData＝＝＝＝＝＝＝＝＝＝
+begin,"begin(n) -> Fixnum | nil",,MatchData,method
+captures,"captures -> [String]",,MatchData,method
+end,"end(n) -> Fixnum | nil",,MatchData,method
+length,"length -> Fixnum",,MatchData,method
+size,"size -> Fixnum",,MatchData,method
+names,"names -> [Array]",,MatchData,method
+offset,"offset(n) -> [Fixnum]",,MatchData,method
+post_match,"post_match -> String",,MatchData,method
+pre_match,"pre_match -> String",,MatchData,method
+regexp,"regexp -> Regexp",,MatchData,method
+string,"string -> String",,MatchData,method
+to_a,"to_a -> [String]",,MatchData,method
+to_s,"to_s -> String",,MatchData,method
+values_at,"values_at(*index) -> [String]",,MatchData,method
+,＝＝＝＝＝＝＝＝＝＝Method＝＝＝＝＝＝＝＝＝＝
+eql,"eql?(other) -> bool",,Method,method
+call,"call(*args) -> object",,Method,method
+call,"call(*args) { ... } -> object",,Method,method
+arity,"arity -> Fixnum",,Method,method
+clone,"clone -> Method",,Method,method
+hash,"hash -> Integer",,Method,method
+inspect,"inspect -> String",,Method,method
+to_s,"to_s -> String",,Method,method
+name,"name -> Symbol",,Method,method
+owner,"owner -> Class | Module",,Method,method
+parameters,"parameters -> [object]",,Method,method
+receiver,"receiver -> object",,Method,method
+source_location,"source_location -> [String, Fixnum] | nil",,Method,method
+to_proc,"to_proc -> Proc",,Method,method
+unbind,"unbind -> UnboundMethod",,Method,method
+,＝＝＝＝＝＝＝＝＝＝Module＝＝＝＝＝＝＝＝＝＝
+constants,"constants -> [Symbol]",,Module,method
+nesting,"nesting -> [Class, Module]",,Module,method
+new,"new -> Module",,Module,method
+new,"new {|mod| ... } -> Module",,Module,method
+self,"self < other -> bool | nil",,Module,method
+self,"self <= other -> bool | nil",,Module,method
+self,"self <=> other -> Integer | nil",,Module,method
+self,"self === obj -> bool",,Module,method
+self,"self > other -> bool | nil",,Module,method
+self,"self >= other -> bool | nil",,Module,method
+ancestors,"ancestors -> [Class, Module]",,Module,method
+autoload,"autoload(const_name, feature) -> nil",,Module,method
+autoload,"autoload?(const_name) -> String | nil",,Module,method
+module_eval,"module_eval(expr, fname = '(eval)', lineno = 1) -> object",,Module,method
+module_eval,"module_eval {|mod| ... } -> object",,Module,method
+class_eval,"class_eval(expr, fname = '(eval)', lineno = 1) -> object",,Module,method
+class_eval,"class_eval {|mod| ... } -> object",,Module,method
+class_variable_defined,"class_variable_defined?(name) -> bool",,Module,method
+class_variables,"class_variables -> [Symbol]",,Module,method
+const_defined,"const_defined?(name, inherit = true) -> bool",,Module,method
+const_get,"const_get(name, inherit = true) -> object",,Module,method
+const_missing,"const_missing(name)",,Module,method
+const_set,"const_set(name, value) -> object",,Module,method
+constants,"constants(inherit = true) -> [Symbol]",,Module,method
+include,"include?(mod) -> bool",,Module,method
+included_modules,"included_modules -> [Module]",,Module,method
+instance_method,"instance_method(name) -> UnboundMethod",,Module,method
+instance_methods,"instance_methods(inherited_too = true) -> [Symbol]",,Module,method
+method_defined,"method_defined?(name) -> bool",,Module,method
+name,"name -> String",,Module,method
+to_s,"to_s -> String",,Module,method
+private_class_method,"private_class_method(*name) -> self",,Module,method
+private_instance_methods,"private_instance_methods(inherited_too = true) -> [Symbol]",,Module,method
+private_method_defined,"private_method_defined?(name) -> bool",,Module,method
+protected_instance_methods,"protected_instance_methods(inherited_too = true) -> [Symbol]",,Module,method
+protected_method_defined,"protected_method_defined?(name) -> bool",,Module,method
+public_class_method,"public_class_method(*name) -> self",,Module,method
+public_instance_methods,"public_instance_methods(inherited_too = true) -> [Symbol]",,Module,method
+public_method_defined,"public_method_defined?(name) -> bool",,Module,method
+alias_method,"alias_method(new, original) -> self",,Module,method
+append_features,"append_features(module_or_class) -> self",,Module,method
+attr,"attr(name, assignable = false) -> nil",,Module,method
+attr_accessor,"attr_accessor(*name) -> nil",,Module,method
+attr_reader,"attr_reader(*name) -> nil",,Module,method
+attr_writer,"attr_writer(*name) -> nil",,Module,method
+module_exec,"module_exec(*args) {|*vars| ... } -> object",,Module,method
+class_exec,"class_exec(*args) {|*vars| ... } -> object",,Module,method
+class_variable_get,"class_variable_get(name) -> object",,Module,method
+class_variable_set,"class_variable_set(name, val) -> object",,Module,method
+define_method,"define_method(name, method) -> Proc | Method | UnboundMethod",,Module,method
+define_method,"define_method(name) { ... } -> Proc",,Module,method
+extend_object,"extend_object(obj) -> object",,Module,method
+extended,"extended(obj) -> ()",,Module,method
+include,"include(*mod) -> self",,Module,method
+included,"included(class_or_module) -> ()",,Module,method
+method_added,"method_added(name) -> ()",,Module,method
+method_removed,"method_removed(name) -> ()",,Module,method
+method_undefined,"method_undefined(name) -> ()",,Module,method
+module_function,"module_function(*name) -> self",,Module,method
+private,"private(*name) -> self",,Module,method
+private_constant,"private_constant(*name) -> self",,Module,method
+protected,"protected(*name) -> self",,Module,method
+public,"public(*name) -> self",,Module,method
+public_constant,"public_constant(*name) -> self",,Module,method
+remove_class_variable,"remove_class_variable(name) -> object",,Module,method
+remove_const,"remove_const(name) -> object",,Module,method
+remove_method,"remove_method(*name) -> self",,Module,method
+undef_method,"undef_method(*name) -> self",,Module,method
+,＝＝＝＝＝＝＝＝＝＝Class＝＝＝＝＝＝＝＝＝＝
+new,"new(superclass = Object) -> Class",,Class,method
+new,"new(superclass = Object) {|klass| ... } -> Class",,Class,method
+_load,"_load(str) -> Class",,Class,method
+allocate,"allocate -> object",,Class,method
+new,"new(*args, &block) -> object",,Class,method
+superclass,"superclass -> Class | nil",,Class,method
+inherited,"inherited(subclass) -> ()",,Class,method
+,＝＝＝＝＝＝＝＝＝＝Mutex＝＝＝＝＝＝＝＝＝＝
+new,"new -> Mutex",,Mutex,method
+lock,"lock -> self",,Mutex,method
+locked,"locked? -> bool",,Mutex,method
+sleep,"sleep(timeout = nil) -> self",,Mutex,method
+synchronize,"synchronize { ... } -> object",,Mutex,method
+try_lock,"try_lock -> bool",,Mutex,method
+unlock,"unlock -> self | nil",,Mutex,method
+,＝＝＝＝＝＝＝＝＝＝NilClass＝＝＝＝＝＝＝＝＝＝
+nil,"nil? -> bool",,NilClass,method
+rationalize,"rationalize -> Rational",,NilClass,method
+rationalize,"rationalize(eps) -> Rational",,NilClass,method
+to_a,"to_a -> Array",,NilClass,method
+to_c,"to_c -> Complex",,NilClass,method
+to_f,"to_f -> Float",,NilClass,method
+to_i,"to_i -> Fixnum",,NilClass,method
+to_r,"to_r -> Rational",,NilClass,method
+to_s,"to_s -> String",,NilClass,method
+,＝＝＝＝＝＝＝＝＝＝Numeric＝＝＝＝＝＝＝＝＝＝
+modulo,"modulo(other) -> Numeric",,Numeric,method
+abs,"abs -> Numeric",,Numeric,method
+magnitude,"magnitude -> Numeric",,Numeric,method
+abs2,"abs2 -> Numeric",,Numeric,method
+arg,"arg -> 0 | Math::PI",,Numeric,method
+angle,"angle -> 0 | Math::PI",,Numeric,method
+phase,"phase -> 0 | Math::PI",,Numeric,method
+ceil,"ceil -> Integer",,Numeric,method
+coerce,"coerce(other) -> [Numeric]",,Numeric,method
+conj,"conj -> Numeric",,Numeric,method
+conjugate,"conjugate -> Numeric",,Numeric,method
+denominator,"denominator -> Integer",,Numeric,method
+div,"div(other) -> Integer",,Numeric,method
+divmod,"divmod(other) -> [Numeric]",,Numeric,method
+eql,"eql?(other) -> bool",,Numeric,method
+fdiv,"fdiv(other) -> Float | Complex",,Numeric,method
+floor,"floor -> Integer",,Numeric,method
+i,"i -> Complex",,Numeric,method
+imag,"imag -> 0",,Numeric,method
+imaginary,"imaginary -> 0",,Numeric,method
+integer,"integer? -> bool",,Numeric,method
+nonzero,"nonzero? -> self | nil",,Numeric,method
+numerator,"numerator -> Integer",,Numeric,method
+polar,"polar -> [Numeric, Numeric]",,Numeric,method
+quo,"quo(other) -> Rational | Float | Complex",,Numeric,method
+real,"real -> Numeric",,Numeric,method
+real,"real? -> bool",,Numeric,method
+rect,"rect -> [Numeric, Numeric]",,Numeric,method
+rectangular,"rectangular -> [Numeric, Numeric]",,Numeric,method
+remainder,"remainder(other) -> Numeric",,Numeric,method
+round,"round -> Integer",,Numeric,method
+step,"step(limit, step = 1) {|n| ... } -> self",,Numeric,method
+step,"step(limit, step = 1) -> Enumerator",,Numeric,method
+to_c,"to_c -> Complex",,Numeric,method
+to_int,"to_int -> Integer",,Numeric,method
+truncate,"truncate -> Integer",,Numeric,method
+zero,"zero? -> bool",,Numeric,method
+,＝＝＝＝＝＝＝＝＝＝Complex＝＝＝＝＝＝＝＝＝＝
+polar,"polar(r, theta = 0) -> Complex",,Complex,method
+rect,"rect(r, i = 0) -> Complex",,Complex,method
+rectangular,"rectangular(r, i = 0) -> Complex",,Complex,method
+quo,"quo(other) -> Complex",,Complex,method
+abs,"abs -> Float",,Complex,method
+magnitude,"magnitude -> Float",,Complex,method
+abs2,"abs2 -> Numeric",,Complex,method
+arg,"arg -> Float",,Complex,method
+angle,"angle -> Float",,Complex,method
+phase,"phase -> Float",,Complex,method
+coerce,"coerce(other) -> [Complex, Complex]",,Complex,method
+conjugate,"conjugate -> Complex",,Complex,method
+conj,"conj -> Complex",,Complex,method
+denominator,"denominator -> Integer",,Complex,method
+eql,"eql?(other) -> bool",,Complex,method
+fdiv,"fdiv(other) -> Complex",,Complex,method
+hash,"hash -> Integer",,Complex,method
+imag,"imag -> Numeric",,Complex,method
+imaginary,"imaginary -> Numeric",,Complex,method
+inspect,"inspect -> String",,Complex,method
+marshal_dump,"marshal_dump -> Array",,Complex,method
+marshal_load,"marshal_load(ary) -> Complex",,Complex,method
+numerator,"numerator -> Complex",,Complex,method
+polar,"polar -> [Numeric, Numeric]",,Complex,method
+to_r,"to_r -> Rational",,Complex,method
+rationalize,"rationalize -> Rational",,Complex,method
+rationalize,"rationalize(eps) -> Rational",,Complex,method
+real,"real -> Numeric",,Complex,method
+real,"real? -> false",,Complex,method
+rect,"rect -> [Numeric, Numeric]",,Complex,method
+rectangular,"rectangular -> [Numeric, Numeric]",,Complex,method
+to_f,"to_f -> Float",,Complex,method
+to_i,"to_i -> Integer",,Complex,method
+to_s,"to_s -> String",,Complex,method
+I,"I -> Complex",,Complex,method
+,＝＝＝＝＝＝＝＝＝＝Float＝＝＝＝＝＝＝＝＝＝
+modulo,"modulo(other) -> Float",,Float,method
+abs,"abs -> Float",,Float,method
+magnitude,"magnitude -> Float",,Float,method
+arg,"arg -> 0 | Float",,Float,method
+angle,"angle -> 0 | Float",,Float,method
+phase,"phase -> 0 | Float",,Float,method
+ceil,"ceil -> Integer",,Float,method
+denominator,"denominator -> Integer",,Float,method
+divmod,"divmod(other) -> [Numeric]",,Float,method
+eql,"eql?(other) -> bool",,Float,method
+finite,"finite? -> bool",,Float,method
+floor,"floor -> Integer",,Float,method
+hash,"hash -> Fixnum",,Float,method
+infinite,"infinite? -> 1 | -1 | nil",,Float,method
+nan,"nan? -> bool",,Float,method
+numerator,"numerator -> Integer",,Float,method
+rationalize,"rationalize -> Rational",,Float,method
+rationalize,"rationalize(eps) -> Rational",,Float,method
+round,"round(ndigits = 0) -> Fixnum | Float",,Float,method
+to_f,"to_f -> self",,Float,method
+to_i,"to_i -> Integer",,Float,method
+truncate,"truncate -> Integer",,Float,method
+to_r,"to_r -> Rational",,Float,method
+to_s,"to_s -> String",,Float,method
+zero,"zero? -> bool",,Float,method
+DIG,"DIG -> Fixnum",,Float,method
+EPSILON,"EPSILON -> Float",,Float,method
+INFINITY,"INFINITY -> Float",,Float,method
+MANT_DIG,"MANT_DIG -> Fixnum",,Float,method
+MAX,"MAX -> Float",,Float,method
+MAX_10_EXP,"MAX_10_EXP -> Fixnum",,Float,method
+MAX_EXP,"MAX_EXP -> Fixnum",,Float,method
+MIN,"MIN -> Float",,Float,method
+MIN_10_EXP,"MIN_10_EXP -> Fixnum",,Float,method
+MIN_EXP,"MIN_EXP -> Fixnum",,Float,method
+NAN,"NAN -> Float",,Float,method
+RADIX,"RADIX -> Fixnum",,Float,method
+ROUNDS,"ROUNDS -> Fixnum",,Float,method
+,＝＝＝＝＝＝＝＝＝＝Integer＝＝＝＝＝＝＝＝＝＝
+chr,"chr -> String",,Integer,method
+chr,"chr(encoding) -> String",,Integer,method
+denominator,"denominator -> Integer",,Integer,method
+downto,"downto(min) {|n| ... } -> self",,Integer,method
+downto,"downto(min) -> Enumerator",,Integer,method
+even,"even? -> bool",,Integer,method
+gcd,"gcd(n) -> Integer",,Integer,method
+gcdlcm,"gcdlcm(n) -> [Integer]",,Integer,method
+integer,"integer? -> true",,Integer,method
+lcm,"lcm(n) -> Integer",,Integer,method
+next,"next -> Fixnum | Bignum",,Integer,method
+succ,"succ -> Fixnum | Bignum",,Integer,method
+numerator,"numerator -> Integer",,Integer,method
+odd,"odd? -> bool",,Integer,method
+ord,"ord -> Integer",,Integer,method
+pred,"pred -> Integer",,Integer,method
+rationalize,"rationalize -> Rational",,Integer,method
+rationalize,"rationalize(eps) -> Rational",,Integer,method
+times,"times {|n| ... } -> self",,Integer,method
+times,"times -> Enumerator",,Integer,method
+to_i,"to_i -> self",,Integer,method
+to_int,"to_int -> self",,Integer,method
+to_r,"to_r -> Rational",,Integer,method
+to_s,"to_s -> String",,Integer,method
+to_s,"to_s(base) -> String",,Integer,method
+upto,"upto(max) {|n| ... } -> Fixnum | Bignum",,Integer,method
+upto,"upto(max) -> Enumerator",,Integer,method
+,＝＝＝＝＝＝＝＝＝＝Bignum＝＝＝＝＝＝＝＝＝＝
+modulo,"modulo(other) -> Fixnum | Bignum | Float",,Bignum,method
+div,"div(other) -> Fixnum | Bignum | Float",,Bignum,method
+abs,"abs -> Fixnum | Bignum",,Bignum,method
+magnitude,"magnitude -> Fixnum | Bignum",,Bignum,method
+divmod,"divmod(other) -> [Integer, Numeric]",,Bignum,method
+eql,"eql?(other) -> bool",,Bignum,method
+even,"even? -> bool",,Bignum,method
+fdiv,"fdiv(other) -> Float",,Bignum,method
+hash,"hash -> Integer",,Bignum,method
+odd,"odd? -> bool",,Bignum,method
+remainder,"remainder(other) -> Fixnum | Bignum | Float",,Bignum,method
+size,"size -> Fixnum",,Bignum,method
+to_f,"to_f -> Float",,Bignum,method
+self,"self | other -> Fixnum | Bignum",,Bignum,method
+~ -> Fixnum,"Fixnum | Bignum",,Bignum,method
+,＝＝＝＝＝＝＝＝＝＝Fixnum＝＝＝＝＝＝＝＝＝＝
+modulo,"modulo(other) -> Fixnum | Bignum | Float",,Fixnum,method
+div,"div(other) -> Fixnum | Bignum | Float",,Fixnum,method
+abs,"abs -> Fixnum | Bignum",,Fixnum,method
+magnitude,"magnitude -> Fixnum | Bignum",,Fixnum,method
+divmod,"divmod(other) -> [Integer, Numeric]",,Fixnum,method
+even,"even? -> bool",,Fixnum,method
+quo,"quo(other) -> Float",,Fixnum,method
+fdiv,"fdiv(other) -> Float",,Fixnum,method
+odd,"odd? -> bool",,Fixnum,method
+size,"size -> Fixnum",,Fixnum,method
+succ,"succ -> Fixnum | Bignum",,Fixnum,method
+to_f,"to_f -> Float",,Fixnum,method
+zero,"zero? -> bool",,Fixnum,method
+~ -> Fixnum,"Fixnum | Bignum",,Fixnum,method
+,＝＝＝＝＝＝＝＝＝＝Rational＝＝＝＝＝＝＝＝＝＝
+quo,"quo(other) -> Rational | Float",,Rational,method
+ceil,"ceil(precision = 0) -> Integer | Rational",,Rational,method
+coerce,"coerce(other) -> Array",,Rational,method
+denominator,"denominator -> Integer",,Rational,method
+fdiv,"fdiv(other) -> Float",,Rational,method
+floor,"floor(precision = 0) -> Integer | Rational",,Rational,method
+hash,"hash -> Integer",,Rational,method
+inspect,"inspect -> String",,Rational,method
+marshal_dump,"marshal_dump -> Array",,Rational,method
+marshal_load,"marshal_load(ary) -> Rational",,Rational,method
+numerator,"numerator -> Integer",,Rational,method
+rationalize,"rationalize(eps = 0) -> Rational",,Rational,method
+round,"round(precision = 0) -> Integer | Rational",,Rational,method
+to_f,"to_f -> Float",,Rational,method
+to_i,"to_i -> Integer",,Rational,method
+truncate,"truncate(precision = 0) -> Rational | Integer",,Rational,method
+to_r,"to_r -> Rational",,Rational,method
+to_s,"to_s -> String",,Rational,method
+convert,"convert(*arg) -> Rational",,Rational,method
+,＝＝＝＝＝＝＝＝＝＝Proc＝＝＝＝＝＝＝＝＝＝
+new,"new -> Proc",,Proc,method
+new,"new { ... } -> Proc",,Proc,method
+call,"call(*arg) -> ()",,Proc,method
+yield,"yield(*arg) -> ()",,Proc,method
+arity,"arity -> Fixnum",,Proc,method
+binding,"binding -> Binding",,Proc,method
+curry,"curry -> Proc",,Proc,method
+curry,"curry(arity) -> Proc",,Proc,method
+hash,"hash -> Integer",,Proc,method
+lambda,"lambda? -> bool",,Proc,method
+parameters,"parameters -> [object]",,Proc,method
+source_location,"source_location -> [String, Fixnum] | nil",,Proc,method
+to_proc,"to_proc -> self",,Proc,method
+to_s,"to_s -> String",,Proc,method
+,＝＝＝＝＝＝＝＝＝＝Process::Status＝＝＝＝＝＝＝＝＝＝
+coredump,"coredump? -> bool",,Process::Status,method
+exited,"exited? -> bool",,Process::Status,method
+exitstatus,"exitstatus -> Integer | nil",,Process::Status,method
+inspect,"inspect -> String",,Process::Status,method
+pid,"pid -> Integer",,Process::Status,method
+signaled,"signaled? -> bool",,Process::Status,method
+stopped,"stopped? -> bool",,Process::Status,method
+stopsig,"stopsig -> Integer | nil",,Process::Status,method
+success,"success? -> bool",,Process::Status,method
+termsig,"termsig -> Integer | nil",,Process::Status,method
+to_i,"to_i -> Integer",,Process::Status,method
+to_int,"to_int -> Integer",,Process::Status,method
+to_s,"to_s -> String",,Process::Status,method
+,＝＝＝＝＝＝＝＝＝＝Random＝＝＝＝＝＝＝＝＝＝
+new,"new(seed = Random.new_seed) -> Random",,Random,method
+new_seed,"new_seed -> Integer",,Random,method
+rand,"rand -> Float",,Random,method
+rand,"rand(max) -> Integer | Float",,Random,method
+rand,"rand(range) -> Integer | Float | nil",,Random,method
+srand,"srand -> Integer",,Random,method
+srand,"srand(number) -> Integer",,Random,method
+self,"self == other -> bool",,Random,method
+bytes,"bytes(size) -> String",,Random,method
+marshal_dump,"marshal_dump -> Array",,Random,method
+marshal_load,"marshal_load(array) -> Random",,Random,method
+rand,"rand -> Float",,Random,method
+rand,"rand(max) -> Integer | Float",,Random,method
+rand,"rand(range) -> Integer | Float | nil",,Random,method
+seed,"seed -> Integer",,Random,method
+left,"left -> Integer",,Random,method
+state,"state -> Integer",,Random,method
+left,"left -> Integer",,Random,method
+state,"state -> Integer",,Random,method
+DEFAULT,"DEFAULT -> Random",,Random,method
+,＝＝＝＝＝＝＝＝＝＝Range＝＝＝＝＝＝＝＝＝＝
+new,"new(first, last, exclude_end = false) -> Range",,Range,method
+self,"self == other -> bool",,Range,method
+self,"self === obj -> bool",,Range,method
+include,"include?(obj) -> bool",,Range,method
+member,"member?(obj) -> bool",,Range,method
+begin,"begin -> object",,Range,method
+first,"first -> object",,Range,method
+first,"first(n) -> [object]",,Range,method
+cover,"cover?(obj) -> bool",,Range,method
+each,"each {|item|  ... } -> self",,Range,method
+each,"each -> Enumerator",,Range,method
+end,"end -> object",,Range,method
+last,"last -> object",,Range,method
+last,"last(n) -> [object]",,Range,method
+eql,"eql?(other) -> bool",,Range,method
+equal,"equal?(other) -> bool",,Range,method
+exclude_end,"exclude_end? -> bool",,Range,method
+hash,"hash -> Integer",,Range,method
+max,"max -> object | nil",,Range,method
+max,"max {|a, b| ... } -> object | nil",,Range,method
+min,"min -> object | nil",,Range,method
+min,"min {|a, b| ... } -> object | nil",,Range,method
+step,"step(s = 1) {|item| ... } -> self",,Range,method
+step,"step(s = 1) -> Enumerator",,Range,method
+,＝＝＝＝＝＝＝＝＝＝Regexp＝＝＝＝＝＝＝＝＝＝
+compile,"compile(string, option = nil, code = nil) -> Regexp",,Regexp,method
+new,"new(string, option = nil, code = nil) -> Regexp",,Regexp,method
+escape,"escape(string) -> String",,Regexp,method
+quote,"quote(string) -> String",,Regexp,method
+last_match,"last_match -> MatchData",,Regexp,method
+last_match,"last_match(nth) -> String | nil",,Regexp,method
+try_convert,"try_convert(obj) -> Regexp | nil",,Regexp,method
+union,"union(*pattern) -> Regexp",,Regexp,method
+self,"self == other -> bool",,Regexp,method
+eql,"eql?(other) -> bool",,Regexp,method
+self,"self === string -> bool",,Regexp,method
+self,"self =~ string -> Fixnum | nil",,Regexp,method
+casefold,"casefold? -> bool",,Regexp,method
+encoding,"encoding -> Encoding",,Regexp,method
+fixed_encoding,"fixed_encoding? -> bool",,Regexp,method
+hash,"hash -> Fixnum",,Regexp,method
+inspect,"inspect -> String",,Regexp,method
+match,"match(str, pos = 0) -> MatchData | nil",,Regexp,method
+named_captures,"named_captures -> { String => [Integer] }",,Regexp,method
+names,"names -> [String]",,Regexp,method
+options,"options -> Integer",,Regexp,method
+source,"source -> String",,Regexp,method
+to_s,"to_s -> String",,Regexp,method
+~ -> Fixnum,"Fixnum | nil",,Regexp,method
+EXTENDED,"EXTENDED -> Fixnum",,Regexp,method
+FIXEDENCODING,"FIXEDENCODING -> Fixnum",,Regexp,method
+IGNORECASE,"IGNORECASE -> Fixnum",,Regexp,method
+MULTILINE,"MULTILINE -> Fixnum",,Regexp,method
+NOENCODING,"NOENCODING -> Fixnum",,Regexp,method
+,＝＝＝＝＝＝＝＝＝＝String＝＝＝＝＝＝＝＝＝＝
+new,"new(string = '') -> String",,String,method
+try_convert,"try_convert(obj) -> String | nil",,String,method
+concat,"concat(other) -> self",,String,method
+slice,"slice(nth) -> String | nil",,String,method
+slice,"slice(nth, len) -> String | nil",,String,method
+slice,"slice(substr) -> String | nil",,String,method
+slice,"slice(regexp, nth = 0) -> String",,String,method
+slice,"slice(regexp, name) -> String",,String,method
+slice,"slice(range) -> String",,String,method
+ascii_only,"ascii_only? -> bool",,String,method
+each_byte,"each_byte {|byte| ... } -> self",,String,method
+bytes,"bytes {|byte| ... } -> self",,String,method
+each_byte,"each_byte -> Enumerator",,String,method
+bytes,"bytes -> Enumerator",,String,method
+bytesize,"bytesize -> Integer",,String,method
+byteslice,"byteslice(nth) -> String | nil",,String,method
+byteslice,"byteslice(nth, len) -> String | nil",,String,method
+byteslice,"byteslice(range) -> String | nil",,String,method
+capitalize,"capitalize -> String",,String,method
+capitalize,"capitalize! -> self | nil",,String,method
+casecmp,"casecmp(other) -> Integer | nil",,String,method
+center,"center(width, padding = ' ') -> String",,String,method
+each_char,"each_char {|cstr| block } -> self",,String,method
+chars,"chars {|cstr| block } -> self",,String,method
+each_char,"each_char -> Enumerator",,String,method
+chars,"chars -> Enumerator",,String,method
+chomp,"chomp(rs = $/) -> String",,String,method
+chomp,"chomp!(rs = $/) -> self | nil",,String,method
+chop,"chop -> String",,String,method
+chop,"chop! -> self | nil",,String,method
+chr,"chr -> String",,String,method
+clear,"clear -> ()",,String,method
+each_codepoint,"each_codepoint {|codepoint| block } -> self",,String,method
+codepoints,"codepoints {|codepoint| block } -> self",,String,method
+each_codepoint,"each_codepoint -> Enumerator",,String,method
+codepoints,"codepoints -> Enumerator",,String,method
+count,"count(*chars) -> Integer",,String,method
+crypt,"crypt(salt) -> String",,String,method
+delete,"delete(*strs) -> String",,String,method
+delete,"delete!(*strs) -> self | nil",,String,method
+downcase,"downcase -> String",,String,method
+downcase,"downcase! -> self | nil",,String,method
+dump,"dump -> String",,String,method
+each_line,"each_line(rs = $/) {|line| ... } -> ()",,String,method
+lines,"lines(rs = $/) {|line| ... } -> ()",,String,method
+each_line,"each_line(rs = $/) -> Enumerator",,String,method
+lines,"lines(rs = $/) -> Enumerator",,String,method
+empty,"empty? -> bool",,String,method
+encode,"encode(encoding, options = nil) -> String",,String,method
+encode,"encode(encoding, from_encoding, options = nil) -> String",,String,method
+encode,"encode(options = nil) -> String",,String,method
+encode,"encode!(encoding, options = nil) -> self",,String,method
+encode,"encode!(encoding, from_encoding, options = nil) -> self",,String,method
+encoding,"encoding -> Encoding",,String,method
+end_with,"end_with?(str) -> bool",,String,method
+eql,"eql?(other) -> bool",,String,method
+force_encoding,"force_encoding(encoding) -> self",,String,method
+getbyte,"getbyte(index) -> Integer | nil",,String,method
+gsub,"gsub(pattern, replace) -> String",,String,method
+gsub,"gsub(pattern) {|matched| .... } -> String",,String,method
+gsub,"gsub(pattern) -> Enumerator",,String,method
+gsub,"gsub(pattern, hash) -> String",,String,method
+gsub,"gsub!(pattern, replace) -> self | nil",,String,method
+gsub,"gsub!(pattern) {|matched| .... } -> self | nil",,String,method
+gsub,"gsub!(pattern) -> Enumerator",,String,method
+gsub,"gsub!(pattern, hash) -> self | nil",,String,method
+hash,"hash -> Integer",,String,method
+hex,"hex -> Integer",,String,method
+include,"include?(substr) -> bool",,String,method
+index,"index(pattern, pos = 0) -> Integer",,String,method
+insert,"insert(pos, other) -> ()",,String,method
+inspect,"inspect -> String",,String,method
+intern,"intern -> Symbol",,String,method
+to_sym,"to_sym -> Symbol",,String,method
+length,"length -> Integer",,String,method
+size,"size -> Integer",,String,method
+ljust,"ljust(width, padding = ' ') -> String",,String,method
+lstrip,"lstrip -> String",,String,method
+lstrip,"lstrip! -> self | nil",,String,method
+match,"match(regexp, pos = 0) -> MatchData",,String,method
+succ,"succ -> String",,String,method
+next,"next -> String",,String,method
+succ,"succ! -> String",,String,method
+next,"next! -> String",,String,method
+oct,"oct -> Integer",,String,method
+ord,"ord -> Integer",,String,method
+partition,"partition(sep) -> [String, String, String]",,String,method
+prepend,"prepend(other_str) -> String",,String,method
+replace,"replace(other) -> String",,String,method
+reverse,"reverse -> String",,String,method
+reverse,"reverse! -> ()",,String,method
+rindex,"rindex(pattern, pos = self.size) -> Integer | nil",,String,method
+rjust,"rjust(width, padding = ' ') -> String",,String,method
+rpartition,"rpartition(sep) -> [String, String, String]",,String,method
+rstrip,"rstrip -> String",,String,method
+rstrip,"rstrip! -> self | nil",,String,method
+scan,"scan(re) -> [String] | [[String]]",,String,method
+scan,"scan(re) {|s| ... } -> ()",,String,method
+setbyte,"setbyte(index, b) -> Integer",,String,method
+slice,"slice!(nth) -> Integer",,String,method
+slice,"slice!(pos, len) -> String",,String,method
+slice,"slice!(substr) -> String",,String,method
+slice,"slice!(regexp, nth = 0) -> String",,String,method
+slice,"slice!(first..last) -> String",,String,method
+slice,"slice!(first...last) -> String",,String,method
+slice,"slice!(regexp, nth = 0) -> String",,String,method
+split,"split(sep = $;, limit = 0) -> [String] | [[String]]",,String,method
+squeeze,"squeeze(*chars) -> String",,String,method
+squeeze,"squeeze!(*chars) -> ()",,String,method
+start_with,"start_with?(str) -> bool",,String,method
+strip,"strip -> String",,String,method
+strip,"strip! -> self | nil",,String,method
+sub,"sub(pattern, replace) -> String",,String,method
+sub,"sub(pattern) {|matched| .... } -> String",,String,method
+sub,"sub(pattern, hash) -> String",,String,method
+sub,"sub!(pattern, replace) -> self | nil",,String,method
+sub,"sub!(pattern) {|matched| .... } -> self | nil",,String,method
+sub,"sub!(pattern, hash) -> String",,String,method
+sum,"sum(bits = 16) -> Integer",,String,method
+swapcase,"swapcase -> String",,String,method
+swapcase,"swapcase! -> self | nil",,String,method
+to_c,"to_c -> Complex",,String,method
+to_f,"to_f -> Float",,String,method
+to_i,"to_i(base = 10) -> Integer",,String,method
+to_r,"to_r -> Rational",,String,method
+to_s,"to_s -> String",,String,method
+to_str,"to_str -> String",,String,method
+tr,"tr(pattern, replace) -> String",,String,method
+tr,"tr!(pattern, replace) -> self | nil",,String,method
+tr_s,"tr_s(pattern, replace) -> String",,String,method
+tr_s,"tr_s!(pattern, replace) -> self | nil",,String,method
+unpack,"unpack(template) -> Array",,String,method
+upcase,"upcase -> String",,String,method
+upcase,"upcase! -> self | nil",,String,method
+upto,"upto(max, exclusive = false) {|s| ... } -> self",,String,method
+valid_encoding,"valid_encoding? -> bool",,String,method
+,＝＝＝＝＝＝＝＝＝＝Struct＝＝＝＝＝＝＝＝＝＝
+new,"new(*args) -> Class",,Struct,method
+new,"new(*args) -> Struct",,Struct,method
+members,"members -> [Symbol]",,Struct,method
+each,"each {|value| ... } -> self",,Struct,method
+each,"each -> Enumerator",,Struct,method
+each_pair,"each_pair {|member, value| ... } -> self",,Struct,method
+each_pair,"each_pair -> Enumerator",,Struct,method
+eql,"eql?(other) -> bool",,Struct,method
+equal,"equal?(other) -> bool",,Struct,method
+hash,"hash -> Integer",,Struct,method
+inspect,"inspect -> String",,Struct,method
+to_s,"to_s -> String",,Struct,method
+length,"length -> Fixnum",,Struct,method
+size,"size -> Fixnum",,Struct,method
+members,"members -> [String]",,Struct,method
+select,"select {|i| ... } -> [object]",,Struct,method
+select,"select -> Enumerator",,Struct,method
+values,"values -> [object]",,Struct,method
+to_a,"to_a -> [object]",,Struct,method
+values_at,"values_at(*members) -> [object]",,Struct,method
+,＝＝＝＝＝＝＝＝＝＝Struct::Tms＝＝＝＝＝＝＝＝＝＝
+cstime,"cstime -> Float",,Struct::Tms,method
+cstime,"cstime=(n)",,Struct::Tms,method
+cutime,"cutime -> Float",,Struct::Tms,method
+cutime,"cutime=(n)",,Struct::Tms,method
+stime,"stime -> Float",,Struct::Tms,method
+stime,"stime=(n)",,Struct::Tms,method
+utime,"utime -> Float",,Struct::Tms,method
+utime,"utime=(n)",,Struct::Tms,method
+,＝＝＝＝＝＝＝＝＝＝Symbol＝＝＝＝＝＝＝＝＝＝
+all_symbols,"all_symbols -> [Symbol]",,Symbol,method
+match,"match(other) -> Integer | nil",,Symbol,method
+slice,"slice(nth) -> String | nil",,Symbol,method
+slice,"slice(nth, len) -> String | nil",,Symbol,method
+slice,"slice(substr) -> String | nil",,Symbol,method
+slice,"slice(regexp, nth = 0) -> String | nil",,Symbol,method
+slice,"slice(range) -> String | nil",,Symbol,method
+capitalize,"capitalize -> Symbol",,Symbol,method
+casecmp,"casecmp(other) -> -1 | 0 | 1",,Symbol,method
+downcase,"downcase -> Symbol",,Symbol,method
+empty,"empty? -> bool",,Symbol,method
+encoding,"encoding -> Encoding",,Symbol,method
+id2name,"id2name -> String",,Symbol,method
+to_s,"to_s -> String",,Symbol,method
+inspect,"inspect -> String",,Symbol,method
+intern,"intern -> self",,Symbol,method
+to_sym,"to_sym -> self",,Symbol,method
+length,"length -> Integer",,Symbol,method
+size,"size -> Integer",,Symbol,method
+succ,"succ -> Symbol",,Symbol,method
+next,"next -> Symbol",,Symbol,method
+swapcase,"swapcase -> Symbol",,Symbol,method
+to_proc,"to_proc -> Proc",,Symbol,method
+upcase,"upcase -> Symbol",,Symbol,method
+,＝＝＝＝＝＝＝＝＝＝Thread＝＝＝＝＝＝＝＝＝＝
+DEBUG,"DEBUG -> Integer",,Thread,method
+DEBUG,"DEBUG=(val)",,Thread,method
+abort_on_exception,"abort_on_exception -> bool",,Thread,method
+abort_on_exception,"abort_on_exception=(newstate)",,Thread,method
+current,"current -> Thread",,Thread,method
+exclusive,"exclusive { ... } -> object",,Thread,method
+exit,"exit -> ()",,Thread,method
+start,"start(*arg) {|*arg| ... } -> Thread",,Thread,method
+fork,"fork(*arg) {|*arg| ... } -> Thread",,Thread,method
+kill,"kill(thread) -> Thread",,Thread,method
+list,"list -> [Thread]",,Thread,method
+main,"main -> Thread",,Thread,method
+new,"new(*arg) {|*arg| ... } -> Thread",,Thread,method
+pass,"pass -> nil",,Thread,method
+stop,"stop -> nil",,Thread,method
+self,"self[name] -> object | nil",,Thread,method
+self,"self[name] = val",,Thread,method
+abort_on_exception,"abort_on_exception -> bool",,Thread,method
+abort_on_exception,"abort_on_exception=(newstate)",,Thread,method
+add_trace_func,"add_trace_func(pr) -> Proc",,Thread,method
+alive,"alive? -> bool",,Thread,method
+backtrace,"backtrace -> [String] | nil",,Thread,method
+exit,"exit -> self",,Thread,method
+kill,"kill -> self",,Thread,method
+terminate,"terminate -> self",,Thread,method
+group,"group -> ThreadGroup | nil",,Thread,method
+inspect,"inspect -> String",,Thread,method
+join,"join -> self",,Thread,method
+join,"join(limit) -> self | nil",,Thread,method
+key,"key?(name) -> bool",,Thread,method
+keys,"keys -> [Symbol]",,Thread,method
+priority,"priority -> Integer",,Thread,method
+priority,"priority=(val)",,Thread,method
+raise,"raise(error_type, message, traceback) -> ()",,Thread,method
+run,"run -> self",,Thread,method
+safe_level,"safe_level -> Integer",,Thread,method
+set_trace_func,"set_trace_func(pr) -> Proc | nil",,Thread,method
+status,"status -> String | false | nil",,Thread,method
+stop,"stop? -> bool",,Thread,method
+value,"value -> object",,Thread,method
+wakeup,"wakeup -> self",,Thread,method
+MUTEX_FOR_THREAD_EXCLUSIVE,"MUTEX_FOR_THREAD_EXCLUSIVE -> Mutex",,Thread,method
+,＝＝＝＝＝＝＝＝＝＝ThreadGroup＝＝＝＝＝＝＝＝＝＝
+new,"new -> ThreadGroup",,ThreadGroup,method
+add,"add(thread) -> self",,ThreadGroup,method
+enclose,"enclose -> self",,ThreadGroup,method
+enclosed,"enclosed? -> bool",,ThreadGroup,method
+list,"list -> [Thread]",,ThreadGroup,method
+Default,"Default -> ThreadGroup",,ThreadGroup,method
+,＝＝＝＝＝＝＝＝＝＝Time＝＝＝＝＝＝＝＝＝＝
+at,"at(time) -> Time",,Time,method
+at,"at(time, usec) -> Time",,Time,method
+gm,"gm(year, mon = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0) -> Time",,Time,method
+utc,"utc(year, mon = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0) -> Time",,Time,method
+gm,"gm(sec, min, hour, mday, mon, year, wday, yday, isdst, zone) -> Time",,Time,method
+utc,"utc(sec, min, hour, mday, mon, year, wday, yday, isdst, zone) -> Time",,Time,method
+local,"local(year, mon = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0) -> Time",,Time,method
+mktime,"mktime(year, mon = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0) -> Time",,Time,method
+local,"local(sec, min, hour, mday, mon, year, wday, yday, isdst, zone) -> Time",,Time,method
+mktime,"mktime(sec, min, hour, mday, mon, year, wday, yday, isdst, zone) -> Time",,Time,method
+new,"new -> Time",,Time,method
+now,"now -> Time",,Time,method
+asctime,"asctime -> String",,Time,method
+ctime,"ctime -> String",,Time,method
+mday,"mday -> Integer",,Time,method
+day,"day -> Integer",,Time,method
+isdst,"isdst -> bool",,Time,method
+dst,"dst? -> bool",,Time,method
+eql,"eql?(other) -> bool",,Time,method
+friday,"friday? -> bool",,Time,method
+getgm,"getgm -> Time",,Time,method
+getutc,"getutc -> Time",,Time,method
+getlocal,"getlocal -> Time",,Time,method
+gmt,"gmt? -> bool",,Time,method
+utc,"utc? -> bool",,Time,method
+utc_offset,"utc_offset -> Integer",,Time,method
+gmt_offset,"gmt_offset -> Integer",,Time,method
+gmtoff,"gmtoff -> Integer",,Time,method
+gmtime,"gmtime -> self",,Time,method
+utc,"utc -> self",,Time,method
+hour,"hour -> Integer",,Time,method
+localtime,"localtime -> self",,Time,method
+min,"min -> Integer",,Time,method
+mon,"mon -> Integer",,Time,method
+month,"month -> Integer",,Time,method
+monday,"monday? -> bool",,Time,method
+nsec,"nsec -> Integer",,Time,method
+tv_nsec,"tv_nsec -> Integer",,Time,method
+round,"round(ndigits=0) -> Time",,Time,method
+saturday,"saturday? -> bool",,Time,method
+sec,"sec -> Integer",,Time,method
+strftime,"strftime(format) -> String",,Time,method
+subsec,"subsec -> Integer | Rational",,Time,method
+succ,"succ -> Time",,Time,method
+sunday,"sunday? -> bool",,Time,method
+thursday,"thursday? -> bool",,Time,method
+to_a,"to_a -> Array",,Time,method
+to_f,"to_f -> Float",,Time,method
+to_i,"to_i -> Integer",,Time,method
+tv_sec,"tv_sec -> Integer",,Time,method
+to_r,"to_r -> Rational",,Time,method
+to_s,"to_s -> String",,Time,method
+tuesday,"tuesday? -> bool",,Time,method
+usec,"usec -> Integer",,Time,method
+tv_usec,"tv_usec -> Integer",,Time,method
+wday,"wday -> Integer",,Time,method
+wednesday,"wednesday? -> bool",,Time,method
+yday,"yday -> Integer",,Time,method
+year,"year -> Integer",,Time,method
+zone,"zone -> String",,Time,method
+,＝＝＝＝＝＝＝＝＝＝TrueClass＝＝＝＝＝＝＝＝＝＝
+to_s,"to_s -> String",,TrueClass,method
+,＝＝＝＝＝＝＝＝＝＝UnboundMethod＝＝＝＝＝＝＝＝＝＝
+eql,"eql?(other) -> bool",,UnboundMethod,method
+arity,"arity -> Integer",,UnboundMethod,method
+bind,"bind(obj) -> Method",,UnboundMethod,method
+clone,"clone -> Method",,UnboundMethod,method
+hash,"hash -> Integer",,UnboundMethod,method
+inspect,"inspect -> String",,UnboundMethod,method
+to_s,"to_s -> String",,UnboundMethod,method
+name,"name -> Symbol",,UnboundMethod,method
+owner,"owner -> Class | Module",,UnboundMethod,method
+parameters,"parameters -> [object]",,UnboundMethod,method
+source_location,"source_location -> [String, Fixnum] | nil",,UnboundMethod,method
+,＝＝＝＝＝＝＝＝＝＝Enumerable＝＝＝＝＝＝＝＝＝＝
+all,"all? -> bool",,Enumerable,method
+all,"all? {|item| ... } -> bool",,Enumerable,method
+any,"any? -> bool",,Enumerable,method
+any,"any? {|item| ... } -> bool",,Enumerable,method
+chunk,"chunk {|elt| ... } -> Enumerator",,Enumerable,method
+chunk,"chunk(initial_state) {|elt, state| ... } -> Enumerator",,Enumerable,method
+collect,"collect -> Enumerator",,Enumerable,method
+map,"map -> Enumerator",,Enumerable,method
+collect,"collect {|item| ... } -> [object]",,Enumerable,method
+map,"map {|item| ... } -> [object]",,Enumerable,method
+flat_map,"flat_map -> Enumerator",,Enumerable,method
+collect_concat,"collect_concat -> Enumerator",,Enumerable,method
+flat_map,"flat_map {| obj | block } -> Array",,Enumerable,method
+collect_concat,"collect_concat {| obj | block } -> Array",,Enumerable,method
+count,"count -> Integer",,Enumerable,method
+count,"count(item) -> Integer",,Enumerable,method
+count,"count {|obj| ... } -> Integer",,Enumerable,method
+cycle,"cycle(n=nil) -> Enumerator",,Enumerable,method
+cycle,"cycle(n=nil) {|obj| ... } -> object | nil",,Enumerable,method
+find,"find(ifnone = nil) -> Enumerator",,Enumerable,method
+detect,"detect(ifnone = nil) -> Enumerator",,Enumerable,method
+find,"find(ifnone = nil) {|item| ... } -> object",,Enumerable,method
+detect,"detect(ifnone = nil) {|item| ... } -> object",,Enumerable,method
+drop,"drop(n) -> Array",,Enumerable,method
+drop_while,"drop_while -> Enumerator",,Enumerable,method
+drop_while,"drop_while {|element| ... } -> Array",,Enumerable,method
+each_cons,"each_cons(n) -> Enumerator",,Enumerable,method
+each_cons,"each_cons(n) {|list| ... } -> nil",,Enumerable,method
+each_entry,"each_entry -> Enumerator",,Enumerable,method
+each_entry,"each_entry {|obj| block} -> self",,Enumerable,method
+each_slice,"each_slice(n) -> Enumerator",,Enumerable,method
+each_slice,"each_slice(n) {|list| ... } -> nil",,Enumerable,method
+each_with_index,"each_with_index -> Enumerator",,Enumerable,method
+each_with_index,"each_with_index {|item, index| ... } -> self",,Enumerable,method
+each_with_object,"each_with_object(obj) -> Enumerator",,Enumerable,method
+each_with_object,"each_with_object(obj) {|(*args), memo_obj| ... } -> object",,Enumerable,method
+to_a,"to_a -> [object]",,Enumerable,method
+entries,"entries -> [object]",,Enumerable,method
+find_all,"find_all -> Enumerator",,Enumerable,method
+select,"select -> Enumerator",,Enumerable,method
+find_all,"find_all {|item| ... } -> [object]",,Enumerable,method
+select,"select {|item| ... } -> [object]",,Enumerable,method
+find_index,"find_index -> Enumerator",,Enumerable,method
+find_index,"find_index {|obj| ... } -> Integer | nil",,Enumerable,method
+first,"first -> object | nil",,Enumerable,method
+first,"first(n) -> Array",,Enumerable,method
+grep,"grep(pattern) -> [object]",,Enumerable,method
+grep,"grep(pattern) {|item| ... } -> [object]",,Enumerable,method
+group_by,"group_by -> Enumerator",,Enumerable,method
+group_by,"group_by {|obj| ... } -> Hash",,Enumerable,method
+member,"member?(val) -> bool",,Enumerable,method
+include,"include?(val) -> bool",,Enumerable,method
+inject,"inject(init = self.first) {|result, item| ... } -> object",,Enumerable,method
+inject,"inject(sym) -> object",,Enumerable,method
+inject,"inject(init, sym) -> object",,Enumerable,method
+reduce,"reduce(init = self.first) {|result, item| ... } -> object",,Enumerable,method
+reduce,"reduce(sym) -> object",,Enumerable,method
+reduce,"reduce(init, sym) -> object",,Enumerable,method
+max,"max -> object | nil",,Enumerable,method
+max,"max {|a, b| ... } -> object | nil",,Enumerable,method
+max_by,"max_by -> Enumerator",,Enumerable,method
+max_by,"max_by {|item| ... } -> object | nil",,Enumerable,method
+min,"min -> object | nil",,Enumerable,method
+min,"min {|a, b| ... } -> object | nil",,Enumerable,method
+min_by,"min_by -> Enumerator",,Enumerable,method
+min_by,"min_by {|item| ... } -> object | nil",,Enumerable,method
+minmax,"minmax -> [object, object]",,Enumerable,method
+minmax,"minmax {|a, b| ... } -> [object, object]",,Enumerable,method
+minmax_by,"minmax_by -> Enumerator",,Enumerable,method
+minmax_by,"minmax_by {|obj| ... } -> [object, object]",,Enumerable,method
+none,"none? -> bool",,Enumerable,method
+none,"none? {|obj| ... } -> bool",,Enumerable,method
+one,"one? -> bool",,Enumerable,method
+one,"one? {|obj| ... } -> bool",,Enumerable,method
+partition,"partition -> Enumerator",,Enumerable,method
+partition,"partition {|item| ... } -> [[object], [object]]",,Enumerable,method
+reject,"reject -> Enumerator",,Enumerable,method
+reject,"reject {|item| ... } -> [object]",,Enumerable,method
+reverse_each,"reverse_each -> Enumerator",,Enumerable,method
+reverse_each,"reverse_each {|element| ... } -> self",,Enumerable,method
+slice_before,"slice_before(pattern) -> Enumerator",,Enumerable,method
+slice_before,"slice_before {|elt| bool } -> Enumerator",,Enumerable,method
+slice_before,"slice_before(initial_state) {|elt, state| bool } -> Enumerator",,Enumerable,method
+sort,"sort -> [object]",,Enumerable,method
+sort,"sort {|a, b| ... } -> [object]",,Enumerable,method
+sort_by,"sort_by -> Enumerator",,Enumerable,method
+sort_by,"sort_by {|item| ... } -> [object]",,Enumerable,method
+take,"take(n) -> Array",,Enumerable,method
+take_while,"take_while -> Enumerator",,Enumerable,method
+take_while,"take_while {|element| ... } -> Array",,Enumerable,method
+zip,"zip(*lists) -> [[object]]",,Enumerable,method
+zip,"zip(*lists) {|v1, v2, ...| ...} -> nil",,Enumerable,method
+,＝＝＝＝＝＝＝＝＝＝File::Constants＝＝＝＝＝＝＝＝＝＝
+APPEND,"APPEND -> Integer",,File::Constants,method
+BINARY,"BINARY -> Integer",,File::Constants,method
+CREAT,"CREAT -> Integer",,File::Constants,method
+DIRECT,"DIRECT -> Integer",,File::Constants,method
+DSYNC,"DSYNC -> Integer",,File::Constants,method
+EXCL,"EXCL -> Integer",,File::Constants,method
+FNM_CASEFOLD,"FNM_CASEFOLD -> Integer",,File::Constants,method
+FNM_DOTMATCH,"FNM_DOTMATCH -> Integer",,File::Constants,method
+FNM_NOESCAPE,"FNM_NOESCAPE -> Integer",,File::Constants,method
+FNM_PATHNAME,"FNM_PATHNAME -> Integer",,File::Constants,method
+FNM_SYSCASE,"FNM_SYSCASE -> Integer",,File::Constants,method
+LOCK_EX,"LOCK_EX -> Integer",,File::Constants,method
+LOCK_NB,"LOCK_NB -> Integer",,File::Constants,method
+LOCK_SH,"LOCK_SH -> Integer",,File::Constants,method
+LOCK_UN,"LOCK_UN -> Integer",,File::Constants,method
+NOATIME,"NOATIME -> Integer",,File::Constants,method
+NOCTTY,"NOCTTY -> Integer",,File::Constants,method
+NOFOLLOW,"NOFOLLOW -> Integer",,File::Constants,method
+NONBLOCK,"NONBLOCK -> Integer",,File::Constants,method
+NULL,"NULL -> String",,File::Constants,method
+RDONLY,"RDONLY -> Integer",,File::Constants,method
+RDWR,"RDWR -> Integer",,File::Constants,method
+RSYNC,"RSYNC -> Integer",,File::Constants,method
+SYNC,"SYNC -> Integer",,File::Constants,method
+TRUNC,"TRUNC -> Integer",,File::Constants,method
+WRONLY,"WRONLY -> Integer",,File::Constants,method
+,＝＝＝＝＝＝＝＝＝＝FileTest＝＝＝＝＝＝＝＝＝＝
+blockdev,"blockdev?(file) -> bool",,FileTest,method
+chardev,"chardev?(file) -> bool",,FileTest,method
+directory,"directory?(file) -> bool",,FileTest,method
+executable,"executable?(file) -> bool",,FileTest,method
+executable_real,"executable_real?(file) -> bool",,FileTest,method
+exist,"exist?(file) -> bool",,FileTest,method
+exists,"exists?(file) -> bool",,FileTest,method
+file,"file?(file) -> bool",,FileTest,method
+grpowned,"grpowned?(file) -> bool",,FileTest,method
+identical,"identical?(file1, file2) -> bool",,FileTest,method
+owned,"owned?(file) -> bool",,FileTest,method
+pipe,"pipe?(file) -> bool",,FileTest,method
+readable,"readable?(file) -> bool",,FileTest,method
+readable_real,"readable_real?(file) -> bool",,FileTest,method
+setgid,"setgid?(file) -> bool",,FileTest,method
+setuid,"setuid?(file) -> bool",,FileTest,method
+size,"size(file) -> Integer",,FileTest,method
+size,"size?(file) -> Integer | nil",,FileTest,method
+socket,"socket?(file) -> bool",,FileTest,method
+sticky,"sticky?(file) -> bool",,FileTest,method
+symlink,"symlink?(file) -> bool",,FileTest,method
+world_readable,"world_readable?(path) -> Integer | nil",,FileTest,method
+world_writable,"world_writable?(path) -> bool",,FileTest,method
+writable,"writable?(file) -> bool",,FileTest,method
+writable_real,"writable_real?(file) -> bool",,FileTest,method
+zero,"zero?(file) -> bool",,FileTest,method
+,＝＝＝＝＝＝＝＝＝＝GC＝＝＝＝＝＝＝＝＝＝
+count,"count -> Integer",,GC,method
+disable,"disable -> bool",,GC,method
+enable,"enable -> bool",,GC,method
+start,"start -> nil",,GC,method
+stress,"stress -> bool",,GC,method
+stress,"stress=(value)",,GC,method
+garbage_collect,"garbage_collect -> nil",,GC,method
+,＝＝＝＝＝＝＝＝＝＝GC::Profiler＝＝＝＝＝＝＝＝＝＝
+clear,"clear -> nil",,GC::Profiler,method
+disable,"disable -> nil",,GC::Profiler,method
+enable,"enable -> nil",,GC::Profiler,method
+enabled,"enabled? -> bool",,GC::Profiler,method
+report,"report(out = $stdout) -> nil",,GC::Profiler,method
+result,"result -> String",,GC::Profiler,method
+total_time,"total_time -> Float",,GC::Profiler,method
+,＝＝＝＝＝＝＝＝＝＝Kernel＝＝＝＝＝＝＝＝＝＝
+Array,"Array(arg) -> Array",,Kernel,method
+Complex,"Complex(r, i = 0) -> Complex",,Kernel,method
+Complex,"Complex(s) -> Complex",,Kernel,method
+Float,"Float(arg) -> Float",,Kernel,method
+Integer,"Integer(arg) -> Integer",,Kernel,method
+Rational,"Rational(x, y = 1) -> Rational",,Kernel,method
+String,"String(arg) -> String",,Kernel,method
+__method__,"__method__ -> Symbol | nil",,Kernel,method
+__callee__,"__callee__ -> Symbol | nil",,Kernel,method
+`command,"command` -> String",,Kernel,method
+abort,"abort(message = $!.message) -> ()",,Kernel,method
+at_exit,"at_exit { ... } -> Proc",,Kernel,method
+autoload,"autoload(const_name, feature) -> nil",,Kernel,method
+autoload,"autoload?(const_name) -> String | nil",,Kernel,method
+binding,"binding -> Binding",,Kernel,method
+block_given,"block_given? -> bool",,Kernel,method
+iterator,"iterator? -> bool",,Kernel,method
+caller,"caller(start = 1) -> [String] | nil",,Kernel,method
+catch,"catch {|tag| .... } -> object",,Kernel,method
+catch,"catch(tag) {|tag| .... } -> object",,Kernel,method
+eval,"eval(expr) -> object",,Kernel,method
+eval,"eval(expr, bind, fname = '(eval)', lineno = 1) -> object",,Kernel,method
+exec,"exec(command, options={}) -> ()",,Kernel,method
+exec,"exec(env, command, options={}) -> ()",,Kernel,method
+exec,"exec(program, *args, options={}) -> ()",,Kernel,method
+exec,"exec(evn, program, *args, options={}) -> ()",,Kernel,method
+exit,"exit(status = true) -> ()",,Kernel,method
+exit,"exit!(status = false) -> ()",,Kernel,method
+raise,"raise -> ()",,Kernel,method
+fail,"fail -> ()",,Kernel,method
+raise,"raise(message) -> ()",,Kernel,method
+fail,"fail(message) -> ()",,Kernel,method
+raise,"raise(error_type, message = nil, backtrace = caller(0)) -> ()",,Kernel,method
+fail,"fail(error_type, message = nil, backtrace = caller(0)) -> ()",,Kernel,method
+fork,"fork -> Integer | nil",,Kernel,method
+fork,"fork { ... } -> Integer | nil",,Kernel,method
+sprintf,"sprintf(format, *arg) -> String",,Kernel,method
+format,"format(format, *arg) -> String",,Kernel,method
+gets,"gets(rs = $/) -> String | nil",,Kernel,method
+global_variables,"global_variables -> [Symbol]",,Kernel,method
+proc,"proc { ... } -> Proc",,Kernel,method
+lambda,"lambda { ... } -> Proc",,Kernel,method
+proc,"proc -> Proc",,Kernel,method
+lambda,"lambda -> Proc",,Kernel,method
+load,"load(file, priv = false) -> true",,Kernel,method
+local_variables,"local_variables -> [Symbol]",,Kernel,method
+loop,"loop { ... } -> object",,Kernel,method
+open,"open(file, mode_enc = 'r', perm = 0666) -> IO",,Kernel,method
+open,"open(file, mode_enc = 'r', perm = 0666) {|io| ... } -> object",,Kernel,method
+p,"p(*arg) -> object | Array",,Kernel,method
+print,"print(*arg) -> nil",,Kernel,method
+printf,"printf(format, *arg) -> nil",,Kernel,method
+printf,"printf(port, format, *arg) -> nil",,Kernel,method
+putc,"putc(ch) -> object",,Kernel,method
+puts,"puts(*arg) -> nil",,Kernel,method
+rand,"rand(max = 0) -> Integer | Float",,Kernel,method
+rand,"rand(range) -> Integer | Float | nil",,Kernel,method
+readline,"readline(rs = $/) -> String",,Kernel,method
+readlines,"readlines(rs = $/) -> [String] | nil",,Kernel,method
+require,"require(feature) -> bool",,Kernel,method
+require_relative,"require_relative(relative_feature) -> bool",,Kernel,method
+select,"select(reads, writes = [], excepts = [], timeout = nil) -> [[IO]] | nil",,Kernel,method
+set_trace_func,"set_trace_func(proc) -> Proc",,Kernel,method
+sleep,"sleep -> Integer",,Kernel,method
+sleep,"sleep(sec) -> Integer",,Kernel,method
+spawn,"spawn(command, options={}) -> Integer",,Kernel,method
+spawn,"spawn(env, command, options={}) -> Integer",,Kernel,method
+spawn,"spawn(program, *args) -> Integer",,Kernel,method
+spawn,"spawn(env, program, *args, options={}) -> Integer",,Kernel,method
+srand,"srand -> Integer",,Kernel,method
+srand,"srand(seed) -> Integer",,Kernel,method
+syscall,"syscall(num, *arg) -> Integer",,Kernel,method
+system,"system(command, options={}) -> bool | nil",,Kernel,method
+system,"system(env, command, options={}) -> bool | nil",,Kernel,method
+system,"system(program, *args, options={}) -> bool | nil",,Kernel,method
+system,"system(env, program, *args, options={}) -> bool | nil",,Kernel,method
+test,"test(cmd, file) -> bool | Time | Integer | nil",,Kernel,method
+test,"test(cmd, file1, file2) -> bool",,Kernel,method
+throw,"throw(tag, value = nil) -> ()",,Kernel,method
+trace_var,"trace_var(varname, hook) -> nil",,Kernel,method
+trace_var,"trace_var(varname) {|new_val| .... } -> nil",,Kernel,method
+trace_var,"trace_var(varname, hook) -> [String|Proc]",,Kernel,method
+trap,"trap(signal, command) -> String | Proc | nil",,Kernel,method
+trap,"trap(signal) { ... } -> String | Proc | nil",,Kernel,method
+untrace_var,"untrace_var(varname, hook = nil) -> [String|Proc]",,Kernel,method
+warn,"warn(message) -> nil",,Kernel,method
+ARGF,"ARGF -> Object",,Kernel,method
+ARGV,"ARGV -> Array",,Kernel,method
+DATA,"DATA -> File",,Kernel,method
+ENV,"ENV -> Object",,Kernel,method
+FALSE,"FALSE -> FalseClass",,Kernel,method
+NIL,"NIL -> NilClass",,Kernel,method
+RUBY_COPYRIGHT,"RUBY_COPYRIGHT -> String",,Kernel,method
+RUBY_DESCRIPTION,"RUBY_DESCRIPTION -> String",,Kernel,method
+RUBY_ENGINE,"RUBY_ENGINE -> String",,Kernel,method
+RUBY_PATCHLEVEL,"RUBY_PATCHLEVEL -> Fixnum",,Kernel,method
+RUBY_PLATFORM,"RUBY_PLATFORM -> String",,Kernel,method
+RUBY_RELEASE_DATE,"RUBY_RELEASE_DATE -> String",,Kernel,method
+RUBY_VERSION,"RUBY_VERSION -> String",,Kernel,method
+SCRIPT_LINES__,"SCRIPT_LINES__ -> Hash",,Kernel,method
+STDERR,"STDERR -> IO",,Kernel,method
+STDIN,"STDIN -> IO",,Kernel,method
+STDOUT,"STDOUT -> IO",,Kernel,method
+TOPLEVEL_BINDING,"TOPLEVEL_BINDING -> Binding",,Kernel,method
+TRUE,"TRUE -> TrueClass",,Kernel,method
+$! -> Exception,"Exception | nil",,Kernel,method
+$' -> [String,"String]",,Kernel,method
+$LOADED_FEATURES,"LOADED_FEATURES -> [String]",,Kernel,method
+$$ -> Fixnu,"Fixnum",,Kernel,method
+$& -> String,"String | nil",,Kernel,method
+$' -> String,"String | nil",,Kernel,method
+$* -> [String,"String]",,Kernel,method
+$+ -> String,"String | nil",,Kernel,method
+$, -> String,"String | nil",,Kernel,method
+$/ -> String,"String | nil",,Kernel,method
+$-0,"0 -> String | nil",,Kernel,method
+$; -> Regexp,"Regexp | String | nil",,Kernel,method
+$-F,"F -> Regexp | String | nil",,Kernel,method
+$: -> [String,"String]",,Kernel,method
+$LOAD_PATH,"LOAD_PATH -> [String]",,Kernel,method
+$-I,"I -> [String]",,Kernel,method
+$KCODE,"KCODE -> nil",,Kernel,method
+$-K,"K -> nil",,Kernel,method
+$-W,"W -> 0 | 1 | 2",,Kernel,method
+$-a,"a -> bool",,Kernel,method
+$DEBUG,"DEBUG -> bool",,Kernel,method
+$-d,"d -> bool",,Kernel,method
+$-i,"i -> bool",,Kernel,method
+$-l,"l -> bool",,Kernel,method
+$-p,"p -> bool",,Kernel,method
+$VERBOSE,"VERBOSE -> bool | nil",,Kernel,method
+$-v,"v -> bool | nil",,Kernel,method
+$-w,"w -> bool | nil",,Kernel,method
+$. -> Fixnu,"Fixnum",,Kernel,method
+$0,"0 -> String",,Kernel,method
+$PROGRAM_NAME,"PROGRAM_NAME -> String",,Kernel,method
+$1,"1 -> String | nil",,Kernel,method
+$2,"2 -> String | nil",,Kernel,method
+$3,"3 -> String | nil",,Kernel,method
+$4,"4 -> String | nil",,Kernel,method
+$5,"5 -> String | nil",,Kernel,method
+$6,"6 -> String | nil",,Kernel,method
+$7,"7 -> String | nil",,Kernel,method
+$8,"8 -> String | nil",,Kernel,method
+$9,"9 -> String | nil",,Kernel,method
+$10,"10 -> String | nil",,Kernel,method
+$11,"11 -> String | nil",,Kernel,method
+$< -> I,"IO",,Kernel,method
+$= -> boo,"bool",,Kernel,method
+$> -> objec,"object",,Kernel,method
+$stdout,"stdout -> object",,Kernel,method
+$? -> Process,"Process::Status | nil",,Kernel,method
+$@ -> [String,"String] | nil",,Kernel,method
+$FILENAME,"FILENAME -> String",,Kernel,method
+$SAFE,"SAFE -> Fixnum",,Kernel,method
+$\ -> String,"String | nil",,Kernel,method
+$_,"_ -> String | nil",,Kernel,method
+$` -> String,"String | nil",,Kernel,method
+$stderr,"stderr -> object",,Kernel,method
+$stdin,"stdin -> object",,Kernel,method
+$~ -> MatchData,"MatchData | nil",,Kernel,method
+,＝＝＝＝＝＝＝＝＝＝Marshal＝＝＝＝＝＝＝＝＝＝
+dump,"dump(obj, port, limit = -1) -> IO",,Marshal,method
+dump,"dump(obj, limit = -1) -> String",,Marshal,method
+load,"load(port, proc = nil) -> object",,Marshal,method
+restore,"restore(port, proc = nil) -> object",,Marshal,method
+MAJOR_VERSION,"MAJOR_VERSION -> Fixnum",,Marshal,method
+MINOR_VERSION,"MINOR_VERSION -> Fixnum",,Marshal,method
+,＝＝＝＝＝＝＝＝＝＝Math＝＝＝＝＝＝＝＝＝＝
+acos,"acos(x) -> Float",,Math,method
+acosh,"acosh(x) -> Float",,Math,method
+asin,"asin(x) -> Float",,Math,method
+asinh,"asinh(x) -> Float",,Math,method
+atan,"atan(x) -> Float",,Math,method
+atan2,"atan2(y, x) -> Float",,Math,method
+atanh,"atanh(x) -> Float",,Math,method
+cbrt,"cbrt(x) -> Float",,Math,method
+cos,"cos(x) -> Float",,Math,method
+cosh,"cosh(x) -> Float",,Math,method
+erf,"erf(x) -> Float",,Math,method
+erfc,"erfc(x) -> Float",,Math,method
+exp,"exp(x) -> Float",,Math,method
+frexp,"frexp(x) -> [Float, Fixnum]",,Math,method
+gamma,"gamma(x) -> Float",,Math,method
+hypot,"hypot(x, y) -> Float",,Math,method
+ldexp,"ldexp(x, exp) -> Float",,Math,method
+lgamma,"lgamma(x) -> [Float, Integer]",,Math,method
+log,"log(x) -> Float",,Math,method
+log,"log(x, b) -> Float",,Math,method
+log10,"log10(x) -> Float",,Math,method
+log2,"log2(x) -> Float",,Math,method
+sin,"sin(x) -> Float",,Math,method
+sinh,"sinh(x) -> Float",,Math,method
+sqrt,"sqrt(x) -> Float",,Math,method
+tan,"tan(x) -> Float",,Math,method
+tanh,"tanh(x) -> Float",,Math,method
+E,"E -> Float",,Math,method
+PI,"PI -> Float",,Math,method
+,＝＝＝＝＝＝＝＝＝＝ObjectSpace＝＝＝＝＝＝＝＝＝＝
+_id2ref,"_id2ref(id) -> object",,ObjectSpace,method
+count_objects,"count_objects(result_hash = {}) -> Hash",,ObjectSpace,method
+define_finalizer,"define_finalizer(obj, proc) -> Array",,ObjectSpace,method
+define_finalizer,"define_finalizer(obj) {|id| ...} -> Array",,ObjectSpace,method
+each_object,"each_object {|object| ...} -> Integer",,ObjectSpace,method
+each_object,"each_object(klass) {|object| ...} -> Integer",,ObjectSpace,method
+each_object,"each_object -> Enumerator",,ObjectSpace,method
+each_object,"each_object(klass) -> Enumerator",,ObjectSpace,method
+garbage_collect,"garbage_collect -> nil",,ObjectSpace,method
+undefine_finalizer,"undefine_finalizer(obj) -> object",,ObjectSpace,method
+,＝＝＝＝＝＝＝＝＝＝Process＝＝＝＝＝＝＝＝＝＝
+abort,"abort(message = '') -> ()",,Process,method
+exec,"exec(command, *args) -> ()",,Process,method
+exit,"exit(status = true) -> ()",,Process,method
+exit,"exit!(status = false) -> ()",,Process,method
+fork,"fork -> Integer | nil",,Process,method
+fork,"fork { ... } -> Integer | nil",,Process,method
+spawn,"spawn(cmd, *arg) -> Integer",,Process,method
+daemon,"daemon(nochdir = nil, noclose = nil) -> 0",,Process,method
+detach,"detach(pid) -> Thread",,Process,method
+egid,"egid -> Integer",,Process,method
+egid,"egid=(gid)",,Process,method
+euid,"euid -> Integer",,Process,method
+euid,"euid=(uid)",,Process,method
+getpgid,"getpgid(pid = 0) -> Integer",,Process,method
+getpgrp,"getpgrp -> Integer",,Process,method
+getpriority,"getpriority(which, who) -> Integer",,Process,method
+getrlimit,"getrlimit(resource) -> [Integer]",,Process,method
+gid,"gid -> Integer",,Process,method
+gid,"gid=(gid)",,Process,method
+groups,"groups -> [Integer]",,Process,method
+groups,"groups=(gids)",,Process,method
+initgroups,"initgroups(user, group) -> [Integer]",,Process,method
+kill,"kill(signal, pid, *rest) -> Integer",,Process,method
+maxgroups,"maxgroups -> Integer",,Process,method
+maxgroups,"maxgroups=(num)",,Process,method
+pid,"pid -> Integer",,Process,method
+ppid,"ppid -> Integer",,Process,method
+setpgid,"setpgid(pid, pgrp) -> 0",,Process,method
+setpgrp,"setpgrp -> 0",,Process,method
+setpriority,"setpriority(which, who, prio) -> 0",,Process,method
+setrlimit,"setrlimit(resource, cur_limit, max_limit) -> nil",,Process,method
+setrlimit,"setrlimit(resource, limit) -> nil",,Process,method
+setsid,"setsid -> Integer",,Process,method
+times,"times -> Struct::Tms",,Process,method
+uid,"uid -> Integer",,Process,method
+uid,"uid=(id)",,Process,method
+wait,"wait -> Integer",,Process,method
+wait2,"wait2 -> [Integer, Process::Status]",,Process,method
+waitall,"waitall -> [[Integer, Process::Status]]",,Process,method
+waitpid,"waitpid(pid, flags = 0) -> Integer | nil",,Process,method
+waitpid2,"waitpid2(pid, flags = 0) -> [Integer, Process::Status] | nil",,Process,method
+PRIO_PGRP,"PRIO_PGRP -> Fixnum",,Process,method
+PRIO_PROCESS,"PRIO_PROCESS -> Fixnum",,Process,method
+PRIO_USER,"PRIO_USER -> Fixnum",,Process,method
+RLIMIT_AS,"RLIMIT_AS -> Fixnum",,Process,method
+RLIMIT_CORE,"RLIMIT_CORE -> Fixnum",,Process,method
+RLIMIT_CPU,"RLIMIT_CPU -> Fixnum",,Process,method
+RLIMIT_DATA,"RLIMIT_DATA -> Fixnum",,Process,method
+RLIMIT_FSIZE,"RLIMIT_FSIZE -> Fixnum",,Process,method
+RLIMIT_MEMLOCK,"RLIMIT_MEMLOCK -> Fixnum",,Process,method
+RLIMIT_NOFILE,"RLIMIT_NOFILE -> Fixnum",,Process,method
+RLIMIT_NPROC,"RLIMIT_NPROC -> Fixnum",,Process,method
+RLIMIT_RSS,"RLIMIT_RSS -> Fixnum",,Process,method
+RLIMIT_SBSIZE,"RLIMIT_SBSIZE -> Fixnum",,Process,method
+RLIMIT_STACK,"RLIMIT_STACK -> Fixnum",,Process,method
+RLIM_INFINITY,"RLIM_INFINITY -> Integer",,Process,method
+RLIM_SAVED_CUR,"RLIM_SAVED_CUR -> Integer",,Process,method
+RLIM_SAVED_MAX,"RLIM_SAVED_MAX -> Integer",,Process,method
+WNOHANG,"WNOHANG -> Fixnum",,Process,method
+WUNTRACED,"WUNTRACED -> Fixnum",,Process,method
+,＝＝＝＝＝＝＝＝＝＝Process::GID＝＝＝＝＝＝＝＝＝＝
+change_privilege,"change_privilege(id) -> Integer",,Process::GID,method
+eid,"eid -> Integer",,Process::GID,method
+grant_privilege,"grant_privilege(id) -> Integer",,Process::GID,method
+eid,"eid=(id)",,Process::GID,method
+re_exchange,"re_exchange -> Integer",,Process::GID,method
+re_exchangeable,"re_exchangeable? -> bool",,Process::GID,method
+rid,"rid -> Integer",,Process::GID,method
+sid_available,"sid_available? -> bool",,Process::GID,method
+switch,"switch -> Integer",,Process::GID,method
+switch,"switch {...} -> object",,Process::GID,method
+,＝＝＝＝＝＝＝＝＝＝Process::Sys＝＝＝＝＝＝＝＝＝＝
+getegid,"getegid -> Integer",,Process::Sys,method
+geteuid,"geteuid -> Integer",,Process::Sys,method
+getgid,"getgid -> Integer",,Process::Sys,method
+getuid,"getuid -> Integer",,Process::Sys,method
+issetugid,"issetugid -> bool",,Process::Sys,method
+setegid,"setegid(id) -> nil",,Process::Sys,method
+seteuid,"seteuid(id) -> nil",,Process::Sys,method
+setgid,"setgid(id) -> nil",,Process::Sys,method
+setregid,"setregid(rid, eid) -> nil",,Process::Sys,method
+setresgid,"setresgid(rid, eid, sid) -> nil",,Process::Sys,method
+setresuid,"setresuid(rid, eid, sid) -> nil",,Process::Sys,method
+setreuid,"setreuid(rid, eid) -> nil",,Process::Sys,method
+setrgid,"setrgid(id) -> nil",,Process::Sys,method
+setruid,"setruid(id) -> nil",,Process::Sys,method
+setuid,"setuid(id) -> nil",,Process::Sys,method
+,＝＝＝＝＝＝＝＝＝＝Process::UID＝＝＝＝＝＝＝＝＝＝
+change_privilege,"change_privilege(id) -> Integer",,Process::UID,method
+eid,"eid -> Integer",,Process::UID,method
+grant_privilege,"grant_privilege(id) -> Integer",,Process::UID,method
+eid,"eid=(id)",,Process::UID,method
+re_exchange,"re_exchange -> Integer",,Process::UID,method
+re_exchangeable,"re_exchangeable? -> bool",,Process::UID,method
+rid,"rid -> Integer",,Process::UID,method
+sid_available,"sid_available? -> bool",,Process::UID,method
+switch,"switch -> Integer",,Process::UID,method
+switch,"switch { .... } -> object",,Process::UID,method
+,＝＝＝＝＝＝＝＝＝＝Signal＝＝＝＝＝＝＝＝＝＝
+list,"list -> Hash",,Signal,method
+trap,"trap(signal, command) -> String | Proc | nil",,Signal,method
+trap,"trap(signal) { ... } -> String | Proc | nil",,Signal,method
+,＝＝＝＝＝＝＝＝＝＝ENV＝＝＝＝＝＝＝＝＝＝
+store,"store(key, value) -> String",,ENV,method
+assoc,"assoc(key) -> Array | nil",,ENV,method
+clear,"clear -> self",,ENV,method
+delete,"delete(key) -> String | nil",,ENV,method
+delete,"delete(key) {|key| ... } -> String | nil",,ENV,method
+delete_if,"delete_if {|key, value| ... } -> ENV",,ENV,method
+reject,"reject! {|key, value| ... } -> ENV | nil",,ENV,method
+delete_if,"delete_if -> Enumerator",,ENV,method
+reject,"reject! -> Enumerator",,ENV,method
+each,"each -> Enumerator",,ENV,method
+each_pair,"each_pair -> Enumerator",,ENV,method
+each,"each {|key, value| ... } -> self",,ENV,method
+each_pair,"each_pair {|key, value| ... } -> self",,ENV,method
+each_key,"each_key -> Enumerator",,ENV,method
+each_key,"each_key {|key| ... } -> self",,ENV,method
+each_value,"each_value -> Enumerator",,ENV,method
+each_value,"each_value {|value| ... } -> self",,ENV,method
+empty,"empty? -> bool",,ENV,method
+fetch,"fetch(key) -> String",,ENV,method
+fetch,"fetch(key, default) -> String",,ENV,method
+fetch,"fetch(key) {|key| ... } -> String",,ENV,method
+has_key,"has_key?(key) -> bool",,ENV,method
+include,"include?(key) -> bool",,ENV,method
+key,"key?(key) -> bool",,ENV,method
+member,"member?(key) -> bool",,ENV,method
+has_value,"has_value?(val) -> bool",,ENV,method
+value,"value?(val) -> bool",,ENV,method
+key,"key(val) -> String | nil",,ENV,method
+index,"index(val) -> String | nil",,ENV,method
+inspect,"inspect -> String",,ENV,method
+invert,"invert -> Hash",,ENV,method
+keep_if,"keep_if {|key, value| ... } -> ENV",,ENV,method
+select,"select! {|key, value| ... } -> ENV | nil",,ENV,method
+keep_if,"keep_if -> Enumerator",,ENV,method
+select,"select! -> Enumerator",,ENV,method
+keys,"keys -> [String]",,ENV,method
+length,"length -> Fixnum",,ENV,method
+size,"size -> Fixnum",,ENV,method
+rassoc,"rassoc(value) -> Array | nil",,ENV,method
+rehash,"rehash -> nil",,ENV,method
+reject,"reject -> Enumerator",,ENV,method
+reject,"reject {|key, value| ... } -> Hash",,ENV,method
+replace,"replace(hash) -> ENV",,ENV,method
+select,"select -> Enumerator",,ENV,method
+select,"select {|key, value| ... } -> [[String, String]]",,ENV,method
+shift,"shift -> [String, String]",,ENV,method
+to_a,"to_a -> [[String, String]]",,ENV,method
+to_hash,"to_hash -> Hash",,ENV,method
+to_s,"to_s -> String",,ENV,method
+update,"update(other) -> ENV",,ENV,method
+values,"values -> [String]",,ENV,method
+values_at,"values_at(*key) -> [String]",,ENV,method
+,＝＝＝＝＝＝＝＝＝＝Exception＝＝＝＝＝＝＝＝＝＝
+new,"new(error_message = nil) -> Exception",,Exception,method
+exception,"exception(error_message = nil) -> Exception",,Exception,method
+backtrace,"backtrace -> [String]",,Exception,method
+exception,"exception -> self",,Exception,method
+exception,"exception(error_message) -> Exception",,Exception,method
+message,"message -> String",,Exception,method
+to_s,"to_s -> String",,Exception,method
+set_backtrace,"set_backtrace(errinfo) -> nil | String | [String]",,Exception,method
+

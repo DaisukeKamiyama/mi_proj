@@ -1,0 +1,620 @@
+Sub Windows Display
+サブウインドウ表示
+Sub Windows Font :
+サブウインドウのフォント：
+Transparency for Floating : 
+フローティング透明度：
+Transparency for Popup : 
+ポップアップ透明度：
+Popup Window
+ポップアップウインドウ
+Completion Candidate :
+補完候補：
+No Popup
+ポップアップしない
+Popup near Insertion Point
+入力位置の近くにポップアップ
+Popup immediately under Insertion Point
+入力位置の直下にポップアップ
+Keyword Information :
+キーワード情報：
+Popup Keyword Information
+キーワード情報をポップアップする
+Hide Keyword Information after several seconds
+ポップアップしたキーワード情報を数秒後に閉じる
+Caret & Current Line
+キャレットと現在行
+Display Vertical Line
+垂直線を表示
+Display None
+何も表示しない
+Current Line :
+現在行：
+Caret :
+キャレット：
+Current Line Color :
+現在行の色：
+Setup how insertion point is displayed.
+テキスト挿入位置をどのように表示するかを設定します。
+Display Caret
+キャレットを表示
+Display Underline
+下線を表示
+Paint Line
+行全体に色をつける
+Font and Colors
+フォントと色
+Application Preferences
+アプリケーションの環境設定
+Auto Backup
+自動バックアップ
+Auto Backup :
+自動バックアップ：
+Enable Auto Backup
+自動バックアップを有効にする
+Backup Folder :
+バックアップフォルダ：
+Non-Text File Definition
+非テキストファイルの定義
+Non-Text File :
+非テキストファイル：
+Default Mode
+デフォルトのモード
+Default Mode :
+デフォルトのモード：
+Font and Colors are set in Mode Preferences
+フォントと色はモード設定で設定します
+Open Mode Preferences (Normal mode) ...
+モード設定（標準モード）を開く...
+Letter Count Wrap
+文字数指定行折り返しの設定
+Kinsoku Characters  :
+行頭禁則文字：
+Attach Kinsoku Characters at Line End
+行末に禁則文字を付ける
+Wrap from Previous Character
+禁則文字の前の文字から折り返す
+Text Encoding Report Option :
+エンコーディングレポート：
+Show JIS X 0208 undefined characters
+JIS X 0208 未定義文字を表示する
+Show half-width Katakana
+半角カナを表示する
+Open Shift_JIS text even if it includes error chars
+エラーの文字があっても Shift JIS としてファイルを開く
+Text Encoding
+テキストエンコーディング
+Text Encoding :
+テキストエンコーディング：
+Diff Display Color
+比較表示の色
+Changed Line :
+変更行：
+Added Line :
+追加行：
+Deleted Line : 
+削除行：
+Opacity : 
+色の濃さ：
+Diff Source Display
+変更前ファイルの表示
+Wrap :
+行折り返し：
+Always Word Wrap with width of sub text
+常にサブテキストの幅で折り返す
+Version Control Tool
+バージョン管理ツール
+Subversion :
+バージョン管理ツール連携：
+Use Subversion Integration
+Subversion / git 連携機能を使う
+Tool Paths
+ツールのバス
+diff Path :
+diff のパス：
+diff Options :
+diff のオプション：
+Subversion Path :
+Subversion のパス：
+Auto Folder Compare
+自動比較フォルダ
+Auto Folder Compare :
+自動比較フォルダ：
+Automatically Compare for this Diff Working Folder
+ワーキングフォルダ配下から開いたとき自動的にファイル比較
+Diff Working Folder :
+ワーキングフォルダ：
+Diff Source Folder :
+ソースフォルダ：
+If opened file is in Diff Working Folder, automatically compare with the Diff Source Folder file.
+開いたファイルがワーキングフォルダ配下の場合、自動的にソースフォルダの対応するファイルと比較します。
+Distinguish \ and ¥
+\ と ¥ を区別
+Ignore Spaces/Tabs/Returns
+スペース・タブ・改行を無視
+Ignore Cases
+大文字小文字を無視
+Whole Word Only
+単語が一致する場合のみ
+Regular Expression
+正規表現検索
+Find From First after Document End
+最後まで検索したら最初から
+Fuzzy Search
+曖昧検索
+Find Sub Folders Recursively
+サブフォルダも再帰的に検索する
+Display Header Title in Result
+見出しタイトルを結果に表示する
+Visible File Only
+可視ファイルのみ
+Text File Only
+テキストファイルのみ
+Find Window
+検索ウインドウ
+Find Option Default
+検索オプションのデフォルト
+Fuzzy Search Options
+曖昧検索のオプション
+Find Options :
+検索オプション：
+Multi-File Find Options :
+マルチファイル検索オプション：
+Fuzzy Search Options :
+曖昧検索のオプション：
+Unicode Compatible Characters
+Unicode で互換と定義された文字（異体字・全角半角）
+Hiragana / Katakana
+ひらがな／カタカナ
+Onbiki Exsistence
+音引き有無
+Kana Yuragi Expression
+かな揺らぎ表現
+Find Highlight :
+検索ハイライト：
+Display Highlight for Found Text
+検索文字のハイライト表示を行う
+Display Highlight for Previously Found Text
+前回の検索文字もハイライト表示する
+Search Box :
+検索ボックス：
+Focus Search Box in Toolbar by Find menu
+検索メニュー(⌘F)選択時に先に検索ボックスをフォーカスする
+Focus After Find :
+検索後のフォーカス：
+Activate Text Window when text is found
+一致時にテキストウインドウをアクティブにする
+Find Window Font :
+検索ウインドウのフォント：
+Current Word :
+現在の単語：
+Display Highlight for Current Word
+現在選択している単語と同じ単語をハイライト表示する
+Highlight
+ハイライト
+Focus
+フォーカス
+Select...
+選択...
+Shell Script
+シェルスクリプト
+Shell Script :
+シェルスクリプト：
+Execute Shell Script for Tool which starts with #!
+#! で始まるツールを UNIX シェルスクリプトとして実行する
+Output Mode :
+出力先モード：
+Folder Label
+フォルダラベル
+Folder Label :
+フォルダラベル：
+If a file path matches the following list, display label in text view, and recently opened list.
+ファイルパスが下記のリストに前方一致したらテキストビューと最近開いたファイルリストにラベルを表示します
+Color Print :
+カラー印刷：
+Enable Color Print
+カラー印刷を有効にする
+Convert White letter color to Black
+文字色が白のときに黒に変換する
+White Letter Color :
+白い文字色：
+Line Number :
+行番号：
+Print Paragraph Number instead of Line Number
+常に段落番号を印刷する
+Print Font :
+印刷用フォント：
+Use Font for Print instead of Font for Display
+表示用フォントではなく印刷用フォントで印刷する
+Page Number :
+ページ番号：
+Print Page Number
+ページ番号を印刷する
+Page Number Font :
+ページ番号のフォント：
+File Name :
+ファイル名：
+Print File Name
+ファイル名を印刷する
+File Name Font :
+ファイル名のフォント：
+Separate Line :
+分割線：
+Print Separator above of File Name
+ファイル名の上に分割線を印刷する
+Each Line Number :
+各行の行番号：
+Print Each Line Number
+各行の行番号を印刷する
+Each Line Number Font :
+各行の行番号のフォント：
+Line Margin :
+行間：
+Wrap Mode :
+行折り返し：
+Always Wrap with Paper Width
+常に用紙幅で行折り返しする
+Print Option
+印刷オプション
+Print Property
+印刷プロパティ
+Paper Margin
+用紙余白
+Left Margin :
+左余白：
+Right Margin :
+右余白：
+Top Margin :
+上余白：
+Bottom Margin :
+下余白：
+pixel
+ピクセル
+Anti-Alias :
+アンチエイリアス：
+Enable Anti-Alias of Text Display
+テキストをアンチエイリアス表示する
+Double-Click :
+ダブルクリック：
+Select Kanji+Hiragana or Katakana+Hiragana
+漢字＋ひらがな、カタカナ＋ひらがなを選択する
+Context Menu :
+コンテキストメニュー
+Select Word when clicking right mouse button
+右クリック時に単語を選択する
+Display Context Menu by pressing button long time
+マウスボタン長押し時にコンテキストメニューを表示
+Tick ( 1 tick = 1/60 sec )
+Tick ( 1 tick = 1/60 秒 )
+Use Thick Caret
+太いキャレットを使う
+Shortcut for windows :
+ウインドウのショートカット
+Assign numbers for windows
+ウインドウに番号を割り振る
+Display control code with HEX code with red color
+制御文字を背景赤色の HEX コードで表示する
+Unicode Character Display :
+Unicode 文字の表示：
+Display each Canonical Decomposition character
+Canonical Decomposition 文字を分割して表示する
+Window Close :
+ウインドウを閉じるボタン：
+Close All Tabs when clicking Window Close button
+閉じるボタンをクリックしたらすべてのタブを閉じる
+Change from tab to window :
+タブをウインドウへ変更：
+pixel, move the position of window
+ピクセルだけウインドウを移動する
+Full-width Character :
+全角文字：
+Count as 2 characters for tab/wrap calculation
+タブ／行折り返し計算において 2 文字としてカウントする
+Reopen :
+リオープン：
+Reopen Files opened when quit
+終了時に開いていたファイルを起動時に再度開く
+History Memory :
+履歴の記憶：
+Do Not Remember any History
+履歴を記憶しない
+Wheel Scroll Speed :
+ホイールスクロール速度：
+When % key is pressed :
+コマンドキーを押したとき：
+Horizontal Wheel Scroll :
+水平方向のホイールスクロール：
+Disable Horizontal Scroll
+水平方向のホイールスクロール/二本指スクロールを無効にする
+Default Window Size :
+デフォルトウインドウサイズ：
+Set Front Window Size
+最前面のウインドウサイズを設定
+* Excluding Side Bar
+* サイドバーのサイズを除く
+Inhibit writing from other apps while Editing
+編集中は他のアプリからの書き込みを禁止する
+Remote File
+リモートファイル
+Setup Remote File account.
+リモートファイルのアカウントを設定します。
+Connection Type : 
+接続タイプ：
+Server Name : 
+サーバー名：
+User Name : 
+ユーザー名：
+Password : 
+パスワード：
+Port Number : 
+ポート番号：
+Root Path : 
+ルートのパス：
+HTTP URL : 
+HTTP URL：
+Local Backup : 
+バックアップ：
+Save Backup to Local Folder
+バックアップをローカルに保存
+Add Date/Time to File Name
+日時をファイル名に追加する
+FTP Options : 
+FTP オプション：
+PASV Mode
+PASV モード
+Binary Mode
+バイナリモード
+FTP Proxy : 
+FTP Proxy：
+Proxy Server : 
+Proxy サーバー：
+No Proxy
+Proxy なし
+Use FTP Proxy Server (USER user@server)
+FTP Proxy サーバー経由 (USER user@server)
+Use FTP Proxy Server (USER>PASS>SITE>USER>PASS)
+FTP Proxy サーバー経由 (USER>PASS>SITE>USER>PASS)
+Set Default
+デフォルトを設定
+Text Window Layout :
+テキストウインドウレイアウト：
+Operation Detail
+操作詳細
+Display Detail
+表示詳細
+File Exclusion Control :
+ファイル排他制御：
+Adjust Scroll for editing apart from window bottom
+ウインドウ下辺から離れた位置で編集するようスクロール調整
+Tab / Window
+タブ／ウインドウ
+Select whether document is opened with tab or window.
+ドキュメントをタブで開くかウインドウで開くかを選択します。
+Open Document with :
+タブ／ウインドウの選択：
+Tab
+タブ
+Window
+ウインドウ
+Line Selection
+行選択
+Setup operation of line selection.
+行選択の操作方法を設定します。
+Click at Line Number :
+行番号エリアクリック時：
+Select first insertion point of line
+行の開始位置を選択
+Select line
+行を選択
+Triple Click :
+トリプルクリック：
+Select paragraph
+段落を選択
+Window Layout
+ウインドウのレイアウト
+Set visibility of layout parts.
+テキストウインドウ内のレイアウトを設定します。
+Show Macro Bar
+マクロバーを表示する
+Show Horizontal Scrollbar
+水平スクロールバーを表示する
+Show Status Bar
+ステータスバーを表示する
+Select Mode when clicking command+N.
+コマンド+N を押した時などのモードを選択します。
+Setup display settings for all sub windows.
+全てのサブウインドウ共通の表示設定を行います。
+Popup Window Position :
+ポップアップウインドウ位置：
+Setup completion candidate window.
+補完候補ウインドウの設定を行います。
+Completion Key for Popup :
+補完入力キー：
+Input completion by arrow key after Popup displayed
+ポップアップ表示後は上下キーで補完入力する
+Setup keyword information window.
+キーワード情報ウインドウの設定を行います。
+Keyword Info Window
+キーワード情報ウインドウ
+Comment Display  :
+コメント表示：
+Display with red color when the previous comment includes line which starts with the following texts.
+キーワード直前のコメント内の下記の文字列で開始する行を、キーワード情報ウインドウ内に、赤色で表示します。
+Text Encoding Recognition :
+テキストエンコーディング認識：
+Use Automatic Recognition
+自動認識機能を使用する
+Text Encoding Fallback :
+エラー文字がある場合の処理：
+Allow error characters when open file
+エラー文字があっても指定テキストエンコーディングで開く
+Show Dialog when error characters are included
+エラー文字があった場合はダイアログを表示する
+Text Encoding Report Option :
+テキストエンコーディングエラー文字の一覧：
+Show JIS X 0208 undefined characters
+JIS X 0208 で未定義の文字をエラー文字として表示する
+Show half-width Katakana
+半角カタカナをエラー文字として表示する
+Setup properties for letter count wrap.
+文字数指定の行折り返しありの場合のプロパティを設定します。
+Setup text encoding handling.
+テキストエンコーディングの処理を設定します。
+Setup Find window display.
+検索ウインドウの表示を設定します。
+Setup default values which are applied when app launched.
+アプリケーション起動時に適用されるデフォルト値を設定します。
+Setup fuzzy search options.
+曖昧検索のオプションを設定します。
+Enable/disable highlight.
+ハイライト表示の有効／無効を設定します。
+Setup how focus is changed for find operation.
+検索操作時のフォーカス箇所を設定します。
+Set colors for different line.
+差分行の色を設定します。
+Setup property of source side text.
+変更前ファイル側のテキストの表示方法を設定します。
+Select whether integration feature is enabled or not.
+連携機能の有効／無効を設定します。
+Setup command path of tools.
+ツールのコマンドパスを設定します。
+Compare with specified diff source folder.
+比較対象を自動的に指定したソースフォルダのファイルにします。
+Setup print options.
+プリントのオプションを設定します。
+Setup print properties such as each font.
+各フォントなどのプロパティを設定します。
+Setup print margin.
+プリントの余白を設定します。
+When save file, backup will be copied to specified folder. 
+保存時、指定フォルダに保存前ファイルをバックアップ保存します。
+Tool can be executed as shell script.
+ツールをシェルスクリプトとして実行できます。
+Setup operation detail.
+操作に関する詳細を設定します。
+Setup display detail.
+表示に関する詳細を設定します。
+Control Code Display :
+制御文字の表示：
+Bottom Margin for edit :
+編集時の下余白：
+* This setting may not be effective for some networks or apps.
+※この設定は一部のネットワーク／アプリには適用されません。
+Specify files which should be exclude from some features.
+一部機能において検索対象外とすべきファイルを定義します。
+Files which have these suffixes are handled as non-text file. These are not searched in Multi File Find feature with "Text File Only" checked .
+ここで設定したワイルドカードに一致するファイルは、マルチファイル検索で「テキストファイルのみ」を ON にした場合に、検索の対象外となります。
+Candidate Window
+候補ウインドウ
+Key for Next Completion :
+次補完候補入力キー：
+Key for Previous Completion :
+前補完候補入力キー：
+Key set by Key Bind 
+キーバインドで設定したキー
+Shift + Space Key
+シフト＋スペースキー
+Shift + Tab Key
+シフト＋タブキー
+Tab Key
+タブキー
+Escape Key
+エスケープキー
+Shift + Escape Key
+シフト＋エスケープキー
+Skin
+スキン
+Select alternative UI skin.
+UI 表示のセットを選択します。
+Skin :
+スキン：
+Tool path
+ツールのパス
+Setup tool path.
+各種ツールのパスを設定します。
+TeX typeset :
+TeX タイプセット：
+TeX dvi to pdf :
+TeX dvi から pdf へ変換：
+Update Menu
+メニューを更新
+Only FTP is supported currently.
+現状、FTP のみをサポートしています
+Enable Smooth Wheel Scroll
+なめらかスクロールを有効にする
+Smooth Wheel Scroll :
+なめらかスクロール：
+Git Path :
+git のパス：
+Use default port number
+デフォルトのポート番号を使う
+Use port number : 
+このポート番号を使う：
+Display Name : 
+表示名：
+Fix Caret Position in View
+キャレット位置をビュー内に固定する
+Caret after Scroll :
+スクロール後のキャレット：
+Color :
+色：
+Unicode Copy / Save :
+Unicodeのコピー／保存 :
+Convert to Canonical Composition automatically
+コピー／保存時 Canonical Composition 形式へ自動変換
+Software Update
+ソフトウエアの自動更新
+Setup automatic update of mi application.
+mi アプリケーションの自動更新を設定します
+Update Versions :
+自動更新対象バージョン：
+Release version only
+正式リリースのみ
+Release version and Beta version
+正式リリースとβバージョン
+Release version, Beta version and Alpha version
+正式リリース、βバージョン、および、αバージョン
+No Update
+自動更新しない
+Completion key is set in Keybind tab in Mode Preferences.
+補完入力キーはモード設定の「キーバインド」タブで設定します。
+Window Title :
+ウインドウタイトル：
+Display full path
+フルパスを表示する
+Mouse Cursor :
+マウスカーソル：
+Show Arrow cursor always
+テキストの上でも常に矢印カーソルを表示する
+Text Area
+テキストエリア
+Left-Right Margin :
+余白：
+Display margin before/after line
+行の前後に余白を表示する
+Text Width :
+テキスト表示幅：
+characters (half-width)
+ピクセル
+Private Key : 
+秘密鍵：
+Use Private Key
+秘密鍵を使って認証する
+If passphrase of private key is set, input it in "Password" above.
+もし秘密鍵にパスフレーズが設定されている場合は、上の「パスワード」に入力してください。
+FTPS Option : 
+FTPS オプション : 
+Don't check Server Certification
+サーバー証明書のチェックを行わない
+Window Transparency
+半透明ウインドウ
+Set transparency of text windows
+
+Transparency Mode :
+半透明モード：
+Display window transparently
+テキストウインドウを半透明にする
+Transparency for active : 
+最前面ウインドウの不透明度：
+Transparency for deactive : 
+最前面以外の不透明度：

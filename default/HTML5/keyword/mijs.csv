@@ -1,0 +1,100 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,mi制御JavaScript用キーワード
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+getCurrentDocument,"getCurrentDocument()",TextDocument,mi,method
+createDocument,"createDocument()",TextDocument,mi,method
+loadModule,"loadModule(name)
+name: String",void,mi,method
+removeEventListeners,"removeEventListeners(modeName, id)
+modeName: String
+id: String",void,mi,method
+addEventListener,"addEventListener(modeName, id, events, fn)
+modeName: String
+id: String
+events: Array of String
+fn: 関数",void,mi,method
+registerPlugin,"registerPlugin(modeName,id,name,defaultEnabled,defaultOptions)
+modeName: String
+id: String
+name: String
+defaultEnabled: Boolean
+defaultOptions: String",void,mi,method
+setPluginDisplayName,"setPluginDisplayName(modeName,id,lang,displayName)
+modeName: String
+id: String
+lang: String
+displayName: Boolean",void,mi,method
+getPluginEnabled,"getPluginEnabled(modeName,id)
+modeName: String
+id: String",Boolean,mi,method
+getPluginOptions,"getPluginOptions(modeName,id)
+modeName: String
+id: String",String,mi,method
+getCurrentModeNameForPluginLoad,"getCurrentModeNameForPluginLoad()",String,mi,method
+outputToStderr,"outputToStderr(text)",void,mi,method
+getLength,"getLength()",Number,TextDocument,method
+getParagraphCount,"getParagraphCount()",Number,TextDocument,method
+getContent,"getContent()",String,TextDocument,method
+getSelectionRange,"getSelectionRange([selindex])",Object,method
+getSelectionRangeArray,"getSelectionRangeArray()",Array,TextDocument,method
+getParagraphRange,"getParagraphRange(para)
+para: Number",Object,TextDocument,method
+getParagraphText,"getParagraphText(para)
+para: Number",String,TextDocument,method
+getTextPointFromPos,"getTextPointFromPos(pos)
+",Object,TextDocument,method
+getPosFromTextPoint,"getPosFromTextPoint(x,y)
+",Number,TextDocument,method
+getSelectionCount,"getSelectionCount()",Number,TextDocument,method
+getText,"getText(start,end)",String,TextDocument,method
+getSelectionText,"getSelectionText()
+現在選択中のテキストを取得",String,TextDocument,method
+setSelectionRange,"setSelectionRange(start,end)
+start: Number
+end: Number",void,TextDocument,method
+setText,"setText(start,end,text)
+start: Number
+end: Number
+text: String",void,TextDocument,method
+setParagraphText,"setParagraphText(para,text)
+para: Number
+text: String",void,TextDocument,method
+getCaretPos,"getCaretPos()",Number,TextDocument,method
+setCaretPos,"setCaretPos(pos)
+pos: Number",void,TextDocument,method
+setDocInfoText,"setDocInfoText(text)",void,TextDocument,method
+getSyntaxStateNameFromPos,"getSyntaxStateNameFromPos(pos)",String,TextDocument,method
+clearSyntaxCheckerWarnings,"clearSyntaxCheckerWarnings()",void,TextDocument,method
+addSyntaxCheckerWarning,"addSyntaxCheckerWarning(para,col,title,detail,type,displayInTextView)
+para: Number
+col: Number
+title: String
+detail: String
+type: Number
+displayInTextView: Boolean",void,TextDocument,method
+getModeName,"getModeName()",String,TextDocument,method
+getURL,"getURL()",String,TextDocument,method

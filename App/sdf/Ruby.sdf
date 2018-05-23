@@ -1,0 +1,564 @@
+#
+# Ruby 用文法定義スクリプト
+# mi組み込み用 Ver.1.01
+#
+# (C) 2012 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("Ruby")
+
+#Rubyパート
+GlobalAttribute_SyntaxPart("Ruby","Ruby",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$@",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_$@",
+"")
+
+#キーワード情報を自動表示する文字
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+#クラスを示す文字列
+GlobalAttribute_ClassString(".");
+GlobalAttribute_InstanceString(".");
+
+#idle 行頭
+state(idle)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_Stable
+	#
+	{"def",{IncIndentFromNext,SetVarStart(info),SetVarNextToken(keyword),ChangeState(def)}}
+	{"class",{BlockStart(classblock),IncIndentFromNext,SetVarStart(info),SetVarNextToken(currentclassname),ChangeState(class)}}
+	{"module",{BlockStart(classblock),IncIndentFromNext,SetVarStart(info),SetVarNextToken(currentclassname),ChangeState(class)}}
+	{"require",{ChangeState(require)}}
+	#
+	{"if",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"else",{DecIndentOnlyCurrent,ChangeState(idle_after1token)}}
+	{"elsif",{DecIndentOnlyCurrent,ChangeState(idle_after1token)}}
+	{"unless",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"case",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"when",{DecIndentOnlyCurrent,ChangeState(idle_after1token)}}
+	{"while",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"for",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"until",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"begin",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"rescue",{DecIndentOnlyCurrent,ChangeState(idle_after1token)}}
+	{"end",{DecIndentFromCurrent,ChangeState(idle_after1token)}}
+	#正規表現
+	#{"/",{PushState(regexp)}}
+	#中括弧
+	{"{",{IncIndentFromNext,ChangeState(idle_after1token)}}
+	{"}",{DecIndentFromCurrent,ChangeState(idle_after1token)}}
+	#ヒアドキュメント
+	{"<<", {PushState(heredocument_start)}}
+	{"<<-", {PushState(heredocument_start)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+	#
+	{lineend,{ChangeState(idle)}}
+	#
+	{default,{ChangeState(idle_after1token)}}
+}
+
+#idle 1token読み込み後
+state(idle_after1token)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("Ruby")
+	#
+	{"do",{IncIndentFromNext}}
+	{"end",{DecIndentFromCurrent,ChangeState(idle_after1token)}}
+	#正規表現
+	#{"/",{PushState(regexp)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#イコール
+	{"=",{SetVarStartAtPrevToken(info),SetVarLastWord(keyword),ClearVar(classname),ChangeState(varequal)}}
+	{"=>",{}}
+	{"==",{}}
+	{"===",{}}
+	{"!=",{}}
+	{"!==",{}}
+	{"<=",{}}
+	{">=",{}}
+	{"+=",{}}
+	{"-=",{}}
+	{"*=",{}}
+	{"/=",{}}
+	{".=",{}}
+	{"%=",{}}
+	{"&=",{}}
+	{"|=",{}}
+	{"^=",{}}
+	{"<<=",{}}
+	{">>=",{}}
+	{"=>",{}}
+	#
+	{lineend,{ChangeState(idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#イコール
+state(varequal)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	#ハッシュ、配列
+	{"{",{ChangeState(hash)}}
+	{"[",{ChangeState(array)}}
+	#正規表現
+	{"/",{SetVar(typename,"Regexp"),PushState(regexp)}}
+	#変数登録
+	{lineend,{SetVarEnd(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(idle)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#コメント／リテラル
+	{"\"",{SetVar(typename,"String"),PushState(doublequotation)}}
+	{"'",{SetVar(typename,"String"),PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+	#
+	{default,{ChangeState(varequal_after1token)}}
+}
+
+#イコール
+state(varequal_after1token)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	#
+	{"do",{IncIndentFromNext,ChangeState(idle)}}
+	#変数登録
+	{lineend,{SetVarEnd(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(idle)}}
+	#クラスインスタンス生成
+	{"new",{SetVarWithTokenStack(typename,-2,-1)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#Hash
+state(hash)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	{":",{SetVarNextToken(key),AddGlobalId([Key],key,"","","",keyword,"","",9)}}
+	{"}",{SetVarEndAtNextChar(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#Array
+state(array)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	{"]",{SetVarEndAtNextChar(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#関数
+state(def)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	{lineend,{SetVarEnd(info),AddGlobalId([Function],keyword,keyword,info,"","","","",5),ChangeState(idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝クラス＝＝＝＝＝＝＝＝＝＝
+#クラス
+state(class)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	{lineend,{SetVarEnd(info),AddGlobalId([Class],currentclassname,currentclassname,info,"","","","",4),ChangeState(class_idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#クラス idle
+state(class_idle)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_Stable
+	#
+	{"def",{IncIndentFromNext,SetVarStart(info),SetVarNextToken(keyword),ChangeState(method)}}
+	{"class",{IncIndentFromNext}}
+	#
+	{"if",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"else",{DecIndentOnlyCurrent,ChangeState(class_idle_after1token)}}
+	{"elsif",{DecIndentOnlyCurrent,ChangeState(class_idle_after1token)}}
+	{"unless",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"case",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"when",{DecIndentOnlyCurrent,ChangeState(class_idle_after1token)}}
+	{"while",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"for",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"until",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"begin",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"rescue",{DecIndentOnlyCurrent,ChangeState(class_idle_after1token)}}
+	#正規表現
+	#{"/",{PushState(regexp)}}
+	#中括弧
+	{"{",{IncIndentFromNext,ChangeState(class_idle_after1token)}}
+	{"}",{DecIndentFromCurrent,ChangeState(class_idle_after1token)}}
+	#ヒアドキュメント
+	{"<<", {PushState(heredocument_start)}}
+	{"<<-", {PushState(heredocument_start)}}
+	#
+	{"end",{DecIndentFromCurrent,ChangeStateIfBlockEnd(classblock,idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+	#
+	{lineend,{ChangeState(class_idle)}}
+	#
+	{default,{ChangeState(class_idle_after1token)}}
+}
+
+#class_idle 1token読み込み後
+state(class_idle_after1token)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("Ruby")
+	#
+	{"do",{IncIndentFromNext}}
+	{"end",{DecIndentFromCurrent,ChangeState(class_idle_after1token)}}
+	#正規表現
+	#{"/",{PushState(regexp)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#イコール
+	{"=",{SetVarStartAtPrevToken(info),SetVarLastWord(keyword),ClearVar(classname),ChangeState(class_varequal)}}
+	{"=>",{}}
+	{"==",{}}
+	{"===",{}}
+	{"!=",{}}
+	{"!==",{}}
+	{"<=",{}}
+	{">=",{}}
+	{"+=",{}}
+	{"-=",{}}
+	{"*=",{}}
+	{"/=",{}}
+	{".=",{}}
+	{"%=",{}}
+	{"&=",{}}
+	{"|=",{}}
+	{"^=",{}}
+	{"<<=",{}}
+	{">>=",{}}
+	{"=>",{}}
+	#
+	{lineend,{ChangeState(class_idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#イコール
+state(class_varequal)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	#ハッシュ、配列
+	{"{",{ChangeState(class_hash)}}
+	{"[",{ChangeState(class_array)}}
+	#正規表現
+	{"/",{SetVar(typename,"Regexp"),PushState(regexp)}}
+	#変数登録
+	{lineend,{SetVarEnd(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(class_idle)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#コメント／リテラル
+	{"\"",{SetVar(typename,"String"),PushState(doublequotation)}}
+	{"'",{SetVar(typename,"String"),PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+	#
+	{default,{ChangeState(class_varequal_after1token)}}
+}
+
+#イコール
+state(class_varequal_after1token)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	#
+	{"do",{IncIndentFromNext,ChangeState(class_idle)}}
+	#変数登録
+	{lineend,{SetVarEnd(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(class_idle)}}
+	#クラスインスタンス生成
+	{"new",{SetVarWithTokenStack(typename,-2,-1)}}
+	#中括弧
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#Hash
+state(class_hash)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	{":",{SetVarNextToken(key),AddGlobalId([Key],key,"","","",keyword,"","",9)}}
+	{"}",{SetVarEndAtNextChar(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(class_idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#Array
+state(class_array)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	{"]",{SetVarEndAtNextChar(info),AddLocalId([Variable],keyword,info,typename,""),ChangeState(class_idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#クラス定数
+state(class_var)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_IndentOnTheWay
+	#
+	{lineend,{SetVarEnd(info),AddGlobalId([Variable],keyword,"",info,"",currentclassname,"","",9),ChangeState(class_idle)}}
+	#
+	{"end",{DecIndentFromCurrent,ChangeStateIfBlockEnd(classblock,idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+#メソッド
+state(method)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	#
+	{lineend,{SetVarEnd(info),AddGlobalId([Function],keyword,keyword,info,"",currentclassname,"","",5),ChangeState(class_idle)}}
+	#
+	{"end",{DecIndentFromCurrent,ChangeStateIfBlockEnd(classblock,idle_after1token)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+}
+
+
+#＝＝＝＝＝＝＝＝＝＝require＝＝＝＝＝＝＝＝＝＝
+#require
+state(require)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	#
+	{"\"", {SetVarStartFromNextChar(path),ChangeState(requirepath)}}
+	{"\'", {SetVarStartFromNextChar(path),ChangeState(requirepath)}}
+	#コメント／リテラル
+	{"#",{PushState(comment)}}
+	{regexp"^=begin",{PushState(embeddeddoc)}}
+	#
+	{lineend,{ChangeState(idle_after1token)}}
+}
+
+#require パス
+state(requirepath)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	#
+	{"\"", {SetVar(rb,".rb"),SetVarEnd(path),CatVar(filepath,path,rb),Import(filepath),  ChangeState(idle_after1token)}}
+	{"\'", {SetVar(rb,".rb"),SetVarEnd(path),CatVar(filepath,path,rb),Import(filepath),  ChangeState(idle_after1token)}}
+	#
+	{lineend,{ChangeState(idle_after1token)}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝コメント／リテラル＝＝＝＝＝＝＝＝＝＝
+#埋め込みドキュメント
+state(embeddeddoc)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{regexp"^=end",{PopStateFromNextChar}}
+}
+
+#コメント
+state(comment)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{regexp"$",{PopStateFromNextChar}}#戻った先でlineendに一致するように、行末一致させる
+}
+
+#リテラル（シングルクオーテーション）
+state(singlequotation)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}#\', \\はシングルクオーテーション内でもエスケープすべきであり、また、他の文字をエスケープしてもクオーテーション範囲の認識には影響ない
+}
+
+#リテラル（ダブルクオーテーション）
+state(doublequotation)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#正規表現リテラル
+state(regexp)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"/",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝ヒアドキュメント＝＝＝＝＝＝＝＝＝＝
+
+#ヒアドキュメント
+state(heredocument_start)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	{"\'",{ChangeState(heredocument_start_quotation)}}
+	{"\`",{ChangeState(heredocument_start_quotation)}}
+	{"\"",{ChangeState(heredocument_start_quotation)}}
+	{default,{SetVarCurrentToken(heredocumentid),PushStateFromNextLine(heredocument),PopState}}
+}
+
+#ヒアドキュメント（IDをクオーテーションでくくっている場合）
+state(heredocument_start_quotation)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	{default,{SetVarCurrentToken(heredocumentid)}}
+	{"\'",{PushStateFromNextLine(heredocument),PopState}}
+	{"\`",{PushStateFromNextLine(heredocument),PopState}}
+	{"\"",{PushStateFromNextLine(heredocument),PopState}}
+}
+
+#ヒアドキュメント
+state(heredocument)
+{
+	StateAttribute_SyntaxPart("Ruby")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	StateAttribute_DisableIndent
+	{heredocumentend,{PopState}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝カテゴリ＝＝＝＝＝＝＝＝＝＝
+#関数
+category[Function]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"関数")
+}
+
+#変数
+category[Variable]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"変数")
+}
+
+#キー
+category[Key]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"キー")
+}
+
+#クラス
+category[Class]
+{
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"クラス")
+}
+
+
+

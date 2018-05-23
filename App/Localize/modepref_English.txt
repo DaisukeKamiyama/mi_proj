@@ -1,0 +1,770 @@
+Setup suffixes to be opened with this mode.
+Setup suffixes to be opened with this mode.
+Text Color :
+Text Color :
+Background Color :
+Background Color :
+Color Scheme :
+Color Scheme :
+Use Color Scheme
+Use Color Scheme
+Set Font&Colors for this mode. 
+Set Font&Colors for this mode. 
+Font & Colors
+Font & Colors
+Suffix for This Mode
+Suffix for This Mode
+File Suffixes :
+File Suffixes :
+Information
+Information
+Mode Explanation :
+Mode Explanation :
+Use same settings as Normal mode
+Use same settings as "Normal" mode
+Color is set by Color Scheme
+Color is set by Color Scheme
+Colors are set by Color Scheme
+Colors are set by Color Scheme
+(Example: ".html")
+(Example: ".html")
+Enable this mode
+Enable this mode
+Open Normal Mode Preferences
+Open Normal Mode Preferences
+The first item will be also used for a default suffix of a new file.
+The first item will be also used for a default suffix of a new file.
+If checkbox is checked, Color scheme colors are used for Text Color, Background Color, and Syntax Colors.
+If checkbox is checked, Color scheme colors are used for Text Color, Background Color, and Syntax Colors.
+Select...
+Select...
+Tab Display Width :
+Tab Display Width :
+Line Margin :
+Line Margin :
+Background Display
+Background Display
+Background Image :
+Background Image :
+Draw Background Image
+Draw Background Image
+File Path : 
+File Path : 
+Transparency : 
+Transparency : 
+Background Grid :
+Background Grid :
+Draw Background Grid
+Draw Background Grid
+Layout
+Layout
+Ruler :
+Ruler :
+Display Ruler
+Display Ruler
+Ruler Base Character : 
+Ruler Base Character : 
+Mark Interval : 
+Mark Interval : 
+Macro Bar :
+Macro Bar :
+Display Macro Bar
+Display Macro Bar
+Line Number :
+Line Number :
+Display Each Line Number
+Display Each Line Number
+Line Number Type :
+Line Number Type :
+Text Data Properties
+Text Data Properties
+Input Settings
+Input Settings
+Spell Check
+Spell Check
+Select inside the following characters by Quad-Click
+Select inside the following characters by Quad-Click
+Input Backslash when press ¥ key
+Input Backslash when press ¥ key
+When press ⌘ + ¥ key, ¥ is Input.
+When press ⌘ + ¥ key, ¥ is Input.
+Prior to Syntax/Header Color
+Prior to Syntax/Header Color
+Bold
+Bold
+Italic
+Italic
+Underline
+Underline
+If checked, keyword color is prior to syntax/header color such as comment color.
+If checked, keyword color is prior to syntax/header color such as comment color.
+Font :
+Font :
+Text Display
+Text Display
+characters
+characters
+pixels
+pixels
+Select File...
+Select File...
+Line Number
+Line Number
+Paragraph Number
+Paragraph Number
+5 characters
+5 characters
+Tab Width
+Tab Width
+Text Encoding :
+Text Encoding :
+Return Code :
+Return Code :
+Wrap Mode :
+Wrap Mode :
+No Wrap
+No Wrap
+Wrap with Window Width
+Wrap with Window Width
+Wrap with Characters Count
+Wrap with Characters Count
+UTF-8 BOM :
+UTF-8 BOM :
+Attach BOM when save UTF-8 file
+Attach BOM when saving UTF-8 file
+Unchecked may be better, but it may need to set checked for some apps.
+For some applications, BOM should be attached.
+Balance Check :
+Balance Check :
+Highlight Balanced Parenthesis
+Highlight Balanced Parenthesis
+Quad-Click :
+Quad-Click :
+Select inside the following characters by Quad-Click
+Select inside the following characters by Quad-Click
+¥ Key :
+¥ Key :
+Input Backslash when press ¥ key
+Input backslash when "¥" key is pressed (Japanese Keyboards Only)
+Smart Drag&Drop :
+Smart Drag&Drop :
+Adjust space characters when dragging words
+Adjust space characters when dragging words
+Double-click :
+Double-click :
+Select word according to syntax definition
+Select word according to syntax definition
+Spell Check Language :
+Spell Check Language :
+Spell Check :
+Spell Check :
+Display Red Underline at Misspell Word
+Highlight misspelled words with red underline
+English (US)
+English (US)
+English (Australia)
+English (Australia)
+English (UK)
+English (UK)
+English (Canada)
+English (Canada)
+German
+German
+Spanish
+Spanish
+French
+French
+Italian
+Italian
+Dutch
+Dutch
+Portuguese
+Portuguese
+Portuguese (Brazil)
+Portuguese (Brazil)
+Swedish
+Swedish
+Keyword
+Keyword
+Register keywords to colorize keyword and input keyword completion.
+Register keywords to colorize keyword and input keyword completion.
+Import...
+Import...
+Export...
+Export...
+Available Characters for Keyword
+Available Characters for Keyword
+If document-specific Font is set by menu [Document - Font - Set Font for this Document], document-specific font is prior to this setting.
+If document-specific Font is set by menu [Document - Font - Set Font for this Document], document-specific font is prior to this setting.
+These settings are applied when a new document is created, or when the properties of opened document is not clear.
+These settings are applied when a new document is created, or when properties of document is unclear.
+Keywords : 
+Keywords : 
+Use Keywords written in the Edit Box
+Use Keywords written in the Edit Box
+Load Keywords from CSV File
+Load Keywords from CSV File
+Keywords List : 
+Keywords List : 
+Input Keywords by separating with return.
+Input Keywords by separating with return.
+Ignore Case
+Ignore Case
+Sort
+Sort
+Save
+Save
+Define keywords using Regular Expression
+Define keywords using Regular Expression
+* Word which matches Regular Expression written at 1st line in Keywords List will be colored.
+* Word which matches Regular Expression written at 1st line in Keywords List will be colored.
+Text Color : 
+Text Color : 
+Text Style : 
+Text Style : 
+Display Priority : 
+Display Priority : 
+Validity : 
+Validity : 
+Set Disable
+Set Disable
+Characters in Keyword :
+Characters in Keyword :
+Characters for the first :
+Characters for the first :
+Characters for the Last :
+Characters for the Last :
+CSV File : 
+CSV File : 
+Keyword Column Number : 
+Keyword Column Number : 
+Explanation Column Number : 
+Explanation Column Number : 
+Parent Keyword Column Number :
+Parent Keyword Column Number :
+Header Color : 
+Header Color : 
+Colorize Header
+Colorize Header
+Header definition : 
+Header definition : 
+Define Header line with Regular Expression
+Define Header line with Regular Expression
+Define Header with simpler setting
+Define Header with simpler setting
+Update Document
+Update Document
+Headers
+Headers
+Register headers to display in Header list and menu.
+Register headers to display in Header list and menu.
+Regular Exp. : 
+Regular Exp. : 
+Line which matches this Regular Exp. will be recognized as Header.
+Line which matches this Reg. Exp. will be recognized as Header. Tab and space at line start should be included in Reg. Exp.
+Header List : 
+Header List : 
+Add to Header List and Header Menu
+Add to Header List and Header Menu
+List Item Text : 
+List Item Text : 
+Keyword : 
+Keyword : 
+Add word which matches Regular Exp. Group
+Add word which matches Regular Exp. Group
+Regular Exp. Group :  
+Regular Exp. Group :  
+Keyword Color : 
+Keyword Color : 
+Outline Level : 
+Outline Level : 
+Line Start Text : 
+Line Start Text : 
+Line which starts by the following text will be recognized as Header.
+Line which starts by the following text will be recognized as Header.
+Header List : 
+Header List : 
+Syntax Display
+Syntax Display
+Colorize syntax according to selected syntax definition.
+Colorize syntax according to selected syntax definition.
+Syntax :
+Syntax :
+Select Syntax Definitions from the following menu
+Select Syntax Definitions from the following menu
+Set Syntax manually
+Set Syntax manually
+Syntax Colors and Styles
+Syntax Colors and Styles
+Comment : 
+Comment : 
+Literal : 
+Literal : 
+Header : 
+Header : 
+Function : 
+Function : 
+Variable : 
+Variable : 
+Class / Type : 
+Class / Type : 
+Macro / #define : 
+Macro / #define : 
+Property / Member : 
+Property / Member : 
+Darken Import Keywords and Lighten Local Keywords
+Darken Import Keywords and Lighten Local Keywords
+Import Files
+Import Files
+Load Import Files from the following Folders always
+Load Import Files from the following Folders always
+Directive Display
+Directive Display
+Directive : 
+Directive : 
+Colorize a disabled part according to condition directive such as #if.
+Colorize a disabled part according to condition directive such as #if.
+Recognize Compile Condition Directive
+Recognize Compile Condition Directive
+Deactivated Color :
+Deactivated Color :
+* 2 or more Folder Paths can be input by separating with return.
+* 2 or more Folder Paths can be input by separating with return.
+System Headers : 
+System Headers : 
+Folding
+Folding
+Folding :
+Folding :
+Enable Line Folding
+Enable Line Folding
+Default Folding :
+Default Folding :
+Collapse when Line starts with any of the following text by default
+Collapse when Line starts with any of the following text by default
+Insert Text :
+Insert Text :
+Open Dropped File
+Open Dropped File
+Insert File Path
+Insert File Path
+Insert Relative File Path
+Insert Relative File Path
+If no Suffix matches :
+If no Suffix matches :
+Corresponding Text Input
+Corresponding Text Input
+Key Bind :
+Key Bind :
+Set Difference from Application's Default Key Bind
+Set Difference from Application's Default Key Bind
+Set Difference from Normal mode Key Bind
+Set Difference from Normal mode Key Bind
+Set Difference from OS Key Bind
+Set Difference from OS Key Bind
+Control Key
+Control Key
+Option Key
+Option Key
+Command Key
+Command Key
+Shift Key
+Shift Key
+Action :
+Action :
+Insert Text :
+Insert Text :
+Update
+Update
+Tool Name : 
+Tool Name : 
+Shortcut Key : 
+Shortcut Key : 
+Insert Text : 
+Insert Text : 
+Display : 
+Display : 
+Display in Tool menu
+Display in Tool menu
+Display as gray menu item
+Display as gray menu item
+Tool Setup using Finder
+Tool Setup using Finder
+Open tool folder with Finder
+Open tool folder with Finder
+Update Change of tool folder by Finder
+Update Change of tool folder by Finder
+Multi Language Name
+Multi Language Name
+If the following name for each language is set, it is prior to the above name.
+If the following name for each language is set, it is prior to the above name.
+Mode Name :
+Mode Name :
+Backup :
+Backup :
+Backup Mode Data
+Backup Mode Data
+Multi Language Name : 
+Multi Language Name : 
+Check Text Encoding consistency with "charset"
+Check Text Encoding Consistency with "charset"
+Set the following Creator Code for New File
+Set the following Creator Code for New File
+Creator Code :
+Creator Code :
+Syntax Definition :
+Syntax Definition :
+Use User-Defined Syntax Definition Script
+Use User-Defined Syntax Definition Script
+Path :
+Path :
+Mode Update :
+Mode Update :
+Update Mode
+Update Mode
+File Paths :
+File Paths :
+Indent Options
+Indent Options
+Indent Width :
+Indent Width :
+characters per 1 indent level
+characters per 1 indent level
+Indent Character :
+Indent Character :
+Input Space Characters instead of Tab Code
+Input Space Characters instead of Tab Code
+Input Full-width Space Characters instead of 2 Spaces for Indent
+Input Full-width Space Characters instead of 2 Spaces for Indent
+Indent Display Width :
+Indent Display Width :
+Display Indent using "Tab Display Width"
+Display Indent using "Tab Display Width"
+Set to no indent if line is empty
+Set to no indent if line is empty
+Empty Line Indent :
+Empty Line Indent :
+Indent for Pasted Text :
+Indent for Pasted Text :
+Indent automatically for pasted text
+Indent automatically for pasted text
+Characters for Auto Indent :
+Characters for Auto Indent :
+Indent Calculation Method
+Indent Calculation Method
+Indent Calculation Method :
+Indent Calculation Method :
+No Indent (Indent manually always)
+No Indent (Indent manually always)
+Same Indent level as the previous line
+Same Indent level as the previous line
+Indent defined by Syntax definition
+Indent defined by Syntax definition
+Indent according to pre-defined Syntax selected in "Syntax" tab
+Indent according to pre-defined Syntax selected in "Syntax" tab
+Indent defined by Regular Expression Indent Rule
+Indent defined by Regular Expression Indent Rule
+Define Indent Level according to the table.
+Define Indent Level according to the table.
+On the way of sentence : 
+On the way of sentence : 
+Indent to the 2nd level tab
+Indent to the 2nd level tab
+Indent Level for Label : 
+Indent Level for Label : 
+Tab Character
+Tab Character
+Space Characters
+Space Characters
+characters rightward
+characters rightward
+Justify Single Colon
+Justify Single Colon
+Indent to the Parenthesis Start Position
+Indent to the Parenthesis Start Position
+Other than above : 
+Other than above : 
+Specific Indent
+Specific Indent
+Update Indent Character automatically according to Document
+Set Indent Character automatically according to Document
+Set mi's Creator/Type automatically for all of opened files
+Set mi's Creator/Type Automatically for All Opened Files
+Display "¥" for Ascii Code 0x5C for SJIS/JIS/EUC file
+Display "¥" for Ascii Code 0x5C for SJIS/JIS/EUC file
+Keyword Color Type :
+Keyword Color Type :
+Valid Syntax Part :
+Valid Syntax Part :
+Keywords are valid only in the selected syntax part.
+Keywords are valid only in the selected syntax part.
+0. Reserved Word : 
+0. Reserved Word : 
+1. Method / Function : 
+1. Method / Function : 
+2. Property / Member : 
+2. Property / Member : 
+3. Variable : 
+3. Variable : 
+4. Class / Type : 
+4. Class / Type : 
+5. Macro : 
+5. Macro : 
+6. Other 1 : 
+6. Other 1 : 
+7. Other 2 : 
+7. Other 2 : 
+Find Highlight :
+Find Highlight :
+Previous Find Highlight :
+Previous Find Highlight :
+Current Word Highlight :
+Current Word Highlight :
+Text Marker :
+Text Marker :
+First Select Highlight :
+Highlight for the first select :
+0. Reserved Word color
+0. Reserved Word color
+1. Method / Function color
+1. Method / Function color
+2. Property / Member color
+2. Property / Member color
+3. Variable color
+3. Variable color
+4. Class / Type color
+4. Class / Type color
+5. Macro color
+5. Macro color
+6. Other 1 color
+6. Other 1 color
+7. Other 2 color
+7. Other 2 color
+Current Revision : 
+Current Revision : 
+Open Page
+Open Page
+Mode Management
+Mode Management
+Detail
+Detail
+¥/Backslash Display :
+¥/Backslash Display :
+Open CSV File
+Open CSV File
+Select how to register keywords.
+Select how to register keywords.
+Column Number
+Column Number
+Input column number (1-) of CSV file.
+Input column number (1-) of CSV file.
+(optional) 
+(optional) 
+Explanation Text : 
+Explanation Text : 
+Type Name :
+Type Name :
+Parent Keyword :
+Parent Keyword :
+Local File or Remote File at a web server can used for the CSV file. Input url "http://..." to use Remote File at a web server.
+Local File or Remote File at a web server can used for the CSV file. Input url "http://..." to use Remote File at a web server.
+Open Tool File
+Open Tool File
+Menu Display : 
+Menu Display : 
+Enable this tool
+Enable this tool
+Current Path : 
+Current Path : 
+Tool
+Tool
+Move to Parent Menu
+Move to Parent Menu
+Add Sub Menu
+Add Sub Menu
+Set Font for this mode. 
+Set Font for this mode. 
+Setup for each type file types (= Mode).
+Setup for each type file types (= Mode).
+Mode is decided by its suffix basically. If file does not match any suffixes, it belongs to "Normal" mode.
+Mode is decided by its suffix basically. If file does not match any suffixes, it belongs to "Normal" mode.
+Several settings can be set to same as "Normal" mode to reduce items to be set. 
+Several settings can be set to same as "Normal" mode to reduce items to be set. 
+Mode Validity
+Mode Validity
+If disabled, this mode is not assigned to any file.
+If disabled, this mode is not assigned to any file.
+About Mode
+About Mode
+Font
+Font
+Set Colors for this mode. 
+Set Colors for this mode. 
+Export Color Scheme :
+Export Color Scheme :
+Apply to colors
+Apply Color Scheme
+Diff Display Opacity : 
+Diff Display Opacity : 
+Set text data properties such as default text encoding.
+Set text data properties such as default text encoding.
+Set text input setting.
+Set text input setting.
+Set properties for misspell display and spell correction.
+Set properties for misspell display and spell correction.
+Set text display settings.
+Set text display settings.
+Set background display settings.
+Set background display settings.
+Setup each control layout.
+Setup each control layout.
+File Drag&Drop
+File Drag&Drop
+Setup text inserted when a file is dropped into text area.
+Setup text which is inserted when a file is dropped into text area.
+Corresponding Text
+Corresponding Text
+Setup corresponding text for [Find - Insert Corresponding Text].
+Setup corresponding text for [Find -> Insert Corresponding Text].
+Setup line folding settings such as default folding.
+Setup line folding settings such as default folding.
+Setup Key Bind.
+Setup Key Bind.
+Setup Tool menu.
+Setup Tool menu.
+You can setup tool files and their hierarchy using Finder.
+You can setup tool files and their hierarchy using Finder.
+Update Mode data from Application when Application is updated.
+Update Mode data when Application is updated.
+Update Mode data from Web when the button is clicked.
+Update Mode data from Web when the button is clicked.
+Update Mode from Web
+Update Mode from Web
+Update Source :
+Update Source :
+Keyword data and Tool will be updated if available.
+Keyword data and Tool will be updated if available.
+Start text is Reg exp
+Start text is Reg exp
+Comment/Literal
+Comment/Literal
+Comment : 
+Comment : 
+to
+to
+(end)
+
+to Line End
+to Line End
+Literal : 
+Literal : 
+Escape Characters : 
+Escape Characters : 
+Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
+Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
+Column Number : 
+Column Number : 
+Optional Columns : 
+Optional Columns : 
+Explanation : 
+Explanation : 
+Completion :
+Completion :
+Color Type :
+Color Type :
+URL :
+URL :
+Case Sensitivity :
+Case Sensitivity :
+This text will be added as a list item. Text can include Regular Exp. Group ("$0" - "$9") to replace with found text.
+This text will be added as a list item. Text can include Regular Exp. Group ("$0" - "$9") to replace with found text.
+* Because Tab and Space at line start are ignored automatically, you do not need to input.
+* Because Tab and Space at line start are ignored automatically, you do not need to input.
+Enable Corresponding Text defined in Syntax Definition
+Enable Corresponding Text defined in Syntax Definition
+Set Enable
+Set Enable
+You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder. (Highlight colors and opacities can be set only by csv files.)
+You can add Color Scheme item by placing csv or epf file in ColorScheme folder. (Highlight colors/opacities can be set only by csv.)
+Selection Opacity : 
+Selection Opacity : 
+Open ColorScheme folder
+Open ColorScheme folder
+Update menu
+Update menu
+If File Paths are set, only if File Suffixes AND File Paths are matched, this Mode is assigned.
+If File Paths are set, only if File Suffixes AND File Paths are matched, this Mode is assigned.
+Copy to User Tool and Edit
+Copy to User Tool and Edit
+Set letters which consist of word.
+Set letters which consist of word.
+Keyword Characters
+Keyword Characters
+Keywords are colorized only when whole word is matched according to the following definition. 
+Keywords are colorized only when whole word is matched according to the following definition. 
+Set comment / literal syntax.
+Set comment / literal syntax.
+Setup detail.
+Setup detail.
+Manage mode data.
+Manage mode data.
+Return Code
+Return Code
+Tab Code
+Tab Code
+Half-width Space
+Half-width Space
+Full-width Space
+Full-width Space
+Control Code Display :
+Control Code Display :
+Default Syntax Part
+Default Syntax Part
+Set syntax part at start of document.
+Select syntax part for beginning of document.
+Syntax Part :
+Syntax Part :
+Setup indent options.
+Setup indent options.
+Setup how to calculate indent.
+Setup how to calculate indent.
+Shift Left by backspace :
+Shift Left by backspace :
+Shift left by backspace at line start
+Shift left by backspace at line start
+Syntax
+Syntax
+Key Bind
+Key Bind
+Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file.
+Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file.
+Keyword column is mandatory, others are optional.
+Keyword column is mandatory, others are optional.
+Parent :
+Parent :
+Colors
+Colors
+Block Start Reg. Exp. : 
+Folding Start Reg. Exp. :
+Block End Reg. Exp. : 
+Folding End Reg. Exp. :
+Enable or disable plugin.
+Enable or disable plugin.
+Plugin
+Plugin
+Display Name : 
+Display Name : 
+Vertical Draw :
+Vertical Text :
+Draw Vertical (Available with Mac OS X 10.7 or later)
+Display Vertical Text (Available with Mac OS X 10.7 or later)
+Word Wrap with Window Width
+Word Wrap with Window Width
+Word Wrap with Characters Count...
+Word Wrap with Characters Count...
+Character Wrap with Window Width
+Character Wrap with Window Width
+Character Wrap with Characters Count...
+Character Wrap with Characters Count...
+Control Code Color :
+Control Code Color :

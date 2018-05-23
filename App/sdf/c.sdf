@@ -1,0 +1,2453 @@
+#
+# C/C++用文法定義スクリプト
+# mi組み込み用
+#
+# (C) 2010 MimikakiProject(daisuke), All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("C/C++")
+
+#".h"のファイルはインポートを再帰的に読み込む
+GlobalAttribute_ImportRecursive(".h")
+
+#Cパート
+GlobalAttribute_SyntaxPart("C","C",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~@",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~",
+"")
+#C directiveパート
+GlobalAttribute_SyntaxPart("C directive","C",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~",
+"")
+
+#キーワード情報を自動表示する文字
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+#クラスを示す文字列
+GlobalAttribute_ClassString("::");
+GlobalAttribute_InstanceString(".","->");
+
+#ディレクティブ文字列
+GlobalAttribute_Directive("#");
+GlobalAttribute_DirectiveIf("if");
+GlobalAttribute_DirectiveIfdef("ifdef");
+GlobalAttribute_DirectiveIfndef("ifndef");
+GlobalAttribute_DirectiveElse("else");
+GlobalAttribute_DirectiveElif("elif");
+GlobalAttribute_DirectiveEndif("endif");
+
+#空状態
+state(idle)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	#状態開始時処理
+	{start,{ClearVar(className)}}
+	#ディレクティブ
+	{"#",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#各状態への分岐
+	{"enum", {ChangeState(enum)}}
+	{"struct", {SetVarStart(info),ChangeState(struct)}}
+	{"union", {SetVarStart(info),ChangeState(union)}}
+	{"class", {ChangeState(class)}}
+	{"typedef", {SetVarStart(info), ChangeState(typedef)}}
+	{"template", {SetVarStart(info), ChangeState(template)}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(idle_operator)}}
+	{"inline",{ChangeState(idle)}}
+	#ObjC
+	{"-",{ChangeState(ObjCMethodRetType)}}
+	{"+",{ChangeState(ObjCMethodRetType)}}
+	{"@interface",{ChangeState(ObjCAtInterface)}}
+	{"@protocol",{ChangeState(ObjCAtInterface)}}
+	{"@implementation",{ChangeState(ObjCAtImplementation)}}
+	{"@class",{ChangeState(ObjCAtClass)}}
+	{"NS_CLASS_AVAILABLE_IOS",{ChangeState(ignore_kakko_then_idle)}}
+	{"NS_CLASS_AVAILABLE_MAC",{ChangeState(ignore_kakko_then_idle)}}
+	{"NS_CLASS_AVAILABLE",{ChangeState(ignore_kakko_then_idle)}}
+	{"NS_CLASS_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_idle)}}
+	{"NS_CLASS_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_idle)}}
+	{"NS_CLASS_DEPRECATED",{ChangeState(ignore_kakko_then_idle)}}
+	{"@end",{}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#これらはidle_after1tokenへ移行しない
+	{lineend, {}}
+	{";", {}}
+	{"::", {}}
+	{"else",{}}
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStartOrContinue(info),SetVarCurrentToken(typetext),ChangeState(idle_after1token)}}
+}
+
+#------------------------------
+#ObjC 
+#------------------------------
+
+#------------------------------
+#@implementation
+state(ObjCAtImplementation)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#@implementation直後の単語をクラス登録してidleに戻る
+	{default,{SetVarCurrentToken(className),AddGlobalId([class], className, className, className ,lastcomment,"","","",1),
+		ClearVar(lastcomment),ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+#@interface/@protocol
+state(ObjCAtInterface)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#C++クラスと同様の処理
+	{":",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),
+		ChangeState(ObjCInterface_aftercolon)}}
+	{";",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),
+		ChangeState(idle)}}
+	{"{",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),
+		BlockStart(classblock), IncIndentFromNext, ChangeState(ObjCInterface_idle)}}
+	{"}", {DecIndentFromCurrent}}
+	#行末まで来たらObjCAtInterface_Inside1stへ遷移。
+	{lineend,{ChangeState(ObjCAtInterface_Inside1st)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface〜@endに囲まれた部分（C++のクラス定義と同様の{}内をのぞく。）（最初の文字のみ）
+state(ObjCAtInterface_Inside1st)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	#プロパティ、メソッド
+	{"@property",{ChangeState(ObjCAtProperty)}}
+	{"-",{ChangeState(ObjCInterface_MethodRetType)}}
+	{"+",{ChangeState(ObjCInterface_MethodRetType)}}
+	#C++クラスと同様の処理
+	{"{",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),
+		BlockStart(classblock), IncIndentFromNext, ChangeState(ObjCInterface_idle)}}
+	{"}", {DecIndentFromCurrent}}
+	#この状態は最初の文字のみ。（C++クラスと同様のクラス定義{}の検知のため）
+	{default,{ChangeState(ObjCAtInterface_Inside)}}
+	#@interface終了
+	{"@end",{ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface〜@endに囲まれた部分（C++のクラス定義と同様の{}内をのぞく。）
+state(ObjCAtInterface_Inside)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	#プロパティ、メソッド
+	{"@property",{ChangeState(ObjCAtProperty)}}
+	{"-",{ChangeState(ObjCInterface_MethodRetType)}}
+	{"+",{ChangeState(ObjCInterface_MethodRetType)}}
+	{"}", {DecIndentFromCurrent}}
+	#@interface終了
+	{"@end",{ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 メソッド（返り値型）
+state(ObjCInterface_MethodRetType)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{")", {SetVarCurrentToken(typetext),ChangeState(ObjCInterface_MethodName)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 メソッド（メソッド名）
+state(ObjCInterface_MethodName)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{default,{SetVarCurrentToken(keyword),SetVarStart(info),ChangeState(ObjCInterface_MethodArg)}}
+}
+
+#@interface内 メソッド（メソッド引数）
+state(ObjCInterface_MethodArg)
+{
+	StateAttribute_SyntaxPart("C")
+	#メソッド終了
+	{";",{SetVarEnd(info),AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ObjCAtInterface_Inside)}}
+	#NS_処理
+	{"NS_AVAILABLE_IOS",{SetVarEnd(info),AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_AVAILABLE_MAC",{SetVarEnd(info),AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_AVAILABLE",{SetVarEnd(info),AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_interfaceinside)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 C++タイプクラス定義 :の後
+state(ObjCInterface_aftercolon)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{";",{ChangeState(idle)}}
+	{"{",{BlockStart(class_block), IncIndentFromNext, ChangeState(ObjCInterface_idle)}}
+	{"}", {DecIndentFromCurrent}}
+	#
+	{lineend,{ChangeState(ObjCAtInterface_Inside1st)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 C++タイプクラス定義 {}内
+state(ObjCInterface_idle)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	#
+	{lineend,{}}
+	#
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(class_block,ObjCAtInterface_Inside)}}
+	{"#",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	{"struct",{ChangeState(ObjCInterface_idle_struct)}}
+	{"@package",{}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStartOrContinue(info),SetVarCurrentToken(typetext),ChangeState(ObjCInterface_idle_after1token)}}
+}
+
+#@interface内 C++タイプクラス定義 {}内1トークン後
+state(ObjCInterface_idle_after1token)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(class_block,ObjCAtInterface_Inside)}}
+	{";", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(ObjCInterface_idle)}}
+	{regexp":[0-9]+;", {SetVarWithTokenStack(keyword,-3),SetVarEnd(info),
+		AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(ObjCInterface_idle)}}
+	{"=", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(ObjCInterface_rightvalue)}}
+	{"[", {SetVarLastWord(keyword),ChangeState(ObjCInterface_idle_arrayvar)}}
+	{"::",{}}
+	#ラベル
+	{":", {IndentLabel,ChangeState(ObjCInterface_idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 C++タイプクラス定義 配列
+state(ObjCInterface_idle_arrayvar)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{";", {SetVarEnd(info),AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(ObjCInterface_idle)}}
+	#ラベル
+	{":", {IndentLabel,ChangeState(ObjCInterface_idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 C++タイプクラス定義 配列
+state(ObjCInterface_idle_struct)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent,SetVarNextToken(keyword),SetVarNextToken(info),AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(ObjCInterface_idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#@interface内 C++タイプクラス定義 代入文の右辺値（クラス内）
+state(ObjCInterface_rightvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#
+	{";",{ChangeState(ObjCInterface_idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+#@interface内 @property
+state(ObjCAtProperty)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#
+	{";",{SetVarLastWord(name),
+		AddGlobalId([property], name, name, name ,lastcomment,className,"","",1),ClearVar(lastcomment),ChangeState(ObjCAtInterface_Inside)}}
+	#NS_処理
+	{"NS_AVAILABLE_IOS",{SetVarLastWord(name),
+		AddGlobalId([property], name, name, name ,lastcomment,className,"","",1),ClearVar(lastcomment),ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_AVAILABLE_MAC",{SetVarLastWord(name),
+		AddGlobalId([property], name, name, name ,lastcomment,className,"","",1),ClearVar(lastcomment),ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_AVAILABLE",{SetVarLastWord(name),
+		AddGlobalId([property], name, name, name ,lastcomment,className,"","",1),ClearVar(lastcomment),ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_interfaceinside)}}
+	{"NS_DEPRECATED",{ChangeState(ignore_kakko_then_interfaceinside)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+#@class
+state(ObjCAtClass)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{lineend,{ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+#NS_ENUM
+state(NS_ENUM)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#
+	{")",{SetVarWithTokenStack(keyword,-1),SetVarWithTokenStack(info,-1),AddGlobalId([enumtype], keyword, "", info ,lastcomment,"","","enum",9),ClearVar(lastcomment)}}
+	{"{", {IncIndentFromNext,ChangeState(enum_idle)}}
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+#ObjC メソッド（返り値型）（@interface内には無いもの）
+state(ObjCMethodRetType)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{")", {SetVarCurrentToken(typetext),ChangeState(ObjCMethodName)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#ObjC メソッド（メソッド名）（@interface内には無いもの）
+state(ObjCMethodName)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{default,{SetVarCurrentToken(keyword),SetVarStart(info),ChangeState(ObjCMethodArg)}}
+}
+
+#ObjC メソッド（メソッド引数）（@interface内には無いもの）
+state(ObjCMethodArg)
+{
+	StateAttribute_SyntaxPart("C")
+	#StateAttribute_IndentOnTheWay
+	{"{",{SetVarEnd(info),BlockStart(funcblock), 
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), IncIndentFromNext,
+		ChangeState(funcidle)}}
+	{";",{SetVarEnd(info),AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(idle)}}
+	#引数
+	{"(",{SetVarStartFromNextChar(argtypetext)}}
+	{")",{SetVarEnd(argtypetext),SetVarNextToken(argkeyword), AddLocalId([argument], argkeyword, "",argtypetext,"")}}
+	#NS_処理
+	{"NS_AVAILABLE_IOS",{SetVarEnd(info),
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_AVAILABLE_MAC",{SetVarEnd(info),
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_AVAILABLE",{SetVarEnd(info),
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5), 
+		ChangeState(ignore_kakko_then_idle2)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#------------------------------
+state(ObjCCall)
+{
+	StateAttribute_SyntaxPart("C")
+	#StateAttribute_IndentOnTheWay
+	StateAttribute_AfterParentKeyword
+	{";",{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#")"まで無視した後idleへ遷移
+state(ignore_kakko_then_idle)
+{
+	{")",{ChangeState(idle)}}
+}
+
+#");"まで無視した後idleへ遷移
+state(ignore_kakko_then_idle2)
+{
+	{")",{ChangeState(ignore_kakko_then_idle2_after_kakko)}}
+}
+state(ignore_kakko_then_idle2_after_kakko)
+{
+	{";",{ChangeState(idle)}}
+}
+
+#"),", ")}", ");"まで無視した後、enum_idleへ遷移
+state(ignore_kakko_then_enumidle)
+{
+	{")",{ChangeState(ignore_kakko_then_enumidle_after_kakko)}}
+}
+state(ignore_kakko_then_enumidle_after_kakko)
+{
+	{",",{ChangeState(enum_idle)}}
+	{"}",{DecIndentFromCurrent,ChangeState(enum_idle)}}
+	{";", {ChangeState(idle)}}#;の場合はidleへ遷移
+}
+
+#");"まで無視した後、ObjCAtInterface_Insideへ遷移
+state(ignore_kakko_then_interfaceinside)
+{
+	{")",{ChangeState(ignore_kakko_then_interfaceinside_after_kakko)}}
+}
+state(ignore_kakko_then_interfaceinside_after_kakko)
+{
+	{";",{ChangeState(ObjCAtInterface_Inside)}}
+}
+
+#idle→1token後
+state(idle_after1token)
+{
+	StateAttribute_SyntaxPart("C")
+	#StateAttribute_IndentOnTheWay
+	{"::", {SetVarLastWord(className),ChangeState(idle_funcafternamespace)}}
+	{"(", {BlockStart(funckakkoblock), IncIndentFromNext, SetVarStart(menuname), ChangeState(idle_funckakko)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword),ChangeState(idle_arrayvar)}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(idle_operator)}}
+	{lineend, {}}
+	{"*", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(idle_commavars)}}
+	{"&", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(idle_commavars)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#各状態への分岐
+	{"enum", {ChangeState(enum)}}
+	{"struct", {SetVarStart(info),ChangeState(struct)}}
+	{"union", {SetVarStart(info),ChangeState(union)}}
+	{"class", {ChangeState(class)}}
+	{"typedef", {SetVarStart(info), ChangeState(typedef)}}
+	{"template", {SetVarStart(info), ChangeState(template)}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(idle_operator)}}
+	{"inline",{ChangeState(idle)}}
+	#上記以外の1トークンを読んだら状態idle_after2tokenへ。
+	{default,{ChangeState(idle_after2token)}}
+}
+
+#int (*pf)()といったタイプの関数定義、宣言のため。
+state(idle_funckakko)
+{
+	StateAttribute_SyntaxPart("C")
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, ChangeStateIfBlockEnd(funckakkoblock,idle_funckakko_end)}}
+	#インデント
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_funckakko_end)
+{
+	StateAttribute_SyntaxPart("C")
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarEnd(menuname), ChangeState(idle_funcarg)}}
+	{"{", {SetVarLastWord(keyword), BlockStart(funcblock), IncIndentFromNext, 
+		AddGlobalId([function], keyword, keyword, keyword,lastcomment,className,typetext,"if,while,for,switch,catch",5),
+		ClearVar(lastcomment),ChangeState(funcidle)}}#関数定義で関数に型指定が無かった場合。引数認識できないが、とりあえず、funcidleにはもっていく
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_after2token)
+{
+	StateAttribute_SyntaxPart("C")
+	#StateAttribute_IndentOnTheWay
+	{"::", {SetVarLastWord(className),ChangeState(idle_funcafternamespace)}}
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarLastWord(menuname), ChangeState(idle_funcarg)}}
+	{")", {DecIndentFromNext}}
+	{";", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([variable], keyword, "", info ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(idle)}}
+	#NS_処理
+	{"NS_AVAILABLE_IOS", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([variable], keyword, "", info ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_AVAILABLE_MAC", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([variable], keyword, "", info ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_AVAILABLE", {SetVarLastWord(keyword),SetVarEnd(info),
+		AddGlobalId([variable], keyword, "", info ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_DEPRECATED_IOS", {ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_DEPRECATED_MAC", {ChangeState(ignore_kakko_then_idle2)}}
+	{"NS_DEPRECATED", {ChangeState(ignore_kakko_then_idle2)}}
+	#
+	{"=", {SetVarLastWord(keyword),SetVarEnd(info),AddGlobalId([variable], keyword, "", info ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(rightvalue)}}
+	{",", {SetVarLastWord(keyword),SetVarEndAtPrevToken(info),
+		CatVar(info1,info,keyword), AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),
+		 SetVarStartFromNextChar(infocommavar), ChangeState(idle_commavars)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword),SetVarEndAtPrevToken(info),
+		SetVarStart(infocommavar), SetVarEnd(infocommavar), CatVar(infocommavar,infocommavar,keyword),#後でSetVar()を作って置き換え
+		SetVarStart(infoarray), ChangeState(idle_arrayvar)}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(idle_operator)}}
+	#インデント
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_arrayvar)
+{
+	StateAttribute_SyntaxPart("C")
+	#この状態に来た時点で、info:型名部分 infocommavar:カンマの次〜変数名 infoarray:[〜（未クローズ）
+	{";", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),#info1に表示情報を構成
+		AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(idle)}}
+	{",", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),#info1に表示情報を構成
+		AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),SetVarStartFromNextChar(infocommavar),ChangeState(idle_commavars)}}
+	{"=", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),#info1に表示情報を構成
+		AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(rightvalue)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_commavars)
+{
+	StateAttribute_SyntaxPart("C")
+	#この状態に来た時点で、info:型名部分 infocommavar:カンマの次〜（未クローズ）
+	{"::", {SetVarLastWord(className),ChangeState(idle_funcafternamespace)}}
+	{";", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(idle)}}
+	{"=", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),ChangeState(rightvalue)}}
+	{",", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddGlobalId([variable], keyword, "", info1 ,lastcomment,"",typetext,"",9),ClearVar(lastcomment),SetVarStartFromNextChar(infocommavar),ChangeState(idle_commavars)}}
+	{"[", {IncIndentFromNext, SetVarLastWord(keyword), SetVarEnd(infocommavar),SetVarStart(infoarray), ChangeState(idle_arrayvar)}}
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarLastWord(menuname), ChangeState(idle_funcarg)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#代入文の右辺値
+state(rightvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(idle)}}
+	{",", {SetVarStartFromNextChar(infocommavar),ChangeState(idle_commavars)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(idle_rightvalue_struct)}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_rightvalue_struct)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_operator)
+{
+	StateAttribute_SyntaxPart("C")
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarEnd(keyword), SetVarEnd(menuname), ChangeState(idle_funcarg)}}
+	{")", {DecIndentFromNext}}
+	{";", {ChangeState(idle)}}
+	#インデント
+	{"{", {IncIndentFromNext,ChangeState(idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(idle)}}
+	{":", {IndentLabel, ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+
+#enum
+state(enum)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{", {IncIndentFromNext,ChangeState(enum_idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{default,{SetVarWithTokenStack(keyword,0),SetVarWithTokenStack(info,0),AddGlobalId([enumtype], keyword, "", info ,lastcomment,"","","enum",9),ClearVar(lastcomment)}}
+}
+state(enum_idle)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent,ChangeState(enum_idle_after_1token)}}
+	{";", {ChangeState(idle)}}
+	{lineend,{}}
+	#NS_処理
+	{"NS_ENUM_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_CALENDAR_ENUM_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE",{ChangeState(ignore_kakko_then_enumidle)}}
+	#enum_idleでの最初の一文字をenum値として登録
+	{default, {SetVarCurrentToken(keyword),SetVarCurrentToken(info),
+		AddGlobalId([enum], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment),ChangeState(enum_idle_after_1token)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(enum_idle_after_1token)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{",",{ChangeState(enum_idle)}}
+	{";",{ChangeState(idle)}}
+	#NS_処理
+	{"NS_ENUM_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_CALENDAR_ENUM_DEPRECATED",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE_IOS",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE_MAC",{ChangeState(ignore_kakko_then_enumidle)}}
+	{"NS_ENUM_AVAILABLE",{ChangeState(ignore_kakko_then_enumidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"#",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+}
+state(enum_rightvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	{",", {ChangeState(enum_idle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(enum_idle)}}
+	{";", {ChangeState(idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#struct
+state(struct)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{", {SetVarLastWord(structname),SetVarLastWord(info),AddGlobalId([struct], structname, "", info ,lastcomment,"","","struct",9),ClearVar(lastcomment),
+			BlockStart(structblock),IncIndentFromNext,ChangeState(struct_idle)}}
+	{";", {ChangeState(idle)}}
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarLastWord(menuname), ChangeState(idle_funcarg)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(struct_idle)
+{
+	StateAttribute_SyntaxPart("C")
+	{"}", {DecIndentFromCurrent,ChangeStateIfBlockEnd(structblock,idle)}}
+	{";", {SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"",structname,"","",9),ClearVar(lastcomment),ClearVar(lastcomment)}}
+	{":", {SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"",structname,"","",9),ClearVar(lastcomment),ClearVar(lastcomment),ChangeState(struct_idle_aftercolon)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"",structname,"","",9),ClearVar(lastcomment),ClearVar(lastcomment),ChangeState(struct_idle_aftercolon)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(struct_idle_aftercolon)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {ChangeState(struct_idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#union
+state(union)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{", {SetVarLastWord(keyword),SetVarLastWord(info),AddGlobalId([union], keyword, "", info ,lastcomment,"","","union",9),ClearVar(lastcomment),
+			BlockStart(unionblock),IncIndentFromNext,ChangeState(union_idle)}}
+	{";", {ChangeState(idle)}}
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarLastWord(menuname), ChangeState(idle_funcarg)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(union_idle)
+{
+	StateAttribute_SyntaxPart("C")
+	{"}", {DecIndentFromCurrent}}
+	{";", {ChangeStateIfBlockEnd(unionblock,idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#pragma
+state(pragma)
+{
+	StateAttribute_SyntaxPart("C")
+	{"mark", {SetVarStartFromNextChar(menuname), ChangeState(pragmamark)}}
+	{lineend, {ChangeState(idle)}}
+}
+
+#include構文
+state(include) 
+{
+	StateAttribute_SyntaxPart("C")
+	{"\"", {SetVarStartFromNextChar(path),ChangeState(includepath)}}
+	{"<", {SetVarStartFromNextChar(path),ChangeState(includepath)}}
+	{lineend, {ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(includepath)
+{
+	StateAttribute_SyntaxPart("C")
+	{"\"", {SetVarEnd(path),Import(path),  ChangeState(include)}}
+	{">", {SetVarEnd(path),Import(path),  ChangeState(include)}}
+	{lineend, {ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#define構文
+state(define)
+{
+	StateAttribute_SyntaxPart("C")
+	{lineend, {SetVarWithTokenStack(keyword,first),SetVarEnd(info),AddGlobalId([#define], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment),PopState}}
+	#コメント／リテラル／エスケープ
+	#push状態からのPushStateはできないので、コメント／リテラルは処理できない
+	#{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	#{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	#{"'",{PushState(singlequotation)}}
+	#{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#typedef構文
+state(typedef)
+{
+	StateAttribute_SyntaxPart("C")
+	{"struct",{ChangeState(typedefstruct)}}
+	{"union",{ChangeState(typedefunion)}}
+	{";", {SetVarLastWord(keyword), SetVarEnd(info), AddGlobalId([typedef], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment), ChangeState(idle)}}
+	#NS_処理
+	{"NS_ENUM",{ChangeState(NS_ENUM)}}
+	{"NS_OPTIONS",{ChangeState(NS_ENUM)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefstruct)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{",{BlockStart(typedefstructblock),IncIndentFromNext,ChangeState(typedefstructidle)}}
+	{";", {SetVarLastWord(keyword),SetVarLastWord(info),AddGlobalId([struct(typedef)], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment),ChangeState(idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefstructidle)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{",{IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(typedefstructblock,typedefstructend)}}
+	{";", {SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"","","","",9)}}
+	{":", {SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"","","","",9),ChangeState(typedefstructidle_aftercolon)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword), AddGlobalId([struct member], keyword, "", "" ,"","","","",9),ChangeState(typedefstructidle_aftercolon)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefstructidle_aftercolon)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {ChangeState(typedefstructidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}} 
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefstructend)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {SetVarLastWord(keyword),SetVarWithTokenStack(info,-1),
+		AddGlobalId([struct(typedef)], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment),ChangeState(idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefunion)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{",{BlockStart(typedefunionblock),IncIndentFromNext,ChangeState(typedefunionidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefunionidle)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{",{IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(typedefunionblock,typedefunionend)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(typedefunionend)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {SetVarLastWord(keyword),SetVarWithTokenStack(info,-1),
+		AddGlobalId([union(typedef)], keyword, "", info ,lastcomment,"","","",9),ClearVar(lastcomment),ChangeState(idle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(pragmamark)
+{
+	StateAttribute_SyntaxPart("C")
+	{lineend, {SetVarEnd(menuname), AddGlobalId([#pragma mark],menuname,menuname,menuname,lastcomment,"","","",2),ClearVar(lastcomment), ChangeState(idle)}}
+}
+
+state(template)
+{
+	StateAttribute_SyntaxPart("C")
+	{">", {ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+####################
+#   クラス定義
+####################
+#class
+state(class)
+{
+	StateAttribute_SyntaxPart("C")
+	{":",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),ChangeState(classaftercolon)}}
+	{";",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),ChangeState(idle)}}
+	{"{",{SetVarLastWord(className),AddGlobalId([class], className, "", className ,lastcomment,"","","",3),ClearVar(lastcomment),BlockStart(classblock), IncIndentFromNext, ChangeState(classidle)}}
+	
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(classaftercolon)
+{
+	StateAttribute_SyntaxPart("C")
+	{";",{ChangeState(idle)}}
+	{"{",{BlockStart(classblock), IncIndentFromNext, ChangeState(classidle)}}
+	
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(classidle)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	{lineend,{}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(classblock,idle)}}
+	{"#",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(classidle_operator)}}
+	{"struct",{IncIndentFromNext,ChangeState(classidle_struct)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStartOrContinue(info),SetVarCurrentToken(typetext),ChangeState(classidle_after1token)}}
+}
+
+state(classidle_after1token)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(classblock,idle)}}
+	{"(", {IncIndentFromNext, SetVarLastWord(keyword), SetVarLastWord(menuname), ChangeState(classidle_funcarg)}}
+	{";", {SetVarLastWord(keyword),SetVarEnd(info),AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(classidle)}}
+	{"=", {SetVarLastWord(keyword),SetVarEnd(info),AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(classrightvalue)}}
+	{"[", {SetVarLastWord(keyword),ChangeState(classidle_arrayvar)}}
+	{"::",{}}
+	{"operator",{SetVarStart(keyword), SetVarStart(menuname), ChangeState(classidle_operator)}}
+	#ラベル
+	{":", {IndentLabel,ChangeState(classidle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(classidle_arrayvar)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {SetVarEnd(info),AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(classidle)}}
+	#ラベル
+	{":", {IndentLabel,ChangeState(classidle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(classidle_operator)
+{
+	StateAttribute_SyntaxPart("C")
+	{"(", {IncIndentFromNext,SetVarEnd(keyword), SetVarEnd(menuname), ChangeState(classidle_funcarg)}}
+	{";", {ChangeState(classidle)}}
+	#ラベル
+	{":", {IndentLabel,ChangeState(classidle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(classidle_struct)
+{
+	StateAttribute_SyntaxPart("C")
+	#
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent,SetVarNextToken(keyword),SetVarNextToken(info),
+		AddGlobalId([member variable], keyword, "", info ,lastcomment,className,typetext,"",9),ClearVar(lastcomment),ChangeState(classidle)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#代入文の右辺値（クラス内）
+state(classrightvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(classidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#メソッド宣言（引数部分）
+state(classidle_funcarg)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext,ChangeState(classidle_func_end)}}
+	{"{", {IncIndentFromNext, ChangeState(classidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(classidle)}}
+	{";", {ChangeState(classidle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#メソッド宣言
+state(classidle_func_end)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {SetVarEnd(info), AddGlobalId([function], keyword, menuname, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), ChangeState(classidle)}}
+	{"{", {SetVarEnd(info), BlockStart(methoddefblock), IncIndentFromNext,
+		 AddGlobalId([function], keyword, menuname, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), 
+		ChangeState(methoddef)}}
+	{"}", {DecIndentFromCurrent}}
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+ 	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(methoddef)
+{
+	StateAttribute_SyntaxPart("C")
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(methoddefblock,classidle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+
+####################
+#   関数定義
+####################
+state(idle_funcafternamespace)
+{
+	StateAttribute_SyntaxPart("C")
+	{"(", {BlockStart(funcargblock), IncIndentFromNext, SetVarLastWord(keyword), SetVarWithTokenStack(menuname,-4,0), ChangeState(idle_funcarg)}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{";", {ChangeState(idle)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_funcarg)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{")", {DecIndentFromNext, ChangeState(idle_func_end)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(idle)}}
+	{";", {ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{lineend,{}}
+	#
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStartOrContinue(arginfo),SetVarCurrentToken(argtypetext),ChangeState(idle_funcarg_after1token)}}
+}
+
+state(idle_funcarg_after1token)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{",", {SetVarLastWord(argkeyword), SetVarEnd(arginfo), 
+			AddLocalId([argument], argkeyword, arginfo,argtypetext,""), SetVarStartFromNextChar(arginfo),
+			ChangeState(idle_funcarg)}}
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, SetVarLastWord(argkeyword), SetVarEnd(arginfo), 
+			AddLocalId([argument], argkeyword, arginfo,argtypetext,"void"), ChangeStateIfBlockEnd(funcargblock,idle_func_end)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(idle)}}
+	{";", {ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_func_end)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {SetVarEnd(info), BlockStart(funcblock),
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), ChangeState(idle)}}
+	{":", {ChangeState(idle_func_memberinit)}}
+	{"{", {SetVarEnd(info), BlockStart(funcblock), IncIndentFromNext, 
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), 
+	ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent}}
+	{lineend,{ChangeState(idle_func_end_afterlineend)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+ 	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_func_end_afterlineend)
+{
+	StateAttribute_SyntaxPart("C")
+	{":", {ChangeState(idle_func_memberinit)}}
+	{"{", {SetVarEnd(info), BlockStart(funcblock), IncIndentFromNext, 
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), 
+	ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+ 	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_func_memberinit)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";", {ChangeState(idle)}}
+	{"{", {SetVarEnd(info), BlockStart(funcblock), IncIndentFromNext, 
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), 
+		ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent}}
+	{")",{DecIndentFromNext,ChangeState(idle_func_memberinit_afterkakko)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+ 	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(idle_func_memberinit_afterkakko)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {ChangeState(idle)}}
+	{"{", {SetVarEnd(info), BlockStart(funcblock), IncIndentFromNext, 
+		AddGlobalId([function], keyword, keyword, info,lastcomment,className,typetext,"if,while,for,switch,catch",5),ClearVar(lastcomment), 
+		ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent}}
+	{",", {ChangeState(idle_func_memberinit)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+ 	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+
+state(funcidle)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_Stable
+	{"for", {ChangeState(for)}}
+	{"return", {ChangeState(return)}} 
+	{"delete", {ChangeState(delete)}} 
+	{"break", {ChangeState(break)}}
+	{"case", {ChangeState(case)}}
+	{"if", {ChangeState(if)}}
+	{"while", {ChangeState(while)}}
+	{"switch", {ChangeState(switch)}}
+	{"throw", {ChangeState(throw)}}
+	{"@throw", {ChangeState(throw)}}
+	{"catch", {ChangeState(catch)}}
+	{"@catch", {ChangeState(catch)}}
+	{"try", {}}
+	{"@try", {}}
+	{"@finally", {}}
+	{";", {}}
+	{lineend, {}}
+	{"::", {}}
+	{"else",{}}
+	{"#",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#if",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#endif",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#else",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#ifdef",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#ifndef",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#elif",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#line",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#error",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#undef",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	#{"#pragma",{SetZeroIndentOnlyCurrent, PushState(directive)}}
+	{"*",{ChangeState(funcidle_leftvalue)}}
+	{"(",{IncIndentFromNext,ChangeState(funcidle_leftvalue)}}
+	{"++",{ChangeState(funcidle_leftvalue)}}
+	{"--",{ChangeState(funcidle_leftvalue)}}
+	#ObjC
+	{"[",{IncIndentFromNext,ChangeState(ObjCCall)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{SetVarStartOrContinue(info),SetVarCurrentToken(typetext),ChangeState(funcidle_after1token)}}
+}
+
+state(funcidle_leftvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	{";", {ChangeState(funcidle)}}
+	{"=", {ChangeState(func_rightvalue)}}
+	{"+=", {ChangeState(func_rightvalue)}}
+	{"-=", {ChangeState(func_rightvalue)}}
+	{"&=", {ChangeState(func_rightvalue)}}
+	{"|=", {ChangeState(func_rightvalue)}}
+	{"*=", {ChangeState(func_rightvalue)}}
+	{"/=", {ChangeState(func_rightvalue)}}
+	{"(",{IncIndentFromNext,ChangeState(func_funccall)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(funcidle_after1token)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"?", {ChangeState(triterm)}}
+	{";", {ChangeState(funcidle)}}
+	{".", {ChangeState(funcidle)}}
+	{"->", {ChangeState(funcidle)}}
+	{"::", {ChangeState(funcidle)}}
+	#439 {"<", {ChangeState(funcidle)}}##337
+	#439 {">", {ChangeState(funcidle)}}##337
+	{"=", {ChangeState(func_rightvalue)}}
+	{"+=", {ChangeState(func_rightvalue)}}
+	{"-=", {ChangeState(func_rightvalue)}}
+	{"&=", {ChangeState(func_rightvalue)}}
+	{"|=", {ChangeState(func_rightvalue)}}
+	{"*=", {ChangeState(func_rightvalue)}}
+	{"/=", {ChangeState(func_rightvalue)}}
+	{"++", {ChangeState(funcidle)}}
+	{"--", {ChangeState(funcidle)}}
+	{"(",{IncIndentFromNext,ChangeState(func_funccall)}}
+	{"[",{IncIndentFromNext,ChangeState(funcidle_leftvalue)}}
+	{"*", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(func_commavars)}}
+	{"&", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(func_commavars)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{":", {IndentLabel, ChangeState(funcidle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#上記以外の1トークンを読んだら状態idle_after1tokenへ。
+	{default,{ChangeState(funcidle_after2token)}}
+}
+
+state(funcidle_after2token)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"?", {ChangeState(triterm)}}
+	{";", {SetVarLastWord(keyword),SetVarEnd(info),AddLocalId([variable], keyword, info ,typetext,""),ChangeState(funcidle)}}
+	{"=", {SetVarLastWord(keyword),SetVarEnd(info),AddLocalId([variable], keyword, info ,typetext,""),ChangeState(func_rightvalue)}}
+	{"(", {SetVarLastWord(keyword),SetVarEndAtPrevToken(info),
+		CatVar(info1,info,keyword), AddLocalId([variable], keyword, info1 ,typetext,""),IncIndentFromNext,ChangeState(func_funccall)}}
+	{",", {SetVarLastWord(keyword),SetVarEndAtPrevToken(info),
+		CatVar(info1,info,keyword), AddLocalId([variable], keyword, info1 ,typetext,""),SetVarStartFromNextChar(infocommavar),ChangeState(func_commavars)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword),SetVarEndAtPrevToken(info), 
+		SetVarStart(infocommavar), SetVarEnd(infocommavar), CatVar(infocommavar,infocommavar,keyword),#後でSetVar()を作って置き換え
+		SetVarStart(infoarray), ChangeState(func_arrayvar)}}
+	{"*", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(func_commavars)}}
+	{"&", {SetVarEndAtPrevToken(info),SetVarStart(infocommavar),ChangeState(func_commavars)}}
+	{"::", {}}#439 下の":"でのインデント防止
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{":", {IndentLabel, ChangeState(funcidle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(func_arrayvar)
+{
+	StateAttribute_SyntaxPart("C")
+	#この状態に来た時点で、info:型名部分 infocommavar:カンマの次〜変数名 infoarray:[〜（未クローズ）
+	StateAttribute_IndentOnTheWay
+	{";", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),#info1に表示情報を構成
+		AddLocalId([variable], keyword, info1 ,typetext,""),ChangeState(funcidle)}}
+	{",", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),
+		AddLocalId([variable], keyword, info1 ,typetext,""),SetVarStartFromNextChar(infocommavar),ChangeState(func_commavars)}}
+	{"=", {SetVarEnd(infoarray),CatVar(info1,info,infocommavar),CatVar(info1,info1,infoarray),
+		AddLocalId([variable], keyword, info1 ,typetext,""),ChangeState(func_rightvalue)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent,ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{":", {IndentLabel, ChangeState(funcidle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#カンマで区切った変数
+state(func_commavars)
+{
+	StateAttribute_SyntaxPart("C")
+	#この状態に来た時点で、info:型名部分 infocommavar:カンマの次〜（未クローズ）
+	StateAttribute_IndentOnTheWay
+	{";", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddLocalId([variable], keyword, info1 ,typetext,""),ChangeState(funcidle)}}
+	{"=", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddLocalId([variable], keyword, info1 ,typetext,""),ChangeState(func_rightvalue)}}
+	{"(", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddLocalId([variable], keyword, info1 ,typetext,""),IncIndentFromNext,ChangeState(func_funccall)}}
+	{",", {SetVarLastWord(keyword), SetVarEnd(infocommavar),
+		CatVar(info1,info,infocommavar), AddLocalId([variable], keyword, info1 ,typetext,""),SetVarStartFromNextChar(infocommavar),ChangeState(func_commavars)}}
+	{"[", {IncIndentFromNext,SetVarLastWord(keyword), SetVarEnd(infocommavar), SetVarStart(infoarray), ChangeState(func_arrayvar)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#代入文の右辺値
+state(func_rightvalue)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(funcidle)}}
+	{",", {SetVarStartFromNextChar(infocommavar),ChangeState(func_commavars)}}
+	{"(",{IncIndentFromNext,ChangeState(func_funccall)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,ChangeState(func_rightvalue_struct)}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext,ChangeState(ObjCCall)}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#関数コール
+state(func_funccall)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#カンマ区切りコンストラクタに対応するには関数コール()ブロック判定必要{",", {SetVarStartFromNextChar(infocommavar),ChangeState(func_commavars)}}
+	{";",{ChangeState(funcidle)}}
+	#ObjCブロック記法
+	{"^",{ChangeState(ObjCBlock_start)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(func_rightvalue_struct)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeState(func_rightvalue)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#ObjCBlock
+state(ObjCBlock_start)
+{
+	StateAttribute_SyntaxPart("C")
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext,BlockStart(objcblockblock),ChangeState(ObjCBlock)}}
+	{"}", {DecIndentFromCurrent, ChangeState(func_funccall)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(ObjCBlock)
+{
+	StateAttribute_SyntaxPart("C")
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(objcblockblock,func_funccall)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#case構文
+state(case)
+{
+	StateAttribute_SyntaxPart("C")
+	{":",{IndentLabel, ChangeState(funcidle)}}
+	{"::",{}}
+	{lineend,{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#return構文
+state(return)
+{
+	StateAttribute_SyntaxPart("C")
+	{";",{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#delete構文
+state(delete)
+{
+	StateAttribute_SyntaxPart("C")
+	{";",{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#for構文
+state(for)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {BlockStart(forblock),IncIndentFromNext}}#最初の(
+	{";",{ChangeState(for2)}}
+	{"=",{ChangeState(forrightvalue)}}
+	#インデント
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#
+	{"const",{}}
+	{"static",{}}
+	{"mutable",{}}
+	#上記以外の1トークンを読んだら状態forafter1tokenへ。
+	{default,{SetVarStartOrContinue(info),SetVarCurrentToken(typetext),ChangeState(forafter1token)}}
+}
+state(forafter1token)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext,ChangeStateIfBlockEnd(forblock,funcidle)}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#Obj-C
+	{"in",{ChangeState(for3)}}
+	#C++11
+	{":",{ChangeState(for3)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+	#上記以外の1トークンを読んだら状態forafter2tokenへ。
+	{default,{ChangeState(forafter2token)}}
+}
+state(forafter2token)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";", {SetVarLastWord(keyword),SetVarEnd(info),AddLocalId([variable], keyword, info ,typetext,""),ChangeState(for2)}}
+	{"=", {SetVarLastWord(keyword),SetVarEnd(info),AddLocalId([variable], keyword, info ,typetext,""),ChangeState(forrightvalue)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#Obj-C
+	{"in",{ChangeState(for3)}}
+	#C++11
+	{":",{ChangeState(for3)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(forrightvalue)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(for2)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#Obj-C
+	{"in",{ChangeState(for3)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(for2)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{";",{ChangeState(for3)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#Obj-C
+	{"in",{ChangeState(for3)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(for3)
+{ 
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(",{IncIndentFromNext}}
+	{")",{DecIndentFromNext,ChangeStateIfBlockEnd(forblock,funcidle)}}
+	{";",{ChangeState(funcidle)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#if構文
+state(if)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {BlockStart(ifcondblock), IncIndentFromNext, ChangeState(ifcond)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(ifcond)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, ChangeStateIfBlockEnd(ifcondblock,funcidle)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#while構文
+state(while)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {BlockStart(whilecondblock), IncIndentFromNext, ChangeState(whilecond)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(whilecond)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, ChangeStateIfBlockEnd(whilecondblock,funcidle)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#switch構文
+state(switch)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {BlockStart(switchcondblock), IncIndentFromNext, ChangeState(switchcond)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(switchcond)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, ChangeStateIfBlockEnd(switchcondblock,funcidle)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#break構文
+state(break)
+{
+	StateAttribute_SyntaxPart("C")
+	{";",{ChangeState(funcidle)}}
+	{lineend,{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#throw構文
+state(throw)
+{
+	StateAttribute_SyntaxPart("C")
+	{";",{ChangeState(funcidle)}}
+	{lineend,{ChangeState(funcidle)}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#catch構文
+state(catch)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {BlockStart(catchargblock), IncIndentFromNext, ChangeState(catcharg)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(catcharg)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_IndentOnTheWay
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext, ChangeStateIfBlockEnd(catchargblock,funcidle)}}
+	{";",{ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext, ChangeState(funcidle)}}
+	{"}", {DecIndentFromCurrent, ChangeState(funcidle), ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+
+#三項演算子
+state(triterm)
+{
+	StateAttribute_SyntaxPart("C")
+	{":", {ChangeState(funcidle)}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(linecomment)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_DisableDirective
+	StateAttribute_ColorSlot(32)
+	{lineend,{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+state(comment)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_DisableDirective
+	StateAttribute_ColorSlot(32)
+	{"*/",{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+state(singlequotation)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_NotCode
+	StateAttribute_DisableDirective
+	StateAttribute_ColorSlot(33)
+	StateAttribute_DisableIndent
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(doublequotation)
+{
+	StateAttribute_SyntaxPart("C")
+	StateAttribute_NotCode
+	StateAttribute_DisableDirective
+	StateAttribute_DisableIndent
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(directive)
+{
+	StateAttribute_SyntaxPart("C directive")
+	{"pragma", {PopStateFromNextChar,ChangeState(pragma)}}
+	{"include", {PopStateFromNextChar,ChangeState(include)}}
+	{"import", {PopStateFromNextChar,ChangeState(include)}}
+	{"define", {PopStateFromNextChar,SetVarStart(info), ClearTokenStack, ChangeState(define)}}
+	{lineend,{PopStateFromNextChar}}
+	#コメント／リテラル／エスケープ
+	#push状態からのPushStateはできないので、コメント／リテラルは処理できない
+	#{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	#{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	#{"'",{PushState(singlequotation)}}
+	#{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+category[function]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"関数")
+}
+
+category[variable]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"変数")
+}
+
+category[member variable]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"メンバ変数")
+}
+
+category[property]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"プロパティ")
+}
+
+category[argument]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"引数")
+}
+
+category[enum]
+{
+	CategoryAttribute_ColorSlot(2)
+}
+
+category[enumtype]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[class]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[struct]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[union]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[typedef]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[struct(typedef)]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[union(typedef)]
+{
+	CategoryAttribute_ColorSlot(4)
+}
+
+category[struct member]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"structメンバ")
+}
+
+category[#pragma mark]
+{
+	CategoryAttribute_MenuBold
+	CategoryAttribute_ColorSlot(6)
+}
+
+category[#define]
+{
+	CategoryAttribute_ColorSlot(5)
+}
+

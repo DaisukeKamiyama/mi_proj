@@ -1,0 +1,674 @@
+,＝＝＝＝＝＝＝＝＝＝キーワードcsvファイル＝＝＝＝＝＝＝＝＝＝
+,CSVの記法は下記の通りです。（RFC4180に従っています）
+,1.列をカンマで区切る
+,2.行は改行で区切る
+,3.セル内に改行やダブルクオーテーションを入れたい場合はセルを""で囲む
+,4.ダブルクオーテーションは""と記述する（1つのダブルクオーテーションに対し、2つのダブルクオーテーションを記述する）
+,上記ルールに従えば、Excel等でも編集できます。（Excelの場合は、テキストエンコーディングをShift_JISにする必要があるかもしれません。）
+,テキストエンコーディングは自動認識しますが、一行目に下記の一文を入れると確実に認識できます。
+,""charset=（テキストエンコーディング名）""
+,＝＝＝＝＝＝＝＝＝＝カラムの説明＝＝＝＝＝＝＝＝＝＝
+,カラム1:キーワード
+,カラム2:キーワード説明
+,カラム3:型名
+,カラム4:親キーワード
+,カラム5:キーワード色タイプ
+,カラム6:補完テキスト
+,カラム7:キーワード情報クリック時移動先URL
+,※カラム1が空の行は無視されます。（＝コメント行として使用出来ます。）
+,※カラム5のキーワード色タイプは下記の8種類（モード設定の「色」タブの各色に対応しています。）
+,0.""reserved-word"", 1.""method"", 2.""property"", 3.""variable"", 4.""class""
+,5.""macro"", 6.""other1"", 7.""other2""
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+,JavaScript DOMキーワード
+,下記文書に準拠
+,Document Object Model (DOM) Level 1 Specification
+,http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/DOM.pdf
+,
+,＝＝＝＝＝＝＝＝＝＝カラムヘッダ＝＝＝＝＝＝＝＝＝＝
+,キーワード説明,型名,親キーワード,キーワード色タイプ,補完テキスト,移動先URL
+,＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+document,,,Document,property
+,＝＝＝＝＝＝＝＝＝＝E.1: Document Object Model Level 1 Core＝＝＝＝＝＝＝＝＝＝
+,----------Object DOMImplementation----------
+,メソッド
+hasFeature,"hasFeature(feature, version)
+feature: String
+version: String",boolean,DOMImplementation,method
+,----------Object Document----------
+,プロパティ
+doctype,,DocumentType,Document,property
+implementation,,DOMImplementation,Document,property
+documentElement,,Element,Document,property
+,メソッド
+createElement,"createElement(tagName)
+tagName: String",Element,Document,method
+createDocumentFragment,"createDocumentFragment()",DocumentFragment,Document,method
+createTextNode,"createTextNode(data)
+data: String",Text,Document,method
+createComment,"createComment(data)
+data: String",Comment,Document,method
+createCDATASection,"createCDATASection(data)
+data: String",CDATASection,Document,method
+createProcessingInstruction,"createProcessingInstruction(target, data)
+target: String
+data: String",ProcessingInstruction,Document,method
+createAttribute,"createAttribute(name)
+name: String",Attr,Document,method
+createEntityReference,"createEntityReference(name)
+name: String",EntityReference,Document,method
+getElementsByTagName,"getElementsByTagName(tagname)
+tagname: String",NodeList,Document,method
+,----------Object Node----------
+,プロパティ
+nodeName,,String,Node,property
+nodeValue,,String,Node,property
+nodeType,,short,Node,property
+parentNode,,Node,Node,property
+childNodes,,NodeList,Node,property
+firstChild,,Node,Node,property
+lastChild,,Node,Node,property
+previousSibling,,Node,Node,property
+nextSibling,,Node,Node,property
+attributes,,NamedNodeMap,Node,property
+ownerDocument,,Document,Node,property
+,メソッド
+insertBefore,"insertBefore(newChild, refChild)
+newChild: Node
+refChild: Node",Node,Node,method
+replaceChild,"replaceChild(newChild, oldChild)
+newChild: Node
+oldChild: Node",Node,Node,method
+removeChild,"removeChild(oldChild)
+oldChild: Node",Node,Node,method
+appendChild,"appendChild(newChild)
+newChild: Node",Node,Node,method
+hasChildNodes,"hasChildNodes()",boolean,Node,method
+cloneNode,"cloneNode(deep)
+deep: boolean",Node,Node,method
+,----------Object NodeList----------
+,プロパティ
+length,,int,NodeList,property
+,メソッド
+item,"item(index)
+index: unsigned long",Node,NodeList,method
+,----------Object NamedNodeMap----------
+,プロパティ
+length,,int,NamedNodeMap,property
+,メソッド
+getNamedItem,"getNamedItem(name)
+name: String",Node,NamedNodeMap,method
+setNamedItem,"setNamedItem(arg)
+arg: Node",Node,NamedNodeMap,method
+removeNamedItem,"removeNamedItem(name)
+name: String",Node,NamedNodeMap,method
+item,"item(index)
+index: unsigned long",Node,NamedNodeMap,method
+,----------Object CharacterData----------
+,プロパティ
+data,,String,CharacterData,property
+length,,int,CharacterData,property
+,メソッド
+substringData,"substringData(offset, count)
+offset: unsigned long
+count: unsigned long",DOMString,CharacterData,method
+appendData,"appendData(arg)
+arg: String",void,CharacterData,method
+insertData,"insertData(offset, arg)
+offset: unsigned long
+arg: String",void,CharacterData,method
+deleteData,"deleteData(offset, count)
+offset: unsigned long
+count: unsigned long",void,CharacterData,method
+replaceData,"replaceData(offset, count, arg)
+offset: unsigned long
+count: unsigned long
+arg: String",void,CharacterData,method
+,----------Object Attr----------
+,プロパティ
+name,,String,Attr,property
+specified,,boolean,Attr,property
+value,,String,Attr,property
+,----------Object Element----------
+,プロパティ
+tagName,,String,Element,property
+,メソッド
+getAttribute,"getAttribute(name)
+name: String",DOMString,Element,method
+setAttribute,"setAttribute(name, value)
+name: String
+value: String",void,Element,method
+removeAttribute,"removeAttribute(name)
+name: String",void,Element,method
+getAttributeNode,"getAttributeNode(name)
+name: String",Attr,Element,method
+setAttributeNode,"setAttributeNode(newAttr)
+newAttr: Attr",Attr,Element,method
+removeAttributeNode,"removeAttributeNode(oldAttr)
+oldAttr: Attr",Attr,Element,method
+getElementsByTagName,"getElementsByTagName(name)
+name: String",NodeList,Element,method
+normalize,"normalize()",void,Element,method
+,----------Object Text----------
+,メソッド
+splitText,"splitText(offset)
+offset: unsigned long",Text,Text,method
+,----------Object DocumentType----------
+,プロパティ
+name,,String,DocumentType,property
+entities,,NamedNodeMap,DocumentType,property
+notations,,NamedNodeMap,DocumentType,property
+,----------Object Notation----------
+,プロパティ
+publicId,,String,Notation,property
+systemId,,String,Notation,property
+,----------Object Entity----------
+,プロパティ
+publicId,,String,Entity,property
+systemId,,String,Entity,property
+notationName,,String,Entity,property
+,----------Object ProcessingInstruction----------
+,プロパティ
+target,,String,ProcessingInstruction,property
+data,,String,ProcessingInstruction,property
+,＝＝＝＝＝＝＝＝＝＝E.2: Document Object Model Level 1 HTML＝＝＝＝＝＝＝＝＝＝
+,----------Object HTMLCollection----------
+,プロパティ
+length,,int,Collection,property
+,メソッド
+item,"item(index)
+index: unsigned long",Node,Collection,method
+namedItem,"namedItem(name)
+name: String",Node,Collection,method
+,----------Object HTMLDocument----------
+,プロパティ
+title,,String,Document,property
+referrer,,String,Document,property
+domain,,String,Document,property
+URL,,String,Document,property
+body,,Element,Document,property
+images,,Collection,Document,property
+applets,,Collection,Document,property
+links,,Collection,Document,property
+forms,,Collection,Document,property
+anchors,,Collection,Document,property
+cookie,,Collection,Document,property
+,メソッド
+open,"open()",void,Document,method
+close,"close()",void,Document,method
+write,"write(text)
+text: String",void,Document,method
+writeln,"writeln(text)
+text: String",void,Document,method
+getElementById,"getElementById(elementId)
+elementId: String",Element,Document,method
+getElementsByName,"getElementsByName(elementName)
+elementName: String",NodeList,Document,method
+,----------Object Element----------
+,静的にはHTMLHtmlElement, HTMLHeadElement, ...等各種HTMLElementの区別はつかないので、Elementのメンバとして定義する
+,プロパティ
+id,"id属性
+(全要素共通)",String,Element,property
+title,"title属性
+(全要素共通)",String,Element,property
+lang,"lang属性
+(全要素共通)",String,Element,property
+dir,"dir属性
+(全要素共通)",String,Element,property
+className,"class属性
+(全要素共通)",String,Element,property
+version,"version属性
+- html要素",String,Element,property
+profile,"profile属性
+- head要素",String,Element,property
+disabled,"disabled属性
+- link要素
+- style要素
+- select要素
+- optgroup要素
+- option要素
+- input要素
+- textarea要素
+- button要素",boolean,Element,property
+charset,"charset属性
+- link要素",String,Element,property
+href,"href属性
+- link要素
+- base要素",String,Element,property
+hreflang,"hreflang属性 
+- link要素",String,Element,property
+media,"media属性
+- link要素
+- style要素",String,Element,property
+rel,"rel属性
+- link要素
+- a要素",String,Element,property
+rev,"rev属性
+- link要素
+- a要素",String,Element,property
+target,"target属性
+- link要素
+- base要素
+- form要素
+- a要素
+- area要素",String,Element,property
+type,"type属性
+- link要素
+- style要素
+- select要素
+- input要素
+- textarea要素
+- button要素
+- ul要素
+- ol要素
+- li要素
+- a要素
+- object要素
+- param要素
+- script要素",String,Element,property
+text,"text属性
+- title要素
+- optgroup要素
+- script要素
+- body要素",String,Element,property
+content,"content属性
+- meta要素",String,Element,property
+httpEquiv,"httpEquiv属性
+- meta要素",String,Element,property
+name,"name属性
+- meta要素
+- form要素
+- select要素
+- input要素
+- textarea要素
+- button要素
+- a要素
+- img要素
+- object要素
+- param要素
+- applet要素
+- map要素
+- frame要素
+- iframe要素",String,Element,property
+scheme,"scheme属性
+- meta要素",String,Element,property
+form,"form属性
+- isindex要素
+- select要素
+- option要素
+- input要素
+- textarea要素
+- button要素
+- label要素
+- fieldset要素
+- legend要素
+- object要素",Element,Element,property
+prompt,"prompt属性
+- isindex要素",String,Element,property
+aLink,"alink属性
+- body要素",String,Element,property
+background,"background属性
+- body要素",String,Element,property
+bgColor,"bgcolor属性
+- body要素
+- table要素
+- tr要素
+- td/th要素",String,Element,property
+link,"link属性
+- body要素",String,Element,property
+vLink,"vlink属性
+- body要素",String,Element,property
+elements,"elements属性
+- form要素",Collection,Element,property
+length,"length属性
+- form要素
+- select要素",long,Element,property
+acceptCharset,"acceptcharset属性
+- form要素",String,Element,property
+action,"action属性
+- form要素",String,Element,property
+enctype,"enctype属性
+- form要素",String,Element,property
+method,"method属性
+- form要素",String,Element,property
+selectedIndex,"selectedindex属性
+select要素",long,Element,property
+value,"value属性
+- select要素
+- option要素
+- input要素
+- textarea要素
+- button要素
+- li要素
+- param要素",String,Element,property
+options,"options属性
+- select要素",Collection,Element,property
+multiple,"multiple属性
+- select要素",boolean,Element,property
+size,"size属性
+- select要素
+- input要素",long,Element,property
+tabIndex,"tabindex属性
+- select要素
+- input要素
+- textarea要素
+- button要素
+- a要素
+- object要素
+- area要素",long,Element,property
+label,"label属性
+- optgroup要素
+- option要素",String,Element,property
+defaultSelected,"デフォルトの選択状態(true/false)
+- option要素",boolean,Element,property
+index,"index属性
+- option要素",long,Element,property
+selected,"selected属性
+- option要素",boolean,Element,property
+defaultValue,"でフォルトの値(String)
+- input要素
+- textarea要素",String,Element,property
+defaultChecked,"デフォルトのCheck状態(true/false)
+- input要素",boolean,Element,property
+accept,"accept属性
+- input要素",String,Element,property
+accessKey,"accesskey属性
+- input要素
+- textarea要素
+- button要素
+- label要素
+- legend要素
+- a要素
+- area要素",String,Element,property
+align,"align属性
+- input要素
+- legend要素
+- div要素
+- p要素
+- h1,h2,...,h6要素
+- hr要素
+- img要素
+- object要素
+- applet要素
+- table要素
+- caption要素
+- col要素
+- section要素
+- tr要素
+- td/th要素
+- iframe要素",String,Element,property
+alt,"alt属性
+- input要素
+- img要素
+- applet要素
+- area要素",String,Element,property
+checked,"checked属性
+- input要素",boolean,Element,property
+maxLength,"maxlength属性
+- input要素",long,Element,property
+readOnly,"readonly属性
+- input要素
+- textarea要素",String,Element,property
+src,"src属性
+- input要素",String,Element,property
+useMap,"usemap属性
+- input要素
+- object要素",String,Element,property
+cols,"cols属性
+- textarea要素",long,Element,property
+rows,"rows属性
+- textarea要素",long,Element,property
+htmlFor,"for属性
+- label要素
+- script要素",String,Element,property
+compact,"compact属性
+- ul要素
+- ol要素
+- dl要素
+- directory要素
+- menu要素",boolean,Element,property
+start,"start属性
+- ol要素",long,Element,property
+cite,"cite属性
+- blockquote要素
+- quote要素
+- mod要素",String,Element,property
+width,"width属性
+- pre要素",long,Element,property
+width,"width属性
+- hr要素
+- img要素
+- object要素
+- applet要素
+- table要素
+- col要素
+- td/th要素
+- iframe要素",String,Element,property
+clear,"clear属性
+- br要素",,String,Element,property
+color,"color属性
+- basefont要素
+- font要素",String,Element,property
+face,"face属性
+- basefont要素
+- font要素",String,Element,property
+size,"size属性
+- basefont要素
+- font要素
+- hr要素",String,Element,property
+noShade,"noshade属性
+- hr要素",boolean,Element,property
+dateTime,"datetime属性
+- mod要素",String,Element,property
+charset,"charset属性
+- a要素
+- script要素",String,Element,property
+coords,"coords属性
+- a要素
+- area要素",String,Element,property
+href,"href属性
+- a要素
+- area要素",String,Element,property
+hreflang,"hreflang属性
+- a要素",String,Element,property
+shape,"shape属性
+- a要素
+- area要素",String,Element,property
+lowSrc,"lowsrc属性
+- img要素",String,Element,property
+border,"border属性
+- img要素
+- object要素
+- table要素",String,Element,property
+height,"height属性
+- img要素
+- object要素
+- applet要素
+- td/th要素
+- iframe要素",String,Element,property
+hspace,"hspace属性
+- img要素",String,Element,property
+isMap,"ismap属性
+- img要素",boolean,Element,property
+longDesc,"longdesc属性
+- img要素",String,Element,property
+src,"src属性
+- img要素
+- script要素
+- frame要素
+- iframe要素",String,Element,property
+useMap,"usemap属性
+- img要素",String,Element,property
+vspace,"vspace属性
+- img要素",String,Element,property
+code,"code属性
+- object要素
+- applet要素",String,Element,property
+archive,"archive属性
+- object要素
+- applet要素",String,Element,property
+codeBase,"codebase属性
+- object要素
+- applet要素",String,Element,property
+codeType,"codetype属性
+- object要素",String,Element,property
+data,"data属性
+- object要素",String,Element,property
+declare,"declare属性
+- object要素",String,Element,property
+hspace,"hspace属性
+- object要素
+- applet要素",String,Element,property
+standby,"standby属性
+- object要素",String,Element,property
+vspace,"vspace属性
+- object要素
+- applet要素",String,Element,property
+valueType,"valueType属性
+- param要素",String,Element,property
+object,"object属性
+- applet要素",String,Element,property
+areas,"areas属性
+- map要素",Collection,Element,property
+noHref,"nohref属性
+- area要素",String,Element,property
+event,"event属性
+- script要素",String,Element,property
+defer,"defer属性
+- script要素",boolean,Element,property
+caption,"caption要素
+- table要素",Element,Element,property
+tHead,"thead要素
+- table要素",Element,Element,property
+tFoot,"tfoot要素
+- table要素",Element,Element,property
+rows,"テーブルの各行
+- table要素
+- section要素",Collection,Element,property
+tBodies,"tbody要素",Collection,Element,property
+cellPadding,"cellpadding属性
+- table要素",String,Element,property
+cellSpacing,"cellspacing属性
+- table要素",String,Element,property
+frame,"frame属性
+- table要素",String,Element,property
+rules,"rules属性
+- table要素",String,Element,property
+summary,"summary属性
+- table要素",String,Element,property
+ch,"char属性
+- col要素
+- section要素
+- tr要素
+- td/th要素",String,Element,property
+chOff,"charofff属性
+- col要素
+- section要素
+- tr要素
+- td/th要素",String,Element,property
+span,"span属性
+- col要素",String,Element,property
+vAlign,"valign属性
+- col要素
+- section要素
+- tr要素
+- td/th要素",String,Element,property
+rowIndex,"行のindex（thead, tfoot, tbodyトータルでのindex）
+- tr要素",long,Element,property
+sectionRowIndex,"行のindex（thead, tfoot, tbodyそれぞれの中でのindex）
+- tr要素",long,Element,property
+cells,"各セル
+- tr要素",Collection,Element,property
+cellIndex,"セルのindex
+- td/th要素",long,Element,property
+abbr,"abbr属性
+- td/th要素",String,Element,property
+axis,"axis属性
+- td/th要素",String,Element,property
+colSpan,"colspan属性
+- td/th要素",long,Element,property
+headers,"headers属性
+- td/th要素",String,Element,property
+noWrap,"nowrap属性
+- td/th要素",boolean,Element,property
+rowSpan,"rowspan属性
+- td/th要素",long,Element,property
+scope,"scope属性
+- td/th要素",String,Element,property
+cols,"フレーム列数
+- frameset要素",String,Element,property
+rows,"フレーム行数
+- frameset要素",,String,Element,property
+frameBorder,"frameborder属性
+- frame要素
+- iframe要素",String,Element,property
+longDesc,"longdesc属性
+- frame要素
+- iframe要素",String,Element,property
+marginHeight,"marginheight属性
+- frame要素
+- iframe要素",String,Element,property
+marginWidth,"marginwidth属性
+- frame要素
+- iframe要素",String,Element,property
+noResize,"noresize属性
+- frame要素",boolean,Element,property
+scrolling,"scrolling属性
+- frame要素
+- iframe要素",String,Element,property
+,メソッド
+submit,"submit()
+- form要素",void,Element,method
+reset,"reset()
+- form要素",void,Element,method
+add,"add(element, before)
+element: Element
+before: Element
+- select要素",void,Element,method
+remove,"remove(index)
+index: long
+- select要素",void,Element,method
+blur,"blur()
+- select要素
+- input要素
+- textarea要素
+- a要素",void,Element,method
+focus,"focus()
+- select要素
+- input要素
+- textarea要素
+- a要素",void,Element,method
+select,"select()
+- input要素
+- textarea要素",void,Element,method
+click,"click()
+- input要素",void,Element,method
+createTHead,"createTHead()
+- table要素",Element,Element,method
+deleteTHead,"deleteTHead()
+- table要素",void,Element,method
+createTFoot,"createTFoot()
+- table要素",Element,Element,method
+deleteTFoot,"deleteTFoot()
+- table要素",void,Element,method
+createCaption,"createCaption()
+- table要素",Element,Element,method
+deleteCaption,"deleteCaption()
+- table要素",void,Element,method
+insertRow,"insertRow(index)
+index: long
+- table要素
+- section要素",Element,Element,method
+deleteRow,"deleteRow(index)
+index: long
+- table要素
+- section要素",void,Element,method
+insertCell,"insertCell(index)
+index: long
+- tr要素",Element,Element,method
+deleteCell,"deleteCell(index)
+index: long
+- tr要素",void,Element,method
+
+
+

@@ -1,0 +1,620 @@
+Sub Windows Display
+Sub Windows Display
+Sub Windows Font :
+Sub Windows Font :
+Transparency for Floating : 
+Transparency for Floating : 
+Transparency for Popup : 
+Transparency for Popup : 
+Popup Window
+Popup Window
+Completion Candidate :
+Completion Candidate :
+No Popup
+No Popup
+Popup near Insertion Point
+Popup near Insertion Point
+Popup immediately under Insertion Point
+Popup immediately under Insertion Point
+Keyword Information :
+Keyword Information :
+Popup Keyword Information
+Popup Keyword Information
+Hide Keyword Information after several seconds
+Hide Keyword Information after several seconds
+Caret & Current Line
+Caret & Current Line
+Display Vertical Line
+Display Vertical Line
+Display None
+Display None
+Current Line :
+Current Line :
+Caret :
+Caret :
+Current Line Color :
+Current Line Color :
+Setup how insertion point is displayed.
+Setup how insertion point is displayed.
+Display Caret
+Display Caret
+Display Underline
+Display Underline
+Paint Line
+Paint Line
+Font and Colors
+Font and Colors
+Application Preferences
+Application Preferences
+Auto Backup
+Auto Backup
+Auto Backup :
+Auto Backup :
+Enable Auto Backup
+Enable Auto Backup
+Backup Folder :
+Backup Folder :
+Non-Text File Definition
+Non-Text File Definition
+Non-Text File :
+Non-Text File :
+Default Mode
+Default Mode
+Default Mode :
+Default Mode :
+Font and Colors are set in Mode Preferences
+Font and Colors are set in Mode Preferences
+Open Mode Preferences (Normal mode) ...
+Open Mode Preferences (Normal mode) ...
+Letter Count Wrap
+Letter Count Wrap
+Kinsoku Characters  :
+Kinsoku Characters  :
+Attach Kinsoku Characters at Line End
+Attach Kinsoku Characters at Line End
+Wrap from Previous Character
+Wrap from Previous Character
+Text Encoding Report Option :
+Text Encoding Report Option :
+Show JIS X 0208 undefined characters
+Show JIS X 0208 undefined characters
+Show half-width Katakana
+Show half-width Katakana
+Open Shift_JIS text even if it includes error chars
+Open Shift_JIS text even if it includes error chars
+Text Encoding
+Text Encoding
+Text Encoding :
+Text Encoding :
+Diff Display Color
+Diff Display Color
+Changed Line :
+Changed Line :
+Added Line :
+Added Line :
+Deleted Line : 
+Deleted Line : 
+Opacity : 
+Opacity : 
+Diff Source Display
+Diff Source Display
+Wrap :
+Wrap :
+Always Word Wrap with width of sub text
+Always Word Wrap with width of sub text
+Version Control Tool
+Version Control Tool
+Subversion :
+Version Control Tool :
+Use Subversion Integration
+Use Subversion / git Integration
+Tool Paths
+Tool Paths
+diff Path :
+diff Path :
+diff Options :
+diff Options :
+Subversion Path :
+Subversion Path :
+Auto Folder Compare
+Auto Folder Compare
+Auto Folder Compare :
+Auto Folder Compare :
+Automatically Compare for this Diff Working Folder
+Automatically Compare for this Diff Working Folder
+Diff Working Folder :
+Diff Working Folder :
+Diff Source Folder :
+Diff Source Folder :
+If opened file is in Diff Working Folder, automatically compare with the Diff Source Folder file.
+If opened file is in Diff Working Folder, automatically compare with the Diff Source Folder file.
+Distinguish \ and ¥
+Distinguish \ and ¥
+Ignore Spaces/Tabs/Returns
+Ignore Spaces/Tabs/Returns
+Ignore Cases
+Ignore Cases
+Whole Word Only
+Whole Word Only
+Regular Expression
+Regular Expression
+Find From First after Document End
+Find From First after Document End
+Fuzzy Search
+Fuzzy Search
+Find Sub Folders Recursively
+Find Sub Folders Recursively
+Display Header Title in Result
+Display Header Title in Result
+Visible File Only
+Visible File Only
+Text File Only
+Text File Only
+Find Window
+Find Window
+Find Option Default
+Find Option Default
+Fuzzy Search Options
+Fuzzy Search Options
+Find Options :
+Find Options :
+Multi-File Find Options :
+Multi-File Find Options :
+Fuzzy Search Options :
+Fuzzy Search Options :
+Unicode Compatible Characters
+Unicode Compatible Characters
+Hiragana / Katakana
+Hiragana / Katakana
+Onbiki Exsistence
+Onbiki Exsistence
+Kana Yuragi Expression
+Kana Yuragi Expression
+Find Highlight :
+Find Highlight :
+Display Highlight for Found Text
+Display Highlight for Found Text
+Display Highlight for Previously Found Text
+Display Highlight for Previously Found Text
+Search Box :
+Search Box :
+Focus Search Box in Toolbar by Find menu
+Focus Search Box in Toolbar by Find menu
+Focus After Find :
+Focus After Find :
+Activate Text Window when text is found
+Activate Text Window when text is found
+Find Window Font :
+Find Window Font :
+Current Word :
+Current Word :
+Display Highlight for Current Word
+Display Highlight for Current Word
+Highlight
+Highlight
+Focus
+Focus
+Select...
+Select...
+Shell Script
+Shell Script
+Shell Script :
+Shell Script :
+Execute Shell Script for Tool which starts with #!
+Execute Shell Script for Tool which starts with #!
+Output Mode :
+Output Mode :
+Folder Label
+Folder Label
+Folder Label :
+Folder Label :
+If a file path matches the following list, display label in text view, and recently opened list.
+If a file path matches the following list, display label in text view, and recently opened list.
+Color Print :
+Color Print :
+Enable Color Print
+Enable Color Print
+Convert White letter color to Black
+Convert White Letter Color to Black
+White Letter Color :
+White Letter Color :
+Line Number :
+Line Number :
+Print Paragraph Number instead of Line Number
+Print Paragraph Number Instead of Line Number
+Print Font :
+Print Font :
+Use Font for Print instead of Font for Display
+Use Font for Print Instead of Font for Display
+Page Number :
+Page Number :
+Print Page Number
+Print Page Number
+Page Number Font :
+Page Number Font :
+File Name :
+File Name :
+Print File Name
+Print File Name
+File Name Font :
+File Name Font :
+Separate Line :
+Separate Line :
+Print Separator above of File Name
+Print Separator Above of File Name
+Each Line Number :
+Each Line Number :
+Print Each Line Number
+Print Each Line Number
+Each Line Number Font :
+Each Line Number Font :
+Line Margin :
+Line Margin :
+Wrap Mode :
+Wrap Mode :
+Always Wrap with Paper Width
+Always Wrap with Paper Width
+Print Option
+Print Option
+Print Property
+Print Property
+Paper Margin
+Paper Margin
+Left Margin :
+Left Margin :
+Right Margin :
+Right Margin :
+Top Margin :
+Top Margin :
+Bottom Margin :
+Bottom Margin :
+pixel
+pixel
+Anti-Alias :
+Anti-Alias :
+Enable Anti-Alias of Text Display
+Enable Anti-Alias of Text Display
+Double-Click :
+Double-Click :
+Select Kanji+Hiragana or Katakana+Hiragana
+Select Kanji+Hiragana or Katakana+Hiragana
+Context Menu :
+Context Menu :
+Select Word when clicking right mouse button
+Select word when clicking right mouse button
+Display Context Menu by pressing button long time
+Display context menu by pressing button long time
+Tick ( 1 tick = 1/60 sec )
+Tick ( 1 tick = 1/60 sec )
+Use Thick Caret
+Use thick Caret
+Shortcut for windows :
+Shortcut for windows :
+Assign numbers for windows
+Assign numbers for windows
+Display control code with HEX code with red color
+Display control code with HEX code with red color
+Unicode Character Display :
+Unicode Character Display :
+Display each Canonical Decomposition character
+Display each Canonical Decomposition character
+Window Close :
+Window Close :
+Close All Tabs when clicking Window Close button
+Close All Tabs when clicking Window Close button
+Change from tab to window :
+Change from tab to window :
+pixel, move the position of window
+pixel, move the position of window
+Full-width Character :
+Full-width Character :
+Count as 2 characters for tab/wrap calculation
+Count as 2 characters for tab/wrap calculation
+Reopen :
+Reopen :
+Reopen Files opened when quit
+Reopen Files opened when quit
+History Memory :
+History Memory :
+Do Not Remember any History
+Do Not Remember any History
+Wheel Scroll Speed :
+Wheel Scroll Speed :
+When % key is pressed :
+When % key is pressed :
+Horizontal Wheel Scroll :
+Horizontal Wheel Scroll :
+Disable Horizontal Scroll
+Disable Horizontal Scroll
+Default Window Size :
+Default Window Size :
+Set Front Window Size
+Set Front Window Size
+* Excluding Side Bar
+* Excluding Side Bar
+Inhibit writing from other apps while Editing
+Inhibit writing from other apps while Editing
+Remote File
+Remote File
+Setup Remote File account.
+Setup Remote File account.
+Connection Type : 
+Connection Type : 
+Server Name : 
+Server Name : 
+User Name : 
+User Name : 
+Password : 
+Password : 
+Port Number : 
+Port Number : 
+Root Path : 
+Root Path : 
+HTTP URL : 
+HTTP URL : 
+Local Backup : 
+Local Backup : 
+Save Backup to Local Folder
+Save Backup to Local Folder
+Add Date/Time to File Name
+Add Date/Time to File Name
+FTP Options : 
+FTP Options : 
+PASV Mode
+PASV Mode
+Binary Mode
+Binary Mode
+FTP Proxy : 
+FTP Proxy : 
+Proxy Server : 
+Proxy Server : 
+No Proxy
+No Proxy
+Use FTP Proxy Server (USER user@server)
+Use FTP Proxy Server (USER user@server)
+Use FTP Proxy Server (USER>PASS>SITE>USER>PASS)
+Use FTP Proxy Server (USER>PASS>SITE>USER>PASS)
+Set Default
+Set Default
+Text Window Layout :
+Text Window Layout :
+Operation Detail
+Operation Detail
+Display Detail
+Display Detail
+File Exclusion Control :
+File Exclusion Control :
+Adjust Scroll for editing apart from window bottom
+Adjust Scroll for editing apart from window bottom
+Tab / Window
+Tab / Window
+Select whether document is opened with tab or window.
+Select whether document is opened with tab or window.
+Open Document with :
+Open Document with :
+Tab
+Tab
+Window
+Window
+Line Selection
+Line Selection
+Setup operation of line selection.
+Setup operation of line selection.
+Click at Line Number :
+Click at Line Number :
+Select first insertion point of line
+Select first insertion point of line
+Select line
+Select line
+Triple Click :
+Triple Click :
+Select paragraph
+Select paragraph
+Window Layout
+Window Layout
+Set visibility of layout parts.
+Set visibility of layout parts.
+Show Macro Bar
+Show Macro Bar
+Show Horizontal Scrollbar
+Show Horizontal Scrollbar
+Show Status Bar
+Show Status Bar
+Select Mode when clicking command+N.
+Select Mode when clicking command+N.
+Setup display settings for all sub windows.
+Setup display settings for all sub windows.
+Popup Window Position :
+Popup Window Position :
+Setup completion candidate window.
+Setup completion candidate window.
+Completion Key for Popup :
+Completion Key for Popup :
+Input completion by arrow key after Popup displayed
+Input completion by arrow key after Popup displayed
+Setup keyword information window.
+Setup keyword information window.
+Keyword Info Window
+Keyword Info Window
+Comment Display  :
+Comment Display  :
+Display with red color when the previous comment includes line which starts with the following texts.
+Display with red color when the previous comment includes line which starts with the following texts.
+Text Encoding Recognition :
+Text Encoding Recognition :
+Use Automatic Recognition
+Use Automatic Recognition
+Text Encoding Fallback :
+Error Characters : 
+Allow error characters when open file
+Allow error characters when open file
+Show Dialog when error characters are included
+Show Dialog when error characters are included
+Text Encoding Report Option :
+Text Encoding Report Option :
+Show JIS X 0208 undefined characters
+Show JIS X 0208 undefined characters
+Show half-width Katakana
+Show half-width Katakana
+Setup properties for letter count wrap.
+Setup properties for letter count wrap.
+Setup text encoding handling.
+Setup text encoding handling.
+Setup Find window display.
+Setup Find window display.
+Setup default values which are applied when app launched.
+Setup default values which are applied when app launched.
+Setup fuzzy search options.
+Setup fuzzy search options.
+Enable/disable highlight.
+Enable/disable highlight.
+Setup how focus is changed for find operation.
+Setup how focus is changed for find operation.
+Set colors for different line.
+Set colors for different line.
+Setup property of source side text.
+Setup property of source side text.
+Select whether integration feature is enabled or not.
+Select whether integration feature is enabled or not.
+Setup command path of tools.
+Setup command path of tools.
+Compare with specified diff source folder.
+Compare target becomes a file in the diff source folder.
+Setup print options.
+Setup print options.
+Setup print properties such as each font.
+Setup print properties such as each font.
+Setup print margin.
+Setup print margin.
+When save file, backup will be copied to specified folder. 
+When saving file, backup will be copied to specified folder. 
+Tool can be executed as shell script.
+Tool can be executed as shell script.
+Setup operation detail.
+Setup operation detail.
+Setup display detail.
+Setup display detail.
+Control Code Display :
+Control Code Display :
+Bottom Margin for edit :
+Bottom Margin for edit :
+* This setting may not be effective for some networks or apps.
+* This setting may not be effective for some networks or apps.
+Specify files which should be exclude from some features.
+Specify files which should not be search target in some features.
+Files which have these suffixes are handled as non-text file. These are not searched in Multi File Find feature with "Text File Only" checked .
+Files which have these suffixes are handled as non-text file. These are not searched in Multi File Find feature with "Text File Only" checked .
+Candidate Window
+Candidate Window
+Key for Next Completion :
+Key for Next Completion :
+Key for Previous Completion :
+Key for Previous Completion :
+Key set by Key Bind 
+Key of Key Bind setting
+Shift + Space Key
+Shift + Space Key
+Shift + Tab Key
+Shift + Tab Key
+Tab Key
+Tab Key
+Escape Key
+Escape Key
+Shift + Escape Key
+Shift + Escape Key
+Skin
+Skin
+Select alternative UI skin.
+Select alternative UI skin.
+Skin :
+Skin :
+Tool path
+Tool path
+Setup tool path.
+Setup tool path.
+TeX typeset :
+TeX typeset :
+TeX dvi to pdf :
+TeX dvi to pdf :
+Update Menu
+Update Menu
+Only FTP is supported currently.
+Only FTP is supported currently.
+Enable Smooth Wheel Scroll
+Enable Smooth Wheel Scroll
+Smooth Wheel Scroll :
+Smooth Wheel Scroll :
+Git Path :
+git Path :
+Use default port number
+Use default port number
+Use port number : 
+Use port number : 
+Display Name : 
+Display Name : 
+Fix Caret Position in View
+Fix Caret Position in View
+Caret after Scroll :
+Caret after Scroll :
+Color :
+Color :
+Unicode Copy / Save :
+Unicode Copy / Save :
+Convert to Canonical Composition automatically
+Convert to Canonical Composition automatically
+Software Update
+Software Update
+Setup automatic update of mi application.
+Setup automatic update of mi application.
+Update Versions :
+Update Versions :
+Release version only
+Release version only
+Release version and Beta version
+Release version and Beta version
+Release version, Beta version and Alpha version
+Release version, Beta version and Alpha version
+No Update
+No Update
+Completion key is set in Keybind tab in Mode Preferences.
+Completion key is set in Keybind tab in Mode Preferences.
+Window Title :
+Window Title :
+Display full path
+Display full path
+Mouse Cursor :
+Mouse Cursor :
+Show Arrow cursor always
+Show Arrow cursor always
+Text Area
+Text Area
+Left-Right Margin :
+Margin :
+Display margin before/after line
+Display margin before/after line
+Text Width :
+Text Display Width :
+characters (half-width)
+pixels
+Private Key : 
+Private Key : 
+Use Private Key
+Use Private Key
+If passphrase of private key is set, input it in "Password" above.
+If passphrase of private key is set, input it in "Password" above.
+FTPS Option : 
+FTPS Option : 
+Don't check Server Certification
+Don't check Server Certification
+Window Transparency
+Window Transparency
+Set transparency of text windows
+Set transparency of text windows
+Transparency Mode :
+Transparency Mode :
+Display window transparently
+Display window transparently
+Transparency for active : 
+Transparency for active : 
+Transparency for deactive : 
+Transparency for deactive : 

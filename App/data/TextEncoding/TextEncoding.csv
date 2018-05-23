@@ -1,0 +1,39 @@
+UTF-8,UTF-8
+UTF-16,UTF-16
+-,-
+Shift_JIS,Shift_JIS (Windows拡張)
+x-mac-japanese,Shift_JIS (Mac拡張)
+Shift_JIS_X_0208,Shift_JIS (JIS X 0208)
+ISO-2022-JP
+EUC-JP
+Shift_JISX0213
+-
+ISO-8859-1
+ISO-8859-2
+ISO-8859-4
+ISO-8859-10
+ISO-8859-13
+ISO-8859-15
+macintosh
+windows-1252
+windows-1250
+-
+ISO-8859-5
+KOI8-R
+X-MAC-CYRILLIC
+windows-1251
+-
+ISO-8859-7
+X-MAC-GREEK
+windows-1253
+-
+ISO-8859-9
+X-MAC-TURKISH
+windows-1254
+-
+Big5
+-
+HZ-GB-2312
+GB18030
+GBK
+GB2312

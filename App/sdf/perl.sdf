@@ -1,0 +1,292 @@
+#
+# Perl用文法定義スクリプト
+# mi組み込み用 Ver.1.00
+#
+# (C) 2012 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("Perl")
+
+#文法パート
+GlobalAttribute_SyntaxPart("Perl","Perl",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+#アルファベット定義
+GlobalAttribute_StartAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_")
+GlobalAttribute_ContinuousAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_")
+
+#idle
+state(idle)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_Stable
+	#pod
+	{"=pod",{ChangeState(pod)}}
+	{"=head1",{ChangeState(pod)}}
+	{"=head2",{ChangeState(pod)}}
+	{"=head3",{ChangeState(pod)}}
+	{"=head4",{ChangeState(pod)}}
+	{"=over",{ChangeState(pod)}}
+	{"=item",{ChangeState(pod)}}
+	{"=back",{ChangeState(pod)}}
+	{"=begin",{ChangeState(pod)}}
+	{"=end",{ChangeState(pod)}}
+	{"=for",{ChangeState(pod)}}
+	{"=encoding",{ChangeState(pod)}}
+	#require
+	{"require",{ChangeState(require)}}
+	#sub
+	{"sub",{SetVarNextToken(keyword), AddGlobalId([sub], keyword, keyword,"","","","","")}}
+	#regexp
+	{"/",{PushStateIfNotAfterAlphabet(regexp)}}
+	{"m/",{ChangeState(regexp)}}
+	{"q/",{ChangeState(regexp)}}
+	{"qq/",{ChangeState(regexp)}}
+	{"qx/",{ChangeState(regexp)}}
+	{"qw/",{ChangeState(regexp)}}
+	{"qr/",{ChangeState(regexp)}}
+	{"s/",{ChangeState(regexpreplace)}}
+	{"tr/",{ChangeState(regexpreplace)}}
+	{"y/",{ChangeState(regexpreplace)}}
+	#関数コール
+	{"&",{ChangeState(funccall)}}
+	#変数
+	{"$",{PushState(var)}}
+	{"@",{PushState(array)}}
+	{"%",{PushState(hash)}}
+	#ヒアドキュメント
+	{"<<", {PushState(heredocument_start)}}
+	#インデント
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}} 
+	#コメント／リテラル／エスケープ
+	{"#",{PushState(comment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#require
+state(require)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{"\"",{SetVarStartFromNextChar(path),ChangeState(require_dq)}}
+	{"\'",{SetVarStartFromNextChar(path),ChangeState(require_sq)}}
+	{default,{SetVarCurrentToken(path),Import(path),ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"#",{PushState(comment)}}
+}
+state(require_dq)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{"\"",{SetVarEnd(path),Import(path),ChangeState(idle)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+state(require_sq)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{"\'",{SetVarEnd(path),Import(path),ChangeState(idle)}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+#関数コール
+state(funccall)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{default,{ChangeState(funccall_after1token)}}
+	#コメント／リテラル／エスケープ
+	{"#",{PushState(comment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(funccall_after1token)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{"'",{ChangeState(idle)}}#パッケージ指定
+	{default,{ChangeState(idle)}}
+	#コメント／リテラル／エスケープ
+	{"#",{PushState(comment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#変数
+state(var)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{"#",{ChangeState(var)}}
+	{default,{PopStateFromNextChar}}
+}
+state(array)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{default,{PopStateFromNextChar}}
+}
+state(hash)
+{
+	StateAttribute_SyntaxPart("Perl")
+	{default,{PopStateFromNextChar}}
+}
+
+#regexp
+state(regexp)
+{
+	StateAttribute_SyntaxPart("Perl")
+	#正規表現終了
+	{"/",{PopStateFromNextChar}}
+	#
+	{lineend,{PopStateFromNextChar}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+#regexpreplace
+state(regexpreplace)
+{
+	StateAttribute_SyntaxPart("Perl")
+	#置換文字列部分へ
+	{"/",{ChangeState(regexpreplace2)}}
+	#
+	{lineend,{PopStateFromNextChar}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+state(regexpreplace2)
+{
+	StateAttribute_SyntaxPart("Perl")
+	#正規表現終了
+	{"/",{PopStateFromNextChar}}
+	#
+	{lineend,{PopStateFromNextChar}}
+	#エスケープ
+	{"\\",{EscapeNextChar}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝コメント／リテラル＝＝＝＝＝＝＝＝＝＝
+
+#
+state(comment)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{lineend,{PopStateFromNextChar}}
+}
+
+state(singlequotation)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(doublequotation)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(pod)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(33)
+	{"=cut",{ChangeStateFromNextChar(idle)}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝ヒアドキュメント＝＝＝＝＝＝＝＝＝＝
+
+#ヒアドキュメント
+state(heredocument_start)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	{"0",{PopState}}#bit shift
+	{"1",{PopState}}#bit shift
+	{"2",{PopState}}#bit shift
+	{"3",{PopState}}#bit shift
+	{"4",{PopState}}#bit shift
+	{"5",{PopState}}#bit shift
+	{"6",{PopState}}#bit shift
+	{"7",{PopState}}#bit shift
+	{"8",{PopState}}#bit shift
+	{"9",{PopState}}#bit shift
+	{"-",{PopState}}#bit shift
+	{"$",{PopState}}#bit shift
+	{"@",{PopState}}#bit shift
+	{"%",{PopState}}#bit shift
+	{"&",{PopState}}#bit shift
+	{"\'",{ChangeState(heredocument_start_quotation)}}
+	{"\`",{ChangeState(heredocument_start_quotation)}}
+	{"\"",{ChangeState(heredocument_start_quotation)}}
+	{default,{SetVarCurrentToken(heredocumentid),PushStateFromNextLine(heredocument),PopState}}
+}
+
+#ヒアドキュメント（IDをクオーテーションでくくっている場合）
+state(heredocument_start_quotation)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	{default,{SetVarCurrentToken(heredocumentid)}}
+	{"\'",{PushStateFromNextLine(heredocument),PopState}}
+	{"\`",{PushStateFromNextLine(heredocument),PopState}}
+	{"\"",{PushStateFromNextLine(heredocument),PopState}}
+}
+
+#ヒアドキュメント
+state(heredocument)
+{
+	StateAttribute_SyntaxPart("Perl")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	StateAttribute_DisableIndent
+	{heredocumentend,{PopState}}
+}
+
+#＝＝＝＝＝＝＝＝＝＝カテゴリ＝＝＝＝＝＝＝＝＝＝
+
+category[sub]
+{ 
+	CategoryAttribute_ColorSlot(1)
+}
+

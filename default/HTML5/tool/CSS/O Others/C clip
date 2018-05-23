@@ -1,0 +1,1 @@
+clip: rect(<<<CARET HINT(top)>>>, <<<HINT(right)>>>, <<<HINT(bottom)>>>, <<<HINT(left)>>>);

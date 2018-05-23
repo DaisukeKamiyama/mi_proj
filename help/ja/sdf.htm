@@ -1,0 +1,888 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>文法定義スクリプト</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="shellscript.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1><a name="sdf">文法定義スクリプトについて （スクリプトバージョンv3.0）</a></h1>
+			<p>
+				文法定義スクリプトを作成することにより、コメント・リテラル部分の色づけだけではなく、
+				よりそれぞれの言語に合わせた複雑な文法を認識し、色づけや識別子認識をすることができます。
+			</p>
+			<p>
+				<a href="sample.htm#sdfsample">こちらのページ</a>にサンプルを置いています。ご参照下さい。
+			</p>
+			
+			<h2><a name="basic">基本</a></h2>
+			<p>
+				miは文法定義スクリプトで定義された状態遷移に基づいて、テキストを走査し、
+				テキスト内の各文字に状態を割り付けます。<br>
+				（この「テキスト」とは文法定義スクリプトのことではなく、文法認識対象のテキストのことです。）
+			</p>
+			<p>
+				そして、各状態に色を付けたり、状態遷移時に識別子を登録したりすることが出来ます。
+			</p>
+			
+			<h3>テキストの走査</h3>
+			<p>
+				miは、テキストを<strong>トークン</strong>毎に読み進めます。<br>
+				テキストの現在位置以降の文字列が、スクリプトに記述された<strong>一致文字列</strong>に一致した場合、状態遷移を行います。
+			</p>
+			
+			<h3>トークン</h3>
+			<p>
+				トークンとは、単語、もしくは、記号一文字です。<br>
+				単語を構成する文字は、以下のいずれかの方法で設定します。<br>
+				<ul>
+					<li><code>GlobalAttribute_SyntaxPart()</code>の第4, 5, 6引数にて設定します。<br>
+					文法パート毎に単語を構成する文字を設定することができます。[v3.0 新規]</li>
+					<li><code>GlobalAttribute_StartAlphabet</code>、および、
+					<code>GlobalAttribute_ContinuousAlphabet</code>で設定します。</li>
+				</ul>
+			</p>
+			
+			<h3>基本文法</h3>
+			<ul>
+				<li>#以降はコメントとみなされます。</li>
+				<li>大文字小文字は区別されます。</li>
+				<li>文字列は基本的にダブルクオーテーションで囲みます。</li>
+				<li>文字列内にダブルクオーテーションやバックスラッシュを記述するときはエスケープ文字（バックスラッシュ）の後に記述します。</li>
+				<li>変数使用時に宣言等は必要ありません。</li>
+			</ul>
+			
+			<h2><a name="structure">全体構成</a></h2>
+			<p>
+				文法定義スクリプトは下記の3パートに分かれています。
+			</p>
+			<ol>
+				<li>GlobalAttribute部（全体的なパラメータの設定）</li>
+				<li>state部（状態定義）</li>
+				<li>category部（カテゴリ定義）</li>
+			</ol>
+			
+			<h2><a name="syntaxpart">文法パート</a></h2>
+			<p>
+				HTML文書内のCSSパート、JavaScriptパートなど、１つのドキュメント内で複数の「文法パート」を設定し、
+				キーワードをそれぞれのパート内のみで有効にしたり、単語構成文字をパート毎に設定したりすることができます。
+			</p>
+			
+			<h2><a name="compatibility">互換性</a></h2>
+			<p>
+				旧バージョン用の文法定義スクリプトは、新しいバージョンでも読み込むことができます。
+			</p>
+			<p>
+				ただし、バージョン3でカラースキーム機能に対応した関係上、
+				バージョン2用の文法定義スクリプトをバージョン3で読み込むと、色が正しく表示されません。<br>
+				下記の修正をお願いします。
+			</p>
+			<ul>
+				<li>色付けを行いたいstateに<code>StateAttribute_ColorSlot(<em>色タイプ番号</em>)</code>を記述します。</li>
+				<li>色付けを行いたいcategoryに<code>CategoryAttribute_ColorSlot(<em>色タイプ番号</em>)</code>を記述します。</li>
+			</ul>
+			<p>
+				<code><em>色タイプ番号</em></code>は<a href="#colorslot">色タイプ番号の節</a>を参照下さい。
+			</p>
+			
+			<h2><a name="GlobalAttribute">GlobalAttribute部</a></h2>
+			<p>
+				全体のパラメータを設定します。
+			</p>
+			<p>
+				下記のパラメータを改行・スペース・タブのいずれかで区切って記述します。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>GlobalAttribute</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>GlobalAttribute_SDFName("<em>名前</em>")</code></td>
+					<td>文法スクリプトの名前を記述します。モード設定の「文法」タブでのメニュー表示に表示されます。文法認識の動作には影響しません。<br>
+					名前はダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_SDFVersion("<em>バージョン</em>")</code></td>
+					<td>文法スクリプトの対応バージョンを記述します。<br>
+					現状、文法認識の動作には影響しません。<code>"3.0"</code>を記述して下さい。</td>
+					<td></td>
+				</tr>
+				<tr>
+							<td><code>GlobalAttribute_SyntaxPart("<em>文法パート名</em>","<em>文法パートグループ名</em>",<em>初期状態名</em>,
+							"<em>単語の最初になりうる文字</em>","<em>単語の途中の一文字になりうる文字</em>","<em>必ず単語の最後になる文字</em>" [,
+							"<em>対応文字列1（開始文字列）</em>","<em>対応文字列1（終了文字列）</em>,
+					"<em>対応文字列2（開始文字列）</em>","<em>対応文字列2（終了文字列）</em>,...])</code></td>
+					<td>
+						文法パートを設定します。<br>
+						<em>文法パート名</em>には、文法パート名を記述します。
+						この文法パート名は、<code>StateAttribute_SyntaxPart()</code>の引数に使用します。<br>
+						<em>文法パートグループ名</em>には、文法パートのグループ名を指定します。<br>
+						文法パートグループ名が変化する行では、テキスト画面上に文法パート分割線が表示されます。<br>
+						また、ツールフォルダに文法パートグループ名に一致するフォルダがあれば、そのフォルダが
+						<span class="menu">ツール→ツール入力モード</span>の開始フォルダとなります。<br>
+						<em>初期状態名</em>には、この文法パートの初期状態を記述します。<br>
+						<em>単語の最初になりうる文字</em>、<em>単語の途中の一文字になりうる文字</em>、<em>必ず単語の最後になる文字</em>には、
+						それぞれ単語を構成する文字を設定します。<br>
+						<em>対応文字列（開始文字列）</em>、<em>対応文字列（終了文字列）</em>には、
+						対応文字列機能（[検索→対応文字列入力」）で使用する対応文字列を設定します。対応文字列の部分は省略可能です。
+					</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_InitialState("<em>拡張子</em>", <em>状態名</em>)</code></td>
+						<td><em>拡張子</em>に一致するファイルを開いたとき、初期状態を<em>状態名</em>で指定した状態に設定します。<br>
+						指定した拡張子に一致しない場合は、初期状態は<code>idle</code>になります。<br>
+					拡張子はダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_StartAlphabet("<em>文字列</em>")</code></td>
+					<td>トークン（単語）の最初の一文字になりうる文字を指定します。<br>
+					ダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_ContinuousAlphabet("<em>文字列</em>")</code></td>
+					<td>トークン（単語）の途中の一文字になりうる文字を指定します。<br>
+					ダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_ImportRecursive("<em>拡張子</em>")</code></td>
+						<td><em>拡張子</em>で指定した拡張子を持つファイルをインポートしたとき、<br>
+					そのファイル内で指定されたインポートファイルも再帰的にインポートします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_ImportRecursiveAll</code></td>
+					<td>ファイルをインポートしたとき、常に、
+					そのファイル内で指定されたインポートファイルも再帰的にインポートします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_IdInfoAutoDisplay("<em>文字列</em>")</code></td>
+						<td><em>文字列</em>で指定した文字を入力したとき、
+					識別子情報ウインドウに、その直前の識別子の情報を表示します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_IdInfoArgStart("<em>文字列</em>")</code></td>
+						<td>識別子情報内の引数部分の開始文字列を、<em>文字列</em>で指定します。<br>
+					ダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_IdInfoArgEnd("<em>文字列</em>")</code></td>
+						<td>識別子情報内の引数部分の終了文字列を、<em>文字列</em>で指定します。<br>
+					ダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_IdInfoArgDelimiter("<em>文字列</em>")</code></td>
+						<td>識別子情報内の引数部分の引数区切り文字を、<em>文字列</em>で指定します。<br>
+					ダブルクオーテーションで囲って記述します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_ClassString("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>クラス指定するための文字列を指定します。<br>
+						テキスト内でこの文字の直後で補完入力（省略入力）したとき、その前の単語を親とする識別子だけを候補表示します。<br>
+					ダブルクオーテーションで囲って記述します。ダブルクオーテーションで囲った文字列をカンマで区切って複数入力可能です。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_InstanceString("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>クラス（インスタンス）指定するための文字列を指定します。<br>
+						テキスト内でこの文字の直後で補完入力（省略入力）したとき、その前の単語の型名を親とする識別子だけを候補表示します。<br>
+					ダブルクオーテーションで囲って記述します。ダブルクオーテーションで囲った文字列をカンマで区切って複数入力可能です。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_ImportLinkToProjectAll</code></td>
+					<td>プロジェクト内の全てのファイルをインポートします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_Directive("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						ディレクティブ部分の開始文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveIf("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのifに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveIfdef("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのifdefに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveIfndef("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのifndefに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveElse("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのelseに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveElif("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのelifに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>GlobalAttribute_DirectiveEndif("<em>文字列1</em>","<em>文字列2</em>",...,"<em>文字列n</em>")</code></td>
+					<td>
+						C言語ディレクティブのendifに対応する文字列を設定します。
+					</td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<h2><a name="state">state部（状態定義）</a></h2>
+			<p>
+				state部には状態定義を複数、改行・スペース・タブのいずれかで区切って列記します。<br>
+				各状態定義は下記の構成です。
+			</p>
+			<div class="sample">
+				<pre>
+<code>state(<em>状態名</em>)</code>
+{
+	<em>StateAttribute部</em>
+	<em>各状態遷移部</em>
+}
+</pre>
+			</div>
+			
+			<p>
+				初期状態として、<em>状態名</em>が<code>idle</code>の状態を１つ、必ず定義する必要があります。
+			</p>
+			
+			<h3><a name="StateAttribute">StateAttribute部</a></h3>
+			<p>
+				状態のパラメータを設定します。
+			</p>
+			<p>
+				下記のパラメータを改行・スペース・タブのいずれかで区切って記述します。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>StateAttribute</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>StateAttribute_ColorSlot(<em>色タイプ番号</em>)</code></td>
+					<td>この状態のテキストを、<a href="#colorslot">色タイプ番号</a>で指定した色で色付けします。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_SyntaxPart("<em>文法パート名</em>")</code></td>
+					<td>この状態の文法パートを指定します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_IgnoreCase</code></td>
+					<td>状態遷移部の一致文字列との比較において、大文字小文字を無視します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_Stable</code></td>
+					<td>安定状態であることを指定します。テキスト編集時、このパラメータが設定された状態まで戻って文法認識を再度行います。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_Comment</code></td>
+					<td>この状態がコメント状態であることを指定します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_NotCode</code></td>
+					<td>この状態が本文外であることを指定します。<br>
+					この部分は括弧の対応チェック機能等の対象外になります。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_DisableAllCategory</code></td>
+					<td>この状態ではすべてのカテゴリの色づけを無効にします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_IndentOnTheWay</code></td>
+					<td>行の最初がこの状態だったときは、インデント時、「文の途中（複文）の行」のインデントが適用されます。<br>
+					（モード設定ウインドウの「インデント」タブを参照）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_NoSpellCheck</code></td>
+					<td>この状態ではスペルチェックを行いません。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_DisableDirective</code></td>
+					<td>この状態ではディレクティブ文字列の認識を行いません。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_AfterParentKeyword</code></td>
+					<td>この状態では、常に直前の単語、または、直前の単語の型名を親キーワードとして補完候補表示を行います。<br>
+					Objective-Cでのメソッドコールのように、クラス名とメソッドの間に半角スペースしかないような状態で使用します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_EnableRecompletion</code></td>
+					<td>この状態では、キーワードをクリック時、同じ親キーワードを持つキーワードを補完候補として表示します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>StateAttribute_DisableIndent</code></td>
+					<td>この状態では、常に自動インデントを無効にします。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+			</table>
+			<p>
+				下記はバージョン3では使用しなくなりました。指定しても無視されます。
+			</p>
+			<ul>
+				<li><code>StateAttribute_EnableCategory</code></li>
+				<li><code>StateAttribute_DefaultColor</code></li>
+				<li><code>StateAttribute_DefaultImportColor</code></li>
+				<li><code>StateAttribute_DefaultLocalColor</code></li>
+				<li><code>StateAttribute_DisplayName</code></li>
+				<li><code>StateAttribute_SameStateAs</code></li>
+			</ul>
+			
+			
+			<h3><a name="statetransit">各状態遷移部</a></h3>
+			<p>
+				各状態遷移を複数、改行・スペース・タブのいずれかで区切って列記します。<br>
+				各状態遷移は下記の構成です。
+			</p>
+			<div class="sample">
+				<pre>
+<code>{<em>一致文字列</em>,{<em>状態遷移動作1</em>, <em>状態遷移動作2</em>, ... , <em>状態遷移動作n</em>}}</code>
+</pre>
+			</div>
+			<p>
+				現在の位置に<em>一致文字列</em>が存在していたら、
+				<em>状態遷移動作1</em>, <em>状態遷移動作2</em>, ... , <em>状態遷移動作n</em>を順に実行します。
+			</p>
+			<p>
+				<em>文字列</em>には、一致文字列をダブルクオーテーションで囲んで指定します。
+			</p>
+			<p>
+				あるいは、<em>一致文字列</em>には、次の特殊一致文字列を使用することも可能です。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>特殊一致文字列</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>start</code></td>
+					<td>この状態に遷移したとき、必ず最初に一回だけ一致します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>lineend</code></td>
+					<td>行末に一致します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>default</code></td>
+					<td>他の一致文字列すべてに一致しなかった場合に、実行されます。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>regexp"<em>正規表現</em>"</code></td>
+					<td><em>正規表現</em>に一致します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>heredocumentend</code></td>
+					<td><code>heredocumentid</code>という名前の変数に入っている文字列に一致します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+			</table>
+			<p>
+				　
+			</p>
+			<p>
+				<em>状態遷移動作</em>には下記が使用可能です。
+			</p>
+			
+			<h4><a name="action_state">状態制御</a></h4>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>状態遷移動作</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>ChangeState(<em>状態名</em>)</code></td>
+					<td><em>状態名</em>で指定した状態へ遷移します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>ChangeStateFromNextChar(<em>状態名</em>)</code></td>
+					<td><em>状態名</em>で指定した状態へ遷移します。（<code>ChangeState</code>と同じ）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>BlockStart(<em>ブロック名</em>)</code></td>
+						<td><em>ブロック名</em>で指定したブロックを開始します。<br>
+					次の<code>ChangeStateIfBlockEnd</code>と組み合わせて使います。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>ChangeStateIfBlockEnd(<em>ブロック名</em>,<em>状態名</em>)</code></td>
+						<td><em>ブロック名</em>で指定した位置で始まるブロックが終了していたら、
+					<em>状態名</em>で指定した状態へ遷移します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>ChangeStateIfNotAfterAlphabet(<em>状態名</em>)</code></td>
+					<td>直前の文字がアルファベット以外なら、
+					<em>状態名</em>で指定した状態へ遷移します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>ChangeStateIfTokenEqualVar(<em>変数名</em>,<em>状態名</em>)</code></td>
+						<td>現在のトークンが<em>変数名</em>で指定した変数と同じなら、
+					<em>状態名</em>で指定した状態へ遷移します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>PushState(<em>状態名</em>)</code></td>
+						<td>現在の状態を保存して、<em>状態名</em>で指定した状態へ遷移します。<br>
+					保存できる状態は1段階のみです。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>PushStateFromNextLine</code></td>
+						<td>次の行の最初で、現在の状態を保存して、<em>状態名</em>で指定した状態へ遷移します。<br>
+					保存できる状態は1段階のみです。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>PushStateIfNotAfterAlphabet(<em>状態名</em>)</code></td>
+					<td>直前の文字がアルファベット以外なら、<br>
+						現在の状態を保存して、<em>状態名</em>で指定した状態へ遷移します。<br>
+					保存できる状態は1段階のみです。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>PopState</code></td>
+					<td><code>PushState</code>等で保存された状態へ状態遷移します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>PopStateFromNextChar</code></td>
+					<td><code>PushState</code>等で保存された状態へ状態遷移します。（<code>PopState</code>と同じ）</td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<h4><a name="action_var">変数制御</a></h4>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>状態遷移動作</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>SetVarStart(<em>変数名</em>)</code></td>
+					<td>一致文字列の次の文字から、<em>変数名</em>で指定した変数への格納を開始します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarStartFromNextChar(<em>変数名</em>)</code></td>
+					<td>一致文字列の次の文字から、<em>変数名</em>で指定した変数への格納を開始します。（<code>SetVarStart()</code>と同じ）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarStartAtPrevToken(<em>変数名</em>)</code></td>
+					<td>一致文字列の１つ前のトークンから、<em>変数名</em>で指定した変数への格納を開始します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarStartOrContinue(<em>変数名</em>)</code></td>
+						<td>一致文字列の次の文字から、<em>変数名</em>で指定した変数への格納を開始します。<br>
+					前回の開始から連続しているとき（終了していないとき）は、今まで格納した文字列に続けて格納します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarWithTokenStack(<em>変数名</em>,<em>トークン相対位置</em>)</code></td>
+						<td><em>変数名</em>で指定した変数へ、<em>トークン相対位置</em>で指定した位置のトークンを格納します。<br>
+					<em>トークン相対位置</em>には0以下の整数を指定します。（0が現在位置のトークン）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarWithTokenStack(<em>変数名</em>,<em>トークン相対開始位置</em>,<em>トークン相対終了位置</em>)</code></td>
+						<td><em>変数名</em>で指定した変数へ、<em>トークン相対開始位置</em>〜<em>トークン相対終了位置</em>のトークンを格納します。<br>
+					<em>トークン相対位置</em>には0以下の整数を指定します。（0が現在位置のトークン）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarEnd(<em>変数名</em>)</code></td>
+					<td>一致文字列の直前の文字までで、<em>変数名</em>で指定した変数への格納を終了します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarEndAtNextChar(<em>変数名</em>)</code></td>
+					<td>一致文字列の最後の文字までで、<em>変数名</em>で指定した変数への格納を終了します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarEndAtPrevToken(<em>変数名</em>)</code></td>
+					<td>一致文字列の直前のトークンまでで、<em>変数名</em>で指定した変数への格納を終了します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarLastWord(<em>変数名</em>)</code></td>
+					<td>一致文字列より前で、最後の単語（アルファベットで始まるトークン）を、<em>変数名</em>で指定した変数へ格納します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarCurrentToken(<em>変数名</em>)</code></td>
+					<td>現在のトークンを<em>変数名</em>で指定した変数へ格納します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVarNextToken(<em>変数名</em>)</code></td>
+					<td>次のトークンを（先読みして）、<em>変数名</em>で指定した変数へ格納します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>CatVar(<em>変数名1</em>,<em>変数名2</em>,<em>変数名3</em>)</code></td>
+					<td><em>変数名1</em>へ、<em>変数名2</em>と<em>変数名2</em>をつなげた文字列を格納します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVar(<em>変数名1</em>,<em>変数名2</em>)</code></td>
+					<td><em>変数名1</em>へ、<em>変数名2</em>の文字列を格納します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetVar(<em>変数名1</em>,"<em>文字列</em>")</code></td>
+					<td><em>変数名1</em>へ、指定した固定文字列を格納します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>SetVarTypeOfVar(<em>変数名</em>)</code></td>
+					<td><em>変数名</em>に格納されているキーワードの型名を取得し、型名を変数に格納します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>SetVarRegExpGroup1(<em>変数名</em>)</code></td>
+					<td>一致文字列に正規表現を使用した場合に、正規表現のグループ1に一致した文字列を変数に格納します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>ClearVar(<em>変数名</em>)</code></td>
+					<td><em>変数名</em>で指定した変数を空にします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>ClearTokenStack</code></td>
+					<td>過去のトークンの記録をクリアします。<br>
+					この後、<code>SetVarWithTokenStack</code>等でクリア済みのトークンを指定したときは、空白文字列となります。</td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<h4><a name="action_indent">インデント制御</a></h4>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>状態遷移動作</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>IncIndentFromNext</code></td>
+					<td>一致文字列の次の文字から、インデントレベルを+1します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>DecIndentFromNext</code></td>
+					<td>一致文字列の次の文字から、インデントレベルを-1します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>DecIndentFromCurrent</code></td>
+					<td>一致文字列の最初の文字から、インデントレベルを-1します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>DecIndentOnlyCurrent</code></td>
+					<td>現在行のみインデントレベルを-1します。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SetZeroIndentOnlyCurrent</code></td>
+					<td>現在行のみインデント無しにします。</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>IndentLabel</code></td>
+					<td>現在行をラベル行のインデントにします。<br>
+					（モード設定ウインドウの「インデント」タブを参照）</td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<h4><a name="action_id">識別子登録</a></h4>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>状態遷移動作</th><th>説明</th><th>備考</th></tr>
+				<tr>
+							<td><code>AddGlobalId(<em>カテゴリ名</em>,<em>キーワード</em>,<em>メニュー登録文字列</em>,
+					<em>識別子情報</em>, <em>識別子コメント</em>, <em>親識別子名</em>, <em>識別子型名</em>[, <em>アウトラインレベル</em>])</code></td>
+					<td>グローバル識別子（ファイル全体で有効な識別子）を登録します。<br>
+						<em>カテゴリ名</em>：登録先カテゴリを指定します。カテゴリ名は[ ]で囲って指定します。<br>
+						<em>キーワード</em>：キーワード名を指定します。キーワードはカテゴリで指定した色で色づけされます。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						<em>メニュー登録文字列</em>：見出しメニュー・見出しリストへ登録する文字列を指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						空白文字列（""）を指定した場合、メニュー登録されません。<br>
+						<em>識別子情報</em>：識別子情報ウインドウに表示する情報テキストを指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>識別子コメント</em>：識別子情報ウインドウに表示するコメントテキストを指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>親識別子名</em>：親となる識別子名を指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>識別子型名</em>：型名を指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>アウトラインレベル</em> : アウトラインレベル（1〜9）を指定します。省略時は1になります。（[v3.0 新規]）
+					</td>
+					<td>[v3.0 変更]</td>
+				</tr>
+				<tr>
+							<td><code>AddLocalId(<em>カテゴリ名</em>,<em>キーワード</em>,
+					<em>識別子情報</em>, <em>識別子型名</em>, <em>対象外文字列リスト</em>)</code></td>
+					<td>ローカル識別子（ファイル内の一部分で有効な識別子）を登録します。<br>
+						<em>カテゴリ名</em>：登録先カテゴリを指定します。カテゴリ名は[ ]で囲って指定します。<br>
+						<em>キーワード</em>：キーワード名を指定します。キーワードはカテゴリで指定した色で色づけされます。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						<em>識別子情報</em>：識別子情報ウインドウに表示する情報テキストを指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>識別子型名</em>：型名を指定します。<br>
+						変数名またはダブルクオーテーションで囲った文字列を記述します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+						<em>対象外文字列リスト</em>：キーワード登録しない文字列を指定します。<br>
+						対象外文字列をカンマで区切って、全体をダブるクオーテーションで囲って指定します。<br>
+						不要な場合は空白文字列（""）を指定します。<br>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>Import(<em>変数名</em>)</code></td>
+						<td><em>変数名</em>で指定したファイルパスのファイルを、インポートファイルとして認識します。<br>
+					インポートファイル内のグローバル識別子は、インポート先のファイル上でも色づけされます。</td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<h4><a name="action_misc">その他</a></h4>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>状態遷移動作</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>EscapeNextChar</code></td>
+					<td>次の文字をエスケープします。（次の文字は無視される。）</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>SyntaxError("<em>エラー文字列</em>")</code></td>
+					<td>行番号エリアにエラーマークを表示します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>SyntaxWarning("<em>ワーニング文字列</em>")</code></td>
+					<td>行番号エリアにワーニングマークを表示します。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+			</table>
+			
+			<h2><a name="category">cateory部（カテゴリ定義）</a></h2>
+			<p>
+				category部にはカテゴリを複数、改行・スペース・タブのいずれかで区切って列記します。<br>
+				各カテゴリは下記の構成です。
+			</p>
+			<div class="sample">
+				<pre>
+<code>category[<em>カテゴリ名</em>]</code>
+{
+	<em>CategoryAttribute部</em>
+}
+</pre>
+			</div>
+			
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "200"><col><col>
+				<tr><th>CategoryAttribute</th><th>説明</th><th>備考</th></tr>
+				<tr>
+					<td><code>CategoryAttribute_ColorSlot(<em>色タイプ番号</em>)</code></td>
+					<td>このカテゴリのキーワードを、<a href="#colorslot">色タイプ番号</a>で指定した色で色付けします。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>CategoryAttribute_DisplayName(<em>言語コード</em>,"<em>表示名</em>")</code></td>
+					<td>キーワード情報ウインドウにおいて表示されるカテゴリ名を指定します。<br>
+						指定しない場合は、category[]で指定したカテゴリ名がそのまま表示されます。<br>
+					言語コードは<a href="#langcode">こちらを</a>参照して下さい。</td>
+					<td>[v3.0 新規]</td>
+				</tr>
+				<tr>
+					<td><code>CategoryAttribute_MenuBold</code></td>
+					<td>このカテゴリを見出しメニュー・見出しリストに登録するとき、ボールドで表示します。</td>
+					<td></td>
+				</tr>
+			</table>
+			<p>
+				下記はバージョン3では使用しなくなりました。指定しても無視されます。
+			</p>
+			<ul>
+				<li><code>CategoryAttribute_DefaultColor</code></li>
+				<li><code>CategoryAttribute_DefaultLocalColor</code></li>
+				<li><code>CategoryAttribute_DefaultImportColor</code></li>
+				<li><code>CategoryAttribute_DefaultKeyword</code></li>
+			</ul>
+			
+			<h2><a name="colorslot">色タイプ番号</a></h2>
+			
+			<p>
+				<code>StateAttribute_ColorSlot(<em>色タイプ番号</em>)</code>、および、
+				<code>CategoryAttribute_ColorSlot(<em>色タイプ番号</em>)</code>
+				で指定する色タイプ番号は下記の通りです。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>色タイプ番号</th><th>カラースキームファイル／キーワードCSVファイル<br>での記述</th><th>モード設定「色」タブの表記</th></tr>
+				<tr>
+					<td>0</td><td>reserved-word</td><td>0. 予約語</td>
+				</tr>
+				<tr>
+					<td>1</td><td>method</td><td>1. メソッド／関数</td>
+				</tr>
+				<tr>
+					<td>2</td><td>property</td><td>2. プロパティ／メンバ</td>
+				</tr>
+				<tr>
+					<td>3</td><td>variable</td><td>3. 変数</td>
+				</tr>
+				<tr>
+					<td>4</td><td>class</td><td>4. クラス／タイプ</td>
+				</tr>
+				<tr>
+					<td>5</td><td>macro</td><td>5. マクロ</td>
+				</tr>
+				<tr>
+					<td>6</td><td>other1</td><td>6. その他 1</td>
+				</tr>
+				<tr>
+					<td>7</td><td>other2</td><td>7. その他 2</td>
+				</tr>
+				<tr>
+					<td>32</td><td>comment</td><td>コメント</td>
+				</tr>
+				<tr>
+					<td>33</td><td>literal</td><td>文字列</td>
+				</tr>
+			</table>
+			
+			<h2><a name="langcode">言語コード</a></h2>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col><col><col>
+				<tr><th>言語コード</th><th>言語</th></tr>
+				<tr>
+					<td>0</td><td>日本語</td>
+				</tr>
+				<tr>
+					<td>1</td><td>英語</td>
+				</tr>
+				<tr>
+					<td>2</td><td>フランス語</td>
+				</tr>
+				<tr>
+					<td>3</td><td>ドイツ語</td>
+				</tr>
+				<tr>
+					<td>4</td><td>スペイン語</td>
+				</tr>
+				<tr>
+					<td>5</td><td>イタリア語</td>
+				</tr>
+				<tr>
+					<td>6</td><td>オランダ語</td>
+				</tr>
+				<tr>
+					<td>7</td><td>スウェーデン語</td>
+				</tr>
+				<tr>
+					<td>8</td><td>ノルウェー語</td>
+				</tr>
+				<tr>
+					<td>9</td><td>デンマーク語</td>
+				</tr>
+				<tr>
+					<td>10</td><td>フィンランド語</td>
+				</tr>
+				<tr>
+					<td>11</td><td>ポルトガル語（ブラジル）</td>
+				</tr>
+				<tr>
+					<td>12</td><td>中国語簡体字</td>
+				</tr>
+				<tr>
+					<td>13</td><td>中国語繁体字</td>
+				</tr>
+				<tr>
+					<td>14</td><td>韓国語</td>
+				</tr>
+				<tr>
+					<td>15</td><td>ポーランド語</td>
+				</tr>
+				<tr>
+					<td>16</td><td>ポルトガル語（ポルトガル）</td>
+				</tr>
+				<tr>
+					<td>17</td><td>ロシア語</td>
+				</tr>
+			</table>
+			
+			
+			
+		</div>
+	</body>
+</html>
+

@@ -1,0 +1,189 @@
+#
+# python 用文法定義スクリプト
+# mi組み込み用 Ver.1.01
+#
+# (C) 2012 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+GlobalAttribute_ImportLinkToProjectAll
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("python")
+
+#pythonパート
+GlobalAttribute_SyntaxPart("python","python",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
+"")
+
+#キーワード情報を自動表示する文字
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+#クラスを示す文字列
+GlobalAttribute_ClassString(".");
+GlobalAttribute_InstanceString(".");
+
+#自動インデントをdisableにする
+GlobalAttribute_DisableAutoIndent
+
+#空状態
+state(idle)
+{
+	#状態属性
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_Stable
+	#
+	{"def",{SetVarStart(info),SetVarNextToken(keyword),ChangeState(def)}}
+	{"class",{SetVarStart(info),SetVarNextToken(keyword),ChangeState(class)}}
+	{"=",{SetVarStartAtPrevToken(info),SetVarLastWord(keyword),ChangeState(varequal)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"\"\"",{PushState(triple_doublequotation)}}
+	{"'''",{PushState(triple_singlequotation)}}
+	{"#",{PushState(comment)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#変数
+state(varequal)
+{
+	StateAttribute_SyntaxPart("python")
+	{lineend,{SetVarEnd(info),AddGlobalId([Variable],keyword,"",info,"","","","",9),ChangeState(idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"\"\"",{PushState(triple_doublequotation)}}
+	{"'''",{PushState(triple_singlequotation)}}
+	{"#",{PushState(comment)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#関数
+state(def)
+{
+	StateAttribute_SyntaxPart("python")
+	{lineend,{SetVarEnd(info),AddGlobalId([Function],keyword,keyword,info,"",classname,"","",5),ChangeState(idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"\"\"",{PushState(triple_doublequotation)}}
+	{"'''",{PushState(triple_singlequotation)}}
+	{"#",{PushState(comment)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#クラス
+state(class)
+{
+	StateAttribute_SyntaxPart("python")
+	{lineend,{SetVarEnd(info),AddGlobalId([Class],keyword,keyword,info,"","","","",4),SetVar(classname,keyword),ChangeState(idle)}}
+	#コメント／リテラル
+	{"\"",{PushState(doublequotation)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"\"\"",{PushState(triple_doublequotation)}}
+	{"'''",{PushState(triple_singlequotation)}}
+	{"#",{PushState(comment)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#コメント
+state(comment)
+{
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{lineend,{PopStateFromNextChar}}
+}
+
+#リテラル（シングルクオーテーション）
+state(singlequotation)
+{
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#リテラル（ダブルクオーテーション）
+state(doublequotation)
+{
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#リテラル（トリプル シングルクオーテーション）
+state(triple_singlequotation)
+{
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"'''",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#リテラル（トリプル ダブルクオーテーション）
+state(triple_doublequotation)
+{
+	StateAttribute_SyntaxPart("python")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	{"\"\"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#関数
+category[Function]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"関数")
+}
+
+#変数
+category[Variable]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"変数")
+}
+
+#クラス
+category[Class]
+{
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"クラス")
+}
+
+
+

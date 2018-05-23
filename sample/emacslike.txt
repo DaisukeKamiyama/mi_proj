@@ -1,0 +1,15 @@
+***control+A:<<<MOVECARET-STARTOFPARAGRAPH>>>
+***control+B:<<<MOVECARET-LEFT>>>
+***control+shift+B:<<<SELECT-LEFT>>>
+***control+D:<<<DELETE-NEXT>>>
+***control+E:<<<MOVECARET-ENDOFPARAGRAPH>>>
+***control+F:<<<MOVECARET-RIGHT>>>
+***control+shift+F:<<<SELECT-RIGHT>>>
+***control+H:<<<DELETE-PREV>>>
+***control+K:<<<CUT-ENDOFLINE>>>
+***control+L:<<<RECENTER>>>
+***control+N:<<<MOVECARET-DOWN>>>
+***control+shift+N:<<<SELECT-DOWN>>>
+***control+P:<<<MOVECARET-UP>>>
+***control+shift+P:<<<SELECT-UP>>>
+***control+V:<<<MOVECARET-NEXTPAGE>>>

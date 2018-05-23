@@ -1,0 +1,23 @@
+333333 #tab letter
+000000 #tab letter topmost
+444444 #tab letter deactivated
+CCCCCC #tab letter drop shadow
+CCCCCC #tab letter topmost drop shadow
+4C4C4C #sub text column letter
+999999 #sub text column letter deactivated window
+FFFFFF #sub text column drop shadow
+111111 #sub windows letter
+2F3031 #sub windows titlebar letter
+FFFFFF #sub windows titlebar letter drop shadow
+E9EEF4 #sub windows background
+F3F3F3 #sub windows background deactivated window
+2C4665 #sub windows header letter
+D3DBE4 #sub windows header background
+000000 #sub windows box letter
+CCCCCC #sub windows box letter drop shadow
+F8F8F8 #sub windows box background
+0000FF #sub windows box header
+007500 #sub windows box function name
+FF0000 #sub windows box matched part
+0000C3 #file list diff
+FF0000 #header list diff

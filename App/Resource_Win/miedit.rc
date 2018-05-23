@@ -1,0 +1,2906 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+32512                   ICON                    "Icons/miedit.ico"
+BLUE-FOLDER-STAMP       ICON                    "Icons\\blue-folder-stamp.ico"
+CONTROL-RECORD_GRAY     ICON                    "Icons\\control-record_gray.ico"
+CONTROL-PAUSE_GRAY      ICON                    "Icons\\control-pause_gray.ico"
+CONTROL-RECORD          ICON                    "Icons\\control-record.ico"
+CONTROL-270             ICON                    "Icons\\control-270.ico"
+NAVIGATION-180          ICON                    "Icons\\navigation-180.ico"
+MI_S                    ICON                    "Icons\\mi_S.ico"
+MI_GEAR                 ICON                    "Icons\\mi_gear.ico"
+FIND-NEXT               ICON                    "Icons\\find-next.ico"
+FIND-PREV               ICON                    "Icons\\find-prev.ico"
+FIND-FOLDER             ICON                    "Icons\\find-folder.ico"
+TREE-NEXT               ICON                    "Icons\\tree-next.ico"
+TREE-PREV               ICON                    "Icons\\tree-prev.ico"
+STAMP                   ICON                    "Icons\\stamp.ico"
+GUIDE                   ICON                    "Icons\\guide.ico"
+GEAR                    ICON                    "Icons\\gear.ico"
+DOCUMENT-TEXT           ICON                    "Icons\\document-text.ico"
+MI_PLUS                 ICON                    "Icons\\mi_plus.ico"
+MI_FIND                 ICON                    "Icons\\mi_find.ico"
+MI_CLOSE                ICON                    "Icons\\mi_close.ico"
+MI_CLOSE_WHITE1         ICON                    "Icons\\mi_close_white1.ico"
+MI_CLOSE_WHITE2         ICON                    "Icons\\mi_close_white2.ico"
+MI_SYNC                 ICON                    "Icons\\mi_sync.ico"
+MI_SWAP                 ICON                    "Icons\\mi_swap.ico"
+MI_SPLITVIEW            ICON                    "Icons\\mi_splitview.ico"
+MI_DIFF                 ICON                    "Icons\\mi_diff.ico"
+MI_CONCATVIEW           ICON                    "Icons\\mi_concatview.ico"
+MI_BATSU                ICON                    "Icons\\mi_batsu.ico"
+MI_P                    ICON                    "Icons\\mi_P.ico"
+MI_R                    ICON                    "Icons\\mi_R.ico"
+MI_W                    ICON                    "Icons\\mi_W.ico"
+ABS_MENUTRIANGLE        ICON                    "Icons\\abs_menutriangle.ico"
+MI_ARROWDOWN            ICON                    "Icons\\mi_arrowdown.ico"
+MI_ARROWRIGHT           ICON                    "Icons\\mi_arrowright.ico"
+ABS_ROWMOVEBOTTOM       ICON                    "Icons\\abs_rowmovebottom.ico"
+ABS_ROWMOVETOP          ICON                    "Icons\\abs_rowmovetop.ico"
+ABS_ROWMOVEDOWN         ICON                    "Icons\\abs_rowmovedown.ico"
+ABS_ROWMOVEUP           ICON                    "Icons\\abs_rowmoveup.ico"
+DISK-BLACK              ICON                    "Icons\\disk-black.ico"
+APPLICATION-RESIZE-FULL ICON                    "Icons\\application-resize-full.ico"
+ARROW-CURVE             ICON                    "Icons\\arrow-curve.ico"
+ARROW-CURVE-180-LEFT    ICON                    "Icons\\arrow-curve-180-left.ico"
+HIGHLIGHTER             ICON                    "Icons\\highlighter.ico"
+INFORMATION-FRAME       ICON                    "Icons\\information-frame.ico"
+MAGNIFIER-LEFT          ICON                    "Icons\\magnifier-left.ico"
+DATABASE--PENCIL        ICON                    "Icons\\database--pencil.ico"
+EDIT-INDENT             ICON                    "Icons\\edit-indent.ico"
+EDIT-DIFF               ICON                    "Icons\\edit-diff.ico"
+COMMENT-HTML            ICON                    "Icons\\comment-html.ico"
+COMMENT-C               ICON                    "Icons\\comment-c.ico"
+NAVIGATION              ICON                    "Icons\\navigation.ico"
+DOCUMENT                ICON                    "Icons\\document.ico"
+APPLICATION-SIDEBAR     ICON                    "Icons\\application-sidebar.ico"
+BLUE-FOLDER-HORIZONTAL  ICON                    "Icons\\blue-folder-horizontal.ico"
+PRINTER                 ICON                    "Icons\\printer.ico"
+CONTROL-090             ICON                    "Icons\\control-090.ico"
+CONTROL                 ICON                    "Icons\\control.ico"
+CONTROL-PAUSE           ICON                    "Icons\\control-pause.ico"
+CONTROL-STOP-SQUARE     ICON                    "Icons\\control-stop-square.ico"
+CONTROL_GRAY            ICON                    "Icons\\control_gray.ico"
+CONTROL-STOP_GRAY       ICON                    "Icons\\control-stop_gray.ico"
+EDIT-SIZE               ICON                    "Icons\\edit-size.ico"
+UI-TAB                  ICON                    "Icons\\ui-tab.ico"
+UI-CHECK-BOXES-SERIES   ICON                    "Icons\\ui-check-boxes-series.ico"
+PROPERTY                ICON                    "Icons\\property.ico"
+EDIT-LANGUAGE           ICON                    "Icons\\edit-language.ico"
+SORT-SMALL              ICON                    "Icons\\sort-small.ico"
+SORT-ALPHABET           ICON                    "Icons\\sort-alphabet.ico"
+DOCUMENT-TREE           ICON                    "Icons\\document-tree.ico"
+UI-SCROLL-PANE-LIST     ICON                    "Icons\\ui-scroll-pane-list.ico"
+REPORT                  ICON                    "Icons\\report.ico"
+NAVIGATION-000-WHITE    ICON                    "Icons\\navigation-000-white.ico"
+BALANCE                 ICON                    "Icons\\balance.ico"
+LAYOUT-SPLIT-VERTICAL   ICON                    "Icons\\layout-split-vertical.ico"
+SELECTION-SELECT        ICON                    "Icons\\selection-select.ico"
+QUESTION-FRAME          ICON                    "Icons\\question-frame.ico"
+SELECTION               ICON                    "Icons\\selection.ico"
+BLUE-FOLDER-OPEN-DOCUMENT-TEXT ICON                    "Icons\\blue-folder-open-document-text.ico"
+ABS_FOLDER              ICON                    "Icons\\abs_folder.ico"
+ABS_DOCUMENT            ICON                    "Icons\\abs_document.ico"
+MI_BUILTIN              ICON                    "Icons\\mi_builtin.ico"
+APPLICATION-DOCK-180    ICON                    "icons\\application-dock-180.ico"
+arrow-curve-090         ICON                    "Icons\\arrow-curve-090.ico"
+MI_VSEPARATOR           ICON                    "Icons\\mi_vseparator.ico"
+MI_INFOPANE             ICON                    "Icons\\mi_infopane.ico"
+MI_SUBPANE              ICON                    "Icons\\mi_subpane.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_APPMENU MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        POPUP "New"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：テキストドキュメント（モードごと）", IDM_NewTextDocument
+            MENUITEM SEPARATOR
+            MENUITEM "動的メニュー追加位置：テンプレート",           IDM_NewWithTemplate
+        END
+        MENUITEM "&Open...\tCtrl+O",            32776
+        MENUITEM "Open &Selected\tCtrl+D",      32784
+        POPUP "Open Recent"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：最近開いたファイル",        IDM_Open_RecentlyOpenedFile
+            MENUITEM SEPARATOR
+            MENUITEM "Clear Menu Items",            IDM_Delete_RecentlyOpenedFile
+        END
+        POPUP "Open from Same Folder"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：同じフォルダ",           32791
+        END
+        POPUP "Open Related File"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：関連ファイル",           IDM_OpenImportFile
+        END
+        MENUITEM "Open Lua Console",            IDM_LuaConsole
+        MENUITEM "&Close\tCtrl+W",              IDM_CLOSE
+        MENUITEM SEPARATOR
+        POPUP "Open from Same Project"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：同じプロジェクト",         32797
+        END
+        MENUITEM "Setup Project Folder...",     32798
+        MENUITEM "Refresh Project Folders",     IDM_RefreshProjectFolders
+        MENUITEM SEPARATOR
+        POPUP "Open from Registered Folder"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：登録フォルダ",           32800
+            MENUITEM SEPARATOR
+            MENUITEM "Edit...",                     IDM_FolderListSetup
+        END
+        MENUITEM SEPARATOR
+        POPUP "Open from FTP Folder"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：FTPフォルダ",          IDM_FTPFolder
+            MENUITEM SEPARATOR
+            MENUITEM "Edit...",                     IDM_FTPFolderSetup
+        END
+        MENUITEM "Save As FTP Alias",           IDM_SaveFTPAlias
+        MENUITEM SEPARATOR
+        MENUITEM "&Save Overwrite\tCtrl+S",     IDM_Save
+        MENUITEM "Save &As...",                 IDM_SaveAs
+        MENUITEM SEPARATOR
+        MENUITEM "Copy File Path",              IDM_CopyFilePath
+        MENUITEM SEPARATOR
+        MENUITEM "Page Set&up...",              IDM_PageSetup
+        MENUITEM "Setup Print Op&tion...",      32814
+        MENUITEM "Print Selected Paragraphs...", IDM_PrintRange
+        MENUITEM "&Print...\tCtrl+P",           IDM_Print
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_Quit
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               IDM_Undo
+        MENUITEM "&Redo\tCtrl+Y",               IDM_Redo
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                32820
+        MENUITEM "&Copy\tCtrl+C",               32821
+        MENUITEM "&Paste\tCtrl+V",              IDM_Paste
+        MENUITEM "&Delete",                     32825
+        MENUITEM "Selecte &All\tCtrl+A",        32826
+        MENUITEM SEPARATOR
+        MENUITEM "Rectangle Select Mode\tCtrl+Shift+R", 32827
+        MENUITEM "Paste Rectangle",             32828
+        MENUITEM SEPARATOR
+        POPUP "&Key Recording"
+        BEGIN
+            MENUITEM "Start Key Recording",         IDM_KeyRecordStart
+            MENUITEM "Stop Key Recording",          IDM_KeyRecordStop
+            MENUITEM "Play Recorded Key",           IDM_KeyRecordPlay
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Shift Left\tCtrl+[",          32829
+        MENUITEM "Shift Right\tCtrl+]",         IDM_ShiftRight
+        MENUITEM "&Indent\tCtrl+T",             32832
+        MENUITEM "Switch Automatic Indent mode", 2004
+        MENUITEM SEPARATOR
+        MENUITEM "Go to Line",                  IDM_MoveLine
+        MENUITEM "Bookmark",                    32835
+        MENUITEM "Go to Bookmark",              32836
+        POPUP "Go to Definition / Declaration"
+        BEGIN
+            MENUITEM "動的メニュー挿入位置：定義宣言",             32838
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insert Line Break at Wrap Position in Selected Text", 32839
+        MENUITEM SEPARATOR
+        MENUITEM "Tool Input Mode\tCtrl+U",     IDM_KeyToolMode
+        MENUITEM "Insert Corresponding Text\tCtrl+J", IDM_CorrespondText
+        MENUITEM "Select between Corresponding Texts\tCtrl+Shift+J", IDM_SelectBetweenCorrespondText
+        POPUP "Transliterate"
+        BEGIN
+            MENUITEM "Lowercase -&lt; Uppercase",   IDM_Transliterate_ToUpper
+            MENUITEM "Uppercase -&lt; Lowercase",   IDM_Transliterate_ToLower
+            MENUITEM SEPARATOR
+            MENUITEM "動的メニュー追加位置：文字種変換",            32845
+        END
+        MENUITEM "Text Count...",               IDM_TextCount
+        MENUITEM "Enable Define Values...",     IDM_DefineValues
+        MENUITEM SEPARATOR
+        MENUITEM "Insert Backslash\tCtrl+\\",   IDM_InputBackslashYen
+    END
+    POPUP "&Find"
+    BEGIN
+        MENUITEM "&Find/Replace\tCtrl+F",       32882
+        MENUITEM "Find &Next\tF3",              IDM_FindNext
+        MENUITEM "Find &Previous\tShift+F3",    IDM_FindPrevious
+        MENUITEM "Register Selected Text for Find\tCtrl+E", IDM_SetFindText
+        MENUITEM "Register Selected Text for Replace", IDM_SetReplaceText
+        MENUITEM "Clear Highlight\tCtrl+Shift+F", IDM_EraseFindHighlight
+        MENUITEM SEPARATOR
+        MENUITEM "Replace",                     32898
+        MENUITEM "Replace & Find",              32899
+        MENUITEM "Replace Next",                32900
+        MENUITEM "Replace after Caret",         32901
+        MENUITEM "Replace in Selected Text",    IDM_ReplaceInSelection
+        MENUITEM "Replace All",                 IDM_ReplaceAll
+        MENUITEM SEPARATOR
+        MENUITEM "Multi-File Find...\tCtrl+M",  32906
+        MENUITEM SEPARATOR
+        MENUITEM "Next Item in Index Window\tCtrl+F3", IDM_IndexNext
+        MENUITEM "Previous Item in Index Window\tCtrl+Shift+F3", 32908
+        MENUITEM SEPARATOR
+        MENUITEM "Display Unavailable Characters List for Current Text Encoding", 32910
+        MENUITEM "Display Misspell List",       IDM_FindMisspell
+    END
+    POPUP "&Document"
+    BEGIN
+        POPUP "Font"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：フォント",             IDM_FONT
+        END
+        POPUP "Size"
+        BEGIN
+            MENUITEM "6 pt",                        IDM_FontSize60
+            MENUITEM "8 pt",                        IDM_FontSize80
+            MENUITEM "9 pt",                        IDM_FontSize90
+            MENUITEM "9.5 pt",                      IDM_FontSize95
+            MENUITEM "10 pt",                       IDM_FontSize100
+            MENUITEM "10.5 pt",                     IDM_FontSize105
+            MENUITEM "11 pt",                       IDM_FontSize110
+            MENUITEM "12 pt",                       IDM_FontSize120
+            MENUITEM "14 pt",                       IDM_FontSize140
+            MENUITEM "16 pt",                       IDM_FontSize160
+            MENUITEM "18 pt",                       IDM_FontSize180
+            MENUITEM "24 pt",                       IDM_FontSize240
+            MENUITEM SEPARATOR
+            MENUITEM "Others...",                   32853
+        END
+        POPUP "Mode"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：モード",              32855
+        END
+        POPUP "Text Encoding"
+        BEGIN
+            MENUITEM "動的メニュー追加位置：テキストエンコーディング",     IDM_SetTextEncoding
+        END
+        POPUP "Line Break Code"
+        BEGIN
+            MENUITEM "CR+LF (Windows)",             IDM_ReturnCode_CRLF
+            MENUITEM "LF (UNIX)",                   IDM_ReturnCode_LF
+            MENUITEM "CR (Mac)",                    32864
+        END
+        POPUP "Wrap"
+        BEGIN
+            MENUITEM "No Wrap",                     32866
+            MENUITEM "Wrap with Window Width",      32867
+            MENUITEM "Wrap with Characters Count...", IDM_WrapMode_WordWrapByLetterCount
+        END
+        MENUITEM "Document Properties...",      IDM_ShowDocPropertyWindow
+        MENUITEM SEPARATOR
+        MENUITEM "Reload with another Text Encoding...", IDM_CorrectEncoding
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Show Cross-Caret",            IDM_ShowHideCrossCaret
+        MENUITEM SEPARATOR
+        MENUITEM "&Split View",                 IDM_SplitView
+        MENUITEM "&Close View",                 IDM_ConcatView
+        MENUITEM SEPARATOR
+        MENUITEM "Display Sub Pane",            IDM_ShowHideSubPaneColumn
+        MENUITEM "Display Information Pane",    IDM_ShowHideInfoPaneColumn
+        POPUP "Sub Pane Mode"
+        BEGIN
+            MENUITEM "Manual",                      IDM_SubPaneMode_Manual
+            MENUITEM "Previous Tab",                IDM_SubPaneMode_PrevTab
+            MENUITEM "Same Tab",                    IDM_SubPaneMode_SameTab
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Re-recognize Syntax",         IDM_ReRecognize
+    END
+    POPUP "&Review"
+    BEGIN
+        POPUP "Display Analysis Info"
+        BEGIN
+            MENUITEM "Local Identifier Arrow",      IDM_ArrowToDef
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Attach Sticky",               IDM_Fusen
+    END
+    POPUP "&Changes"
+    BEGIN
+        MENUITEM "Compare Files...",            IDM_CompareFiles
+        MENUITEM SEPARATOR
+        MENUITEM "Compare with Latest Revision in Repository", IDM_SCMCompareWithLatest
+        MENUITEM "Refresh All SCM Status and Changed Points", IDM_SCMUpdateStatusAll
+        MENUITEM SEPARATOR
+        MENUITEM "Previous Changed Point",      IDM_SCMPrevDiff
+        MENUITEM "Next Changed Point",          33097
+        MENUITEM SEPARATOR
+        MENUITEM "Commit...",                   IDM_SCMCommit
+    END
+    POPUP "&Jump"
+    BEGIN
+        MENUITEM "Go Back",                     IDM_NavigatePrev
+        MENUITEM "Go Next",                     IDM_NavigateNext
+        MENUITEM SEPARATOR
+        MENUITEM "Go to Previous Header",       32875
+        MENUITEM "Go to Next Header",           32874
+        MENUITEM SEPARATOR
+        MENUITEM "Export Headers to Text",      32876
+        MENUITEM SEPARATOR
+        MENUITEM "動的メニュー追加位置：ジャンプ",             32877
+    END
+    POPUP "&Tool"
+    BEGIN
+        MENUITEM "動的メニュー追加位置：ツール",              32878
+        MENUITEM SEPARATOR
+        MENUITEM "動的メニュー追加位置：標準モードツール",         IDM_Tool_StandardMode
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "Switch Window",               IDM_SwitchWindow
+        MENUITEM "Switch Previous Window",      IDM_SwitchPrevWindow
+        MENUITEM "Minimize",                    IDM_Minimize
+        MENUITEM SEPARATOR
+        MENUITEM "Tab Mode",                    IDM_TabWindowMode
+        MENUITEM "Change All Windows to Tab",   32922
+        MENUITEM "Change Current Window to Tab", IDM_WindowToTab
+        MENUITEM "Change Current Tab to Window", IDM_TabToWindow
+        MENUITEM "Switch to Next Tab",          IDM_SwitchToNextTab
+        MENUITEM "Switch to Previous Tab",      IDM_SwitchToPrevTab
+        MENUITEM SEPARATOR
+        MENUITEM "Switch Full Screen Mode",     IDM_FullScreenMode
+        MENUITEM SEPARATOR
+        MENUITEM "Show Key Record/Play Window", IDM_KeyRecordWindow
+        MENUITEM "Show File List",              IDM_ShowFileList
+        MENUITEM "Show Jump List",              IDM_ShowJumpList
+        MENUITEM "Show Identifier Info Window", IDM_ShowIdIno
+        MENUITEM SEPARATOR
+        MENUITEM "Show FTP Log Window",         IDM_FTPLog
+        MENUITEM SEPARATOR
+        MENUITEM "動的メニュー追加位置：ウインドウ",            32881
+    END
+    POPUP "&Setup"
+    BEGIN
+        MENUITEM "Setup mi general settings...", IDM_AppPref
+        MENUITEM "Mode Preference...",          IDM_ModePref
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Help",                        IDM_Help
+        MENUITEM "&About mi",                   IDM_About
+    END
+    POPUP "DEBUG"
+    BEGIN
+        MENUITEM "ユニットテスト",                     IDM_UnitTest
+        MENUITEM "ユニットテスト２",                    IDM_UnitTest2
+        MENUITEM "Regular Expression Test",     IDM_RegExpTest
+        MENUITEM "Dump ObjectID",               IDM_DumpObjectID
+        MENUITEM "TraceLog for Analysis",       IDM_TraceLog
+        MENUITEM "Test",                        ID_32996
+        MENUITEM "ModePref XML",                IDM_ModePrefXML
+        MENUITEM "SDF Debug Mode",              IDM_SDFDebugMode
+        MENUITEM "LowMemoryTest",               IDM_LowMemoryTest
+        MENUITEM "Compare Folder",              IDM_CompareFolder
+        POPUP "&Figure"
+        BEGIN
+            MENUITEM "Leave Figure Mode",           IDM_FigMode_None
+            MENUITEM "Draw Line",                   IDM_FigMode_Line
+        END
+    END
+END
+
+JP_MENU_CONTEXTMENU_TEXTNOTSELECTED MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Go to Definition / Declaration", ID_CM_33081
+        MENUITEM "Display Identifier Information", IDM_CM_IdInfo
+        MENUITEM SEPARATOR
+        MENUITEM "Dictionary",                  IDM_CM_Dictionary
+        MENUITEM "Correct Spell",               ID_CM_33082
+        MENUITEM SEPARATOR
+        MENUITEM "Select All",                  IDM_CM_SelectAll
+        MENUITEM "Paste",                       IDM_CM_Paste
+        MENUITEM SEPARATOR
+        MENUITEM "Edit My Sticky",              IDM_CM_ExternalComment
+        MENUITEM SEPARATOR
+        MENUITEM "Tool",                        0
+        MENUITEM SEPARATOR
+        MENUITEM "Related File",                0
+    END
+END
+
+JP_MENU_CONTEXTMENU_TEXTSELECTED MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Go to Definition / Declaration", ID_CM_GOTODEFINITION
+        MENUITEM "Display Identifier Information", IDM_CM_IdInfo
+        MENUITEM "Add / Update Define Value...", IDM_CM_DefineValue
+        MENUITEM SEPARATOR
+        MENUITEM "Dictionary",                  IDM_CM_Dictionary
+        MENUITEM "Correct Spell",               ID_CM_33089
+        MENUITEM SEPARATOR
+        MENUITEM "Copy",                        IDM_CM_Copy
+        MENUITEM "Cut",                         IDM_CM_Cut
+        MENUITEM "Paste",                       IDM_CM_Paste
+        MENUITEM "Clear",                       IDM_CM_Clear
+        MENUITEM SEPARATOR
+        MENUITEM "Find",                        IDM_CM_Find
+        MENUITEM "Multi-Files Find",            IDM_CM_MultiFileFind
+        MENUITEM "Next",                        IDM_CM_FindNext
+        MENUITEM "Previous",                    IDM_CM_FindPrevious
+        MENUITEM SEPARATOR
+        MENUITEM "Edit My Sticky",              IDM_CM_ExternalComment
+        MENUITEM SEPARATOR
+        MENUITEM "Transliterate",               0
+        MENUITEM "Tool",                        0
+        MENUITEM SEPARATOR
+        MENUITEM "Related File",                ID_CM_RELATEDFILE
+        MENUITEM SEPARATOR
+        MENUITEM "Print Selected Paragraphs...", IDM_CM_PrintSelected
+    END
+END
+
+JP_MENU_CONTEXTMENU_TOOLBUTTON MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Edit",                        IDM_CM_EditToolButton
+        MENUITEM SEPARATOR
+        MENUITEM "Hide",                        IDM_CM_HideToolButton
+        MENUITEM "Delete...",                   IDM_CM_DeleteToolButton
+        MENUITEM SEPARATOR
+        MENUITEM "Add Toolbar Button",          2003
+        MENUITEM "Mode Preference",             IDM_ModePref
+        MENUITEM SEPARATOR
+        MENUITEM "Show All Buttons",            IDM_CM_DisplayAllToolButton
+        MENUITEM "Hide All Buttons made by mode creator", 2001
+        MENUITEM "Hide All Buttons made by user", 2002
+    END
+END
+
+JP_MENU_CONTEXTMENU_TAB MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Make Window (Move Window to Left)", IDM_CM_DetachTab_Left
+        MENUITEM "Make Window (Move Window to Right)", IDM_CM_DetachTab_Right
+        MENUITEM SEPARATOR
+        MENUITEM "Display in Sub Text Pane",    IDM_CM_DisplayInSubTextPane
+        MENUITEM SEPARATOR
+        MENUITEM "Close Tab",                   IDM_CM_CloseTab
+    END
+END
+
+JP_MENU_CONTEXTMENU_RECENTOPEN MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Remove This Item from Recent History", IDM_CM_ClearItemFromRecentOpen
+        MENUITEM "Remove All Not Found Items from Recent History", IDM_CM_ClearNotFoundItemsFromRecentOpen
+        MENUITEM SEPARATOR
+        MENUITEM "Display Sub Pane",            IDM_ShowHideSubPaneColumn
+        MENUITEM "Display Information Pane",    IDM_ShowHideInfoPaneColumn
+        MENUITEM "Setup Pane",                  IDM_SetupPane
+    END
+END
+
+JP_MENU_CONTEXTMENU_RETURNCODE MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "CR (Mac)",                    IDM_ReturnCode_CR
+        MENUITEM "CR+LF (Win)",                 IDM_ReturnCode_CRLF
+        MENUITEM "LF (UNIX)",                   IDM_ReturnCode_LF
+    END
+END
+
+JP_MENU_CONTEXTMENU_WRAPMODE MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "No Wrap",                     IDM_WrapMode_NoWrap
+        MENUITEM "Wrap (Window Width)",         IDM_WrapMode_WordWrap
+        MENUITEM "Wrap (Character Count)...",   IDM_WrapMode_WordWrapByLetterCount
+    END
+END
+
+JP_ABSFRAMEWORKCOMMONRESOURCE_CONTEXTMENU_EDITBOX MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Cut",                         IDM_Cut
+        MENUITEM "Copy",                        IDM_Copy
+        MENUITEM "Paste",                       IDM_Paste
+    END
+END
+
+JP_MENU_CONTEXTMENU_INDEXWINDOW MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Copy",                        ID_CM_33088
+        MENUITEM "Cut",                         ID_CM_33076
+        MENUITEM "Paste",                       ID_CM_33077
+        MENUITEM "Clear",                       ID_CM_33078
+        MENUITEM SEPARATOR
+        MENUITEM "Edit URL",                    ID_CM_URL33079
+        MENUITEM "Edit Comment",                ID_CM_33080
+        MENUITEM SEPARATOR
+        MENUITEM "New Item (File)",             0
+        MENUITEM "New Item (Comment)",          ID_CM_33083
+        MENUITEM "New Item (URL)",              ID_CM_33084
+        MENUITEM "New Item (Group)",            ID_CM_33085
+        MENUITEM SEPARATOR
+        MENUITEM "Find",                        0
+        MENUITEM "Find Next",                   ID_CM_33086
+        MENUITEM SEPARATOR
+        MENUITEM "Setup Index Window...",       ID_CM_33087
+    END
+END
+
+JP_MENU_CONTEXTMENU_FILELIST MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Display Sub Pane",            IDM_ShowHideSubPaneColumn
+        MENUITEM "Display Information Pane",    IDM_ShowHideInfoPaneColumn
+        MENUITEM "Setup Pane",                  IDM_SetupPane
+    END
+END
+
+JP_MENU_CONTEXTMENU_JUMPLIST MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Display Sub Pane",            IDM_ShowHideSubPaneColumn
+        MENUITEM "Display Information Pane",    IDM_ShowHideInfoPaneColumn
+        MENUITEM "Setup Pane",                  IDM_SetupPane
+    END
+END
+
+JP_MENU_CONTEXTMENU_IDINFO MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Display Sub Pane",            IDM_ShowHideSubPaneColumn
+        MENUITEM "Display Information Pane",    IDM_ShowHideInfoPaneColumn
+        MENUITEM "Setup Pane",                  IDM_SetupPane
+    END
+END
+
+JP_MENU_CONTEXTMENU_INDEXVIEW MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Export This Group to New Document", IDM_IndexViewExport
+    END
+END
+
+JP_MENU_CONTEXTMENU_TOOLBAR MENU 
+BEGIN
+    POPUP "CM"
+    BEGIN
+        MENUITEM "Add Toolbar Button",          2003
+        MENUITEM "Mode Preference",             IDM_ModePref
+        MENUITEM SEPARATOR
+        MENUITEM "Show All Buttons",            IDM_CM_DisplayAllToolButton
+        MENUITEM "Hide All Buttons made by mode creator", 2001
+        MENUITEM "Hide All Buttons made by user", 2002
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_APPACCEL ACCELERATORS 
+BEGIN
+    "C",            IDM_Copy,               VIRTKEY, CONTROL, NOINVERT
+    "X",            IDM_Cut,                VIRTKEY, CONTROL, NOINVERT
+    VK_OEM_5,       IDM_InputBackslashYen,  VIRTKEY, CONTROL, NOINVERT
+    "V",            IDM_Paste,              VIRTKEY, CONTROL, NOINVERT
+    "Y",            IDM_Redo,               VIRTKEY, CONTROL, NOINVERT
+    "A",            IDM_SelectAll,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            IDM_Undo,               VIRTKEY, CONTROL, NOINVERT
+    "F",            IDM_Find,               VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          IDM_FindNext,           VIRTKEY, NOINVERT
+    VK_F3,          IDM_FindPrevious,       VIRTKEY, SHIFT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+JP_MAIN_ABOUT DIALOGEX 22, 17, 231, 277
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "Version Information"
+CLASS "dialogs"
+FONT 9, "MS UI Gothic", 0, 0, 0x0
+BEGIN
+    ICON            32512,0,14,9,20,20
+    LTEXT           "mi",IDC_STATIC,48,12,18,8,SS_NOPREFIX
+    LTEXT           "3.0",1,120,12,24,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2011 Daisuke Kamiyama",IDC_STATIC,48,30,174,8
+    LTEXT           "Version",IDC_STATIC,72,12,42,8,SS_NOPREFIX
+    PUSHBUTTON      "Web Site",10,66,48,84,14
+    LTEXT           "< Alpha Version >",2,150,12,54,8,SS_NOPREFIX
+    LTEXT           "本バージョンはαバージョンであり、一部機能はまだ正常に動作しません。申し訳ありませんがなにとぞご了承願います。",IDC_STATIC,12,72,198,24
+    LTEXT           "This version is alpha version. Several features does not work yet. Thank you for your testing alpha version.",IDC_STATIC,12,96,192,24
+    LTEXT           "GNU (www.gnu.org) Diffutils の diff.exe バージョン3.0を同梱しています。diff.exe は独立したプログラムであり、mi とはコマンドライン・パイプにより分離されています。",IDC_STATIC,12,132,198,30
+    LTEXT           "GNU (www.gnu.org) Diffutils diff.exe version 3.0 is bundled. The diff.exe is dependent program and it is separated using command line and pipe from mi. ",IDC_STATIC,12,165,198,30
+    PUSHBUTTON      "diff.exe のライセンスを表示   Show license of diff.exe.",11,18,199,180,14
+    LTEXT           "このソフトウエアは Lua を使用しています。",IDC_STATIC,12,228,198,12
+    LTEXT           "This software uses Lua.",IDC_STATIC,12,240,198,12
+    PUSHBUTTON      "Lua のライセンスを表示   Show Lua license.",1002,18,252,180,14
+END
+
+JP_MAIN_FILELIST DIALOGEX 0, 0, 135, 142
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_FIND DIALOGEX 0, 0, 238, 273
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find / Replace"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Find Next",106,180,54,50,14
+    EDITTEXT        102,6,24,228,24,ES_AUTOHSCROLL
+    LTEXT           "Find Text",-1,8,7,46,8
+    COMBOBOX        101,84,6,150,186,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Find Previous",105,120,54,50,14
+    PUSHBUTTON      "From First",104,60,54,50,14
+    PUSHBUTTON      "List",103,6,54,42,14
+    EDITTEXT        108,6,96,228,24,ES_AUTOHSCROLL
+    LTEXT           "Replace Text",-1,8,79,46,8
+    COMBOBOX        107,84,78,150,174,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Replace Range",-1,6,126,228,30
+    CONTROL         "Next",109,"Button",BS_AUTORADIOBUTTON,12,138,30,10
+    CONTROL         "After Caret",110,"Button",BS_AUTORADIOBUTTON,54,138,60,10
+    CONTROL         "Inside Select",111,"Button",BS_AUTORADIOBUTTON,126,138,60,10
+    CONTROL         "All",112,"Button",BS_AUTORADIOBUTTON,192,138,33,10
+    PUSHBUTTON      "Replace Next",114,114,162,122,14
+    PUSHBUTTON      "Replace&Find",113,48,162,56,14
+    GROUPBOX        "Find Option",-1,6,180,228,66
+    CONTROL         "Ignore Cases",115,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,192,90,10
+    CONTROL         "Whole Word Only",116,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,192,108,10
+    CONTROL         "Ambiguous Find ",117,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,228,60,10
+    CONTROL         "Distinguish \\ and yen mark",118,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,204,108,10
+    CONTROL         "Regular Expression",119,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,216,90,10
+    CONTROL         "Allow Return / Tab Code",120,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,216,108,10
+    CONTROL         "Find From First after Document End",121,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,228,102,10
+    PUSHBUTTON      "Find Memory",122,150,252,80,14
+    PUSHBUTTON      "Setup",124,186,228,42,14
+    CONTROL         "Ignore Spaces/Tabs/Returns",123,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,204,96,10
+END
+
+JP_MODEPREF_MODEPREF DIALOGEX 0, 0, 466, 387
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Mode Preference"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        101,36,6,108,222,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mode:",IDC_STATIC,6,8,30,8
+    EDITTEXT        65534,3,27,459,357,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add Mode...",500,156,6,66,14
+    PUSHBUTTON      "New File",515,270,6,66,14
+    PUSHBUTTON      "Open Mode Preferences Folder",501,342,6,114,14
+END
+
+JP_MAIN_TRACELOG DIALOGEX 0, 0, 502, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Trace Log"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        1,0,0,501,273,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+END
+
+JP_APPPREF_PREFERENCE0 DIALOGEX 0, 0, 344, 320
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        239,60,54,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Font : ",IDC_STATIC,18,55,36,8
+    LTEXT           "Size : ",IDC_STATIC,210,55,30,8
+    LTEXT           "Opacity: ",IDC_STATIC,18,74,72,8
+    COMBOBOX        129,222,71,108,18,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ウインドウ位置：",IDC_STATIC,157,74,60,8
+    GROUPBOX        "Jump List : ",IDC_STATIC,6,42,330,48
+    GROUPBOX        "File List",IDC_STATIC,6,96,330,48
+    COMBOBOX        238,60,109,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Font : ",IDC_STATIC,18,110,36,8
+    LTEXT           "Size : ",IDC_STATIC,210,110,30,8
+    LTEXT           "Opacity: ",IDC_STATIC,18,128,72,8
+    GROUPBOX        "Index Window",IDC_STATIC,6,150,330,48
+    COMBOBOX        240,60,163,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Font : ",IDC_STATIC,17,164,36,8
+    LTEXT           "Size : ",IDC_STATIC,210,164,30,8
+    GROUPBOX        "Text Window : ",IDC_STATIC,6,240,330,48
+    CONTROL         "Transparent Text Window",104,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,252,186,10
+    LTEXT           "Active Transparency : ",IDC_STATIC,18,270,84,8
+    LTEXT           "Non-Active Transparency : ",IDC_STATIC,171,270,96,8
+    EDITTEXT        132,96,126,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,144,128,18,8
+    CONTROL         "可視ファイルのみ表示する",243,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,210,128,102,10
+    LTEXT           "Letter : ",IDC_STATIC,18,183,29,8
+    LTEXT           "Background : ",IDC_STATIC,120,182,29,8
+    LTEXT           "Group : ",IDC_STATIC,222,182,36,8
+    EDITTEXT        105,108,267,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,152,270,10,8
+    EDITTEXT        106,270,267,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,312,270,16,8
+    GROUPBOX        "Other Floating Windows",IDC_STATIC,6,204,330,30
+    LTEXT           "Opacity: ",IDC_STATIC,18,218,72,8
+    EDITTEXT        242,96,216,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,144,219,18,8
+    EDITTEXT        152,93,71,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,138,74,12,8
+    LTEXT           "pt",IDC_STATIC,294,55,30,8
+    LTEXT           "pt",IDC_STATIC,294,110,25,8
+    LTEXT           "pt",IDC_STATIC,296,165,25,8
+    GROUPBOX        "General",IDC_STATIC,6,6,330,30
+    COMBOBOX        295,90,18,138,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Default Font : ",IDC_STATIC,18,20,66,8
+    PUSHBUTTON      "",135,60,181,39,9
+    PUSHBUTTON      "",136,162,181,39,9
+    PUSHBUTTON      "",139,264,181,39,9
+    EDITTEXT        128,246,52,40,14,ES_AUTOHSCROLL
+    EDITTEXT        131,246,108,40,14,ES_AUTOHSCROLL
+    EDITTEXT        134,246,162,40,14,ES_AUTOHSCROLL
+END
+
+JP_APPPREF_PREFERENCE DIALOGEX 0, 0, 358, 333
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Setup mi general settings"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        65534,3,4,351,326,ES_AUTOHSCROLL
+END
+
+JP_APPPREF_PREFERENCE1 DIALOGEX 0, 0, 344, 302
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Mouse Click",IDC_STATIC,6,6,330,30
+    CONTROL         "Select Kanji+Hiragana or Katakana+Hiragana by Double-Click",107,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,19,246,10
+    CONTROL         "Display Context Menu by Press Button Long Time",108,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,55,144,10
+    GROUPBOX        "Mouse Drag",IDC_STATIC,6,90,330,30
+    EDITTEXT        109,174,53,40,14,ES_AUTOHSCROLL
+    CONTROL         "Change Scroll Speed Faster when Mouse Cursor is moved far from View",165,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,103,282,10
+    GROUPBOX        "Wheel Scroll",IDC_STATIC,6,126,330,42
+    CONTROL         "Disable Horizontal Scroll",149,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,139,114,10
+    LTEXT           "Normal Scroll Speed : ",IDC_STATIC,18,153,78,8
+    EDITTEXT        110,102,150,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,150,153,18,8
+    LTEXT           "When Ctrl key is Pressed: ",IDC_STATIC,180,153,90,8
+    EDITTEXT        111,270,150,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,318,153,18,8
+    GROUPBOX        "New Window",IDC_STATIC,6,174,330,30
+    CONTROL         "Create New Document when Launch or Click Dock if No Document Exisits",209,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,185,306,10
+    GROUPBOX        "Caret",IDC_STATIC,174,204,162,30
+    CONTROL         "Thick Caret",221,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,186,216,102,10
+    GROUPBOX        "Context Menu (Right-Click)",IDC_STATIC,6,42,330,42
+    CONTROL         "Select Word when Display Context Menu",244,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,67,246,10
+    GROUPBOX        "Tool Input Mode",IDC_STATIC,6,204,162,27
+    CONTROL         "Display Popup Window",247,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,217,138,10
+    GROUPBOX        "Input Completion (Abbreviation)",IDC_STATIC,6,233,330,30
+    CONTROL         "Select Candidate by Up, Down, ESC, Return Keys when Candidate Window is displayed",257,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,247,300,10
+    GROUPBOX        "Line Folding",IDC_STATIC,6,264,330,27
+    CONTROL         "Use Line Folding",306,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,276,186,10
+END
+
+JP_APPPREF_PREFERENCE2 DIALOGEX 0, 0, 344, 290
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Tab",IDC_STATIC,6,6,330,60
+    CONTROL         "Multi-Row Tab",210,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,168,20,60,10
+    COMBOBOX        220,72,18,78,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Tab Size : ",IDC_STATIC,18,20,48,8
+    LTEXT           "Position Offset when Changed to Window",IDC_STATIC,18,51,150,8
+    EDITTEXT        211,174,48,40,14,ES_AUTOHSCROLL
+    LTEXT           "pixel",IDC_STATIC,222,50,36,8
+    GROUPBOX        "View",IDC_STATIC,6,72,156,30
+    CONTROL         "Display View Close Button at Left side",216,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,85,138,10
+    GROUPBOX        "Find Result View",IDC_STATIC,168,72,168,30
+    CONTROL         "Display Find Result in Text Window",252,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,85,132,10
+    GROUPBOX        "Pane Layout",IDC_STATIC,6,108,330,132
+    COMBOBOX        270,18,133,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Sub Pane Column",IDC_STATIC,18,120,72,8
+    COMBOBOX        271,18,150,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        272,18,168,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        280,156,133,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        281,156,150,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        282,156,168,126,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Info Pane Column",IDC_STATIC,156,120,72,8
+    PUSHBUTTON      "Update",290,294,168,36,14
+    LTEXT           "Opacity: ",IDC_STATIC,162,188,36,8
+    EDITTEXT        291,210,186,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,258,188,18,8
+    GROUPBOX        "Find Box",IDC_STATIC,6,246,330,42
+    CONTROL         "Display Find Box in Toolbar",253,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,257,222,10
+    CONTROL         "Focus Find Box at first by Find menu",254,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,270,222,10
+    CONTROL         "Show Tab Close Button",307,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,234,20,96,10
+    CONTROL         "Close All Tabs when close Window",308,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,36,246,10
+    CONTROL         "Display Info Pane Column at right side of text scrollbar",315,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,204,222,10
+    LTEXT           "Background :",IDC_STATIC,246,206,42,8
+    PUSHBUTTON      "",316,288,205,39,9
+    CONTROL         "Save Sub Pane Column visibility in document for non tab window mode.",317,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,222,312,10
+END
+
+JP_APPPREF_PREFERENCE3 DIALOGEX 0, 0, 344, 302
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Find/Replace Window",IDC_STATIC,6,6,330,48
+    GROUPBOX        "Find Options Default",IDC_STATIC,6,60,330,54
+    CONTROL         "Ignore Cases",116,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,72,90,10
+    COMBOBOX        241,60,18,132,174,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Font : ",IDC_STATIC,18,20,36,8
+    LTEXT           "Size : ",IDC_STATIC,204,20,30,8
+    CONTROL         "Whole Word Only",117,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,72,102,10
+    CONTROL         "Ambiguous Find ",119,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,97,102,10
+    CONTROL         "Distinguish \\ and yen mark",118,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,84,96,10
+    CONTROL         "Regular Expression",120,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,84,90,10
+    CONTROL         "Allow Return / Tab Code",121,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,84,102,10
+    CONTROL         "Find From First after Document End",122,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,97,126,10
+    CONTROL         "Highlight Find Text",124,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,242,138,10
+    GROUPBOX        "Find Highlight",IDC_STATIC,6,216,330,72
+    LTEXT           "* But, Find Text including Line Break Code cannot be Highlighted",IDC_STATIC,24,254,288,8
+    CONTROL         "Highlight the previous Find Text",246,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,269,138,10
+    LTEXT           "pt",IDC_STATIC,294,20,25,8
+    CONTROL         "Select Text Window after Find / Replace",260,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,36,222,10
+    CONTROL         "Text Selection Color after Find",258,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,228,138,10
+    PUSHBUTTON      "",259,162,228,39,9
+    PUSHBUTTON      "",125,162,241,39,9
+    PUSHBUTTON      "",245,168,268,39,9
+    CONTROL         "Ignore Spaces/Tabs/Returns",300,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,72,102,10
+    GROUPBOX        "Fuzzy Search Options",IDC_STATIC,6,168,330,42
+    GROUPBOX        "Multi-File Find Options Default",IDC_STATIC,6,120,330,42
+    CONTROL         "Find Subfolders",123,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,132,90,10
+    CONTROL         "Display Position",151,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,132,90,10
+    CONTROL         "Only Visible File",218,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,144,90,10
+    CONTROL         "Only No-Type or TEXT File",219,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,144,90,10
+    CONTROL         "Unicode NFKD Characters",301,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,180,150,10
+    CONTROL         "Hiragana / Katakana",302,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,174,180,150,10
+    CONTROL         "Onbiki Existence",303,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,192,150,10
+    CONTROL         "Kana Yuragi Expression",304,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,174,192,150,10
+    EDITTEXT        115,240,18,40,14,ES_AUTOHSCROLL
+END
+
+JP_APPPREF_PREFERENCE5 DIALOGEX 0, 0, 344, 314
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Count of Wide Characters",IDC_STATIC,6,6,330,30
+    CONTROL         "Count as 2 Characters for Calculation of Tab and Wrap",102,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,204,10
+    GROUPBOX        "Japanese Word Wrap Characters",IDC_STATIC,6,42,330,48
+    LTEXT           "This setting is valid for Word Wrap with Character Count",IDC_STATIC,18,71,204,8
+    EDITTEXT        148,18,55,306,14,ES_AUTOHSCROLL
+    GROUPBOX        "Control Code Display",IDC_STATIC,6,96,330,30
+    CONTROL         "Display Control Code (0x00-0x1F, excluding Tab/Return Code) as HEX Code with Red Background",101,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,109,312,10
+    GROUPBOX        "Big Size File",IDC_STATIC,6,168,330,42
+    CONTROL         "Open without Wrap always when File is over 1MB",224,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,181,306,10
+    CONTROL         "Open Confirmation Dialog when File is over 1MB",225,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,192,306,10
+    GROUPBOX        "Copy / Paste / Drag&Drop between Applications which do not support Unicode",IDC_STATIC,6,216,330,30
+    COMBOBOX        251,132,228,174,144,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Assumed Text Encoding : ",IDC_STATIC,18,230,108,8
+    CONTROL         "Display PC Type Dependent Characters (Characters not defined in JIS X 0208)",255,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,276,306,10
+    GROUPBOX        "Options for ""Display Unavailable Characters List for Current Text Encoding""",IDC_STATIC,6,252,330,54
+    LTEXT           "(Valid only for SJIS, JIS, EUC)",IDC_STATIC,24,264,126,8
+    CONTROL         "Display Hankaku Katakana in List",256,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,288,120,10
+    PUSHBUTTON      "デフォルト設定",204,252,71,72,14
+    GROUPBOX        "Text Encoding",IDC_STATIC,6,132,330,30
+    CONTROL         "Open Shift_JIS Text even if there are Encoding Error Characters",313,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,145,312,10
+END
+
+JP_APPPREF_PREFERENCE4 DIALOGEX 0, 0, 344, 296
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Shortcut",IDC_STATIC,6,6,330,48
+    CONTROL         "Assign Shortcut for each Window",112,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,204,10
+    GROUPBOX        "History Memory",IDC_STATIC,6,60,330,42
+    CONTROL         "Do Not Memory Recently Opened Files",222,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,73,204,10
+    GROUPBOX        "Edit Text Encoding Menu",IDC_STATIC,6,108,330,120
+    PUSHBUTTON      "New",196,24,209,30,14
+    PUSHBUTTON      "Edit",500,60,209,30,14
+    COMBOBOX        154,96,209,108,162,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        126,21,125,231,78,ES_AUTOHSCROLL
+    PUSHBUTTON      "",192,258,131,14,14,BS_ICON
+    PUSHBUTTON      "",193,258,147,14,14,BS_ICON
+    PUSHBUTTON      "",194,258,167,14,14,BS_ICON
+    PUSHBUTTON      "",195,258,183,14,14,BS_ICON
+    PUSHBUTTON      "Clear",197,222,209,30,14
+    COMBOBOX        150,119,34,132,144,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mode for Open by Ctrl+N :",IDC_STATIC,18,36,96,8
+    PUSHBUTTON      "IANA のページを開く",215,258,209,72,14,NOT WS_VISIBLE
+    CONTROL         "Do Not Memorize Recently Used Find/Replace Text",296,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,84,204,10
+END
+
+JP_APPPREF_PREFERENCE6 DIALOGEX 0, 0, 344, 290
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "FTP Account Setting",IDC_STATIC,6,6,330,240
+    GROUPBOX        "Setting for the Account",181,114,18,216,222
+    LTEXT           "Server Name : ",IDC_STATIC,120,33,42,8
+    EDITTEXT        168,174,30,150,14,ES_AUTOHSCROLL
+    LTEXT           "User Name : ",IDC_STATIC,120,49,42,8
+    EDITTEXT        169,174,46,150,14,ES_AUTOHSCROLL
+    LTEXT           "Password : ",IDC_STATIC,120,65,42,8
+    EDITTEXT        170,174,62,90,14,ES_AUTOHSCROLL
+    CONTROL         "PASV mode",180,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,267,65,52,10
+    LTEXT           "Port Number : ",IDC_STATIC,120,81,42,8
+    EDITTEXT        182,174,78,90,14,ES_AUTOHSCROLL
+    CONTROL         "Binary Mode",185,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,267,81,54,10
+    LTEXT           "HTTP URL : ",IDC_STATIC,120,97,48,8
+    EDITTEXT        172,174,94,150,14,ES_AUTOHSCROLL
+    LTEXT           "HTTP URL : ",IDC_STATIC,126,113,39,8
+    EDITTEXT        171,180,110,144,14,ES_AUTOHSCROLL
+    COMBOBOX        173,168,126,156,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Connect Method : ",IDC_STATIC,120,128,42,8
+    LTEXT           "Proxy Server : ",IDC_STATIC,126,144,54,8
+    EDITTEXT        174,186,141,138,14,ES_AUTOHSCROLL
+    LTEXT           "User Name : ",IDC_STATIC,126,159,54,8
+    EDITTEXT        175,186,157,138,14,ES_AUTOHSCROLL
+    LTEXT           "Password : ",IDC_STATIC,126,175,54,8
+    EDITTEXT        176,186,173,138,14,ES_AUTOHSCROLL
+    CONTROL         "Save Backup in Local Folder when Save to FTP",177,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,192,210,10
+    LTEXT           "Save Folder:",IDC_STATIC,126,207,36,8
+    EDITTEXT        178,162,204,144,14,ES_AUTOHSCROLL
+    CONTROL         "Add Save Date Time to File Name",506,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,126,222,120,10
+    PUSHBUTTON      "...",179,312,204,12,14
+    EDITTEXT        153,12,24,96,174,ES_AUTOHSCROLL
+    PUSHBUTTON      "New",183,12,204,30,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Clear",184,78,204,30,14
+    PUSHBUTTON      "Setup FTP Folder...",208,12,222,96,14,NOT WS_VISIBLE
+END
+
+JP_APPPREF_PREFERENCE7 DIALOGEX 0, 0, 344, 278
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "SCM / Version Control",IDC_STATIC,6,96,330,78
+    CONTROL         "Use Integration Feature with SCM / Version Control Tools",226,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,108,204,10
+    CONTROL         "Colorize Items which content is different with Repository in File List",227,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,144,264,10
+    LTEXT           "Need Check-in : ",IDC_STATIC,30,159,54,8
+    LTEXT           "Unregistered : ",IDC_STATIC,144,159,30,8
+    LTEXT           "Others : ",IDC_STATIC,234,159,30,8
+    LTEXT           "cvs path : ",IDC_STATIC,186,260,36,8,NOT WS_VISIBLE
+    EDITTEXT        231,234,258,84,14,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    LTEXT           "svn Path : ",IDC_STATIC,24,126,78,8
+    EDITTEXT        248,108,122,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "",228,91,158,39,9
+    PUSHBUTTON      "",236,186,158,39,9
+    PUSHBUTTON      "",237,270,158,39,9
+    GROUPBOX        "Difference Display",IDC_STATIC,6,6,330,84
+    LTEXT           "Changed Line : ",IDC_STATIC,18,38,30,8
+    LTEXT           "Added Line : ",IDC_STATIC,132,38,30,8
+    LTEXT           "Deleted Line : ",IDC_STATIC,240,38,30,8
+    LTEXT           "Changed Item in Jump List : ",IDC_STATIC,18,55,84,8
+    PUSHBUTTON      "",232,60,36,39,9
+    PUSHBUTTON      "",233,168,36,39,9
+    PUSHBUTTON      "",234,282,36,39,9
+    PUSHBUTTON      "",235,114,54,39,9
+    CONTROL         "Show Diff Target Document with Word Wrap Always",310,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,70,264,10
+    LTEXT           "diff Options : ",IDC_STATIC,168,20,54,8
+    EDITTEXT        250,228,18,84,14,ES_AUTOHSCROLL
+    LTEXT           "diff Path : ",IDC_STATIC,18,20,36,8
+    EDITTEXT        249,60,18,84,14,ES_AUTOHSCROLL
+END
+
+JP_APPPREF_PREFERENCE8 DIALOGEX 0, 0, 344, 248
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "バッチファイル",IDC_STATIC,6,90,330,54,NOT WS_VISIBLE
+    CONTROL         "ファイル名の拡張子が .bat のツールをバッチファイルとして実行する",144,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,18,108,246,10
+    LTEXT           "標準出力を表示するモード：",IDC_STATIC,18,122,96,8,NOT WS_VISIBLE
+    COMBOBOX        145,126,120,114,150,CBS_DROPDOWNLIST | CBS_SORT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        146,18,18,306,42,ES_AUTOHSCROLL
+    GROUPBOX        "Helper Application",IDC_STATIC,6,6,330,78
+    PUSHBUTTON      "New",187,18,60,30,14
+    PUSHBUTTON      "Edit Extension",503,54,60,66,14
+    PUSHBUTTON      "",189,156,60,14,14,BS_ICON
+    PUSHBUTTON      "",190,170,60,14,14,BS_ICON
+    PUSHBUTTON      "Clear",188,294,60,30,14
+    PUSHBUTTON      "Edit Creator",504,189,60,48,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Edit Type",505,240,60,48,14,NOT WS_VISIBLE
+END
+
+JP_APPPREF_PREFERENCE9 DIALOGEX 0, 0, 344, 308
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        166,18,180,306,36,ES_AUTOHSCROLL
+    GROUPBOX        "File Exclusive Control",IDC_STATIC,6,6,186,30
+    CONTROL         "Inhibit Write from Other Applications while Edit",143,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,162,10
+    GROUPBOX        "Input Method",IDC_STATIC,198,6,138,30
+    CONTROL         "Color Underline",140,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,210,18,66,10
+    GROUPBOX        "印刷",IDC_STATIC,6,42,330,30
+    CONTROL         "Print Colored",141,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,55,66,10
+    CONTROL         "Convert White to Black",142,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,55,96,10
+    GROUPBOX        "Default Folder For New Save",IDC_STATIC,6,78,138,30
+    CONTROL         "Original File Folder",217,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,92,114,10
+    GROUPBOX        "Comment for Recently Opened Files",IDC_STATIC,6,168,330,72
+    PUSHBUTTON      "New",199,18,220,30,14
+    PUSHBUTTON      "Edit Path",501,54,220,48,14
+    PUSHBUTTON      "",201,163,220,14,14,BS_ICON
+    PUSHBUTTON      "",202,177,220,14,14,BS_ICON
+    PUSHBUTTON      "Edit Comment",502,102,220,54,14
+    COMBOBOX        223,108,258,216,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Display Format for File Path : ",IDC_STATIC,18,259,84,8
+    GROUPBOX        "File Path",IDC_STATIC,6,246,330,30
+    PUSHBUTTON      "Clear",200,294,220,30,14
+    CONTROL         "Each Paragraph Always",292,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,55,120,10
+    GROUPBOX        "Reopen Files",IDC_STATIC,6,114,330,48
+    CONTROL         "Reopen Files opened when quited",309,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,128,246,10
+    CONTROL         "Limit Number of Reopen Files in One Window",311,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,144,210,10
+    LTEXT           "First",IDC_STATIC,234,144,24,8
+    EDITTEXT        312,264,141,30,14,ES_AUTOHSCROLL
+    LTEXT           "Tabs",IDC_STATIC,300,144,24,8
+    GROUPBOX        "Reload",IDC_STATIC,150,78,186,30
+    CONTROL         "Always Reload when File is Edited by Other App",314,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,92,168,10
+END
+
+JP_APPPREF_PREFERENCE10 DIALOGEX 0, 0, 344, 248
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        231,18,18,228,14,ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "Register User ID",IDC_STATIC,6,6,330,54
+    GROUPBOX        "Windows",IDC_STATIC,6,66,330,60
+    CONTROL         "Register to ""Send To"" menu in right click menu of Explorer.",507,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,78,186,10
+    CONTROL         "Display Amazon Associate Button",294,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,18,42,186,10
+    PUSHBUTTON      "Register",205,270,18,54,14,WS_DISABLED
+    GROUPBOX        "Language",IDC_STATIC,6,132,330,48
+    COMBOBOX        305,84,144,132,144,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language :",IDC_STATIC,18,146,54,8
+    LTEXT           "This setting will be applied after exit and launch mi again.",IDC_STATIC,30,162,282,8
+END
+
+JP_MAIN_FINDMEMORY DIALOGEX 0, 0, 399, 223
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_WINDOWEDGE
+CAPTION "Find Memory"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        207,0,0,396,198,ES_AUTOHSCROLL
+    PUSHBUTTON      "New",201,6,204,54,14,BS_CENTER
+    PUSHBUTTON      "Close",209,72,204,54,14
+    PUSHBUTTON      "Clear",202,234,204,54,14
+    PUSHBUTTON      "",203,138,204,14,14,BS_ICON
+    PUSHBUTTON      "",204,156,204,14,14,BS_ICON
+    PUSHBUTTON      "",205,180,204,14,14,BS_ICON
+    PUSHBUTTON      "",206,198,204,14,14,BS_ICON
+END
+
+JP_MAIN_MULTIFILEFIND DIALOGEX 0, 0, 238, 263
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Multi-Files Find"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Find",105,180,72,50,14
+    EDITTEXT        102,6,23,228,24,ES_AUTOHSCROLL
+    LTEXT           "Find Text",IDC_STATIC,8,8,46,8
+    COMBOBOX        101,84,6,150,204,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Select Folder",IDC_STATIC,6,90,228,78
+    CONTROL         "",106,"Button",BS_AUTORADIOBUTTON,12,103,12,10
+    GROUPBOX        "Find Option",IDC_STATIC,6,174,228,84
+    CONTROL         "Ignore Cases",112,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,187,90,10
+    CONTROL         "Whole Word Only",113,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,187,108,10
+    CONTROL         "File Name Match Condition : (RegExp)",201,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,56,102,10
+    CONTROL         "Distinguish \\ and yen mark",115,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,198,108,10
+    CONTROL         "Regular Expression",116,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,210,90,10
+    CONTROL         "Allow Return / Tab Code",117,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,210,108,10
+    CONTROL         "Find Subfolders",119,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,221,96,10
+    CONTROL         "Ambiguous Find",114,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,243,72,10
+    COMBOBOX        103,156,71,18,168,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        104,6,70,144,14,ES_AUTOHSCROLL
+    COMBOBOX        200,30,102,198,132,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",107,18,118,210,14
+    CONTROL         "Path",108,"Button",BS_AUTORADIOBUTTON,12,134,48,10
+    COMBOBOX        109,66,133,144,126,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        111,18,150,210,14,ES_AUTOHSCROLL
+    CONTROL         "Display Position",120,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,221,108,10
+    CONTROL         "Only Visible File",121,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,232,96,10
+    CONTROL         "Only No-Type or TEXT File",122,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,232,108,10
+    PUSHBUTTON      "...",110,216,132,12,14
+    COMBOBOX        202,108,54,53,168,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Setup",124,186,242,42,14
+    CONTROL         "Ignore Spaces/Tabs/Returns",123,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,198,96,10
+    COMBOBOX        203,168,54,60,168,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+JP_MAIN_INDEXWINDOW DIALOGEX 0, 0, 250, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Index Window"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_MULTIFILEFINDPROGRESS DIALOGEX 0, 0, 244, 75
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CAPTION
+CAPTION "Progress"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Multi-File Find Proceeding",104,48,6,102,8
+    PUSHBUTTON      "Abort",103,186,54,50,14
+    CONTROL         "",102,"msctls_progress32",WS_BORDER,18,54,156,12
+    LTEXT           "text",101,48,18,186,30
+    ICON            32516,IDC_STATIC,12,12,20,20
+END
+
+JP_MAIN_JUMPLIST DIALOGEX 0, 0, 125, 186
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_FTPFOLDER DIALOGEX 0, 0, 466, 162
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit FTP Folder Menu"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "New",101,6,138,54,14
+    EDITTEXT        100,6,6,204,126,ES_AUTOHSCROLL
+    PUSHBUTTON      "",200,66,138,14,14,BS_ICON
+    PUSHBUTTON      "",201,82,138,14,14,BS_ICON
+    PUSHBUTTON      "",202,108,138,14,14,BS_ICON
+    PUSHBUTTON      "",203,124,138,14,14,BS_ICON
+    GROUPBOX        "Setting for the Account",108,222,6,234,150
+    LTEXT           "Server Address : ",IDC_STATIC,234,21,60,8
+    EDITTEXT        103,300,18,150,14,ES_AUTOHSCROLL
+    COMBOBOX        107,234,132,72,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        104,300,36,150,14,ES_AUTOHSCROLL
+    LTEXT           "User Name : ",IDC_STATIC,234,39,60,8
+    LTEXT           "Path : ",IDC_STATIC,234,56,60,8
+    EDITTEXT        105,300,54,150,14,ES_AUTOHSCROLL
+    LTEXT           "Level : ",IDC_STATIC,234,74,60,8
+    EDITTEXT        106,300,72,48,14,ES_AUTOHSCROLL
+    LTEXT           "levels",IDC_STATIC,354,75,36,8
+    LTEXT           "* User Name cannot contain Colon + Password",IDC_STATIC,240,90,204,8
+    PUSHBUTTON      "Copy this FTP Account Data",197,312,132,138,14
+    PUSHBUTTON      "Clear",102,156,138,54,14
+END
+
+JP_MODEPREF_MODEPREF0 DIALOGEX 0, 0, 458, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        313,84,36,150,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Font : ",IDC_STATIC,18,39,60,8
+    LTEXT           "Size : ",IDC_STATIC,258,39,72,8
+    GROUPBOX        "Document Property Default",IDC_STATIC,6,6,444,156
+    LTEXT           "pt",IDC_STATIC,384,39,30,8
+    COMBOBOX        106,84,55,150,138,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Text Encoding : ",IDC_STATIC,18,57,60,8
+    LTEXT           "Line Break Code : ",IDC_STATIC,258,57,72,8
+    COMBOBOX        109,336,55,90,120,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Wrap Letter Count : ",IDC_STATIC,258,74,72,8
+    EDITTEXT        163,336,73,40,14,ES_AUTOHSCROLL
+    LTEXT           "characters",IDC_STATIC,384,74,30,8
+    COMBOBOX        107,84,72,150,138,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Wrap : ",IDC_STATIC,18,76,60,8
+    LTEXT           "Tab Code Width:",IDC_STATIC,258,92,72,8
+    EDITTEXT        108,336,90,40,14,ES_AUTOHSCROLL
+    LTEXT           "characters",IDC_STATIC,384,92,30,8
+    LTEXT           "Indent Amount:",IDC_STATIC,258,111,72,8
+    EDITTEXT        111,90,127,40,14,ES_AUTOHSCROLL
+    LTEXT           "characters",IDC_STATIC,384,111,30,8
+    LTEXT           "Window Size:",IDC_STATIC,18,129,66,8
+    EDITTEXT        305,336,108,40,14,ES_AUTOHSCROLL
+    LTEXT           "×",IDC_STATIC,138,129,12,8
+    EDITTEXT        112,150,127,40,14,ES_AUTOHSCROLL
+    CONTROL         "Anti Alias",110,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,103,66,10
+    GROUPBOX        "Print Option Default",IDC_STATIC,6,168,444,120
+    PUSHBUTTON      "Set from Active Window Size",113,204,127,132,14
+    CONTROL         "Print Font / Size",114,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,186,96,10
+    LTEXT           "Font : ",IDC_STATIC,120,186,36,8
+    COMBOBOX        314,162,184,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",IDC_STATIC,288,186,36,8
+    COMBOBOX        116,330,184,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",IDC_STATIC,378,186,30,8
+    CONTROL         "Print Page Number",117,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,202,96,10
+    LTEXT           "Font : ",IDC_STATIC,120,202,36,8
+    COMBOBOX        315,162,200,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",IDC_STATIC,288,202,36,8
+    COMBOBOX        119,330,200,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",IDC_STATIC,378,202,30,8
+    CONTROL         "Print File Name",120,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,218,96,10
+    LTEXT           "Font : ",IDC_STATIC,120,218,36,8
+    COMBOBOX        316,162,216,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",IDC_STATIC,288,218,36,8
+    COMBOBOX        122,330,216,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",IDC_STATIC,378,218,30,8
+    CONTROL         "Print Each Line Number",124,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,235,96,10
+    LTEXT           "Font : ",IDC_STATIC,120,235,36,8
+    COMBOBOX        317,162,232,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Always Wrap with Paper Width regardless of Document Property",126,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,251,228,10
+    LTEXT           "Line Space :",IDC_STATIC,288,251,36,8
+    COMBOBOX        127,330,250,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",IDC_STATIC,378,251,30,8
+    CONTROL         "Print Separate Line",123,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,270,96,10
+    LTEXT           "This does not applied to tab mode window.",IDC_STATIC,90,144,204,8
+    LTEXT           "They are applied to new document or file which does not have document property",IDC_STATIC,18,18,336,8
+    EDITTEXT        105,336,35,40,14,ES_AUTOHSCROLL
+END
+
+JP_MODEPREF_MODEPREF1 DIALOGEX 0, 0, 458, 350
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Font Color:",-1,18,21,42,8
+    GROUPBOX        "Text Display",-1,6,6,444,48
+    LTEXT           "File Path:",-1,129,92,48,8
+    LTEXT           "pixel",-1,126,38,26,8
+    EDITTEXT        130,78,36,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Control Display",-1,6,132,444,90
+    CONTROL         "Display Grid",150,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,73,96,10
+    CONTROL         "Info Header",134,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,150,48,10
+    LTEXT           "Base Character:",-1,90,186,90,8
+    COMBOBOX        142,90,164,78,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        140,306,185,90,120,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Toolbar",135,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,150,60,10
+    CONTROL         "Line Break Code",145,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,242,66,10
+    LTEXT           "Background : ",-1,18,74,42,8
+    CONTROL         "Display Image in Background",131,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,92,102,10
+    EDITTEXT        133,180,90,240,14,ES_AUTOHSCROLL
+    LTEXT           "Image Density:",-1,130,110,74,8
+    PUSHBUTTON      "...",132,426,90,18,14
+    LTEXT           "Line Space :",-1,18,38,54,8
+    CONTROL         "Position Button",136,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,186,150,60,10
+    CONTROL         "Ruler",138,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,186,54,10
+    EDITTEXT        139,186,184,40,14,ES_AUTOHSCROLL
+    LTEXT           "Mark:",-1,246,186,54,8
+    CONTROL         "Line Number Button",141,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,167,66,10
+    COMBOBOX        144,300,164,78,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Each Line Number",143,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,165,66,10
+    CONTROL         "Display Jump List when Document is Opened",137,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,277,210,10
+    GROUPBOX        "Display Code Characters:",-1,6,229,444,30
+    CONTROL         "Tab Code",146,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,242,60,10
+    CONTROL         "Space",147,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,168,242,60,10
+    CONTROL         "Zenkaku Space",148,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,240,242,60,10
+    LTEXT           "Color:",-1,330,242,24,8
+    EDITTEXT        165,210,108,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Jump List Window",-1,168,265,282,30
+    CONTROL         "Display Cross-Caret by default",322,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,204,210,10
+    GROUPBOX        "Identifier Info Window",-1,6,265,156,30
+    CONTROL         "Display Comment",318,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,277,102,10
+    EDITTEXT        324,48,316,40,14,ES_AUTOHSCROLL
+    EDITTEXT        325,150,316,40,14,ES_AUTOHSCROLL
+    EDITTEXT        326,258,316,40,14,ES_AUTOHSCROLL
+    EDITTEXT        327,366,316,40,14,ES_AUTOHSCROLL
+    LTEXT           "Left:",-1,18,318,24,8
+    GROUPBOX        "Print Margin",-1,6,301,444,36
+    LTEXT           "Right:",-1,120,318,24,8
+    LTEXT           "Top:",-1,228,318,24,8
+    LTEXT           "Bottom:",-1,336,318,24,8
+    LTEXT           "mm",-1,93,318,18,8
+    LTEXT           "mm",-1,195,318,18,8
+    LTEXT           "mm",-1,302,318,18,8
+    LTEXT           "mm",-1,411,318,18,8
+    LTEXT           "%",-1,257,110,18,8
+    PUSHBUTTON      "",149,360,242,39,9
+    PUSHBUTTON      "",128,67,20,39,9
+    PUSHBUTTON      "",129,66,74,39,9
+    GROUPBOX        "Background",-1,6,60,444,66
+    CONTROL         "Show Underline at Current Line",346,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,20,126,10
+    LTEXT           "Color:",-1,270,20,30,8
+    PUSHBUTTON      "",347,306,20,39,9
+END
+
+JP_MODEPREF_MODEPREF2 DIALOGEX 0, 0, 458, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Parenthesis",-1,6,6,444,24
+    EDITTEXT        153,18,59,384,14,ES_AUTOHSCROLL
+    CONTROL         "Parenthesis Balance Check",151,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,16,114,10
+    CONTROL         "Select inside Parentheses by Double-Click",152,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,16,150,10
+    GROUPBOX        "Quad-Click",-1,6,36,444,42
+    CONTROL         "Select inside the following characters by Quad-Click",164,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,48,240,10
+    GROUPBOX        "Japanese Word Wrap",-1,6,84,444,24
+    CONTROL         "Attach Japanese Word Wrap Characters before Line Break when Wrap with Character Count",154,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,94,240,10
+    GROUPBOX        "Tab",-1,6,114,444,60
+    CONTROL         "Input Space Character instead of Tab Code when Indent or Tab Key is input",155,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,126,366,10
+    GROUPBOX        "Drag&Drop",-1,6,180,444,24
+    CONTROL         "Correct Spaces by Drag&Drop",156,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,190,240,10
+    GROUPBOX        "\\ Key",-1,6,210,444,24
+    CONTROL         "Input Backslash when press \\ key",157,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,220,384,10
+    GROUPBOX        "Completion (Abbreviated Input)",-1,6,240,444,34
+    CONTROL         "Display Candidate Window",319,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,254,114,10
+    EDITTEXT        320,150,252,51,14,ES_AUTOHSCROLL
+    LTEXT           "times later, display Window",-1,210,254,84,8
+    CONTROL         "Display Red Underline at Misspell Word",310,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,210,296,192,10
+    GROUPBOX        "Spell Check (Not Implemented Yet)",-1,6,282,444,30
+    LTEXT           "Language:",-1,18,296,36,8
+    COMBOBOX        323,60,294,132,120,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Display Tab with ""Tab Code Width"" for Space Characters of ""Indent Amount""",331,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,156,240,10
+    CONTROL         "Use Zenkaku Space instead of 2 Spaces",333,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,30,138,186,10
+END
+
+JP_MODEPREF_MODEPREF4 DIALOGEX 0, 0, 458, 320
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Text Encoding",-1,6,6,444,42
+    CONTROL         "Attach BOM when Save UTF-8 Text",159,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,150,10
+    CONTROL         "Check if Text Encoding is same as ""charset"" when Save",160,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,30,258,10
+    GROUPBOX        "Specific Save Method",-1,6,54,444,30
+    CONTROL         "Attach DOS EOF when Save,   usually this should be OFF if not necessary",161,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,66,378,10
+    GROUPBOX        "Extension for Save",-1,6,126,444,36
+    CONTROL         "Use the following Extension for Default File Name when Save newly",329,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,142,216,10
+    EDITTEXT        330,240,139,60,14,ES_AUTOHSCROLL
+    GROUPBOX        "Document Property Info",-1,6,90,444,30
+    CONTROL         "Save Document Property Info to mi's Preference",335,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,102,378,10
+END
+
+JP_MODEPREF_MODEPREF3 DIALOGEX 0, 0, 458, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Mode Decision",-1,6,6,444,132
+    CONTROL         "1. Detect Unicode BOM",166,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,162,108,10
+    PUSHBUTTON      "New",215,18,114,30,14
+    PUSHBUTTON      "Edit",505,54,114,30,14
+    EDITTEXT        214,18,36,108,72,ES_AUTOHSCROLL
+    PUSHBUTTON      "",543,132,42,14,14,BS_ICON
+    PUSHBUTTON      "",544,132,56,14,14,BS_ICON
+    PUSHBUTTON      "",545,132,78,14,14,BS_ICON
+    PUSHBUTTON      "",546,132,92,14,14,BS_ICON
+    PUSHBUTTON      "Clear",216,96,114,30,14
+    LTEXT           "File Extension: (Example: .html)",-1,18,24,108,8
+    LTEXT           "These File Paths use This Mode, even if Extension is duplicated with other Modes ",-1,162,24,282,8
+    EDITTEXT        529,162,36,276,72,ES_AUTOHSCROLL
+    PUSHBUTTON      "New",530,162,114,30,14
+    PUSHBUTTON      "Edit",533,198,114,30,14
+    PUSHBUTTON      "Clear",531,402,114,30,14
+    GROUPBOX        "Automatic Recognition of Text Encoding",-1,6,144,444,78
+    CONTROL         "2. Detect ""charset=..."" in Text",167,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,162,138,10
+    CONTROL         "3. Detect by mi's Recognition Logic",168,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,174,168,10
+    CONTROL         "If not sure, Display Dialog",169,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,192,192,10
+    CONTROL         "If not sure, Set to Default Text Encoding",311,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,204,276,10
+    GROUPBOX        "Open JIS Files",-1,6,228,444,30
+    CONTROL         "Read ASCII code 0x5C character (\\/Backslash) as \\ when open SJIS, JIS, EUC Files",170,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,241,384,10
+    LTEXT           "It will Judge by Count of Representative Characters",-1,180,175,228,8
+END
+
+JP_MODEPREF_MODEPREF5 DIALOGEX 0, 0, 458, 344
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Comment",-1,6,6,216,72
+    CONTROL         "Start String is Regular Expression",184,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,30,47,150,10
+    EDITTEXT        181,18,30,54,14,ES_AUTOHSCROLL
+    LTEXT           "through",-1,78,33,30,8
+    EDITTEXT        182,114,30,54,14,ES_AUTOHSCROLL
+    LTEXT           "Part",-1,171,33,45,8
+    EDITTEXT        183,18,59,54,14,ES_AUTOHSCROLL
+    LTEXT           "through Line Break",-1,78,61,48,8
+    LTEXT           "Color:",-1,18,18,24,8
+    GROUPBOX        "Literal (String)",-1,228,6,222,72
+    EDITTEXT        186,240,30,54,14,ES_AUTOHSCROLL
+    LTEXT           "through",-1,300,32,30,8
+    EDITTEXT        187,336,30,54,14,ES_AUTOHSCROLL
+    LTEXT           "Part",-1,396,32,48,8
+    EDITTEXT        188,240,48,54,14,ES_AUTOHSCROLL
+    LTEXT           "through",-1,300,50,30,8
+    EDITTEXT        189,336,48,54,14,ES_AUTOHSCROLL
+    LTEXT           "Part",-1,396,50,48,8
+    LTEXT           "Color:",-1,240,18,24,8
+    GROUPBOX        "Escape Character",-1,6,78,216,30
+    EDITTEXT        191,18,90,54,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "ドキュメントに反映",276,378,90,72,14
+    GROUPBOX        "Syntax Definition Script",-1,6,114,444,222
+    CONTROL         "Use Embedded Syntax Definition",2002,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,128,168,10
+    COMBOBOX        2003,300,139,144,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Type of Syntax Definition:",-1,210,140,90,8
+    EDITTEXT        278,66,174,120,42,ES_AUTOHSCROLL
+    GROUPBOX        "Setting for Colorized Part",290,204,174,174,30
+    LTEXT           "Colorized",-1,24,176,42,8
+    LTEXT           "Part",-1,24,188,36,8
+    EDITTEXT        281,66,222,120,42,ES_AUTOHSCROLL
+    GROUPBOX        "Setting for Indentifier",291,204,210,174,52
+    LTEXT           "Identifier",-1,24,222,30,8
+    PUSHBUTTON      "Export...",549,384,198,60,14
+    PUSHBUTTON      "Import...",548,384,180,60,14
+    LTEXT           "Color:",-1,216,188,24,8
+    LTEXT           "Color:",-1,216,222,42,8
+    LTEXT           "Import:",-1,215,234,42,8
+    LTEXT           "Local:",-1,216,247,42,8
+    CONTROL         "Bold",519,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,312,222,54,10
+    CONTROL         "Italic",520,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,312,234,60,10
+    CONTROL         "Underline",521,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,312,248,60,10
+    SCROLLBAR       279,186,174,10,42,SBS_VERT
+    SCROLLBAR       282,186,222,10,42,SBS_VERT
+    EDITTEXT        337,30,282,336,30,ES_AUTOHSCROLL
+    CONTROL         "Use System Header Files",336,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,270,336,8
+    CONTROL         "Use Embedded Syntax Definition Script",338,"Button",BS_AUTORADIOBUTTON,24,140,180,10
+    CONTROL         "Use User-Defined Syntax Definition Script",339,"Button",BS_AUTORADIOBUTTON,24,157,180,10
+    PUSHBUTTON      "Update Documents",567,372,270,72,14
+    EDITTEXT        340,210,155,216,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",566,432,155,12,14
+    CONTROL         "SDF Debug Mode",568,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,375,300,70,10
+    PUSHBUTTON      "",185,48,18,39,9
+    PUSHBUTTON      "",190,270,18,39,9
+    PUSHBUTTON      "",283,264,187,39,9
+    PUSHBUTTON      "",284,264,222,39,9
+    PUSHBUTTON      "",288,264,234,39,9
+    PUSHBUTTON      "",289,264,247,39,9
+    CONTROL         "Recognize Conditional Compile Directive",344,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,318,168,8
+    LTEXT           "Disabled Color:",-1,204,318,54,8
+    PUSHBUTTON      "",345,264,318,39,9
+END
+
+JP_MODEPREF_MODEPREF6 DIALOGEX 0, 0, 458, 332
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Keyword",-1,6,6,444,234
+    CONTROL         "Bold",174,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,50,84,10
+    LTEXT           "Keyword: (Update by Save button)",-1,180,30,138,8
+    EDITTEXT        172,18,24,120,132,ES_AUTOHSCROLL
+    LTEXT           "Color:",-1,336,36,24,8
+    PUSHBUTTON      "Save",177,180,198,72,14
+    GROUPBOX        "Setting for the Category",200,168,18,270,204
+    PUSHBUTTON      "New",179,18,162,30,14
+    PUSHBUTTON      "Edit",507,54,162,30,14
+    PUSHBUTTON      "Clear",180,108,162,30,14
+    EDITTEXT        171,180,42,144,150,ES_AUTOHSCROLL
+    PUSHBUTTON      "",534,144,36,14,14,BS_ICON
+    PUSHBUTTON      "",535,144,51,14,14,BS_ICON
+    PUSHBUTTON      "",536,144,72,14,14,BS_ICON
+    PUSHBUTTON      "",537,144,87,14,14,BS_ICON
+    CONTROL         "Italic",517,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,63,84,10
+    CONTROL         "Underline",516,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,74,84,10
+    CONTROL         "Prior to Syntax/Header Color",518,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,90,108,10
+    CONTROL         "Ignore Cases",175,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,138,84,10
+    CONTROL         "Regular Expression",176,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,151,84,10
+    CONTROL         "Set Disable",547,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,336,204,84,10
+    PUSHBUTTON      "Sort",178,274,198,51,14
+    PUSHBUTTON      "Export...",551,90,204,66,14
+    PUSHBUTTON      "Import...",550,18,204,66,14
+    GROUPBOX        "Available Characters for Keyword",-1,6,246,444,78
+    LTEXT           "Available Characters for Keyword:",-1,18,260,120,8
+    EDITTEXT        196,144,258,294,14,ES_AUTOHSCROLL
+    LTEXT           "Available Characters for the First:",-1,18,277,120,8
+    EDITTEXT        197,144,274,132,14,ES_AUTOHSCROLL
+    LTEXT           "Available Characters for the Last:",-1,18,293,120,8
+    EDITTEXT        198,144,290,132,14,ES_AUTOHSCROLL
+    CONTROL         "Apply This Setting for Select by Double-Click",199,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,309,270,10
+    PUSHBUTTON      "",173,365,36,39,9
+    LTEXT           "If checked, keyword color is prior to syntax/header color such as comment color.",599,336,102,96,24
+    LTEXT           "* Keyword priority: Header tab setting, Keyword tab setting (later row is higher), keyword in Syntax Definition Script",-1,18,222,420,12
+    LTEXT           "If checked, words matched with regular expression described in the first line is colorized.",600,336,162,96,36
+    LTEXT           "Blue letter is item made by mode creator.",-1,18,180,144,24
+END
+
+JP_MODEPREF_MODEPREF7 DIALOGEX 0, 0, 458, 350
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Header",-1,6,6,444,288
+    LTEXT           "Regular Expresion:",589,180,30,108,8
+    EDITTEXT        202,18,24,126,216,ES_AUTOHSCROLL
+    LTEXT           "Color:",-1,366,132,20,8
+    PUSHBUTTON      "Update Documents",292,366,264,72,14
+    GROUPBOX        "Setting for the Item",225,168,18,270,240
+    PUSHBUTTON      "New",212,18,246,30,14
+    PUSHBUTTON      "Edit Name",508,54,246,42,14
+    PUSHBUTTON      "Clear",213,114,246,30,14
+    PUSHBUTTON      "",538,150,30,14,14,BS_ICON
+    PUSHBUTTON      "",539,150,45,14,14,BS_ICON
+    PUSHBUTTON      "",540,150,66,14,14,BS_ICON
+    PUSHBUTTON      "",541,150,81,14,14,BS_ICON
+    CONTROL         "Register Line which matches Regular Expression to Jump Menu / List",204,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,64,240,10
+    CONTROL         "Colorize Line which matches Regular Expression",207,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,132,180,10
+    EDITTEXT        203,180,40,252,14,ES_AUTOHSCROLL
+    LTEXT           "Text to Register (Regular Expression Group $0 - $9 can be replaced):",590,186,76,228,8
+    EDITTEXT        205,186,88,246,14,ES_AUTOHSCROLL
+    LTEXT           "Regular Expression Group to be Selected:",591,186,109,162,8
+    EDITTEXT        206,390,106,42,14,ES_AUTOHSCROLL
+    LTEXT           "$",-1,373,109,12,8
+    LTEXT           "Color:",-1,366,199,20,8
+    CONTROL         "Register Regular Expression Group to Keyword",209,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,199,180,10
+    LTEXT           "Regular Expression Group to be Registered as Keyword:",592,186,215,186,8
+    EDITTEXT        211,390,213,42,14,ES_AUTOHSCROLL
+    LTEXT           "$",-1,373,215,12,8
+    PUSHBUTTON      "",208,391,132,39,9
+    PUSHBUTTON      "",210,391,198,39,9
+    EDITTEXT        570,252,234,42,14,ES_AUTOHSCROLL
+    LTEXT           "%",-1,300,237,12,8
+    LTEXT           "Font Size Multiply:",-1,180,237,66,8
+    GROUPBOX        "Header set by Syntax Definition Script",-1,6,300,444,42
+    EDITTEXT        343,96,312,42,14,ES_AUTOHSCROLL
+    LTEXT           "%",-1,144,315,12,8
+    LTEXT           "Font Size Multiply:",-1,24,314,66,8
+    LTEXT           "Color:",-1,366,157,20,8
+    CONTROL         "Colorize Regular Expression Group",594,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,180,157,180,10
+    LTEXT           "Regular Expression Group to be colorized:",597,186,173,186,8
+    EDITTEXT        595,390,171,42,14,ES_AUTOHSCROLL
+    LTEXT           "$",-1,373,173,12,8
+    PUSHBUTTON      "",596,391,156,39,9
+    LTEXT           "Blue letter is item made by mode creator.",-1,18,264,126,24
+END
+
+JP_MODEPREF_MODEPREF8 DIALOGEX 0, 0, 458, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Text Inserted by File Drag&Drop",-1,6,6,444,156
+    LTEXT           "Insert Text:",-1,144,32,60,8
+    EDITTEXT        227,18,18,108,72,ES_AUTOHSCROLL
+    GROUPBOX        "Setting for the Extension",234,132,18,306,108
+    PUSHBUTTON      "New",228,18,96,30,14
+    PUSHBUTTON      "Edit",509,54,96,30,14
+    PUSHBUTTON      "Clear",229,96,96,30,14
+    EDITTEXT        230,150,42,282,78,ES_MULTILINE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Export...",524,72,114,54,14
+    PUSHBUTTON      "Import...",523,18,114,54,14
+    GROUPBOX        "Input Corresponding Text Automatically",-1,6,168,444,138
+    EDITTEXT        219,18,198,336,60,ES_AUTOHSCROLL
+    PUSHBUTTON      "New",220,18,264,30,14
+    PUSHBUTTON      "Edit Start Text",510,54,264,72,14
+    PUSHBUTTON      "Clear",221,324,264,30,14
+    PUSHBUTTON      "Edit End Text",511,132,264,72,14
+    PUSHBUTTON      "Export...",526,72,282,54,14
+    PUSHBUTTON      "Import...",525,18,282,54,14
+    COMBOBOX        328,120,138,150,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "If no Extension matches:",-1,18,140,96,8
+    CONTROL         "Automatic Update",349,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,184,78,10
+END
+
+JP_MODEPREF_MODEPREF9 DIALOGEX 0, 0, 458, 320
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Indent Behavior",-1,6,6,444,216
+    EDITTEXT        222,24,121,360,60,ES_AUTOHSCROLL
+    PUSHBUTTON      "New",223,24,186,30,14
+    PUSHBUTTON      "Edit Regular Expression",512,60,186,96,14
+    PUSHBUTTON      "Clear",224,354,186,30,14
+    PUSHBUTTON      "Edit Current Line",513,162,186,66,14
+    PUSHBUTTON      "Export...",528,390,145,54,14
+    PUSHBUTTON      "Import...",527,390,121,54,14
+    GROUPBOX        "Indent Options",-1,6,228,444,72
+    EDITTEXT        306,138,244,144,14,ES_AUTOHSCROLL
+    LTEXT           "Indent Increment for Line Started with Middle of Sentence:",-1,30,69,192,8
+    EDITTEXT        301,226,66,42,14,ES_AUTOHSCROLL
+    LTEXT           "Indent Increment for Label Line:",-1,30,87,138,8
+    EDITTEXT        302,226,85,42,14,ES_AUTOHSCROLL
+    CONTROL         "Use the 2nd Indent Level of Sentence",303,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,285,69,168,10
+    PUSHBUTTON      "Edit Next Line",514,234,186,54,14
+    CONTROL         "When All Indent Settings are Disabled, Key Bind ""Indent/Tab"" becomes Tab behaviour always",332,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,30,34,366,10
+    CONTROL         "Use Indent according to Regular Expression Indent Rules",312,
+                    "Button",BS_AUTORADIOBUTTON,18,108,414,10
+    CONTROL         "Keep same indent amount as the previous line",601,
+                    "Button",BS_AUTORADIOBUTTON,18,18,414,10
+    CONTROL         "Use Indent Defined in Embedded Syntax Definition",304,
+                    "Button",BS_AUTORADIOBUTTON,18,54,414,10
+    LTEXT           "Characters to Execute Indent: ",-1,18,246,114,8
+    CONTROL         "Set no Indent for empty line",356,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,265,366,10
+    CONTROL         "Apply Indent for pasted text",357,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,281,366,10
+    LTEXT           "* Current Line: Indent increase from the previous line, Next Line: Indent increase from the line (Minus value for decrease)",-1,24,204,420,8
+END
+
+JP_MODEPREF_MODEPREF10 DIALOGEX 0, 0, 458, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Key Bind",-1,6,6,444,312
+    EDITTEXT        239,18,36,420,168,ES_AUTOHSCROLL
+    PUSHBUTTON      "Export...",263,384,18,54,14
+    PUSHBUTTON      "Import...",262,324,18,54,14
+    GROUPBOX        "Setting for the Item",242,18,210,420,102
+    CONTROL         "Ctrl Key",235,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,60,10
+    CONTROL         "ESC Key",236,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,216,18,60,10
+    CONTROL         "Alt Key",237,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,18,60,10
+    CONTROL         "Shift Key",238,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,78,18,60,10
+    COMBOBOX        240,72,223,354,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Action :",-1,30,226,36,8
+    LTEXT           "Insert Text:",-1,30,246,54,8
+    EDITTEXT        241,90,246,336,60,ES_AUTOHSCROLL
+    PUSHBUTTON      "Setup",506,36,287,42,14
+END
+
+JP_MODEPREF_MODEPREF11 DIALOGEX 0, 0, 458, 344
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Tool / Toolbar",-1,6,6,444,330
+    EDITTEXT        286,18,72,138,234,ES_AUTOHSCROLL
+    GROUPBOX        "Setting for the Item",274,180,36,258,294
+    CONTROL         "Alt Key",272,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,312,273,42,10
+    CONTROL         "Shift Key",273,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,312,286,42,10
+    EDITTEXT        270,192,135,240,126,ES_MULTILINE | ES_AUTOHSCROLL
+    PUSHBUTTON      "New Tool",267,18,312,48,14
+    CONTROL         "Tool",297,"Button",BS_AUTORADIOBUTTON,18,18,48,10
+    CONTROL         "Toolbar",265,"Button",BS_AUTORADIOBUTTON,78,18,84,10
+    LTEXT           "path",294,18,36,126,18
+    PUSHBUTTON      "Configure from Folder",504,360,18,78,14
+    LTEXT           "Name (File Name) :",577,192,69,72,8
+    PUSHBUTTON      "New Folder",300,72,312,54,14
+    PUSHBUTTON      "Clear",268,138,312,30,14
+    EDITTEXT        295,270,66,162,14,ES_AUTOHSCROLL
+    LTEXT           "Insert Text:",579,192,123,54,8
+    PUSHBUTTON      "Save",296,366,267,66,14
+    LTEXT           "Shortcut:",580,198,275,54,8
+    EDITTEXT        271,258,273,42,14,ES_AUTOHSCROLL
+    CONTROL         "Display",269,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,297,60,10
+    PUSHBUTTON      "Change Icon...",299,264,304,72,14
+    PUSHBUTTON      "Parent Folder",293,18,57,138,14
+    SCROLLBAR       287,156,57,10,246,SBS_VERT
+    CONTROL         "Display in Gray",560,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,310,60,10
+    COMBOBOX        562,210,101,66,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        563,282,101,150,14,ES_AUTOHSCROLL
+    LTEXT           "If the following name for each language is input, it is prior to the above name.",578,198,87,234,8
+    CONTROL         "Automatic Update",576,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,192,51,78,10
+    PUSHBUTTON      "Set Automatic Update for All Files inside",583,276,48,156,14
+END
+
+JP_MODEPREF_MODEPREF12 DIALOGEX 0, 0, 458, 386
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CHILD | WS_SYSMENU
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Revert Mode Data",553,24,278,102,14,WS_DISABLED
+    GROUPBOX        "Restore",274,6,263,444,36
+    PUSHBUTTON      "Backup Mode Data",552,24,235,102,14
+    GROUPBOX        "Backup",275,6,222,444,36
+    COMBOBOX        564,222,18,102,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        565,330,18,102,14,ES_AUTOHSCROLL
+    GROUPBOX        "Mode Name",0,6,6,444,36
+    GROUPBOX        "Comment",276,6,300,444,48
+    EDITTEXT        341,24,312,414,30,ES_AUTOHSCROLL
+    GROUPBOX        "Mode Update",277,6,96,444,120
+    PUSHBUTTON      "Open Page",569,372,135,66,14
+    EDITTEXT        342,120,135,222,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Update Mode",581,24,114,102,14
+    LTEXT           "Only Tool/Toolbar/Keyword/Header made by mode creator will be updated.",-1,138,122,300,12
+    LTEXT           "Update Reference URL:",-1,30,137,84,12
+    LTEXT           "Current Revision:",586,30,153,396,12
+    LTEXT           "Mode will be updated via network.",-1,138,110,300,12
+    EDITTEXT        588,108,18,102,14,ES_AUTOHSCROLL
+    LTEXT           "Name (File Name) :",-1,18,20,84,12
+    GROUPBOX        "Enabled Items",-1,6,48,444,42
+    LTEXT           "Items made by mode creator",-1,18,60,138,12
+    CONTROL         "Tool",348,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,60,54,10
+    CONTROL         "Toolbar",349,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,222,60,54,10
+    CONTROL         "Keyword",350,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,282,60,54,10
+    CONTROL         "Keyword",351,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,60,54,10
+    CONTROL         "Tool",352,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,72,54,10
+    CONTROL         "Toolbar",353,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,222,72,54,10
+    CONTROL         "Keyword",354,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,282,72,54,10
+    CONTROL         "Keyword",355,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,72,54,10
+    LTEXT           "Items made by user",-1,18,72,138,12
+    COMBOBOX        593,348,136,18,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "All items made with version 2.1.12 or before will be retained as ""Items made by user"".",-1,30,171,408,12
+    LTEXT           "If you do not need these, delete ""Items made by user"" manually, or disable these at ""Enabled Items"".",-1,30,183,408,8
+    LTEXT           "Whole mode data will be saved as backup.",-1,132,239,300,12
+    LTEXT           "Mode data except for tool/toolbar will be reverted to the settings when mi is launched.",-1,132,281,300,12
+    PUSHBUTTON      "Create distribution files",598,24,195,102,14
+    LTEXT           "Create distribution files for mode update.",-1,132,197,300,12
+END
+
+JP_MAIN_FTPPROGRESS DIALOGEX 0, 0, 244, 75
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION
+CAPTION "Progress"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "text",101,48,24,186,24
+    PUSHBUTTON      "Abort",103,186,54,50,14
+    LTEXT           "FTP Access in Progress",104,48,6,186,8
+    CONTROL         "",102,"msctls_progress32",WS_BORDER,18,54,156,12
+    ICON            32516,IDC_STATIC,12,12,20,20
+END
+
+JP_MAIN_FTPLOG DIALOGEX 0, 0, 502, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FTP Log"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        1,0,0,501,273,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+END
+
+JP_MAIN_FOLDERLIST DIALOGEX 0, 0, 244, 162
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Registered Folder Menu"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "New",101,6,138,54,14
+    EDITTEXT        100,6,6,228,126,ES_AUTOHSCROLL
+    PUSHBUTTON      "",200,66,138,14,14,BS_ICON
+    PUSHBUTTON      "",201,80,138,14,14,BS_ICON
+    PUSHBUTTON      "",202,102,138,14,14,BS_ICON
+    PUSHBUTTON      "",203,116,138,14,14,BS_ICON
+    PUSHBUTTON      "Clear",102,180,138,54,14
+END
+
+JP_MAIN_BIGFILEALERT DIALOGEX 0, 0, 274, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Confirmation for File Open"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "This File Size is Big.",IDC_STATIC,48,12,210,8
+    PUSHBUTTON      "Open",1,120,114,68,14
+    LTEXT           "It may take much time to open.",3,48,30,210,8
+    PUSHBUTTON      "Cancel",2,198,114,68,14
+    ICON            32516,IDC_STATIC,12,12,20,20
+    LTEXT           "",4,48,54,210,48
+    LTEXT           "Do you really want to open?",5,48,40,210,8
+END
+
+JP_MAIN_FONTSIZE DIALOGEX 0, 0, 274, 63
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Font Size"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",5001,120,42,66,14
+    EDITTEXT        5002,115,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "フォントサイズ　：",-1,48,20,54,8
+    LTEXT           "pt",-1,163,20,36,8
+    PUSHBUTTON      "Cancel",5010,198,42,68,14
+END
+
+JP_MAIN_MOVELINE DIALOGEX 0, 0, 274, 63
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Move Line"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Move",5001,120,42,68,14
+    EDITTEXT        5002,115,18,40,14,ES_AUTOHSCROLL
+    RTEXT           "Move Line : ",5003,24,20,78,8
+    LTEXT           "/9999",5004,163,20,36,8
+    PUSHBUTTON      "Cancel",5010,198,42,68,14
+END
+
+JP_MAIN_WRAPLETTERCOUNT DIALOGEX 0, 0, 274, 63
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Wrap Letter Count"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    RTEXT           "Wrap Letter Count : ",5003,12,20,90,8
+    LTEXT           "pt",-1,162,20,36,8
+    DEFPUSHBUTTON   "OK",5001,120,42,66,14
+    EDITTEXT        5002,114,18,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cancel",5010,198,42,68,14
+END
+
+JP_MAIN_TEXTENCODINGCORRECT DIALOGEX 0, 0, 262, 153
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Text Encoding"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",5001,108,132,68,14
+    LTEXT           "テキストエンコーディングを確定できませんでした",5002,42,12,210,8
+    LTEXT           "テキストエンコーディングを変更して、\rファイルから再読込します。\rテキストエンコーディングを選択してください。",5003,42,30,210,30
+    PUSHBUTTON      "Cancel",5010,186,132,66,14
+    COMBOBOX        5004,90,66,162,138,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "エンコーディング　：",IDC_STATIC,24,68,60,8
+    LTEXT           "ファイル中に、このテキストエンコーディングでは定義されていないコードがありましたが、強制的に変換して読み込みました。",5005,48,90,204,36,NOT WS_VISIBLE
+    ICON            32516,IDC_STATIC,12,12,20,20
+    ICON            32515,5006,24,90,20,20
+    PUSHBUTTON      "Error Characters List",5011,12,132,84,14
+END
+
+JP_MAIN_DOCPROP DIALOGEX 0, 0, 262, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Document Properties"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",5001,102,156,68,14
+    PUSHBUTTON      "Cancel",5002,180,156,66,14
+    COMBOBOX        5137,78,14,168,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Font : ",-1,12,15,60,8
+    RTEXT           "Size : ",-1,12,35,60,8
+    LTEXT           "pt",-1,126,35,30,8
+    RTEXT           "Tab Code Width : ",-1,12,63,60,8
+    EDITTEXT        5115,78,60,40,14,ES_AUTOHSCROLL
+    LTEXT           "characters",-1,126,63,30,8
+    RTEXT           "Indent Amount : ",-1,12,98,60,8
+    LTEXT           "characters",-1,126,98,30,8
+    EDITTEXT        5136,78,96,40,14,ES_AUTOHSCROLL
+    LTEXT           "This is applied to Tab Code Display Width.",-1,66,78,186,8
+    COMBOBOX        5133,79,132,167,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Anti Alias : ",-1,12,135,60,8
+    LTEXT           "This is applied to Indent or Shift Left/Right.",-1,66,114,186,8
+    EDITTEXT        5103,78,33,40,14,ES_AUTOHSCROLL
+END
+
+JP_MAIN_ADDNEWMODE DIALOGEX 0, 0, 274, 153
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Mode"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",5001,120,132,68,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",5002,198,132,68,14
+    LTEXT           "Mode Name : ",-1,6,9,60,8
+    COMBOBOX        5106,138,78,126,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "New",5101,"Button",BS_AUTORADIOBUTTON,12,24,114,10
+    CONTROL         "Import From Mode File",5102,"Button",BS_AUTORADIOBUTTON,12,42,114,10
+    EDITTEXT        5103,24,54,222,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",5104,252,54,12,14
+    CONTROL         "Copy from Existing Mode",5105,"Button",BS_AUTORADIOBUTTON,12,79,108,10
+    EDITTEXT        5100,72,6,192,14,ES_AUTOHSCROLL
+    CONTROL         "Copy from Default Mode embedded in mi",5107,"Button",BS_AUTORADIOBUTTON,12,96,228,10
+    COMBOBOX        5108,138,108,126,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+JP_MAIN_PRINTOPTION DIALOGEX 0, 0, 405, 129
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Print Option"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",5001,252,108,68,14
+    PUSHBUTTON      "Cancel",5002,330,108,66,14
+    CONTROL         "Print Font / Size",5116,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,9,96,10
+    LTEXT           "Font : ",-1,114,9,36,8
+    COMBOBOX        5138,156,6,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",-1,282,9,36,8
+    COMBOBOX        5123,324,6,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",-1,372,9,30,8
+    CONTROL         "Print Page Number",5117,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,25,96,10
+    LTEXT           "Font : ",-1,114,25,36,8
+    COMBOBOX        5139,156,22,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",-1,282,25,36,8
+    COMBOBOX        5125,324,22,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",-1,372,25,30,8
+    CONTROL         "Print File Name",5118,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,41,96,10
+    LTEXT           "Font : ",-1,114,41,36,8
+    COMBOBOX        5140,156,38,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Size : ",-1,282,41,36,8
+    COMBOBOX        5127,324,38,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",-1,372,41,30,8
+    CONTROL         "Print Each Line Number",5119,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,57,96,10
+    LTEXT           "Font : ",-1,114,57,36,8
+    COMBOBOX        5141,156,54,114,108,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Always Wrap with Paper Width regardless of Document Property",5121,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,73,228,10
+    LTEXT           "Line Space : ",-1,12,108,48,8
+    COMBOBOX        5129,62,105,42,120,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "pt",-1,110,108,30,8
+    CONTROL         "Print Separate Line",5120,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,89,96,10
+END
+
+JP_MAIN_ADDTOOLBUTTON DIALOGEX 0, 0, 483, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Add Tool Button"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",5001,318,162,68,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",5002,396,162,68,14
+    LTEXT           "名前　：",-1,18,21,36,8
+    COMBOBOX        5202,18,109,198,108,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "User-Defined Tool Button",5300,"Button",BS_AUTORADIOBUTTON,6,6,114,10
+    CONTROL         "Menu Type Tool Button",5301,"Button",BS_AUTORADIOBUTTON,6,96,114,10
+    CONTROL         "Folder",5302,"Button",BS_AUTORADIOBUTTON,6,126,132,10
+    EDITTEXT        5200,60,18,180,14,ES_AUTOHSCROLL
+    LTEXT           "アイコン　：",5999,18,37,36,8
+    SCROLLBAR       5205,235,39,10,51,SBS_VERT
+    EDITTEXT        5203,18,138,198,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",5204,219,138,12,14
+    CONTROL         "Standard Tool Button",5303,"Button",BS_AUTORADIOBUTTON,258,6,114,10
+    EDITTEXT        5207,270,18,198,132,ES_AUTOHSCROLL
+    SCROLLBAR       5208,468,24,10,126,SBS_VERT
+END
+
+JP_MAIN_CHANGETOOLBUTTONICON DIALOGEX 0, 0, 256, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Icon"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Change",5001,90,60,66,14
+    PUSHBUTTON      "Cancel",5002,168,60,66,14
+    LTEXT           "Icon : ",5999,10,10,36,8
+    SCROLLBAR       5205,234,6,10,43,SBS_VERT
+END
+
+JP_MAIN_TOOLDROPWARNING DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ツール実行"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "File is not Saved",IDC_STATIC,42,12,168,8
+    LTEXT           "This document is not saved.",IDC_STATIC,42,30,180,12
+    PUSHBUTTON      "Save and Execute",1,120,60,68,14
+    ICON            32515,IDC_STATIC,12,12,20,20
+    PUSHBUTTON      "Execute without Save",3,12,60,66,14
+    PUSHBUTTON      "Cancel",2,198,60,68,14
+    LTEXT           "Changes are not reflected if you execute the tool without save.",IDC_STATIC,42,42,228,12
+END
+
+JP_MAIN_SETPROJECTFOLDER DIALOGEX 0, 0, 322, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Setup Project Folder"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Setup",1,168,72,68,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",2,246,72,68,14
+    LTEXT           "Folder : ",-1,12,12,36,8
+    EDITTEXT        201,54,10,240,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",200,300,10,12,14
+    LTEXT           "By setting Project Folder, Multi-File Find or other Features can be executed for the Folder and its sub-Folders.",-1,18,30,282,36
+END
+
+JP_MAIN_TEXTCOUNT DIALOGEX 0, 0, 216, 245
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Text Count"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Count",1,138,222,68,14
+    LTEXT           "File Name",150,12,6,192,8
+    EDITTEXT        200,42,90,36,14,ES_AUTOHSCROLL
+    RTEXT           "0",100,12,24,48,8
+    LTEXT           "characters",152,72,24,24,8
+    LTEXT           "Comment : ",153,108,24,42,8
+    RTEXT           "0",101,156,24,30,8
+    LTEXT           "%",155,198,24,18,8
+    RTEXT           "0",102,12,36,48,8
+    LTEXT           "Paragraphs",157,72,36,24,8
+    LTEXT           "(Selected Range)",158,24,48,78,8
+    RTEXT           "0",103,12,60,48,8
+    LTEXT           "characters",167,72,60,24,8
+    LTEXT           "Comment : ",168,108,60,42,8
+    RTEXT           "0",104,156,60,30,8
+    LTEXT           "%",170,198,60,12,8
+    RTEXT           "0",105,12,73,48,8
+    LTEXT           "Paragraphs",172,72,73,24,8
+    LTEXT           "1 行",173,12,92,24,8
+    LTEXT           "characters,",174,84,92,54,8
+    RTEXT           "0",201,126,93,48,8
+    LTEXT           "lines",176,186,93,18,8
+    EDITTEXT        202,48,108,36,14,ES_AUTOHSCROLL
+    LTEXT           "1 枚",177,18,111,24,8
+    LTEXT           "characters,",178,90,111,54,8
+    RTEXT           "0",203,132,110,48,8
+    LTEXT           "pages",180,192,110,18,8
+    GROUPBOX        "Count Method :",108,6,132,204,84
+    CONTROL         "One Zenkaku character is counted as 2, Hankaku is 1",300,
+                    "Button",BS_AUTORADIOBUTTON,18,144,192,10
+    CONTROL         "One Zenkaku character is counted as 1, Hankaku is 0.5",301,
+                    "Button",BS_AUTORADIOBUTTON,18,156,192,10
+    CONTROL         "For Zenkaku and Hankaku, one character is counted as 1",302,
+                    "Button",BS_AUTORADIOBUTTON,18,168,192,10
+    CONTROL         "Counted as 1 for Hankaku Space / Tab",303,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,186,180,10
+    CONTROL         "Counted as 1 for Line Break Code",304,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,198,180,10
+END
+
+JP_MAIN_NEWFTPFILE DIALOGEX 0, 0, 274, 93
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New FTP File"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "New File",1,114,72,74,14
+    PUSHBUTTON      "Cancel",2,198,72,68,14
+    LTEXT           "Path : ",-1,6,9,22,8
+    EDITTEXT        200,42,48,216,14,ES_AUTOHSCROLL
+    LTEXT           "folder",201,42,9,222,30
+    LTEXT           "Name : ",-1,6,50,26,8
+END
+
+JP_MAIN_PRINTCANCEL DIALOGEX 0, 0, 244, 79
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Printing"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Print will be aborted when Abort is clicked.",101,48,24,168,8
+    PUSHBUTTON      "Abort",103,96,60,50,14
+    CONTROL         "",102,"msctls_progress32",WS_BORDER,18,42,210,12
+    LTEXT           "Printing ""^0""",104,48,6,102,8
+    ICON            107,IDC_MYICON,17,9,20,20
+END
+
+JP_MAIN_EXTERNALCOMMENT DIALOGEX 0, 0, 384, 150
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "外部コメント編集"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",1,264,132,50,14
+    EDITTEXT        101,66,78,311,44,ES_AUTOHSCROLL
+    LTEXT           "コメント　：",-1,19,80,41,8
+    PUSHBUTTON      "Cancel",10,318,132,50,14
+    EDITTEXT        100,66,54,312,14,ES_AUTOHSCROLL
+    LTEXT           "識別子　：",-1,18,56,41,8
+    LTEXT           "外部コメント編集",-1,12,6,114,8
+    LTEXT           "ソースファイルには手を加えずにコメントをつけます。\rコメントはプロジェクト設定ファイル(""miproj"")に保存されます。",-1,18,18,366,24
+END
+
+JP_MAIN_FUSENLIST DIALOGEX 0, 0, 165, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_COMPAREFOLDER DIALOGEX 0, 0, 216, 66
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Compare Folder"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Compare",1,90,48,50,14
+    EDITTEXT        100,12,6,192,14,ES_AUTOHSCROLL
+    EDITTEXT        101,12,24,192,14,ES_AUTOHSCROLL
+END
+
+JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOKCANCEL DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "確認"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Message 1",10003,48,12,216,8
+    PUSHBUTTON      "OK",10001,120,60,68,14
+    LTEXT           "Message2",10004,48,30,216,24
+    ICON            32515,IDC_STATIC,12,12,21,20
+    PUSHBUTTON      "Cancel",10002,198,60,68,14
+END
+
+JP_MAIN_MODEEXECUTABLEALERT DIALOGEX 0, 0, 304, 87
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Security Confirmation"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Importing Mode / Tool includes Applications and/or other executables.",10003,48,12,252,8
+    PUSHBUTTON      "Import",5001,150,66,68,14
+    LTEXT           "Applications and/or other executables may be executed from Tool, Toolbar, and/or Keybind features. Do you really want to import?",10004,48,30,252,24
+    PUSHBUTTON      "Cancel",5002,228,66,68,14
+    ICON            32515,IDC_STATIC,12,12,20,20
+END
+
+JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOK DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "確認"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Message 1",10003,48,12,216,8
+    PUSHBUTTON      "OK",10001,198,60,68,14
+    LTEXT           "Message2",10004,48,30,216,24
+    ICON            32516,IDC_STATIC,12,12,21,20
+END
+
+JP_ABSFRAMEWORKCOMMONRESOURCE_MODALALERT DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "確認"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Message 1",10003,48,12,216,8
+    PUSHBUTTON      "OK",10001,198,60,68,14
+    LTEXT           "Message2",10004,48,30,216,24
+    ICON            32515,IDC_STATIC,12,12,21,20
+END
+
+JP_MAIN_INFO DIALOGEX 0, 0, 124, 185
+STYLE DS_SYSMODAL | DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_VISIBLE | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_IDENTIFIERLIST DIALOGEX 0, 0, 124, 185
+STYLE DS_SYSMODAL | DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_VISIBLE | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_EDITBYOTHERAPP DIALOGEX 0, 0, 274, 171
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION
+CAPTION "確認"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "このドキュメントはほかのアプリケーションで変更されました",2,48,12,216,8
+    DEFPUSHBUTTON   "Read Changed Result by Other Application",200,54,60,192,14
+    LTEXT           """^0"" はほかのアプリケーションで変更されました。",100,48,30,216,24
+    ICON            32516,IDC_STATIC,12,12,20,20
+    LTEXT           "このボタンを押すと、現在のファイルの内容を再読込します。アンドゥにより元に戻すことができます。",3,60,78,174,18
+    PUSHBUTTON      "Do Not Read Changed Result by Other Application",201,54,102,192,14
+    LTEXT           "このボタンを押すと、現在のファイルの内容を読み込みません。そのため、mi で上書き保存すると、他のアプリケーションでの編集結果は上書きされて消えてしまいます。",4,60,120,174,36
+END
+
+JP_MAIN_PROJECTFOLDERALERT DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Setup Project Folder"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Project Folder Setup is Needed",10003,48,12,216,8
+    PUSHBUTTON      "Setup",1,120,60,68,14
+    LTEXT           "Project Folder should be setup to use this feature.",10004,48,30,216,12
+    ICON            32516,IDC_STATIC,12,12,20,20
+    PUSHBUTTON      "Cancel",2,198,60,68,14
+    LTEXT           "Do you setup Project Folder?",10005,48,42,216,12
+END
+
+JP_MAIN_KEYTOOLLIST DIALOGEX 0, 0, 124, 185
+STYLE DS_SYSMODAL | DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_FUSENEDIT DIALOGEX 0, 0, 124, 185
+STYLE DS_SYSMODAL | DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_MAIN_KEYRECORD DIALOGEX 0, 0, 165, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOKCANCELDISCARD DIALOGEX 0, 0, 274, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "確認"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Message 1",10003,48,12,216,8
+    PUSHBUTTON      "OK",10001,120,60,68,14
+    LTEXT           "Message2",10004,48,30,216,24
+    PUSHBUTTON      "Cancel",10002,198,60,68,14
+    ICON            32515,IDC_STATIC,12,12,20,20
+    PUSHBUTTON      "Discard",10005,12,60,68,14
+END
+
+JP_MAIN_DEVTOOLS DIALOGEX 0, 0, 328, 189
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DevTools"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Compare",203,264,42,50,14
+    EDITTEXT        200,12,6,240,14,ES_AUTOHSCROLL
+    EDITTEXT        201,12,24,240,14,ES_AUTOHSCROLL
+    EDITTEXT        202,12,42,240,14,ES_AUTOHSCROLL
+END
+
+JP_MAIN_SCMCOMMIT DIALOGEX 0, 0, 339, 261
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTERMOUSE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Commit"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Commit",200,258,168,68,14
+    EDITTEXT        105,6,36,324,114,ES_AUTOHSCROLL
+    LTEXT           "Commit to : ",0,6,6,48,8
+    PUSHBUTTON      "Cancel",201,180,168,68,14
+    LTEXT           "path",100,60,6,234,8
+    LTEXT           "Diff :",2,6,24,48,8
+    COMBOBOX        101,60,156,78,204,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "",203,300,4,14,14,BS_ICON | NOT WS_VISIBLE
+    PUSHBUTTON      "",202,315,4,14,14,BS_ICON | NOT WS_VISIBLE
+    LTEXT           "Message :",301,8,159,40,8
+    EDITTEXT        102,6,174,132,60,ES_AUTOHSCROLL
+    EDITTEXT        103,66,240,72,12,ES_AUTOHSCROLL
+    LTEXT           "Additional Args :",302,6,242,54,8
+    LTEXT           "Result :",303,152,192,40,8
+    EDITTEXT        104,150,204,180,48,ES_AUTOHSCROLL
+    RTEXT           "(-)",106,276,24,48,8
+END
+
+JP_MAIN_DIFF DIALOGEX 0, 0, 556, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Diff"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Compare File",200,468,66,74,14
+    LTEXT           "Left (Read Only) : ",-1,18,27,96,8
+    PUSHBUTTON      "Browse...",103,492,24,54,14
+    LTEXT           "File Compare",-1,12,6,252,8
+    LTEXT           "Right (Edit) : ",-1,18,45,96,8
+    EDITTEXT        101,120,24,366,14,ES_AUTOHSCROLL
+    EDITTEXT        102,120,42,366,14,ES_AUTOHSCROLL
+    LTEXT           "Left (Source Folder) :",-1,18,105,96,8
+    EDITTEXT        301,120,102,366,14,ES_AUTOHSCROLL
+    LTEXT           "Right (Working Folder) :",-1,18,123,96,8
+    EDITTEXT        302,120,120,366,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",104,492,42,54,14
+    PUSHBUTTON      "Browse...",303,492,102,54,14
+    PUSHBUTTON      "Browse...",304,492,120,54,14
+    PUSHBUTTON      "Update to All Documents",400,426,144,116,14
+    CONTROL         "Compare Automatically when File in the following Working Folder is opened.",305,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,84,522,10
+END
+
+JP_MAIN_ENABLEDDEFINES DIALOGEX 0, 0, 250, 213
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enabled Defines"
+CLASS "dialogs"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Add / Update Value",103,156,169,84,14
+    EDITTEXT        100,12,18,228,108,ES_AUTOHSCROLL
+    LTEXT           "Define : ",-1,12,153,42,8
+    EDITTEXT        101,60,150,180,14,ES_AUTOHSCROLL
+    EDITTEXT        102,60,169,90,14,ES_AUTOHSCROLL
+    LTEXT           "Value : ",-1,12,171,42,8
+    LTEXT           "Enabled Defines",-1,6,6,204,8
+    PUSHBUTTON      "Delete",104,186,132,54,14
+    PUSHBUTTON      "Update All Documents",105,144,193,96,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    "JP_MAIN_ABOUT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 274
+    END
+
+    "JP_MAIN_FILELIST", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    "JP_MAIN_FIND", DIALOG
+    BEGIN
+        RIGHTMARGIN, 226
+        BOTTOMMARGIN, 190
+    END
+
+    "JP_MODEPREF_MODEPREF", DIALOG
+    BEGIN
+        RIGHTMARGIN, 340
+        BOTTOMMARGIN, 268
+    END
+
+    "JP_MAIN_TRACELOG", DIALOG
+    BEGIN
+        RIGHTMARGIN, 316
+        BOTTOMMARGIN, 186
+    END
+
+    "JP_APPPREF_PREFERENCE0", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 201
+    END
+
+    "JP_APPPREF_PREFERENCE", DIALOG
+    BEGIN
+        RIGHTMARGIN, 244
+        BOTTOMMARGIN, 214
+    END
+
+    "JP_APPPREF_PREFERENCE1", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 183
+    END
+
+    "JP_APPPREF_PREFERENCE2", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 171
+    END
+
+    "JP_APPPREF_PREFERENCE3", DIALOG
+    BEGIN
+        RIGHTMARGIN, 336
+        BOTTOMMARGIN, 300
+    END
+
+    "JP_APPPREF_PREFERENCE5", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 195
+    END
+
+    "JP_APPPREF_PREFERENCE4", DIALOG
+    BEGIN
+        BOTTOMMARGIN, 248
+    END
+
+    "JP_APPPREF_PREFERENCE6", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 171
+    END
+
+    "JP_APPPREF_PREFERENCE7", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 159
+    END
+
+    "JP_APPPREF_PREFERENCE8", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 129
+    END
+
+    "JP_APPPREF_PREFERENCE9", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 189
+    END
+
+    "JP_APPPREF_PREFERENCE10", DIALOG
+    BEGIN
+        RIGHTMARGIN, 230
+        BOTTOMMARGIN, 129
+    END
+
+    "JP_MAIN_FINDMEMORY", DIALOG
+    BEGIN
+        RIGHTMARGIN, 387
+        BOTTOMMARGIN, 140
+    END
+
+    "JP_MAIN_MULTIFILEFIND", DIALOG
+    BEGIN
+        RIGHTMARGIN, 226
+        BOTTOMMARGIN, 180
+    END
+
+    "JP_MAIN_INDEXWINDOW", DIALOG
+    BEGIN
+        RIGHTMARGIN, 238
+    END
+
+    "JP_MAIN_MULTIFILEFINDPROGRESS", DIALOG
+    BEGIN
+        RIGHTMARGIN, 124
+        BOTTOMMARGIN, 68
+    END
+
+    "JP_MAIN_FTPFOLDER", DIALOG
+    BEGIN
+        RIGHTMARGIN, 454
+        BOTTOMMARGIN, 79
+    END
+
+    "JP_MODEPREF_MODEPREF0", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 207
+    END
+
+    "JP_MODEPREF_MODEPREF1", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 231
+    END
+
+    "JP_MODEPREF_MODEPREF2", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 207
+    END
+
+    "JP_MODEPREF_MODEPREF4", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 201
+    END
+
+    "JP_MODEPREF_MODEPREF3", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 207
+    END
+
+    "JP_MODEPREF_MODEPREF5", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 225
+    END
+
+    "JP_MODEPREF_MODEPREF6", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 213
+    END
+
+    "JP_MODEPREF_MODEPREF7", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 231
+    END
+
+    "JP_MODEPREF_MODEPREF8", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 207
+    END
+
+    "JP_MODEPREF_MODEPREF9", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 201
+    END
+
+    "JP_MODEPREF_MODEPREF10", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 207
+    END
+
+    "JP_MODEPREF_MODEPREF11", DIALOG
+    BEGIN
+        RIGHTMARGIN, 344
+        BOTTOMMARGIN, 225
+    END
+
+    "JP_MODEPREF_MODEPREF12", DIALOG
+    BEGIN
+        BOTTOMMARGIN, 334
+    END
+
+    "JP_MAIN_FTPPROGRESS", DIALOG
+    BEGIN
+        RIGHTMARGIN, 124
+        BOTTOMMARGIN, 68
+    END
+
+    "JP_MAIN_FTPLOG", DIALOG
+    BEGIN
+        RIGHTMARGIN, 316
+        BOTTOMMARGIN, 186
+    END
+
+    "JP_MAIN_FOLDERLIST", DIALOG
+    BEGIN
+        RIGHTMARGIN, 232
+        BOTTOMMARGIN, 79
+    END
+
+    "JP_MAIN_BIGFILEALERT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_MAIN_FONTSIZE", DIALOG
+    BEGIN
+        RIGHTMARGIN, 154
+        BOTTOMMARGIN, 56
+    END
+
+    "JP_MAIN_MOVELINE", DIALOG
+    BEGIN
+        RIGHTMARGIN, 154
+        BOTTOMMARGIN, 56
+    END
+
+    "JP_MAIN_WRAPLETTERCOUNT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 154
+        BOTTOMMARGIN, 56
+    END
+
+    "JP_MAIN_TEXTENCODINGCORRECT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 142
+        BOTTOMMARGIN, 146
+    END
+
+    "JP_MAIN_DOCPROP", DIALOG
+    BEGIN
+        RIGHTMARGIN, 142
+        BOTTOMMARGIN, 170
+    END
+
+    "JP_MAIN_ADDNEWMODE", DIALOG
+    BEGIN
+        RIGHTMARGIN, 154
+        BOTTOMMARGIN, 146
+    END
+
+    "JP_MAIN_PRINTOPTION", DIALOG
+    BEGIN
+        RIGHTMARGIN, 285
+        BOTTOMMARGIN, 122
+    END
+
+    "JP_MAIN_ADDTOOLBUTTON", DIALOG
+    BEGIN
+        RIGHTMARGIN, 363
+        BOTTOMMARGIN, 176
+    END
+
+    "JP_MAIN_CHANGETOOLBUTTONICON", DIALOG
+    BEGIN
+        RIGHTMARGIN, 136
+        BOTTOMMARGIN, 74
+    END
+
+    "JP_MAIN_TOOLDROPWARNING", DIALOG
+    BEGIN
+        RIGHTMARGIN, 154
+        BOTTOMMARGIN, 74
+    END
+
+    "JP_MAIN_SETPROJECTFOLDER", DIALOG
+    BEGIN
+        RIGHTMARGIN, 310
+        BOTTOMMARGIN, 53
+    END
+
+    "JP_MAIN_TEXTCOUNT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 204
+        BOTTOMMARGIN, 203
+    END
+
+    "JP_MAIN_NEWFTPFILE", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 51
+    END
+
+    "JP_MAIN_PRINTCANCEL", DIALOG
+    BEGIN
+        RIGHTMARGIN, 124
+        BOTTOMMARGIN, 72
+    END
+
+    "JP_MAIN_EXTERNALCOMMENT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 381
+        BOTTOMMARGIN, 146
+    END
+
+    "JP_MAIN_FUSENLIST", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+        BOTTOMMARGIN, 112
+    END
+
+    "JP_MAIN_COMPAREFOLDER", DIALOG
+    BEGIN
+        RIGHTMARGIN, 204
+        BOTTOMMARGIN, 24
+    END
+
+    "JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOKCANCEL", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_MAIN_MODEEXECUTABLEALERT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 292
+        BOTTOMMARGIN, 84
+    END
+
+    "JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOK", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_ABSFRAMEWORKCOMMONRESOURCE_MODALALERT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_MAIN_INFO", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    "JP_MAIN_IDENTIFIERLIST", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    "JP_MAIN_EDITBYOTHERAPP", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 168
+    END
+
+    "JP_MAIN_PROJECTFOLDERALERT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_MAIN_KEYTOOLLIST", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    "JP_MAIN_FUSENEDIT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    "JP_MAIN_KEYRECORD", DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+        BOTTOMMARGIN, 112
+    END
+
+    "JP_ABSFRAMEWORKCOMMONRESOURCE_SHEETOKCANCELDISCARD", DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 78
+    END
+
+    "JP_MAIN_DEVTOOLS", DIALOG
+    BEGIN
+        RIGHTMARGIN, 316
+        BOTTOMMARGIN, 147
+    END
+
+    "JP_MAIN_SCMCOMMIT", DIALOG
+    BEGIN
+        RIGHTMARGIN, 219
+        BOTTOMMARGIN, 254
+    END
+
+    "JP_MAIN_DIFF", DIALOG
+    BEGIN
+        RIGHTMARGIN, 544
+        BOTTOMMARGIN, 82
+    END
+
+    "JP_MAIN_ENABLEDDEFINES", DIALOG
+    BEGIN
+        RIGHTMARGIN, 238
+        BOTTOMMARGIN, 130
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "miedit.exe.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,106,0
+ PRODUCTVERSION 3,0,106,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x0L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "αバージョンです。"
+            VALUE "CompanyName", "Daisuke Kamiyama"
+            VALUE "FileDescription", "mi"
+            VALUE "FileVersion", "3, 0, 106, 0"
+            VALUE "InternalName", "mi"
+            VALUE "LegalCopyright", "Copyright (C) 2011 Daisuke Kamiyama"
+            VALUE "ProductName", "mi"
+            VALUE "ProductVersion", "3, 0, 106, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "mi"
+    IDC_MIEDIT              "MIEDIT"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

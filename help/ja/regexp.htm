@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>正規表現</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="regexp.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1>正規表現</h1>
+			<p>
+				正規表現は、例えば「〜で始まり〜で終わる部分」というような、特定の条件の文字列を指定するのに使われます。<br>
+				miでは、<a href="find.htm#_">検索・置換機能</a>のほか、<a href="topic.htm#midashisettei">見出し機能</a>、
+				<a href="topic.htm#indent">インデント機能</a>などで使用可能です。<br>
+				以下、miでの正規表現の仕様を説明します。基本的に、Perlの正規表現の仕様を参考にして作成しています。
+			</p>
+			<div class="ref">
+				<h2><a name="moji">文字に一致する正規表現</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>一致する文字</th></tr>
+					
+					<tr>
+						<td valign="top"><p><code>.</code></p></td><td>
+							<p>改行コード以外の任意の一文字</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\w</code></p></td><td>
+							<p>英数字、アンダーバー</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\W</code></p></td><td>
+							<p>英数字、アンダーバー以外</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\d</code></p></td><td>
+							<p>数字</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\D</code></p></td><td>
+							<p>数字以外</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\s</code></p></td><td>
+							<p>スペース、改行、タブ</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\S</code></p></td><td>
+							<p>スペース、改行、タブ以外</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\t</code></p></td><td>
+							<p>タブ</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\r</code></p></td><td>
+							<p>改行</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>[]</code></p></td><td>
+							<p>文字範囲指定</p>
+							<ol>
+								<li>[]内の文字のうちいずれか</li>
+								<li>a-zのようにハイフォンでつないだ場合は、aからzのうちのいずれか</li>
+								<li>^で始まる場合は、否定を表し、[]内の文字以外に一致</li>
+								<li>\w, \d, \s, \x{}, \uの使用が可能（[]外にあるときと同じ意味）</li>
+							</ol>
+							<div class="sample">
+								<p>記述例：英数字以外に一致</p>
+								<pre><code>[^0-9a-zA-Z]</code></pre>
+							</div>
+							<div class="sample">
+								<p>記述例：ひらがなに一致</p>
+								<pre><code>[\x{3041}-\x{3096}]</code></pre>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\x</code></p></td><td>
+							<p>この後に続く２文字を１６進数アスキーコードとした文字</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\x{}</code></p></td><td>
+							<p>\x{}内の文字（0-9,A-F）を１６進数Unicodeとした文字（U+10000以降も指定可能です）</p>
+							<div class="sample">
+								<p>記述例：「あ」に一致</p>
+								<pre><code>\x{3042}</code></pre>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\u</code></p></td><td>
+							<p>\uの後の文字（0-9,A-F）を１６進数Unicodeとした文字（U+10000以降も指定可能です）</p>
+							<div class="sample">
+								<p>記述例：「あ」に一致</p>
+								<pre><code>\u3042</code></pre>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\c</code></p></td><td>
+							<p>この後に続く１文字についてaをアスキーコード1、zをアスキーコード26とした文字</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>普通の文字</code></p></td><td>
+							<p>その文字に一致します。漢字等も使用可能です。<br>
+							普通の文字とは、<code>., \, [, ], (, ), *, +, ?, {, }, |, ^, $</code>以外の文字のことを指します。</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\の後に記号</code></p></td><td>
+							<p>その記号に一致します。</p>
+							<div class="sample">
+								<p>記述例："("に一致</p>
+								<pre><code>\(</code></pre>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+				<h2><a name="repeat">繰り返し</a></h2>
+				<p>直前の文字、または、グループを、指定回数繰り返したものに一致します。</p>
+				<p>
+					最長一致の場合、繰り返し数が最も多い文字列に一致します。<br>
+					最短一致の場合、繰り返し数が最も少ない文字列に一致します。
+				</p>
+				<p>
+					たとえば、以下のサンプルテキストについて、
+					""に囲まれた部分を最長一致、最短一致で、テキストの最初から検索した場合の結果は、それぞれ次のようになります。
+					<div class="sample">
+						<p>サンプルテキスト：</p>
+						<pre><code>"abc" and "def"</code></pre>
+					</div>
+				</p>
+				<div class="sample">
+					<p>正規表現記述例：（最長一致）</p>
+					<pre><code>".*"</code></pre>
+					<p>→結果：<samp>"abc" and "def"</samp>に一致</p>
+				</div>
+				<div class="sample">
+					<p>正規表現記述例：（最短一致）</p>
+					<pre><code>".*?"</code></pre>
+					<p>→結果：<samp>"abc"</samp>に一致</p>
+				</div>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>繰り返し数</th></tr>
+					
+					<tr>
+						<td valign="top"><p><code>*</code></p></td><td>
+							<p>0回以上（最長一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>*?</code></p></td><td>
+							<p>0回以上（最短一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>+</code></p></td><td>
+							<p>1回以上（最長一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>+?</code></p></td><td>
+							<p>1回以上（最短一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>?</code></p></td><td>
+							<p>0回、または、1回（最長一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>??</code></p></td><td>
+							<p>0回、または、1回（最短一致）</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>{n,m}</code></p></td><td>
+							<p>n回以上、m回以下（最長一致）※n,mは0以上65534以下の整数。n &lt;= m</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>{n,m}?</code></p></td><td>
+							<p>n回以上、m回以下（最短一致）※n,mは0以上65534以下の整数。n &lt;= m</p>
+						</td>
+					</tr>
+				</table>
+				<h2><a name="select">選択</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top"><p><code>|</code></p></td><td>
+							<p>|より前に記述した正規表現と、|より後に記述した正規表現のいずれかに一致します。</p>
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>東京|大阪</code></pre>
+								<p>→結果："東京"または"大阪"に一致</p>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<h2><a name="group">グループ</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top"><p><code>(<span class="var">regexp</span>)</code></p></td><td>
+							<p>()で囲んだ部分はグループとなります。</p>
+							<ol>
+								<li>繰り返しや選択の適用範囲を指定します。</li>
+								<div class="sample">
+									<p>記述例：</p>
+									<pre><code>(abc)+</code></pre>
+								</div>
+								<li>()内に一致した文字列が記憶されます。<br>
+								最初の(から順に、1からの番号が割り振られます。（グループ番号）<br>
+								置換文字列中の$n(nはグループ番号)は、対応するグループの文字列に置き換えられます。</li>
+								<div class="sample">
+									<p>＜検索機能での記述例＞</p>
+									<p>検索文字列：</p>
+									<pre><code>&lt;h1&gt;(.*?)&lt;/h1&gt;</code></pre>
+									<p>置換文字列：</p>
+									<pre><code>&lt;h2&gt;$1&lt;/h2&gt;</code></pre>
+									<p>→結果：&lt;h1&gt;〜&lt;/h1&gt;が、&lt;h2&gt;〜&lt;/h2&gt;に置換される。</p>
+								</div>
+							</ol>
+							<p>$nは見出し機能でも同様の意味で使用します。</p>
+							<p>
+								なお、$0は正規表現に一致した文字列全体となります。
+							</p>
+							<p>
+								グループ番号の最大は100です。101番目以降のグループにはグループ番号が割り振られず、文字列も記憶されません。
+							</p>
+							
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>(?:<span class="var">regexp</span>)</code></p></td><td>
+							<p>グループ番号が割り振られません。繰り返しや選択の適用範囲を指定したいだけのときに使用します。</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\n</code></p></td><td>
+							<p>グループnの文字列と一致します。（後方参照）</p>
+							<div class="sample">
+								<p>記述例：</p>
+								<pre><code>(..)-\1</code></pre>
+								<p>→結果：ab-ab, cc-ccなど、ハイフォンで区切って、同じ２文字が繰り返される文字列に一致</p>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+				<h2><a name="position">特定の位置に一致する正規表現</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>一致対象</th></tr>
+					<tr>
+						<td valign="top"><p><code>^</code></p></td><td>
+							<p>
+								段落の最初
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>$</code></p></td><td>
+							<p>
+								段落の最後
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\b</code></p></td><td>
+							<p>
+								単語の境界
+								<br>
+								アルファベット(A-Z,a-z)、数字(0-9)、アンダーバー(_)が連続した部分を単語とみなします。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>\B</code></p></td><td>
+							<p>
+								単語の境界以外
+								<br>
+								アルファベット(A-Z,a-z)、数字(0-9)、アンダーバー(_)が連続した部分を単語とみなします。
+							</p>
+						</td>
+					</tr>
+				</table>
+				
+				<h2><a name="other">その他</a></h2>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "100"><col>
+					<tr><th>正規表現</th><th>説明</th></tr>
+					<tr>
+						<td valign="top"><p><code><span class="var">regexp1</span>(?=<span class="var">regexp2</span>)</code></p></td><td>
+							<p>
+								後続指定（一致）
+							</p>
+							<p>
+								正規表現<span class="var">regexp1</span>に一致し、かつ、
+								正規表現<span class="var">regexp2</span>に一致する文字列がそのあとに続く場合のみ一致します。<br>
+								一致したとみなされる部分は、<span class="var">regexp1</span>に一致する部分のみになります。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code><span class="var">regexp1</span>(?!<span class="var">regexp2</span>)</code></p></td><td>
+							<p>
+								後続指定（不一致）
+							</p>
+							<p>
+								正規表現<span class="var">regexp1</span>に一致し、かつ、
+								正規表現<span class="var">regexp2</span>に一致する文字列がそのあとに続かない場合のみ一致します。<br>
+								一致したとみなされる部分は、<span class="var">regexp1</span>に一致する部分のみになります。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>(?#<span class="var">コメント</span>)</code></p></td><td>
+							<p>
+								コメントです。無視されます。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
+

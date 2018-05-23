@@ -1,0 +1,1 @@
+background: <<<CARET HINT(background-color)>>> <<<HINT(background-image \(url\(\)\))>>> <<<HINT(background-repeat)>>> <<<HINT(background-attachment)>>> <<<HINT(background-position-left)>>> <<<HINT(background-position-top)>>>;

@@ -1,0 +1,228 @@
+#
+# Lua用文法定義スクリプト
+# mi組み込み用 Ver.0.9
+#
+# (C) 2011 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("Lua")
+
+#アルファベット定義
+GlobalAttribute_StartAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_")
+GlobalAttribute_ContinuousAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_")
+
+#idle
+state(idle)
+{
+	StateAttribute_Stable
+	#function
+	{"function",{ChangeStateFromNextChar(funcname)}}
+	#comment
+	{"--[[",{PushState(commentblock0)}}
+	{"--[=[",{PushState(commentblock1)}}
+	{"--[==[",{PushState(commentblock2)}}
+	{"--[===[",{PushState(commentblock3)}}
+	{"--[====[",{PushState(commentblock4)}}
+	{"--[=====[",{PushState(commentblock5)}}
+	{"--",{PushState(linecomment)}}
+	#literal
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#function
+state(funcname)
+{
+	{"(",{SetVarLastWord(keyword), 
+		AddGlobalId([Function], keyword, keyword, keyword,"","","",""), ChangeStateFromNextChar(funcparam)}}
+	#comment
+	{"--[[",{PushState(commentblock0)}}
+	{"--[=[",{PushState(commentblock1)}}
+	{"--[==[",{PushState(commentblock2)}}
+	{"--[===[",{PushState(commentblock3)}}
+	{"--[====[",{PushState(commentblock4)}}
+	{"--[=====[",{PushState(commentblock5)}}
+	{"--",{PushState(linecomment)}}
+	#literal
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+state(funcparam)
+{
+	{",",{SetVarLastWord(param), AddLocalId([Parameter], param, param,"","")}}
+	{")",{SetVarLastWord(param), AddLocalId([Parameter], param, param,"",""),
+		IncIndentFromNext, ChangeStateFromNextChar(funcidle)}}
+	#comment
+	{"--[[",{PushState(commentblock0)}}
+	{"--[=[",{PushState(commentblock1)}}
+	{"--[==[",{PushState(commentblock2)}}
+	{"--[===[",{PushState(commentblock3)}}
+	{"--[====[",{PushState(commentblock4)}}
+	{"--[=====[",{PushState(commentblock5)}}
+	{"--",{PushState(linecomment)}}
+	#literal
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#funcidle
+state(funcidle)
+{
+	StateAttribute_Stable
+	{"local",{ChangeStateFromNextChar(localvar)}}
+	{"end",{DecIndentFromCurrent,ChangeStateFromNextChar(idle)}}
+	#comment
+	{"--[[",{PushState(commentblock0)}}
+	{"--[=[",{PushState(commentblock1)}}
+	{"--[==[",{PushState(commentblock2)}}
+	{"--[===[",{PushState(commentblock3)}}
+	{"--[====[",{PushState(commentblock4)}}
+	{"--[=====[",{PushState(commentblock5)}}
+	{"--",{PushState(linecomment)}}
+	#literal
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#local
+state(localvar)
+{
+	{default,{SetVarCurrentToken(var),AddLocalId([Variable], var, var,"",""),
+		ChangeStateFromNextChar(funcidle)}}
+	#comment
+	{"--[[",{PushState(commentblock0)}}
+	{"--[=[",{PushState(commentblock1)}}
+	{"--[==[",{PushState(commentblock2)}}
+	{"--[===[",{PushState(commentblock3)}}
+	{"--[====[",{PushState(commentblock4)}}
+	{"--[=====[",{PushState(commentblock5)}}
+	{"--",{PushState(linecomment)}}
+	#literal
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+#comment
+state(commentblock0)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]]",{PopStateFromNextChar}}
+}
+state(commentblock1)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]=]",{PopStateFromNextChar}}
+}
+state(commentblock2)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]==]",{PopStateFromNextChar}}
+}
+state(commentblock3)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]===]",{PopStateFromNextChar}}
+}
+state(commentblock4)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]====]",{PopStateFromNextChar}}
+}
+state(commentblock5)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"]=====]",{PopStateFromNextChar}}
+}
+state(linecomment)
+{
+	StateAttribute_NotCode
+	StateAttribute_GlobalState
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{lineend,{PopStateFromNextChar}}
+}
+
+#literal
+state(doublequotation)
+{
+	StateAttribute_NotCode
+	StateAttribute_NoMemory
+	StateAttribute_DisableDirective
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+state(singlequotation)
+{
+	StateAttribute_NotCode
+	StateAttribute_NoMemory
+	StateAttribute_DisableDirective
+	StateAttribute_ColorSlot(33)
+	{"\'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+#Function
+category[Function]
+{
+	CategoryAttribute_ColorSlot(1)
+}
+
+#Variable
+category[Variable]
+{
+	CategoryAttribute_ColorSlot(3)
+}
+category[Parameter]
+{
+	CategoryAttribute_ColorSlot(3)
+}
+

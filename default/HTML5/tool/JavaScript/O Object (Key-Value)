@@ -1,0 +1,1 @@
+var <<<CARET HINT(variable name)>>> = {<<<HINT(key1)>>>:<<<HINT(value1)>>>, <<<HINT(key2)>>>:<<<HINT(value2)>>>};

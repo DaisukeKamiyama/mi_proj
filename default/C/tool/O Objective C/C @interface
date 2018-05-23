@@ -1,0 +1,4 @@
+@interface <<<CARET HINT(class name)>>> : <<<HINT(super class)>>>
+{
+
+}

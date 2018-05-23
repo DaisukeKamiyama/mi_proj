@@ -1,0 +1,648 @@
+Add Tool Button
+Add Tool Button
+Add
+Add
+User-Defined Tool Button
+User-Defined Tool Button
+Name : 
+Name : 
+Icon : 
+Icon : 
+Menu Type Tool Button
+Menu Type Tool Button
+Text Encoding
+Text Encoding
+Line Break Code
+Line Break Code
+Wrap
+Wrap
+Mode
+Mode
+Folder
+Folder
+Cancel
+Cancel
+Select...
+Select...
+Standard Tool Button
+Standard Tool Button
+Import
+Import
+Importing Mode / Tool includes Application, AppleScript, or ShellScript
+Importing Mode / Tool includes Application, AppleScript, or ShellScript
+Is it OK to continue Import?
+Is it OK to continue Import?
+Display Detail Report in Text Window
+Display Detail Report in Text Window
+File List : 
+File List : 
+Detail Report : 
+Detail Report : 
+Dialog
+Dialog
+OK
+OK
+Print Option
+Print Option
+Print Font / Size
+Print Font / Size
+Font : 
+Font : 
+Print Page Number
+Print Page Number
+Print File Name
+Print File Name
+Size : 
+Size : 
+pt
+pt
+Print Separate Line
+Print Separate Line
+Print Each Line Number
+Print Each Line Number
+Line Space : 
+Line Space : 
+Always Wrap with Paper Width regardless of Document Property
+Always Wrap with Paper Width regardless of Document Property
+Window
+Window
+File is not Saved
+File is not Saved
+Save and Execute
+Save and Execute
+Execute without Save
+Execute without Save
+mi
+mi
+Web Site
+Web Site
+Version
+Version
+Some Icons use "Fugue Icons" made by
+Some Icons use "Fugue Icons" made by
+Mr. Yusuke Kamiyamane.
+Mr. Yusuke Kamiyamane.
+Link:
+Link:
+http://www.pinvoke.com/
+http://p.yusukekamiyamane.com/
+Warning
+Warning
+Static Text
+Static Text
+Compare Folder
+Compare Folder
+Compare
+Compare
+Font Size : 
+Font Size : 
+Wrap Letter Count : 
+Wrap Letter Count : 
+characters
+characters
+Setup Project Folder
+Setup Project Folder
+folder
+folder
+Folder : 
+Folder : 
+By setting Project Folder, Multi-File Find or other Features can be executed for the Folder and its sub-Folders.
+By setting Project Folder, Multi-File Find or other Features can be executed for the Folder and its sub-Folders.
+Select Folder...
+Select Folder...
+Add Mode
+Add Mode
+New
+New
+Import From Mode File
+Import From Mode File
+Select File...
+Select File...
+Mode Name : 
+Mode Name : 
+Copy from Existing Mode
+Copy from Existing Mode
+Message 1
+Message 1
+Message 2
+Message 2
+New FTP File
+New FTP File
+New File
+New File
+Path : 
+Path : 
+Move Line : 
+Move Line : 
+Move
+Move
+/999
+/999
+Text Count
+Text Count
+Count
+Count
+File Name
+File Name
+If 1 Line is
+If 1 Line is
+characters,
+characters,
+lines
+lines
+If 1 Page is
+If 1 Page is
+lines,
+lines,
+pages
+pages
+(Selected Range)
+(Selected Range)
+Comment : 
+Comment : 
+%
+%
+For Zenkaku and Hankaku, one character is counted as 1
+For Zenkaku and Hankaku, one character is counted as 1
+One Zenkaku character is counted as 2, Hankaku is 1
+One Zenkaku character is counted as 2, Hankaku is 1
+One Zenkaku character is counted as 1, Hankaku is 0.5
+One Zenkaku character is counted as 1, Hankaku is 0.5
+Count Method :
+Count Method :
+Paragraphs
+Paragraphs
+Counted as 1 for Hankaku Space / Tab
+Counted as 1 for Hankaku Space / Tab
+Counted as 1 for Line Break Code
+Counted as 1 for Line Break Code
+Multi-File Find Proceeding
+Multi-File Find Proceeding
+Abort
+Abort
+Trace Log
+Trace Log
+Edit Registered Folder Menu
+Edit Registered Folder Menu
+Item
+Item
+Delete
+Delete
+IndexWindow
+IndexWindow
+Change
+Change
+* Tool Command TOOLBARICON is prior to this setting.
+* Tool Command TOOLBARICON is prior to this setting.
+FTP Log
+Remote File Access Log
+Save Changes before Close
+Save Changes before Close
+Do you Save Changes?
+Do you Save Changes?
+Save
+Save
+Discard
+Discard
+Name
+Name
+Case
+Case
+Word
+Word
+Ambi.
+Fuzzy
+Reg.
+Reg.
+Loop
+Loop
+Close
+Close
+Automatic Recognition
+Automatic Recognition
+Text Encoding : 
+Text Encoding : 
+Edit FTP Folder Menu
+Edit FTP Folder Menu
+Server Address : 
+Server Address : 
+User Name : 
+User Name : 
+Path : 
+Path : 
+* User Name cannot contain Colon + Password
+* User Name cannot contain Colon + Password
+Level : 
+Level : 
+levels
+levels
+Copy this FTP Account Data
+Copy this FTP Account Data
+Setting for the Item
+Setting for the Item
+This Document is changed by Other Application
+This Document is changed by Other Application
+"^0" is changed by Other Application
+"^0" is changed by Other Application
+Read Changed Result by Other Application
+Read Changes by Other Application
+Do Not Read Changed Result by Other Application
+Do Not Read Changes by Other Application
+Apply to All Other Documents
+Apply to All Other Documents
+FTP
+FTP
+FTP Access in Progress
+Remote Access in Progress
+Text Encoding
+Text Encoding
+Font
+Font
+Font : 
+Font : 
+Default Setting in Mode Preferences
+Default Setting in Mode Preferences
+ON
+ON
+OFF
+OFF
+Anti Alias : 
+Anti Alias : 
+Tab Code Width : 
+Tab Code Width : 
+This is applied to Tab Code Display Width.
+This is applied to Tab Code Display Width.
+This is applied to Indent or Shift Left/Right.
+This is applied to Indent or Shift Left/Right.
+Creator : 
+Creator : 
+Type : 
+Type : 
+Display
+Display
+Size : 
+Size : 
+Set Creator / Type
+Set Creator / Type
+Indent Amount : 
+Indent Amount : 
+Project Folder Setup is Needed
+Project Folder Setup is Needed
+TextWindow
+TextWindow
+Multi-File Find
+Multi-File Find
+Find
+Find
+Ambiguous Find
+Fuzzy Search
+Find Sub-Folders
+Find Sub-Folders
+Display Position
+Display Position
+Only Visible File
+Only Visible File
+Only No-Type or TEXT File
+Only Text File
+Find Text : 
+Find Text : 
+Recent Find Text : 
+Recent Find Text : 
+Path
+Path
+Recent Find Folder : 
+Recent Find Folder : 
+Same Folder as Active Text Window
+Same Folder as Active Text Window
+Parent Folder of Active Text Window
+Parent Folder of Active Text Window
+Same Project Folder as Active Text Window
+Same Project Folder as Active Text Window
+Recently Used Condition : 
+Recently Used Condition : 
+File Name Match Condition : (RegExp)
+File Name Filter : 
+Confirmation for File Open
+Confirmation for File Open
+This File Size is Big.
+This File Size is Big.
+Open
+Open
+Application, AppleScript, and/or ShellScript may be executed
+Application, AppleScript, and/or ShellScript may be executed
+from Tool, Toolbar, and/or Keybind features.
+from Tool, Toolbar, and/or Keybind features.
+Do you really want to import?
+Do you really want to import?
+This document is not saved.
+This document is not saved.
+Changes are not reflected if you execute the tool without save.
+Changes are not reflected if you execute the tool without save.
+Copyright © 2009 MimikakiProject (daisuke), 
+Copyright © 2012 Daisuke Kamiyama, 
+If project folder is set, mi will create file "miproj" in the folder.
+If project folder is set, mi will create file "miproj" in the folder.
+If you want to cancel project folder setup, please delete the file "miproj".
+If you want to cancel project folder setup, please delete the file "miproj".
+If you click this button, Reload from the current file.
+If you click this button, Read from the current file.
+You can undo the reload.
+Changes after the previous open/save will be deleted, but you can undo the file read.
+If you click this button, Do not reload from the current file.
+If you click this button, mi does not read from the current file.
+Therefore, if you save in mi, changes of other application will be DELETED by overwrite.
+Therefore, if you save in mi, changes of other application will be DELETED by overwrite.
+Project Folder should be setup to use this feature.
+Project Folder should be setup to use this feature.
+Do you setup Project Folder?
+Do you setup Project Folder?
+It may take much time to open.
+It may take much time to open.
+Do you really want to open?
+Do you really want to open?
+Regexp
+Regexp
+Filter
+Wild Card
+Commit to : 
+Commit to : 
+Message :
+Message :
+Additional Args :
+Additional Args :
+Result :
+Result :
+Commit
+Commit
+Recent Message
+Recently Described Message
+Copy from Default Mode embedded in mi
+Copy from Default Mode built-in in mi
+Distinguish \\ and yen mark
+Distinguish \\ and yen mark
+Document Properties
+Document Properties
+Version Information
+Version Information
+Change Icon
+Change Icon
+Font Size
+Font Size
+Progress
+Progress
+Importing Mode / Tool includes Applications and/or other executables.
+Importing Mode / Tool includes Applications and/or other executables.
+Applications and/or other executables may be executed from Tool, Toolbar, and/or Keybind features. Do you really want to import?
+Applications and/or other executables may be executed from Tool, Toolbar, and/or Keybind features. Do you really want to import?
+Security Confirmation
+Security Confirmation
+Move Line
+Move Line
+Printing "^0"
+Printing "^0"
+Printing
+Printing
+Print will be aborted when Abort is clicked.
+Print will be aborted when Abort is clicked.
+Wrap Letter Count
+Wrap Letter Count
+Left (Read Only) : 
+Left (Read Only) : 
+Right (Edit) : 
+Right (Edit) : 
+File Compare
+File Compare
+Browse...
+Browse...
+Compare File
+Compare File
+Compare Automatically when File in the following Working Folder is opened.
+Compare Automatically when File in the following Working Folder is opened.
+Left (Source Folder) :
+Left (Source Folder) :
+Right (Working Folder) :
+Right (Working Folder) :
+Update to All Documents
+Update to All Documents
+Enabled Defines
+Edit Enabled Define Values
+Add / Update Value
+Add / Update Value
+Update All Documents
+Update All Documents
+Define : 
+Define : 
+Value :
+Value :
+Error Characters List
+Error Characters List
+mi text editor
+mi text editor
+Click the following button to display copyright notices.
+Click the following button to display copyright notices.
+Show Copyright
+Show Copyright
+Get From Web
+Get From Web
+Mode name is duplicated with another mode.
+Mode name is duplicated in another mode.
+Find : 
+Find : 
+Press ctrl+return to input return code
+Return/Tab can be input by pressing control key.
+Find From First
+Find From First
+Replace
+Replace
+Replace : 
+Replace : 
+Range : 
+Range : 
+Find Options
+Find Options
+Find / Replace
+Find / Replace
+Next
+Next
+After Caret
+After Caret
+Inside Select
+Inside Select
+All
+All
+Distinguish \ and ¥
+Distinguish \ and ¥
+Ignore Spaces/Tabs/Returns
+Ignore Spaces/Tabs/Returns
+Ignore Cases
+Ignore Cases
+Whole Word Only
+Whole Word Only
+Regular Expression
+Regular Expression
+Find From First after Document End
+Find From First after Document End
+Fuzzy Search
+Fuzzy Search
+Find Sub Folders Recursively
+Find Sub Folders Recursively
+Display Header Title in Result
+Display Header Title in Result
+Visible File Only
+Visible File Only
+Text File Only
+Text File Only
+Find Memory
+Find Memory
+Make Macro for this Find parameters
+Make Macro for this Find parameters
+Make Macro for this Replace parameters
+Make Macro for this Replace parameters
+Find Next
+Find Next
+Find Previous
+Find Previous
+List
+List
+Replace Next
+Replace Next
+Replace&Find
+Replace&Find
+Add To Macro
+Add To Macro
+Close Screen for Replace
+Close Screen for Multi-File Replace
+Open Screen for Replace
+Open Screen for Multi-File Replace
+Folder : 
+Folder : 
+Same Folder as Active Document
+Same Folder as Active Document
+Parent Folder of Active Document
+Parent Folder of Active Document
+Same Project Folder as Active Document
+Same Project Folder as Active Document
+Select Folder
+Select Folder
+Target : 
+Target : 
+All Files
+All Files
+Only Files which matches the Wild Card
+Only Files which match the Wild Card
+Only Files which mathces the Reg. Exp.
+Only Files which match the Reg. Exp.
+Setup
+Setup
+Multi File Find Replace
+Multi File Find Replace
+Step 1 : Find
+Step 1 : Find
+Find Result :
+Find Result :
+Step 2 : Select Files to replace
+Step 2 : Select Files to replace
+Folder :
+Folder :
+Replace Target Files :
+Replace Target Files :
+Exclusion Files :
+Exclusion Files :
+Replace will be executed for these files.
+Replace will be executed for these files.
+Replace will NOT be executed for these files.
+Replace will NOT be executed for these files.
+Step 3 : Execute Replace
+Step 3 : Execute Replace
+Replace Text : 
+Replace Text : 
+Backup : 
+Backup : 
+Backup Files before replace
+Make Backup Files before replace
+Backup Folder :
+Backup Folder :
+Set Default
+Set Default
+Cancel Replace
+Cancel Replace
+Execute Replace
+Execute Replace
+Multi-File Find Replace
+Multi-File Find Replace
+Replace selected text using file: Find string is written at odd lines and replace string is written at even lines.
+Replace selected text using batch file: Find strings should be written at odd lines and replace strings should be written at even lines.
+Extract matched text to new document. If replace string is specified, it is extracted after replaced.
+Extract matched text to new document. If replace string is specified, it is extracted after replaced.
+Extract matched text to new document.
+Extract matched text to new document.
+Advanced Search
+Advanced Search
+To prevent unexpected replace, replace using the following 3 steps.
+To prevent unexpected replace, replace using the following 3 steps.
+At First, find string in the folder.
+At First, find string in the folder.
+Select Replace Target Files from files which were found at Step 1.
+From the files which are found at Step 1, select target files for replace.
+Execute replace against Replace Target Files.
+Execute replace for the target files.
+Repository : 
+Repository : 
+Commit this document to repository.
+Commit this document to repository.
+Move to the specified paragraph.
+Move to the specified paragraph.
+New File will be created on Remote Folder.
+New File will be created on Remote Folder.
+File Name : 
+File Name : 
+Add New Mode.
+Add New Mode.
+Source : 
+Source : 
+Import from Mode Folder
+Import from Mode Folder
+Project Folder
+Project Folder
+Folder : 
+Folder : 
+Set letter count to be wrapped.
+Set letter count to be wrapped.
+Letter Count : 
+Letter Count : 
+Reload File with the selected Text Encoding.
+Reload File using the selected Text Encoding.
+Macro
+Macro
+New Macro bar item will be added.
+New Macro bar item will be added.
+Macro Title : 
+Macro Title : 
+Add macro of this replace
+Add macro of this replace
+Extract to New Document
+Extract to New Document
+Extract Matched Text to New Document
+Extract Matched Text to New Document
+Batch Replace...
+Batch Replace...
+Modify Text Encoding
+Modify Text Encoding
+Text Encoding :
+Text Encoding :
+Diff :
+Diff :
+Mode :
+Mode :
+Path :
+Path :
+Setup compile options (#define) is enabled.
+Setup compile options (#define) is enabled or not.
+Enabled Defines : 
+Enabled Defines : 
+Create New Remote File
+Create New Remote File
+Don't Save
+Don't Save
+Add New Mode
+Add New Mode

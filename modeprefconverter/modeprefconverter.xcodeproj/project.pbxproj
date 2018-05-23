@@ -1,0 +1,652 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E7C9A8C1A387ECF00975D99 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C9A8B1A387ECF00975D99 /* ApplicationServices.framework */; };
+		7E7C9A901A387EE800975D99 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C9A8F1A387EE800975D99 /* CoreServices.framework */; };
+		7E7C9A921A387EF200975D99 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C9A911A387EF200975D99 /* Carbon.framework */; };
+		7E7C9A981A387F0C00975D99 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C9A971A387F0C00975D99 /* AppKit.framework */; };
+		7E96EFD91AF47DBB0021A8AB /* AArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EE9F1AF47DBA0021A8AB /* AArray.cpp */; };
+		7E96EFDA1AF47DBB0021A8AB /* ABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEA11AF47DBA0021A8AB /* ABase.cpp */; };
+		7E96EFDB1AF47DBB0021A8AB /* ABaseFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEA31AF47DBA0021A8AB /* ABaseFunction.cpp */; };
+		7E96EFDC1AF47DBB0021A8AB /* ABaseUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEA71AF47DBA0021A8AB /* ABaseUnitTest.cpp */; };
+		7E96EFDD1AF47DBB0021A8AB /* ACSVFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEA81AF47DBA0021A8AB /* ACSVFile.cpp */; };
+		7E96EFDE1AF47DBB0021A8AB /* ADataBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEAA1AF47DBA0021A8AB /* ADataBase.cpp */; };
+		7E96EFDF1AF47DBB0021A8AB /* AFileAcc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEAC1AF47DBA0021A8AB /* AFileAcc.cpp */; };
+		7E96EFE01AF47DBB0021A8AB /* AFileAcc_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEAE1AF47DBA0021A8AB /* AFileAcc_Test.cpp */; };
+		7E96EFE11AF47DBB0021A8AB /* AHashArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEAF1AF47DBA0021A8AB /* AHashArray.cpp */; };
+		7E96EFE21AF47DBB0021A8AB /* AHashObjectArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEB11AF47DBA0021A8AB /* AHashObjectArray.cpp */; };
+		7E96EFE31AF47DBB0021A8AB /* AInternalEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEB31AF47DBA0021A8AB /* AInternalEvent.cpp */; };
+		7E96EFE41AF47DBB0021A8AB /* AObjectArrayItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEB71AF47DBA0021A8AB /* AObjectArrayItem.cpp */; };
+		7E96EFE51AF47DBB0021A8AB /* AObjectArrayItemTrash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEB91AF47DBA0021A8AB /* AObjectArrayItemTrash.cpp */; };
+		7E96EFE61AF47DBB0021A8AB /* APurgeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEBC1AF47DBA0021A8AB /* APurgeManager.cpp */; };
+		7E96EFE71AF47DBB0021A8AB /* ARegExp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEBE1AF47DBA0021A8AB /* ARegExp.cpp */; };
+		7E96EFE81AF47DBB0021A8AB /* ARegExp_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEC01AF47DBA0021A8AB /* ARegExp_Test.cpp */; };
+		7E96EFE91AF47DBB0021A8AB /* AStEventTransactionPrePostProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEC41AF47DBA0021A8AB /* AStEventTransactionPrePostProcess.cpp */; };
+		7E96EFEA1AF47DBB0021A8AB /* AText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEC61AF47DBA0021A8AB /* AText.cpp */; };
+		7E96EFEB1AF47DBB0021A8AB /* ATextArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EEC81AF47DBA0021A8AB /* ATextArray.cpp */; };
+		7E96EFEC1AF47DBB0021A8AB /* ATrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EECB1AF47DBA0021A8AB /* ATrace.cpp */; };
+		7E96EFED1AF47DBB0021A8AB /* AUniqIDArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EECD1AF47DBA0021A8AB /* AUniqIDArray.cpp */; };
+		7E96EFEE1AF47DBB0021A8AB /* AZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EECF1AF47DBA0021A8AB /* AZipFile.cpp */; };
+		7E96EFEF1AF47DBB0021A8AB /* Cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E96EED21AF47DBA0021A8AB /* Cocoa.mm */; };
+		7E96F06E1AF47E300021A8AB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F06D1AF47E300021A8AB /* main.mm */; };
+		7E96F0711AF47E640021A8AB /* AModePrefDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F06F1AF47E640021A8AB /* AModePrefDB.cpp */; };
+		7E96F0741AF47E6E0021A8AB /* AMacLegacyPref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0721AF47E6E0021A8AB /* AMacLegacyPref.cpp */; };
+		7E96F0771AF5169F0021A8AB /* AMacLegacyPref.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0731AF47E6E0021A8AB /* AMacLegacyPref.h */; };
+		7E96F0851AF51F0B0021A8AB /* ADateTimeWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F07A1AF51F0B0021A8AB /* ADateTimeWrapper.cpp */; };
+		7E96F0861AF51F0B0021A8AB /* AFontWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F07C1AF51F0B0021A8AB /* AFontWrapper.cpp */; };
+		7E96F0871AF51F0B0021A8AB /* APrefFileImp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F07E1AF51F0B0021A8AB /* APrefFileImp.cpp */; };
+		7E96F0881AF51F0B0021A8AB /* AText_Imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0801AF51F0B0021A8AB /* AText_Imp.cpp */; };
+		7E96F0891AF51F0B0021A8AB /* ATextEncodingWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0811AF51F0B0021A8AB /* ATextEncodingWrapper.cpp */; };
+		7E96F08A1AF51F0B0021A8AB /* AThreadWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0831AF51F0B0021A8AB /* AThreadWrapper.cpp */; };
+		7E96F08B1AF51F200021A8AB /* AThreadWrapper.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0841AF51F0B0021A8AB /* AThreadWrapper.h */; };
+		7E96F0B01AF51F670021A8AB /* AColorWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F08E1AF51F670021A8AB /* AColorWrapper.mm */; };
+		7E96F0B21AF51F670021A8AB /* AFileWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0921AF51F670021A8AB /* AFileWrapper.mm */; };
+		7E96F0C31AF53AD60021A8AB /* AKeyWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E96F0C21AF53AD60021A8AB /* AKeyWrapper.mm */; };
+		7ED0568F194D9DE200634F42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED0568E194D9DE200634F42 /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7E459FDA1956DA50005AA144 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E7C9A8B1A387ECF00975D99 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A8D1A387EDB00975D99 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/QuickTime.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A8F1A387EE800975D99 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A911A387EF200975D99 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Carbon.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A931A387EFB00975D99 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A951A387F0400975D99 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A971A387F0C00975D99 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		7E7C9A991A387F1700975D99 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		7E96EE9F1AF47DBA0021A8AB /* AArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AArray.cpp; sourceTree = "<group>"; };
+		7E96EEA01AF47DBA0021A8AB /* AArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AArray.h; sourceTree = "<group>"; };
+		7E96EEA11AF47DBA0021A8AB /* ABase.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABase.cpp; sourceTree = "<group>"; };
+		7E96EEA21AF47DBA0021A8AB /* ABase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABase.h; sourceTree = "<group>"; };
+		7E96EEA31AF47DBA0021A8AB /* ABaseFunction.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseFunction.cpp; sourceTree = "<group>"; };
+		7E96EEA41AF47DBA0021A8AB /* ABaseFunction.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseFunction.h; sourceTree = "<group>"; };
+		7E96EEA51AF47DBA0021A8AB /* ABaseParameters.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseParameters.h; sourceTree = "<group>"; };
+		7E96EEA61AF47DBA0021A8AB /* ABaseTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseTypes.h; sourceTree = "<group>"; };
+		7E96EEA71AF47DBA0021A8AB /* ABaseUnitTest.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseUnitTest.cpp; sourceTree = "<group>"; };
+		7E96EEA81AF47DBA0021A8AB /* ACSVFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ACSVFile.cpp; sourceTree = "<group>"; };
+		7E96EEA91AF47DBA0021A8AB /* ACSVFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ACSVFile.h; sourceTree = "<group>"; };
+		7E96EEAA1AF47DBA0021A8AB /* ADataBase.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ADataBase.cpp; sourceTree = "<group>"; };
+		7E96EEAB1AF47DBA0021A8AB /* ADataBase.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ADataBase.h; sourceTree = "<group>"; };
+		7E96EEAC1AF47DBA0021A8AB /* AFileAcc.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AFileAcc.cpp; sourceTree = "<group>"; };
+		7E96EEAD1AF47DBA0021A8AB /* AFileAcc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AFileAcc.h; sourceTree = "<group>"; };
+		7E96EEAE1AF47DBA0021A8AB /* AFileAcc_Test.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AFileAcc_Test.cpp; sourceTree = "<group>"; };
+		7E96EEAF1AF47DBA0021A8AB /* AHashArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AHashArray.cpp; sourceTree = "<group>"; };
+		7E96EEB01AF47DBA0021A8AB /* AHashArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AHashArray.h; sourceTree = "<group>"; };
+		7E96EEB11AF47DBA0021A8AB /* AHashObjectArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AHashObjectArray.cpp; sourceTree = "<group>"; };
+		7E96EEB21AF47DBA0021A8AB /* AHashObjectArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AHashObjectArray.h; sourceTree = "<group>"; };
+		7E96EEB31AF47DBA0021A8AB /* AInternalEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AInternalEvent.cpp; sourceTree = "<group>"; };
+		7E96EEB41AF47DBA0021A8AB /* AInternalEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AInternalEvent.h; sourceTree = "<group>"; };
+		7E96EEB51AF47DBA0021A8AB /* AObjectArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArray.h; sourceTree = "<group>"; };
+		7E96EEB61AF47DBA0021A8AB /* AObjectArrayIDIndexed.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArrayIDIndexed.h; sourceTree = "<group>"; };
+		7E96EEB71AF47DBA0021A8AB /* AObjectArrayItem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArrayItem.cpp; sourceTree = "<group>"; };
+		7E96EEB81AF47DBA0021A8AB /* AObjectArrayItem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArrayItem.h; sourceTree = "<group>"; };
+		7E96EEB91AF47DBA0021A8AB /* AObjectArrayItemTrash.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArrayItemTrash.cpp; sourceTree = "<group>"; };
+		7E96EEBA1AF47DBA0021A8AB /* AObjectArrayItemTrash.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AObjectArrayItemTrash.h; sourceTree = "<group>"; };
+		7E96EEBB1AF47DBA0021A8AB /* APtrManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = APtrManager.h; sourceTree = "<group>"; };
+		7E96EEBC1AF47DBA0021A8AB /* APurgeManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = APurgeManager.cpp; sourceTree = "<group>"; };
+		7E96EEBD1AF47DBA0021A8AB /* APurgeManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = APurgeManager.h; sourceTree = "<group>"; };
+		7E96EEBE1AF47DBA0021A8AB /* ARegExp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ARegExp.cpp; sourceTree = "<group>"; };
+		7E96EEBF1AF47DBA0021A8AB /* ARegExp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ARegExp.h; sourceTree = "<group>"; };
+		7E96EEC01AF47DBA0021A8AB /* ARegExp_Test.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ARegExp_Test.cpp; sourceTree = "<group>"; };
+		7E96EEC11AF47DBA0021A8AB /* ASingletonObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ASingletonObject.h; sourceTree = "<group>"; };
+		7E96EEC21AF47DBA0021A8AB /* AStackOnlyObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AStackOnlyObject.h; sourceTree = "<group>"; };
+		7E96EEC31AF47DBA0021A8AB /* AStArrayPtr.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AStArrayPtr.h; sourceTree = "<group>"; };
+		7E96EEC41AF47DBA0021A8AB /* AStEventTransactionPrePostProcess.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AStEventTransactionPrePostProcess.cpp; sourceTree = "<group>"; };
+		7E96EEC51AF47DBA0021A8AB /* AStEventTransactionPrePostProcess.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AStEventTransactionPrePostProcess.h; sourceTree = "<group>"; };
+		7E96EEC61AF47DBA0021A8AB /* AText.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AText.cpp; sourceTree = "<group>"; };
+		7E96EEC71AF47DBA0021A8AB /* AText.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AText.h; sourceTree = "<group>"; };
+		7E96EEC81AF47DBA0021A8AB /* ATextArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATextArray.cpp; sourceTree = "<group>"; };
+		7E96EEC91AF47DBA0021A8AB /* ATextArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATextArray.h; sourceTree = "<group>"; };
+		7E96EECA1AF47DBA0021A8AB /* AThreadMutex.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AThreadMutex.h; sourceTree = "<group>"; };
+		7E96EECB1AF47DBA0021A8AB /* ATrace.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATrace.cpp; sourceTree = "<group>"; };
+		7E96EECC1AF47DBA0021A8AB /* ATrace.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATrace.h; sourceTree = "<group>"; };
+		7E96EECD1AF47DBA0021A8AB /* AUniqIDArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AUniqIDArray.cpp; sourceTree = "<group>"; };
+		7E96EECE1AF47DBA0021A8AB /* AUniqIDArray.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AUniqIDArray.h; sourceTree = "<group>"; };
+		7E96EECF1AF47DBA0021A8AB /* AZipFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AZipFile.cpp; sourceTree = "<group>"; };
+		7E96EED01AF47DBA0021A8AB /* AZipFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AZipFile.h; sourceTree = "<group>"; };
+		7E96EED11AF47DBA0021A8AB /* Cocoa.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Cocoa.h; sourceTree = "<group>"; };
+		7E96EED21AF47DBA0021A8AB /* Cocoa.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 2147486209; path = Cocoa.mm; sourceTree = "<group>"; };
+		7E96EF201AF47DBA0021A8AB /* EastAsianWidth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EastAsianWidth.txt; sourceTree = "<group>"; };
+		7E96EF211AF47DBA0021A8AB /* UnicodeData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UnicodeData.txt; sourceTree = "<group>"; };
+		7E96EF221AF47DBA0021A8AB /* UnicodeTermsOfUse.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UnicodeTermsOfUse.html; sourceTree = "<group>"; };
+		7E96EF231AF47DBA0021A8AB /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		7E96EF241AF47DBA0021A8AB /* Imp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imp.h; sourceTree = "<group>"; };
+		7E96EFD81AF47DBB0021A8AB /* Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wrapper.h; sourceTree = "<group>"; };
+		7E96F06D1AF47E300021A8AB /* main.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = main.mm; sourceTree = "<group>"; };
+		7E96F06F1AF47E640021A8AB /* AModePrefDB.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = AModePrefDB.cpp; path = ../App/Source/AModePrefDB.cpp; sourceTree = "<group>"; };
+		7E96F0701AF47E640021A8AB /* AModePrefDB.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = AModePrefDB.h; path = ../App/Source/AModePrefDB.h; sourceTree = "<group>"; };
+		7E96F0721AF47E6E0021A8AB /* AMacLegacyPref.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = AMacLegacyPref.cpp; path = ../App/Source/AMacLegacyPref.cpp; sourceTree = "<group>"; };
+		7E96F0731AF47E6E0021A8AB /* AMacLegacyPref.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 2147486209; name = AMacLegacyPref.h; path = ../App/Source/AMacLegacyPref.h; sourceTree = "<group>"; };
+		7E96F0791AF51F0B0021A8AB /* ABaseWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ABaseWrapper.h; sourceTree = "<group>"; };
+		7E96F07A1AF51F0B0021A8AB /* ADateTimeWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ADateTimeWrapper.cpp; sourceTree = "<group>"; };
+		7E96F07B1AF51F0B0021A8AB /* ADateTimeWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ADateTimeWrapper.h; sourceTree = "<group>"; };
+		7E96F07C1AF51F0B0021A8AB /* AFontWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AFontWrapper.cpp; sourceTree = "<group>"; };
+		7E96F07D1AF51F0B0021A8AB /* AFontWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AFontWrapper.h; sourceTree = "<group>"; };
+		7E96F07E1AF51F0B0021A8AB /* APrefFileImp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = APrefFileImp.cpp; sourceTree = "<group>"; };
+		7E96F07F1AF51F0B0021A8AB /* APrefFileImp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = APrefFileImp.h; sourceTree = "<group>"; };
+		7E96F0801AF51F0B0021A8AB /* AText_Imp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AText_Imp.cpp; sourceTree = "<group>"; };
+		7E96F0811AF51F0B0021A8AB /* ATextEncodingWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATextEncodingWrapper.cpp; sourceTree = "<group>"; };
+		7E96F0821AF51F0B0021A8AB /* ATextEncodingWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ATextEncodingWrapper.h; sourceTree = "<group>"; };
+		7E96F0831AF51F0B0021A8AB /* AThreadWrapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = AThreadWrapper.cpp; sourceTree = "<group>"; };
+		7E96F0841AF51F0B0021A8AB /* AThreadWrapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 2147486209; path = AThreadWrapper.h; sourceTree = "<group>"; };
+		7E96F08D1AF51F670021A8AB /* AColorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AColorWrapper.h; sourceTree = "<group>"; };
+		7E96F08E1AF51F670021A8AB /* AColorWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AColorWrapper.mm; sourceTree = "<group>"; };
+		7E96F0911AF51F670021A8AB /* AFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFileWrapper.h; sourceTree = "<group>"; };
+		7E96F0921AF51F670021A8AB /* AFileWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AFileWrapper.mm; sourceTree = "<group>"; };
+		7E96F0C11AF53AD60021A8AB /* AKeyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKeyWrapper.h; sourceTree = "<group>"; };
+		7E96F0C21AF53AD60021A8AB /* AKeyWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AKeyWrapper.mm; sourceTree = "<group>"; };
+		7ED0568B194D9DE200634F42 /* mi_modeprefconverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mi_modeprefconverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED0568E194D9DE200634F42 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ED05688194D9DE200634F42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E7C9A981A387F0C00975D99 /* AppKit.framework in Frameworks */,
+				7E7C9A921A387EF200975D99 /* Carbon.framework in Frameworks */,
+				7E7C9A901A387EE800975D99 /* CoreServices.framework in Frameworks */,
+				7E7C9A8C1A387ECF00975D99 /* ApplicationServices.framework in Frameworks */,
+				7ED0568F194D9DE200634F42 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7E96EE9C1AF47D900021A8AB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7E96F06D1AF47E300021A8AB /* main.mm */,
+				7E96F06F1AF47E640021A8AB /* AModePrefDB.cpp */,
+				7E96F0701AF47E640021A8AB /* AModePrefDB.h */,
+				7E96F0721AF47E6E0021A8AB /* AMacLegacyPref.cpp */,
+				7E96F0731AF47E6E0021A8AB /* AMacLegacyPref.h */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		7E96EE9D1AF47DBA0021A8AB /* AbsFramework */ = {
+			isa = PBXGroup;
+			children = (
+				7E96F08C1AF51F670021A8AB /* MacWrapper */,
+				7E96F0781AF51F0B0021A8AB /* AbsBase_Imp */,
+				7E96EE9E1AF47DBA0021A8AB /* AbsBase */,
+				7E96EF1F1AF47DBA0021A8AB /* data */,
+				7E96EF231AF47DBA0021A8AB /* Frame.h */,
+				7E96EF241AF47DBA0021A8AB /* Imp.h */,
+				7E96EFD81AF47DBB0021A8AB /* Wrapper.h */,
+			);
+			name = AbsFramework;
+			path = ../AbsFramework;
+			sourceTree = "<group>";
+		};
+		7E96EE9E1AF47DBA0021A8AB /* AbsBase */ = {
+			isa = PBXGroup;
+			children = (
+				7E96EE9F1AF47DBA0021A8AB /* AArray.cpp */,
+				7E96EEA01AF47DBA0021A8AB /* AArray.h */,
+				7E96EEA11AF47DBA0021A8AB /* ABase.cpp */,
+				7E96EEA21AF47DBA0021A8AB /* ABase.h */,
+				7E96EEA31AF47DBA0021A8AB /* ABaseFunction.cpp */,
+				7E96EEA41AF47DBA0021A8AB /* ABaseFunction.h */,
+				7E96EEA51AF47DBA0021A8AB /* ABaseParameters.h */,
+				7E96EEA61AF47DBA0021A8AB /* ABaseTypes.h */,
+				7E96EEA71AF47DBA0021A8AB /* ABaseUnitTest.cpp */,
+				7E96EEA81AF47DBA0021A8AB /* ACSVFile.cpp */,
+				7E96EEA91AF47DBA0021A8AB /* ACSVFile.h */,
+				7E96EEAA1AF47DBA0021A8AB /* ADataBase.cpp */,
+				7E96EEAB1AF47DBA0021A8AB /* ADataBase.h */,
+				7E96EEAC1AF47DBA0021A8AB /* AFileAcc.cpp */,
+				7E96EEAD1AF47DBA0021A8AB /* AFileAcc.h */,
+				7E96EEAE1AF47DBA0021A8AB /* AFileAcc_Test.cpp */,
+				7E96EEAF1AF47DBA0021A8AB /* AHashArray.cpp */,
+				7E96EEB01AF47DBA0021A8AB /* AHashArray.h */,
+				7E96EEB11AF47DBA0021A8AB /* AHashObjectArray.cpp */,
+				7E96EEB21AF47DBA0021A8AB /* AHashObjectArray.h */,
+				7E96EEB31AF47DBA0021A8AB /* AInternalEvent.cpp */,
+				7E96EEB41AF47DBA0021A8AB /* AInternalEvent.h */,
+				7E96EEB51AF47DBA0021A8AB /* AObjectArray.h */,
+				7E96EEB61AF47DBA0021A8AB /* AObjectArrayIDIndexed.h */,
+				7E96EEB71AF47DBA0021A8AB /* AObjectArrayItem.cpp */,
+				7E96EEB81AF47DBA0021A8AB /* AObjectArrayItem.h */,
+				7E96EEB91AF47DBA0021A8AB /* AObjectArrayItemTrash.cpp */,
+				7E96EEBA1AF47DBA0021A8AB /* AObjectArrayItemTrash.h */,
+				7E96EEBB1AF47DBA0021A8AB /* APtrManager.h */,
+				7E96EEBC1AF47DBA0021A8AB /* APurgeManager.cpp */,
+				7E96EEBD1AF47DBA0021A8AB /* APurgeManager.h */,
+				7E96EEBE1AF47DBA0021A8AB /* ARegExp.cpp */,
+				7E96EEBF1AF47DBA0021A8AB /* ARegExp.h */,
+				7E96EEC01AF47DBA0021A8AB /* ARegExp_Test.cpp */,
+				7E96EEC11AF47DBA0021A8AB /* ASingletonObject.h */,
+				7E96EEC21AF47DBA0021A8AB /* AStackOnlyObject.h */,
+				7E96EEC31AF47DBA0021A8AB /* AStArrayPtr.h */,
+				7E96EEC41AF47DBA0021A8AB /* AStEventTransactionPrePostProcess.cpp */,
+				7E96EEC51AF47DBA0021A8AB /* AStEventTransactionPrePostProcess.h */,
+				7E96EEC61AF47DBA0021A8AB /* AText.cpp */,
+				7E96EEC71AF47DBA0021A8AB /* AText.h */,
+				7E96EEC81AF47DBA0021A8AB /* ATextArray.cpp */,
+				7E96EEC91AF47DBA0021A8AB /* ATextArray.h */,
+				7E96EECA1AF47DBA0021A8AB /* AThreadMutex.h */,
+				7E96EECB1AF47DBA0021A8AB /* ATrace.cpp */,
+				7E96EECC1AF47DBA0021A8AB /* ATrace.h */,
+				7E96EECD1AF47DBA0021A8AB /* AUniqIDArray.cpp */,
+				7E96EECE1AF47DBA0021A8AB /* AUniqIDArray.h */,
+				7E96EECF1AF47DBA0021A8AB /* AZipFile.cpp */,
+				7E96EED01AF47DBA0021A8AB /* AZipFile.h */,
+				7E96EED11AF47DBA0021A8AB /* Cocoa.h */,
+				7E96EED21AF47DBA0021A8AB /* Cocoa.mm */,
+			);
+			path = AbsBase;
+			sourceTree = "<group>";
+		};
+		7E96EF1F1AF47DBA0021A8AB /* data */ = {
+			isa = PBXGroup;
+			children = (
+				7E96EF201AF47DBA0021A8AB /* EastAsianWidth.txt */,
+				7E96EF211AF47DBA0021A8AB /* UnicodeData.txt */,
+				7E96EF221AF47DBA0021A8AB /* UnicodeTermsOfUse.html */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		7E96F0781AF51F0B0021A8AB /* AbsBase_Imp */ = {
+			isa = PBXGroup;
+			children = (
+				7E96F0791AF51F0B0021A8AB /* ABaseWrapper.h */,
+				7E96F07A1AF51F0B0021A8AB /* ADateTimeWrapper.cpp */,
+				7E96F07B1AF51F0B0021A8AB /* ADateTimeWrapper.h */,
+				7E96F07C1AF51F0B0021A8AB /* AFontWrapper.cpp */,
+				7E96F07D1AF51F0B0021A8AB /* AFontWrapper.h */,
+				7E96F07E1AF51F0B0021A8AB /* APrefFileImp.cpp */,
+				7E96F07F1AF51F0B0021A8AB /* APrefFileImp.h */,
+				7E96F0801AF51F0B0021A8AB /* AText_Imp.cpp */,
+				7E96F0811AF51F0B0021A8AB /* ATextEncodingWrapper.cpp */,
+				7E96F0821AF51F0B0021A8AB /* ATextEncodingWrapper.h */,
+				7E96F0831AF51F0B0021A8AB /* AThreadWrapper.cpp */,
+				7E96F0841AF51F0B0021A8AB /* AThreadWrapper.h */,
+			);
+			path = AbsBase_Imp;
+			sourceTree = "<group>";
+		};
+		7E96F08C1AF51F670021A8AB /* MacWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				7E96F0C11AF53AD60021A8AB /* AKeyWrapper.h */,
+				7E96F0C21AF53AD60021A8AB /* AKeyWrapper.mm */,
+				7E96F08D1AF51F670021A8AB /* AColorWrapper.h */,
+				7E96F08E1AF51F670021A8AB /* AColorWrapper.mm */,
+				7E96F0911AF51F670021A8AB /* AFileWrapper.h */,
+				7E96F0921AF51F670021A8AB /* AFileWrapper.mm */,
+			);
+			path = MacWrapper;
+			sourceTree = "<group>";
+		};
+		7ED05682194D9DE200634F42 = {
+			isa = PBXGroup;
+			children = (
+				7E459FDA1956DA50005AA144 /* Info.plist */,
+				7E96EE9D1AF47DBA0021A8AB /* AbsFramework */,
+				7E96EE9C1AF47D900021A8AB /* App */,
+				7ED0568D194D9DE200634F42 /* Frameworks */,
+				7ED0568C194D9DE200634F42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ED0568C194D9DE200634F42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7ED0568B194D9DE200634F42 /* mi_modeprefconverter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7ED0568D194D9DE200634F42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E7C9A991A387F1700975D99 /* WebKit.framework */,
+				7E7C9A971A387F0C00975D99 /* AppKit.framework */,
+				7E7C9A951A387F0400975D99 /* JavaScriptCore.framework */,
+				7E7C9A931A387EFB00975D99 /* Security.framework */,
+				7E7C9A911A387EF200975D99 /* Carbon.framework */,
+				7E7C9A8F1A387EE800975D99 /* CoreServices.framework */,
+				7E7C9A8D1A387EDB00975D99 /* QuickTime.framework */,
+				7E7C9A8B1A387ECF00975D99 /* ApplicationServices.framework */,
+				7ED0568E194D9DE200634F42 /* Cocoa.framework */,
+				7ED05690194D9DE200634F42 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7ED05690194D9DE200634F42 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7ED0568A194D9DE200634F42 /* mi_modeprefconverter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ED056BC194D9DE300634F42 /* Build configuration list for PBXNativeTarget "mi_modeprefconverter" */;
+			buildPhases = (
+				7ED05687194D9DE200634F42 /* Sources */,
+				7ED05688194D9DE200634F42 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mi_modeprefconverter;
+			productName = mi;
+			productReference = 7ED0568B194D9DE200634F42 /* mi_modeprefconverter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7ED05683194D9DE200634F42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Daisuke Kamiyama";
+				TargetAttributes = {
+					7ED0568A194D9DE200634F42 = {
+						DevelopmentTeam = 672B5SY5R8;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 7ED05686194D9DE200634F42 /* Build configuration list for PBXProject "modeprefconverter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				Japanese,
+				English,
+			);
+			mainGroup = 7ED05682194D9DE200634F42;
+			productRefGroup = 7ED0568C194D9DE200634F42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7ED0568A194D9DE200634F42 /* mi_modeprefconverter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7ED05687194D9DE200634F42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E96EFEA1AF47DBB0021A8AB /* AText.cpp in Sources */,
+				7E96F0871AF51F0B0021A8AB /* APrefFileImp.cpp in Sources */,
+				7E96EFDE1AF47DBB0021A8AB /* ADataBase.cpp in Sources */,
+				7E96EFE01AF47DBB0021A8AB /* AFileAcc_Test.cpp in Sources */,
+				7E96EFE31AF47DBB0021A8AB /* AInternalEvent.cpp in Sources */,
+				7E96F0881AF51F0B0021A8AB /* AText_Imp.cpp in Sources */,
+				7E96F0B21AF51F670021A8AB /* AFileWrapper.mm in Sources */,
+				7E96EFDF1AF47DBB0021A8AB /* AFileAcc.cpp in Sources */,
+				7E96EFDA1AF47DBB0021A8AB /* ABase.cpp in Sources */,
+				7E96F0771AF5169F0021A8AB /* AMacLegacyPref.h in Sources */,
+				7E96F0B01AF51F670021A8AB /* AColorWrapper.mm in Sources */,
+				7E96EFE61AF47DBB0021A8AB /* APurgeManager.cpp in Sources */,
+				7E96EFDB1AF47DBB0021A8AB /* ABaseFunction.cpp in Sources */,
+				7E96EFE51AF47DBB0021A8AB /* AObjectArrayItemTrash.cpp in Sources */,
+				7E96EFEE1AF47DBB0021A8AB /* AZipFile.cpp in Sources */,
+				7E96EFE71AF47DBB0021A8AB /* ARegExp.cpp in Sources */,
+				7E96F08B1AF51F200021A8AB /* AThreadWrapper.h in Sources */,
+				7E96EFDC1AF47DBB0021A8AB /* ABaseUnitTest.cpp in Sources */,
+				7E96EFE11AF47DBB0021A8AB /* AHashArray.cpp in Sources */,
+				7E96EFED1AF47DBB0021A8AB /* AUniqIDArray.cpp in Sources */,
+				7E96EFEB1AF47DBB0021A8AB /* ATextArray.cpp in Sources */,
+				7E96F0851AF51F0B0021A8AB /* ADateTimeWrapper.cpp in Sources */,
+				7E96F06E1AF47E300021A8AB /* main.mm in Sources */,
+				7E96F0741AF47E6E0021A8AB /* AMacLegacyPref.cpp in Sources */,
+				7E96F08A1AF51F0B0021A8AB /* AThreadWrapper.cpp in Sources */,
+				7E96EFDD1AF47DBB0021A8AB /* ACSVFile.cpp in Sources */,
+				7E96F0861AF51F0B0021A8AB /* AFontWrapper.cpp in Sources */,
+				7E96F0891AF51F0B0021A8AB /* ATextEncodingWrapper.cpp in Sources */,
+				7E96EFE81AF47DBB0021A8AB /* ARegExp_Test.cpp in Sources */,
+				7E96EFEC1AF47DBB0021A8AB /* ATrace.cpp in Sources */,
+				7E96F0711AF47E640021A8AB /* AModePrefDB.cpp in Sources */,
+				7E96EFE91AF47DBB0021A8AB /* AStEventTransactionPrePostProcess.cpp in Sources */,
+				7E96F0C31AF53AD60021A8AB /* AKeyWrapper.mm in Sources */,
+				7E96EFEF1AF47DBB0021A8AB /* Cocoa.mm in Sources */,
+				7E96EFE21AF47DBB0021A8AB /* AHashObjectArray.cpp in Sources */,
+				7E96EFD91AF47DBB0021A8AB /* AArray.cpp in Sources */,
+				7E96EFE41AF47DBB0021A8AB /* AObjectArrayItem.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7ED056BA194D9DE300634F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VALID_ARCHS = i386;
+			};
+			name = Debug;
+		};
+		7ED056BB194D9DE300634F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx;
+				VALID_ARCHS = i386;
+			};
+			name = Release;
+		};
+		7ED056BD194D9DE300634F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/HockeySDK-Mac",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ./Prefix.pch;
+				GCC_SHORT_ENUMS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../libcurl/include/,
+				);
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_PREPROCESS = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "-DMODEPREFCONVERTER";
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = i386;
+				VERSIONING_SYSTEM = "apple-generic";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7ED056BE194D9DE300634F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_NS_ASSERTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/HockeySDK-Mac",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ./Prefix.pch;
+				GCC_SHORT_ENUMS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../libcurl/include/,
+				);
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_PREPROCESS = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "-DMODEPREFCONVERTER";
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SEPARATE_STRIP = YES;
+				VALID_ARCHS = i386;
+				VERSIONING_SYSTEM = "apple-generic";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7ED05686194D9DE200634F42 /* Build configuration list for PBXProject "modeprefconverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ED056BA194D9DE300634F42 /* Debug */,
+				7ED056BB194D9DE300634F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ED056BC194D9DE300634F42 /* Build configuration list for PBXNativeTarget "mi_modeprefconverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ED056BD194D9DE300634F42 /* Debug */,
+				7ED056BE194D9DE300634F42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7ED05683194D9DE200634F42 /* Project object */;
+}

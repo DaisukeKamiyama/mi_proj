@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5a5b09e4-d674-11dd-916d-cdb5b9a02863++505",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "5a5b09e4-d674-11dd-916d-cdb5b9a02863++505" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5a5b09e4-d674-11dd-916d-cdb5b9a02863++505" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "94FA8D43-EC85-48F0-AD25-C2138BC301B6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5a5b09e4-d674-11dd-916d-cdb5b9a02863++505" : "miedit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "mi",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Build_Mac\/mi.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/192.168.0.177\/svn\/mi",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5a5b09e4-d674-11dd-916d-cdb5b9a02863++505"
+    }
+  ]
+}

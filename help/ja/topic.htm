@@ -1,0 +1,717 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>機能説明</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+	</head>
+	<body>
+		<div class="content">
+			<div class="nav">
+				<p class="nav">
+					<a href="index.htm" target="_top">▲トップページへ移動</a>
+				</p>
+				<p class="nav">
+					<a href="topic.htm" target="_top">◀メニューを隠す</a>
+				</p>
+				<p class="nav">
+					<a href="gaiyo.htm#_">はじめに</a>　<a href="kihon.htm#_">基本操作</a>　<a href="find.htm#_">検索・置換</a>　
+					<a href="topic.htm#_">機能説明</a>　<a href="tips.htm#_">Tips</a>　<a href="gamen.htm#_">画面の説明</a>　
+					<a href="regexp.htm#_">正規表現</a>　<br>
+					<a href="toolcommand.htm#_">ツールコマンド</a>　
+					<a href="JavaScript.htm#_">JavaScriptツール</a>　
+					<a href="applescript.htm#_">AppleScriptツール</a>　<a href="shellscript.htm#_">シェルスクリプト</a>　
+					<a href="sdf.htm#_">文法定義スクリプト</a>　
+				</p>
+			</div>
+			
+			<h1>機能説明</h1>
+			<p>
+				このページでは目的別に、手順を説明しています。
+			</p>
+			
+			<h2><a name="yokutsukau">よく使う文字列（マクロ）を記憶する</a></h2>
+			<p>
+				ツール、マクロバー、キーバインド機能により、よく使う文字列（マクロ）を記憶しておいて使うことが出来ます。
+			</p>
+			
+			<h3>ツール</h3>
+			<p>
+				以下の手順により、<span class="menu">ツール</span>メニューにツール項目を登録します。
+			</p>
+			<ol>
+				<li><span class="pref">モード設定ウインドウ</span>を開きます。</li>
+				<li><span class="pref">ツール</span>タブを選択します。</li>
+				<li>+ボタンをクリックしてツールを追加し、編集します。</li>
+			</ol>
+			<p>
+				<a href="#keytoolmode">ツール入力モード</a>機能により、 ⌘ + Y の後にいくつかのアルファベットを続けて入力することで、
+				よく使う文字列を入力することも可能です。詳細は<a href="#keytoolmode">「ツールをキー入力だけで実行する」</a>を参照してください。
+			</p>
+			
+			<h3>マクロバー</h3>
+			<p>
+				<img src="./macrobar.png" alt="" width="400"><br>
+				以下のいずれかの方法により、ツールバーの下部の領域（マクロバー）にマクロ項目を登録します。
+			</p>
+			<ul>
+				<li>テキストをマクロバーにドラッグ＆ドロップします</li>
+				<li>マクロバーをダブルクリック、または、右端の＋ボタンをクリックします。</li>
+				<li>検索／置換ダイアログから「この置換をマクロとして追加する」をクリックします</li>
+			</ul>
+			
+			<h3>キーバインド</h3>
+			<p>
+				以下の手順により、キーへ文字列を登録します。
+			</p>
+			<ol>
+				<li><span class="pref">モード設定ウインドウ</span>を開きます。</li>
+				<li><span class="pref">キーバインド</span>タブを選択します。</li>
+				<li>コントロールキー等と、各種文字キーの組み合わせを選択し、下部の<span class="pref">動作</span>メニューから「文字列挿入」を選択します。</li>
+				<li><span class="pref">挿入文字列</span>にテキストを入力し、<span class="pref">設定</span>ボタンを押します。</li>
+			</ol>
+			
+			<h3>ツールコマンドについて</h3>
+			<p>
+				いずれの場合も、<a href="toolcommand.htm#_">ツールコマンド</a>が使用可能です。
+			</p>
+			<p>
+				たとえば、以下のように記述されたツールボタンや、キーバインドされたキーを押したときに、
+				テキスト上で選択されている文字列を<samp>&lt;p&gt;〜&lt;/p&gt;</samp>で囲むことができます。
+				<div class="sample">
+					<p>記述例：</p>
+					<pre>&lt;p&gt;&lt;&lt;&lt;SELECTED&gt;&gt;&gt;&lt;/p&gt;</pre>
+				</div>
+			</p>
+			<p>
+				詳細は<a href="toolcommand.htm#_">ツールコマンドの説明</a>を参照してください。
+			</p>
+			
+			<h3>ツール／マクロバーに登録可能なもの</h3>
+			
+			<p>
+				ツール／マクロバーには以下のものを登録できます。
+			</p>
+			<p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>ツールの種類</th><th>動作の説明</th></tr>
+					
+					<tr>
+						<td valign="top">テキストファイル</td><td>
+							<p>
+								キャレット位置、もしくは、選択範囲に、テキストファイルの内容を挿入します。<br>
+								このとき、<code>&lt;&lt;&lt;</code>と<code>&gt;&gt;&gt;</code>の間に囲まれた部分は、
+								<a href="toolcommand.htm#_">ツールコマンド</a>となり、特定の動作をmiにさせることが可能です。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">JavaScript</td><td>
+							<p>
+								<a href="JavaScript.htm">JavaScript</a>により、miのドキュメントのテキストを制御することが可能です。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">AppleScriptコンパイル済みファイル </td><td>
+							<p>
+								AppleScriptコンパイル済みファイルを実行します。<br>
+								詳細は<a href="applescript.htm#_">AppleScriptの説明</a>を参照してください。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">アプリケーション（のエイリアス） </td><td>
+							<p>
+								アプリケーションを起動します。<br>
+								ファイル名のどこかに「drop」の4文字を付け加えておくと、 最前面のドキュメントのファイルをそのアプリケーションにドロップします。
+							</p>
+						</td>
+					</tr>
+					
+				</table>
+			</p>
+			
+			<h3>ツール／マクロバー項目の編集</h3>
+			<p>
+				既に存在するツールを編集するには、以下のいずれかの方法を用います。
+				<ul>
+					<li>optionキーを押しながらツール／マクロバー項目を選択します。</li>
+					<li><span class="pref">モード設定ウインドウ→ツールタブ</span>にて、編集します。</li>
+				</ul>
+			</p>
+			
+			<h2><a name="multifilefind">指定フォルダ内のファイルから検索する (grep)</a></h2>
+			<p>
+				指定フォルダ内の複数のファイルから、文字列を検索することができます。
+				詳細は、<a href="find.htm#multifilefind">マルチファイル検索の説明</a>を参照してください。
+			</p>
+			
+			<h2><a name="open">必要なファイルを少ない操作で開く</a></h2>
+			<p>
+				メニューから<span class="menu">ファイル→開く</span>を選択してファイルを開く方法の他に、
+				以下のようなファイルの開き方があります。
+			</p>
+			<p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>ファイルの開き方</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top">選択部分を開く</td><td>
+							<p>
+								テキストウインドウ上で、選択部分に記述されたファイルパスのファイルを開きます。
+							</p>
+							<p>
+								正確に言うと、現在編集中のファイルからの相対ファイルパス部分にキャレットがある状態、もしくは、それを選択した状態で、
+								メニューから<span class="menu">ファイル→選択部分を開く</span>（もしくは、 ⌘ + D ）を選択すると、
+								対象ファイルを開きます。<br>
+								たとえば、HTMLで、<code>&lt;a href="../index.html"&gt;</code>　と記述されている場合、<code>"../index.html"</code>内で <span class="menu">選択部分を開く</span>を行うと、
+								1つ上のフォルダのファイル名<code>index.html</code>というファイルを開きます。
+							</p>
+							<p>
+								なお、絶対ファイルパスが記述された部分で、<span class="menu">選択部分を開く</span>を行った場合でも、そのファイルを開くことができます。<br>
+								また、URLが記述された部分で、<span class="menu">選択部分を開く</span>を行った場合は、ブラウザでURLを開きます。
+							</p>
+							<p>
+								また、<span class="pref">モード設定ウインドウ→文法タブ→組み込みの文法定義を使う</span>をOnにした場合、
+								キャレット位置にファイルパスが無い場合は、関連するファイル（ヘッダファイルやCSSファイル等）を開きます。
+							</p>
+							<p>
+								ファイルを開くアプリケーションを、
+								<span class="pref">環境設定ウインドウ→その他タブ→起動アプリケーション</span>
+								で指定することができます。設定方法の詳細は環境設定の説明を参照してください。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">最近開いたファイル</td><td>
+							<p>
+								<span class="menu">ファイル→最近開いたファイル</span>、または、
+								<a href="gamen.htm#subwindow">サブウインドウ</a>「最近開いたファイル」から、最近開いたファイルを開くことができます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">同じフォルダから開く</td><td>
+							<p>
+								<span class="menu">ファイル→同じフォルダから開く</span>、または、
+								<a href="gamen.htm#subwindow">サブウインドウ</a>「同じフォルダのファイル」から、同じフォルダのファイルを開くことができます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">同じプロジェクトから開く</td><td>
+							<p>
+								<span class="menu">ファイル→同じプロジェクトから開く</span>、または、
+								<a href="gamen.htm#subwindow">サブウインドウ</a>「同じプロジェクトのファイル」から、同じプロジェクトのファイルを開くことができます。<br>
+								プロジェクトについては、<a href="#project">プロジェクトフォルダの説明</a>を参照して下さい。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			
+			<h2><a name="register_keyword">キーワードを登録する</a></h2>
+			<p>
+				モード設定の「キーワード」タブにて、キーワードを登録することが出来ます。<br>
+				キーワードを登録すると、キーワードの色付けや、補完入力、キーワード情報の表示などが可能です。<br>
+				<img src="./keyword_pref.png" alt="" width="400">
+			</p>
+			<p>
+				キーワードの登録は、モード設定画面のエディットボックスに<em>直接入力する方法</em>と、<em>CSVファイルを使う方法</em>があります。
+			</p>
+			<p>
+				CSVファイルを使用すると、キーワード説明の記述や、親キーワードの設定、補完入力時の入力テキストなどを設定出来ます。
+			</p>
+			<p>
+				<a href="sample.htm#csvsample">こちらのページ</a>にサンプルを置いています。ご参照下さい。<br>
+				（また、各種モードのキーワードはCSVで設定していますので、こちらもご参考にしてください。）
+			</p>
+			<p>
+				CSVファイルは<em>Web上のファイルを指定することもできます</em>。
+			</p>
+			<p>
+				たとえば以下のように設定すると、tracのチケット番号をキーワードとして登録し、キーワード情報としてチケットタイトルを表示することが出来ます。<br>
+				（テキスト内のtrac番号をクリックしたときに、キーワード情報ウインドウがポップアップし、チケットタイトルが表示されます。）
+				<ul>
+					<li>CSV ファイル：http://proj.mimikaki.net/mi/report/1006?format=csv&amp;USER=anonymous</li>
+					<li>キーワードの列番号：4</li>
+					<li>説明の列番号：5</li>
+				</ul>
+			</p>
+			
+			<h2><a name="abbrev">キーワードを補完入力する</a></h2>
+			<p>
+				キーワードの最初の数文字を入力し、Shift+スペースキー（デフォルトのキーバインドの場合）を押すと、
+				単語全体を補完入力することが可能です。
+			</p>
+			<p>
+				候補が複数あるときは、続けてShift+スペースキーを押すと、次の候補に置き換わります。
+			</p>
+			<p>
+				前の候補に戻るときは、Shift+タブキーです。
+			</p>
+			<p>
+				補完入力（省略入力）のキーは、<span class="pref">環境設定→<a href="gamen.htm#subwindow">サブウインドウ</a>タブ</span>で変更可能です。
+			</p>
+			
+			<h2><a name="colors">文字色・背景色等を設定する</a></h2>
+			<p>
+				文字色・背景色は<span class="pref">モード設定→色タブ</span>で設定します。
+			</p>
+			<p>
+				カラースキームから選択して一括設定することもできます。
+			</p>
+			<p>
+				カラースキームは以下のいずれかの方法で追加可能です。
+			</p>
+			<ul>
+				<li>CSVに各項目の色を設定したファイルを作成します。<br>
+				フォーマットは<a href="colorschemesample/mi-default.csv" charset="UTF-8">こちら</a>を参照して下さい。
+				</li>
+				<li>epfファイルをダウンロードして取得します。（<a href="http://eclipsecolorthemes.org/">こちら</a>など）
+				</li>
+			</ul>
+			<p>
+				上記のファイルを、「ColorScheme フォルダを開く」ボタンをクリックして、
+				そのフォルダに格納し、「メニューを更新」をクリックすると、メニューに追加されます。
+			</p>
+			<p>
+				ハイライト色、色の濃さはCSVファイルの場合のみ設定可能です。<br>
+				必要に応じて、選択色の濃さ等を調整お願いします。
+			</p>
+			
+			<h2><a name="ftp">SFTP経由などでサーバー上のファイルを編集する</a></h2>
+			<p>
+				サーバー上のリモートファイルを直接編集することができます。<br>
+				現在のバージョンでは、SFTP, FTPS, FTPに対応しています。（SFTPはMac OS X 10.8以降のみ対応）
+			</p>
+			<h3>設定方法</h3>
+			<ol>
+				<li>メニューから<span class="menu">mi→環境設定</span>を選択します。<span class="pref">環境設定ウインドウ</span>が表示されます。</li>
+				<li><span class="pref">リモートファイル</span>タブを選択します。</li>
+				<li>左下の<span class="pref">＋</span>ボタンをクリックしてアカウントを追加した後、<span class="pref">サーバー名</span>等を設定します。
+			</ol>
+			<p>
+				例えば下記のように設定します。
+			</p>
+			<ul>
+				<li>接続タイプ："SFTP"</li>
+				<li>サーバー名："sample.mimikaki.net"（IPアドレスでもOK）</li>
+				<li>ユーザー名："daisuke"</li>
+				<li>パスワード：パスワード</li>
+				<li>ルートのパス："/home"</li>
+			</ul>
+			<p>
+				<img src="./remotefilepref.png" alt="" width="450">
+			</p>
+			<p>
+				SFTPの場合、公開鍵認証を使用することも可能です。<br>
+				秘密鍵のファイルパスと、秘密鍵のパスフレーズを設定してください。<br>
+				（秘密鍵のパスフレーズはパスワード欄に設定してください。秘密鍵のパスフレーズを設定していない場合は空欄にしてください。）
+			</p>
+			<h3>使用方法</h3>
+			<ol>
+				<li><a href="gamen.htm#subwindow">サブウインドウ</a>「リモートファイル」を開きます<br>
+				<img src="./remotefilemenu.png" alt="" width="300">
+				</li>
+				<li>サーバー名を選択します</li>
+				<li>フォルダをたどって対象ファイルを選択します</li>
+			</ol>
+			<p>
+				編集・保存方法は、ローカルファイルの編集・保存方法と同じです。
+			</p>
+			<p>
+				リモートファイルサブウインドウはサイドバーにドック可能です。<br>
+				<img src="./remotefile_side.png" alt="" width="200">
+			</p>
+			
+			<h3>接続できない場合</h3>
+			<p>
+				接続できない場合、エラーダイアログが表示されます。
+				エラーメッセージにより下記の理由が考えられます。
+			</p>
+			<p>
+				SFTPの場合：
+				<ul>
+					<li>Could not resolve hostname：サーバー名の設定間違い</li>
+					<li>Password error：ユーザー名、パスワードの設定間違い</li>
+					<li>Permission denied：秘密鍵の設定間違い</li>
+					<li>Bad permissions：秘密鍵のパーミッション設定間違い</li>
+				</ul>
+			</p>
+			<p>
+				FTPSの場合：
+				<ul>
+				<li>Could not resolve host：サーバー名の設定間違い</li>
+				<li>Authentication failure：ユーザー名、パスワードの設定間違い</li>
+				<li>Could not open directory for reading：ルートパスの設定間違い</li>
+				</ul>
+			</p>
+			
+			<h2><a name="rect">矩形選択・編集する</a></h2>
+			<p>
+				テキストウインドウ上のテキストを四角（矩形）で囲んだ部分を、
+				一度に削除したり、コピー＆ペーストしたり、ドラッグ＆ドロップしたりすることができます。
+			</p>
+			<ol>
+				<li>メニューから<span class="menu">編集→矩形選択モードをONにする</span>を選択します。</li>
+				<li>マウスでテキストを選択します。矩形に選択されます。</li>
+				<li>編集します。</li>
+				<ul>
+					<li>deleteキーを押すと削除されます。</li>
+					<li>ドラッグ＆ドロップで移動、optionキーを押しながらドラッグ＆ドロップでコピーとなります。</li>
+					<li>メニューから<span class="menu">編集→コピー</span>を選択するとコピーします。コピーされる内容は、改行コードで区切られたテキストとなります。</li>
+					<li>メニューから<span class="menu">編集→ペースト</span>を選択すると矩形にペーストします。</li>
+				</ul>
+				<li>メニューから<span class="menu">編集→矩形選択モードをOFFにする</span>を選択すると、通常の選択モードに戻ります。</li>
+			</ol>
+			
+			<h2><a name="view">ビューを分割する</a></h2>
+			<p>
+				１つのドキュメントについて、複数の箇所をそれぞれ別の表示エリア（ビュー）で表示・編集することができます。
+			</p>
+			<p>
+				ツールバーの「横／縦分割」ボタンでビュー分割します。
+			</p>
+			
+			<h2><a name="midashi">見出し行を一覧表示する</a></h2>
+			<p>
+				<a href="gamen.htm#subwindow">サブウインドウ</a>「見出しリスト」により、見出し行を一覧表示可能です。<br>
+				<img src="./midashi_side.png" alt="" width="290">
+			</p>
+			<p>
+				クリックすると見出し行にジャンプできます。
+			</p>
+			<p>
+				どの行を見出し行にするかは、<span class="pref">モード設定ウインドウ→見出しタブ</span>にて、カスタマイズできます。
+			</p>
+			
+			<h2><a name="count">文字数を数える</a></h2>
+			<p>
+				<a href="gamen.htm#subwindow">サブウインドウ</a>「テキスト情報」により、文字数、単語数、現在の文字の情報、見出しパス等をリアルタイム表示します。
+			</p>
+			<p>
+				<img src="./textinfo_side.png" alt="" width="290">
+			</p>
+			
+			
+			<h2><a name="lettercount">1行の文字数に制限がある場合の編集機能</a></h2>
+			<p>
+				メールマガジンの編集等、1行の文字数に制限がある文書の編集の場合、たとえば以下のような手順で編集することができます。
+			</p>
+			<ol>
+				<li>メニューから<span class="menu">ドキュメント→行折り返し→行折り返しあり（文字数指定）</span>を選択し、
+				1行の文字数（半角アルファベットでの文字数）を設定します。<br>
+				全角文字は1文字で2文字分の扱いとなります。よって、たとえば1行を全角35文字にしたい場合は、「70文字」に設定してください。<br>
+				ただし、<span class="pref">環境設定ウインドウ→詳細タブ→タブや行折り返しの計算において全角文字を2文字とみなす</span>
+				をOffにすると、全角半角に関わらず1文字として数えます。</li>
+				<li>編集が終わったら、 <span class="menu">編集→すべて選択</span>でドキュメント全体を選択した後、メニューから<span class="menu">編集→選択部分を行折り返し位置で改行</span>
+				を選択します。これにより、行折り返しの位置に、改行コードが挿入されます。</li>
+				<li>ドキュメント全体をコピー＆ペーストして、メールマガジン発行ページ等のフォームに入力します。</li>
+			</ol>
+			
+			<h2><a name="modeimport">他の方から入手したモードをインストールする</a></h2>
+			<p>
+				他の方から入手したモードを自分の環境にインストールするには、以下の手順で設定します。
+			</p>
+			<ol>
+				<li><a href="menu">mi テキストエディタ→新規モード追加...</a>を選択します。</li>
+				<li><span class="pref">選択したフォルダのモードからインポート</span>をクリックし、入手したモード一式のフォルダを選択します。</li>
+				<li><span class="pref">追加</span>ボタンを押してください。</li>
+			</ol>
+			<p>
+				なお、既に同じ名前のモードが存在するときは、追加ボタンを押せませんので、名前を変更してから追加ボタンを押してください。
+			</p>
+			
+			<h2><a name="newmode">モードを新規作成する</a></h2>
+			<p>
+				モードを新規作成するには、以下の手順に従ってください。
+			</p>
+			<ol>
+				<li><a href="menu">mi テキストエディタ→新規モード追加...</a>を選択します。</li>
+				<li><span class="pref">モードの名前</span>を入力し、<span class="pref">追加</span>ボタンを押してください。</li>
+			</ol>
+			
+			<h2><a name="deletemode">モードを削除する</a></h2>
+			<p>
+				モードを削除するには、以下の手順のようにしてください。
+			</p>
+			<ol>
+				<li>モード設定ウインドウを開きます。</li>
+				<li>モード設定ウインドウのタイトルバーをコマンドキーを押しながらクリックし、modeフォルダを選択します。。</li>
+				<li>Finder上で、対象モードの名前が付いたフォルダが表示されます。</li>
+				<li>miを終了します。</li>
+				<li>対象モードの名前が付いたフォルダをゴミ箱に捨てるか、別の場所に移動します。</li>
+				<li>miを起動します。</li>
+			</ol>
+			
+			<h2><a name="transliterate">全角-半角や大文字-小文字等の変換を行う</a></h2>
+			<p>
+				文字列を選択して、
+				メニューから<span class="menu">編集→文字種変換→("大文字→小文字"等)</span>を選択することにより、
+				選択部分の文字種を変換することができます。
+			</p>
+			<p>
+				<span class="menu">右クリック→文字種変換→("大文字→小文字"等)</span>でも実現可能です。
+			</p>
+			
+			<h2><a name="keytoolmode">ツールをキー入力だけで実行する</a></h2>
+			<p>
+				メニューから<span class="menu">編集→ツール入力モード</span>を選択（もしくは ⌘ + Y  ）することにより、ツール入力モードとなり、
+				キー入力だけでツールを起動することが可能です。
+			</p>
+			<p>
+				あらかじめ、各ツールのファイル名／フォルダ名を<em>アルファベット1文字＋スペース</em>で始まる名前にしておくことにより、
+				そのアルファベット1文字をキーボードから入力することで、そのツールやフォルダが選択されます。
+			</p>
+			<p>
+				たとえば、<code>"L リンク"</code>という名前のツールがツールメニューのルートにある場合は、 ⌘ + Y の後、Lキー入力でそのツールを起動できます。
+			</p>
+			<p>
+				どのツールにも該当しないキーを押すと、ツール入力モードは解除されます。
+			</p>
+			
+			<h2><a name="project">プロジェクトフォルダを設定する</a></h2>
+			<p>
+				メニューから<span class="menu">ファイル→プロジェクトフォルダの設定</span>を選択することにより、
+				「プロジェクトフォルダ」を設定することができます。
+			</p>
+			<p>
+				「プロジェクトフォルダ」を設定すると、そのフォルダ、および、サブフォルダ内の全てのファイルがそのプロジェクトに属しているとみなされ、
+				プロジェクト毎の処理を実行することが可能です。
+			</p>
+			<p>
+				以下の機能で、プロジェクトを指定することができます。
+			</p>
+			<p>
+				<table border="1" cellpadding="2" cellspacing="0">
+					<col width = "120"><col>
+					<tr><th>機能</th><th>説明</th></tr>
+					
+					<tr>
+						<td valign="top">マルチファイル検索</td><td>
+							<p>
+								<span class="pref">フォルダ指定</span>で<span class="pref">同じプロジェクト</span>を選択することにより、
+								最前面のドキュメントと同じプロジェクトに属するファイルを対象とした検索を行います。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><a href="gamen.htm#subwindow">サブウインドウ</a>「同じプロジェクトのファイル」</td><td>
+							<p>
+								最前面のドキュメントと同じプロジェクト内のファイルを一覧表示し、クリックにより開くことができます。
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">ファイルメニュー→同じプロジェクトから開く</td><td>
+							<p>
+								最前面のドキュメントと同じプロジェクト内のファイルを開くことができます。
+							</p>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<p>
+				プロジェクトフォルダを設定すると、そのフォルダにmiprojという名前のファイルを作成します。
+				どうしてもプロジェクトフォルダ設定を解除したいときは、そのファイルを削除してください。
+				（現状では、空ファイルです。）
+			</p>
+			
+			<h2><a name="spellcheck">スペルチェックする</a></h2>
+			<p>
+				次のスペルチェック機能が使用可能です。
+			</p>
+			<ul>
+				<li>スペルミスの単語の下に赤点線を表示する（モード設定の「編集」タブで設定）</li>
+				<li><span class="menu">検索→スペルミスを一覧表示</span>により、ドキュメント内のスペルミスを一覧表示</li>
+				<li><span class="menu">右クリック→スペル修正</span>で、スペル修正候補表示。候補選択により修正</li>
+			</ul>
+			<p>
+				スペルチェックの言語はモード毎に設定可能です。（モード設定の「編集」タブで設定）
+			</p>
+			<p>
+				なお、キーワード・識別子は、スペルミスとは認識されません。
+			</p>
+			
+			<h2><a name="nav">「戻る」「進む」ボタンで移動する</a></h2>
+			<p>
+				ツールバーの「戻る」「進む」ボタンで、以前のキャレット位置へ移動することが出来ます。<br>
+				Webブラウザの「戻る」「進む」ボタンと同様の感覚で、以前、編集・参照していた箇所へジャンプすることが出来ます。
+			</p>
+			<p>
+				以下の場合に、現在のキャレット位置の履歴が記憶されます。<br>
+				「戻る」「進む」ボタンは、この履歴のキャレット位置へ移動します。
+			</p>
+			<ul>
+				<li>見出しリスト／見出しメニューから見出しをクリックしたとき</li>
+				<li>ファイルを開いたとき</li>
+				<li>キーワード情報ウインドウまたは<span class="menu">右クリック→定義・宣言へ移動</span>をクリックして、定義・宣言位置へ移動したとき</li>
+				<li>検索結果ウインドウの項目を選択して移動したとき</li>
+			</ul>
+			
+			<p>
+				なお、ツールコマンド<code>NAV-PREV, NAV-NEXT</code>をキーに登録することにより、
+				この機能をキーから実行することも可能です。
+			</p>
+			
+			<h2><a name="commandline">コマンドラインから開く</a></h2>
+			<p>
+				コマンドラインから mi でファイルを開くには下記のように入力します。
+			</p>
+			<p>
+				<div class="sample">
+					<pre>open /Applications/mi.app -n --args <span class="var">filepath</span> +<span class="var">linenumber</span></pre>
+				</div>
+			</p>
+			<p>
+				filepath: ファイルパスを絶対パスで指定します。
+			</p>
+			<p>
+				+linenumber: ファイルを開いた後の表示段落番号を指定します。指定しなくても構いません。
+			</p>
+			<p>
+				"filename +linenumber"は繰り返し可能です。<br>
+			</p>
+			
+			<h2><a name="diffrepository">Subversion / git レポジトリと比較する</a></h2>
+			<p>
+				以下のいずれかの方法で、Subversionやgitのレポジトリ内容をサブテキスト上に表示し、左右で比較することが可能です。
+			</p>
+			<ul>
+				<li>メニューから<span class="menu">比較→レポジトリと比較</span>を選択</li>
+				<li><a href="#standardtoolbutton">標準ツールボタン</a>「レポジトリと比較」を追加して、そのボタンをクリック</li>
+				<li><a href="toolcommand.htm">ツールコマンド</a> DIFF-REPOSITORY</li>
+				<li>サブテキスト内の「比較」ボタンをクリック<br>
+				<img src="./gitcompare.png" alt="" width="800"></li>
+			</ul>
+			<p>
+				この機能は、<span class="pref">環境設定ウインドウ→比較→Subversion / git 連携機能を使う</span>をOnにした状態で、Subversionまたはgitでチェックアウトしたファイルを開いた場合に有効です。
+			</p>
+			
+			<h2><a name="commit">Subversion / git にコミットする</a></h2>
+			<p>
+				以下のいずれかの方法で、現在のドキュメントの内容（ファイル保存済みの内容）を Subversion または git にコミットできます。
+			</p>
+			<ul>
+				<li>メニューから<span class="menu">ドキュメント→コミット</span>を選択</li>
+				<li><a href="#standardtoolbutton">標準ツールボタン</a>「コミット」を追加して、そのボタンをクリック</li>
+				<li><a href="toolcommand.htm">ツールコマンド</a> SCM-COMMIT</li>
+			</ul>
+			<p>
+				コミット画面が開きます。diff 欄にて変更内容を確認し、メッセージを記入した後、「コミット」をクリックしてください。<br>
+				コミットに成功したら、下に結果が表示されます。
+			</p>
+			
+			<h2><a name="plugin">プラグインを使用する</a></h2>
+			<p>
+				モード設定の<span class="pref">一般</span>タブにて、プラグインの使用ON/OFFを設定できます。<br>
+				例えば、HTML系のモードでは、デフォルトでJSHINTによるJavaScript文法チェックをONにしておりますが、もし不要な場合はOFFにしてください。
+			</p>
+			<p>
+				なお、プラグインの作成方法は、<a href="javascript.htm#_">JavaScriptのページ</a>をご参照ください。
+			</p>
+			
+			<h2><a name="filedragdrop">ファイルをドラッグ＆ドロップしたときの動作を設定する</a></h2>
+			<p>
+				ファイルをドラッグ＆ドロップしたときの動作を、ファイルの拡張子ごとに設定することが可能です。
+			</p>
+			<p>
+				モード設定の<span class="pref">機能</span>タブの「ファイルのドラッグ＆ドロップ」にて、拡張子ごとに挿入文字列を設定します。<br>
+				挿入文字列内に下記のコマンドを&lt;&lt;&lt;と&gt;&gt;&gt;で囲って記述することで、特別な文字列を挿入することが可能です。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<col width = "120"><col>
+				<tr><th>コマンド</th><th>挿入される文字列</th></tr>
+				
+				<tr>
+					<td valign="top"><p>PATH</p></td><td>
+						<p>
+							ドラッグ中のファイルの（ドロップ先ドキュメントからの）相対パスを挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>FILENAME</p></td><td>
+						<p>
+							ドラッグ中のファイル名を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>FILENAME-NOSUFFIX</p></td><td>
+						<p>
+							ドラッグ中のファイル名から拡張子（ピリオド含む）を削除した文字列を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>DIRECTORY</p></td><td>
+						<p>
+							ドラッグ中のファイルの親フォルダの名前を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>IMAGEWIDTH</p></td><td>
+						<p>
+							ドラッグ中のファイルが画像ファイルの場合、その幅ピクセル数を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>IMAGEHEIGHT</p></td><td>
+						<p>
+							ドラッグ中のファイルが画像ファイルの場合、その高さピクセル数を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>IMAGEHALFWIDTH</p></td><td>
+						<p>
+							ドラッグ中のファイルが画像ファイルの場合、その幅の半分のピクセル数を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>IMAGEHALFHEIGHT</p></td><td>
+						<p>
+							ドラッグ中のファイルが画像ファイルの場合、その高さの半分のピクセル数を挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>URL</p></td><td>
+						<p>
+							Webブラウザからリンク等をドラッグ＆ドロップした場合に、URLを挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>TITLE</p></td><td>
+						<p>
+							Webブラウザからリンク等をドラッグ＆ドロップした場合に、タイトルを挿入します。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><p>CARET</p></td><td>
+						<p>
+							ドラッグ＆ドロップ後、この位置にキャレットを移動します。
+						</p>
+					</td>
+				</tr>
+			</table>
+			<p>
+				設定例：<br>
+				<div class="sample">
+					<pre>&lt;img src="&lt;&lt;&lt;PATH URL&gt;&gt;&gt;" width="&lt;&lt;&lt;IMAGEHALFWIDTH&gt;&gt;&gt;" height="&lt;&lt;&lt;IMAGEHALFHEIGHT&gt;&gt;&gt;" alt="&lt;&lt;&lt;TITLE&gt;&gt;&gt;"&gt;</pre>
+				</div>
+			</p>
+		</div>
+	</body>
+</html>
+

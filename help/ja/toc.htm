@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> 
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>目次</title>
+		<link rel="stylesheet" type="text/css" href="main.css" charset="UTF-8">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+	</head>
+	<body>
+		<script type="text/javascript">
+			<!--
+			function expandcollapse_gaiyo()
+			{
+				var cur = document.getElementById("chapter_gaiyo");
+				expandcollapse(cur);
+			}
+			function expandcollapse_kihon()
+			{
+				var cur = document.getElementById("chapter_kihon");
+				expandcollapse(cur);
+			}
+			function expandcollapse_find()
+			{
+				var cur = document.getElementById("chapter_find");
+				expandcollapse(cur);
+			}
+			function expandcollapse_topic()
+			{
+				var cur = document.getElementById("chapter_topic");
+				expandcollapse(cur);
+			}
+			function expandcollapse_tips()
+			{
+				var cur = document.getElementById("chapter_tips");
+				expandcollapse(cur);
+			}
+			function expandcollapse_gamen()
+			{
+				var cur = document.getElementById("chapter_gamen");
+				expandcollapse(cur);
+			}
+			function expandcollapse_pref()
+			{
+				var cur = document.getElementById("chapter_pref");
+				expandcollapse(cur);
+			}
+			function expandcollapse_regexp()
+			{
+				var cur = document.getElementById("chapter_regexp");
+				expandcollapse(cur);
+			}
+			function expandcollapse_toolcommand()
+			{
+				var cur = document.getElementById("chapter_toolcommand");
+				expandcollapse(cur);
+			}
+			function expandcollapse_lua()
+			{
+				var cur = document.getElementById("chapter_lua");
+				expandcollapse(cur);
+			}
+			function expandcollapse_javascript()
+			{
+				var cur = document.getElementById("chapter_javascript");
+				expandcollapse(cur);
+			}
+			function expandcollapse_applescript()
+			{
+				var cur = document.getElementById("chapter_applescript");
+				expandcollapse(cur);
+			}
+			function expandcollapse_shellscript()
+			{
+				var cur = document.getElementById("chapter_shellscript");
+				expandcollapse(cur);
+			}
+			function expandcollapse_sdf()
+			{
+				var cur = document.getElementById("chapter_sdf");
+				expandcollapse(cur);
+			}
+			function expandcollapse_history()
+			{
+				var cur = document.getElementById("chapter_history");
+				expandcollapse(cur);
+			}
+			function expandcollapse_copyright()
+			{
+				var cur = document.getElementById("chapter_copyright");
+				expandcollapse(cur);
+			}
+			//メニューのサブ項目の表示／非表示を切り替える
+			function expandcollapse(cur)
+			{
+				var h2s = cur.getElementsByTagName("h2");
+				var divs = cur.getElementsByTagName("div");
+				if( divs[0].style.display=='none' ) 
+				{
+					h2s[0].style.backgroundImage='url(downarrow.gif)';
+					divs[0].style.display='block'; 
+				}
+				else
+				{
+					h2s[0].style.backgroundImage='url(rightarrow.gif)';
+					divs[0].style.display='none';
+				}
+			}
+			-->
+		</script>
+		<div class="toc">
+			<h1><!-- <span class="icon"><img src="icon32.png" width="32" height="32" alt=""></span> -->mi Help</h1>
+			
+			<!--概要-->
+			<div id="chapter_gaiyo" class="chapter">
+				<h2 onclick="expandcollapse_gaiyo()"><a href="gaiyo.htm#_" target="right">はじめに</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="gaiyo.htm#about" target="right">mi について</a></li>
+						<li class="item"><a href="gaiyo.htm#help" target="right">このヘルプについて</a></li>
+						<li class="item"><a href="gaiyo.htm#install_mac" target="right">インストール方法</a></li>
+						<li class="item"><a href="gaiyo.htm#upgrade_mac" target="right">バージョンアップ方法について</a></li>
+						<li class="item"><a href="gaiyo.htm#preffile_mac" target="right">設定ファイルの保存場所</a></li>
+						<li class="item"><a href="gaiyo.htm#prefdefault_mac" target="right">設定をデフォルトに戻す方法</a></li>
+						<li class="item"><a href="gaiyo.htm#uninstall_mac" target="right">アンインストール方法</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--基本操作-->
+			<div id="chapter_kihon" class="chapter">
+				<h2 onclick="expandcollapse_kihon()"><a href="kihon.htm#_" target="right">基本操作</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="kihon.htm#whatstexteditor" target="right">テキストエディタとは</a></li>
+						<li class="item"><a href="kihon.htm#open" target="right">ファイルを開く</a></li>
+						<li class="item"><a href="kihon.htm#new" target="right">新規作成する</a></li>
+						<li class="item"><a href="kihon.htm#edit" target="right">テキストを編集する</a></li>
+						<li class="item"><a href="kihon.htm#save" target="right">ファイルに保存する</a></li>
+						<li class="item"><a href="kihon.htm#close" target="right">ファイルを閉じる</a></li>
+						<li class="item"><a href="kihon.htm#textencoding" target="right">テキストエンコーディングと文字化けについて</a></li>
+						<li class="item"><a href="kihon.htm#mode" target="right">モードについて</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--検索置換-->
+			<div id="chapter_find" class="chapter">
+				<h2 onclick="expandcollapse(expandcollapse_find())"><a href="find.htm#_" target="right">検索・置換</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="find.htm#find" target="right">検索・置換</a></li>
+						<li class="item"><a href="find.htm#multifilefind" target="right">マルチファイル検索 (grep)</a></li>
+						<li class="item"><a href="find.htm#multifilereplace" target="right">マルチファイル置換</a></li>
+						<li class="item"><a href="find.htm#option" target="right">検索オプション</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--機能説明-->
+			<div id="chapter_topic" class="chapter">
+				<h2 onclick="expandcollapse_topic()"><a href="topic.htm#_" target="right">機能説明</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="topic.htm#yokutsukau" target="right">よく使う文字列（マクロ）を記憶する</a></li>
+						<li class="item"><a href="topic.htm#multifilefind" target="right">指定フォルダ内のファイルから検索する (grep)</a></li>
+						<li class="item"><a href="topic.htm#open" target="right">必要なファイルを少ない操作で開く</a></li>
+						<li class="item"><a href="topic.htm#register_keyword" target="right">キーワードを登録する</a></li>
+						<li class="item"><a href="topic.htm#abbrev" target="right">キーワードを補完入力する</a></li>
+						<li class="item"><a href="topic.htm#colors" target="right">文字色・背景色等を設定する</a></li>
+						<li class="item"><a href="topic.htm#ftp" target="right">FTP経由などでリモートファイルを編集する</a></li>
+						<li class="item"><a href="topic.htm#rect" target="right">矩形選択・編集する</a></li>
+						<li class="item"><a href="topic.htm#view" target="right">ビューを分割する</a></li>
+						<li class="item"><a href="topic.htm#midashi" target="right">見出し行を一覧表示する</a></li>
+						<li class="item"><a href="topic.htm#count" target="right">文字数を数える</a></li>
+						<li class="item"><a href="topic.htm#lettercount" target="right">1行の文字数に制限がある場合の編集機能</a></li>
+						<li class="item"><a href="topic.htm#modeimport" target="right">他の方から入手したモードをインストールする</a></li>
+						<li class="item"><a href="topic.htm#newmode" target="right">モードを新規作成する</a></li>
+						<li class="item"><a href="topic.htm#deletemode" target="right">モードを削除する</a></li>
+						<li class="item"><a href="topic.htm#transliterate" target="right">全角-半角や大文字-小文字等の変換を行う</a></li>
+						<li class="item"><a href="topic.htm#keytoolmode" target="right">ツールをキー入力だけで実行する</a></li>
+						<li class="item"><a href="topic.htm#project" target="right">プロジェクトフォルダを設定する</a></li>
+						<li class="item"><a href="topic.htm#spellcheck" target="right">スペルチェックする </a></li>
+						<li class="item"><a href="topic.htm#nav" target="right">「戻る」「進む」ボタンで移動する</a></li>
+						<li class="item"><a href="topic.htm#commandline" target="right">コマンドラインから開く</a></li>
+						<li class="item"><a href="topic.htm#diffrepository" target="right">Subversion / git レポジトリと比較する</a></li>
+						<li class="item"><a href="topic.htm#commit" target="right">Subversion / git にコミットする</a></li>
+						<li class="item"><a href="topic.htm#plugin" target="right">プラグインを使用する</a></li>
+						<li class="item"><a href="topic.htm#filedragdrop" target="right">ファイルをドラッグ＆ドロップしたときの動作を設定する</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--Tips-->
+			<div id="chapter_tips" class="chapter">
+				<h2 onclick="expandcollapse(document.all.chapter_tips)"><a href="tips.htm#_" target="right">Tips</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="tips.htm#tips_key" target="right">キー操作</a></li>
+						<li class="item"><a href="tips.htm#tips_mouse" target="right">マウス操作</a></li>
+						<li class="item"><a href="tips.htm#tips_keybind" target="right">キーバインド</a></li>
+						<li class="item"><a href="tips.htm#tips_tool" target="right">ツール／マクロバー</a></li>
+						<li class="item"><a href="tips.htm#tips_jumplist" target="right">見出しリスト</a></li>
+						<li class="item"><a href="tips.htm#tips_file" target="right">ファイル</a></li>
+						<li class="item"><a href="tips.htm#tips_folding" target="right">折りたたみ</a></li>
+						<li class="item"><a href="tips.htm#tips_subwindows" target="right">サブウインドウ</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--画面-->
+			<div id="chapter_gamen" class="chapter">
+				<h2 onclick="expandcollapse_gamen()"><a href="gamen.htm#_" target="right">画面の説明</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="gamen.htm#gamen" target="right">画面の説明</a></li>
+						<li class="item"><a href="gamen.htm#subwindow" target="right">サブウインドウ</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--正規表現-->
+			<div id="chapter_regexp" class="chapter">
+				<h2 onclick="expandcollapse_regexp()"><a href="regexp.htm#_" target="right">正規表現</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="regexp.htm#moji" target="right">文字に一致する正規表現</a></li>
+						<li class="item"><a href="regexp.htm#repeat" target="right">繰り返し</a></li>
+						<li class="item"><a href="regexp.htm#select" target="right">選択</a></li>
+						<li class="item"><a href="regexp.htm#group" target="right">グループ</a></li>
+						<li class="item"><a href="regexp.htm#position" target="right">特定の位置に一致する正規表現</a></li>
+						<li class="item"><a href="regexp.htm#other" target="right">その他</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--ツールコマンド-->
+			<div id="chapter_toolcommand" class="chapter">
+				<h2 onclick="expandcollapse_toolcommand()"><a href="toolcommand.htm#_" target="right">ツールコマンド</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="toolcommand.htm#gaiyo" target="right">ツールコマンドについて</a></li>
+						<li class="item"><a href="toolcommand.htm#kihon" target="right">基本動作</a></li>
+						<li class="item"><a href="toolcommand.htm#datetime" target="right">現在の日付／時刻文字列</a></li>
+						<li class="item"><a href="toolcommand.htm#findreplace" target="right">検索／置換</a></li>
+						<li class="item"><a href="toolcommand.htm#findoption" target="right">検索オプション</a></li>
+						<li class="item"><a href="toolcommand.htm#transliterate" target="right">文字種変換</a></li>
+						<li class="item"><a href="toolcommand.htm#tabindent" target="right">タブ・インデント・改行</a></li>
+						<li class="item"><a href="toolcommand.htm#movecaret" target="right">キャレット移動</a></li>
+						<li class="item"><a href="toolcommand.htm#select" target="right">選択</a></li>
+						<li class="item"><a href="toolcommand.htm#mark" target="right">マーク</a></li>
+						<li class="item"><a href="toolcommand.htm#scroll" target="right">スクロール</a></li>
+						<li class="item"><a href="toolcommand.htm#documentattr" target="right">ドキュメント属性変更</a></li>
+						<li class="item"><a href="toolcommand.htm#file" target="right">ファイル</a></li>
+						<li class="item"><a href="toolcommand.htm#edit" target="right">編集</a></li>
+						<li class="item"><a href="toolcommand.htm#windowviewtab" target="right">ウインドウ・ビュー・タブ</a></li>
+						<li class="item"><a href="toolcommand.htm#scm" target="right">比較</a></li>
+						<li class="item"><a href="toolcommand.htm#interapplication" target="right">他のアプリケーションとの連携</a></li>
+						<li class="item"><a href="toolcommand.htm#appname" target="right">アプリケーションの指定方法</a></li>
+						<li class="item"><a href="toolcommand.htm#var" target="right">変数</a></li>
+						<li class="item"><a href="toolcommand.htm#keyrecord" target="right">キー記録</a></li>
+						<li class="item"><a href="toolcommand.htm#other" target="right">その他</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--JavaScript-->
+			<div id="chapter_javascript" class="chapter">
+				<h2 onclick="expandcollapse_javascript()"><a href="javascript.htm#_" target="right">JavaScriptツール／プラグイン</a></h2>
+				<div style="display:none;">
+					<li class="item"><a href="javascript.htm#tool" target="right">ツールをJavaScriptで記述する</a></li>
+					<li class="item"><a href="javascript.htm#plugin" target="right">プラグインをJavaScriptで記述する</a></li>
+					<h3>mi テキストエディタ API</h3>
+					<ul>
+						<li class="item"><a href="javascript.htm#app" target="right">アプリケーションクラス</a></li>
+						<li class="item"><a href="javascript.htm#doc" target="right">ドキュメントクラス</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--AppleScript-->
+			<div id="chapter_applescript" class="chapter">
+				<h2 onclick="expandcollapse_applescript()"><a href="applescript.htm#_" target="right">AppleScriptツール</a></h2>
+				<div style="display:none;">
+					<li class="item"><a href="applescript.htm#gaiyo" target="right">概要</a></li>
+					<h3>コマンド</h3>
+					<ul>
+						<li class="item"><a href="applescript.htm#makenew" target="right">make new</a></li>
+						<!--<li class="item"><a href="applescript.htm#makenewdocument" target="right">make new document</a></li>
+			<li class="item"><a href="applescript.htm#makenewparagraph" target="right">make new paragraph/ word/ character</a></li>
+			<li class="item"><a href="applescript.htm#makenewindexwindow" target="right">make new indexwindow</a></li>
+			<li class="item"><a href="applescript.htm#makenewindexrecord" target="right">make new indexrecord/ indexgroup</a></li>-->
+						<li class="item"><a href="applescript.htm#set" target="right">set</a></li>
+						<li class="item"><a href="applescript.htm#get" target="right">get</a></li>
+						<li class="item"><a href="applescript.htm#count" target="right">count</a></li>
+						<li class="item"><a href="applescript.htm#select" target="right">select</a></li>
+						<li class="item"><a href="applescript.htm#delete" target="right">delete</a></li>
+						<li class="item"><a href="applescript.htm#open" target="right">open</a></li>
+						<li class="item"><a href="applescript.htm#close" target="right">close</a></li>
+						<li class="item"><a href="applescript.htm#save" target="right">save</a></li>
+						<li class="item"><a href="applescript.htm#exists" target="right">exists</a></li>
+						<li class="item"><a href="applescript.htm#collapse" target="right">collapse</a></li>
+						<li class="item"><a href="applescript.htm#expand" target="right">expand</a></li>
+					</ul>
+					<h3>オブジェクト</h3>
+					<ul>
+						<li class="item"><a href="applescript.htm#document" target="right">document</a></li>
+						<li class="item"><a href="applescript.htm#paragraph" target="right">paragraph</a></li>
+						<li class="item"><a href="applescript.htm#word" target="right">word</a></li>
+						<li class="item"><a href="applescript.htm#character" target="right">character</a></li>
+						<li class="item"><a href="applescript.htm#insertionpoint" target="right">insertion point</a></li>
+						<li class="item"><a href="applescript.htm#selectionobject" target="right">selection object</a></li>
+						<li class="item"><a href="applescript.htm#window" target="right">window</a></li>
+						<li class="item"><a href="applescript.htm#indexwindow" target="right">indexwindow</a></li>
+						<li class="item"><a href="applescript.htm#indexrecord" target="right">indexrecord</a></li>
+						<li class="item"><a href="applescript.htm#indexgroup" target="right">indexgroup</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--シェルスクリプト-->
+			<div id="chapter_shellscript" class="chapter">
+				<h2 onclick="expandcollapse_shellscript()"><a href="shellscript.htm#_" target="right">シェルスクリプト</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="shellscript.htm#shellscript" target="right">シェルスクリプト機能について</a></li>
+						<li class="item"><a href="shellscript.htm#arg" target="right">シェルスクリプトに渡される引数</a></li>
+						<li class="item"><a href="shellscript.htm#howtowrite" target="right">シェルスクリプトの記述方法</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--SDF-->
+			<div id="chapter_sdf" class="chapter">
+				<h2 onclick="expandcollapse_sdf()"><a href="sdf.htm#_" target="right">文法定義スクリプト</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li class="item"><a href="sdf.htm#sdf" target="right">文法定義スクリプトについて （スクリプトバージョンv3.0）</a></li>
+						<li class="item"><a href="sdf.htm#basic" target="right">基本</a></li>
+						<li class="item"><a href="sdf.htm#structure" target="right">全体構成</a></li>
+						<li class="item"><a href="sdf.htm#syntaxpart" target="right">文法パート</a></li>
+						<li class="item"><a href="sdf.htm#compatibility" target="right">互換性</a></li>
+						<li class="item"><a href="sdf.htm#GlobalAttribute" target="right">GlobalAttribute部</a></li>
+						<li class="item"><a href="sdf.htm#state" target="right">state部（状態定義）</a></li>
+						<li class="item"><a href="sdf.htm#StateAttribute" target="right">StateAttribute部</a></li>
+						<li class="item"><a href="sdf.htm#statetransit" target="right">各状態遷移部</a></li>
+						<li class="item"><a href="sdf.htm#action_state" target="right">状態制御</a></li>
+						<li class="item"><a href="sdf.htm#action_var" target="right">変数制御</a></li>
+						<li class="item"><a href="sdf.htm#action_indent" target="right">インデント制御</a></li>
+						<li class="item"><a href="sdf.htm#action_id" target="right">識別子登録</a></li>
+						<li class="item"><a href="sdf.htm#action_misc" target="right">その他</a></li>
+						<li class="item"><a href="sdf.htm#category" target="right">cateory部（カテゴリ定義）</a></li>
+						<li class="item"><a href="sdf.htm#colorslot" target="right">色タイプ番号</a></li>
+						<li class="item"><a href="sdf.htm#langcode" target="right">言語コード</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- History -->
+			<div id="chapter_history" class="chapter">
+				<h2 onclick="expandcollapse_history()"><a href="history.htm#_" target="right">変更履歴</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li><a href="history.htm#history" target="right">変更履歴</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--Copyright-->
+			<div id="chapter_copyright" class="chapter">
+				<h2 onclick="expandcollapse_copyright()"><a href="copyright.htm#_" target="right">著作権表示</a></h2>
+				<div style="display:none;">
+					<ul>
+						<li><a href="copyright.htm#license" target="right">著作権表示</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>
+
