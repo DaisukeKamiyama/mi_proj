@@ -690,8 +690,8 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 			AFloatNumber	backgroundAlpha = GetApp().SPI_GetFloatingWindowAlpha();
 			//全体に左下、右下R=5.0のrounded rectを描画
 			NVMC_PaintRoundedRect(localFrameRect,
-								  backgroundColor,backgroundColor,kGradientType_Horizontal,backgroundAlpha,backgroundAlpha,
-								  5.0,false,false,true,true);
+								  backgroundColor,backgroundColor,kGradientType_None,backgroundAlpha,backgroundAlpha,
+								  5.0,false,false,true,true);//#1275 kGradientType_Horizontal→kGradientType_None
 			break;
 		}
 		//右サイドバー
