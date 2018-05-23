@@ -1545,7 +1545,9 @@ void	CUserPane::PaintRoundedRect( const ALocalRect& inRect,
 	//アンチエイリアスON
 	::CGContextSetShouldAntialias(mContextRef,true);
 	//gradient有無
-	if( inGradientType == kGradientType_None || AEnvWrapper::GetOSVersion() < kOSVersion_MacOSX_10_5 )
+	if( inGradientType == kGradientType_None || AEnvWrapper::GetOSVersion() < kOSVersion_MacOSX_10_5 ||
+		(inStartColor.red == inEndColor.red && inStartColor.green == inEndColor.green && inStartColor.blue == inEndColor.blue &&
+		 inStartAlpha == inEndAlpha ) ) //#1275 startとendの色・アルファが同じ場合はgradientなしとして扱う
 	{
 		//gradient無し
 		
