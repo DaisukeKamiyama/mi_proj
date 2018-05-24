@@ -88,6 +88,7 @@ AUniqID	AIdentifierList::AddIdentifier( const AUniqID inLineUniqID, //#695
 	AUniqID	addedUniqID = mIdentifierArray_KeywordText.GetUniqIDByIndex(index);
 	
 	mIdentifierArray_LineUniqID.Add(inLineUniqID);//#695
+	mIdentifierArray_OriginalKeywordText.Add(inKeywordText);//#1277
 	mIdentifierArray_MenuText.Add(menuText);
 	mIdentifierArray_InfoText.Add(infoText);
 	mIdentifierArray_CommentText.Add(inCommentText);
@@ -155,6 +156,7 @@ void	AIdentifierList::DeleteIdentifiers( const AUniqID inFirstUniqID )
 	AIndex	index = mIdentifierArray_KeywordText.GetIndexByUniqID(inFirstUniqID);
 	mIdentifierArray_KeywordText.Delete1(index);
 	mIdentifierArray_LineUniqID.Delete1(index);//#695
+	mIdentifierArray_OriginalKeywordText.Delete1(index);//#1277
 	mIdentifierArray_MenuText.Delete1(index);
 	mIdentifierArray_InfoText.Delete1(index);
 	mIdentifierArray_CommentText.Delete1(index);
@@ -181,6 +183,7 @@ void	AIdentifierList::DeleteAllIdentifiers()
 {
 	mIdentifierArray_KeywordText.DeleteAll();
 	mIdentifierArray_LineUniqID.DeleteAll();//#695
+	mIdentifierArray_OriginalKeywordText.DeleteAll();//#1277
 	mIdentifierArray_MenuText.DeleteAll();
 	mIdentifierArray_InfoText.DeleteAll();
 	mIdentifierArray_CommentText.DeleteAll();
@@ -534,7 +537,7 @@ ABool	AIdentifierList::SearchKeyword( const AText& inWord, const AHashTextArray&
 		{
 			//キーワードテキスト取得
 			AText	keyword;
-			mIdentifierArray_KeywordText.Get(i,keyword);
+			mIdentifierArray_OriginalKeywordText.Get(i,keyword);//#1277 mIdentifierArray_KeywordTextには「大文字小文字を無視」設定ONの場合、小文字化したテキストが入っているので、登録したデータそのままのテキストのほうを取得するようにする。
 			//親キーワード取得
 			AText	parentKeywordText;
 			mIdentifierArray_ParentKeywordText.Get(i,parentKeywordText);
