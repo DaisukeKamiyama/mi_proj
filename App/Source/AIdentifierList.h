@@ -142,6 +142,7 @@ class AIdentifierList : public AObjectArrayItem
   private:
 	AHashTextArray						mIdentifierArray_KeywordText;
 	AArray<AUniqID>						mIdentifierArray_LineUniqID;//#695
+	ATextArray							mIdentifierArray_OriginalKeywordText;//#1277
 	ATextArray							mIdentifierArray_MenuText;
 	ATextArray							mIdentifierArray_InfoText;
 	ATextArray							mIdentifierArray_CommentText;
