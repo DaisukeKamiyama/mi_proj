@@ -876,6 +876,11 @@ class CWindowImp: public AObjectArrayItem
   private:
 	static AHashTextArray				sNSFontCache_Key;
 	static AArray<NSFont*>				sNSFontCache_NSFont;
+	//最後に使ったフォント #1275
+	static NSFont*						sLastNSFont;
+	static AText						sLastNSFont_FontName;
+	static AFloatNumber					sLastNSFont_FontSize;
+	static ATextStyle					sLastNSFont_TextStyle;
 	
 	//インライン入力
   public:
