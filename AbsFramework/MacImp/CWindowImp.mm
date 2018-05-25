@@ -14267,7 +14267,7 @@ NSFontキャッシュ
 */
 AHashTextArray	CWindowImp::sNSFontCache_Key;
 AArray<NSFont*>	CWindowImp::sNSFontCache_NSFont;
-//
+//最後に使ったフォントをキャッシュしておく #1275
 NSFont*			CWindowImp::sLastNSFont = nil;
 AText			CWindowImp::sLastNSFont_FontName;
 AFloatNumber	CWindowImp::sLastNSFont_FontSize = 0;
@@ -14279,7 +14279,7 @@ NSFont取得
 */
 NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFontSize, const ATextStyle inTextStyle )
 {
-	//
+	//最後に使ったキャッシュと同じフォントならそれを返す #1275
 	if( sLastNSFont != nil && inFontName.Compare(sLastNSFont_FontName) == true && inFontSize == sLastNSFont_FontSize && inTextStyle == sLastNSFont_TextStyle )
 	{
 		return sLastNSFont;
@@ -14295,14 +14295,14 @@ NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFon
 	AIndex	cacheIndex = sNSFontCache_Key.Find(key);
 	if( cacheIndex != kIndex_Invalid )
 	{
-		//
+		//キャッシュにヒットしたら、それを返す
+		//キャッシュからフォント取得
 		NSFont* font = sNSFontCache_NSFont.Get(cacheIndex);
-		//
+		//最後に使ったキャッシュを保存する #1275
 		sLastNSFont = font;
 		sLastNSFont_FontName.SetText(inFontName);
 		sLastNSFont_FontSize = inFontSize;
 		sLastNSFont_TextStyle = inTextStyle;
-		//キャッシュにヒットしたら、それを返す
 		return font;
 	}
 	else
