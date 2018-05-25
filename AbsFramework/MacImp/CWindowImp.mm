@@ -11896,6 +11896,13 @@ AObjectArray<AFileAcc>	gBackgroundImageArray_File;
 */
 AIndex	CWindowImp::RegisterBackground( const AFileAcc& inBackgroundImageFile )
 {
+	//背景画像ファイルが存在しないときはリターンする #1273
+	if( inBackgroundImageFile.Exist() == false )
+	{
+		return kIndex_Invalid;
+	}
+	
+	//
 	for( AIndex i = 0; i < gBackgroundImageArray_File.GetItemCount(); i++ )
 	{
 		if( gBackgroundImageArray_File.GetObject(i).Compare(inBackgroundImageFile) == true )
@@ -14260,6 +14267,11 @@ NSFontキャッシュ
 */
 AHashTextArray	CWindowImp::sNSFontCache_Key;
 AArray<NSFont*>	CWindowImp::sNSFontCache_NSFont;
+//
+NSFont*			CWindowImp::sLastNSFont = nil;
+AText			CWindowImp::sLastNSFont_FontName;
+AFloatNumber	CWindowImp::sLastNSFont_FontSize = 0;
+ATextStyle		CWindowImp::sLastNSFont_TextStyle = kTextStyle_Normal;
 
 //#1090
 /**
@@ -14267,6 +14279,11 @@ NSFont取得
 */
 NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFontSize, const ATextStyle inTextStyle )
 {
+	//
+	if( sLastNSFont != nil && inFontName.Compare(sLastNSFont_FontName) == true && inFontSize == sLastNSFont_FontSize && inTextStyle == sLastNSFont_TextStyle )
+	{
+		return sLastNSFont;
+	}
 	//フォント名・フォントサイズ・スタイルからkey文字列生成
 	AText	key;
 	key.SetText(inFontName);
@@ -14278,8 +14295,15 @@ NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFon
 	AIndex	cacheIndex = sNSFontCache_Key.Find(key);
 	if( cacheIndex != kIndex_Invalid )
 	{
+		//
+		NSFont* font = sNSFontCache_NSFont.Get(cacheIndex);
+		//
+		sLastNSFont = font;
+		sLastNSFont_FontName.SetText(inFontName);
+		sLastNSFont_FontSize = inFontSize;
+		sLastNSFont_TextStyle = inTextStyle;
 		//キャッシュにヒットしたら、それを返す
-		return sNSFontCache_NSFont.Get(cacheIndex);
+		return font;
 	}
 	else
 	{
