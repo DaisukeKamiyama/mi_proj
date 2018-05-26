@@ -351,6 +351,7 @@ class ADocument_Text : public ADocument
 	AItemCount				SPI_GetWindowCount() const;
 	*/
 	
+	/*#1282
 	//#567 LuaConsole
   public:
 	void					SPI_Lua_Output( const AText& inText );
@@ -361,6 +362,7 @@ class ADocument_Text : public ADocument
   private:
 	ABool								mLuaConsoleMode;
 	ATextIndex							mLuaPromptTextIndex;
+	*/
 	
 	//<関連オブジェクト取得>
   public:
