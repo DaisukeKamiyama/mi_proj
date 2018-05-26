@@ -76,7 +76,7 @@ ADocument_Text::ADocument_Text( AObjectArrayItem* inParent, const AObjectID inDo
 //#699,mViewDataInited(false)//#379
 		,mIsOwnedDocument(false)//#379
 		,mShouldShowCorrectEncodingWindow_FallbackType(kTextEncodingFallbackType_None)//#473
-//#1282,mLuaConsoleMode(false),mLuaPromptTextIndex(kIndex_Invalid)//#567
+		,mLuaConsoleMode(false),mLuaPromptTextIndex(kIndex_Invalid)//#567
 		,mSCMFileState(kSCMFileState_NotSCMFolder)//#568
 ,mLastModifiedDateTime(0)//#653
 ,mSyntaxRecognizer_ThreadRunningFlag(false),mSyntaxRecognizer_ThreadUnpausedFlag(false)//#698
@@ -16673,8 +16673,6 @@ void	ADocument_Text::SPI_ReloadPrevew()
 	GetApp().SPI_RequestReloadToPreviewerWindow(SPI_GetFirstWindowID());
 }
 
-//#1282
-#if 0
 #pragma mark ===========================
 
 #pragma mark --- LuaConsole
@@ -16743,7 +16741,6 @@ void	ADocument_Text::SPI_Lua_Prompt()
 	//現在のプロンプト位置更新
 	mLuaPromptTextIndex = mText.GetItemCount();
 }
-#endif
 
 #pragma mark ===========================
 
