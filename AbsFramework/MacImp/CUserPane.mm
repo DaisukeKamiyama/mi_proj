@@ -1767,7 +1767,9 @@ void	CUserPane::PaintRect( const ALocalRect& inRect, const AColor& inColor, cons
 	green /= 65535.0;
 	blue /= 65535.0;
 	::CGContextSetRGBFillColor(mContextRef,red,green,blue,inAlpha);
-	::CGContextFillRect(mContextRef,GetCGRectFromARect(inRect));
+	//#1275 NSBezierPathの描画パラメータの方が速いかもしれないのでNSBezierPathを使うことにする ::CGContextFillRect(mContextRef,GetCGRectFromARect(inRect));
+	::CGContextSetShouldAntialias(mContextRef,false);
+	[NSBezierPath fillRect:NSRectFromCGRect(GetCGRectFromARect(inRect))];//#1275
 	::CGContextRestoreGState(mContextRef);
 }
 
@@ -2139,6 +2141,7 @@ void	CUserPane::DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& in
 	red /= 65535.0;
 	green /= 65535.0;
 	blue /= 65535.0;
+	/*#1275 NSBezierPathの描画パラメータの方が速いかもしれないのでNSBezierPathを使うことにする
 	::CGContextBeginPath(mContextRef);
 	::CGContextMoveToPoint(mContextRef,inStartPoint.x,-inStartPoint.y-1);//win 080618
 	::CGContextAddLineToPoint(mContextRef,inEndPoint.x,-inEndPoint.y-1);//win 080618
@@ -2153,6 +2156,21 @@ void	CUserPane::DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& in
 		::CGContextSetLineDash(mContextRef,0.0,lengths,2);
 	}
 	::CGContextStrokePath(mContextRef);
+	*/
+	NSBezierPath*	path = [[[NSBezierPath alloc] init] autorelease];
+	[path moveToPoint:NSMakePoint(inStartPoint.x,-inStartPoint.y-1)];
+	[path lineToPoint:NSMakePoint(inEndPoint.x,-inEndPoint.y-1)];
+	[path setLineWidth:inLineWidth];
+	if( inLineDash != 0.0 )
+	{
+		CGFloat	lengths[2];
+		lengths[0] = inLineDash;
+		lengths[1] = inLineDash;
+        [path setLineDash:lengths count:2 phase:0.0];
+	}
+	::CGContextSetRGBStrokeColor(mContextRef,red,green,blue,inAlpha);
+	::CGContextSetShouldAntialias(mContextRef,false);
+	[path stroke];
 	::CGContextRestoreGState(mContextRef);
 }
 
