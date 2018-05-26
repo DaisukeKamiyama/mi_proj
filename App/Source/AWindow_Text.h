@@ -386,7 +386,7 @@ class AWindow_Text : public AWindow
 	~AWindow_Text();
   private:
 	void	NVIDO_DoDeleted();//#92
-	//#1282 ABool					mLuaConsoleMode;//#567
+	ABool					mLuaConsoleMode;//#567
 	
 	//#725
   public:
