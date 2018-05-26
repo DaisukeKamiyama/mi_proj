@@ -14743,7 +14743,7 @@ AWindowRef	CWindowImp::GetMostFrontWindow()
 				if( [window level] != NSFloatingWindowLevel )
 				{
 					//floating window以外で、最初に見つかったウインドウのwindowRefを返す
-					AWindowRef	windowRef = (AWindowRef)[window windowRef];
+					AWindowRef	windowRef = [window windowNumber];//#1275 (AWindowRef)[window windowRef];
 					return windowRef;
 				}
 			}
@@ -14777,13 +14777,13 @@ AWindowRef	CWindowImp::GetNextOrderWindow( const AWindowRef inWindowRef )
 				//ウインドウ取得
 				NSWindow*	window = [windowsArray objectAtIndex:i];
 				//引数のウインドウとwindowRefが一致したら、次のウインドウを取得して、そのwindowRefを返す
-				AWindowRef	windowRef = (AWindowRef)[window windowRef];
+				AWindowRef	windowRef = [window windowNumber];//#1275 (AWindowRef)[window windowRef];
 				if( windowRef == inWindowRef )
 				{
 					if( i+1 < count )
 					{
 						NSWindow*	win = (NSWindow*)[windowsArray objectAtIndex:i+1];
-						return (AWindowRef)[win windowRef];
+						return [win windowNumber];//#1275 (AWindowRef)[win windowRef];
 					}
 				}
 			}
@@ -14821,7 +14821,7 @@ AWindowRef	CWindowImp::GetNthWindow( const ANumber inNumber )
 			if( inNumber-1 < count )
 			{
 				NSWindow*	window = (NSWindow*)[windowsArray objectAtIndex:inNumber-1];
-				return (AWindowRef)[window windowRef];
+				return [window windowNumber];//#1275 (AWindowRef)[window windowRef];
 			}
 		}
 		return NULL;
