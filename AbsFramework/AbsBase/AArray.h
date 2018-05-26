@@ -327,36 +327,61 @@ template<class T> class AArrayCore : public AArrayAbstract
 			mPurged = false;
 		}
 		
-		//内容の移動
-		if( inIndex != mItemCount-inCount )
+		//全削除かどうかの判定 #1275
+		if( inIndex == 0 && inCount == mItemCount )
 		{
-			AMemoryWrapper::Memmove(&(mDataPtr[inIndex]),&(mDataPtr[inIndex+inCount]),(mItemCount-inIndex-inCount)*sizeof(T));
-		}
-		//新しく必要になるサイズが、現在のstorageサイズ-(mReallocateStepCount+10)個分未満であれば、メモリ領域を縮小する。
-		if( mAllocatedSize > mReallocateStepCount*sizeof(T) && //最小サイズ（mReallocateStepCount）より小さくしないための条件
-				(mItemCount-inCount)*sizeof(T) < mAllocatedSize - (mReallocateStepCount+10)*sizeof(T) ) 
-		{
-			AByteCount	newSize = (mItemCount-inCount)*sizeof(T);
-			newSize += mReallocateStepCount*sizeof(T);
-			T*	newptr = (T*)AMemoryWrapper::Realloc(mDataPtr,newSize);
-			if( newptr == NULL )
+			//全削除の場合 #1275
+			
+			//mItemCount更新
+			mItemCount = 0;
+			
+			//メモリ解放
+			if( mDataPtr != NULL )
 			{
-				//realloc NGの場合の処理
-				//Reserve()の場合と違い、こちらは縮小なので、ふつうエラーになるはずが無く、また、メモリプール解放しても問題解決しない。
-				_ACThrow("cannot allocate memory (realloc NG) (critical)",this);
-			}
-			//debug
-			sTotalAllocatedByteCount += newSize-mAllocatedSize;
-			//realloc OK
-			mAllocatedSize = newSize;
-			if( newptr != mDataPtr )
-			{
-				mDataPtr = newptr;
+				//メモリ解放
+				AMemoryWrapper::Free(mDataPtr);
+				mDataPtr = NULL;
+				//debug
+				sTotalAllocatedByteCount -= mAllocatedSize;
+				//
+				mAllocatedSize = 0;
 			}
 		}
-		//mItemCount更新
-		mItemCount -= inCount;
-		
+		else
+		{
+			//全削除以外の場合
+			
+			//内容の移動
+			if( inIndex != mItemCount-inCount )
+			{
+				AMemoryWrapper::Memmove(&(mDataPtr[inIndex]),&(mDataPtr[inIndex+inCount]),(mItemCount-inIndex-inCount)*sizeof(T));
+			}
+			//新しく必要になるサイズが、現在のstorageサイズ-(mReallocateStepCount+10)個分未満であれば、メモリ領域を縮小する。
+			if( mAllocatedSize > mReallocateStepCount*sizeof(T) && //最小サイズ（mReallocateStepCount）より小さくしないための条件
+			(mItemCount-inCount)*sizeof(T) < mAllocatedSize - (mReallocateStepCount+10)*sizeof(T) ) 
+			{
+				AByteCount	newSize = (mItemCount-inCount)*sizeof(T);
+				newSize += mReallocateStepCount*sizeof(T);
+				T*	newptr = (T*)AMemoryWrapper::Realloc(mDataPtr,newSize);
+				if( newptr == NULL )
+				{
+					//realloc NGの場合の処理
+					//Reserve()の場合と違い、こちらは縮小なので、ふつうエラーになるはずが無く、また、メモリプール解放しても問題解決しない。
+					_ACThrow("cannot allocate memory (realloc NG) (critical)",this);
+				}
+				//debug
+				sTotalAllocatedByteCount += newSize-mAllocatedSize;
+				//realloc OK
+				mAllocatedSize = newSize;
+				if( newptr != mDataPtr )
+				{
+					mDataPtr = newptr;
+				}
+			}
+			//mItemCount更新
+			mItemCount -= inCount;
+		}
+		/* #1275 削除後の項目数が0の場合、下でメモリ解放していたが、上で行なっていたメモリ領域の縮小等の処理が無駄になるので、削除後の項目数が0の場合はメモリ解放だけするようにする（処理を上に移動）。
 		//#693
 		//削除後の項目数が0ならメモリ解放する（再度Reserve()がコールされたらそこで再度FirstMalloc()がコールされる）
 		if( mItemCount == 0 && mDataPtr != NULL )
@@ -369,6 +394,7 @@ template<class T> class AArrayCore : public AArrayAbstract
 			//
 			mAllocatedSize = 0;
 		}
+		*/
 	}
 	//#695
 	/**
