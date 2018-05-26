@@ -247,7 +247,7 @@ AWindow_Text::AWindow_Text(/*#175 AObjectArrayItem* inParent */)
 		,mSubTextColumnVSeparatorWindowID(kObjectID_Invalid)//#725
 		,mDiffDisplayMode(false)//#379
 		,mDiffInfoWindowID(kObjectID_Invalid)//#379
-//#1282,mLuaConsoleMode(false)//#567
+,mLuaConsoleMode(false)//#567
 ,mSuppressUpdateViewBoundsCounter(0)//#675
 ,mFloatingJumpListWindowID(kObjectID_Invalid)//#725
 ,mLayoutMode(kLayoutMode_4Pane_Header11111111)//kLayoutMode_4Pane_Header11110110)//#725
@@ -4046,7 +4046,6 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	bounds.bottom 	= bounds.top +  GetApp().SPI_GetTextDocumentByID(inDocumentID).GetDocPrefDB().GetData_Number(ADocPrefDB::kWindowHeight);
 	}*/
 	//#850 }
-	/*#1282
 	//#567 LuaConsole
 	if( GetApp().SPI_GetTextDocumentByID(inDocumentID).SPI_GetLuaConsoleMode() == true )
 	{
@@ -4067,7 +4066,6 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 		bounds.bottom	= bounds.top +
 						GetApp().NVI_GetAppPrefDB().GetData_Number(AAppPrefDB::kLuaConsoleWindowHeight);
 	}
-	*/
 	
 	//#476 ウインドウが異常に小さくなったときの異常系対策
 	if( bounds.right - bounds.left < 100 )   bounds.right = bounds.left + 100;
@@ -6866,7 +6864,7 @@ void	AWindow_Text::NVIDO_Hide()
 	//
 	if( /*#850 GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow) == true &&
 		SPI_IsTabModeMainWindow() == true &&//#569 タブメインウインドウ以外ではsingleWindowBounds記憶しない*/
-				/*#1282 mLuaConsoleMode == false*/ true )//#567 LuaConsoleではsingleWindowBounds記憶しない
+				mLuaConsoleMode == false )//#567 LuaConsoleではsingleWindowBounds記憶しない
 	{
 		GetApp().GetAppPref().SetData_Rect(AAppPrefDB::kSingleWindowBounds,bounds);
 		//最大化状態 win
@@ -6883,8 +6881,6 @@ void	AWindow_Text::NVIDO_Hide()
 			GetApp().GetAppPref().SetData_Point(AAppPrefDB::kNewDocumentWindowPoint,pt);
 		}
 	}
-	
-	/*#1282
 	//#567 LuaConsoleモードならkLuaConsoleWindowPosition等を記憶
 	//#850 if( mLuaConsoleMode == true )
 	else
@@ -6896,7 +6892,6 @@ void	AWindow_Text::NVIDO_Hide()
 		GetApp().NVI_GetAppPrefDB().SetData_Number(AAppPrefDB::kLuaConsoleWindowWidth,bounds.right-bounds.left);
 		GetApp().NVI_GetAppPrefDB().SetData_Number(AAppPrefDB::kLuaConsoleWindowHeight,bounds.bottom-bounds.top);
 	}
-	*/
 }
 
 //ウインドウ全体の表示更新
@@ -9624,13 +9619,11 @@ void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow )
 		shouldSave = false;
 	}
 	*/
-	/*#1282
 	if( mLuaConsoleMode == true )
 	{
 		//Lua Consoleでは保存しない
 		shouldSave = false;
 	}
-	*/
 	//保存
 	if( shouldSave == true )
 	{
@@ -10469,13 +10462,11 @@ void	AWindow_Text::ShowHideRightSideBar( const ABool inShow )
 		shouldSave = false;
 	}
 	*/
-	/*#1282
 	if( mLuaConsoleMode == true )
 	{
 		//Lua Consoleでは保存しない
 		shouldSave = false;
 	}
-	*/
 	//保存
 	if( shouldSave == true )
 	{
