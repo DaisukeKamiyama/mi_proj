@@ -1124,7 +1124,7 @@ mouse moved時、子ウインドウ上で該当するviewを検索する。
 					if( view != nil )
 					{
 						//window refを取得し、window refからWindowImpを取得
-						AWindowRef	winRef = (WindowRef)([childWindow windowRef]);
+						AWindowRef	winRef = [childWindow windowNumber];//#1275 (WindowRef)([childWindow windowRef]);
 						if( CWindowImp::ExistWindowImpForWindowRef(winRef) == true )
 						{
 							//Local座標に変換
