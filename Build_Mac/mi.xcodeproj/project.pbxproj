@@ -8,6 +8,64 @@
 
 /* Begin PBXBuildFile section */
 		0D5A41282014B64200883C55 /* AccessPlugin in Resources */ = {isa = PBXBuildFile; fileRef = 7EE5A7FD200E47E7006E8271 /* AccessPlugin */; };
+		0DFFAC2520B9772C0020CABF /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0C20B977250020CABF /* loslib.c */; };
+		0DFFAC2620B9772C0020CABF /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0C20B977250020CABF /* loslib.c */; };
+		0DFFAC2720B9772C0020CABF /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0D20B977260020CABF /* lstate.c */; };
+		0DFFAC2820B9772C0020CABF /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0D20B977260020CABF /* lstate.c */; };
+		0DFFAC2920B9772C0020CABF /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0E20B977260020CABF /* lstrlib.c */; };
+		0DFFAC2A20B9772C0020CABF /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0E20B977260020CABF /* lstrlib.c */; };
+		0DFFAC2B20B9772C0020CABF /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0F20B977260020CABF /* ldump.c */; };
+		0DFFAC2C20B9772C0020CABF /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC0F20B977260020CABF /* ldump.c */; };
+		0DFFAC2D20B9772C0020CABF /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1020B977260020CABF /* ldebug.c */; };
+		0DFFAC2E20B9772C0020CABF /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1020B977260020CABF /* ldebug.c */; };
+		0DFFAC2F20B9772C0020CABF /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1120B977270020CABF /* lmem.c */; };
+		0DFFAC3020B9772C0020CABF /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1120B977270020CABF /* lmem.c */; };
+		0DFFAC3120B9772C0020CABF /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1220B977270020CABF /* lmathlib.c */; };
+		0DFFAC3220B9772C0020CABF /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1220B977270020CABF /* lmathlib.c */; };
+		0DFFAC3320B9772C0020CABF /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1320B977270020CABF /* lobject.c */; };
+		0DFFAC3420B9772C0020CABF /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1320B977270020CABF /* lobject.c */; };
+		0DFFAC3520B9772C0020CABF /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1420B977270020CABF /* ldo.c */; };
+		0DFFAC3620B9772C0020CABF /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1420B977270020CABF /* ldo.c */; };
+		0DFFAC3720B9772C0020CABF /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1520B977280020CABF /* ltm.c */; };
+		0DFFAC3820B9772C0020CABF /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1520B977280020CABF /* ltm.c */; };
+		0DFFAC3920B9772C0020CABF /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1620B977280020CABF /* lfunc.c */; };
+		0DFFAC3A20B9772C0020CABF /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1620B977280020CABF /* lfunc.c */; };
+		0DFFAC3B20B9772C0020CABF /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1720B977280020CABF /* lopcodes.c */; };
+		0DFFAC3C20B9772C0020CABF /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1720B977280020CABF /* lopcodes.c */; };
+		0DFFAC3D20B9772C0020CABF /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1820B977280020CABF /* loadlib.c */; };
+		0DFFAC3E20B9772C0020CABF /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1820B977280020CABF /* loadlib.c */; };
+		0DFFAC3F20B9772C0020CABF /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1920B977280020CABF /* lgc.c */; };
+		0DFFAC4020B9772C0020CABF /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1920B977280020CABF /* lgc.c */; };
+		0DFFAC4120B9772C0020CABF /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1A20B977290020CABF /* lcode.c */; };
+		0DFFAC4220B9772C0020CABF /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1A20B977290020CABF /* lcode.c */; };
+		0DFFAC4320B9772C0020CABF /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1B20B977290020CABF /* ltablib.c */; };
+		0DFFAC4420B9772C0020CABF /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1B20B977290020CABF /* ltablib.c */; };
+		0DFFAC4520B9772C0020CABF /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1C20B977290020CABF /* lstring.c */; };
+		0DFFAC4620B9772C0020CABF /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1C20B977290020CABF /* lstring.c */; };
+		0DFFAC4720B9772C0020CABF /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1D20B977290020CABF /* lbaselib.c */; };
+		0DFFAC4820B9772C0020CABF /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1D20B977290020CABF /* lbaselib.c */; };
+		0DFFAC4920B9772C0020CABF /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1E20B9772A0020CABF /* llex.c */; };
+		0DFFAC4A20B9772C0020CABF /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1E20B9772A0020CABF /* llex.c */; };
+		0DFFAC4B20B9772C0020CABF /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1F20B9772A0020CABF /* lparser.c */; };
+		0DFFAC4C20B9772C0020CABF /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC1F20B9772A0020CABF /* lparser.c */; };
+		0DFFAC4D20B9772C0020CABF /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2020B9772B0020CABF /* ltable.c */; };
+		0DFFAC4E20B9772C0020CABF /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2020B9772B0020CABF /* ltable.c */; };
+		0DFFAC4F20B9772C0020CABF /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2120B9772B0020CABF /* liolib.c */; };
+		0DFFAC5020B9772C0020CABF /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2120B9772B0020CABF /* liolib.c */; };
+		0DFFAC5120B9772C0020CABF /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2220B9772B0020CABF /* lauxlib.c */; };
+		0DFFAC5220B9772C0020CABF /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2220B9772B0020CABF /* lauxlib.c */; };
+		0DFFAC5320B9772C0020CABF /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2320B9772B0020CABF /* linit.c */; };
+		0DFFAC5420B9772C0020CABF /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2320B9772B0020CABF /* linit.c */; };
+		0DFFAC5520B9772C0020CABF /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2420B9772C0020CABF /* ldblib.c */; };
+		0DFFAC5620B9772C0020CABF /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC2420B9772C0020CABF /* ldblib.c */; };
+		0DFFAC5A20B977340020CABF /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5720B977330020CABF /* lvm.c */; };
+		0DFFAC5B20B977340020CABF /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5720B977330020CABF /* lvm.c */; };
+		0DFFAC5C20B977340020CABF /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5820B977340020CABF /* lundump.c */; };
+		0DFFAC5D20B977340020CABF /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5820B977340020CABF /* lundump.c */; };
+		0DFFAC5E20B977340020CABF /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5920B977340020CABF /* lzio.c */; };
+		0DFFAC5F20B977340020CABF /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC5920B977340020CABF /* lzio.c */; };
+		0DFFAC6120B977530020CABF /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC6020B977520020CABF /* lapi.c */; };
+		0DFFAC6220B977530020CABF /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC6020B977520020CABF /* lapi.c */; };
 		7E12B4781B4901A600747793 /* application.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E12B4771B4901A600747793 /* application.icns */; };
 		7E19351C19A9CE45007AE9B9 /* CWindowImp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA971A194DA58B00D46B64 /* CWindowImp.mm */; };
 		7E1BEA46200B05A200B91D57 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BEA45200B05A200B91D57 /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -1288,64 +1346,6 @@
 		7ED82310194DBAD00037D7AE /* WrapLetterCount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED822F6194DBAD00037D7AE /* WrapLetterCount.xib */; };
 		7ED8233B194DBB050037D7AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED82339194DBB050037D7AE /* Localizable.strings */; };
 		7ED8233F194DBB260037D7AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED8233D194DBB260037D7AE /* MainMenu.xib */; };
-		7EE492331CD7AEEB004B1BFE /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492131CD7AEEB004B1BFE /* lapi.c */; };
-		7EE492341CD7AEEB004B1BFE /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492131CD7AEEB004B1BFE /* lapi.c */; };
-		7EE492351CD7AEEB004B1BFE /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492141CD7AEEB004B1BFE /* lauxlib.c */; };
-		7EE492361CD7AEEB004B1BFE /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492141CD7AEEB004B1BFE /* lauxlib.c */; };
-		7EE492371CD7AEEB004B1BFE /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492151CD7AEEB004B1BFE /* lbaselib.c */; };
-		7EE492381CD7AEEB004B1BFE /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492151CD7AEEB004B1BFE /* lbaselib.c */; };
-		7EE492391CD7AEEB004B1BFE /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492161CD7AEEB004B1BFE /* lcode.c */; };
-		7EE4923A1CD7AEEB004B1BFE /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492161CD7AEEB004B1BFE /* lcode.c */; };
-		7EE4923B1CD7AEEB004B1BFE /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492171CD7AEEB004B1BFE /* ldblib.c */; };
-		7EE4923C1CD7AEEB004B1BFE /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492171CD7AEEB004B1BFE /* ldblib.c */; };
-		7EE4923D1CD7AEEB004B1BFE /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492181CD7AEEB004B1BFE /* ldebug.c */; };
-		7EE4923E1CD7AEEB004B1BFE /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492181CD7AEEB004B1BFE /* ldebug.c */; };
-		7EE4923F1CD7AEEB004B1BFE /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492191CD7AEEB004B1BFE /* ldo.c */; };
-		7EE492401CD7AEEB004B1BFE /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492191CD7AEEB004B1BFE /* ldo.c */; };
-		7EE492411CD7AEEB004B1BFE /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921A1CD7AEEB004B1BFE /* ldump.c */; };
-		7EE492421CD7AEEB004B1BFE /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921A1CD7AEEB004B1BFE /* ldump.c */; };
-		7EE492431CD7AEEB004B1BFE /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921B1CD7AEEB004B1BFE /* lfunc.c */; };
-		7EE492441CD7AEEB004B1BFE /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921B1CD7AEEB004B1BFE /* lfunc.c */; };
-		7EE492451CD7AEEB004B1BFE /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921C1CD7AEEB004B1BFE /* lgc.c */; };
-		7EE492461CD7AEEB004B1BFE /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921C1CD7AEEB004B1BFE /* lgc.c */; };
-		7EE492471CD7AEEB004B1BFE /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921D1CD7AEEB004B1BFE /* linit.c */; };
-		7EE492481CD7AEEB004B1BFE /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921D1CD7AEEB004B1BFE /* linit.c */; };
-		7EE492491CD7AEEB004B1BFE /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921E1CD7AEEB004B1BFE /* liolib.c */; };
-		7EE4924A1CD7AEEB004B1BFE /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921E1CD7AEEB004B1BFE /* liolib.c */; };
-		7EE4924B1CD7AEEB004B1BFE /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921F1CD7AEEB004B1BFE /* llex.c */; };
-		7EE4924C1CD7AEEB004B1BFE /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4921F1CD7AEEB004B1BFE /* llex.c */; };
-		7EE4924D1CD7AEEB004B1BFE /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492201CD7AEEB004B1BFE /* lmathlib.c */; };
-		7EE4924E1CD7AEEB004B1BFE /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492201CD7AEEB004B1BFE /* lmathlib.c */; };
-		7EE4924F1CD7AEEB004B1BFE /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492211CD7AEEB004B1BFE /* lmem.c */; };
-		7EE492501CD7AEEB004B1BFE /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492211CD7AEEB004B1BFE /* lmem.c */; };
-		7EE492511CD7AEEB004B1BFE /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492221CD7AEEB004B1BFE /* loadlib.c */; };
-		7EE492521CD7AEEB004B1BFE /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492221CD7AEEB004B1BFE /* loadlib.c */; };
-		7EE492531CD7AEEB004B1BFE /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492231CD7AEEB004B1BFE /* lobject.c */; };
-		7EE492541CD7AEEB004B1BFE /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492231CD7AEEB004B1BFE /* lobject.c */; };
-		7EE492551CD7AEEB004B1BFE /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492241CD7AEEB004B1BFE /* lopcodes.c */; };
-		7EE492561CD7AEEB004B1BFE /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492241CD7AEEB004B1BFE /* lopcodes.c */; };
-		7EE492571CD7AEEB004B1BFE /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492251CD7AEEB004B1BFE /* loslib.c */; };
-		7EE492581CD7AEEB004B1BFE /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492251CD7AEEB004B1BFE /* loslib.c */; };
-		7EE492591CD7AEEB004B1BFE /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492261CD7AEEB004B1BFE /* lparser.c */; };
-		7EE4925A1CD7AEEB004B1BFE /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492261CD7AEEB004B1BFE /* lparser.c */; };
-		7EE4925B1CD7AEEB004B1BFE /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492271CD7AEEB004B1BFE /* lstate.c */; };
-		7EE4925C1CD7AEEB004B1BFE /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492271CD7AEEB004B1BFE /* lstate.c */; };
-		7EE4925D1CD7AEEB004B1BFE /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492281CD7AEEB004B1BFE /* lstring.c */; };
-		7EE4925E1CD7AEEB004B1BFE /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492281CD7AEEB004B1BFE /* lstring.c */; };
-		7EE4925F1CD7AEEB004B1BFE /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492291CD7AEEB004B1BFE /* lstrlib.c */; };
-		7EE492601CD7AEEB004B1BFE /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492291CD7AEEB004B1BFE /* lstrlib.c */; };
-		7EE492611CD7AEEB004B1BFE /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922A1CD7AEEB004B1BFE /* ltable.c */; };
-		7EE492621CD7AEEB004B1BFE /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922A1CD7AEEB004B1BFE /* ltable.c */; };
-		7EE492631CD7AEEB004B1BFE /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922B1CD7AEEB004B1BFE /* ltablib.c */; };
-		7EE492641CD7AEEB004B1BFE /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922B1CD7AEEB004B1BFE /* ltablib.c */; };
-		7EE492651CD7AEEB004B1BFE /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922C1CD7AEEB004B1BFE /* ltm.c */; };
-		7EE492661CD7AEEB004B1BFE /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922C1CD7AEEB004B1BFE /* ltm.c */; };
-		7EE4926B1CD7AEEB004B1BFE /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922F1CD7AEEB004B1BFE /* lundump.c */; };
-		7EE4926C1CD7AEEB004B1BFE /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4922F1CD7AEEB004B1BFE /* lundump.c */; };
-		7EE4926D1CD7AEEB004B1BFE /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492301CD7AEEB004B1BFE /* lvm.c */; };
-		7EE4926E1CD7AEEB004B1BFE /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492301CD7AEEB004B1BFE /* lvm.c */; };
-		7EE4926F1CD7AEEB004B1BFE /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492311CD7AEEB004B1BFE /* lzio.c */; };
-		7EE492701CD7AEEB004B1BFE /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EE492311CD7AEEB004B1BFE /* lzio.c */; };
 		7EE492741CD85A2E004B1BFE /* mi.lua in Resources */ = {isa = PBXBuildFile; fileRef = 7EE492731CD85A2E004B1BFE /* mi.lua */; };
 		7EE492751CD85A2E004B1BFE /* mi.lua in Resources */ = {isa = PBXBuildFile; fileRef = 7EE492731CD85A2E004B1BFE /* mi.lua */; };
 		7EE5A7FF200E47E7006E8271 /* AccessPlugin in Resources */ = {isa = PBXBuildFile; fileRef = 7EE5A7FD200E47E7006E8271 /* AccessPlugin */; };
@@ -1470,6 +1470,35 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DFFAC0C20B977250020CABF /* loslib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loslib.c; path = ../../lua/src/loslib.c; sourceTree = "<group>"; };
+		0DFFAC0D20B977260020CABF /* lstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstate.c; path = ../../lua/src/lstate.c; sourceTree = "<group>"; };
+		0DFFAC0E20B977260020CABF /* lstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstrlib.c; path = ../../lua/src/lstrlib.c; sourceTree = "<group>"; };
+		0DFFAC0F20B977260020CABF /* ldump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldump.c; path = ../../lua/src/ldump.c; sourceTree = "<group>"; };
+		0DFFAC1020B977260020CABF /* ldebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldebug.c; path = ../../lua/src/ldebug.c; sourceTree = "<group>"; };
+		0DFFAC1120B977270020CABF /* lmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lmem.c; path = ../../lua/src/lmem.c; sourceTree = "<group>"; };
+		0DFFAC1220B977270020CABF /* lmathlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lmathlib.c; path = ../../lua/src/lmathlib.c; sourceTree = "<group>"; };
+		0DFFAC1320B977270020CABF /* lobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lobject.c; path = ../../lua/src/lobject.c; sourceTree = "<group>"; };
+		0DFFAC1420B977270020CABF /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldo.c; path = ../../lua/src/ldo.c; sourceTree = "<group>"; };
+		0DFFAC1520B977280020CABF /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltm.c; path = ../../lua/src/ltm.c; sourceTree = "<group>"; };
+		0DFFAC1620B977280020CABF /* lfunc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lfunc.c; path = ../../lua/src/lfunc.c; sourceTree = "<group>"; };
+		0DFFAC1720B977280020CABF /* lopcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lopcodes.c; path = ../../lua/src/lopcodes.c; sourceTree = "<group>"; };
+		0DFFAC1820B977280020CABF /* loadlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loadlib.c; path = ../../lua/src/loadlib.c; sourceTree = "<group>"; };
+		0DFFAC1920B977280020CABF /* lgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lgc.c; path = ../../lua/src/lgc.c; sourceTree = "<group>"; };
+		0DFFAC1A20B977290020CABF /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lcode.c; path = ../../lua/src/lcode.c; sourceTree = "<group>"; };
+		0DFFAC1B20B977290020CABF /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltablib.c; path = ../../lua/src/ltablib.c; sourceTree = "<group>"; };
+		0DFFAC1C20B977290020CABF /* lstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstring.c; path = ../../lua/src/lstring.c; sourceTree = "<group>"; };
+		0DFFAC1D20B977290020CABF /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lbaselib.c; path = ../../lua/src/lbaselib.c; sourceTree = "<group>"; };
+		0DFFAC1E20B9772A0020CABF /* llex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = llex.c; path = ../../lua/src/llex.c; sourceTree = "<group>"; };
+		0DFFAC1F20B9772A0020CABF /* lparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lparser.c; path = ../../lua/src/lparser.c; sourceTree = "<group>"; };
+		0DFFAC2020B9772B0020CABF /* ltable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltable.c; path = ../../lua/src/ltable.c; sourceTree = "<group>"; };
+		0DFFAC2120B9772B0020CABF /* liolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = liolib.c; path = ../../lua/src/liolib.c; sourceTree = "<group>"; };
+		0DFFAC2220B9772B0020CABF /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lauxlib.c; path = ../../lua/src/lauxlib.c; sourceTree = "<group>"; };
+		0DFFAC2320B9772B0020CABF /* linit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = linit.c; path = ../../lua/src/linit.c; sourceTree = "<group>"; };
+		0DFFAC2420B9772C0020CABF /* ldblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldblib.c; path = ../../lua/src/ldblib.c; sourceTree = "<group>"; };
+		0DFFAC5720B977330020CABF /* lvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lvm.c; path = ../../lua/src/lvm.c; sourceTree = "<group>"; };
+		0DFFAC5820B977340020CABF /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lundump.c; path = ../../lua/src/lundump.c; sourceTree = "<group>"; };
+		0DFFAC5920B977340020CABF /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = ../../lua/src/lzio.c; sourceTree = "<group>"; };
+		0DFFAC6020B977520020CABF /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = ../../lua/src/lapi.c; sourceTree = "<group>"; };
 		7E12B4771B4901A600747793 /* application.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = application.icns; path = ../Icons_10_6/application.icns; sourceTree = "<group>"; };
 		7E1BEA45200B05A200B91D57 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		7E1BEA4B200B086F00B91D57 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -2461,35 +2490,6 @@
 		7ED8233C194DBB100037D7AE /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7ED8233E194DBB260037D7AE /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7ED82340194DBB2F0037D7AE /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7EE492131CD7AEEB004B1BFE /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = ../lua/src/lapi.c; sourceTree = "<group>"; };
-		7EE492141CD7AEEB004B1BFE /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lauxlib.c; path = ../lua/src/lauxlib.c; sourceTree = "<group>"; };
-		7EE492151CD7AEEB004B1BFE /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lbaselib.c; path = ../lua/src/lbaselib.c; sourceTree = "<group>"; };
-		7EE492161CD7AEEB004B1BFE /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lcode.c; path = ../lua/src/lcode.c; sourceTree = "<group>"; };
-		7EE492171CD7AEEB004B1BFE /* ldblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldblib.c; path = ../lua/src/ldblib.c; sourceTree = "<group>"; };
-		7EE492181CD7AEEB004B1BFE /* ldebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldebug.c; path = ../lua/src/ldebug.c; sourceTree = "<group>"; };
-		7EE492191CD7AEEB004B1BFE /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldo.c; path = ../lua/src/ldo.c; sourceTree = "<group>"; };
-		7EE4921A1CD7AEEB004B1BFE /* ldump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ldump.c; path = ../lua/src/ldump.c; sourceTree = "<group>"; };
-		7EE4921B1CD7AEEB004B1BFE /* lfunc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lfunc.c; path = ../lua/src/lfunc.c; sourceTree = "<group>"; };
-		7EE4921C1CD7AEEB004B1BFE /* lgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lgc.c; path = ../lua/src/lgc.c; sourceTree = "<group>"; };
-		7EE4921D1CD7AEEB004B1BFE /* linit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = linit.c; path = ../lua/src/linit.c; sourceTree = "<group>"; };
-		7EE4921E1CD7AEEB004B1BFE /* liolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = liolib.c; path = ../lua/src/liolib.c; sourceTree = "<group>"; };
-		7EE4921F1CD7AEEB004B1BFE /* llex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = llex.c; path = ../lua/src/llex.c; sourceTree = "<group>"; };
-		7EE492201CD7AEEB004B1BFE /* lmathlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lmathlib.c; path = ../lua/src/lmathlib.c; sourceTree = "<group>"; };
-		7EE492211CD7AEEB004B1BFE /* lmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lmem.c; path = ../lua/src/lmem.c; sourceTree = "<group>"; };
-		7EE492221CD7AEEB004B1BFE /* loadlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loadlib.c; path = ../lua/src/loadlib.c; sourceTree = "<group>"; };
-		7EE492231CD7AEEB004B1BFE /* lobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lobject.c; path = ../lua/src/lobject.c; sourceTree = "<group>"; };
-		7EE492241CD7AEEB004B1BFE /* lopcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lopcodes.c; path = ../lua/src/lopcodes.c; sourceTree = "<group>"; };
-		7EE492251CD7AEEB004B1BFE /* loslib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = loslib.c; path = ../lua/src/loslib.c; sourceTree = "<group>"; };
-		7EE492261CD7AEEB004B1BFE /* lparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lparser.c; path = ../lua/src/lparser.c; sourceTree = "<group>"; };
-		7EE492271CD7AEEB004B1BFE /* lstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstate.c; path = ../lua/src/lstate.c; sourceTree = "<group>"; };
-		7EE492281CD7AEEB004B1BFE /* lstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstring.c; path = ../lua/src/lstring.c; sourceTree = "<group>"; };
-		7EE492291CD7AEEB004B1BFE /* lstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lstrlib.c; path = ../lua/src/lstrlib.c; sourceTree = "<group>"; };
-		7EE4922A1CD7AEEB004B1BFE /* ltable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltable.c; path = ../lua/src/ltable.c; sourceTree = "<group>"; };
-		7EE4922B1CD7AEEB004B1BFE /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltablib.c; path = ../lua/src/ltablib.c; sourceTree = "<group>"; };
-		7EE4922C1CD7AEEB004B1BFE /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltm.c; path = ../lua/src/ltm.c; sourceTree = "<group>"; };
-		7EE4922F1CD7AEEB004B1BFE /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lundump.c; path = ../lua/src/lundump.c; sourceTree = "<group>"; };
-		7EE492301CD7AEEB004B1BFE /* lvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lvm.c; path = ../lua/src/lvm.c; sourceTree = "<group>"; };
-		7EE492311CD7AEEB004B1BFE /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = ../lua/src/lzio.c; sourceTree = "<group>"; };
 		7EE492731CD85A2E004B1BFE /* mi.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mi.lua; path = ../App/lua/mi.lua; sourceTree = "<group>"; };
 		7EE5A7FD200E47E7006E8271 /* AccessPlugin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AccessPlugin; path = ../App/AccessPlugin; sourceTree = "<group>"; };
 		7EF786101F5C0303000CC6ED /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/JavaScriptModalAlert.xib; sourceTree = "<group>"; };
@@ -2541,6 +2541,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DFFAC0B20B976B50020CABF /* Lua */ = {
+			isa = PBXGroup;
+			children = (
+				0DFFAC6020B977520020CABF /* lapi.c */,
+				0DFFAC2220B9772B0020CABF /* lauxlib.c */,
+				0DFFAC1D20B977290020CABF /* lbaselib.c */,
+				0DFFAC1A20B977290020CABF /* lcode.c */,
+				0DFFAC2420B9772C0020CABF /* ldblib.c */,
+				0DFFAC1020B977260020CABF /* ldebug.c */,
+				0DFFAC1420B977270020CABF /* ldo.c */,
+				0DFFAC0F20B977260020CABF /* ldump.c */,
+				0DFFAC1620B977280020CABF /* lfunc.c */,
+				0DFFAC1920B977280020CABF /* lgc.c */,
+				0DFFAC2320B9772B0020CABF /* linit.c */,
+				0DFFAC2120B9772B0020CABF /* liolib.c */,
+				0DFFAC1E20B9772A0020CABF /* llex.c */,
+				0DFFAC1220B977270020CABF /* lmathlib.c */,
+				0DFFAC1120B977270020CABF /* lmem.c */,
+				0DFFAC1820B977280020CABF /* loadlib.c */,
+				0DFFAC1320B977270020CABF /* lobject.c */,
+				0DFFAC1720B977280020CABF /* lopcodes.c */,
+				0DFFAC0C20B977250020CABF /* loslib.c */,
+				0DFFAC1F20B9772A0020CABF /* lparser.c */,
+				0DFFAC0D20B977260020CABF /* lstate.c */,
+				0DFFAC1C20B977290020CABF /* lstring.c */,
+				0DFFAC0E20B977260020CABF /* lstrlib.c */,
+				0DFFAC2020B9772B0020CABF /* ltable.c */,
+				0DFFAC1B20B977290020CABF /* ltablib.c */,
+				0DFFAC1520B977280020CABF /* ltm.c */,
+				0DFFAC5820B977340020CABF /* lundump.c */,
+				0DFFAC5720B977330020CABF /* lvm.c */,
+				0DFFAC5920B977340020CABF /* lzio.c */,
+			);
+			path = Lua;
+			sourceTree = "<group>";
+		};
 		7E459FDC1956E169005AA144 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3565,7 +3601,7 @@
 		7ED05682194D9DE200634F42 = {
 			isa = PBXGroup;
 			children = (
-				7EE490741CD79A85004B1BFE /* Lua */,
+				0DFFAC0B20B976B50020CABF /* Lua */,
 				7E96F0C41AF546420021A8AB /* modeprefconverter */,
 				7E31C1EC1A3BDD2400DD3084 /* mi.entitlements */,
 				7E459FDA1956DA50005AA144 /* Info.plist */,
@@ -3716,42 +3752,6 @@
 				7ED822F6194DBAD00037D7AE /* WrapLetterCount.xib */,
 			);
 			name = "ウインドウ";
-			sourceTree = "<group>";
-		};
-		7EE490741CD79A85004B1BFE /* Lua */ = {
-			isa = PBXGroup;
-			children = (
-				7EE492131CD7AEEB004B1BFE /* lapi.c */,
-				7EE492141CD7AEEB004B1BFE /* lauxlib.c */,
-				7EE492151CD7AEEB004B1BFE /* lbaselib.c */,
-				7EE492161CD7AEEB004B1BFE /* lcode.c */,
-				7EE492171CD7AEEB004B1BFE /* ldblib.c */,
-				7EE492181CD7AEEB004B1BFE /* ldebug.c */,
-				7EE492191CD7AEEB004B1BFE /* ldo.c */,
-				7EE4921A1CD7AEEB004B1BFE /* ldump.c */,
-				7EE4921B1CD7AEEB004B1BFE /* lfunc.c */,
-				7EE4921C1CD7AEEB004B1BFE /* lgc.c */,
-				7EE4921D1CD7AEEB004B1BFE /* linit.c */,
-				7EE4921E1CD7AEEB004B1BFE /* liolib.c */,
-				7EE4921F1CD7AEEB004B1BFE /* llex.c */,
-				7EE492201CD7AEEB004B1BFE /* lmathlib.c */,
-				7EE492211CD7AEEB004B1BFE /* lmem.c */,
-				7EE492221CD7AEEB004B1BFE /* loadlib.c */,
-				7EE492231CD7AEEB004B1BFE /* lobject.c */,
-				7EE492241CD7AEEB004B1BFE /* lopcodes.c */,
-				7EE492251CD7AEEB004B1BFE /* loslib.c */,
-				7EE492261CD7AEEB004B1BFE /* lparser.c */,
-				7EE492271CD7AEEB004B1BFE /* lstate.c */,
-				7EE492281CD7AEEB004B1BFE /* lstring.c */,
-				7EE492291CD7AEEB004B1BFE /* lstrlib.c */,
-				7EE4922A1CD7AEEB004B1BFE /* ltable.c */,
-				7EE4922B1CD7AEEB004B1BFE /* ltablib.c */,
-				7EE4922C1CD7AEEB004B1BFE /* ltm.c */,
-				7EE4922F1CD7AEEB004B1BFE /* lundump.c */,
-				7EE492301CD7AEEB004B1BFE /* lvm.c */,
-				7EE492311CD7AEEB004B1BFE /* lzio.c */,
-			);
-			name = Lua;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4937,35 +4937,33 @@
 				7E2849A41AF6841E0015873D /* APrefFileImp.cpp in Sources */,
 				7E2849A61AF6841E0015873D /* ASCMFolderManager.cpp in Sources */,
 				7E2849A71AF6841E0015873D /* AWindow_KeyToolList.cpp in Sources */,
-				7EE492401CD7AEEB004B1BFE /* ldo.c in Sources */,
 				7E2849A81AF6841E0015873D /* AWindow_OK.cpp in Sources */,
 				7E2849A91AF6841E0015873D /* AHashObjectArray.cpp in Sources */,
-				7EE4924C1CD7AEEB004B1BFE /* llex.c in Sources */,
 				7E2849AA1AF6841E0015873D /* AView_DocInfo.cpp in Sources */,
 				7E2849AD1AF6841E0015873D /* AKeyWrapper.mm in Sources */,
-				7EE492341CD7AEEB004B1BFE /* lapi.c in Sources */,
 				7E2849AE1AF6841E0015873D /* AUniqIDArray.cpp in Sources */,
-				7EE492481CD7AEEB004B1BFE /* linit.c in Sources */,
 				7E2849AF1AF6841E0015873D /* ATextArrayMenuManager.cpp in Sources */,
 				7E2849B01AF6841E0015873D /* CWindowImpCocoaObjects.mm in Sources */,
 				7E2849B11AF6841E0015873D /* AWindow_WordsList.cpp in Sources */,
 				7E2849B21AF6841E0015873D /* CUserPane.mm in Sources */,
-				7EE492501CD7AEEB004B1BFE /* lmem.c in Sources */,
 				7E2849B31AF6841E0015873D /* AObjectArrayItem.cpp in Sources */,
 				7E2849B41AF6841E0015873D /* IndexWindowDocument.mm in Sources */,
 				7E2849B61AF6841E0015873D /* AFTP.cpp in Sources */,
 				7E2849BB1AF6841E0015873D /* AChildProcessManager.cpp in Sources */,
+				0DFFAC4420B9772C0020CABF /* ltablib.c in Sources */,
 				7E2849BC1AF6841E0015873D /* AImportIdentifierLink.cpp in Sources */,
-				7EE492521CD7AEEB004B1BFE /* loadlib.c in Sources */,
 				7E2849BD1AF6841E0015873D /* AWindow_FileList.cpp in Sources */,
+				0DFFAC4820B9772C0020CABF /* lbaselib.c in Sources */,
+				0DFFAC3620B9772C0020CABF /* ldo.c in Sources */,
 				7E2849BE1AF6841E0015873D /* AThread_WordsListFinder.cpp in Sources */,
 				7E2849BF1AF6841E0015873D /* ADocument_IndexWindow.cpp in Sources */,
 				7E2849C21AF6841E0015873D /* AMacLegacyPref.cpp in Sources */,
+				0DFFAC3E20B9772C0020CABF /* loadlib.c in Sources */,
 				7E2849C31AF6841E0015873D /* AWindow_Previewer.cpp in Sources */,
 				7E2849C41AF6841E0015873D /* CAppImp.mm in Sources */,
 				7E2849C51AF6841E0015873D /* CocoaPanelWindow.mm in Sources */,
+				0DFFAC3020B9772C0020CABF /* lmem.c in Sources */,
 				7E2849C61AF6841E0015873D /* AWindow_DocInfo.cpp in Sources */,
-				7EE492461CD7AEEB004B1BFE /* lgc.c in Sources */,
 				7E2849C71AF6841E0015873D /* AColorSchemeDB.cpp in Sources */,
 				7E2849C91AF6841E0015873D /* ATextUndoer.cpp in Sources */,
 				7E2849CA1AF6841E0015873D /* AppDelegate.mm in Sources */,
@@ -4977,7 +4975,6 @@
 				7E2849D01AF6841E0015873D /* TextDocument.mm in Sources */,
 				7E2849D11AF6841E0015873D /* AView_SubTextShadow.cpp in Sources */,
 				7E2849D21AF6841E0015873D /* AWindow_DiffInfo.cpp in Sources */,
-				7EE492661CD7AEEB004B1BFE /* ltm.c in Sources */,
 				7E2849D31AF6841E0015873D /* CocoaProgressIndicator.mm in Sources */,
 				7E2849D51AF6841E0015873D /* ATextFinder.cpp in Sources */,
 				7E2849D91AF6841E0015873D /* AMenuManager.cpp in Sources */,
@@ -4985,7 +4982,7 @@
 				7E2849DB1AF6841E0015873D /* AView_Toolbar.cpp in Sources */,
 				7E2849DC1AF6841E0015873D /* ATextEncodingWrapper.cpp in Sources */,
 				7E2849DF1AF6841E0015873D /* ASyntaxDefinition.cpp in Sources */,
-				7EE4923C1CD7AEEB004B1BFE /* ldblib.c in Sources */,
+				0DFFAC3820B9772C0020CABF /* ltm.c in Sources */,
 				7E2849E01AF6841E0015873D /* AWindow_EnabledDefines.cpp in Sources */,
 				7E2849E11AF6841E0015873D /* AWindow_FTPProgress.cpp in Sources */,
 				7E2849E21AF6841E0015873D /* CocoaWebView.mm in Sources */,
@@ -4994,25 +4991,24 @@
 				7E2849E51AF6841E0015873D /* ABlockStartDataList.cpp in Sources */,
 				7E2849E71AF6841E0015873D /* AView_TabSelector.cpp in Sources */,
 				7E2849E91AF6841E0015873D /* AWindow_KeyActionList.cpp in Sources */,
-				7EE4925A1CD7AEEB004B1BFE /* lparser.c in Sources */,
 				7E2849EB1AF6841E0015873D /* Functions.mm in Sources */,
 				7E2849ED1AF6841E0015873D /* AView_CandidateList.cpp in Sources */,
 				7E2849EE1AF6841E0015873D /* SpellCheck.mm in Sources */,
 				7E2849EF1AF6841E0015873D /* AView_CallGrafHeader.cpp in Sources */,
 				7E6E0DE31F47B37600D10F83 /* AWindow_ModalCancelAlert.cpp in Sources */,
-				7EE4926C1CD7AEEB004B1BFE /* lundump.c in Sources */,
-				7EE4925C1CD7AEEB004B1BFE /* lstate.c in Sources */,
+				0DFFAC3A20B9772C0020CABF /* lfunc.c in Sources */,
 				7E2849F01AF6841E0015873D /* AHashArray.cpp in Sources */,
 				7E2849F21AF6841E0015873D /* AAppleScriptExecuter.cpp in Sources */,
 				7E2849F51AF6841E0015873D /* AWindow.cpp in Sources */,
+				0DFFAC2E20B9772C0020CABF /* ldebug.c in Sources */,
 				7E2849F61AF6841E0015873D /* CocoaApp.mm in Sources */,
 				7E2849F71AF6841E0015873D /* AThread_JavaScriptExecuter.cpp in Sources */,
 				7E2849F81AF6841E0015873D /* AView_TextViewHSeparator.cpp in Sources */,
 				7E2849FA1AF6841E0015873D /* AView_VSeparator.cpp in Sources */,
 				7E2849FB1AF6841E0015873D /* ADocument_EditBox.cpp in Sources */,
-				7EE4924E1CD7AEEB004B1BFE /* lmathlib.c in Sources */,
 				7E2849FC1AF6841E0015873D /* AView_SubWindowTitlebar.cpp in Sources */,
 				7E2849FD1AF6841E0015873D /* AView_Button.cpp in Sources */,
+				0DFFAC2620B9772C0020CABF /* loslib.c in Sources */,
 				7E2849FF1AF6841E0015873D /* AFontWrapper.cpp in Sources */,
 				7E284A001AF6841E0015873D /* AThreadWrapper.cpp in Sources */,
 				7E284A011AF6841E0015873D /* AWindow_TextMarker.cpp in Sources */,
@@ -5022,22 +5018,22 @@
 				7E284A071AF6841E0015873D /* CocoaTabSelectButton.mm in Sources */,
 				7E284A081AF6841E0015873D /* AProjectFolderLoader.cpp in Sources */,
 				7E284A091AF6841E0015873D /* ATextInfo.cpp in Sources */,
+				0DFFAC2A20B9772C0020CABF /* lstrlib.c in Sources */,
+				0DFFAC5D20B977340020CABF /* lundump.c in Sources */,
 				7E284A0A1AF6841E0015873D /* AThread_DocumentFileScreening.cpp in Sources */,
 				7E284A0B1AF6841E0015873D /* AWindow_MultiFileFind.cpp in Sources */,
 				7E284A0C1AF6841E0015873D /* AProjectPrefDB.cpp in Sources */,
 				7E6E0DF11F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.cpp in Sources */,
 				7E284A111AF6841E0015873D /* CWindowImp.mm in Sources */,
-				7EE4924A1CD7AEEB004B1BFE /* liolib.c in Sources */,
-				7EE492381CD7AEEB004B1BFE /* lbaselib.c in Sources */,
 				7E284A121AF6841E0015873D /* AWindow_Text.cpp in Sources */,
 				7E284A131AF6841E0015873D /* AView_CallGraf.cpp in Sources */,
 				7E284A151AF6841E0015873D /* AApplication.cpp in Sources */,
+				0DFFAC3C20B9772C0020CABF /* lopcodes.c in Sources */,
 				7E284A171AF6841E0015873D /* AWindow_TextSheet.cpp in Sources */,
 				7E284A181AF6841E0015873D /* AView_Frame.cpp in Sources */,
 				7E284A1B1AF6841E0015873D /* AView_DiffInfo.cpp in Sources */,
 				7E284A1E1AF6841E0015873D /* ACurlThread.cpp in Sources */,
 				7E284A1F1AF6841E0015873D /* AWindow_FindResult.cpp in Sources */,
-				7EE492361CD7AEEB004B1BFE /* lauxlib.c in Sources */,
 				7E284A201AF6841E0015873D /* AWindow_JumpList.cpp in Sources */,
 				7E284A221AF6841E0015873D /* NSStringExtras.mm in Sources */,
 				7E284A231AF6841E0015873D /* AView_Text.cpp in Sources */,
@@ -5053,6 +5049,7 @@
 				7E284A341AF6841E0015873D /* ARegExp.cpp in Sources */,
 				7E284A371AF6841E0015873D /* ACSVFile.cpp in Sources */,
 				7E284A391AF6841E0015873D /* AWindow_KeyRecord.cpp in Sources */,
+				0DFFAC4A20B9772C0020CABF /* llex.c in Sources */,
 				7E284A3A1AF6841E0015873D /* AWindow_VSeparatorOverlay.cpp in Sources */,
 				7E284A3B1AF6841E0015873D /* AWindow_TraceLog.cpp in Sources */,
 				7E284A3D1AF6841E0015873D /* AEditBoxUndoer.cpp in Sources */,
@@ -5061,18 +5058,21 @@
 				7E284A411AF6841E0015873D /* AView_LineNumber.cpp in Sources */,
 				7E284A421AF6841E0015873D /* AView.cpp in Sources */,
 				7E284A431AF6841E0015873D /* AApp.cpp in Sources */,
+				0DFFAC6220B977530020CABF /* lapi.c in Sources */,
+				0DFFAC2820B9772C0020CABF /* lstate.c in Sources */,
 				7E284A441AF6841E0015873D /* AIdentifierList.cpp in Sources */,
 				7E284A451AF6841E0015873D /* ABase.cpp in Sources */,
 				7E284A471AF6841E0015873D /* CPrintImp.mm in Sources */,
 				7E284A481AF6841E0015873D /* AView_KeyToolList.cpp in Sources */,
 				7E284A4A1AF6841E0015873D /* ARegExp_Test.cpp in Sources */,
+				0DFFAC4020B9772C0020CABF /* lgc.c in Sources */,
+				0DFFAC4E20B9772C0020CABF /* ltable.c in Sources */,
 				7E284A4D1AF6841E0015873D /* CocoaTextField.mm in Sources */,
 				7E284A4E1AF6841E0015873D /* AWindow_ClipboardHistory.cpp in Sources */,
-				7EE492621CD7AEEB004B1BFE /* ltable.c in Sources */,
 				7E284A4F1AF6841E0015873D /* AppleScript.cpp in Sources */,
 				7E284A501AF6841E0015873D /* AWindow_BigFileAlert.cpp in Sources */,
 				7E284A511AF6841E0015873D /* AView_SubWindowHeader.cpp in Sources */,
-				7EE492701CD7AEEB004B1BFE /* lzio.c in Sources */,
+				0DFFAC5F20B977340020CABF /* lzio.c in Sources */,
 				7E284A521AF6841E0015873D /* CPaneForAView.mm in Sources */,
 				7E284A531AF6841E0015873D /* AThread_SyntaxRecognizer.cpp in Sources */,
 				7E284A541AF6841E0015873D /* CocoaLiveResizeDetectionView.mm in Sources */,
@@ -5083,33 +5083,36 @@
 				7E284A5D1AF6841E0015873D /* ASecurityWrapper.mm in Sources */,
 				7E284A5E1AF6841E0015873D /* AWindow_AddToolButton.cpp in Sources */,
 				7E284A5F1AF6841E0015873D /* ADateTimeWrapper.cpp in Sources */,
+				0DFFAC5220B9772C0020CABF /* lauxlib.c in Sources */,
 				7E284A601AF6841E0015873D /* AMultiFileFinder.cpp in Sources */,
 				7E284A621AF6841E0015873D /* AWindow_SetProjectFolder.cpp in Sources */,
 				7E284A631AF6841E0015873D /* AMenuWrapper.mm in Sources */,
 				7E284A641AF6841E0015873D /* APurgeManager.cpp in Sources */,
 				7E284A671AF6841E0015873D /* AView_Plain.cpp in Sources */,
-				7EE492601CD7AEEB004B1BFE /* lstrlib.c in Sources */,
 				7E284A681AF6841E0015873D /* ASpellCheckerWrapper.mm in Sources */,
 				7E284A691AF6841E0015873D /* AStEventTransactionPrePostProcess.cpp in Sources */,
 				7E284A6D1AF6841E0015873D /* ARemoteConnection.cpp in Sources */,
 				7E284A6E1AF6841E0015873D /* AInternalEvent.cpp in Sources */,
 				7E6E0DEF1F47B59500D10F83 /* AWindow_JavaScriptModalAlert.cpp in Sources */,
+				0DFFAC2C20B9772C0020CABF /* ldump.c in Sources */,
 				7E284A6F1AF6841E0015873D /* CocoaWindow.mm in Sources */,
 				7E284A701AF6841E0015873D /* CTextDrawData.mm in Sources */,
 				7E284A711AF6841E0015873D /* AZipFile.cpp in Sources */,
-				7EE492441CD7AEEB004B1BFE /* lfunc.c in Sources */,
 				7E284A721AF6841E0015873D /* AWindow_OKCancel.cpp in Sources */,
 				7E284A731AF6841E0015873D /* AText.cpp in Sources */,
 				7E284A751AF6841E0015873D /* CocoaUserPaneView.mm in Sources */,
+				0DFFAC3420B9772C0020CABF /* lobject.c in Sources */,
 				7E284A771AF6841E0015873D /* CocoaCollapsableView.mm in Sources */,
 				7E284A781AF6841E0015873D /* AThread_WrapCalculator.cpp in Sources */,
 				7E284A791AF6841E0015873D /* AWindow_AppPref.cpp in Sources */,
 				7E284A7A1AF6841E0015873D /* AAppPrefDB.cpp in Sources */,
+				0DFFAC4C20B9772C0020CABF /* lparser.c in Sources */,
 				7E284A7B1AF6841E0015873D /* AUnicodeData.cpp in Sources */,
+				0DFFAC3220B9772C0020CABF /* lmathlib.c in Sources */,
 				7E284A7D1AF6841E0015873D /* AWindow_ModePref.cpp in Sources */,
 				7E284A801AF6841E0015873D /* CocoaWindowDelegate.mm in Sources */,
-				7EE4926E1CD7AEEB004B1BFE /* lvm.c in Sources */,
 				7E284A811AF6841E0015873D /* ATextArray.cpp in Sources */,
+				0DFFAC5020B9772C0020CABF /* liolib.c in Sources */,
 				7E284A821AF6841E0015873D /* AWindow_CallGraf.cpp in Sources */,
 				7E284A831AF6841E0015873D /* AFileWrapper.mm in Sources */,
 				7E284A841AF6841E0015873D /* AColorWrapper.mm in Sources */,
@@ -5119,23 +5122,18 @@
 				7E284A8D1AF6841E0015873D /* AWindow_TextCount.cpp in Sources */,
 				7E284A8F1AF6841E0015873D /* AWindow_ModeExecutableAlert.cpp in Sources */,
 				7E284A901AF6841E0015873D /* AView_Index.cpp in Sources */,
+				0DFFAC4220B9772C0020CABF /* lcode.c in Sources */,
 				7E284A911AF6841E0015873D /* ACSVKeywordLoader.cpp in Sources */,
-				7EE492561CD7AEEB004B1BFE /* lopcodes.c in Sources */,
 				7E284A921AF6841E0015873D /* AWindow_CandidateList.cpp in Sources */,
 				7E284A931AF6841E0015873D /* main.mm in Sources */,
 				7E284A941AF6841E0015873D /* AView_SubWindowStatusBar.cpp in Sources */,
 				7E284A951AF6841E0015873D /* AWindow_NewFTPFile.cpp in Sources */,
 				7E284A961AF6841E0015873D /* AView_SizeBox.cpp in Sources */,
 				7E284A971AF6841E0015873D /* ADocument.cpp in Sources */,
-				7EE492421CD7AEEB004B1BFE /* ldump.c in Sources */,
 				7E284A981AF6841E0015873D /* AView_Notification.cpp in Sources */,
-				7EE4923E1CD7AEEB004B1BFE /* ldebug.c in Sources */,
-				7EE4925E1CD7AEEB004B1BFE /* lstring.c in Sources */,
-				7EE492641CD7AEEB004B1BFE /* ltablib.c in Sources */,
 				7E284A991AF6841E0015873D /* AView_Footer.cpp in Sources */,
 				7E284A9A1AF6841E0015873D /* ANetworkWrapper.mm in Sources */,
 				7E284A9B1AF6841E0015873D /* ACursorWrapper.mm in Sources */,
-				7EE492541CD7AEEB004B1BFE /* lobject.c in Sources */,
 				7E284A9C1AF6841E0015873D /* AWrapperTest.mm in Sources */,
 				7E284A9D1AF6841E0015873D /* ASameFolderLoader.cpp in Sources */,
 				7E284A9E1AF6841E0015873D /* AWindow_FolderList.cpp in Sources */,
@@ -5149,15 +5147,17 @@
 				7E284AAA1AF6841E0015873D /* AObjectArrayItemTrash.cpp in Sources */,
 				7E284AAC1AF6841E0015873D /* AWindow_About.cpp in Sources */,
 				7E284AAD1AF6841E0015873D /* AWindowWrapper.mm in Sources */,
+				0DFFAC5620B9772C0020CABF /* ldblib.c in Sources */,
 				7E284AAE1AF6841E0015873D /* CocoaFontField.mm in Sources */,
 				7E284AB11AF6841E0015873D /* AArray.cpp in Sources */,
+				0DFFAC5420B9772C0020CABF /* linit.c in Sources */,
 				7E284AB21AF6841E0015873D /* AScrapWrapper.mm in Sources */,
+				0DFFAC5B20B977340020CABF /* lvm.c in Sources */,
 				7E284AB31AF6841E0015873D /* AView_SubWindowSeparator.cpp in Sources */,
-				7EE4923A1CD7AEEB004B1BFE /* lcode.c in Sources */,
 				7E284AB41AF6841E0015873D /* AView_List.cpp in Sources */,
+				0DFFAC4620B9772C0020CABF /* lstring.c in Sources */,
 				7E284AB51AF6841E0015873D /* ADynamicMenu.cpp in Sources */,
 				7E284AB61AF6841E0015873D /* Cocoa.mm in Sources */,
-				7EE492581CD7AEEB004B1BFE /* loslib.c in Sources */,
 				7E284AB81AF6841E0015873D /* AThread.cpp in Sources */,
 				7E284AB91AF6841E0015873D /* AWindow_ToolTip.cpp in Sources */,
 				7E284ABA1AF6841E0015873D /* AWindow_IdInfo.cpp in Sources */,
@@ -5179,35 +5179,33 @@
 				7EAA9664194DA52800D46B64 /* APrefFileImp.cpp in Sources */,
 				7EC67E54194D9E9500EC50CC /* ASCMFolderManager.cpp in Sources */,
 				7EC67E97194D9E9500EC50CC /* AWindow_KeyToolList.cpp in Sources */,
-				7EE4923F1CD7AEEB004B1BFE /* ldo.c in Sources */,
 				7EAA96BF194DA53C00D46B64 /* AWindow_OK.cpp in Sources */,
 				7EAA9647194DA50C00D46B64 /* AHashObjectArray.cpp in Sources */,
-				7EE4924B1CD7AEEB004B1BFE /* llex.c in Sources */,
 				7EC67E67194D9E9500EC50CC /* AView_DocInfo.cpp in Sources */,
 				7EAA976D194DA59B00D46B64 /* AKeyWrapper.mm in Sources */,
-				7EE492331CD7AEEB004B1BFE /* lapi.c in Sources */,
 				7EAA9652194DA50C00D46B64 /* AUniqIDArray.cpp in Sources */,
-				7EE492471CD7AEEB004B1BFE /* linit.c in Sources */,
 				7EAA96AF194DA53C00D46B64 /* ATextArrayMenuManager.cpp in Sources */,
 				7EAA973F194DA58B00D46B64 /* CWindowImpCocoaObjects.mm in Sources */,
 				7EC67EA7194D9E9500EC50CC /* AWindow_WordsList.cpp in Sources */,
 				7EAA973D194DA58B00D46B64 /* CUserPane.mm in Sources */,
-				7EE4924F1CD7AEEB004B1BFE /* lmem.c in Sources */,
 				7EAA9649194DA50C00D46B64 /* AObjectArrayItem.cpp in Sources */,
 				7ED47CDA1ADA14540085C2F3 /* IndexWindowDocument.mm in Sources */,
 				7EC67E48194D9E9500EC50CC /* AFTP.cpp in Sources */,
 				7EC67E42194D9E9500EC50CC /* AChildProcessManager.cpp in Sources */,
+				0DFFAC4320B9772C0020CABF /* ltablib.c in Sources */,
 				7EC67E4B194D9E9500EC50CC /* AImportIdentifierLink.cpp in Sources */,
-				7EE492511CD7AEEB004B1BFE /* loadlib.c in Sources */,
 				7EC67E8B194D9E9500EC50CC /* AWindow_FileList.cpp in Sources */,
+				0DFFAC4720B9772C0020CABF /* lbaselib.c in Sources */,
+				0DFFAC3520B9772C0020CABF /* ldo.c in Sources */,
 				7EC67E60194D9E9500EC50CC /* AThread_WordsListFinder.cpp in Sources */,
 				7EC67E46194D9E9500EC50CC /* ADocument_IndexWindow.cpp in Sources */,
 				7EC91D861AF1081100BE0D26 /* AMacLegacyPref.cpp in Sources */,
+				0DFFAC3D20B9772C0020CABF /* loadlib.c in Sources */,
 				7EC67E9E194D9E9500EC50CC /* AWindow_Previewer.cpp in Sources */,
 				7EAA9729194DA58B00D46B64 /* CAppImp.mm in Sources */,
 				7EAA9731194DA58B00D46B64 /* CocoaPanelWindow.mm in Sources */,
+				0DFFAC2F20B9772C0020CABF /* lmem.c in Sources */,
 				7EC67E88194D9E9500EC50CC /* AWindow_DocInfo.cpp in Sources */,
-				7EE492451CD7AEEB004B1BFE /* lgc.c in Sources */,
 				7EC67E43194D9E9500EC50CC /* AColorSchemeDB.cpp in Sources */,
 				7EC67E5A194D9E9500EC50CC /* ATextUndoer.cpp in Sources */,
 				7EAA9728194DA58B00D46B64 /* AppDelegate.mm in Sources */,
@@ -5219,7 +5217,6 @@
 				7EC67EA9194D9E9500EC50CC /* TextDocument.mm in Sources */,
 				7EC67E71194D9E9500EC50CC /* AView_SubTextShadow.cpp in Sources */,
 				7EC67E87194D9E9500EC50CC /* AWindow_DiffInfo.cpp in Sources */,
-				7EE492651CD7AEEB004B1BFE /* ltm.c in Sources */,
 				7EAA9732194DA58B00D46B64 /* CocoaProgressIndicator.mm in Sources */,
 				7EC67E58194D9E9500EC50CC /* ATextFinder.cpp in Sources */,
 				7EAA96AE194DA53C00D46B64 /* AMenuManager.cpp in Sources */,
@@ -5227,7 +5224,7 @@
 				7EC67E7B194D9E9500EC50CC /* AView_Toolbar.cpp in Sources */,
 				7EAA9666194DA52800D46B64 /* ATextEncodingWrapper.cpp in Sources */,
 				7EC67E56194D9E9500EC50CC /* ASyntaxDefinition.cpp in Sources */,
-				7EE4923B1CD7AEEB004B1BFE /* ldblib.c in Sources */,
+				0DFFAC3720B9772C0020CABF /* ltm.c in Sources */,
 				7EC67E8A194D9E9500EC50CC /* AWindow_EnabledDefines.cpp in Sources */,
 				7EC67E8F194D9E9500EC50CC /* AWindow_FTPProgress.cpp in Sources */,
 				7EAA9736194DA58B00D46B64 /* CocoaWebView.mm in Sources */,
@@ -5236,25 +5233,24 @@
 				7EC67E40194D9E9500EC50CC /* ABlockStartDataList.cpp in Sources */,
 				7EC67E77194D9E9500EC50CC /* AView_TabSelector.cpp in Sources */,
 				7EC67E95194D9E9500EC50CC /* AWindow_KeyActionList.cpp in Sources */,
-				7EE492591CD7AEEB004B1BFE /* lparser.c in Sources */,
 				7EAA9740194DA58B00D46B64 /* Functions.mm in Sources */,
 				7EC67E65194D9E9500EC50CC /* AView_CandidateList.cpp in Sources */,
 				7EAA977A194DA59B00D46B64 /* SpellCheck.mm in Sources */,
 				7EC67E64194D9E9500EC50CC /* AView_CallGrafHeader.cpp in Sources */,
 				7E6E0DE21F47B37600D10F83 /* AWindow_ModalCancelAlert.cpp in Sources */,
-				7EE4926B1CD7AEEB004B1BFE /* lundump.c in Sources */,
-				7EE4925B1CD7AEEB004B1BFE /* lstate.c in Sources */,
+				0DFFAC3920B9772C0020CABF /* lfunc.c in Sources */,
 				7EAA9646194DA50C00D46B64 /* AHashArray.cpp in Sources */,
 				7EC67E3E194D9E9500EC50CC /* AAppleScriptExecuter.cpp in Sources */,
 				7EAA96C4194DA53C00D46B64 /* AWindow.cpp in Sources */,
+				0DFFAC2D20B9772C0020CABF /* ldebug.c in Sources */,
 				7E2847DC1AF65AE40015873D /* CocoaApp.mm in Sources */,
 				7EC67E5E194D9E9500EC50CC /* AThread_JavaScriptExecuter.cpp in Sources */,
 				7EC67E7A194D9E9500EC50CC /* AView_TextViewHSeparator.cpp in Sources */,
 				7EAA96BA194DA53C00D46B64 /* AView_VSeparator.cpp in Sources */,
 				7EAA96AA194DA53C00D46B64 /* ADocument_EditBox.cpp in Sources */,
-				7EE4924D1CD7AEEB004B1BFE /* lmathlib.c in Sources */,
 				7EC67E76194D9E9500EC50CC /* AView_SubWindowTitlebar.cpp in Sources */,
 				7EAA96B2194DA53C00D46B64 /* AView_Button.cpp in Sources */,
+				0DFFAC2520B9772C0020CABF /* loslib.c in Sources */,
 				7EAA9663194DA52800D46B64 /* AFontWrapper.cpp in Sources */,
 				7EAA9667194DA52800D46B64 /* AThreadWrapper.cpp in Sources */,
 				7EC67EA4194D9E9500EC50CC /* AWindow_TextMarker.cpp in Sources */,
@@ -5264,22 +5260,22 @@
 				7EAA9733194DA58B00D46B64 /* CocoaTabSelectButton.mm in Sources */,
 				7EC67E50194D9E9500EC50CC /* AProjectFolderLoader.cpp in Sources */,
 				7EC67E59194D9E9500EC50CC /* ATextInfo.cpp in Sources */,
+				0DFFAC2920B9772C0020CABF /* lstrlib.c in Sources */,
+				0DFFAC5C20B977340020CABF /* lundump.c in Sources */,
 				7EC67E5C194D9E9500EC50CC /* AThread_DocumentFileScreening.cpp in Sources */,
 				7EC67E9A194D9E9500EC50CC /* AWindow_MultiFileFind.cpp in Sources */,
 				7EC67E51194D9E9500EC50CC /* AProjectPrefDB.cpp in Sources */,
 				7E6E0DF01F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.cpp in Sources */,
 				7E19351C19A9CE45007AE9B9 /* CWindowImp.mm in Sources */,
-				7EE492491CD7AEEB004B1BFE /* liolib.c in Sources */,
-				7EE492371CD7AEEB004B1BFE /* lbaselib.c in Sources */,
 				7EC67EA2194D9E9500EC50CC /* AWindow_Text.cpp in Sources */,
 				7EC67E63194D9E9500EC50CC /* AView_CallGraf.cpp in Sources */,
 				7EAA96A8194DA53C00D46B64 /* AApplication.cpp in Sources */,
+				0DFFAC3B20B9772C0020CABF /* lopcodes.c in Sources */,
 				7EC67EA5194D9E9500EC50CC /* AWindow_TextSheet.cpp in Sources */,
 				7EAA96B4194DA53C00D46B64 /* AView_Frame.cpp in Sources */,
 				7EC67E66194D9E9500EC50CC /* AView_DiffInfo.cpp in Sources */,
 				7EAA96A9194DA53C00D46B64 /* ACurlThread.cpp in Sources */,
 				7EC67E8D194D9E9500EC50CC /* AWindow_FindResult.cpp in Sources */,
-				7EE492351CD7AEEB004B1BFE /* lauxlib.c in Sources */,
 				7EC67E94194D9E9500EC50CC /* AWindow_JumpList.cpp in Sources */,
 				7EAA9745194DA58B00D46B64 /* NSStringExtras.mm in Sources */,
 				7EC67E79194D9E9500EC50CC /* AView_Text.cpp in Sources */,
@@ -5295,6 +5291,7 @@
 				7EAA964D194DA50C00D46B64 /* ARegExp.cpp in Sources */,
 				7EAA9642194DA50C00D46B64 /* ACSVFile.cpp in Sources */,
 				7EC67E96194D9E9500EC50CC /* AWindow_KeyRecord.cpp in Sources */,
+				0DFFAC4920B9772C0020CABF /* llex.c in Sources */,
 				7EAA96C3194DA53C00D46B64 /* AWindow_VSeparatorOverlay.cpp in Sources */,
 				7EC67EA6194D9E9500EC50CC /* AWindow_TraceLog.cpp in Sources */,
 				7EAA96AD194DA53C00D46B64 /* AEditBoxUndoer.cpp in Sources */,
@@ -5303,18 +5300,21 @@
 				7EC67E6D194D9E9500EC50CC /* AView_LineNumber.cpp in Sources */,
 				7EAA96BB194DA53C00D46B64 /* AView.cpp in Sources */,
 				7EC67E3D194D9E9500EC50CC /* AApp.cpp in Sources */,
+				0DFFAC6120B977530020CABF /* lapi.c in Sources */,
+				0DFFAC2720B9772C0020CABF /* lstate.c in Sources */,
 				7EC67E49194D9E9500EC50CC /* AIdentifierList.cpp in Sources */,
 				7EAA963F194DA50C00D46B64 /* ABase.cpp in Sources */,
 				7EAA973A194DA58B00D46B64 /* CPrintImp.mm in Sources */,
 				7EC67E6C194D9E9500EC50CC /* AView_KeyToolList.cpp in Sources */,
 				7EAA964C194DA50C00D46B64 /* ARegExp_Test.cpp in Sources */,
+				0DFFAC3F20B9772C0020CABF /* lgc.c in Sources */,
+				0DFFAC4D20B9772C0020CABF /* ltable.c in Sources */,
 				7EAA9734194DA58B00D46B64 /* CocoaTextField.mm in Sources */,
 				7EC67E84194D9E9500EC50CC /* AWindow_ClipboardHistory.cpp in Sources */,
-				7EE492611CD7AEEB004B1BFE /* ltable.c in Sources */,
 				7EB430DB1A7CC0980043A8F9 /* AppleScript.cpp in Sources */,
 				7EC67E81194D9E9500EC50CC /* AWindow_BigFileAlert.cpp in Sources */,
 				7EC67E72194D9E9500EC50CC /* AView_SubWindowHeader.cpp in Sources */,
-				7EE4926F1CD7AEEB004B1BFE /* lzio.c in Sources */,
+				0DFFAC5E20B977340020CABF /* lzio.c in Sources */,
 				7EAA9739194DA58B00D46B64 /* CPaneForAView.mm in Sources */,
 				7EC67E5F194D9E9500EC50CC /* AThread_SyntaxRecognizer.cpp in Sources */,
 				7EAA9730194DA58B00D46B64 /* CocoaLiveResizeDetectionView.mm in Sources */,
@@ -5325,33 +5325,36 @@
 				7EAA9773194DA59B00D46B64 /* ASecurityWrapper.mm in Sources */,
 				7EC67E7F194D9E9500EC50CC /* AWindow_AddToolButton.cpp in Sources */,
 				7EAA9662194DA52800D46B64 /* ADateTimeWrapper.cpp in Sources */,
+				0DFFAC5120B9772C0020CABF /* lauxlib.c in Sources */,
 				7EC67E4E194D9E9500EC50CC /* AMultiFileFinder.cpp in Sources */,
 				7EC67EA0194D9E9500EC50CC /* AWindow_SetProjectFolder.cpp in Sources */,
 				7EAA976F194DA59B00D46B64 /* AMenuWrapper.mm in Sources */,
 				7EAA964B194DA50C00D46B64 /* APurgeManager.cpp in Sources */,
 				7EAA96B7194DA53C00D46B64 /* AView_Plain.cpp in Sources */,
-				7EE4925F1CD7AEEB004B1BFE /* lstrlib.c in Sources */,
 				7EAA9775194DA59B00D46B64 /* ASpellCheckerWrapper.mm in Sources */,
 				7EAA964E194DA50C00D46B64 /* AStEventTransactionPrePostProcess.cpp in Sources */,
 				7EC67E52194D9E9500EC50CC /* ARemoteConnection.cpp in Sources */,
 				7EAA9648194DA50C00D46B64 /* AInternalEvent.cpp in Sources */,
 				7E6E0DEE1F47B59500D10F83 /* AWindow_JavaScriptModalAlert.cpp in Sources */,
+				0DFFAC2B20B9772C0020CABF /* ldump.c in Sources */,
 				7EAA9737194DA58B00D46B64 /* CocoaWindow.mm in Sources */,
 				7EAA973C194DA58B00D46B64 /* CTextDrawData.mm in Sources */,
 				7EAA9653194DA50C00D46B64 /* AZipFile.cpp in Sources */,
-				7EE492431CD7AEEB004B1BFE /* lfunc.c in Sources */,
 				7EAA96C0194DA53C00D46B64 /* AWindow_OKCancel.cpp in Sources */,
 				7EAA964F194DA50C00D46B64 /* AText.cpp in Sources */,
 				7EAA9735194DA58B00D46B64 /* CocoaUserPaneView.mm in Sources */,
+				0DFFAC3320B9772C0020CABF /* lobject.c in Sources */,
 				7EAA972E194DA58B00D46B64 /* CocoaCollapsableView.mm in Sources */,
 				7EC67E61194D9E9500EC50CC /* AThread_WrapCalculator.cpp in Sources */,
 				7EC67E80194D9E9500EC50CC /* AWindow_AppPref.cpp in Sources */,
 				7EC67E3F194D9E9500EC50CC /* AAppPrefDB.cpp in Sources */,
+				0DFFAC4B20B9772C0020CABF /* lparser.c in Sources */,
 				7EAA96B1194DA53C00D46B64 /* AUnicodeData.cpp in Sources */,
+				0DFFAC3120B9772C0020CABF /* lmathlib.c in Sources */,
 				7EC67E99194D9E9500EC50CC /* AWindow_ModePref.cpp in Sources */,
 				7EAA9738194DA58B00D46B64 /* CocoaWindowDelegate.mm in Sources */,
-				7EE4926D1CD7AEEB004B1BFE /* lvm.c in Sources */,
 				7EAA9650194DA50C00D46B64 /* ATextArray.cpp in Sources */,
+				0DFFAC4F20B9772C0020CABF /* liolib.c in Sources */,
 				7EC67E82194D9E9500EC50CC /* AWindow_CallGraf.cpp in Sources */,
 				7EAA976C194DA59B00D46B64 /* AFileWrapper.mm in Sources */,
 				7EAA976A194DA59B00D46B64 /* AColorWrapper.mm in Sources */,
@@ -5361,23 +5364,18 @@
 				7EC67EA3194D9E9500EC50CC /* AWindow_TextCount.cpp in Sources */,
 				7EC67E98194D9E9500EC50CC /* AWindow_ModeExecutableAlert.cpp in Sources */,
 				7EC67E6B194D9E9500EC50CC /* AView_Index.cpp in Sources */,
+				0DFFAC4120B9772C0020CABF /* lcode.c in Sources */,
 				7EC67E44194D9E9500EC50CC /* ACSVKeywordLoader.cpp in Sources */,
-				7EE492551CD7AEEB004B1BFE /* lopcodes.c in Sources */,
 				7EC67E83194D9E9500EC50CC /* AWindow_CandidateList.cpp in Sources */,
 				7EAA9608194DA21A00D46B64 /* main.mm in Sources */,
 				7EC67E75194D9E9500EC50CC /* AView_SubWindowStatusBar.cpp in Sources */,
 				7EC67E9C194D9E9500EC50CC /* AWindow_NewFTPFile.cpp in Sources */,
 				7EAA96B8194DA53C00D46B64 /* AView_SizeBox.cpp in Sources */,
 				7EAA96AB194DA53C00D46B64 /* ADocument.cpp in Sources */,
-				7EE492411CD7AEEB004B1BFE /* ldump.c in Sources */,
 				7EC67E6F194D9E9500EC50CC /* AView_Notification.cpp in Sources */,
-				7EE4923D1CD7AEEB004B1BFE /* ldebug.c in Sources */,
-				7EE4925D1CD7AEEB004B1BFE /* lstring.c in Sources */,
-				7EE492631CD7AEEB004B1BFE /* ltablib.c in Sources */,
 				7EC67E69194D9E9500EC50CC /* AView_Footer.cpp in Sources */,
 				7EAA9771194DA59B00D46B64 /* ANetworkWrapper.mm in Sources */,
 				7EAA976B194DA59B00D46B64 /* ACursorWrapper.mm in Sources */,
-				7EE492531CD7AEEB004B1BFE /* lobject.c in Sources */,
 				7EAA9778194DA59B00D46B64 /* AWrapperTest.mm in Sources */,
 				7EC67E53194D9E9500EC50CC /* ASameFolderLoader.cpp in Sources */,
 				7EC67E8E194D9E9500EC50CC /* AWindow_FolderList.cpp in Sources */,
@@ -5391,15 +5389,17 @@
 				7EAA964A194DA50C00D46B64 /* AObjectArrayItemTrash.cpp in Sources */,
 				7EC67E7D194D9E9500EC50CC /* AWindow_About.cpp in Sources */,
 				7EAA9777194DA59B00D46B64 /* AWindowWrapper.mm in Sources */,
+				0DFFAC5520B9772C0020CABF /* ldblib.c in Sources */,
 				7EAA972F194DA58B00D46B64 /* CocoaFontField.mm in Sources */,
 				7EAA963E194DA50C00D46B64 /* AArray.cpp in Sources */,
+				0DFFAC5320B9772C0020CABF /* linit.c in Sources */,
 				7EAA9772194DA59B00D46B64 /* AScrapWrapper.mm in Sources */,
+				0DFFAC5A20B977340020CABF /* lvm.c in Sources */,
 				7EC67E73194D9E9500EC50CC /* AView_SubWindowSeparator.cpp in Sources */,
-				7EE492391CD7AEEB004B1BFE /* lcode.c in Sources */,
 				7EAA96B6194DA53C00D46B64 /* AView_List.cpp in Sources */,
+				0DFFAC4520B9772C0020CABF /* lstring.c in Sources */,
 				7EAA96AC194DA53C00D46B64 /* ADynamicMenu.cpp in Sources */,
 				7EAA9654194DA50C00D46B64 /* Cocoa.mm in Sources */,
-				7EE492571CD7AEEB004B1BFE /* loslib.c in Sources */,
 				7EAA96B0194DA53C00D46B64 /* AThread.cpp in Sources */,
 				7EAA96C2194DA53C00D46B64 /* AWindow_ToolTip.cpp in Sources */,
 				7EC67E93194D9E9500EC50CC /* AWindow_IdInfo.cpp in Sources */,
@@ -5938,7 +5938,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 275;
+				CURRENT_PROJECT_VERSION = 287;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5995,7 +5995,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Daisuke Kamiyama";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 275;
+				CURRENT_PROJECT_VERSION = 287;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6129,7 +6129,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 275;
+				CURRENT_PROJECT_VERSION = 287;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = YES;
@@ -6187,7 +6187,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 275;
+				CURRENT_PROJECT_VERSION = 287;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = YES;
