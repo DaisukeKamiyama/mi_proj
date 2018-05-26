@@ -4080,7 +4080,6 @@ ABool	AppleScriptTest()
 	return result;
 }
 
-/*#1282
 //#567
 ABool	LuaTest()
 {
@@ -4107,7 +4106,7 @@ ABool	LuaTest()
 	GetApp().SPI_ExecuteCloseTextDocument(docID);
 	return true;
 }
-*/
+
 //DocumentTest用のモード設定
 void	DocumentTest_ModeSetup()
 {
@@ -5535,13 +5534,11 @@ ABool	AbsTest( const ABool inWrapTest )
 			if( DocumentTest(inWrapTest) == false )   result = false;
 		}
 		fprintf(stderr,"DocumentTest done\n");
-        /*#1282
 		//#567
 		{
 			if( LuaTest() == false )   result = false;
 		}
 		fprintf(stderr,"Lua Test done\n");
-         */
 		/* #1006により、このルートだとInternalEvent処理できないので、ファイルを開く箇所でAppleScriptエラーとなってしまうので、とりあえずここは外す
 		{
 			GetApp().SPI_GetTraceLogWindow().NVI_Hide();
