@@ -160,7 +160,6 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	//mModePrefDBArrayのリストのリスト途中への追加・削除は行わないので、リストのスレッドmutexは不要（SPI_GetModePrefDB()は多くコールされるので、重くなってしまう）
 	mModePrefDBArray.EnableThreadSafe(false);
 	
-	/*#1282
 	//Lua用関数登録 #567 #1170
 	lua_register(NVI_Lua_GetVM(),"print",AApp::Lua_Output);
 	lua_register(NVI_Lua_GetVM(),"GetMiLuaScriptingVersion",AApp::Lua_GetMiLuaScriptingVersion);
@@ -185,7 +184,6 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	AFileWrapper::GetResourceFile("mi.lua",miluaFile);
 	AText	errorText;
 	NVI_Lua_dofile(miluaFile,errorText);
-	*/
     
 	//EditBoxViewのデフォルトフォント・サイズを設定 win
 #if IMPLEMENTATION_FOR_MACOSX
@@ -5260,7 +5258,6 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			SPI_GetEnabledDefinesWindow().NVI_Show();
 			break;
 		}
-		/*#1282
 		//#567 #1170
 	  case kMenuItemID_OpenLuaConsole:
 		{
@@ -5268,7 +5265,6 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			SPI_GetTextDocumentByID(docID).NVI_RevealDocumentWithAView();
 			break;
 		}
-		*/
 		//#606
 	  case kMenuItemID_SwitchHandToolMode:
 		{
@@ -5833,7 +5829,7 @@ void	AApp::EVTDO_UpdateMenu()
 	//#467
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_EnableDefines,true);
 	//#567 #1170
-	//#1282 GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_OpenLuaConsole,true);
+	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_OpenLuaConsole,true);
 	//#606
 	AText	text;
 	{
@@ -9409,7 +9405,6 @@ AObjectID	AApp::SPNVI_CreateNewTextDocument( const AModeIndex inModeIndex, const
 /**
 LuaConsoleドキュメント生成
 */
-/*#1282
 AObjectID	AApp::SPNVI_CreateLuaConsoleDocument()
 {
 #if IMPLEMENTATION_FOR_WINDOWS
@@ -9432,7 +9427,6 @@ AObjectID	AApp::SPNVI_CreateLuaConsoleDocument()
 	SPI_GetTextDocumentByID(docID).SPI_Lua_Prompt();
 	return docID;
 }
-*/
 
 //#379
 /**
@@ -16230,8 +16224,6 @@ void	AApp::SPI_GetRecentCompletionWordArray( AHashTextArray& outWordArray ) cons
 	}
 }
 
-//#1282
-#if 0
 #pragma mark ===========================
 
 #pragma mark ---Lua
@@ -16990,7 +16982,6 @@ int	AApp::Lua_AutoTest( lua_State* L )
 	}
 	return 0;
 }
-#endif
 
 #pragma mark ===========================
 
