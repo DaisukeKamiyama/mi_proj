@@ -123,6 +123,7 @@ class AMemoryWrapper
 	*/
 	static ABool	Memcmp( const void* inA, const void* inB, const AByteCount inByteCount )
 	{
+		/*#1275 memcmpの方が速い（多数回実行テスト結果：memcmp：3.07s 自作:4.40s）のでmemcmpにする。）
 		//memcmpでも良いかもしれない。（memcmpのロジックの中身が分からないので、速度的懸念から、自作にしている。）
 		const unsigned char* ptra = reinterpret_cast<const unsigned char*>(inA);
 		const unsigned char* ptrb = reinterpret_cast<const unsigned char*>(inB);
@@ -131,6 +132,8 @@ class AMemoryWrapper
 			if( ptra[i] != ptrb[i] )   return false;
 		}
 		return true;
+		*/
+		return (::memcmp(inA,inB,inByteCount)==0);
 	}
 	
 	/**
