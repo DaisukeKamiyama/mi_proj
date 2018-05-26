@@ -35,11 +35,13 @@ AApplication
 #include "AUnicodeData.h"
 #include "ATextArrayMenuManager.h"
 
+/*#1282
 //#567 Lua #1170
 extern "C"{
 #include "../../lua/src/lualib.h"
 #include "../../lua/src/lauxlib.h"
 }
+*/
 
 typedef ANumber	ADocumentType;
 
@@ -428,6 +430,7 @@ private:
 	void					NVI_StopSpeaking();
 	ABool					NVI_IsSpeaking() const;
 	
+	/*#1282
 	//#567 #1170
 	
 	//Lua
@@ -459,6 +462,7 @@ private:
 	static void				Lua_CheckArgumentEnd( lua_State* L );
   private:
 	lua_State*						mLuaVM;
+	*/
 	
 	//#904
 	//JavaScript
