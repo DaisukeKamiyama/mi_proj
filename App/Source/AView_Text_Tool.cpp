@@ -119,7 +119,6 @@ void	AView_Text::SPI_DoTool( const AFileAcc& inFile, const AModifierKeys inModif
 		GetApp().SPI_ExecuteJavaScript(script,folder);
 		return;
 	}
-	/*#1282
 	//#567 Luaファイル実行
 	if( suffix.Compare(".lua") == true )
 	{
@@ -137,7 +136,6 @@ void	AView_Text::SPI_DoTool( const AFileAcc& inFile, const AModifierKeys inModif
 		}
 		return;
 	}
-     */
 	//
 	AFileAttribute	attr;
 	file.GetFileAttribute(attr);
