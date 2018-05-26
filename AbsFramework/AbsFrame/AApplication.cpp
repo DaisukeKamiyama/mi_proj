@@ -53,7 +53,7 @@ AApplication::AApplication() : AObjectArrayItem(NULL), mEnableDebugMenu(false), 
 ,mWindowArray(NULL)//#693 ,true)//#417
 ,mViewArray(NULL)//#693 ,true)//#417
 ,mThreadArray(NULL)//#693 ,true)//#417
-,mLuaVM(NULL)//#567 #1170
+//#1282 ,mLuaVM(NULL)//#567 #1170
 ,mToolTipWindowID(kObjectID_Invalid)//#688
 ,mNowDoingInternalEvent(false)
 {
@@ -143,9 +143,11 @@ AApplication::AApplication() : AObjectArrayItem(NULL), mEnableDebugMenu(false), 
 	//行折り返し計算用Offscreen生成
 	CWindowImp::InitLineBreakOffscreen();
 #endif
+	/*#1282
 	//#567 Lua VMを開く #1170
     mLuaVM = ::lua_open();
 	::luaL_openlibs(mLuaVM);
+	*/
 }
 /**
 デストラクタ
@@ -158,9 +160,11 @@ AApplication::~AApplication()
 	AFileWrapper::GetTempFolder(tempFolder);
 	tempFolder.DeleteFileOrFolderRecursive();
 	
+	/*#1282
 	//
 	//#567 Lua VMを閉じる #1170
 	::lua_close(mLuaVM);
+	*/
 	
 	//sApplication = NULL;
 	//cURL終了処理 #427
@@ -1991,6 +1995,8 @@ ABool	AApplication::NVI_IsSpeaking() const
 	return mAppImp.IsSpeaking();
 }
 
+//#1282
+#if 0
 #pragma mark ===========================
 
 #pragma mark ---Lua
@@ -2189,6 +2195,7 @@ void	AApplication::Lua_CheckArgumentEnd( lua_State* L )
 		luaL_error(L,"too many arguments");
 	}
 }
+#endif
 
 #pragma mark ===========================
 
