@@ -8933,7 +8933,6 @@ void	AView_Text::InsertTextToDocument( const ATextPoint& inInsertPoint, const AT
 		//
 		AdjustScroll(GetCaretTextPoint());
 	}
-    /*#1282
 	//#567 LuaConsole コマンド実行処理 #1170
 	if( GetTextDocumentConst().SPI_GetLuaConsoleMode() == true && insertedLineCount > 0 )
 	{
@@ -8950,7 +8949,6 @@ void	AView_Text::InsertTextToDocument( const ATextPoint& inInsertPoint, const AT
 			GetTextDocument().SPI_Lua_Prompt();
 		}
 	}
-     */
 	
 	if( insertedLineCount > 0 )
 	{
