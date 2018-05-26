@@ -683,7 +683,7 @@ private:
 							const AWindowID inCreateTabInWindowID = kObjectID_Invalid, 
 							const ABool inAlwaysCreateWindow = false,
 							const ARect inInitialWindowBounds = kRect_0000);//sdfcheck
-	AObjectID				SPNVI_CreateLuaConsoleDocument();//#567 #1170
+	//#1282 AObjectID				SPNVI_CreateLuaConsoleDocument();//#567 #1170
 	ADocumentID				SPNVI_CreateDiffTargetDocument( const AText& inTitle, const AText& inDocumentText,
 							const AModeIndex inModeIndex, const AText& inTextEncodingName,
 							const AIndex inInitialSelectStart, const AIndex inInitialSelectEnd, 
@@ -1998,6 +1998,7 @@ private:
 #endif
 	*/
 	
+	/*#1282 
 	//ATest	mTest;
 	//Lua #567 #1170
   public:
@@ -2036,6 +2037,7 @@ private:
 	static int				Lua_Output( lua_State* L );
 	static int				Lua_GetMiLuaScriptingVersion( lua_State* L );
 	static int				Lua_AutoTest( lua_State* L );
+	*/
 	
 	//コンテクストメニュー
 	
