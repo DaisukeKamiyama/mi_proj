@@ -3,77 +3,134 @@
 GlobalAttribute_SDFVersion("3.0")
 GlobalAttribute_SDFName("Markdown")
 
-GlobalAttribute_SyntaxPart("Markdown","Markdown",idle,
+GlobalAttribute_SyntaxPart("Markdown","Markdown",idle_linestart,
 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
 "")
 
+# 行頭
+state(idle_linestart)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_Stable
+	# アンダーバー強調
+	{"_", {PushState(underbar1)}}
+	{"__", {PushState(underbar2)}}
+	{"___", {PushState(underbar3)}}
+	# list
+	{regexp"[\t ]*\*",{PushState(list)}}
+	{regexp"[\t ]*[0-9]+\.",{PushState(list)}}
+	# code
+	{"`", {PushState(backquote1)}}
+	# bracket
+	{"[", {ChangeStateFromNextChar(bracket)}}
+	# エスケープ
+	{"\\",{EscapeNextChar,ChangeState(idle)}}
+	# 行末なら行頭状態へ遷移
+	{lineend,{ChangeState(idle_linestart)}}
+	# それ以外はidleへ遷移
+	{default,{ChangeState(idle)}}
+}
+
+# 行頭以外の本文
 state(idle)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_Stable
+	# アンダーバー強調
 	{"_", {PushState(underbar1)}}
 	{"__", {PushState(underbar2)}}
 	{"___", {PushState(underbar3)}}
-	
+	# アスタリスク強調
 	{"*", {PushState(asterisk1)}}
 	{"**", {PushState(asterisk2)}}
 	{"***", {PushState(asterisk3)}}
-	
+	# code
 	{"`", {PushState(backquote1)}}
+	# bracket
+	{"[", {ChangeStateFromNextChar(bracket)}}
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 行末なら行頭状態へ遷移
+	{lineend,{ChangeState(idle_linestart)}}
 }
 
+# list
+state(list)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_ColorSlot(1)
+	{default,{PopState}}
+}
+
+# アンダーバー強調
 state(underbar1)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"_",{PopStateFromNextChar}}
 }
 state(underbar2)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"__",{PopStateFromNextChar}}
 }
 state(underbar3)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"___",{PopStateFromNextChar}}
 }
 
+# アスタリスク強調
 state(asterisk1)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"*",{PopStateFromNextChar}}
 }
 state(asterisk2)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"**",{PopStateFromNextChar}}
 }
 state(asterisk3)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
-	StateAttribute_ColorSlot(3)
+	StateAttribute_ColorSlot(32)
 	{"***",{PopStateFromNextChar}}
 }
 
+# code
 state(backquote1)
 {
 	StateAttribute_SyntaxPart("Markdown")
-	StateAttribute_Stable
 	StateAttribute_ColorSlot(33)
 	{"`",{PopStateFromNextChar}}
 }
 
+# bracket
+state(bracket)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_ColorSlot(0)
+	{"]",{ChangeState(afterbracket)}}
+}
+state(afterbracket)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	{"(",{ChangeStateFromNextChar(url)}}
+	{default,{ChangeState(idle)}}
+}
+
+# URL
+state(url)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_ColorSlot(2)
+	{")",{ChangeState(idle)}}
+}
 
 
