@@ -16553,6 +16553,40 @@ void	ADocument_Text::SPI_UpdatePreview( const AIndex inLineIndex )
 	}
 	else
 	{
+		/*#1257åüì¢
+		AText	modename;
+		SPI_GetModeRawName(modename);
+		if( modename.Compare("Markdown") == true )
+		{
+			AFileAcc	docfile;
+			NVI_GetFile(docfile);
+			AText	docpath;
+			docfile.GetPath(docpath);
+			//
+			AFileAcc	tmpFolder;
+			GetApp().SPI_GetTempFolder(tmpFolder);
+			AFileAcc	tmpFile;
+			tmpFile.SpecifyChildFile(tmpFolder,"markdown_preview.html");
+			tmpFile.CreateFile();
+			AText	tmpFilePath;
+			tmpFile.GetPath(tmpFilePath);
+			//
+			{
+				AText	command;
+				command.AddCstring("/usr/local/bin/pandoc \"");
+				command.AddText(docpath);
+				command.AddCstring("\" -s -o \"");
+				command.AddText(tmpFilePath);
+				command.AddCstring("\"");
+				AStCreateCstringFromAText	cstr(command);
+				system(cstr.GetPtr());//asyncÇ…ÇµÇ»Ç¢Ç∆íxÇ¢
+			}
+			
+			//ÉçÅ[Éh
+			GetApp().SPI_RequestLoadToPreviewerWindow(SPI_GetFirstWindowID(),tmpFilePath);
+			return;
+		}
+		*/
 		/*
 		AText	modename;
 		SPI_GetModeRawName(modename);
