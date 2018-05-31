@@ -1293,7 +1293,7 @@ ABool	AWindow_TextSheet_SCMCommit::EVTDO_Clicked( const AControlID inID, const A
 				NVI_SetControlEnable(kMessageText,false);
 				NVI_SetControlEnable(kAdditionalArgText,false);
 				NVI_SetControlEnable(kCancelButton,false);
-				NVI_SwitchFocusTo(kResultText);
+				//#0 ここはタブ切り替え前なので下へ移動 NVI_SwitchFocusTo(kResultText);
 				NVI_RefreshWindow();
 				NVI_UpdateWindow();
 				AddRecentMessage();
@@ -1301,6 +1301,7 @@ ABool	AWindow_TextSheet_SCMCommit::EVTDO_Clicked( const AControlID inID, const A
 				
 				//下部のtab viewを結果表示するほうのタブにする
 				NVI_SetControlBool(kTabViewSelect_Result,true);
+				NVI_SwitchFocusTo(kResultText);//#0
 				
 				//
 				AText	text("OK");
