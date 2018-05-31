@@ -3555,9 +3555,9 @@ void	AView_Text::InsertToolText_Command_FILE( const AText& inText, ATextIndex& i
 				AText	command;
 				command.AddText(pandoc_command);
 				command.AddCstring(" \"");
-				command.AddText(docpath);
-				command.AddCstring("\" -o \"");
 				command.AddText(tmpFilePath);
+				command.AddCstring("\" \"");
+				command.AddText(docpath);
 				command.AddCstring("\"");
 				AStCreateCstringFromAText	cstr(command);
 				system(cstr.GetPtr());
