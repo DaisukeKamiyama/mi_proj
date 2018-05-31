@@ -693,6 +693,7 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	RegisterToolCommand("MACRO1",tc_MACRO1,keyAction_macro1);//#724
 	RegisterToolCommand("HINT",tc_HINT);
 	RegisterToolCommand("FIND-EXTRACT",tc_FIND_EXTRACT);
+	RegisterToolCommand("BROWSE_PANDOC",tc_BROWSE_PANDOC);//#1286
 	//#724 LoadToolbarIcon();
 	_AInfo("AApp::AApp() done.",this);
 }
