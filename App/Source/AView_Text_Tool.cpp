@@ -1600,6 +1600,7 @@ ABool	AView_Text::InsertToolText_Command( const AText& inText, ATextIndex& ioPos
 	  case tc_TOOL:
 	  case tc_KEYTOOL:
 	  case tc_BROWSE:
+	  case tc_BROWSE_PANDOC://#1286
 		{
 			InsertToolText_Command_FILE(inText,ioPos,inDepth,inToolCommandID,outText);
 			break;
@@ -3524,47 +3525,100 @@ void	AView_Text::InsertToolText_Command_FILE( const AText& inText, ATextIndex& i
 		}
 	  case tc_BROWSE:
 		{
-			if( GetTextDocumentConst().NVI_IsDirty() == true && mToolData_DontShowDropWarning == false )
+			//#1286 Browse()関数化
+			AFileAcc	file;
+			GetTextDocumentConst().NVI_GetFile(file);
+			Browse(inText,ioPos,inDepth,inToolCommandID,outText,file);
+			break;
+		}
+		//#1286
+	  case tc_BROWSE_PANDOC:
+		{
+			//pandocコマンド取得
+			AText	pandoc_command;
+			ToolCommand_ReadArg1(inText,ioPos,pandoc_command);
+			//ファイルパス取得
+			AFileAcc	file;
+			GetTextDocumentConst().NVI_GetFile(file);
+			AText	docpath;
+			file.GetPath(docpath);
+			//出力先テンポラリファイルパス取得
+			AFileAcc	tmpFolder;
+			GetApp().SPI_GetTempFolder(tmpFolder);
+			AFileAcc	tmpFile;
+			tmpFile.SpecifyChildFile(tmpFolder,"browse_pandoc_preview.html");
+			tmpFile.CreateFile();
+			AText	tmpFilePath;
+			tmpFile.GetPath(tmpFilePath);
+			//pandocコマンド実行
 			{
-				mToolData_DropWarningFlag = true;
+				AText	command;
+				command.AddText(pandoc_command);
+				command.AddCstring(" \"");
+				command.AddText(docpath);
+				command.AddCstring("\" -o \"");
+				command.AddText(tmpFilePath);
+				command.AddCstring("\"");
+				AStCreateCstringFromAText	cstr(command);
+				system(cstr.GetPtr());
+			}
+			//ブラウズ
+			Browse(inText,ioPos,inDepth,inToolCommandID,outText,tmpFile);
+			break;
+		}
+	  default:
+		{
+			//処理なし
+			break;
+		}
+	}
+}
+
+void	AView_Text::Browse( const AText& inText, ATextIndex& ioPos, const ANumber inDepth, const AToolCommandID inToolCommandID, AText& outText, AFileAcc& inFile )
+{
+	if( GetTextDocumentConst().NVI_IsDirty() == true && mToolData_DontShowDropWarning == false )
+	{
+		mToolData_DropWarningFlag = true;
+		return;
+	}
+	AText	text;
+	ToolCommand_ReadArg1(inText,ioPos,text);
+	if( text.GetItemCount() > 4 )
+	{
+		if( text.Get(0) == '-' && text.Get(1) == '-' && text.Get(2) == '-' && text.Get(3) == '-' )
+		{
+			text.Delete(0,4);
+		}
+	}
+	if( GetTextDocumentConst().SPI_IsRemoteFileMode() == false )
+	{
+#if IMPLEMENTATION_FOR_MACOSX
+		//#194
+		if( GetTextDocumentConst().SPI_IsODBMode() == true )
+		{
+			AText	customPath;
+			GetTextDocumentConst().SPI_GetODBCustomPath(customPath);
+			if( customPath.GetItemCount() > 0 )
+			{
+				AText	httpurl;
+				GetApp().GetAppPref().GetHTTPURLFromFTPURL(customPath,httpurl);
+				AAppAcc	appAcc;
+				appAcc.SetFromToolCommandText(text);
+				ALaunchWrapper::OpenURLWithSpecifiedApp(appAcc,httpurl);
 				return;
 			}
-			AText	text;
-			ToolCommand_ReadArg1(inText,ioPos,text);
-			if( text.GetItemCount() > 4 )
-			{
-				if( text.Get(0) == '-' && text.Get(1) == '-' && text.Get(2) == '-' && text.Get(3) == '-' )
-				{
-					text.Delete(0,4);
-				}
-			}
-			if( GetTextDocumentConst().SPI_IsRemoteFileMode() == false )
-			{
-#if IMPLEMENTATION_FOR_MACOSX
-				//#194
-				if( GetTextDocumentConst().SPI_IsODBMode() == true )
-				{
-					AText	customPath;
-					GetTextDocumentConst().SPI_GetODBCustomPath(customPath);
-					if( customPath.GetItemCount() > 0 )
-					{
-						AText	httpurl;
-						GetApp().GetAppPref().GetHTTPURLFromFTPURL(customPath,httpurl);
-						AAppAcc	appAcc;
-						appAcc.SetFromToolCommandText(text);
-						ALaunchWrapper::OpenURLWithSpecifiedApp(appAcc,httpurl);
-						break;
-					}
-				}
+		}
 #endif				
-				AAppAcc	appAcc;//win(NULL,NULL);
-				appAcc.SetFromToolCommandText(text);
-				AFileAcc	file;
-				GetTextDocumentConst().NVI_GetFile(file);
-				
-				//R0212
-				//file://のURLOpenで開けばSafari上で現在表示中のスクロール位置で更新表示されるので不要となってしまった
-				/*AText	anchor;
+		AAppAcc	appAcc;//win(NULL,NULL);
+		appAcc.SetFromToolCommandText(text);
+		/*#1286
+		AFileAcc	file;
+		GetTextDocumentConst().NVI_GetFile(file);
+		*/
+		
+		//R0212
+		//file://のURLOpenで開けばSafari上で現在表示中のスクロール位置で更新表示されるので不要となってしまった
+		/*AText	anchor;
 				ATextPoint	spt,ept;
 				SPI_GetSelect(spt,ept);
 				GetTextDocumentConst().SPI_GetJumpMenuItemInfoTextByLineIndex(spt.y,anchor);
@@ -3584,26 +3638,18 @@ void	AView_Text::InsertToolText_Command_FILE( const AText& inText, ATextIndex& i
 					url.AddText(anchor);
 					ALaunchWrapper::OpenURL(url);
 				}*/
-				//ALaunchWrapper::OpenURL(file);B0000 これではアプリ指定の意味がない
-				ALaunchWrapper::Drop(appAcc,file);
-			}
-			else
-			{
-				AText	ftpurl, httpurl;
-				GetTextDocumentConst().SPI_GetRemoteFileURL(ftpurl);
-				GetApp().GetAppPref().GetHTTPURLFromFTPURL(ftpurl,httpurl);
-				//#214 ALaunchWrapper::OpenURL(httpurl);
-				AAppAcc	appAcc;
-				appAcc.SetFromToolCommandText(text);
-				ALaunchWrapper::OpenURLWithSpecifiedApp(appAcc,httpurl);//#214
-			}
-			break;
-		}
-	  default:
-		{
-			//処理なし
-			break;
-		}
+		//ALaunchWrapper::OpenURL(file);B0000 これではアプリ指定の意味がない
+		ALaunchWrapper::Drop(appAcc,inFile);
+	}
+	else
+	{
+		AText	ftpurl, httpurl;
+		GetTextDocumentConst().SPI_GetRemoteFileURL(ftpurl);
+		GetApp().GetAppPref().GetHTTPURLFromFTPURL(ftpurl,httpurl);
+		//#214 ALaunchWrapper::OpenURL(httpurl);
+		AAppAcc	appAcc;
+		appAcc.SetFromToolCommandText(text);
+		ALaunchWrapper::OpenURLWithSpecifiedApp(appAcc,httpurl);//#214
 	}
 }
 
