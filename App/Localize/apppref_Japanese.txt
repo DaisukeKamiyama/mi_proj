@@ -501,9 +501,9 @@ Bottom Margin for edit :
 * This setting may not be effective for some networks or apps.
 ※この設定は一部のネットワーク／アプリには適用されません。
 Specify files which should be exclude from some features.
-一部機能において検索対象外とすべきファイルを定義します。
-Files which have these suffixes are handled as non-text file. These are not searched in Multi File Find feature with "Text File Only" checked .
-ここで設定したワイルドカードに一致するファイルは、マルチファイル検索で「テキストファイルのみ」を ON にした場合に、検索の対象外となります。
+「テキストファイル」ではないファイルを定義します
+Files which have these suffixes are handled as non-text file.
+これらのファイルは、マルチファイル検索の「テキストファイルのみ」をON時、検索対象外になります。また、「選択部分を開く」機能使用時、macOSで開きます。
 Candidate Window
 候補ウインドウ
 Key for Next Completion :
