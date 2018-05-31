@@ -393,7 +393,9 @@ class AView_Text : public AView
 	void					InsertToolText_Command_FILE( const AText& inText, ATextIndex& ioPos, const ANumber inDepth, 
 			const AToolCommandID inToolCommandID, AText& outText );
 	void					InsertToolText_Command_LAUNCH( const AText& inText, ATextIndex& ioPos, const ANumber inDepth, 
-			const AToolCommandID inToolCommandID, AText& outText );
+														   const AToolCommandID inToolCommandID, AText& outText );
+	void					Browse( const AText& inText, ATextIndex& ioPos, const ANumber inDepth, 
+									const AToolCommandID inToolCommandID, AText& outText, AFileAcc& inFile );//#1286
 	void					ToolCommand_ReadFindArg1( const AText& inText, ATextIndex& ioPos, AText& outArg );
 	void					ToolCommand_ReadArg1( const AText& inText, ATextIndex& ioPos, AText& outArg );
 	void					ToolCommand_ReadFindArg2( const AText& inText, ATextIndex& ioPos, AText& outArg1, AText& outArg2 );
