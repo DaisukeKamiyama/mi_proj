@@ -340,6 +340,7 @@ class AModePrefDB : public ADataBase
 		outToolFolder = mToolMenuArray_Folder.GetObjectConst(index);
 	}
   private:
+	void						WriteToolOrderFile( const AIndex arrayIndex, const ABool autoUpdate );//#0 
 	void						LoadToolRecursive( const AFileAcc& inFolder, const AObjectID inDynamicMenuObjectID,
 								const ABool inAutoUpdate );//#427
 	void						GetToolPrefFile( const AIndex inToolMenuArrayIndex, const ABool inAutoUpdate, AFileAcc& outToolPrefFile ) const;//#427
