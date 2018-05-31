@@ -12,10 +12,12 @@
 	"Q Quote",
 	"L Link",
 	"I Image",
-	"- Horizontal Line"
+	"= Horizontal Line",
+	"R Browse"
 }
 "ToolArray_Enabled" = 
 {
+	"true",
 	"true",
 	"true",
 	"true",
@@ -42,10 +44,12 @@
 	"0",
 	"0",
 	"0",
-	"0"
+	"0",
+	"82"
 }
 "ToolArray_ShortcutModifiers_ControlKey" = 
 {
+	"false",
 	"false",
 	"false",
 	"false",
@@ -72,10 +76,12 @@
 	"false",
 	"false",
 	"false",
+	"false",
 	"false"
 }
 "ToolArray_Grayout" = 
 {
+	"false",
 	"false",
 	"false",
 	"false",
@@ -106,10 +112,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_EnglishName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -136,10 +144,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_GermanName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -166,10 +176,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_ItalianName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -196,10 +208,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_SwedishName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -226,10 +240,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_DanishName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -256,10 +272,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_PortugueseName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -286,10 +304,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_TraditionalChineseName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -316,10 +336,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_PolishName" = 
 {
+	"",
 	"",
 	"",
 	"",
@@ -346,10 +368,12 @@
 	"",
 	"",
 	"",
+	"",
 	""
 }
 "ToolArray_RussianName" = 
 {
+	"",
 	"",
 	"",
 	"",
