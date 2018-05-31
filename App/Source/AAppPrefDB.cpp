@@ -1719,8 +1719,11 @@ ABool	AAppPrefDB::LaunchAppWithFile( const AFileAcc& inFile, const AModifierKeys
 	//B0326 旧バージョンのLaunchAndOpenの動作に合わせる
 	//タイプがTEXT, INDX, 未設定ならmiで開く
 	//それ以外ならOSに開かせる B0326再修正（ClassicDB使用できなくなってる？）
-	//★非テキストファイル判定を使う？
-	if( type == 'TEXT' || type == 'INDX' || type == kOSTypeNULL )//★ほとんどのファイルはtype nullなので、miで開くことになる
+	
+	//環境設定の「機能」タブの「非テキストファイル」で指定したファイルかどうかを判定 #1287
+	ABool isBinaryFile = GetApp().GetAppPref().IsBinaryFile(inFile);
+	//miで開くかどうかを判定
+	if( type == 'TEXT' || type == 'INDX' || isBinaryFile == false )//#1287 type == kOSTypeNULL )//kOSTypeNULLを入れるとほとんどのファイルはtype nullなので、miで開くことになる
 	{
 		//GetApp().SPNVI_CreateDocumentFromLocalFile(inFile);
 		AText	path;
