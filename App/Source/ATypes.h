@@ -1519,6 +1519,7 @@ enum AToolCommandID
 	tc_MACRO1,//#724
 	tc_HINT,
 	tc_FIND_EXTRACT,
+	tc_BROWSE_PANDOC,//#1286
 	tc_COUNT_OF_TOOLCOMMAND
 };
 
