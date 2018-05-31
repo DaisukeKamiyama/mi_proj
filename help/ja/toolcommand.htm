@@ -2184,6 +2184,24 @@
 					</tr>
 					
 					<tr>
+						<td valign="top"><a name="BROWSE_PANDOC"><p><code>BROWSE_PANDOC(<i>command</i>)(<i>appname</i>)</code></p></a></td><td>
+							<p>
+								現在編集中のファイルを、UNIXコマンド<i>command</i>でHTMLファイルへ変換したのち、<br>
+								<i>appname</i>という名前のアプリケーションを起動し、起動したアプリケーションでブラウズします。<br>
+								<i>appname</i>の記述方法については<a href="#appname">アプリケーションの指定方法</a>を参照してください。
+								<div class="sample">
+									<p>ツール記述例：</p>
+									<pre>&lt;&lt;&lt;BROWSE_PANDOC(/usr/local/bin/pandoc -s -o)(Safari)</pre>
+									<p>→実行結果：pandocコマンドによりHTMLファイルへ変換し、Safariでブラウズします。</p>
+								</div>
+								※基本的にpandocコマンドでの使用を前提にしていますが、<i>command</i>の後が、出力ファイルパス、入力ファイルパスの順であれば、他のコマンドも使用可能だと思います。<br>
+								※pandocコマンドは別途Homebrew等を使用してインストールしてください。
+							</p>
+						</td>
+						<td></td>
+					</tr>
+					
+					<tr>
 						<td valign="top"><a name="LAUNCH"><p><code>LAUNCH(<i>appname</i>)</code></p></a></td><td>
 							<p>
 								<i>appname</i>という名前のアプリケーションを起動します。<br>
