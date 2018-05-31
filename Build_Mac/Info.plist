@@ -133,7 +133,7 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>mi text editor version 3.0.0 version Copyright © 2018 Daisuke Kamiyama  All rights reserved.  </string>
+	<string>mi text editor version 3.0.1 version Copyright © 2018 Daisuke Kamiyama  All rights reserved.  </string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
