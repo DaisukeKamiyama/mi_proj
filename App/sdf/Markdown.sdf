@@ -22,6 +22,8 @@ state(idle_linestart)
 	{regexp"[\t ]*[0-9]+\.",{PushState(list)}}
 	# code
 	{"`", {PushState(backquote1)}}
+	{"``", {PushState(backquote2)}}
+	{"```", {PushState(backquote3)}}
 	# bracket
 	{"[", {ChangeStateFromNextChar(bracket)}}
 	# エスケープ
@@ -47,6 +49,8 @@ state(idle)
 	{"***", {PushState(asterisk3)}}
 	# code
 	{"`", {PushState(backquote1)}}
+	{"``", {PushState(backquote2)}}
+	{"```", {PushState(backquote3)}}
 	# bracket
 	{"[", {ChangeStateFromNextChar(bracket)}}
 	# エスケープ
@@ -68,18 +72,27 @@ state(underbar1)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"_",{PopStateFromNextChar}}
 }
 state(underbar2)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"__",{PopStateFromNextChar}}
 }
 state(underbar3)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"___",{PopStateFromNextChar}}
 }
 
@@ -88,18 +101,27 @@ state(asterisk1)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"*",{PopStateFromNextChar}}
 }
 state(asterisk2)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"**",{PopStateFromNextChar}}
 }
 state(asterisk3)
 {
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(32)
+	# エスケープ
+	{"\\",{EscapeNextChar}}
+	# 強調終了
 	{"***",{PopStateFromNextChar}}
 }
 
@@ -109,6 +131,18 @@ state(backquote1)
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(33)
 	{"`",{PopStateFromNextChar}}
+}
+state(backquote2)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_ColorSlot(33)
+	{"``",{PopStateFromNextChar}}
+}
+state(backquote3)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	StateAttribute_ColorSlot(33)
+	{"```",{PopStateFromNextChar}}
 }
 
 # bracket
