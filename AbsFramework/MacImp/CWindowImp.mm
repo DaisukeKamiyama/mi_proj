@@ -14279,10 +14279,13 @@ NSFont取得
 */
 NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFontSize, const ATextStyle inTextStyle )
 {
-	//最後に使ったキャッシュと同じフォントならそれを返す #1275
-	if( sLastNSFont != nil && inFontName.Compare(sLastNSFont_FontName) == true && inFontSize == sLastNSFont_FontSize && inTextStyle == sLastNSFont_TextStyle )
+	//最後に使ったキャッシュと同じフォントならそれを返す（sLast～アクセスがスレッドセーフではないのでメインスレッドの場合のみ） #1275
+	if( ABaseFunction::InMainThread() == true )
 	{
-		return sLastNSFont;
+		if( sLastNSFont != nil && inFontName.Compare(sLastNSFont_FontName) == true && inFontSize == sLastNSFont_FontSize && inTextStyle == sLastNSFont_TextStyle )
+				{
+			return sLastNSFont;
+		}
 	}
 	//フォント名・フォントサイズ・スタイルからkey文字列生成
 	AText	key;
@@ -14298,11 +14301,14 @@ NSFont*	CWindowImp::GetNSFont( const AText& inFontName, const AFloatNumber inFon
 		//キャッシュにヒットしたら、それを返す
 		//キャッシュからフォント取得
 		NSFont* font = sNSFontCache_NSFont.Get(cacheIndex);
-		//最後に使ったキャッシュを保存する #1275
-		sLastNSFont = font;
-		sLastNSFont_FontName.SetText(inFontName);
-		sLastNSFont_FontSize = inFontSize;
-		sLastNSFont_TextStyle = inTextStyle;
+		//最後に使ったキャッシュを保存する（sLast～アクセスがスレッドセーフではないのでメインスレッドの場合のみ） #1275
+		if( ABaseFunction::InMainThread() == true )
+		{
+			sLastNSFont = font;
+			sLastNSFont_FontName.SetText(inFontName);
+			sLastNSFont_FontSize = inFontSize;
+			sLastNSFont_TextStyle = inTextStyle;
+		}
 		return font;
 	}
 	else
