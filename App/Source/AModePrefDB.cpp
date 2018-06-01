@@ -22,8 +22,6 @@ AModePref
 
 */
 
-#include "stdafx.h"
-
 #include "AModePrefDB.h"
 #ifndef MODEPREFCONVERTER
 //modeprefconverterでは使用しない箇所 #1034
@@ -1087,6 +1085,8 @@ void	AModePrefDB::LoadDB()//#852
 	//R0210 
 	UpdateSuffixHash();
 	
+	/*#1275 アプリ内のモードファイルからコピーするのではなく、アプリ内のモードファイルを直接参照するようにする。
+	アプリ更新後最初だけ実行されるだけだが、HTMLモードの場合けっこう時間かかる（5秒程度）ので、改善する。
 	//==================アプリケーション内のモードファイルからの自動更新==================
 	if( GetData_Bool(AModePrefDB::kEnableModeUpdateFromWeb) == false )
 	{
@@ -1129,6 +1129,7 @@ void	AModePrefDB::LoadDB()//#852
 			SetData_Text(kAutoUpdateFromAppDateTimeText,thisAppModifiedDateTimeText);
 		}
 	}
+	*/
 	
 	//#427 
 	//==================自動更新データ読み込み==================
@@ -3295,10 +3296,16 @@ void	AModePrefDB::LoadPreviewPlugin()
 	mPreviewPluginText.DeleteAll();
 	mPreviewPluginExist = false;
 	//プレビュープラグインが存在していれば、読み込み
+	/*#1275
 	AFileAcc	modefolder;
 	GetModeFolder(modefolder);
 	AFileAcc	file;
 	file.SpecifyChild(modefolder,"autoupdate/data/preview.js");
+	*/
+	AFileAcc	autoupdateFolder;
+	GetAutoUpdateFolder(autoupdateFolder);
+    AFileAcc    file;
+	file.SpecifyChild(autoupdateFolder,"data/preview.js");
 	if( file.Exist() == true )
 	{
 		file.ReadTo(mPreviewPluginText);
@@ -5157,6 +5164,7 @@ void	AModePrefDB::WriteToolOrderFile( const AObjectID inMenuObjectID )
 		*
 	}
 	*/
+	/*#1275 ルート以外のメニューでもautoupdate/userそれぞれのtoolpref.miを保存しようとしていたので、修正する。
 	//#427 AutoUpdateのツールと、User定義のツールそれぞれtoolpref.miに保存するためのループ
 	for( AIndex j = 0; j <= 1; j++ )
 	{
@@ -5166,95 +5174,121 @@ void	AModePrefDB::WriteToolOrderFile( const AObjectID inMenuObjectID )
 		{
 			autoUpdate = true;
 		}
-		//
-		//#305
-		//ToolPrefDB書き込み
-		AToolPrefDB	toolPrefDB;
-		for( AIndex i = 0; i < mToolItemArray_File.GetObjectConst(arrayIndex).GetItemCount(); i++ )
-		{
-			//#427 自動更新／ユーザー編集どちらかのみをそれぞれtoolPrefDBへ書き込み
-			if( mToolItemArray_AutoUpdate.GetObjectConst(arrayIndex).Get(i) != autoUpdate )
-			{
-				continue;
-			}
-			//#427 statictextツールはtoolprefに書きださない
-			AText	staticText;
-			mToolItemArray_StaticText.GetObjectConst(arrayIndex).Get(i,staticText);
-			if( staticText.GetItemCount() > 0 )
-			{
-				continue;
-			}
-			//
-			AText	filename;
-			mToolItemArray_File.GetObjectConst(arrayIndex).GetObjectConst(i).GetFilename(filename,false);
-			//設定
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FileName,filename);
-			toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_Enabled,
-						mToolItemArray_Enabled.GetObjectConst(arrayIndex).Get(i));
-			toolPrefDB.Add_NumberArray(AToolPrefDB::kToolArray_Shortcut,
-						mToolItemArray_Shortcut.GetObjectConst(arrayIndex).Get(i));
-			toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_ShortcutModifiers_ControlKey,
-						AKeyWrapper::IsControlKeyOnMenuShortcut(mToolItemArray_Modifiers.GetObjectConst(arrayIndex).Get(i)));
-			toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_ShortcutModifiers_ShiftKey,
-						AKeyWrapper::IsShiftKeyOnMenuShortcut(mToolItemArray_Modifiers.GetObjectConst(arrayIndex).Get(i)));
-			toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_Grayout,
-						mToolItemArray_Grayout.GetObjectConst(arrayIndex).Get(i));
-			//多言語タイトル
-			AText	multiLangTitle;
-			mToolItemArray_JapaneseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_JapaneseName,multiLangTitle);
-			mToolItemArray_EnglishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_EnglishName,multiLangTitle);
-			mToolItemArray_FrenchName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FrenchName,multiLangTitle);
-			mToolItemArray_GermanName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_GermanName,multiLangTitle);
-			mToolItemArray_SpanishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SpanishName,multiLangTitle);
-			mToolItemArray_ItalianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_ItalianName,multiLangTitle);
-			mToolItemArray_DutchName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_DutchName,multiLangTitle);
-			mToolItemArray_SwedishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SwedishName,multiLangTitle);
-			mToolItemArray_NorwegianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_NorwegianName,multiLangTitle);
-			mToolItemArray_DanishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_DanishName,multiLangTitle);
-			mToolItemArray_FinnishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FinnishName,multiLangTitle);
-			mToolItemArray_PortugueseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PortugueseName,multiLangTitle);
-			mToolItemArray_SimplifiedChineseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SimplifiedChineseName,multiLangTitle);
-			mToolItemArray_TraditionalChineseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_TraditionalChineseName,multiLangTitle);
-			mToolItemArray_KoreanName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_KoreanName,multiLangTitle);
-			mToolItemArray_PolishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PolishName,multiLangTitle);
-			mToolItemArray_PortuguesePortugalName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PortuguesePortugalName,multiLangTitle);
-			mToolItemArray_RussianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
-			toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_RussianName,multiLangTitle);
-		}
-		//toolpref.miファイル取得
-		//autoupdateの場合は、"autoupdate_userdata"フォルダ内の対応するフォルダのtoolpref.miを指定する。#427
-		AFileAcc	toolPrefFile;
-		//#427 toolPrefFile.SpecifyChild(mToolMenuArray_Folder.GetObjectConst(arrayIndex),"toolpref.mi");
-		GetToolPrefFile(arrayIndex,autoUpdate,toolPrefFile);//#427
-		//
-		toolPrefDB.WriteToPrefTextFile(toolPrefFile);
+	*/
+	//ルートメニューかどうかの判定 #1275
+	if( mToolMenuArray_MenuObjectID.Get(arrayIndex) == mToolMenuRootObjectID )
+	{
+		//ルートメニューの場合は、autoupdate/user両方のtoolpref.miを保存
+		WriteToolOrderFile(arrayIndex,true);
+		WriteToolOrderFile(arrayIndex,false);
 	}
+	else
+	{
+		//ルートメニュー以外の場合は、メニューのautoupdateフラグに従って、autoupdate/userどちらかのtoolpref.miを保存
+		WriteToolOrderFile(arrayIndex,mToolMenuArray_AutoUpdateFolder.Get(arrayIndex));
+	}
+}
+void	AModePrefDB::WriteToolOrderFile( const AIndex arrayIndex, const ABool autoUpdate )
+{
+	//#305
+	//ToolPrefDB書き込み
+	AToolPrefDB	toolPrefDB;
+	for( AIndex i = 0; i < mToolItemArray_File.GetObjectConst(arrayIndex).GetItemCount(); i++ )
+	{
+		//#427 自動更新／ユーザー編集どちらかのみをそれぞれtoolPrefDBへ書き込み
+		if( mToolItemArray_AutoUpdate.GetObjectConst(arrayIndex).Get(i) != autoUpdate )
+		{
+			continue;
+		}
+		//#427 statictextツールはtoolprefに書きださない
+		AText	staticText;
+		mToolItemArray_StaticText.GetObjectConst(arrayIndex).Get(i,staticText);
+		if( staticText.GetItemCount() > 0 )
+		{
+			continue;
+		}
+		//
+		AText	filename;
+		mToolItemArray_File.GetObjectConst(arrayIndex).GetObjectConst(i).GetFilename(filename,false);
+		//設定
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FileName,filename);
+		toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_Enabled,
+								 mToolItemArray_Enabled.GetObjectConst(arrayIndex).Get(i));
+		toolPrefDB.Add_NumberArray(AToolPrefDB::kToolArray_Shortcut,
+								   mToolItemArray_Shortcut.GetObjectConst(arrayIndex).Get(i));
+		toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_ShortcutModifiers_ControlKey,
+								 AKeyWrapper::IsControlKeyOnMenuShortcut(mToolItemArray_Modifiers.GetObjectConst(arrayIndex).Get(i)));
+		toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_ShortcutModifiers_ShiftKey,
+								 AKeyWrapper::IsShiftKeyOnMenuShortcut(mToolItemArray_Modifiers.GetObjectConst(arrayIndex).Get(i)));
+		toolPrefDB.Add_BoolArray(AToolPrefDB::kToolArray_Grayout,
+								 mToolItemArray_Grayout.GetObjectConst(arrayIndex).Get(i));
+		//多言語タイトル
+		AText	multiLangTitle;
+		mToolItemArray_JapaneseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_JapaneseName,multiLangTitle);
+		mToolItemArray_EnglishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_EnglishName,multiLangTitle);
+		mToolItemArray_FrenchName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FrenchName,multiLangTitle);
+		mToolItemArray_GermanName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_GermanName,multiLangTitle);
+		mToolItemArray_SpanishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SpanishName,multiLangTitle);
+		mToolItemArray_ItalianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_ItalianName,multiLangTitle);
+		mToolItemArray_DutchName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_DutchName,multiLangTitle);
+		mToolItemArray_SwedishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SwedishName,multiLangTitle);
+		mToolItemArray_NorwegianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_NorwegianName,multiLangTitle);
+		mToolItemArray_DanishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_DanishName,multiLangTitle);
+		mToolItemArray_FinnishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_FinnishName,multiLangTitle);
+		mToolItemArray_PortugueseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PortugueseName,multiLangTitle);
+		mToolItemArray_SimplifiedChineseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_SimplifiedChineseName,multiLangTitle);
+		mToolItemArray_TraditionalChineseName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_TraditionalChineseName,multiLangTitle);
+		mToolItemArray_KoreanName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_KoreanName,multiLangTitle);
+		mToolItemArray_PolishName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PolishName,multiLangTitle);
+		mToolItemArray_PortuguesePortugalName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_PortuguesePortugalName,multiLangTitle);
+		mToolItemArray_RussianName.GetObjectConst(arrayIndex).Get(i,multiLangTitle);
+		toolPrefDB.Add_TextArray(AToolPrefDB::kToolArray_RussianName,multiLangTitle);
+	}
+	//toolpref.miファイル取得
+	//autoupdateの場合は、"autoupdate_userdata"フォルダ内の対応するフォルダのtoolpref.miを指定する。#427
+	AFileAcc	toolPrefFile;
+	//#427 toolPrefFile.SpecifyChild(mToolMenuArray_Folder.GetObjectConst(arrayIndex),"toolpref.mi");
+	GetToolPrefFile(arrayIndex,autoUpdate,toolPrefFile);//#427
+	//
+	toolPrefDB.WriteToPrefTextFile(toolPrefFile);
 }
 
 //#427
 /**
 ToolPrefファイルのFileAccを取得
+@note ルートメニューの場合はユーザー定義ツールと自動更新ツールが混在しているのでinAutoUpdateフラグでどちらのtoolpref.miを取得するかを選択する。
+ルートメニュー以外の場合はinAutoUpdateフラグにかかわらずメニューがユーザー定義ツール、自動更新ツールどちらなのかに従う。
 */
-void	AModePrefDB::GetToolPrefFile( const AIndex inToolMenuArrayIndex, const ABool inAutoUpdate, AFileAcc& outToolPrefFile ) const
+void	AModePrefDB::GetToolPrefFile( const AIndex inToolMenuArrayIndex, const ABool inAutoUpdateForRootMenu, AFileAcc& outToolPrefFile ) const
 {
-	if( inAutoUpdate == false )
+	//メニューのautoupdateフラグ取得
+	ABool	autoUpdate = mToolMenuArray_AutoUpdateFolder.Get(inToolMenuArrayIndex);
+	//ルートメニューかどうかを取得
+	ABool	rootMenu = (mToolMenuArray_MenuObjectID.Get(inToolMenuArrayIndex) == mToolMenuRootObjectID);
+	//ルートメニューなら、autoupdateフラグは引数に従う
+	if( rootMenu == true )
+	{
+		autoUpdate = inAutoUpdateForRootMenu;
+	}
+	//autoupdateかどうかの分岐
+	if( autoUpdate == false )
 	{
 		//ユーザー定義ツールの場合
 		
@@ -5272,11 +5306,11 @@ void	AModePrefDB::GetToolPrefFile( const AIndex inToolMenuArrayIndex, const ABoo
 		GetToolFolder(true,toolRootFolder);
 		//指定メニューに対応するフォルダの、toolフォルダ内相対パスを取得
 		AText	partialpath;
-		if( mToolMenuArray_MenuObjectID.Get(inToolMenuArrayIndex) == mToolMenuRootObjectID )
+		if( rootMenu == true )
 		{
 			//処理無し
 			//ルートの場合は、相対パスは空とする。
-			//mToolMenuArray_MenuObjectIDは、ユーザーツールのほうのtoolフォルダになっているので、GetPartialPath()を実行するとおかしくなる
+			//mToolMenuArray_Folderは、ユーザーツールのほうのtoolフォルダになっているので、GetPartialPath()を実行するとおかしくなる
 		}
 		else
 		{
@@ -9581,6 +9615,7 @@ void	AModePrefDB::GetPluginsFolder( const ABool inAutoUpdate, AFileAcc& outFolde
 {
 	AFileAcc	modefolder;
 	GetModeFolder(modefolder);
+	/*#1275 autoupdateフォルダはGetAutoUpdateFolder()で取得
 	if( inAutoUpdate == true )
 	{
 		outFolder.SpecifyChild(modefolder,"autoupdate/plugins");
@@ -9589,6 +9624,12 @@ void	AModePrefDB::GetPluginsFolder( const ABool inAutoUpdate, AFileAcc& outFolde
 	{
 		outFolder.SpecifyChild(modefolder,"plugins");
 	}
+	*/
+	if( inAutoUpdate == true )
+	{
+		GetAutoUpdateFolder(modefolder);
+	}
+	outFolder.SpecifyChild(modefolder,"plugins");
 }
 
 /**
@@ -9598,6 +9639,7 @@ void	AModePrefDB::GetToolFolder( const ABool inAutoUpdate, AFileAcc& outFolder )
 {
 	AFileAcc	modefolder;
 	GetModeFolder(modefolder);
+	/*#1275 autoupdateフォルダはGetAutoUpdateFolder()で取得
 	if( inAutoUpdate == true )//#427
 	{
 		outFolder.SpecifyChild(modefolder,"autoupdate/tool");
@@ -9606,6 +9648,12 @@ void	AModePrefDB::GetToolFolder( const ABool inAutoUpdate, AFileAcc& outFolder )
 	{
 		outFolder.SpecifyChild(modefolder,"tool");
 	}
+	*/
+	if( inAutoUpdate == true )
+	{
+		GetAutoUpdateFolder(modefolder);
+	}
+	outFolder.SpecifyChild(modefolder,"tool");
 }
 
 /**
@@ -9633,9 +9681,33 @@ AutoUpdateフォルダ取得
 */
 void	AModePrefDB::GetAutoUpdateFolder( AFileAcc& outFolder ) const
 {
-	AFileAcc	modefolder;
-	GetModeFolder(modefolder);
-	outFolder.SpecifyChild(modefolder,"autoupdate");
+	//Webから更新以外（＝アプリ内のdefaultを使用）かどうかを判定
+	//#1275 Webから更新以外（＝アプリ内のdefaultを使用）の場合は、autoupdateにコピーせず、アプリ内のdefaultをautoupdateフォルダとみなす。
+	if( GetData_Bool(AModePrefDB::kEnableModeUpdateFromWeb) == false )
+	{
+		//アプリ内のdefaultを使用する場合
+		
+		//モードdefaultフォルダを取得
+		AFileAcc	appModeRootFolder;
+		GetApp().SPI_GetModeDefaultFolder(appModeRootFolder);
+		//コピー元モード名を取得
+		AText	modename;
+		GetData_Text(AModePrefDB::kModeUpdateSourceModeName,modename);
+		if( modename.GetItemCount() == 0 )
+		{
+			//コピー元モード名が空の場合（＝メニューの最初の項目が選択されていた場合）、同じモード名のモードをコピー元にする
+			GetModeRawName(modename);
+		}
+		//コピー元フォルダ取得
+		outFolder.SpecifyChild(appModeRootFolder,modename);
+	}
+	else
+	{
+		//Webから更新の場合
+		AFileAcc	modefolder;
+		GetModeFolder(modefolder);
+		outFolder.SpecifyChild(modefolder,"autoupdate");
+	}
 }
 
 //#427
