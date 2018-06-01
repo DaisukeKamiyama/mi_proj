@@ -1723,7 +1723,7 @@ ABool	AAppPrefDB::LaunchAppWithFile( const AFileAcc& inFile, const AModifierKeys
 	//環境設定の「機能」タブの「非テキストファイル」で指定したファイルかどうかを判定 #1287
 	ABool isBinaryFile = GetApp().GetAppPref().IsBinaryFile(inFile);
 	//miで開くかどうかを判定
-	if( type == 'TEXT' || type == 'INDX' || isBinaryFile == false )//#1287 type == kOSTypeNULL )//kOSTypeNULLを入れるとほとんどのファイルはtype nullなので、miで開くことになる
+	if( type == 'TEXT' || type == 'INDX' || (type == kOSTypeNULL && isBinaryFile == false) || AKeyWrapper::IsOptionKeyPressed(inModifierKeys) == true )//#1287 type == kOSTypeNULL )//kOSTypeNULLの場合はIsBinaryFile()で判定する。現在では、ほとんどのファイルはtype null
 	{
 		//GetApp().SPNVI_CreateDocumentFromLocalFile(inFile);
 		AText	path;
