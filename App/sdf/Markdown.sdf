@@ -20,6 +20,8 @@ state(idle_linestart)
 	# list
 	{regexp"[\t ]*\*",{PushState(list)}}
 	{regexp"[\t ]*[0-9]+\.",{PushState(list)}}
+	# quote
+	{">", {PushState(quote)}}
 	# code
 	{"`", {PushState(backquote1)}}
 	{"``", {PushState(backquote2)}}
@@ -65,6 +67,13 @@ state(list)
 	StateAttribute_SyntaxPart("Markdown")
 	StateAttribute_ColorSlot(1)
 	{default,{PopState}}
+}
+
+# 引用
+state(quote)
+{
+	StateAttribute_SyntaxPart("Markdown")
+	{lineend,{PopState}}
 }
 
 # アンダーバー強調
