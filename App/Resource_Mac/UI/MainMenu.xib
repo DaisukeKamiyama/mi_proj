@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -281,6 +281,9 @@
                                         </menuItem>
                                     </items>
                                 </menu>
+                            </menuItem>
+                            <menuItem title="New Text Count Window" tag="5606" id="fFp-nd-oLu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem title="Enable Define Values..." tag="3801" id="1601">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -951,12 +954,6 @@
                                         <menuItem title="New Keyword Info List" image="iconSwKeyWord" tag="5610" id="1834">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="New Source Navigation" image="iconSwTree" tag="5611" id="1835">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="New Word Referrer List" image="iconSwWordReferrer" tag="5613" id="1836">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
                                         <menuItem title="New Preview" image="iconSwPreview" tag="5612" id="1837">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
@@ -1003,8 +1000,6 @@
         <image name="iconSwMarkerPen" width="16" height="16"/>
         <image name="iconSwPreview" width="16" height="16"/>
         <image name="iconSwTextCount" width="16" height="16"/>
-        <image name="iconSwTree" width="16" height="16"/>
-        <image name="iconSwWordReferrer" width="16" height="16"/>
         <image name="iconTbKeyRecord.Template" width="18" height="18"/>
     </resources>
 </document>
