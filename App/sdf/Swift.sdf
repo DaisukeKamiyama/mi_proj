@@ -1,0 +1,222 @@
+#
+# Swift用文法定義スクリプト
+# mi組み込み用
+#
+# (C) 2017 Daisuke Kamiyama, All Rights Reserved.
+#
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# - Redistributions of source code must retain the above copyright notice, 
+#  this list of conditions and the following disclaimer.
+# 
+# - Redistributions in binary form must reproduce the above copyright notice, 
+#  this list of conditions and the following disclaimer in the documentation 
+#  and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+#
+
+GlobalAttribute_ImportLinkToProjectAll
+
+#SDFバージョン
+GlobalAttribute_SDFVersion("3.0")
+#SDF表示名
+GlobalAttribute_SDFName("Swift")
+
+#Swiftパート
+GlobalAttribute_SyntaxPart("Swift","Swift",idle,
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~@",
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_~",
+"")
+
+#キーワード情報を自動表示する文字
+GlobalAttribute_IdInfoAutoDisplay("(")
+GlobalAttribute_IdInfoArgStart("(")
+GlobalAttribute_IdInfoArgEnd(")")
+GlobalAttribute_IdInfoArgDelimiter(",")
+
+#クラスを示す文字列
+GlobalAttribute_ClassString(".");
+GlobalAttribute_InstanceString(".");
+
+#空状態
+state(idle)
+{
+	StateAttribute_SyntaxPart("Swift")
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#func
+	{"func",{SetVarStart(info), ChangeState(func)}}
+	#class
+	{"class",{ChangeState(class)}}
+	{"struct",{ChangeState(class)}}
+	#typealias
+	{"typealias", {SetVarNextToken(varname),AddGlobalId([typealias], varname, varname, "", "", "", "", "", 9)}}
+	#var/let
+	{regexp"var", {SetVarNextToken(varname),AddGlobalId([globalvar], varname, varname, "", "", classname, "", "", 9)}}
+	{regexp"let", {SetVarNextToken(varname),AddGlobalId([globallet], varname, varname, "", "", classname, "", "", 9)}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+# func
+state(func)
+{
+	StateAttribute_SyntaxPart("Swift")
+	{":", {SetVarLastWord(argname),AddLocalId([argument], argname, argname, "", "")}}
+	{"(", {SetVarLastWord(funcname), IncIndentFromNext}}
+	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), IncIndentFromNext, BlockStart(funcblock), ChangeState(func_idle)}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+# func内idle
+state(func_idle)
+{
+	StateAttribute_SyntaxPart("Swift")
+	#インデント
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"{", {IncIndentFromNext}}
+	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	#var/let
+	{"var", {SetVarNextToken(varname),AddLocalId([localvar], varname, varname, "", "")}}
+	{"let", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
+	#for
+	{"for", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+# class
+state(class)
+{
+	StateAttribute_SyntaxPart("Swift")
+	#
+	{":", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",3), ChangeState(idle)}}
+	{"{", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",3), IncIndentFromNext, ChangeState(idle)}}
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(linecomment)
+{
+	StateAttribute_SyntaxPart("Swift")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{lineend,{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+state(comment)
+{
+	StateAttribute_SyntaxPart("Swift")
+	StateAttribute_NotCode
+	StateAttribute_Comment
+	StateAttribute_ColorSlot(32)
+	{"*/",{SetVarEndAtNextChar(lastcomment),PopStateFromNextChar}}
+}
+
+state(singlequotation)
+{
+	StateAttribute_SyntaxPart("Swift")
+	StateAttribute_NotCode
+	StateAttribute_ColorSlot(33)
+	StateAttribute_DisableIndent
+	{"'",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+state(doublequotation)
+{
+	StateAttribute_SyntaxPart("Swift")
+	StateAttribute_NotCode
+	StateAttribute_DisableIndent
+	StateAttribute_ColorSlot(33)
+	{"\"",{PopStateFromNextChar}}
+	{"\\",{EscapeNextChar}}
+}
+
+category[func]
+{ 
+	CategoryAttribute_ColorSlot(1)
+	CategoryAttribute_DisplayName(0,"func")
+}
+
+category[class]
+{ 
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"class")
+}
+
+category[typealias]
+{ 
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"typealias")
+}
+
+category[argument]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"引数")
+}
+
+category[localvar]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"ローカル変数")
+}
+
+category[locallet]
+{
+	CategoryAttribute_ColorSlot(3)
+	CategoryAttribute_DisplayName(0,"ローカル変数")
+}
+
+category[globalvar]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"インスタンスプロパティ")
+}
+
+category[globallet]
+{
+	CategoryAttribute_ColorSlot(2)
+	CategoryAttribute_DisplayName(0,"インスタンスプロパティ")
+}
+
