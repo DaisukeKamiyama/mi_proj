@@ -65,10 +65,10 @@ state(idle)
 	{"class",{ChangeState(class)}}
 	{"struct",{ChangeState(class)}}
 	#typealias
-	{"typealias", {SetVarNextToken(varname),AddGlobalId([typealias], varname, varname, "", "", "", "", "", 9)}}
+	{"typealias", {SetVarNextToken(varname),AddGlobalId([typealias], varname, "", "", "", "", "", "", 9)}}
 	#var/let
-	{regexp"var", {SetVarNextToken(varname),AddGlobalId([globalvar], varname, varname, "", "", classname, "", "", 9)}}
-	{regexp"let", {SetVarNextToken(varname),AddGlobalId([globallet], varname, varname, "", "", classname, "", "", 9)}}
+	{"var", {SetVarNextToken(varname),AddGlobalId([globalvar], varname, "", "", "", classname, "", "", 9)}}
+	{"let", {SetVarNextToken(varname),AddGlobalId([globallet], varname, "", "", "", classname, "", "", 9)}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
@@ -121,8 +121,8 @@ state(class)
 {
 	StateAttribute_SyntaxPart("Swift")
 	#
-	{":", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",3), ChangeState(idle)}}
-	{"{", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",3), IncIndentFromNext, ChangeState(idle)}}
+	{":", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",1), ChangeState(idle)}}
+	{"{", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",1), IncIndentFromNext, ChangeState(idle)}}
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
