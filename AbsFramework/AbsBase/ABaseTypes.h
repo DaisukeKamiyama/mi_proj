@@ -284,7 +284,7 @@ const AImageID	kImageID_Invalid = -1;
 #if IMPLEMENTATION_FOR_MACOSX
 
 //#1275 typedef WindowRef	AWindowRef;
-typedef NSInteger	AWindowRef;//#1275
+typedef NSWindow*	AWindowRef;//#1275 #1290 
 
 //#688 typedef ANumber ALineNumber;
 
