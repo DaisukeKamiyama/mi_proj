@@ -64,10 +64,10 @@ template<> unsigned long	AHashArray<AObjectID>::GetHashValue( const AObjectID in
 	return reinterpret_cast<unsigned long>(inData.val);//#693
 }
 
-//#654
+//#1290
 template<> unsigned long	AHashArray<AWindowRef>::GetHashValue( const AWindowRef inData ) const
 {
-	return (unsigned long)(inData);//#1275 windowNumberはオンスクリーンなら正の値なので旧キャストでも問題ない
+	return reinterpret_cast<unsigned long>(inData);
 }
 
 //#693
