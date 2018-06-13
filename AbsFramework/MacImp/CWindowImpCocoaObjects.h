@@ -110,7 +110,7 @@ class CWindowImpCocoaObjects
   public:
 	NSWindow*				GetWindow() const { return mWindow; }
 	AWindowRef				GetWindowRef() const //#1275{ return static_cast<WindowRef>([mWindow windowRef]); }
-	{ return [mWindow windowNumber]; }//#1275
+	{ return mWindow;/*#1290 [mWindow windowNumber];*/ }//#1275
 	NSView*					GetContentView() const { return [mWindow contentView]; }
 	NSWindow*				GetParentWindow() const { return mParentWindow; }
 	//CocoaCaretOverlayWindow*	GetCaretOverlayWindow( const AIndex inCaretWindowIndex, const ABool inCreateIfNotCreated = true );
