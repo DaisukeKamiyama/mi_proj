@@ -339,8 +339,8 @@
 }
 "AdditionalCategory_Keywords" = 
 {
-	"@objc\rcase\rcatch\rclass\rdelegate\rdo\relse\renum\rfalse\rfor\rfunc\rget\rguard\rif\rimport\rin\rlazy\rlet\rnil\roverride\rprotocol\rreturn\rself\rset\rstruct\rsuper\rswitch\rtrue\rtry\rtypealias\rvar\rweak\rweak\r",
-	"Bool\rError\rInt\rString\rUint8\rURL\r"
+	"@objc\rassociatedtype\rclass\rdeinit\renum\rextension\rfileprivate\rfunc\rimport\rinit\rinout\rinternal\rlet\ropen\roperator\rprivate\rprotocol\rpublic\rstatic\rstruct\rsubscript\rtypealias\rvar\rbreak\rcase\rcontinue\rdefault\rdefer\rdo\relse\rfallthrough\rfor\rguard\rif\rin\rrepeat\rreturn\rswitch\rwhere\rwhile\ras\rAny\rcatch\rfalse\ris\rnil\rrethrows\rsuper\rself\rSelf\rthrow\rthrows\rtrue\rtry\rassociativity\rconvenience\rdynamic\rdidSet\rfinal\rget\rinfix\rindirect\rlazy\rleft\rmutating\rnone\rnonmutating\roptional\roverride\rpostfix\rprecedence\rprefix\rProtocol\rrequired\rright\rset\rType\runowned\rweak\rwillSet",
+	"Bool\rError\rInt\rString\rUint8\rURL\rOptional\rVoid\rDouble\rFloat"
 }
 "AdditionalCategory_UseCSV" = 
 {
