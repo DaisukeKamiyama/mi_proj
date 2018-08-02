@@ -83,7 +83,7 @@ state(func)
 	StateAttribute_SyntaxPart("Swift")
 	{":", {SetVarLastWord(argname),AddLocalId([argument], argname, argname, "", "")}}
 	{"(", {SetVarLastWord(funcname), IncIndentFromNext}}
-	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), IncIndentFromNext, BlockStart(funcblock), ChangeState(func_idle)}}
+	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), BlockStart(funcblock), IncIndentFromNext, ChangeState(func_idle)}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
 	#コメント／リテラル／エスケープ
@@ -108,6 +108,9 @@ state(func_idle)
 	{"let", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
 	#for
 	{"for", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
+	#case文ラベル
+	{"case", {IndentLabel}}
+	{"default", {IndentLabel}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
