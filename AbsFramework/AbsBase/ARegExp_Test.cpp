@@ -58,6 +58,7 @@ ABool	TestFind( ARegExp& ioRegExp, AText& inTargetText, AIndex inTargetStartPos,
 			result = true;
 			break;
 		}
+		pos = svPos;
 		if( pos == inTargetEndPos )   break;
 	}
 	return result;
@@ -298,6 +299,15 @@ ABool	ABaseFunction::TestRegExp()
 	TestRegExp3(result,"line1\r","^.+\\r^","XXX","line1\r",false);
 	TestRegExp3(result,"line1\rline2\r","^.+\\r^.+\\r^","XXX","line1\rline2\r",false);
 	TestRegExp3(result,"line1\rline2\r","^.+\\r^.+\\r","XXX","XXX",false);
+	if( result == false )   _AInfo("NG",NULL);
+	
+	//#1295 \r{3,10}等
+	TestRegExp1(result,"abc\r\r\r\r\rdef",0,99999999,"\\r{3,10}","\r\r\r\r\r",true);
+	TestRegExp1(result,"abc\r\r\r\r\rdef",0,99999999,"\\r{3,10}?","\r\r\r",true);
+	TestRegExp1(result,"いああいうえお",0,99999999,"\\x{3042}+","ああ",true);
+	TestRegExp1(result,"いああいうえお",0,99999999,"\\u3042+","ああ",true);
+	TestRegExp1(result,"いああいいあうえお",0,99999999,"\\x{3042}\\x{3044}+","あいい",true);
+	TestRegExp1(result,"abcいああいうえお def",0,99999999,"[\\x{3041}-\\x{3096}]+","いああいうえお",true);
 	if( result == false )   _AInfo("NG",NULL);
 	
 	return result;
