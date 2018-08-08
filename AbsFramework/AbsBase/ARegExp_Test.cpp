@@ -58,7 +58,7 @@ ABool	TestFind( ARegExp& ioRegExp, AText& inTargetText, AIndex inTargetStartPos,
 			result = true;
 			break;
 		}
-		pos = svPos;
+		pos = svPos;//#0 Match()の第2引数は不一致の場合不定となるので、この行を追加
 		if( pos == inTargetEndPos )   break;
 	}
 	return result;
