@@ -307,6 +307,7 @@ ABool	ABaseFunction::TestRegExp()
 	TestRegExp1(result,"いああいうえお",0,99999999,"\\x{3042}+","ああ",true);
 	TestRegExp1(result,"いああいうえお",0,99999999,"\\u3042+","ああ",true);
 	TestRegExp1(result,"いああいいあうえお",0,99999999,"\\x{3042}\\x{3044}+","あいい",true);
+	TestRegExp1(result,"い🌀🌀🌞🌞🌞🌀いいあうえお",0,99999999,"\\x{1F300}\\x{1F31E}+","🌀🌞🌞🌞",true);
 	TestRegExp1(result,"abcいああいうえお def",0,99999999,"[\\x{3041}-\\x{3096}]+","いああいうえお",true);
 	if( result == false )   _AInfo("NG",NULL);
 	
