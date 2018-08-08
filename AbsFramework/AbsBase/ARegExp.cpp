@@ -631,6 +631,7 @@ void	ARegExp::Parse( const AText& inRE, const AIndex inStart, AIndex inEnd, AInd
 							//#1214 mIexにUTF16で指定してしまっていた問題を修正。
 							AText	utf8text;
 							utf8text.AddFromUCS4Char(letter);
+							ParseRepMeta(inRE,REPos,utf8text.GetItemCount());//#1295
 							for( AIndex i = 0; i < utf8text.GetItemCount(); i++ )
 							{
 								mIex.Add(utf8text.Get(i));
@@ -955,7 +956,7 @@ ABool	ARegExp::ParseRepMeta( const AText& inRE, AIndex &ioREPos, const AItemCoun
 
 //一致判定
 // inText: 一致判定を行う対象テキスト
-// ioTextPos: 一致判定を行うテキスト位置
+// ioTextPos: 一致判定を行うテキスト位置（※不一致の場合は不定値が返る）
 // inTargetEndPos: 一致判定対象範囲の終了位置
 ABool	ARegExp::Match( const AText& inText, AIndex &ioTextPos, const AIndex inTextTargetEndPos )//B0050 inTotalLength追加
 {
