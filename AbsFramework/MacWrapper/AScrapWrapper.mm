@@ -149,7 +149,7 @@ void	AScrapWrapper::SetScrapData( const AScrapRef inScrapRef, const AScrapType i
 /**
 TextのScrapData設定（AScrapRef指定あり）
 */
-void	AScrapWrapper::SetTextScrap( const AScrapRef inScrapRef, const AText& inText, const ABool inConvertToCanonicalComp )//#1044 #688 , const ATextEncoding inLegacyTextEncoding )
+void	AScrapWrapper::SetTextScrap( const AScrapRef inScrapRef, const AText& inText, const ABool inConvertToCanonicalComp, const ABool inConvertFrom5CToA5 )//#1044 #688 , const ATextEncoding inLegacyTextEncoding ) #1300
 {
 	//inScrapRefがNULLなら何もしない
 	if( inScrapRef == NULL )   return;
@@ -164,6 +164,18 @@ void	AScrapWrapper::SetTextScrap( const AScrapRef inScrapRef, const AText& inTex
 	if( inConvertToCanonicalComp == true )
 	{
 		text.ConvertToCanonicalComp();
+	}
+	
+	//inConvertFrom5CToA5がtrueなら、バックスラッシュを半角￥へ変換 #1300
+	//（JIS系で￥/バックスラッシュ表示設定を￥に設定している場合は、内部コード5Cで￥が表示されているので、コピー時は￥としてコピーする）
+	if( inConvertFrom5CToA5 == true )
+	{
+		AText	yen;
+		yen.Add(0xC2);
+		yen.Add(0xA5);
+		AText	backslash;
+		backslash.Add(0x5C);
+		text.ReplaceText(backslash,yen);
 	}
 	
 	//テキストをpasteboardに設定
@@ -247,7 +259,7 @@ void	AScrapWrapper::SetClipboardScrapData( const AScrapType inScrapType, const A
 /**
 TextのScrapData設定（AScrapRef指定なし）
 */
-void	AScrapWrapper::SetClipboardTextScrap( const AText& inText, const ABool inClearScrap, const ABool inConvertToCanonicalComp )//#1044
+void	AScrapWrapper::SetClipboardTextScrap( const AText& inText, const ABool inClearScrap, const ABool inConvertToCanonicalComp, const ABool inConvertFrom5CToA5 )//#1044 #1300
 {
 	//inClearScrapがtrueならpasteboardをまずクリア
 	if( inClearScrap == true )
@@ -262,7 +274,7 @@ void	AScrapWrapper::SetClipboardTextScrap( const AText& inText, const ABool inCl
 		}
 	}
 	//クリップボード設定
-	SetTextScrap([NSPasteboard generalPasteboard],inText,inConvertToCanonicalComp);//#1044
+	SetTextScrap([NSPasteboard generalPasteboard],inText,inConvertToCanonicalComp,inConvertFrom5CToA5);//#1044 #1300
 	
 	/*#688
 	OSStatus	err = noErr;
