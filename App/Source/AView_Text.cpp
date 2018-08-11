@@ -361,7 +361,7 @@ ABool	AView_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, cons
 			AText	text;
 			GetSelectedText(text);
 			scrapText.AddText(text);
-			AScrapWrapper::SetClipboardTextScrap(scrapText,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocument().SPI_GetPreferLegacyTextEncoding(),true);
+			AScrapWrapper::SetClipboardTextScrap(scrapText,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocument().SPI_GetPreferLegacyTextEncoding(),true);
 			break;
 		}
 		//カット
@@ -1066,7 +1066,7 @@ ABool	AView_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, cons
 				GetTextDocument().NVI_GetFile(file);
 				AText	path;
 				file.GetPath(path);
-				AScrapWrapper::SetClipboardTextScrap(path,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));
+				AScrapWrapper::SetClipboardTextScrap(path,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), false);//#1300
 			}
 			break;
 		}
@@ -4878,8 +4878,56 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 		GetTextDocument().SPI_RecordUndoActionTag(undoTag_Typing);
 	}
 	
+	//#1298
+	//入力データ前処理
+	//・kInputBackslashByYenKeyがtrueの場合や、JIS系の場合は、半角￥（U+00A5）をバックスラッシュ（U+005C）へ変換する
+	//また、fixLenや、ハイライト位置を変換に応じてずらす。
+	//（ADocument_Text::SPI_InsertText()にて変換を行っていたが、fixLenや、ハイライト位置をずらす必要があるので、ここであらかじめ処理しておくことにする。
 	AText	insertText;
 	insertText.SetText(inText);
+	AItemCount	fixLen = inFixLen;
+	AArray<AIndex>	hiliteLineStyleIndex, hiliteStartPos, hiliteEndPos;
+	hiliteLineStyleIndex.SetFromObject(inHiliteLineStyleIndex);
+	hiliteStartPos.SetFromObject(inHiliteStartPos);
+	hiliteEndPos.SetFromObject(inHiliteEndPos);
+	
+	//入力文字列一文字ごとのループ
+	for( AIndex pos = 0; pos < insertText.GetItemCount(); pos += insertText.GetNextCharPos(pos) )
+	{
+		//半角￥（U+00A5）かどうかの判定
+		if( insertText.GetUTF8ByteCount(pos) == 2 )
+		{
+			AUChar	ch1 = insertText.Get(pos);
+			AUChar	ch2 = insertText.Get(pos+1);
+			if( ch1 == 0xC2 && ch2 == 0xA5 )
+			{
+				//kInputBackslashByYenKeyがtrue、または、JIS系の場合は、半角￥（U+00A5）をバックスラッシュ（U+005C）へ変換する
+				if( GetApp().SPI_GetModePrefDB(GetTextDocumentConst().SPI_GetModeIndex()).GetModeData_Bool(AModePrefDB::kInputBackslashByYenKey) == true || GetTextDocument().SPI_IsJISTextEncoding() == true )
+				{
+					//半角￥（U+00A5）をバックスラッシュ（U+005C）へ変換
+					insertText.Delete(pos,2);
+					insertText.Insert1(pos,kUChar_Backslash);
+					//fixLenや、ハイライト位置が、変換位置よりも後ろにある場合は、ずらす。
+					if( pos < fixLen )
+					{
+						fixLen--;
+					}
+					for( AIndex i = 0; i < hiliteStartPos.GetItemCount(); i++ )
+					{
+						if( pos < hiliteStartPos.Get(i) )
+						{
+							hiliteStartPos.Set(i,hiliteStartPos.Get(i)-1);
+						}
+						if( pos < hiliteEndPos.Get(i) )
+						{
+							hiliteEndPos.Set(i,hiliteEndPos.Get(i)-1);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	AIndex	insertionTextIndex;
 	AIndex	inlineInputFirstPos;
 	if( mInlineInputNotFixedTextLen > 0 )
@@ -4909,8 +4957,8 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 		insertionTextIndex = mInlineInputNotFixedTextPos + samecount;
 		inlineInputFirstPos = mInlineInputNotFixedTextPos;
 		//
-		mInlineInputNotFixedTextPos = mInlineInputNotFixedTextPos+inFixLen;
-		mInlineInputNotFixedTextLen = inText.GetItemCount() - inFixLen;
+		mInlineInputNotFixedTextPos = mInlineInputNotFixedTextPos+fixLen;
+		mInlineInputNotFixedTextLen = insertText.GetItemCount() - fixLen;
 		//
 		insertText.Delete(0,samecount);
 	}
@@ -4945,16 +4993,16 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 		insertionTextIndex = GetTextDocument().SPI_GetTextIndexFromTextPoint(insertionPoint);
 		inlineInputFirstPos = GetTextDocument().SPI_GetTextIndexFromTextPoint(insertionPoint);
 		//
-		mInlineInputNotFixedTextPos = insertionTextIndex+inFixLen;
-		mInlineInputNotFixedTextLen = inText.GetItemCount() - inFixLen;
+		mInlineInputNotFixedTextPos = insertionTextIndex+fixLen;
+		mInlineInputNotFixedTextLen = insertText.GetItemCount() - fixLen;
 	}
 	
 	if( mInlineInputNotFixedTextLen > 0 )//B0351 AquaSKK対策　全確定ならハイライト下線情報は全削除状態にする
 	{
 		//InlineInputハイライト下線の情報を保存
-		mHiliteLineStyleIndex.SetFromObject(inHiliteLineStyleIndex);
-		mHiliteStartPos.SetFromObject(inHiliteStartPos);
-		mHiliteEndPos.SetFromObject(inHiliteEndPos);
+		mHiliteLineStyleIndex.SetFromObject(hiliteLineStyleIndex);
+		mHiliteStartPos.SetFromObject(hiliteStartPos);
+		mHiliteEndPos.SetFromObject(hiliteEndPos);
 		//mHiliteStartPos, mHiliteEndPosはテキスト全体のインデックスにしておく
 		for( AIndex i = 0; i < mHiliteLineStyleIndex.GetItemCount(); i++ )
 		{
@@ -4963,6 +5011,7 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 		}
 	}
 	
+	/*#1298
 	//B0332
 	if( insertText.GetItemCount() >= 2 )
 	{
@@ -4975,18 +5024,19 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 				insertText.Delete(0,2);
 				insertText.Insert1(0,kUChar_Backslash);
 				//B0380 Fix部分が0の場合は、バイト数を減らした部分はNotFixedの部分のはずなので、mInlineInputNotFixedTextLenを1byte分減らす
-				if( inFixLen == 0 )
+				if( fixLen == 0 )
 				{
 					mInlineInputNotFixedTextLen--;
 				}
 			}
 		}
 	}
+	*/
 	
 	//テキスト挿入位置にヒントテキストがあれば削除する
 	RemoveHintText(insertionTextIndex);
 	//テキスト挿入
-	//InsertTextToDocument(insertionTextIndex,inText);
+	//InsertTextToDocument(insertionTextIndex,insertText);
 	GetTextDocument().SPI_InsertText(insertionTextIndex,insertText);
 	
 	//キャレット設定
@@ -4996,11 +5046,11 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 	//Hilite情報にキャレット情報が含まれている場合はそれに従う
 	if( mInlineInputNotFixedTextLen > 0 )//B0351 AquaSKK対策　全確定ならキャレットは入力文字列最後のままにしておく
 	{
-		for( AIndex i = 0; i < inHiliteLineStyleIndex.GetItemCount(); i++ )
+		for( AIndex i = 0; i < hiliteLineStyleIndex.GetItemCount(); i++ )
 		{
-			if( inHiliteLineStyleIndex.Get(i) == kIndex_Invalid )
+			if( hiliteLineStyleIndex.Get(i) == kIndex_Invalid )
 			{
-				GetTextDocument().SPI_GetTextPointFromTextIndex(inlineInputFirstPos+inHiliteStartPos.Get(i),caretPoint);
+				GetTextDocument().SPI_GetTextPointFromTextIndex(inlineInputFirstPos+hiliteStartPos.Get(i),caretPoint);
 			}
 		}
 	}
@@ -5017,7 +5067,7 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 	ATextPoint	insertionTextPoint;
 	GetTextDocument().SPI_GetTextPointFromTextIndex(insertionTextIndex,insertionTextPoint);
 	ATextPoint	oldNotFixedStartTextPoint;
-	GetTextDocument().SPI_GetTextPointFromTextIndex(mInlineInputNotFixedTextPos-inFixLen,oldNotFixedStartTextPoint);
+	GetTextDocument().SPI_GetTextPointFromTextIndex(mInlineInputNotFixedTextPos-fixLen,oldNotFixedStartTextPoint);
 	if( oldNotFixedStartTextPoint.y < insertionTextPoint.y )
 	{
 		//
@@ -5037,10 +5087,10 @@ ABool	AView_Text::EVTDO_DoInlineInput( const AText& inText, const AItemCount inF
 	}
 	
 	//#390 キーマクロ記録
-	if( inFixLen > 0 && GetApp().SPI_IsKeyRecording() == true )
+	if( fixLen > 0 && GetApp().SPI_IsKeyRecording() == true )
 	{
 		AText	text;
-		GetTextDocumentConst().SPI_GetText(mInlineInputNotFixedTextPos-inFixLen,mInlineInputNotFixedTextPos,text);
+		GetTextDocumentConst().SPI_GetText(mInlineInputNotFixedTextPos-fixLen,mInlineInputNotFixedTextPos,text);
 		GetApp().SPI_RecordKeyText(text);
 	}
 	
@@ -6219,7 +6269,7 @@ void	AView_Text::CutToLineEnd()
 	AText	text;
 	GetTextDocumentConst().SPI_GetText(start,end,text);
 	if( text.GetItemCount() == 0 )   return;//B0000
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
+AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 	//Undoアクションタグ記録
 	GetTextDocument().SPI_RecordUndoActionTag(undoTag_Cut);
 	//テキスト削除
@@ -6255,7 +6305,7 @@ void	AView_Text::CutToParagraphEnd( const ABool inAdditional )
 		AScrapWrapper::GetClipboardTextScrap(scrapText);//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 		text.InsertText(0,scrapText);
 	}
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
+AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 	//Undoアクションタグ記録
 	GetTextDocument().SPI_RecordUndoActionTag(undoTag_Cut);
 	//テキスト削除
@@ -6273,7 +6323,7 @@ void	AView_Text::CutToLineStart()
 	AText	text;
 	GetTextDocumentConst().SPI_GetText(start,end,text);
 	if( text.GetItemCount() == 0 )   return;//B0000
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
+AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 	//Undoアクションタグ記録
 	GetTextDocument().SPI_RecordUndoActionTag(undoTag_Cut);
 	//テキスト削除
@@ -7958,7 +8008,7 @@ void	AView_Text::Cut( const ABool inAdditional )//R0213
 		EnqueueFIFOClipboard(text);
 	}
 	//クリップボードに設定
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
+	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 	DeleteSelect(undoTag_Cut);
 }
 
@@ -7984,7 +8034,7 @@ void	AView_Text::Copy( const ABool inAdditional )//R0213
 		EnqueueFIFOClipboard(text);
 	}
 	//クリップボードに設定
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win 
+	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win 
 }
 
 /**
@@ -8020,7 +8070,7 @@ void	AView_Text::DequeueFIFOClipboard( AText& outText )
 		//FIFOキューからテキスト取得
 		GetApp().SPI_DequeueFIFOClipboard(outText);
 		//キューから取得したテキストをクリップボードに設定
-		AScrapWrapper::SetClipboardTextScrap(outText,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));
+		AScrapWrapper::SetClipboardTextScrap(outText,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300
 	}
 	else
 	{
@@ -8143,7 +8193,7 @@ void	AView_Text::CopyWithHTMLColor()
 		text.Add(kUChar_LineEnd);
 	}
 	text.AddCstring("</code></pre>");
-	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
+	AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win
 }
 
 void	AView_Text::Paste()
