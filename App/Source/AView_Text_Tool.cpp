@@ -1264,7 +1264,7 @@ ABool	AView_Text::InsertToolText_Command( const AText& inText, ATextIndex& ioPos
 			AText	text;
 			AScrapWrapper::GetClipboardTextScrap(text);//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);
 			text.AddText(argText);
-			AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win 
+			AScrapWrapper::SetClipboardTextScrap(text,true,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), GetTextDocumentConst().SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,GetTextDocumentConst().SPI_GetPreferLegacyTextEncoding(),true);//win 
 			break;
 		}
 		//win
