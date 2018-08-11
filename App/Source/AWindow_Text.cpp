@@ -3132,7 +3132,7 @@ ABool	AWindow_Text::EVTDO_DoServiceCopy( const AScrapRef inScrapRef )
 		//現在選択中のテキストを返す
 		AText	text;
 		GetTextViewConstByControlID(focus).SPI_GetSelectedText(text);
-		AScrapWrapper::SetTextScrap(inScrapRef,text,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp));//#688 ,SPI_GetTextDocument(focus).SPI_GetPreferLegacyTextEncoding());//win
+		AScrapWrapper::SetTextScrap(inScrapRef,text,GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kAutoConvertToCanonicalComp), SPI_GetTextDocument(focus).SPI_ShouldConvertFrom5CToA5ForCopy());//#1300 #688 ,SPI_GetTextDocument(focus).SPI_GetPreferLegacyTextEncoding());//win
 	}
 	return true;
 }
