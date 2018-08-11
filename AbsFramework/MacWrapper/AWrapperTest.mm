@@ -53,7 +53,7 @@ ABool	WrapperComponentUnitTest()
 			AFontWrapper::GetFontByName(osaka,osakaFont);*/
 			AText	text;
 			text.SetCstring("森鷗外");
-			AScrapWrapper::SetClipboardTextScrap(text,true,false);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
+			AScrapWrapper::SetClipboardTextScrap(text,true,false, false);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
 			AScrapWrapper::GetClipboardTextScrap(text);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),false);
 			if( text.Compare("森鷗外") == false )   _ACThrow("",NULL);
 			//
@@ -62,7 +62,7 @@ ABool	WrapperComponentUnitTest()
 			MakeAllUnicodeCharText(origText);
 			text.SetText(origText);
 			origText.ConvertReturnCodeToCR();//B0439
-			AScrapWrapper::SetClipboardTextScrap(text,true,false);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
+			AScrapWrapper::SetClipboardTextScrap(text,true,false, false);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
 			AScrapWrapper::GetClipboardTextScrap(text);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),false);
 			if( text.Compare(origText) == false )   _ACThrow("",NULL);
 			/*#688
