@@ -46,7 +46,7 @@ class AScrapWrapper
 	static ABool	ExistScrapData( const AScrapRef inScrapRef, const AScrapType inScrapType );
 	static ABool	ExistTextScrapData( const AScrapRef inScrapRef );
 	static void		SetScrapData( const AScrapRef inScrapRef, const AScrapType inScrapType, const AText& inText );
-	static void		SetTextScrap( const AScrapRef inScrapRef, const AText& inText, const ABool inConvertToCanonicalComp );//#688 , const ATextEncoding inLegacyTextEncoding ); #1044
+	static void		SetTextScrap( const AScrapRef inScrapRef, const AText& inText, const ABool inConvertToCanonicalComp, const ABool inConvertFrom5CToA5 );//#688 , const ATextEncoding inLegacyTextEncoding ); #1044 #1300
 	//#688 static void		SetTextScrap( const AScrapRef inScrapRef, const AText& inText );//#564
 	//#688 static void		GetScrapData( const AScrapRef inScrapRef, const AScrapType inScrapType, AText& outText );
 	static void		GetTextScrap( const AScrapRef inScrapRef, AText& outText );//#688, const ATextEncoding inLegacyTextEncoding, const ABool inConvertToCanonicalComp );
@@ -56,7 +56,7 @@ class AScrapWrapper
 	static ABool	ExistClipboardTextScrapData();
 	static void		SetClipboardScrapData( const AScrapType inScrapType, const AText& inText, const ABool inClearScrap );
 	//#688 static void		SetClipboardTextScrap( const AText& inText );//#688 , const ATextEncoding inLegacyTextEncoding, const ABool inClearScrap );
-	static void		SetClipboardTextScrap( const AText& inText, const ABool inClearScrap, const ABool inConvertToCanonicalComp );//#564 #1044
+	static void		SetClipboardTextScrap( const AText& inText, const ABool inClearScrap, const ABool inConvertToCanonicalComp, const ABool inConvertFrom5CToA5 );//#1300 #564 #1044
 	//#688 static void		GetClipboardScrapData( const AScrapType inScrapType, AText& outText );
 	static void		GetClipboardTextScrap( AText& outText );//#688 , const ATextEncoding inLegacyTextEncoding, const ABool inConvertToCanonicalComp );
 	
