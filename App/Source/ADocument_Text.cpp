@@ -1109,6 +1109,18 @@ ABool	ADocument_Text::SPI_IsJISTextEncoding() const
 		tec == ATextEncodingWrapper::GetEUCTextEncoding() );
 }
 
+//#1300
+/**
+コピー時に5cをa5へ変換するかどうかを返す。
+JIS系、かつ、AModePrefDB::kConvert5CToA5WhenOpenJISがtrueの場合、内部コード5c（バックスラッシュ）で、表示はa5（半角￥）にしているので、
+コピーするときは、a5（半角￥）で出力するようにするため。
+*/
+ABool	ADocument_Text::SPI_ShouldConvertFrom5CToA5ForCopy() const
+{
+	return ( SPI_IsJISTextEncoding() == true &&
+		GetApp().SPI_GetModePrefDB(SPI_GetModeIndex()).GetModeData_Bool(AModePrefDB::kConvert5CToA5WhenOpenJIS) == true );
+}
+
 //#65
 /**
 マルチファイル置換用ロード・行折り返し計算
