@@ -2208,7 +2208,7 @@ void	AView_EditBox::Cut( const ABool inAdditional )//R0213
 		AScrapWrapper::GetClipboardTextScrap(scrapText);//#688,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);
 		text.InsertText(0,scrapText);
 	}
-	AScrapWrapper::SetClipboardTextScrap(text,true,true);//#1044 #688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);//win
+	AScrapWrapper::SetClipboardTextScrap(text,true,true,false);//#1044 #1300 #688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);//win
 	DeleteSelect(kEditBoxUndoTag_Cut);
 }
 
@@ -2224,7 +2224,7 @@ void	AView_EditBox::Copy( const ABool inAdditional )//R0213
 		AScrapWrapper::GetClipboardTextScrap(scrapText);//#688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);//win
 		text.InsertText(0,scrapText);
 	}
-	AScrapWrapper::SetClipboardTextScrap(text,true,true);//#1044 #688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);//win 
+	AScrapWrapper::SetClipboardTextScrap(text,true,true,false);//#1044 #1300 #688 ,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(mFontName),true);//win 
 }
 
 void	AView_EditBox::Paste()
