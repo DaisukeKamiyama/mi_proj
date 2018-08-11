@@ -53,8 +53,8 @@ CocoaApp
 	//Sparkleオブジェクト生成 #1102
 #ifndef Target_Mac_OS_X_10_6
 #ifdef __LP64__
-	//10.9以上、64bitの場合のみSparkleオブジェクト生成 #1293 TLS 1.0/1.1無効化の影響により10.9以上へ変更
-	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_9 )
+	//10.7以上、64bitの場合のみSparkleオブジェクト生成
+	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_7 )
 	{
 		[[SUUpdater alloc] init];
 	}
