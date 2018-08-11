@@ -261,6 +261,7 @@ class ADocument_Text : public ADocument
 	ABool					SPI_ScreenAndLoadDocumentFile();
 	void					SPI_ScreenDocumentFile();
 	ABool					SPI_IsJISTextEncoding() const;
+	ABool					SPI_ShouldConvertFrom5CToA5ForCopy() const;//#1300
   private:
 	void					LoadDocumentFile();//#831
 	void					StartScreeningForLoadDocumentFile();
