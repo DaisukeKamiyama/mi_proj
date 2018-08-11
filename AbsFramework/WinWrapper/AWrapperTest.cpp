@@ -50,7 +50,7 @@ ABool	WrapperComponentUnitTest()
 			AFontWrapper::GetFontByName(osaka,osakaFont);*/
 			AText	text;
 			text.SetCstring("森鷗外");
-			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
+			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true, false);
 			AScrapWrapper::GetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),false);
 			if( text.Compare("森鷗外") == false )   _ACThrow("",NULL);
 			//
@@ -58,7 +58,7 @@ ABool	WrapperComponentUnitTest()
 			AText	origText;
 			MakeAllUnicodeCharText(origText);
 			text.SetText(origText);
-			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
+			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true, false);
 			AScrapWrapper::GetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),false);
 			if( text.Compare(origText) == false )   _ACThrow("",NULL);
 			//#688
@@ -79,7 +79,7 @@ ABool	WrapperComponentUnitTest()
 			if( text.Compare(origText) == false )   _ACThrow("",NULL);
 			//mi→非Unicodeアプリ
 			text.SetText(origText);
-			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true);
+			AScrapWrapper::SetClipboardTextScrap(text,ATextEncodingWrapper::GetLegacyTextEncodingFromFont(osaka),true, false);
 			AScrapWrapper::GetClipboardScrapData(kScrapType_Text,text);
 			text.ConvertToUTF8(ATextEncodingWrapper::GetSJISTextEncoding());
 			if( text.Compare(origText) == false )   _ACThrow("",NULL);
