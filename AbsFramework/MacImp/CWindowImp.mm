@@ -9390,10 +9390,21 @@ void	CWindowImp::APICB_CocoaFirstRectForCharacterRange( const AControlID inContr
 	outRect.right	= 0;
 	outRect.bottom	= 0;
 	//AWindow::EVT_DoInlineInputOffsetToPos()実行
+	/*#1305
 	ALocalPoint	localStartPoint = {0}, localEndPoint = {0};
 	if( GetAWinConst().EVT_DoInlineInputOffsetToPos(inControlID,inStart,localStartPoint) == true &&
-				GetAWinConst().EVT_DoInlineInputOffsetToPos(inControlID,inEnd,localEndPoint) == true )
+			GetAWinConst().EVT_DoInlineInputOffsetToPos(inControlID,inEnd,localEndPoint) == true )
+			*/
+	//テキストの開始、終了indexに対応するlocalRect取得 #1305
+	ALocalRect	localRect = {0};
+	if( GetAWinConst().EVT_DoInlineInputOffsetToPos(inControlID,inStart,inEnd,localRect) == true )
 	{
+		//左上座標、右下座標取得 #1305
+		ALocalPoint	localStartPoint = {0}, localEndPoint = {0};
+		localStartPoint.x	= localRect.left;
+		localStartPoint.y	= localRect.top;
+		localEndPoint.x		= localRect.right;
+		localEndPoint.y		= localRect.bottom;
 		//行の高さを取得 #1124
 		ANumber	lineHeight = 0, lineAscent = 0;
 		GetUserPane(inControlID).GetMetricsForDefaultTextProperty(lineHeight,lineAscent);
@@ -9407,11 +9418,24 @@ void	CWindowImp::APICB_CocoaFirstRectForCharacterRange( const AControlID inContr
 		AGlobalPoint	globalStartPoint = {0}, globalEndPoint = {0};
 		GetGlobalPointFromControlLocalPoint(inControlID,localStartPoint,globalStartPoint);
 		GetGlobalPointFromControlLocalPoint(inControlID,localEndPoint,globalEndPoint);
-		//GlobalRect設定。top/botomは-2, +2を設定。
-		outRect.left	= globalStartPoint.x;
-		outRect.top		= globalStartPoint.y-lineHeight-2;//#1124
-		outRect.right	= globalEndPoint.x;
-		outRect.bottom	= globalEndPoint.y+lineAscent+2;//#1124
+		//GlobalRect取得
+		if( GetUserPaneConst(inControlID).GetVerticalMode() == false )
+		{
+			//横書き時
+			outRect.left	= globalStartPoint.x;
+			outRect.top		= globalStartPoint.y/*#1305 -lineHeight*/-2;//#1124
+			outRect.right	= globalEndPoint.x;
+			outRect.bottom	= globalEndPoint.y/*#1303 +lineAscent*/+2;//#1124
+		}
+		else
+		{
+			//縦書き時 #1304
+			outRect.left	= globalEndPoint.x -5;
+			outRect.top		= globalStartPoint.y;
+			outRect.right	= globalStartPoint.x + 5;
+			outRect.bottom	= globalEndPoint.y;
+		}
+		//NSLog(@"left:%d top:%d right:%d bottom:%d",outRect.left,outRect.top,outRect.right,outRect.bottom);
 	}
 }
 
