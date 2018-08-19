@@ -79,8 +79,8 @@ class AView : public AObjectArrayItem
 							const AItemCount inReplaceLengthInUTF16,//#688
 							ABool& outUpdateMenu )
 	{ return EVTDO_DoInlineInput(inText,inFixLen,inHiliteLineStyleIndex,inHiliteStartPos,inHiliteEndPos,inReplaceLengthInUTF16,outUpdateMenu); }//#688
-	ABool					EVT_DoInlineInputOffsetToPos( const AIndex inOffset, ALocalPoint& outPos )
-	{ return EVTDO_DoInlineInputOffsetToPos(inOffset,outPos); }
+	ABool					EVT_DoInlineInputOffsetToPos( const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect )
+	{ return EVTDO_DoInlineInputOffsetToPos(inStartOffset,inEndOffset,outRect); }//#1305
 	ABool					EVT_DoInlineInputPosToOffset( const ALocalPoint& inPos, AIndex& outOffset )
 	{ return EVTDO_DoInlineInputPosToOffset(inPos,outOffset); }
 	ABool					EVT_DoInlineInputGetSelectedText( AText& outText )
@@ -145,7 +145,7 @@ class AView : public AObjectArrayItem
 							const AArray<AIndex>& inHiliteStartPos, const AArray<AIndex>& inHiliteEndPos,
 							const AItemCount inReplaceLengthInUTF16,//#688
 							ABool& outUpdateMenu ) { return false; }
-	virtual ABool			EVTDO_DoInlineInputOffsetToPos( const AIndex inOffset, ALocalPoint& outPos ) { return false; }
+	virtual ABool			EVTDO_DoInlineInputOffsetToPos( const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect ) { return false; }//#1305
 	virtual ABool			EVTDO_DoInlineInputPosToOffset( const ALocalPoint& inPos, AIndex& outOffset ) { return false; }
 	virtual ABool			EVTDO_DoInlineInputGetSelectedText( AText& outText ) { return false; }
 	virtual ABool			EVTDO_DoTextInput( const AText& inText, //#688 const AOSKeyEvent& inOSKeyEvent, 
