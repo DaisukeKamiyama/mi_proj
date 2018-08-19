@@ -574,17 +574,17 @@ ABool	AWindow::EVT_DoInlineInput( const AControlID inID, const AText& inText, co
 	EVT_DoInlineInput(inText,inFixLen,inHiliteLineStyleIndex,inHiliteStartPos,inHiliteEndPos,inReplaceLengthInUTF16,outUpdateMenu);
 }
 
-ABool	AWindow::EVT_DoInlineInputOffsetToPos( const AControlID inID, const AIndex inOffset, ALocalPoint& outPos )
+ABool	AWindow::EVT_DoInlineInputOffsetToPos( const AControlID inID, const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect )//#1305
 {
 	//#390
 	if( sTextInputRedirect_WindowID != kObjectID_Invalid && sTextInputRedirect_WindowID != GetObjectID() )
 	{
 		return AApplication::GetApplication().NVI_GetWindowByID(sTextInputRedirect_WindowID).
-				EVT_DoInlineInputOffsetToPos(sTextInputRedirect_ControlID,inOffset,outPos);
+		EVT_DoInlineInputOffsetToPos(sTextInputRedirect_ControlID,inStartOffset,inEndOffset,outRect);//#1305
 	}
 	//
 	if( IsView(inID) == false )   return false;
-	return NVI_GetViewByControlID(inID).EVT_DoInlineInputOffsetToPos(inOffset,outPos);
+	return NVI_GetViewByControlID(inID).EVT_DoInlineInputOffsetToPos(inStartOffset,inEndOffset,outRect);//#1305
 }
 
 ABool	AWindow::EVT_DoInlineInputPosToOffset( const AControlID inID, const ALocalPoint& inPos, AIndex& outOffset )
