@@ -133,7 +133,7 @@ class AWindow : public AObjectArrayItem
 							const AArray<AIndex>& inHiliteStartPos, const AArray<AIndex>& inHiliteEndPos,
 							const AItemCount inReplaceLengthInUTF16,//#688
 							ABool& outUpdateMenu );
-	ABool					EVT_DoInlineInputOffsetToPos( const AControlID inID, const AIndex inOffset, ALocalPoint& outPos );
+	ABool					EVT_DoInlineInputOffsetToPos( const AControlID inID, const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect  );//#1305
 	ABool					EVT_DoInlineInputPosToOffset( const AControlID inID, const ALocalPoint& inPos, AIndex& outOffset );
 	ABool					EVT_DoInlineInputGetSelectedText( const AControlID inID, AText& outText );
 	ABool					EVT_DoTextInput( const AControlID inID, const AText& inText, //#688 const AOSKeyEvent& inOSKeyEvent, 
