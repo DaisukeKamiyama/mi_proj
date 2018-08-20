@@ -90,7 +90,7 @@ class AView_EditBox : public AView
 							const AArray<AIndex>& inHiliteLineStyleIndex, const AArray<AIndex>& inHiliteStartPos, const AArray<AIndex>& inHiliteEndPos,
 							const AItemCount inReplaceLengthInUTF16,//#688
 							ABool& outUpdateMenu );
-	ABool					EVTDO_DoInlineInputOffsetToPos( const AIndex inOffset, ALocalPoint& outPos );
+	ABool					EVTDO_DoInlineInputOffsetToPos( const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect );//#1305
 	ABool					EVTDO_DoInlineInputPosToOffset( const ALocalPoint& inPos, AIndex& outOffset );
 	ABool					EVTDO_DoInlineInputGetSelectedText( AText& outText );
 	void					Refresh();
