@@ -129,7 +129,7 @@ class AView_Text : public AView
 							const AArray<AIndex>& inHiliteStartPos, const AArray<AIndex>& inHiliteEndPos, 
 							const AItemCount inReplaceLengthInUTF16,//#688
 							ABool& outUpdateMenu );
-	ABool					EVTDO_DoInlineInputOffsetToPos( const AIndex inOffset, ALocalPoint& outPos );
+	ABool					EVTDO_DoInlineInputOffsetToPos( const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect );//#1305
 	ABool					EVTDO_DoInlineInputPosToOffset( const ALocalPoint& inPos, AIndex& outOffset );
 	ABool					EVTDO_DoInlineInputGetSelectedText( AText& outText );
 	ABool					EVTDO_DoTextInput( const AText& inText, //#688 const AOSKeyEvent& inOSKeyEvent, 
