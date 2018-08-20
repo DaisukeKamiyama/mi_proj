@@ -2513,21 +2513,44 @@ ABool	AView_EditBox::EVTDO_DoInlineInput( const AText& inText, const AItemCount 
 	return true;
 }
 
-ABool	AView_EditBox::EVTDO_DoInlineInputOffsetToPos( const AIndex inOffset, ALocalPoint& outPos )
+/**
+インライン入力　テキスト範囲→ローカル座標
+#1305 
+*/
+ABool	AView_EditBox::EVTDO_DoInlineInputOffsetToPos( const AIndex inStartOffset, const AIndex inEndOffset, ALocalRect& outRect )
 {
-	ATextPoint	textPoint;
+	//テキスト範囲取得
+	ATextPoint	startTextPoint = {0}, endTextPoint = {0};
 	if( mInlineInputNotFixedTextLen > 0 )
 	{
-		GetTextDocument().SPI_GetTextPointFromTextIndex(mInlineInputNotFixedTextPos+inOffset,textPoint);
+		GetTextDocument().SPI_GetTextPointFromTextIndex(mInlineInputNotFixedTextPos+inStartOffset,startTextPoint,true);
+		GetTextDocument().SPI_GetTextPointFromTextIndex(mInlineInputNotFixedTextPos+inEndOffset,endTextPoint,true);
 	}
 	else
 	{
-		GetCaretTextPoint(textPoint);
+		GetCaretTextPoint(startTextPoint);
+		GetCaretTextPoint(endTextPoint);
 	}
-	AImagePoint	imagePoint;
-	GetImagePointFromTextPoint(textPoint,imagePoint);
-	imagePoint.y += GetLineHeightWithoutMargin();
-	NVM_GetLocalPointFromImagePoint(imagePoint,outPos);
+	//イメージ座標取得
+	AImagePoint	startImagePoint = {0}, endImagePoint = {0};
+	GetImagePointFromTextPoint(startTextPoint,startImagePoint);
+	GetImagePointFromTextPoint(endTextPoint,endImagePoint);
+	//複数行にわたる場合は出力Rectの右端は、最初の行の右端にする
+	if( endTextPoint.y > startTextPoint.y )
+	{
+		ATextPoint	startTextPoint2 = startTextPoint;
+		startTextPoint2.x = GetTextDocument().SPI_GetLineLengthWithoutLineEnd(startTextPoint.y);
+		AImagePoint	startImagePoint2 = {0};
+		GetImagePointFromTextPoint(startTextPoint2,startImagePoint2);
+		endImagePoint.x = startImagePoint2.x;
+	}
+	//ローカル座標取得
+	AImageRect	imageRect = {0};
+	imageRect.left		= startImagePoint.x;
+	imageRect.top		= startImagePoint.y;
+	imageRect.right		= endImagePoint.x;
+	imageRect.bottom	= endImagePoint.y + GetLineHeightWithoutMargin();
+	NVM_GetLocalRectFromImageRect(imageRect,outRect);
 	return true;
 }
 
