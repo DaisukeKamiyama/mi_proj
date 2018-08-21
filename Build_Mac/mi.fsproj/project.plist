@@ -13,7 +13,7 @@
 	<key>Custom Icon Path</key>
 	<string></string>
 	<key>Disk Image Name</key>
-	<string>mi3.0.1b3.dmg</string>
+	<string>mi3.0.1b4.dmg</string>
 	<key>Encode Format</key>
 	<string>None</string>
 	<key>Encryption Type</key>
@@ -64,7 +64,7 @@
 	<key>Show Toolbar</key>
 	<string>FALSE</string>
 	<key>Volume Name</key>
-	<string>mi3.0.1</string>
+	<string>mi3.0.1b4</string>
 	<key>Window Frame</key>
 	<string>{{79, 43}, {600, 486}}</string>
 </dict>
