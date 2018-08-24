@@ -311,6 +311,33 @@ ABool	ABaseFunction::TestRegExp()
 	TestRegExp1(result,"abcいああいうえお def",0,99999999,"[\\x{3041}-\\x{3096}]+","いああいうえお",true);
 	if( result == false )   _AInfo("NG",NULL);
 	
+	//#1308  「^(?!.*regexp).*$」等
+	TestRegExp1(result,"abcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?!.*abc).*$","nabdef",true);
+	TestRegExp1(result,"\r\rabcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*abc).*$","abcxyz",true);
+	TestRegExp1(result,"\r\rabcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*stu).*$","xxx",false);
+	TestRegExp1(result,"abcxyz\rxyzabcdef\rxxabcdef",0,99999999,"^(?!.*abc).*$","xxx",false);
+	TestRegExp1(result,"abcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?!abc).*$","xyzabcdef",true);
+	TestRegExp1(result,"abcxyz\rxyzdef\rnabdef\r\r\rdef",0,99999999,"^(?!.*(abc|xyz)).*$","nabdef",true);
+	TestRegExp1(result,"\r\rabcxyz\rxyzdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*(abcd|zde)).*$","xyzdef",true);
+	TestRegExp1(result,"\r\rabcxyz\rxyzdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*xyz$).*$","abcxyz",true);
+	TestRegExp1(result,"abcxyz\rxyzdef\rnabdef\r\r\rdef",0,99999999,"^(?!.*xyz$).*$","xyzdef",true);
+	TestRegExp1(result,"abcdef\rabcxyz\rxyzdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*abc)(?!.*def).*$","abcxyz",true);
+	TestRegExp1(result,"2def2 3ghi3 4jkl4 5mno5",0,99999999,"[0-9](?!def)\\w+[0-9]","3ghi3",true);
+	TestRegExp1(result,"abcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?!.*abc).*\\r","nabdef\r",true);
+	TestRegExp1(result,"\r\rabcxyz\rxyzabcdef\rnabdef\r\r\rdef",0,99999999,"^(?=.*abc).*\\r","abcxyz\r",true);
+	TestRegExp1(result,"かきくけこあいうえお\rさしすせそあいうおお\rかきくけこあうえお\r\r\rdef",0,99999999,"^(?!.*あいう).*\\n","かきくけこあうえお\r",true);
+	TestRegExp1(result,"かきくけこいうえお\rさしすせそあいうおお\rかきくけこあうえお\r\r\rdef",0,99999999,"^(?=.*あいう).*\\n","さしすせそあいうおお\r",true);
+	TestRegExp1(result,"かきくけこあいうえお\rさしすせそあいうおお\rかきくけこたちつてと\r\r\rdef",0,99999999,"^(?!.*[あいうえお]).*\\n","かきくけこたちつてと\r",true);
+	TestRegExp1(result,"🌀🌀\r🌀🌀かきくけこあいうえお\r🌀🌀さしすせそあいうおお\r🌀かきくけこたちつてと\r\r\rdef",0,99999999,"^(?!\\x{1F300}{2,10}).*\\n","🌀かきくけこたちつてと\r",true);
+	TestRegExp3(result,"XYZABCDEFABDEGEABXYZZ","(?=CD)","x","XYZABxCDEFABDEGEABXYZZ",false);
+	TestRegExp3(result,"XYZABCDEFABDEGEABXYZZ","AB(?=CD)","x","XYZxCDEFABDEGEABXYZZ",false);
+	TestRegExp3(result,"abcde ABCDE A1234 1ZXYZZ ZZ ZX9 RX78 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x 1ZXYZZ ZZ ZX9 RX78 38 xyz",false);
+	TestRegExp3(result,"abcde ABCDE x 1ZXYZZ ZZ ZX9 RX78 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ ZX9 RX78 38 xyz",false);
+	TestRegExp3(result,"abcde ABCDE x x ZZ ZX9 RX78 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x RX78 38 xyz",false);
+	TestRegExp3(result,"abcde ABCDE x x ZZ x RX78 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x 38 xyz",false);
+	TestRegExp3(result,"abcde ABCDE x x ZZ x x 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x x xyz",false);
+	TestRegExp3(result,"abcde ABCDE x x ZZ x x x xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x x xyz",false);
+	
 	return result;
 }
 #endif
