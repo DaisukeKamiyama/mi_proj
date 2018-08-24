@@ -337,6 +337,9 @@ ABool	ABaseFunction::TestRegExp()
 	TestRegExp3(result,"abcde ABCDE x x ZZ x RX78 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x 38 xyz",false);
 	TestRegExp3(result,"abcde ABCDE x x ZZ x x 38 xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x x xyz",false);
 	TestRegExp3(result,"abcde ABCDE x x ZZ x x x xyz","(?=\\w*\\d)\\w+","x","abcde ABCDE x x ZZ x x x xyz",false);
+	//#1311 {n}
+	TestRegExp3(result,"123456 1000000 1234567","(?!1000000)[0-9]{7}","x","123456 1000000 x",false);
+	TestRegExp3(result,"123456 1000000 1234567","(?!1000000)[0-9]{7,7}","x","123456 1000000 x",false);
 	
 	return result;
 }
