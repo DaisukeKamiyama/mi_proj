@@ -79,8 +79,13 @@
 						</td>
 					</tr>
 					<tr>
+						<td valign="top"><p><code>\n</code></p></td><td>
+							<p>改行（\n, \rどちらでも同じ）</p>
+						</td>
+					</tr>
+					<tr>
 						<td valign="top"><p><code>\r</code></p></td><td>
-							<p>改行</p>
+							<p>改行（\n, \rどちらでも同じ）</p>
 						</td>
 					</tr>
 					<tr>
@@ -215,6 +220,16 @@
 							<p>n回以上、m回以下（最短一致）※n,mは0以上65534以下の整数。n &lt;= m</p>
 						</td>
 					</tr>
+					<tr>
+						<td valign="top"><p><code>{n}</code></p></td><td>
+							<p>n回（最長一致）※nは0以上65534以下の整数。</p>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top"><p><code>{n}?</code></p></td><td>
+							<p>n回（最短一致）※nは0以上65534以下の整数。</p>
+						</td>
+					</tr>
 				</table>
 				<h2><a name="select">選択</a></h2>
 				<table border="1" cellpadding="2" cellspacing="0">
@@ -328,26 +343,40 @@
 					<col width = "100"><col>
 					<tr><th>正規表現</th><th>説明</th></tr>
 					<tr>
-						<td valign="top"><p><code><span class="var">regexp1</span>(?=<span class="var">regexp2</span>)</code></p></td><td>
+						<td valign="top"><p><code>(?=<span class="var">regexp</span>)</code></p></td><td>
 							<p>
-								後続指定（一致）
+								先読み
 							</p>
 							<p>
-								正規表現<span class="var">regexp1</span>に一致し、かつ、
-								正規表現<span class="var">regexp2</span>に一致する文字列がそのあとに続く場合のみ一致します。<br>
-								一致したとみなされる部分は、<span class="var">regexp1</span>に一致する部分のみになります。
+								正規表現<span class="var">regexp</span>に一致するかどうかを（対象テキストを先読みして）チェックします。<br>
+								<span class="var">regexp</span>に不一致の場合、正規表現全体は不一致となります。<br>
+								<span class="var">regexp</span>に一致の場合、対象テキストの先読みした部分の最初に戻ってから、正規表現一致判定を続けます。<br>
+								<br>
+								（対象テキストの先読みした部分は、この正規表現に一致した部分とはみなされず、正規表現置換の対象にもなりません。）
 							</p>
 						</td>
 					</tr>
 					<tr>
-						<td valign="top"><p><code><span class="var">regexp1</span>(?!<span class="var">regexp2</span>)</code></p></td><td>
+						<td valign="top"><p><code>(?!<span class="var">regexp</span>)</code></p></td><td>
 							<p>
-								後続指定（不一致）
+								否定先読み
 							</p>
 							<p>
-								正規表現<span class="var">regexp1</span>に一致し、かつ、
-								正規表現<span class="var">regexp2</span>に一致する文字列がそのあとに続かない場合のみ一致します。<br>
-								一致したとみなされる部分は、<span class="var">regexp1</span>に一致する部分のみになります。
+								正規表現<span class="var">regexp</span>に不一致かどうかを（対象テキストを先読みして）チェックします。<br>
+								<span class="var">regexp</span>に一致の場合、正規表現全体は不一致となります。<br>
+								<span class="var">regexp</span>に不一致の場合、対象テキストの先読みした部分の最初に戻ってから、正規表現一致判定を続けます。<br>
+								<div class="sample">
+									<p>記述例：</p>
+									<pre><code>^(?!.*東京).*$</code></pre>
+									<p>→結果："東京"を含まない行に一致</p>
+								</div>
+								<div class="sample">
+									<p>記述例：</p>
+									<pre><code>(?!1000000)[0-9]{7}</code></pre>
+									<p>→結果：1000000以外の7桁の数字に一致</p>
+								</div>
+								<br>
+								（対象テキストの先読みした部分は、この正規表現に一致した部分とはみなされず、正規表現置換の対象にもなりません。）
 							</p>
 						</td>
 					</tr>
