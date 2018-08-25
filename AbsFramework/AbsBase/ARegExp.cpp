@@ -68,10 +68,11 @@ RegExp中間表現
 単語区切り以外(\B)
 00 63
 
-後続指定（マッチ）
-00 70
-後続指定（マッチしない）
-00 71
+#1308 先読み修正 llll追加
+先読み llll:length
+00 70 ll ll
+否定先読み llll:length
+00 71 ll ll
 
 例 (abc)+
 00 10 00 01 06		00 01 00		abc		00 02 00
@@ -352,6 +353,7 @@ void	ARegExp::Parse( const AText& inRE, const AIndex inStart, AIndex inEnd, AInd
 				
 				ABool	repeatMode = false;
 				AIndex	repeatSpos;
+				AIndex	aftermodeSpos = kIndex_Invalid;//#1308
 				if( !aftermode && !afternotmode ) 
 				{
 					if( ParseRepMeta(inRE,REPos,0) ) 
@@ -364,10 +366,18 @@ void	ARegExp::Parse( const AText& inRE, const AIndex inStart, AIndex inEnd, AInd
 				{
 					mIex.Add(0);
 					mIex.Add(0x70);
+					//length分2バイト確保（グループのParseが終わったら実際のlengthを書き込む）#1308
+					mIex.Add(0);
+					mIex.Add(0);
+					aftermodeSpos = mIex.GetItemCount();
 				}
 				else if( afternotmode ) {
 					mIex.Add(0);
 					mIex.Add(0x71);
+					//length分2バイト確保（グループのParseが終わったら実際のlengthを書き込む）#1308
+					mIex.Add(0);
+					mIex.Add(0);
+					aftermodeSpos = mIex.GetItemCount();
 				}
 				
 				AIndex	groupNumber = ioGroupNumber;
@@ -386,6 +396,14 @@ void	ARegExp::Parse( const AText& inRE, const AIndex inStart, AIndex inEnd, AInd
 					unsigned short	len = mIex.GetItemCount()-repeatSpos;
 					mIex.Set(repeatSpos-2,(len>>8)&0xFF);
 					mIex.Set(repeatSpos-1,(len)&0xFF);
+				}
+				
+				//先読みの場合、実際のlengthを書き込む #1308
+				if( aftermode || afternotmode )
+				{
+					unsigned short	len = mIex.GetItemCount()-aftermodeSpos;
+					mIex.Set(aftermodeSpos-2,(len>>8)&0xFF);
+					mIex.Set(aftermodeSpos-1,(len)&0xFF);
 				}
 				
 				if( groupNumber < kGroupCountMax && !nogroupmode) 
@@ -908,16 +926,24 @@ ABool	ARegExp::ParseRepMeta( const AText& inRE, AIndex &ioREPos, const AItemCoun
 				return false;
 			}
 			if( REPos >= inRE.GetItemCount() )   return false;
-			if( inRE.Get(REPos) != ',' ) 
+			if( inRE.Get(REPos) != '}' )//#1311
 			{
-				return false;
+				if( inRE.Get(REPos) != ',' ) 
+				{
+					return false;
+				}
+				REPos++;
+				if( !ParseInteger(inRE,REPos,m) ) 
+				{
+					m = 0xFFFF;
+				}
+				if( REPos >= inRE.GetItemCount() )   return false;
 			}
-			REPos++;
-			if( !ParseInteger(inRE,REPos,m) ) 
+			else
 			{
-				m = 0xFFFF;
+				//#1311
+				m = n;
 			}
-			if( REPos >= inRE.GetItemCount() )   return false;
 			if( inRE.Get(REPos) != '}' )
 			{
 				return false;
@@ -967,7 +993,7 @@ ABool	ARegExp::Match( const AText& inText, AIndex &ioTextPos, const AIndex inTex
 	{
 		mDepth = 0;
 		mLastMatchedGroup = -1;
-		mEndPosition = -1;
+		//#1308 mEndPosition = -1;
 		AIndex	spos = ioTextPos;
 		AIndex	iexPos = 0;
 		{//#598 arrayptrの有効範囲を最小にする
@@ -981,8 +1007,10 @@ ABool	ARegExp::Match( const AText& inText, AIndex &ioTextPos, const AIndex inTex
 						textptr.GetPtr(),textptr.GetByteCount(),//#731
 						inTextTargetEndPos,ioTextPos);//B0050
 		}
+		/*#1308
 		if( mEndPosition != -1 )   ioTextPos = mEndPosition;
 		else mEndPosition = ioTextPos;
+		*/
 		mMatchedTextSpos = spos;
 		mMatchedTextEpos = ioTextPos;
 	}
@@ -1289,17 +1317,57 @@ ABool	ARegExp::MatchRecursive( const AConstUCharPtr iex, const AItemCount inIexL
 				}
 			  case 0x70://後続指定（マッチ）
 				{
+					//#1308 先読み処理仕様修正
+					//length取得
+					AItemCount	len = 0;
+					len = iex[ioIexPos];
+					ioIexPos++;
+					len *= 0x100;
+					len += iex[ioIexPos];
+					ioIexPos++;
+					//グループ内に一致しなかったら不一致、一致したら、ioIexPosは進める、ioTextPosは元のままでマッチ処理を続ける。
+					AIndex	iexPos = ioIexPos;
+					AIndex	textPos = ioTextPos;
+					if( !MatchRecursive(iex,ioIexPos+len,iexPos,
+										inTextPtr,inTextLength,inTextLength,textPos) )
+					{
+						return false;
+					}
+					ioIexPos += len;
+					break;
+					/*#1308
 					mEndPosition = ioTextPos;
 					//B0050 選択範囲でなくテキスト領域全体で後続指定一致を判定すべき
-					return MatchRecursive(iex,inIexLength,ioIexPos,//#731 inText,/*inTextLength*/
-						inTextPtr,inTextLength,inTextLength/*#731 inText.GetItemCount()*/,ioTextPos);
+					return MatchRecursive(iex,inIexLength,ioIexPos,//#731 inText,*inTextLength*
+						inTextPtr,inTextLength,inTextLength*#731 inText.GetItemCount()*,ioTextPos);
+					*/
 				}
 			  case 0x71://後続指定（マッチしない）
 				{
+					//#1308 先読み処理仕様修正
+					//length取得
+					AItemCount	len = 0;
+					len = iex[ioIexPos];
+					ioIexPos++;
+					len *= 0x100;
+					len += iex[ioIexPos];
+					ioIexPos++;
+					//グループ内に一致したら不一致、一致したら、ioIexPosは進める、ioTextPosは元のままでマッチ処理を続ける。
+					AIndex	iexPos = ioIexPos;
+					AIndex	textPos = ioTextPos;
+					if( MatchRecursive(iex,ioIexPos+len,iexPos,
+									   inTextPtr,inTextLength,inTextLength,textPos) )
+					{
+						return false;
+					}
+					ioIexPos += len;
+					break;
+					/*#1308
 					mEndPosition = ioTextPos;
 					//B0050 選択範囲でなくテキスト領域全体で後続指定一致を判定すべき
-					return !MatchRecursive(iex,inIexLength,ioIexPos,//#731 inText,/*inTextLength*/
-						inTextPtr,inTextLength,inTextLength/*#731inText.GetItemCount()*/,ioTextPos);
+					return !MatchRecursive(iex,inIexLength,ioIexPos,//#731 inText,*inTextLength*
+						inTextPtr,inTextLength,inTextLength*#731inText.GetItemCount()*,ioTextPos);
+					*/
 				}
 			}
 		}
