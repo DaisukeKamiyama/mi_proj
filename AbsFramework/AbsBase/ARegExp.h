@@ -108,7 +108,7 @@ ABool	ParseHex( const AText& inRE, AIndex &ioREPos, AUCS4Char &outHex );//#1214 
 	AIndex	mGroupEpos[kGroupCountMax];
 	ALetterRange	mRange[kRangeCountMax];
 	AIndex	mRangeNumber;
-	AIndex	mEndPosition;
+	//#1308 AIndex	mEndPosition;
 	AIndex	mMatchedTextSpos;
 	AIndex	mMatchedTextEpos;
 	AItemCount	mGroupCount;
