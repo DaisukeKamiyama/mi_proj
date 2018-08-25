@@ -31,6 +31,7 @@ CocoaApp
 #include "AApp.h"
 //#1097 #import <HockeySDK/HockeySDK.h>
 #include "CWindowImpCocoaObjects.h"
+#include "../../AbsFramework/MacWrapper/ODBEditorSuite.h"
 
 #pragma mark ===========================
 #pragma mark [クラス]CocoaApp
@@ -442,6 +443,33 @@ openコマンドハンドラ
 	file.Specify(path);
 	//ドキュメント生成
 	ADocumentID docID = GetApp().SPNVI_CreateDocumentFromLocalFile(file);
+	//#1307 Fetch経由の編集ができなくなっていた問題を修正
+	//OpenコマンドのappleEventにODBデータがあれば、ドキュメントにODBを設定する。
+	NSAppleEventDescriptor*	evtDesc = [command appleEvent];
+	OSType	odbServer = 0;
+	AText	odbSenderToken;
+	AText	odbCustomPath;
+	if( evtDesc != nil )
+	{
+		NSAppleEventDescriptor*	odbServerDesc = [evtDesc paramDescriptorForKeyword:keyFileSender];
+		NSAppleEventDescriptor*	odbSenderTokenDesc = [evtDesc paramDescriptorForKeyword:keyFileSenderToken];
+		NSAppleEventDescriptor*	odbCustomPathDesc = [evtDesc paramDescriptorForKeyword:keyFileCustomPath];
+		if( odbServerDesc != nil && odbSenderTokenDesc != nil && odbCustomPathDesc != nil )
+		{
+			odbServer = [odbServerDesc typeCodeValue];
+			NSString*	odbSenderTokenStr = [odbSenderTokenDesc stringValue];
+			if( odbSenderTokenStr != nil )
+			{
+				ACocoa::SetTextFromNSString(odbSenderTokenStr,odbSenderToken);
+			}
+			NSString*	odbCustomPathStr = [odbCustomPathDesc stringValue];
+			if( odbCustomPathStr != nil )
+			{
+				ACocoa::SetTextFromNSString(odbCustomPathStr,odbCustomPath);
+			}
+			GetApp().SPI_GetTextDocumentByID(docID).SPI_SetODBMode(odbServer,odbSenderToken,odbCustomPath);
+		}
+	}
     return nil;
 }
 
