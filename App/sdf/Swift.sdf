@@ -85,7 +85,7 @@ state(func)
 	{"(", {SetVarLastWord(funcname), IncIndentFromNext}}
 	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), BlockStart(funcblock), IncIndentFromNext, ChangeState(func_idle)}}
 	{")", {DecIndentFromNext}}
-	{"}", {DecIndentFromCurrent}}
+	{"}", {DecIndentFromCurrent, ChangeState(idle)}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
