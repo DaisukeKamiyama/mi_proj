@@ -8,7 +8,7 @@ Regexp List (Regular Expression will be added in Find text by selecting an item.
 \s : Space, Line End, or Tab
 \S : Any Character except for Space, Line End, or Tab
 \t : Tab
-\r : Line End
+\n : Line End
 [] : Any Character in [ ] (Example: [a-z], [abc])
 [^] : Any Character except for Characters in [^ ] (Example: [^a-z], [^abc])
 \x00 : Hex code (Example: \x5C)
@@ -33,7 +33,7 @@ $ : End of Paragraph
 \b : Border of Words
 \B : Any Position except for Border of Words
 -
-^\r : Empty Line
-(.|\r) : Any Character
-(^.+\r)(\1)+ : Continuous duplicated line
-<(.|\r)+?> : HTML tag
+^\n : Empty Line
+(.|\n) : Any Character
+(^.+\n)(\1)+ : Continuous duplicated line
+<(.|\n)+?> : HTML tag
