@@ -274,11 +274,11 @@ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Scrip
 		path.SetFromNSString(filename);
 		AFileAcc	file;
 		file.Specify(path);
-		//ドキュメント生成
-		ADocumentID docID = GetApp().SPNVI_CreateDocumentFromLocalFile(file,tecname);
-		
+		//#1006 ここで直接ドキュメント生成はせず、内部イベントへキューイングことにする ADocumentID	docID = GetApp().SPNVI_CreateDocumentFromLocalFile(path,tecname);
 		//==================ODB==================
+		//#1006
 		//ODBデータ取得
+		ABool	odbMode = false;
 		OSType	odbServer = 0;
 		AText	odbSenderToken;
 		AText	odbCustomPath;
@@ -300,9 +300,36 @@ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Scrip
 				{
 					ACocoa::SetTextFromNSString(odbCustomPathStr,odbCustomPath);
 				}
-				GetApp().SPI_GetTextDocumentByID(docID).SPI_SetODBMode(odbServer,odbSenderToken,odbCustomPath);
+				//#1006 ここで直接ドキュメント生成はせず、内部イベントへキューイングことにする GetApp().SPI_GetTextDocumentByID(docID).SPI_SetODBMode(odbServer,odbSenderToken,odbCustomPath);
+				odbMode = true;
 			}
 		}
+		
+		//ドキュメント生成するための内部イベントを作成
+		//ファイルパス取得
+		AText	filepath;
+		file.GetPath(filepath);
+		//NULL文字区切りでドキュメント情報をtextに格納
+		AText	text;
+		text.SetText(filepath);
+		text.Add(0);
+		text.AddText(tecname);
+		if( odbMode == true )
+		{
+			text.Add(0);
+			AText	odbServerText;
+			odbServerText.SetFromOSType(odbServer);
+			text.AddText(odbServerText);
+			text.Add(0);
+			text.AddText(odbSenderToken);
+			text.Add(0);
+			text.AddText(odbCustomPath);
+		}
+		
+		//内部イベントへキューイング
+		AObjectIDArray	objectIDArray;
+		objectIDArray.Add(kObjectID_Invalid);//#1078
+		ABase::PostToMainInternalEventQueue(kInternalEvent_AppleEventOpenDoc,kObjectID_Invalid,0,text,objectIDArray);
 	}
 }
 
