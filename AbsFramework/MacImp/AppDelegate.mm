@@ -31,6 +31,7 @@ AppDelegate
 #include "CocoaMacro.h"
 #include "AApp.h"
 //#1097 #import <HockeySDK/HockeySDK.h>
+#include "../../AbsFramework/MacWrapper/ODBEditorSuite.h"
 
 #pragma mark ===========================
 #pragma mark [クラス]AppDelegate
@@ -238,6 +239,70 @@ AEハンドラ
 		}
 		//引数実行
 		AApplication::GetApplication().NVI_ExecCommandLineArgs(argsArray);
+	}
+}
+
+//#1317 TextDocument/initWithContentsOfURLでAppeEventを取得できない問題の対策
+/**
+open Apple Eventの処理
+https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239
+*/
+- (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames
+{
+	for( NSString* filename in filenames )
+	{
+		//==================テキストエンコーディング取得==================
+		//
+		AText	tecname;
+		//
+		NSAppleEventDescriptor*	evtDesc = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
+		if( evtDesc != nil )
+		{
+			NSAppleEventDescriptor*	tecDesc = [evtDesc descriptorForKeyword:keyCharacterCode];
+			if( tecDesc != nil )
+			{
+				NSString*	tecStr = [tecDesc stringValue];
+				if( tecStr != nil )
+				{
+					ACocoa::SetTextFromNSString(tecStr,tecname);
+				}
+			}
+		}
+		
+		//==================ドキュメント生成==================
+		AText	path;
+		path.SetFromNSString(filename);
+		AFileAcc	file;
+		file.Specify(path);
+		//ドキュメント生成
+		ADocumentID docID = GetApp().SPNVI_CreateDocumentFromLocalFile(file,tecname);
+		
+		//==================ODB==================
+		//ODBデータ取得
+		OSType	odbServer = 0;
+		AText	odbSenderToken;
+		AText	odbCustomPath;
+		if( evtDesc != nil )
+		{
+			NSAppleEventDescriptor*	odbServerDesc = [evtDesc paramDescriptorForKeyword:keyFileSender];
+			NSAppleEventDescriptor*	odbSenderTokenDesc = [evtDesc paramDescriptorForKeyword:keyFileSenderToken];
+			NSAppleEventDescriptor*	odbCustomPathDesc = [evtDesc paramDescriptorForKeyword:keyFileCustomPath];
+			if( odbServerDesc != nil && odbSenderTokenDesc != nil && odbCustomPathDesc != nil )
+			{
+				odbServer = [odbServerDesc typeCodeValue];
+				NSString*	odbSenderTokenStr = [odbSenderTokenDesc stringValue];
+				if( odbSenderTokenStr != nil )
+				{
+					ACocoa::SetTextFromNSString(odbSenderTokenStr,odbSenderToken);
+				}
+				NSString*	odbCustomPathStr = [odbCustomPathDesc stringValue];
+				if( odbCustomPathStr != nil )
+				{
+					ACocoa::SetTextFromNSString(odbCustomPathStr,odbCustomPath);
+				}
+				GetApp().SPI_GetTextDocumentByID(docID).SPI_SetODBMode(odbServer,odbSenderToken,odbCustomPath);
+			}
+		}
 	}
 }
 
