@@ -331,6 +331,9 @@ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Scrip
 		objectIDArray.Add(kObjectID_Invalid);//#1078
 		ABase::PostToMainInternalEventQueue(kInternalEvent_AppleEventOpenDoc,kObjectID_Invalid,0,text,objectIDArray);
 	}
+	
+	//
+	[sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
 #pragma mark ===========================
