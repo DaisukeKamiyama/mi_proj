@@ -334,6 +334,9 @@ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Scrip
 	
 	//
 	[sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+	
+	//AppleEventのreplyが5sタイムアウトするまで送出されていないようなので、suspend/resumeを行うことで対策（AppKitのどこかでsuppendされている？）
+	[[NSAppleEventManager sharedAppleEventManager] resumeWithSuspensionID:[[NSAppleEventManager sharedAppleEventManager] suspendCurrentAppleEvent]];
 }
 
 #pragma mark ===========================
