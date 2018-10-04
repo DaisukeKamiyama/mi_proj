@@ -332,11 +332,11 @@ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Scrip
 		ABase::PostToMainInternalEventQueue(kInternalEvent_AppleEventOpenDoc,kObjectID_Invalid,0,text,objectIDArray);
 	}
 	
-	//
-	[sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
-	
 	//AppleEventのreplyが5sタイムアウトするまで送出されていないようなので、suspend/resumeを行うことで対策（AppKitのどこかでsuppendされている？）
 	[[NSAppleEventManager sharedAppleEventManager] resumeWithSuspensionID:[[NSAppleEventManager sharedAppleEventManager] suspendCurrentAppleEvent]];
+	
+	//
+	[sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
 #pragma mark ===========================
