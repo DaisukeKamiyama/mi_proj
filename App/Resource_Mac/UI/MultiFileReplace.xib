@@ -604,7 +604,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" misplaced="YES" tag="1010" id="487">
-                        <rect key="frame" x="853" y="17" width="162" height="32"/>
+                        <rect key="frame" x="853" y="12" width="162" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Execute Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="519">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -612,7 +612,7 @@ Gw
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" misplaced="YES" tag="1009" id="613">
-                        <rect key="frame" x="681" y="17" width="162" height="32"/>
+                        <rect key="frame" x="681" y="12" width="162" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="614">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
