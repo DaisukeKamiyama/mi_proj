@@ -579,9 +579,9 @@ Extract matched text to new document.
 Advanced Search
 特殊な検索
 To prevent unexpected replace, replace using the following 3 steps.
-間違って関係ないファイルを置換してしまうのを防止するため、下記の 3 ステップにより、対象を確認しながら、置換を行います。
+間違って関係ないファイルを置換してしまうのを防止するため、下記の 3 ステップにより、対象を確認しながら進めます。
 At First, find string in the folder.
-まず、マルチファイル検索を実行します。
+まず、検索文字列等を入力後、下の「検索」ボタンを押して、マルチファイル検索を実行します。
 Select Replace Target Files from files which were found at Step 1.
 ステップ１で見つかったファイルから、置換の対象とするファイルを選択します。
 Execute replace against Replace Target Files.
