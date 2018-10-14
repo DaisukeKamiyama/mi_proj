@@ -61,9 +61,12 @@ state(idle)
 	{"}", {DecIndentFromCurrent}}
 	#func
 	{"func",{SetVarStart(info), ChangeState(func)}}
+	{"init",{SetVarStart(info), ChangeState(func)}}
 	#class
 	{"class",{ChangeState(class)}}
 	{"struct",{ChangeState(class)}}
+	#enum
+	{"enum",{ChangeState(enum)}}
 	#typealias
 	{"typealias", {SetVarNextToken(varname),AddGlobalId([typealias], varname, "", "", "", "", "", "", 9)}}
 	#var/let
@@ -137,6 +140,24 @@ state(class)
 	{"\\",{EscapeNextChar}}
 }
 
+# enum
+state(enum)
+{
+	StateAttribute_SyntaxPart("Swift")
+	#
+	{":", {SetVarLastWord(classname),AddGlobalId([enum], classname, classname, "","","","","",1), ChangeState(idle)}}
+	{"{", {SetVarLastWord(classname),AddGlobalId([enum], classname, classname, "","","","","",1), IncIndentFromNext, ChangeState(idle)}}
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
 state(linecomment)
 {
 	StateAttribute_SyntaxPart("Swift")
@@ -185,6 +206,12 @@ category[class]
 { 
 	CategoryAttribute_ColorSlot(4)
 	CategoryAttribute_DisplayName(0,"class")
+}
+
+category[enum]
+{ 
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"enum")
 }
 
 category[typealias]
