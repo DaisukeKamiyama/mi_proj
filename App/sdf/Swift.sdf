@@ -65,6 +65,8 @@ state(idle)
 	#class
 	{"class",{ChangeState(class)}}
 	{"struct",{ChangeState(class)}}
+	#protocol
+	{"protocol",{ChangeState(protocol)}}
 	#enum
 	{"enum",{ChangeState(enum)}}
 	#typealias
@@ -129,6 +131,24 @@ state(class)
 	#
 	{":", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",1), ChangeState(idle)}}
 	{"{", {SetVarLastWord(classname),AddGlobalId([class], classname, classname, "","","","","",1), IncIndentFromNext, ChangeState(idle)}}
+	{"(", {IncIndentFromNext}}
+	{")", {DecIndentFromNext}}
+	{"}", {DecIndentFromCurrent}}
+	#コメント／リテラル／エスケープ
+	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
+	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
+	{"'",{PushState(singlequotation)}}
+	{"\"",{PushState(doublequotation)}}
+	{"\\",{EscapeNextChar}}
+}
+
+# protocol
+state(protocol)
+{
+	StateAttribute_SyntaxPart("Swift")
+	#
+	{":", {SetVarLastWord(classname),AddGlobalId([protocol], classname, classname, "","","","","",1), ChangeState(idle)}}
+	{"{", {SetVarLastWord(classname),AddGlobalId([protocol], classname, classname, "","","","","",1), IncIndentFromNext, ChangeState(idle)}}
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
@@ -206,6 +226,12 @@ category[class]
 { 
 	CategoryAttribute_ColorSlot(4)
 	CategoryAttribute_DisplayName(0,"class")
+}
+
+category[protocol]
+{ 
+	CategoryAttribute_ColorSlot(4)
+	CategoryAttribute_DisplayName(0,"protocol")
 }
 
 category[enum]
