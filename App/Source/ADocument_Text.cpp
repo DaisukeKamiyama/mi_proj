@@ -3715,7 +3715,14 @@ ABool	ADocument_Text::SPI_Save( const ABool inSaveAs )
 				ATextEncoding	charsetEnc;
 				if( mText.GuessTextEncodingFromCharset(charsetEnc) == true && SPI_GetFirstWindowID() != kObjectID_Invalid )//#65
 				{
-					if( charsetEnc != SPI_GetTextEncoding() )
+					//SJIS系の場合は、全く同じでなくても、どちらもSJIS系なら同じとみなす。#1331
+					if( ATextEncodingWrapper::IsSJISSeriesTextEncoding(charsetEnc) == true &&
+						ATextEncodingWrapper::IsSJISSeriesTextEncoding(SPI_GetTextEncoding()) == true )
+					{
+						//SJIS系は同じとみなす。処理なし。
+					}
+					//
+					else if( charsetEnc != SPI_GetTextEncoding() )
 					{
 						/*#926
 						AText	text1, text2;
