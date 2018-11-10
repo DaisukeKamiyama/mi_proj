@@ -4722,6 +4722,53 @@ void	AView_Text::EVTDO_DoDraw()
 			NVMC_DrawLine(spt,ept,kColor_Red,0.5,1.0);
 		}
 	}
+	
+	//ドラッグ中のドラッグ先キャレット描画 #1332 XorDragCaret()の内容をここに移動。マウスドラッグ中にlockFocus描画反映されないようなので、drawRect()ルートで描画する。
+	if( mDragDrawn == true )
+	{
+		AImagePoint	caretImageStart, caretImageEnd;
+		GetImagePointFromTextPoint(mDragCaretTextPoint,caretImageStart);
+		caretImageEnd = caretImageStart;
+		caretImageEnd.y += GetLineHeightWithMargin(mDragCaretTextPoint.y);//#450 GetLineHeightWithMargin();
+		ALocalPoint	caretLocalStart, caretLocalEnd;
+		NVM_GetLocalPointFromImagePoint(caretImageStart,caretLocalStart);
+		NVM_GetLocalPointFromImagePoint(caretImageEnd,caretLocalEnd);
+		//キャレット色取得（文字色と同じにする）
+		AColor	modeLetterColor = kColor_Black;
+		GetApp().SPI_GetModePrefDB(GetTextDocument().SPI_GetModeIndex()).GetData_Color(AModePrefDB::kLetterColor,modeLetterColor);
+		//キャレット太さ判定
+		if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kBigCaret) == false )//#722
+		{
+			//太さ1
+			NVMC_DrawXorCaretLine(caretLocalStart,caretLocalEnd,true,true,false,1);//#1034 常にflushする
+		}
+		//#722 drag時のキャレット太さを通常と同じにする
+		else
+		{
+			//太さ2
+			caretLocalStart.y -= 1;
+			caretLocalEnd.y += 1;
+			NVMC_DrawXorCaretLine(caretLocalStart,caretLocalEnd,true,true,false,2);//#1034 常にflushする
+		}
+	}
+	//ドラッグ中のワードドラッグ先キャレット描画 #1332 XorDragCaret()の内容をここに移動。マウスドラッグ中にlockFocus描画反映されないようなので、drawRect()ルートで描画する。
+	if( mDragWordDragDrop == true )
+	{
+		///キャレット色取得（文字色と同じにする）
+		AColor	modeLetterColor = kColor_Black;
+	  GetApp().SPI_GetModePrefDB(GetTextDocument().SPI_GetModeIndex()).GetModeData_Color(AModePrefDB::kLetterColor,modeLetterColor);
+		//
+		AImageRect	imageRect;
+		GetLineImageRect(mDragCaretTextPoint.y,imageRect);
+		AImagePoint	caretImagePoint, selectImagePoint;
+		GetImagePointFromTextPoint(mDragCaretTextPoint,caretImagePoint);
+		GetImagePointFromTextPoint(mDragSelectTextPoint,selectImagePoint);
+		imageRect.left	= caretImagePoint.x;
+		imageRect.right	= selectImagePoint.x;
+		ALocalRect	localRect;
+		NVM_GetLocalRectFromImageRect(imageRect,localRect);
+		NVMC_DrawXorCaretRect(localRect,true,true);//#1034 常にflushする
+	}
 }
 
 //win
@@ -6454,6 +6501,21 @@ ABool	AView_Text::KeyBindAction( const AKeyBindKey inKeyBindKey, const AModifier
 	if( action == keyAction_InsertText )
 	{
 		actionText.SetText(inTextForInsertTextAction);
+	}
+	
+	//#1336
+	//escキー、かつ、アクションがない場合、フローティング検索結果ウインドウをhideする。
+	if( inKeyBindKey == kKeyBindKey_Escape && action == keyAction_NOP )
+	{
+		if( GetApp().SPI_IsMultiFileFindWorking() == false )
+		{
+			AWindowID	winID = GetApp().SPI_GetFloatingFindResultWindowID();
+			if( winID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetFindResultWindow(winID).NVI_Hide();
+				return true;
+			}
+		}
 	}
 	
 	//#390 キーマクロ記録
@@ -9705,6 +9767,9 @@ void	AView_Text::EVTDO_DoDragReceive( const ADragRef inDragRef, const ALocalPoin
 */
 void	AView_Text::XorDragCaret()
 {
+	//画面描画指示 #1332 マウスドラッグ中にlockFocus描画反映されないようなので、drawRect()ルートで描画する。
+	NVMC_RefreshControl();
+	/*#1332
 	AImagePoint	caretImageStart, caretImageEnd;
 	GetImagePointFromTextPoint(mDragCaretTextPoint,caretImageStart);
 	caretImageEnd = caretImageStart;
@@ -9729,6 +9794,7 @@ void	AView_Text::XorDragCaret()
 		caretLocalEnd.y += 1;
 		NVMC_DrawXorCaretLine(caretLocalStart,caretLocalEnd,true,true,false,2);//#1034 常にflushする
 	}
+	*/
 }
 
 /**
@@ -9736,6 +9802,9 @@ void	AView_Text::XorDragCaret()
 */
 void	AView_Text::XorWordDragDrop()
 {
+	//画面描画指示 #1332 マウスドラッグ中にlockFocus描画反映されないようなので、drawRect()ルートで描画する。
+	NVMC_RefreshControl();
+	/*#1332
 	///キャレット色取得（文字色と同じにする）
 	AColor	modeLetterColor = kColor_Black;
 	GetApp().SPI_GetModePrefDB(GetTextDocument().SPI_GetModeIndex()).GetModeData_Color(AModePrefDB::kLetterColor,modeLetterColor);
@@ -9750,6 +9819,7 @@ void	AView_Text::XorWordDragDrop()
 	ALocalRect	localRect;
 	NVM_GetLocalRectFromImageRect(imageRect,localRect);
 	NVMC_DrawXorCaretRect(localRect,true,true);//#1034 常にflushする
+	*/
 }
 
 /**

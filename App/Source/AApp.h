@@ -1458,6 +1458,7 @@ private:
 	{ MACRO_RETURN_WINDOW_DYNAMIC_CAST(AWindow_FindResult,kWindowType_FindResult,inWindowID); }
 	ADocumentID				SPI_GetOrCreateFindResultWindowDocument();
 	AWindowID				SPI_GetCurrentFindResultWindowID();
+	AWindowID				SPI_GetFloatingFindResultWindowID();//#1336
   private:
 	
 	//#725

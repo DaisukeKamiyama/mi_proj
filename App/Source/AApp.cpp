@@ -12526,7 +12526,8 @@ void	AApp::SPI_UpdateFloatingSubWindowsVisibility()
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( mSubWindowArray_SubWindowLocationType.Get(index) == kSubWindowLocationType_Floating )
+		if( mSubWindowArray_SubWindowLocationType.Get(index) == kSubWindowLocationType_Floating &&
+			mSubWindowArray_SubWindowType.Get(index) != kSubWindowType_FindResult )//#1336 検索結果ウインドウは表示状態更新対象外とする
 		{
 			//表示・非表示設定
 			if( shouldShow == true )
@@ -14468,6 +14469,42 @@ AWindowID	AApp::SPI_GetCurrentFindResultWindowID()
 		}
 	}
 	//------------------サイドバーに無ければ、フローティングウインドウを探す------------------
+	//各サブウインドウ毎のループ
+	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
+	{
+		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
+		//#959 if( NVI_GetWindowConstByID(winID).NVI_IsWindowVisible() == true )
+		{
+			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_FindResult )
+			{
+				switch(mSubWindowArray_SubWindowLocationType.Get(index))
+				{
+				  case kSubWindowLocationType_Floating:
+					{
+						//#959 if( NVI_GetWindowConstByID(winID).NVI_IsWindowVisible() == true )
+						{
+							return winID;
+						}
+						break;
+					}
+				  default:
+					{
+						//処理なし
+						break;
+					}
+				}
+			}
+		}
+	}
+	return kObjectID_Invalid;
+}
+
+//#1336
+/**
+検索結果ウインドウ（フローティングのみ）検索
+*/
+AWindowID	AApp::SPI_GetFloatingFindResultWindowID()
+{
 	//各サブウインドウ毎のループ
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{

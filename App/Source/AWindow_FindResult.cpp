@@ -250,7 +250,9 @@ void	AWindow_FindResult::NVIDO_TryClose( const AIndex inTabIndex )
 	{
 		//Closeé¿çs
 		//#92 ExecuteClose();
-		NVI_ExecuteClose();//#92
+		//#1336 NVI_ExecuteClose();//#92
+		//#1336 ï¬Ç∂Ç∏Ç…hideÇ∑ÇÈ
+		NVI_Hide();
 	}
 }
 
