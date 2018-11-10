@@ -324,6 +324,7 @@ class CWindowImp: public AObjectArrayItem
   public:
 	void					GetText( const AControlID inID, AText& outText ) const;
 	void					SetText( const AControlID inID, const AText& inText, const ABool inOnlyText = false );
+	void 					SetPopupButtonTitleText( const AControlID inID, const AText& inText );//#1335
 	void					AddText( const AControlID inID, const AText& inText );
 	void					InputText( const AControlID inID, const AText& inText );
 	void					GetBool( const AControlID inID, ABool& outBool ) const;

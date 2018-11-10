@@ -48,6 +48,8 @@ class AWindow_DiffInfo : public AWindow
 	
 	//<インターフェイス>
 	//ウインドウ制御
+  public:
+	void					SPI_RefreshWindow();//#1332
   private:
 	void					NVIDO_Create( const ADocumentID inDocumentID );
 	void					NVIDO_CreateTab( const AIndex inTabIndex, AControlID& outInitialFocusControlID );

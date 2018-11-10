@@ -105,3 +105,13 @@ AView_DiffInfo&	AWindow_DiffInfo::GetDiffInfoView()
 	MACRO_RETURN_VIEW_DYNAMIC_CAST_CONTROLID(AView_DiffInfo,kViewType_DiffInfo,kInfoViewControlID);
 }
 
+//#1332
+/**
+ウインドウ描画更新
+*/
+void AWindow_DiffInfo::SPI_RefreshWindow()
+{
+	NVI_RefreshWindow();
+	//Xcode10+Mojaveで、NVI_RefreshWindow()だけでは全く描画されないので、viewを明示的に描画指示する。#1332
+	GetDiffInfoView().NVI_Refresh();
+}

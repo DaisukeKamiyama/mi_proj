@@ -824,6 +824,8 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 			GetApp().SPNVI_CreateNewTextDocument(modeIndex);
 			//チェックマーク解除
 			NVI_SetControlNumber(kControlID_Toolbar_NewDocument,kIndex_Invalid);
+			//ツールバーのタイトルテキストを空にする #1335 Xcode10+Mojaveでツールバーのタイトルが自動的に設定されてしまうようになった問題の対策
+			GetImp().SetPopupButtonTitleText(kControlID_Toolbar_NewDocument,GetEmptyText());
 			break;
 		}
 		//ツールバー項目　設定
@@ -840,6 +842,8 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 			{
 				GetApp().SPI_ShowModePrefWindow(modeIndex);
 			}
+			//ツールバーのタイトルテキストを空にする #1335 Xcode10+Mojaveでツールバーのタイトルが自動的に設定されてしまうようになった問題の対策
+			GetImp().SetPopupButtonTitleText(kControlID_Toolbar_Pref,GetEmptyText());
 			break;
 		}
 		//ツールバー項目　テキストマーカー選択時処理
@@ -7245,7 +7249,8 @@ void	AWindow_Text::NVIDO_SelectTab( const AIndex inTabIndex )
 			//diff対象ドキュメントが無い場合はサブペインになにも表示しない
 			
 			//DiffInfoウインドウは更新（比較中ドキュメントから、比較なしドキュメントに切り替えたときに比較情報を消すため）#611
-			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 		}
 	}
 	else
@@ -11177,7 +11182,8 @@ void	AWindow_Text::SPI_UpdateDiffDisplay( const ADocumentID inDocumentID )
 		SPI_AdjustDiffDisplayScroll(inDocumentID,view0,kIndex_Invalid);
 	}
 	//Diff表示更新
-	GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 	//Diffボタン表示更新
 	SPI_UpdateDiffButtonText();
 }
@@ -11204,7 +11210,8 @@ void	AWindow_Text::SPI_AdjustDiffDisplayScroll( const ADocumentID inWorkingDocID
 		if( inWorkingViewControlID != mMainSubDiff_MainTextControlID )
 		{
 			//Diff表示更新 #379
-			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 #if IMPLEMENTATION_FOR_WINDOWS
 			//★ Macではこれがないほうがちらつきなし。Windowsではこれがあるほうがちらつきなし。
 			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_UpdateWindow();
@@ -11264,7 +11271,8 @@ void	AWindow_Text::SPI_AdjustDiffDisplayScroll( const ADocumentID inWorkingDocID
 		if( workingDocID != kObjectID_Invalid )
 		{
 			//Diff表示更新 #379
-			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 #if IMPLEMENTATION_FOR_WINDOWS
 			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_UpdateWindow();
 #endif
@@ -11407,7 +11415,8 @@ void	AWindow_Text::SPI_AdjustDiffDisplayScroll( const ADocumentID inWorkingDocID
 				}
 			}
 			//Diff表示更新
-			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+			(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 #if IMPLEMENTATION_FOR_WINDOWS
 			GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_UpdateWindow();
 #endif
@@ -11496,7 +11505,8 @@ void	AWindow_Text::SPI_SetDiffDisplayMode( const ABool inDiffDisplayMode )
 	//Diffボタンテキスト更新
 	SPI_UpdateDiffButtonText();
 	//Diff表示更新
-	GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 	//
 	NVI_RefreshWindow();
 }
@@ -12190,6 +12200,8 @@ void	AWindow_Text::UpdateToolbarItemValue( const AIndex inTabIndex )
 		AText	modename;
 		GetApp().SPI_GetTextDocumentByID(docID).SPI_GetModeRawName(modename);
 		NVI_SetControlText(kControlID_Toolbar_Pref,modename);
+		//ツールバーのタイトルテキストを空にする #1335 Xcode10+Mojaveでツールバーのタイトルが自動的に設定されてしまうようになった問題の対策
+		GetImp().SetPopupButtonTitleText(kControlID_Toolbar_Pref,GetEmptyText());
 	}
 	//ポップアップ禁止トグル状態
 	if( mToolbarExistArray.Find(kControlID_Toolbar_ProhibitPopup) != kIndex_Invalid )
@@ -13926,7 +13938,8 @@ Diff情報表示ウインドウ表示更新
 */
 void	AWindow_Text::SPI_RefreshDiffInfoWindow() const
 {
-	GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	//#1332 GetApp().NVI_GetWindowByID(mDiffInfoWindowID).NVI_RefreshWindow();
+	(dynamic_cast<AWindow_DiffInfo&>(GetApp().NVI_GetWindowByID(mDiffInfoWindowID))).SPI_RefreshWindow();//#1332
 }
 
 /**
@@ -14298,6 +14311,8 @@ void	AWindow_Text::SPI_HideImportFileProgress()
 */
 void	AWindow_Text::UpdateFooterProgress()
 {
+	//#0
+    if( NVI_GetTabCount() == 0 )   return;
 	//レイアウト取得
 	ATextWindowLayoutData	layout = {0};
 	CalculateLayout(0,layout);

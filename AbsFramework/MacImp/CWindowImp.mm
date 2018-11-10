@@ -3010,6 +3010,12 @@ void	CWindowImp::SetShowControl( const AControlID inID, const ABool inShow )
 			hide = YES;
 		}
 		[view setHidden:hide];
+		
+		//Showの場合は、描画指示する。Xcode10+Mojaveの場合これをしないと描画されないことがある。 #1332
+		if( inShow == true )
+		{
+			[view setNeedsDisplay:YES];
+		}
 	}
 #if SUPPORT_CARBON
 	else
@@ -4762,6 +4768,26 @@ void	CWindowImp::GetText( const AControlID inID, AText& outText ) const
 		}
 	}
 #endif
+}
+
+//#1335
+/**
+ポップアップボタンのタイトルテキストを設定
+（Xcode10+Mojaveでツールバーのタイトルが自動的に設定されてしまうようになった問題の対策）
+*/
+void CWindowImp::SetPopupButtonTitleText( const AControlID inID, const AText& inText )
+{
+	//ウインドウ生成済みチェック
+	if( IsWindowCreated() == false ) {_ACError("Window not created",this);return;}
+	
+	//AControlID(=NSViewにtagとして設定されている)から、NSViewを検索
+	NSView*	view = CocoaObjects->FindViewByTag(inID);
+	//NSPopUpButtonの場合、テキストに対応する項目を設定
+	if( [view isKindOfClass:[NSPopUpButton class]] == YES )
+	{
+		NSPopUpButton*	popup = ACocoa::CastNSPopUpButtonFromId(view);
+		AMenuWrapper::SetMenuItemText([popup menu],0,inText);
+	}
 }
 
 /**
