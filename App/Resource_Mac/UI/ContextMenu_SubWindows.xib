@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment version="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu autoenablesItems="NO" id="3">
             <items>
-                <menuItem image="iconTbSubwindows" tag="5000" enabled="NO" id="42">
+                <menuItem image="iconTbSubwindows.Template" tag="5000" enabled="NO" id="42">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="New Recently Open File List" image="iconSwBox_R" tag="5601" id="44">
@@ -60,6 +60,6 @@
         <image name="iconSwPreview" width="16" height="16"/>
         <image name="iconSwTextCount" width="16" height="16"/>
         <image name="iconTbKeyRecord.Template" width="18" height="18"/>
-        <image name="iconTbSubwindows" width="18" height="19"/>
+        <image name="iconTbSubwindows.Template" width="18" height="18"/>
     </resources>
 </document>
