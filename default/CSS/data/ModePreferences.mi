@@ -188,7 +188,7 @@
 "EnableUserKeyword" = "true"
 "EnableUserJumpSetup" = "true"
 "Indent0ForEmptyLine" = "false"
-"IndentWhenPaste" = "true"
+"IndentWhenPaste" = "false"
 "EnableMode" = "true"
 "SameAsNormalMode_Font" = "true"
 "SameAsNormalMode_Colors" = "true"
