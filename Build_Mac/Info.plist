@@ -102,7 +102,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.1r1t1</string>
+	<string>3.0.2b1t6</string>
 	<key>CFBundleSignature</key>
 	<string>MMKE</string>
 	<key>CFBundleURLTypes</key>
@@ -133,11 +133,13 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>mi text editor version 3.0.1 version Copyright © 2018 Daisuke Kamiyama  All rights reserved.  </string>
+	<string>mi text editor version 3.0.2 version Copyright © 2018 Daisuke Kamiyama  All rights reserved.  </string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>CocoaApp</string>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<true/>
 	<key>OSAScriptingDefinition</key>
 	<string>mi.sdef</string>
 	<key>SUScheduledCheckInterval</key>
