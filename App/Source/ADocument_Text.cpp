@@ -7782,7 +7782,7 @@ void	ADocument_Text::SPI_GetPositionTextByLineIndex( const AIndex inLineIndex, A
 
 void	ADocument_Text::SPI_GetTextCount( ATextCountData& ioTextCount, const AArray<ATextIndex>& inStart, const AArray<ATextIndex>& inEnd )
 {
-	//★高速化や制限検討必要
+	//高速化や制限検討→用途的に高速化は不要と思われるため、バージョン2.1同等のロジックとする。#1328
 	//#695
 	ABool	supportComment = true;
 	if( SPI_GetLineCount() > kLimit_TextCount_MaxLineCountForSyntaxRecognize )
