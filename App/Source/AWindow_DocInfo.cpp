@@ -256,6 +256,16 @@ void	AWindow_DocInfo::NVIDO_CreateTab( const AIndex inTabIndex, AControlID& outI
 	UpdateViewBounds();
 }
 
+//#1312
+/**
+Show()時処理
+*/
+void	AWindow_DocInfo::NVIDO_Show()
+{
+	//現在開いているドキュメントすべてについてdoc info更新処理を行う
+	GetApp().SPI_UpdateDocInfoWindowsForAllDocuments();
+}
+
 /**
 Hide()時等にウインドウのデータを保存する
 */
