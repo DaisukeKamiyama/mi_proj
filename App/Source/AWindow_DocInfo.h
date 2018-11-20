@@ -64,6 +64,7 @@ class AWindow_DocInfo : public AWindow
   private:
 	void					NVIDO_Create( const ADocumentID inDocumentID );
 	void					NVIDO_CreateTab( const AIndex inTabIndex, AControlID& outInitialFocusControlID );
+	void					NVIDO_Show();//#1312
 	void					NVIDO_Hide();
 	void					NVIDO_UpdateProperty();
 	
