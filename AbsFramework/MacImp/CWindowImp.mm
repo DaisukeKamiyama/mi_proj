@@ -1120,6 +1120,14 @@ void	CWindowImp::RefreshWindow() const
 {
 	if( true )
 	{
+		//ウインドウ内のcontentView直下のviewすべてにsetNeedsDisplayする
+		//#1332 Mojave+Xcode10にて、これがないと強制再描画されなくなったため。（本来のAPI仕様としては確かにこれが必要なはず。）
+		//なお、macOS 10.14.1現在、[CocoaObjects->GetWindow() setViewsNeedDisplay:YES];では再描画されない。
+		NSArray *subviews = [CocoaObjects->GetWindow().contentView subviews];
+		for( NSView *view in subviews )
+		{
+			[view setNeedsDisplay:YES];
+		}
 		//強制再描画
 		[CocoaObjects->GetWindow() display];
 	}
