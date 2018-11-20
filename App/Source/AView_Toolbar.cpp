@@ -201,6 +201,15 @@ void	AView_Toolbar::EVTDO_DoDraw()
 				kImageID_bg32MacroBar_7,kImageID_bg32MacroBar_8,kImageID_bg32MacroBar_9,
 				pt,viewRect.right-viewRect.left,viewRect.bottom-viewRect.top);
 	*/
+	
+	//ツールバーマクロ欄背景色描画（Mojaveのツールバー色に合わせる）#1347
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("C8C8C8");
+	if( NVI_GetWindow().NVI_IsWindowActive() == false )
+	{
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F6F6F6");
+	}
+	NVMC_PaintRect(viewRect,backgroundColor,1.0);
+	
 	//==================区切り線描画==================
 	ALocalPoint	spt = {viewRect.left,viewRect.bottom-1}, ept = {viewRect.right,viewRect.bottom-1};
 	AColor	color = kColor_Gray70Percent;
