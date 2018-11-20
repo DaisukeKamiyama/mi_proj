@@ -1347,6 +1347,7 @@ private:
 							const ATextArray& inHeaderTextArray, const AArray<AIndex>& inHeaderParagraphIndexArray,
 							const AText& inDebugText );
 	void					SPI_UpdateDocInfoWindows_PluginText( const AWindowID inTextWindowID, const AText& inPluginText );
+	void					SPI_UpdateDocInfoWindowsForAllDocuments();//#1312
 	ABool					SPI_DocInfoWindowExist( const AWindowID inTextWindowID );
   private:
 	
@@ -1389,6 +1390,7 @@ private:
 	//AWindow_IdInfo&			SPI_GetPopupIdInfoWindow();
 	ABool					SPI_HighlightIdInfoArgIndex( const AWindowID inTextWindowID ,const AText& inKeyword, const AIndex inArgIndex );
 	void					SPI_SearchInKeywordList();//#798
+	void					SPI_HideFloatingIdInfoWindow();//#1336
   private:
 	AWindowID				FindIdInfoWindow( const AWindowID inTextWindowID ) const;//#798
 	//AWindowID							mPopupIdInfoWindowID;
