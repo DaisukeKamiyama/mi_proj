@@ -1427,8 +1427,15 @@ noop
 	ALocalPoint	localPoint = {curPoint.x,curPoint.y};
 	//modifierKeys取得
 	AModifierKeys	modifier = ACocoa::ConvertToAModifierKeysFromNSEvent(inEvent);
-	//CWindowImpオブジェクトのマウスダウン処理実行
-	mWindowImp->APICB_CocoaMouseDown(mControlID,localPoint,modifier,[inEvent clickCount]);
+	//CWindowImpオブジェクトのマウスダウン処理実行 #1337 control+タップはmouseDownのほうに来るので、controlキーが押されていたら右クリックとみなすようにする
+	if( (modifier&kModifierKeysMask_Control) == 0 )
+	{
+		mWindowImp->APICB_CocoaMouseDown(mControlID,localPoint,modifier,[inEvent clickCount]);
+	}
+	else
+	{
+		mWindowImp->APICB_CocoaRightMouseDown(mControlID,localPoint,modifier,[inEvent clickCount]);
+	}
 	
 	OS_CALLBACKBLOCK_END;
 }
