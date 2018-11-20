@@ -6504,9 +6504,12 @@ ABool	AView_Text::KeyBindAction( const AKeyBindKey inKeyBindKey, const AModifier
 	}
 	
 	//#1336
-	//escキー、かつ、アクションがない場合、フローティング検索結果ウインドウをhideする。
+	//escキー、かつ、アクションがない場合、フローティング検索結果ウインドウとキーワード情報ポップアップをhideする。
 	if( inKeyBindKey == kKeyBindKey_Escape && action == keyAction_NOP )
 	{
+		//キーワード情報ポップアップをhide
+		GetApp().SPI_HideFloatingIdInfoWindow();
+		//検索結果をhide
 		if( GetApp().SPI_IsMultiFileFindWorking() == false )
 		{
 			AWindowID	winID = GetApp().SPI_GetFloatingFindResultWindowID();
