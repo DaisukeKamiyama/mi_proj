@@ -6705,7 +6705,8 @@ void	AApp::SPI_DeleteRecentlyOpenedFileNotFound()
 		AText	text;
 		GetAppPref().GetData_TextArray(AAppPrefDB::kRecentlyOpenedFile,i,text);
 		//#235 ftp://で始まる項目はとばす
-		if( text.CompareMin("ftp://") == true )
+		//#0 sftp等の場合はsftp://等となるので、://を含むかどうかの判定に修正。 if( text.CompareMin("ftp://") == true )
+		if( text.Contains("://") == true )//#0
 		{
 			i++;//#0 不具合修正
 			continue;
@@ -6774,7 +6775,8 @@ void	AApp::UpdateRecentlyOpenedFileDisplayText( const ABool inUpdateOnlyFirstIte
 		AText	path;
 		GetAppPref().GetData_TextArrayRef(AAppPrefDB::kRecentlyOpenedFile).Get(i,path);
 		//#235 ftpの場合はそのまま表示
-		if( path.CompareMin("ftp://") == true )
+		//#0 sftp等の場合はsftp://等となるので、://を含むかどうかの判定に修正。 if( path.CompareMin("ftp://") == true )
+		if( path.Contains("://") == true )//#0
 		{
 			textArray.Add(path);
 			continue;
@@ -6803,13 +6805,13 @@ void	AApp::UpdateRecentlyOpenedFileDisplayText( const ABool inUpdateOnlyFirstIte
 				break;
 			}
 		}
-		/*#932 存在チェックは行わない。
+		//#1301 /*#932 存在チェックは行わない。
 		if( fileacc.Exist() == false )
 		{
 			text.SetText(path);
 			text.InsertText(0,notfound);
 		}
-		*/
+		//#1301 */
 		textArray.Add(text);
 	}
 	//B0000 inUpdateOnlyFirstItemがtrueのときは、targetEnd以降のデータをmRecentlyOpenedFileDisplayTextから構成する→B0413 mRecentlyOpenedFileNameWithCommentから構成する
@@ -13579,7 +13581,7 @@ void	AApp::SPI_UpdateDocInfoWindows_TotalCount( const ADocumentID inDocumentID,
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		//#1312 if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
 		{
 			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_DocInfo )
 			{
@@ -13607,7 +13609,7 @@ void	AApp::SPI_UpdateDocInfoWindows_SelectedCount( const AWindowID inTextWindowI
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		//#1312 if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
 		{
 			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_DocInfo )
 			{
@@ -13636,7 +13638,7 @@ void	AApp::SPI_UpdateDocInfoWindows_CurrentChar( const AWindowID inTextWindowID,
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		//#1312 if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
 		{
 			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_DocInfo )
 			{
@@ -13660,7 +13662,7 @@ void	AApp::SPI_UpdateDocInfoWindows_PluginText( const AWindowID inTextWindowID, 
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		//#1312 if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
 		{
 			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_DocInfo )
 			{
@@ -13684,7 +13686,7 @@ ABool	AApp::SPI_DocInfoWindowExist( const AWindowID inTextWindowID )
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
 	{
 		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
-		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		//#1312 if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
 		{
 			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_DocInfo )
 			{
@@ -13698,6 +13700,19 @@ ABool	AApp::SPI_DocInfoWindowExist( const AWindowID inTextWindowID )
 		}
 	}
 	return false;
+}
+
+//#1312
+/**
+現在開いているドキュメントすべてについてdoc info更新処理を行う
+（doc infウインドウをdocumentよりも後に開いた場合にこの処理を行う）
+*/
+void	AApp::SPI_UpdateDocInfoWindowsForAllDocuments()
+{
+	for( AObjectID docID = NVI_GetFirstDocumentID(kDocumentType_Text); docID != kObjectID_Invalid; docID = NVI_GetNextDocumentID(docID) )
+	{
+		SPI_GetTextDocumentByID(docID).SPI_UpdateDocInfoWindows();
+	}
 }
 
 #pragma mark ===========================
@@ -14040,6 +14055,29 @@ ABool	AApp::SPI_HighlightIdInfoArgIndex( const AWindowID inTextWindowID ,const A
 		}
 	} 
 	return argHighlighted;
+}
+
+//#1336
+/**
+ポップアップのキーワード情報サブウインドウを閉じる
+*/
+void AApp::SPI_HideFloatingIdInfoWindow()
+{
+	//各サブウインドウ毎のループ
+	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
+	{
+		AWindowID	winID = mSubWindowArray_WindowID.Get(index);
+		if( NVI_GetWindowByID(winID).NVI_IsWindowVisible() == true )
+		{
+			if( mSubWindowArray_SubWindowType.Get(index) == kSubWindowType_IdInfo )
+			{
+				if( SPI_GetSubWindowLocationType(winID) == kSubWindowLocationType_Popup )
+				{
+					SPI_GetIdInfoWindow(winID).NVI_Hide();
+				}
+			}
+		}
+	}
 }
 
 //#798
