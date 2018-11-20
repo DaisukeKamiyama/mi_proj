@@ -735,7 +735,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	//#725
 	CreateTableStart();
 	CreateData_NumberArray(kLeftSideBarArray_Type,				"LeftSideBarArray_Type",				0,				0,9999);
-	CreateData_NumberArray(kLeftSideBarArray_Height,			"LeftSideBarArray_Height",				200000,			20000,5000000);//çÇÇ≥1ñúî{
+	CreateData_NumberArray(kLeftSideBarArray_Height,			"LeftSideBarArray_Height",				200000,			20000,500000000);//çÇÇ≥1ñúî{ #1345 5000000Å®500000000
 	CreateData_NumberArray(kLeftSideBarArray_Parameter,			"LeftSideBarArray_Parameter",			0,				0,9999);
 	CreateData_BoolArray(kLeftSideBarArray_Collapsed,			"LeftSideBarArray_Collapsed",			false);
 	CreateData_TextArray(kLeftSideBarArray_CurrentPath,			"LeftSideBarArray_CurrentPath",			"");
@@ -744,7 +744,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	//#725
 	CreateTableStart();
 	CreateData_NumberArray(kRightSideBarArray_Type,				"RightSideBarArray_Type",				0,				0,9999);
-	CreateData_NumberArray(kRightSideBarArray_Height,			"RightSideBarArray_Height",				200000,			20000,5000000);//çÇÇ≥1ñúî{
+	CreateData_NumberArray(kRightSideBarArray_Height,			"RightSideBarArray_Height",				200000,			20000,500000000);//çÇÇ≥1ñúî{ #1345 5000000Å®500000000
 	CreateData_NumberArray(kRightSideBarArray_Parameter,		"RightSideBarArray_Parameter",			0,				0,9999);
 	CreateData_BoolArray(kRightSideBarArray_Collapsed,			"RightSideBarArray_Collapsed",			false);
 	CreateData_TextArray(kRightSideBarArray_CurrentPath,		"RightSideBarArray_CurrentPath",		"");
