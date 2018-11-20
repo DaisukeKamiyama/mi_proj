@@ -198,6 +198,12 @@ ABool	AWindow_FileList::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID
 			GetApp().SPI_DeleteRecentlyOpenedFileItem(SPI_GetContextMenuSelectedRowDBIndex());
 			break;
 		}
+		//見つからない項目を履歴から削除 #1301
+	  case kMenuItemID_CM_ClearNotFoundItemsFromRecentOpen:
+		{
+			GetApp().SPI_DeleteRecentlyOpenedFileNotFound();
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
