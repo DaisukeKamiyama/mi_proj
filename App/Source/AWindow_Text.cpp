@@ -1293,6 +1293,13 @@ void	AWindow_Text::EVTDO_WindowActivated()
 	}
 	*/
 	
+	//ツールバーマクロ欄、タブの表示更新 #1347
+	if( NVI_GetCurrentTabIndex() != kIndex_Invalid )
+	{
+		GetToolbarView(NVI_GetCurrentTabIndex()).NVI_Refresh();
+		GetTabSelector().NVI_Refresh();
+	}
+	
 	//==================サイドバーの表示を更新==================
 	//#725
 	//サイドバー表示更新
@@ -1324,6 +1331,13 @@ void	AWindow_Text::EVTDO_WindowDeactivated()
 	
 	//半透明ウインドウ#1255
 	SPI_UpdateWindowAlpha();
+	
+	//ツールバーマクロ欄、タブの表示更新 #1347
+	if( NVI_GetCurrentTabIndex() != kIndex_Invalid )
+	{
+		GetToolbarView(NVI_GetCurrentTabIndex()).NVI_Refresh();
+		GetTabSelector().NVI_Refresh();
+	}
 	
 	//==================サイドバーの表示を更新==================
 	//#725
