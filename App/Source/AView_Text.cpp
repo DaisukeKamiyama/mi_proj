@@ -12305,6 +12305,13 @@ void	AView_Text::SPI_BatchReplace( const AFindParameter& inParam, const AText& i
 void	AView_Text::ShowReplaceResultNotification( const ABool inNotAborted, const ANumber inReplacedCount,
 												  const AText& inFindText, const AText& inReplaceText )
 {
+	//検索結果表示オプションがOFFなら何もせずリターン #1322
+	if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kShowFindResultPopup) == false )
+	{
+		return;
+	}
+	
+	//
 	if( mTextWindowID != kObjectID_Invalid )
 	{
 		SPI_GetPopupNotificationWindow().SPI_GetNotificationView().
@@ -12320,6 +12327,13 @@ void	AView_Text::ShowReplaceResultNotification( const ABool inNotAborted, const 
 void	AView_Text::ShowFindResultNotification( const ABool inFoundInNext, const ABool inFoundInPrev,
 											   const AText& inFindText )
 {
+	//検索結果表示オプションがOFFなら何もせずリターン #1322
+	if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kShowFindResultPopup) == false )
+	{
+		return;
+	}
+	
+	//
 	if( mTextWindowID != kObjectID_Invalid )
 	{
 		SPI_GetPopupNotificationWindow().SPI_GetNotificationView().
