@@ -289,8 +289,8 @@ class AAppPrefDB : public ADataBase
 	const static APrefID	kAlphaWindowPercent2V3				= 472;
 	//タブに親フォルダ名表示 #1334
 	const static APrefID	kTabShowParentFolder				= 473;
-	//検索結果ポップアップしないオプション #1322
-	const static APrefID	kDontShowFindResultPopup			= 474;
+	//検索結果ポップアップ #1322
+	const static APrefID	kShowFindResultPopup				= 474;
 	//タブ幅 #1349
 	const static APrefID	kTabWidth							= 475;
 	
