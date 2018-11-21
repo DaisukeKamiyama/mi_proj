@@ -667,8 +667,8 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	//タブ幅 #1349
 	CreateData_Number(kTabWidth,								"kTabWidth",						160,				80,300);
 	
-	//検索結果ポップアップしないオプション #1322
-	CreateData_Bool(kDontShowFindResultPopup,					"DontShowFindResultPopup",			false);
+	//検索結果ポップアップ #1322
+	CreateData_Bool(kShowFindResultPopup,						"ShowFindResultPopup",				true);
 	
 	//コールグラフ
 	CreateTableStart();
