@@ -1121,7 +1121,7 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVM_RegisterDBData(AAppPrefDB::kTabShowParentFolder,			true);
 	
 	//検索結果ポップアップしないオプション #1322
-	NVM_RegisterDBData(AAppPrefDB::kDontShowFindResultPopup,		false);
+	NVM_RegisterDBData(AAppPrefDB::kShowFindResultPopup,			false);
 	
 	//タブ幅 #1349
 	NVM_RegisterDBData(AAppPrefDB::kTabWidth,						true);
