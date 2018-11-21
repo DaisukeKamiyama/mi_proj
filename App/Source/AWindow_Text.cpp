@@ -12517,6 +12517,8 @@ void	AWindow_Text::CreateToolButtons( const AIndex inTabIndex )
 		NVI_CreateButtonView(toolButtonControlID,pt,0,kHeight_MacroBarItem,toolbarControlID);
 		//#724 マクロバー化
 		NVI_GetButtonViewByControlID(toolButtonControlID).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHover);
+		
+		//#1348 ツールバーマクロアイコン検討用テスト NVI_GetButtonViewByControlID(toolButtonControlID).SPI_SetIconImageID(kImageID_iconSwFile,kImageID_iconSwFile,kImageID_iconSwFile);
 		//
 		NVM_RegisterViewInTab(inTabIndex,toolButtonControlID);//#135 上から移動
 		NVI_GetButtonViewByControlID(toolButtonControlID).SPI_SetEnableDrag(true);//#232
