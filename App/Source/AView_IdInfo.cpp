@@ -246,7 +246,7 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		NVMC_FrameRoundedRect(itemLocalRect,
 							  //kColor_Gray20Percent
 							  kColor_Gray50Percent,
-							  1.0,kRoundedRectRad,true,true,true,true);//,true,true,true,true,1.0);
+							  mAlpha,kRoundedRectRad,true,true,true,true);//,true,true,true,true,1.0);
 		//ホバー描画
 		if( mCurrentHoverCursorIndex == i )
 		{
@@ -332,7 +332,7 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		//ヘッダrect描画
 		AColor	headercolor_start = AColorWrapper::ChangeHSV(headercolor,0,0.8,1.0);//#643
 		AColor	headercolor_end = AColorWrapper::ChangeHSV(headercolor,0,1.2,1.0);//#643
-		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15,0.15,
+		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15*mAlpha,0.15*mAlpha,
 							  kRoundedRectRad,true,true,true,true);
 		
 		//=========================カテゴリ名・項目番号テキスト描画=========================
@@ -1549,10 +1549,16 @@ void	AView_IdInfo::AdjustScroll()
 ABool	AView_IdInfo::SPI_HighlightIdInfoArgIndex( const AText& inKeyword, const AIndex inArgIndex )
 {
 	//hideカウンタ設定
-	ResetHideCounter(kTimerForHidePopupIdInfo_AfterArgIndexChanged);
+	//#1340 引数位置以外でもマウスを動かすとここに来るのでここでタイマーリセットすべきでない ResetHideCounter(kTimerForHidePopupIdInfo_AfterArgIndexChanged);
 	//
 	if( mIdText.Compare(inKeyword) == true )
 	{
+		//引数位置がかわったときに、hideカウンターをリセットする #1340
+		if( mArgIndex != inArgIndex )
+		{
+			ResetHideCounter(kTimerForHidePopupIdInfo_AfterArgIndexChanged);
+		}
+		//
 		mArgIndex = inArgIndex;
 		NVI_Refresh();
 		return true;
