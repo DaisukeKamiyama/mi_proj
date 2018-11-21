@@ -1117,6 +1117,15 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVM_RegisterDBData(AAppPrefDB::kAlphaWindowPercent1V3,			true,AAppPrefDB::kAlphaWindowModeV3);
 	NVM_RegisterDBData(AAppPrefDB::kAlphaWindowPercent2V3,			true,AAppPrefDB::kAlphaWindowModeV3);
 	
+	//タブに親フォルダ名表示 #1334
+	NVM_RegisterDBData(AAppPrefDB::kTabShowParentFolder,			true);
+	
+	//検索結果ポップアップしないオプション #1322
+	NVM_RegisterDBData(AAppPrefDB::kDontShowFindResultPopup,		false);
+	
+	//タブ幅 #1349
+	NVM_RegisterDBData(AAppPrefDB::kTabWidth,						true);
+	
 	/*#844
 	//起動アプリケーション　テーブルの設定
 	NVM_RegisterDBTable(kTable_LaunchApp,AAppPrefDB::kLaunchApp_CheckExtension,
@@ -1867,6 +1876,18 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 	  case AAppPrefDB::kAlphaWindowPercent2V3:
 		{
 			GetApp().SPI_UpdateWindowAlphaAll();
+			break;
+		}
+		//タブに親フォルダ名表示 #1334
+	  case AAppPrefDB::kTabShowParentFolder:
+		{
+			GetApp().NVI_RefreshAllWindow();
+			break;
+		}
+		//タブ幅 #1349
+	  case AAppPrefDB::kTabWidth:
+		{
+			GetApp().SPI_UpdateTextWindowViewBoundsAll();
 			break;
 		}
 	  default:
