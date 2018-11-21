@@ -662,6 +662,14 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Bool(kDisplayLeftRightMargin,					"DisplayLeftRightMargin",			false);
 	CreateData_Number(kTextWidthForLeftRightMargin,				"TextWidthForLeftRightMargin",		800,				200,50000);
 	
+	//タブに親フォルダ名表示 #1334
+	CreateData_Bool(kTabShowParentFolder,						"TabShowParentFolder",				false);
+	//タブ幅 #1349
+	CreateData_Number(kTabWidth,								"kTabWidth",						160,				80,300);
+	
+	//検索結果ポップアップしないオプション #1322
+	CreateData_Bool(kDontShowFindResultPopup,					"DontShowFindResultPopup",			false);
+	
 	//コールグラフ
 	CreateTableStart();
 	CreateData_TextArray(kCallGrafHistory_FilePath,				"CallGrafHistory_FilePath",			"");
