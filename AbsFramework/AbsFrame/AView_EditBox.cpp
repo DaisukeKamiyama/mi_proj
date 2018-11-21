@@ -351,6 +351,11 @@ void	AView_EditBox::EVTDO_DoDraw()
 	{
 		NVMC_PaintRect(localFrameRect,mBackgroundColor,mTransparency);
 	}
+	//#1338 フレームviewが存在する場合でも背景色（α=1.0）でpaintする。Mojave+Xcode10だと、キャレットXOR描画が、そのviewのα値に従う（背後のviewには従わない）ため。
+	else
+	{
+		NVMC_PaintRect(localFrameRect,mBackgroundColor,1.0);
+	}
 	
 	//文字色取得
 	AColor	color = mColor;
