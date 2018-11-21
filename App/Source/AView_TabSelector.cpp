@@ -410,12 +410,12 @@ void	AView_TabSelector::EVTDO_DoDraw()
 	//ウインドウがアクティブでないときの色
 	if( NVI_GetWindow().NVI_IsWindowActive() == false )
 	{
-		tabareaPaintColor = kColor_Gray95Percent;
-		activeTabPaintColor = kColor_Gray95Percent;
+		tabareaPaintColor = kColor_Gray97Percent;
+		activeTabPaintColor = kColor_Gray97Percent;
 		activeTabFrameColor = kColor_Gray90Percent;
-		secondTabPaintColor = kColor_Gray95Percent;
+		secondTabPaintColor = kColor_Gray97Percent;
 		secondTabFrameColor = kColor_Gray90Percent;
-		deactiveTabPaintColor = kColor_Gray95Percent;
+		deactiveTabPaintColor = kColor_Gray97Percent;
 		deactiveTabFrameColor = kColor_Gray90Percent;
 		activeTabLetterColor = kColor_Gray70Percent;
 		deactiveTabLetterColor = kColor_Gray70Percent;
@@ -674,6 +674,21 @@ void	AView_TabSelector::EVTDO_DoDraw()
 		textRect.top = textRect.bottom-mFontHeight;
 		AText	title;
 		NVM_GetWindow().NVI_GetTitle(index,title);
+		//親フォルダ名も表示 #1334
+		if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kTabShowParentFolder) == true )
+		{
+			AText	fileurl;
+			GetApp().SPI_GetTextDocumentByID(tabDocID).SPI_GetURL(fileurl);
+			ATextArray	fileurlArray;
+			fileurl.Explode('/', fileurlArray);
+			if( fileurlArray.GetItemCount() >= 2 )
+			{
+				AText	folderName;
+				fileurlArray.Get(fileurlArray.GetItemCount()-2, folderName);
+				title.InsertCstring(0,"/");
+				title.InsertText(0,folderName);
+			}
+		}
 		//
 		AText	ellipsisTitle;
 		NVI_GetEllipsisTextWithFixedLastCharacters(title,textRect.right-textRect.left-8,5,ellipsisTitle);
@@ -1049,6 +1064,9 @@ void	AView_TabSelector::SPI_UpdateProperty()
 	if( mFontSize < 7.8 )   mFontSize = 7.8;
 #endif
 	*/
+	//タブ幅設定 #1349
+	mTabColumnWidth = GetApp().NVI_GetAppPrefDB().GetData_Number(AAppPrefDB::kTabWidth);
+	//
 	AFontWrapper::GetDialogDefaultFontName(mFontName);//#375
 	NVMC_SetDefaultTextProperty(mFontName,mFontSize,kColor_Black,/*#732 kTextStyle_Normal*/kTextStyle_DropShadow,true);
 	NVMC_GetMetricsForDefaultTextProperty(mFontHeight,mFontAscent);
