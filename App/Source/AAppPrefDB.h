@@ -287,6 +287,12 @@ class AAppPrefDB : public ADataBase
 	const static APrefID	kAlphaWindowModeV3					= 470;
 	const static APrefID	kAlphaWindowPercent1V3				= 471;
 	const static APrefID	kAlphaWindowPercent2V3				= 472;
+	//タブに親フォルダ名表示 #1334
+	const static APrefID	kTabShowParentFolder				= 473;
+	//検索結果ポップアップしないオプション #1322
+	const static APrefID	kDontShowFindResultPopup			= 474;
+	//タブ幅 #1349
+	const static APrefID	kTabWidth							= 475;
 	
 	//AWindow_AppPrefでは設定項目が無いもの（ウインドウ位置等）
 	//番号は1001番以降それぞれ重複しない番号をとる。（この番号は他の箇所には影響しない）
