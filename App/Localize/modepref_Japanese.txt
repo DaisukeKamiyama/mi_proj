@@ -67,9 +67,9 @@ Ruler Base Character :
 Mark Interval : 
 大きい目盛り：
 Macro Bar :
-マクロバー：
+ツールバー（マクロ）：
 Display Macro Bar
-マクロバー表示
+ツールバー（マクロ）表示
 Line Number :
 行番号：
 Display Each Line Number
@@ -757,7 +757,7 @@ Display Name :
 Vertical Draw :
 縦書き：
 Draw Vertical (Available with Mac OS X 10.7 or later)
-縦書き表示する（Mac OS X 10.7 以降のみ有効）
+縦書き表示する
 Word Wrap with Window Width
 ウインドウ幅折り返し（単語ごと）
 Word Wrap with Characters Count...
