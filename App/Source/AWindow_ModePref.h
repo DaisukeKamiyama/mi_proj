@@ -27,7 +27,6 @@ AModePref
 #include "../../AbsFramework/Frame.h"
 //#844 #include "AWindow_AddNewMode.h"
 #include "AWindow_AddToolButton.h"
-#include "AWindow_ChangeToolButtonIcon.h"
 #include "AWindow_ModeExecutableAlert.h"//R0000
 
 #pragma mark ===========================
