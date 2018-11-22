@@ -91,7 +91,10 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="1532"/>
-                                        <menuItem title="Remove All Items from Recent History" tag="1207" id="1538">
+                                        <menuItem title="Remove All Not Found Items from Recent History" tag="1208" id="1538">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Remove All Items from Recent History" tag="1207" id="DF9-di-bq0">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                     </items>
