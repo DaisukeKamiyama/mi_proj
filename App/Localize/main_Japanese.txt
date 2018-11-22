@@ -495,9 +495,9 @@ Text File Only
 Find Memory
 検索メモリー
 Make Macro for this Find parameters
-現在の検索パラメータでマクロを生成する
+現在の検索パラメータでツールバー項目を生成する
 Make Macro for this Replace parameters
-現在の置換パラメータでマクロを生成する
+現在の置換パラメータでツールバー項目を生成する
 Find Next
 次を検索
 Find Previous
@@ -509,7 +509,7 @@ Replace Next
 Replace&Find
 置換＆検索
 Add To Macro
-マクロに追加
+ツールバーに追加
 Close Screen for Replace
 マルチファイル置換用画面を閉じる
 Open Screen for Replace
@@ -613,13 +613,13 @@ Letter Count :
 Reload File with the selected Text Encoding.
 選択したテキストエンコーディングでファイルを再読み込みします。
 Macro
-マクロ
+ツールバー（マクロ）
 New Macro bar item will be added.
-新規マクロバー項目を追加します。
+新規ツールバー（マクロ）項目を追加します。ツールバー（マクロ）項目には、よく使う文字列や操作を登録することができます。
 Macro Title : 
-マクロタイトル：
+タイトル：
 Add macro of this replace
-この置換をマクロとして追加する
+この置換をツールバー項目として追加する
 Extract to New Document
 新規ドキュメントに抽出
 Extract Matched Text to New Document
