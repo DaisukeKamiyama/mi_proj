@@ -31,6 +31,7 @@ AWindow_Text
 #include "AWindow_TextSheet.h"
 #include "AWindow_AddToolButton.h"
 #include "ATextFinder.h"
+#include "AWindow_ChangeToolButton.h"//#1344
 
 class ADocument_Text;
 class ADocPrefDB;
@@ -1026,6 +1027,16 @@ class AWindow_Text : public AWindow
 	MACRO_RETURN_CONSTWINDOW_DYNAMIC_CAST(AWindow_AddToolButton,kWindowType_AddToolButton,mAddToolButtonWindowID);
   private:
 	AWindowID							mAddToolButtonWindowID;
+	
+	//<Š—LƒNƒ‰ƒX(AWindow_ChangeToolButton)¶¬^íœ^Žæ“¾> #1344
+  public:
+	void					SPI_ShowChangeToolButtonWindow( const AFileAcc& inFile );
+	AWindow_ChangeToolButton&	SPI_GetChangeToolButtonWindow()
+	MACRO_RETURN_WINDOW_DYNAMIC_CAST(AWindow_ChangeToolButton,kWindowType_ChangeToolButton,mChangeToolButtonWindowID);
+	const AWindow_ChangeToolButton&	SPI_GetChangeToolButtonWindowConst() const
+	MACRO_RETURN_CONSTWINDOW_DYNAMIC_CAST(AWindow_ChangeToolButton,kWindowType_ChangeToolButton,mChangeToolButtonWindowID);
+  private:
+	AWindowID							mChangeToolButtonWindowID;
 	
 	//<Š—LƒNƒ‰ƒX(AWindow_TextSheet_EditByOtherApp)¶¬^íœ^Žæ“¾> R0232
   public:
