@@ -55,6 +55,7 @@ AWindow_Text設計ポリシー
 #include "AWindow_Notification.h"
 #include "AView_Notification.h"
 #include "AView_TextViewHSeparator.h"
+#include "AWindow_ChangeToolButton.h"//#1344
 #include "Cocoa.h"
 
 //===================コントロール===================
@@ -268,6 +269,8 @@ AWindow_Text::AWindow_Text(/*#175 AObjectArrayItem* inParent */)
 ,mLastNormalSubTextDocumentID(kObjectID_Invalid)//#725
 ,mLatentTextViewContolID(kControlID_Invalid)
 //#1091-test ,mDefferedFocusTick(0),mDefferedFocus(kControlID_Invalid)
+,mAddToolButtonWindowID(kObjectID_Invalid)//#1344
+,mChangeToolButtonWindowID(kObjectID_Invalid)//#1344
 {
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("AWindow_Text::AWindow_Text() started.",this);
 	//#138 デフォルト範囲(10000～)を使う限り設定不要 NVM_SetDynamicControlIDRange(kDynamicControlIDStart,kDynamicControlIDEnd);
@@ -327,6 +330,11 @@ AWindow_Text::AWindow_Text(/*#175 AObjectArrayItem* inParent */)
 	AChildWindowFactory<AWindow_AddToolButton>	addToolButtonFactory(GetObjectID());
 	mAddToolButtonWindowID = GetApp().NVI_CreateWindow(addToolButtonFactory);
 	NVI_RegisterChildWindow(mAddToolButtonWindowID);//#694
+	
+	//ChangeToolButtonWindow #1344
+	AChildWindowFactory<AWindow_ChangeToolButton>	changeToolButtonFactory(GetObjectID());
+	mChangeToolButtonWindowID = GetApp().NVI_CreateWindow(changeToolButtonFactory);
+	NVI_RegisterChildWindow(mChangeToolButtonWindowID);
 	
 	//EditByOtherAppWindow #199
 	AChildWindowFactory<AWindow_TextSheet_EditByOtherApp>	editByOtherAppWindowFactory(GetObjectID());
@@ -421,6 +429,8 @@ void	AWindow_Text::NVIDO_DoDeleted()
 	NVI_UnregisterChildWindow(mDropWarningWindowID);//#694
 	GetApp().NVI_DeleteWindow(mAddToolButtonWindowID);
 	NVI_UnregisterChildWindow(mAddToolButtonWindowID);//#694
+	GetApp().NVI_DeleteWindow(mChangeToolButtonWindowID);//#1344
+	NVI_UnregisterChildWindow(mChangeToolButtonWindowID);//#1344
 	GetApp().NVI_DeleteWindow(mEditByOtherAppWindowID);
 	NVI_UnregisterChildWindow(mEditByOtherAppWindowID);//#694
 	GetApp().NVI_DeleteWindow(mSCMCommitWindowID);
@@ -1821,6 +1831,18 @@ ABool	AWindow_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, co
 						break;
 					}
 				}
+			}
+			break;
+		}
+		//ツールバーマクロタイトル変更 #1344
+	  case kMenuItemID_ToolBar_ChangeTitle:
+		{
+            AIndex    tabIndex = NVI_GetCurrentTabIndex();
+			AIndex	toolButtonIndex = mTabDataArray.GetObjectConst(tabIndex).FindToolButtonIndexByID(NVI_GetLastClickedButtonControlID());
+			if( toolButtonIndex != kIndex_Invalid )
+			{
+				AFileAcc	file = mTabDataArray.GetObjectConst(tabIndex).GetToolButtonFile(toolButtonIndex);
+				SPI_ShowChangeToolButtonWindow(file);
 			}
 			break;
 		}
@@ -13169,6 +13191,24 @@ void	AWindow_Text::SPI_ShowAddToolButtonWindowFromKeyRecord()
 	GetApp().SPI_GetRecordedText(text);
 	//マクロバー項目追加ウインドウ表示
 	SPI_ShowAddToolButtonWindow(title,text,false);
+}
+
+#pragma mark ===========================
+
+#pragma mark <所有クラス(AWindow_ChangeToolButton)>
+
+#pragma mark ===========================
+
+//#1344
+/**
+マクロバー項目変更ウインドウ表示
+*/
+void	AWindow_Text::SPI_ShowChangeToolButtonWindow( const AFileAcc& inFile )
+{
+	//
+	SPI_GetChangeToolButtonWindow().NVI_CreateAndShow();
+	SPI_GetChangeToolButtonWindow().SPI_SetMode(SPI_GetCurrentTabTextDocument().SPI_GetModeIndex(),inFile);
+	SPI_GetChangeToolButtonWindow().NVI_SwitchFocusToFirst();
 }
 
 #pragma mark ===========================
