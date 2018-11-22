@@ -675,6 +675,8 @@ void AWindow_AddToolButton::NVIDO_Create( const ADocumentID inDocumentID )
 	//ƒwƒ‹ƒvƒ{ƒ^ƒ““o˜^
 	NVI_RegisterHelpAnchor(90001,"topic.htm#toolbar");
 	*/
+	//ƒwƒ‹ƒvƒ{ƒ^ƒ““o˜^
+	NVI_RegisterHelpAnchor(90001,"topic.htm#yokutsukau");
 }
 
 void	AWindow_AddToolButton::SPI_SetMode( const AModeIndex inModeIndex, const ABool inEditWithTextWindow,
