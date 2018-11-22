@@ -9010,6 +9010,26 @@ void	CWindowImp::APICB_CocoaDoWindowShouldClose()
 	GetAWin().EVT_DoCloseButton();
 }
 
+//#1309
+/**
+サービスメニュー（mi→サービス）
+*/
+ABool	CWindowImp::APICB_CocoaDoWriteSelectionToPasteboard( const AScrapRef inScrap )
+{
+	//AWindow::EVT_DoServiceCopy()実行
+	return GetAWin().EVT_DoServiceCopy(inScrap);
+}
+
+//#1309
+/**
+サービスメニュー（サービス→mi）
+*/
+ABool	CWindowImp::APICB_CocoaDoReadSelectionFromPasteboard( const AScrapRef inScrap )
+{
+	//AWindow::EVT_DoServicePaste()実行
+	return GetAWin().EVT_DoServicePaste(inScrap);
+}
+
 #pragma mark ===========================
 
 #pragma mark ---イベントハンドラ(View)
