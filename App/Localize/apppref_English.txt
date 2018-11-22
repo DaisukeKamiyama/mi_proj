@@ -618,3 +618,25 @@ Transparency for active :
 Transparency for active : 
 Transparency for deactive : 
 Transparency for deactive : 
+Tab Mode
+Tab Mode
+Window Mode
+Window Mode
+Scroll
+Scroll
+* To hide/show Toolbar, select [View -> Hide (Show) Toolbar] menu.
+* To hide/show Toolbar, select [View -> Hide (Show) Toolbar] menu.
+Tab Display
+Tab Display
+Tab Title :
+Tab Title :
+Display parent folder name
+Display parent folder name
+Find Result
+Find Result
+Popup Window :
+Popup Window :
+Show find result popup window
+Show find result popup window
+Tab Width :
+Tab Width :
