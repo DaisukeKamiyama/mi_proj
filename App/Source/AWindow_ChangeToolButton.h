@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 /*
 
-AWindow_ChangeToolButtonIcon
+AWindow_ChangeToolButton
 
 */
 
@@ -30,38 +30,36 @@ AWindow_ChangeToolButtonIcon
 class AWindow_Text;
 
 #pragma mark ===========================
-#pragma mark [クラス]AWindow_ChangeToolButtonIcon
+#pragma mark [クラス]AWindow_ChangeToolButton
 //環境設定ウインドウ
-class AWindow_ChangeToolButtonIcon: public AWindow
+class AWindow_ChangeToolButton: public AWindow
 {
 	//コンストラクタ／デストラクタ
   public:
-	AWindow_ChangeToolButtonIcon( /*#199 AWindow& inWindow*/const AWindowID inParentWindowID );
-	virtual ~AWindow_ChangeToolButtonIcon();
+	AWindow_ChangeToolButton(const AWindowID inParentWindowID);
+	virtual ~AWindow_ChangeToolButton();
 	
 	//<関連オブジェクト取得>
   private:
-	ADataBase&				NVMDO_GetDB();
-	//#199 AWindow&						mWindow;
 	AWindow&				GetParentWindow();
 	AWindowID							mParentWindowID;
+	
+	//データ
+  private:
+	AModeIndex							mModeIndex;
+	AFileAcc							mFile;
 	
 	//<イベント処理>
   private:
 	ABool					EVTDO_Clicked( const AControlID inID, const AModifierKeys inModifierKeys );
-	ABool					EVTDO_ValueChanged( const AControlID inID );
-	ABool					EVTDO_DoubleClicked( const AControlID inID );
-	void					EVTDO_FileChoosen( const AControlID inControlID, const AFileAcc& inFile );
-	void					EVTDO_FolderChoosen( const AControlID inControlID, const AFileAcc& inFolder );
 	void					EVTDO_TextInputted( const AControlID inID );
-	void					EVTDO_DoScrollBarAction( const AControlID inID, const AScrollBarPart inPart );
 	void					EVTDO_DoCloseButton();//win
 	
 	//<インターフェイス>
 	
 	//ウインドウ制御
   public:
-	void					SPI_SetFile( const AFileAcc& inFile, const AModeIndex inModeIndex );
+	void					SPI_SetMode( const AModeIndex inModeIndex, const AFileAcc& inFile );
   private:
 	void					NVIDO_Create( const ADocumentID inDocumentID );
 	
@@ -70,16 +68,8 @@ class AWindow_ChangeToolButtonIcon: public AWindow
   private:
 	void					NVMDO_UpdateControlStatus();
 	
-	AFileAcc							mFile;
-	AIndex								mCurrentIconIndexOffset;
-	AIndex								mModeIndex;
-	
 	//Object Type
   private:
-	AWindowType				NVIDO_GetWindowType() const { return kWindowType_ChangeToolButtonIcon; }
-	
-	//Object情報取得
-  public:
-	AConstCharPtr			GetClassName() const { return "AWindow_ChangeToolButtonIcon"; }
+	AWindowType				NVIDO_GetWindowType() const { return kWindowType_ChangeToolButton; }
 };
 
