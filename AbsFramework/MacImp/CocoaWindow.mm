@@ -483,6 +483,69 @@ Toolbarの初期設定
 	mAddingToolbarItem = nil;
 	//ツールバータイプ
 	mToolbarType = 0;
+	//サービスメニュー #1309
+	NSArray*	sendTypes = [NSArray arrayWithObjects:NSPasteboardTypeString, nil];
+	NSArray*	returnTypes = [NSArray arrayWithObjects:NSPasteboardTypeString, nil];
+	[NSApp registerServicesMenuSendTypes:sendTypes returnTypes:returnTypes];
+}
+
+//#1309
+/**
+サービスメニュー　有効なタイプかどうかの判定
+*/
+- (id)validRequestorForSendType:(NSString *)sendType returnType:(NSString *)returnType
+{
+	return self;
+}
+
+//#1309
+/**
+サービスメニュー（mi→サービス）
+*/
+- (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types
+{
+	if ([types containsObject:NSPasteboardTypeString] == NO)
+	{
+		return NO;
+	}
+	
+	ABool	result = false;
+	
+	OS_CALLBACKBLOCK_START_WITHERRRETURNVALUE(false,NO);
+	
+	NSArray*	typesDeclared = [NSArray arrayWithObject:NSPasteboardTypeString];
+	[pboard declareTypes:typesDeclared owner:nil];
+	
+	//AWindow::EVT_DoServiceCopy()実行
+	result = mWindowImp->APICB_CocoaDoWriteSelectionToPasteboard((AScrapRef)pboard);
+	
+	OS_CALLBACKBLOCK_END;
+	
+	return (result==true)?YES:NO;
+}
+
+//#1309
+/**
+サービスメニュー（サービス→mi）
+*/
+- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard
+{
+	NSArray*	types = [pboard types];
+	if ( [types containsObject:NSPasteboardTypeString] == NO )
+	{
+		return NO;
+	}
+	
+	ABool	result = false;
+	
+	OS_CALLBACKBLOCK_START_WITHERRRETURNVALUE(false,NO);
+	
+	//AWindow::EVT_DoServicePaste()実行
+	result = mWindowImp->APICB_CocoaDoReadSelectionFromPasteboard((AScrapRef)pboard);
+	
+	OS_CALLBACKBLOCK_END;
+	
+	return (result==true)?YES:NO;
 }
 
 /**
