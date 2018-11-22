@@ -31,6 +31,7 @@
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/JavaScriptModalAlert.xib ../App/Localize/main_Japanese.txt  ./Japanese.lproj/JavaScriptModalAlert.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/JavaScriptModalCancelAlert.xib ../App/Localize/main_Japanese.txt  ./Japanese.lproj/JavaScriptModalCancelAlert.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/TextCount.xib            ../App/Localize/main_Japanese.txt  ./Japanese.lproj/TextCount.xib
+../XIBLocalizer.pl ../App/Resource_Mac/UI/ChangeToolButton.xib     ../App/Localize/main_Japanese.txt  ./Japanese.lproj/ChangeToolButton.xib
 
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/ContextMenu_TextSelected.xib    ../App/Localize/menu_Japanese.txt  ./Japanese.lproj/ContextMenu_TextSelected.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/ContextMenu_TextNotSelected.xib ../App/Localize/menu_Japanese.txt  ./Japanese.lproj/ContextMenu_TextNotSelected.xib
@@ -85,6 +86,7 @@
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/JavaScriptModalAlert.xib ../App/Localize/main_English.txt  ./English.lproj/JavaScriptModalAlert.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/JavaScriptModalCancelAlert.xib ../App/Localize/main_English.txt  ./English.lproj/JavaScriptModalCancelAlert.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/TextCount.xib            ../App/Localize/main_English.txt  ./English.lproj/TextCount.xib
+../XIBLocalizer.pl ../App/Resource_Mac/UI/ChangeToolButton.xib     ../App/Localize/main_English.txt  ./English.lproj/ChangeToolButton.xib
 
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/ContextMenu_TextSelected.xib    ../App/Localize/menu_English.txt  ./English.lproj/ContextMenu_TextSelected.xib
 ../XIBLocalizer.pl ../App/Resource_Mac/UI/ContextMenu_TextNotSelected.xib ../App/Localize/menu_English.txt  ./English.lproj/ContextMenu_TextNotSelected.xib
