@@ -757,7 +757,7 @@ Display Name :
 Vertical Draw :
 Vertical Text :
 Draw Vertical (Available with Mac OS X 10.7 or later)
-Display Vertical Text (Available with Mac OS X 10.7 or later)
+Display Vertical Text
 Word Wrap with Window Width
 Word Wrap with Window Width
 Word Wrap with Characters Count...
