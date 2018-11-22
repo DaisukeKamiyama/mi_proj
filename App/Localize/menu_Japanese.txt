@@ -591,7 +591,7 @@ New Remote File List
 New Header List
 見出しリスト
 New Text Count Window
-テキスト情報（文字数カウント）
+テキスト情報
 New Text Marker Window
 テキストハイライト
 New Tool List
@@ -619,7 +619,7 @@ Add Remote File List
 Add Header List
 見出しリスト
 Add Text Count Window
-テキスト情報（文字数カウント）
+テキスト情報
 Add Text Marker Window
 テキストハイライト
 Add Tool List
@@ -677,11 +677,11 @@ All Files
 All Files which have differences
 差分のあるファイルのみを表示
 Add Macro...
-マクロを追加...
+新規ツールバー（マクロ）項目を追加...
 Show All Macro
-すべてのマクロを表示
+すべてのツールバー（マクロ）項目を表示する
 Hide All Macro
-すべてのマクロを非表示にする
+すべてのツールバー（マクロ）項目を非表示にする
 Show Mode Preferences...
 現在のモードのモード設定を開く...
 Collapse All for This Item's Level
@@ -705,13 +705,13 @@ Show Find / Replace dialog...
 Unlock Display of All Sub Windows
 すべてのサブウインドウの表示ロックを解除する
 Reveal macro folder with Finder
-Finder でマクロ項目が格納されたフォルダを開く
+Finder でツールバー（マクロ）項目が格納されたフォルダを開く
 Update Change of macro folder by Finder
 Finder で行った変更を反映する
 Hide All after this Macro
-このマクロ以降をすべて非表示にする
+この項目以降をすべて非表示にする
 Delete All after this Macro...
-このマクロ以降をすべて削除する...
+この項目以降をすべて削除する...
 Close All Tabs after this Tab
 このタブ以降をすべて閉じる
 Compare
@@ -746,3 +746,5 @@ Start Speaking
 読み上げを開始
 Stop Speaking
 読み上げを停止
+Change Title...
+タイトル変更...
