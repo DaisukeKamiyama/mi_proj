@@ -602,6 +602,8 @@ class CWindowImp: public AObjectArrayItem
 	void					SetSwitchingFocusNow( const ABool inSwitchingFocusNow );
 	void					APICB_CocoaQuickLook( const AControlID inControlID,
 							const ALocalPoint inLocalPoint, const AModifierKeys inModifierKeys );//#1026
+	ABool					APICB_CocoaDoWriteSelectionToPasteboard( const AScrapRef inScrap );//#1309
+	ABool					APICB_CocoaDoReadSelectionFromPasteboard( const AScrapRef inScrap );//#1309
 #if SUPPORT_CARBON
 	ABool					APICB_DoControlTrack( const EventHandlerCallRef inCallRef, const EventRef inEventRef );
 	ABool					APICB_DoMouseDown( const EventHandlerCallRef inCallRef, const EventRef inEventRef );
