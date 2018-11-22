@@ -232,6 +232,7 @@ const AMenuItemID	kMenuItemID_ToolBar_InvalidButton		= 2703;//'IvTB';
 const AMenuItemID	kMenuItemID_ToolBar_DisplayAllButton	= 2704;//'DsTB';
 const AMenuItemID	kMenuItemID_ToolBar_DeleteButton		= 2705;//'DlTB';
 const AMenuItemID	kMenuItemID_ToolBar_UpdateDisplay		= 'UdTB';
+const AMenuItemID	kMenuItemID_ToolBar_ChangeTitle			= 2706;//#1344
 //#238
 const AMenuItemID	kMenuItemID_IdInfoHistory				= 'IIHs';
 //#212
@@ -902,6 +903,7 @@ const AWindowType	kWindowType_SubTextShadow			= 156;//#725
 const AWindowType	kWindowType_WordsList				= 157;//#723
 const AWindowType	kWindowType_Notification			= 158;//#725
 const AWindowType	kWindowType_FindResult				= 159;//#725
+const AWindowType	kWindowType_ChangeToolButton		= 160;//#1344
 
 //ビュータイプ
 const AViewType		kViewType_Text 						= 5101;
