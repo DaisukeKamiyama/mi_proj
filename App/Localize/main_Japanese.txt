@@ -646,3 +646,7 @@ Don't Save
 保存しない
 Add New Mode
 新規モード追加
+Change Title
+タイトル変更
+Macro bar item title will be changed.
+ツールバー（マクロ）項目のタイトルを変更します。
