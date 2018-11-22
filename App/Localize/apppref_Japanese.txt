@@ -23,7 +23,7 @@ Popup Keyword Information
 Hide Keyword Information after several seconds
 ポップアップしたキーワード情報を数秒後に閉じる
 Caret & Current Line
-キャレットと現在行
+文字挿入位置と現在行
 Display Vertical Line
 垂直線を表示
 Display None
@@ -31,7 +31,7 @@ Display None
 Current Line :
 現在行：
 Caret :
-キャレット：
+文字挿入位置：
 Current Line Color :
 現在行の色：
 Setup how insertion point is displayed.
@@ -63,7 +63,7 @@ Default Mode
 Default Mode :
 デフォルトのモード：
 Font and Colors are set in Mode Preferences
-フォントと色はモード設定で設定します
+フォントと色はモードごとに設定します。
 Open Mode Preferences (Normal mode) ...
 モード設定（標準モード）を開く...
 Letter Count Wrap
@@ -385,11 +385,11 @@ Display Detail
 File Exclusion Control :
 ファイル排他制御：
 Adjust Scroll for editing apart from window bottom
-ウインドウ下辺から離れた位置で編集するようスクロール調整
+ウインドウ下端から離れた位置で編集できるようにスクロール調整する
 Tab / Window
 タブ／ウインドウ
 Select whether document is opened with tab or window.
-ドキュメントをタブで開くかウインドウで開くかを選択します。
+ファイルをタブで開くかウインドウで開くかを選択します。
 Open Document with :
 タブ／ウインドウの選択：
 Tab
@@ -397,7 +397,7 @@ Tab
 Window
 ウインドウ
 Line Selection
-行選択
+行選択操作
 Setup operation of line selection.
 行選択の操作方法を設定します。
 Click at Line Number :
@@ -407,7 +407,7 @@ Select first insertion point of line
 Select line
 行を選択
 Triple Click :
-トリプルクリック：
+トリプルクリック時：
 Select paragraph
 段落を選択
 Window Layout
@@ -415,13 +415,13 @@ Window Layout
 Set visibility of layout parts.
 テキストウインドウ内のレイアウトを設定します。
 Show Macro Bar
-マクロバーを表示する
+ツールバー（マクロ）欄を表示する
 Show Horizontal Scrollbar
 水平スクロールバーを表示する
 Show Status Bar
 ステータスバーを表示する
 Select Mode when clicking command+N.
-コマンド+N を押した時などのモードを選択します。
+コマンド+N を押した時などに開くモードを選択します。
 Setup display settings for all sub windows.
 全てのサブウインドウ共通の表示設定を行います。
 Popup Window Position :
@@ -457,7 +457,7 @@ JIS X 0208 で未定義の文字をエラー文字として表示する
 Show half-width Katakana
 半角カタカナをエラー文字として表示する
 Setup properties for letter count wrap.
-文字数指定の行折り返しありの場合のプロパティを設定します。
+文字数指定の行折り返し方法の詳細を設定します。
 Setup text encoding handling.
 テキストエンコーディングの処理を設定します。
 Setup Find window display.
@@ -553,7 +553,7 @@ Use port number :
 Display Name : 
 表示名：
 Fix Caret Position in View
-キャレット位置をビュー内に固定する
+スクロールとともにキャレット位置も移動する
 Caret after Scroll :
 スクロール後のキャレット：
 Color :
@@ -589,9 +589,9 @@ Show Arrow cursor always
 Text Area
 テキストエリア
 Left-Right Margin :
-余白：
+センタリング：
 Display margin before/after line
-行の前後に余白を表示する
+左右に余白を表示して、テキストエリアを画面中央に表示する
 Text Width :
 テキスト表示幅：
 characters (half-width)
@@ -618,3 +618,25 @@ Transparency for active :
 最前面ウインドウの不透明度：
 Transparency for deactive : 
 最前面以外の不透明度：
+Tab Mode
+タブモード（1つのウインドウ内にタブで開きます）
+Window Mode
+ウインドウモード（ファイルごとにウインドウを開きます）
+Scroll
+スクロール
+* To hide/show Toolbar, select [View -> Hide (Show) Toolbar] menu.
+※ツールバーを非表示にするには、メニューから[表示→ツールバーを隠す]を選択してください
+Tab Display
+タブ表示
+Tab Title :
+タブタイトル：
+Display parent folder name
+タブに親フォルダ名も表示する
+Find Result
+検索・置換結果
+Popup Window :
+検索・置換結果：
+Show find result popup window
+検索・置換結果をウインドウ右上にポップアップ表示する
+Tab Width :
+タブの表示幅：
