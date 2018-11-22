@@ -646,3 +646,7 @@ Don't Save
 Don't Save
 Add New Mode
 Add New Mode
+Change Title
+Change Title
+Macro bar item title will be changed.
+Macro bar item title will be changed.
