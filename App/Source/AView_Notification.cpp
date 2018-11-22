@@ -146,7 +146,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		//ヘッダ描画
 		AColor	headercolor_start = AColorWrapper::ChangeHSV(color,0,0.8,1.0);
 		AColor	headercolor_end = AColorWrapper::ChangeHSV(color,0,1.2,1.0);
-		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15,0.15,
+		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15*alpha,0.15*alpha,
 							  kRoundedRectRad,true,true,true,true);
 		//ヘッダタイトル取得
 		AText	title;
@@ -184,7 +184,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		
 		//==================フレーム描画==================
 		//フレーム描画
-		NVMC_FrameRoundedRect(itemLocalRect,kColor_Gray50Percent,1.0,kRoundedRectRad,true,true,true,true);
+		NVMC_FrameRoundedRect(itemLocalRect,kColor_Gray50Percent,alpha,kRoundedRectRad,true,true,true,true);
 	}
 }
 
