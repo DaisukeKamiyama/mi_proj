@@ -638,12 +638,13 @@ class AWindow_Text : public AWindow
 	//#725 void					SPI_UpdateSubPaneArray();
 	//#725 void					SPI_GetWindowBoundsWithoutSubPane( ARect& outRect ) const;//#668
 	AItemCount				SPI_GetLeftSideBarItemCount() const { return mLeftSideBarArray_Type.GetItemCount(); }//#725
+	void					SPI_ShowHideLeftSideBar( const ABool inShow, const ABool inAnimate ) { ShowHideLeftSideBar(inShow,inAnimate); }//#1350
   private:
 	void					CreateSubTextInEachTab( const AIndex inTabIndex, 
 							/*#699 const ATextPoint& inCaretTextPoint, const ATextPoint& inSelectTextPoint,*/
 							const AImagePoint& inOriginOfLocalFrame );
 	void					DeleteSubTextInEachTab( const AIndex inTabIndex );
-	void					ShowHideLeftSideBar( const ABool inShow );
+	void					ShowHideLeftSideBar( const ABool inShow, const ABool inAnimate = true );//#1350
 	//#341 void					AdjustWindowWidthForSubPane( const ABool inOldSubTextPaneDisplayed );
 	void					GetChangedWindowBoundsForSubPane( const ABool inOldSubTextPaneDisplayed, ARect& outBounds );//#341
 	//#899 void					SetSubPaneMode( const ASubPaneMode inSubPaneMode );
@@ -684,8 +685,9 @@ class AWindow_Text : public AWindow
 	//#725 void					SPI_UpdateInfoPaneArray();
 	//#725 void					SPI_UpdateOverlayWindowAlpha();
 	AItemCount				SPI_GetRightSideBarItemCount() const { return mRightSideBarArray_Type.GetItemCount(); }//#725
+	void					SPI_ShowHideRightSideBar( const ABool inShow, const ABool inAnimate ) { ShowHideRightSideBar(inShow,inAnimate); }//#1350
   private:
-	void					ShowHideRightSideBar( const ABool inShow );
+	void					ShowHideRightSideBar( const ABool inShow, const ABool inAnimate = true );//#1350
 	ANumber					ChangeRightSideBarWidth( const ANumber inDelta, const ABool inCompleted );//#409
 	ANumber					ChangeRightSideBarHeight( const AIndex inInfoPaneIndex, const ANumber inDelta );
 	void					DeleteRightSideBar();//#725
