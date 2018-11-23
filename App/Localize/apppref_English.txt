@@ -640,3 +640,7 @@ Show find result popup window
 Show find result popup window
 Tab Width :
 Tab Width :
+Show Right Sidebar
+Show Right Sidebar
+Show Left Sidebar
+Show Left Sidebar
