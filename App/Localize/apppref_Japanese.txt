@@ -640,3 +640,7 @@ Show find result popup window
 検索・置換結果をウインドウ右上にポップアップ表示する
 Tab Width :
 タブの表示幅：
+Show Right Sidebar
+右サイドバーを表示する
+Show Left Sidebar
+左サイドバーを表示する
