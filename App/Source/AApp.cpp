@@ -10497,6 +10497,38 @@ void	AApp::SPI_UpdateTextDrawPropertyAll( const AModeIndex inModeIndex )
 	}
 }
 
+//#1350
+/**
+すべてのウインドウの右サイドバーを表示／非表示する
+*/
+void	AApp::SPI_ShowHideRightSidebarAll()
+{
+	ABool	show = NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kRightSideBarDisplayed);
+	for( AIndex index = 0; index < mWindowArray.GetItemCount(); index++ )
+	{
+		if( mWindowArray.GetObject(index).NVI_GetWindowType() == kWindowType_Text )
+		{
+			SPI_GetTextWindowByID(mWindowArray.GetObject(index).GetObjectID()).SPI_ShowHideRightSideBar(show,true);
+		}
+	}
+}
+
+//#1350
+/**
+すべてのウインドウの左サイドバーを表示／非表示する
+*/
+void	AApp::SPI_ShowHideLeftSidebarAll()
+{
+	ABool	show = NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kLeftSideBarDisplayed);
+	for( AIndex index = 0; index < mWindowArray.GetItemCount(); index++ )
+	{
+		if( mWindowArray.GetObject(index).NVI_GetWindowType() == kWindowType_Text )
+		{
+			SPI_GetTextWindowByID(mWindowArray.GetObject(index).GetObjectID()).SPI_ShowHideLeftSideBar(show,true);
+		}
+	}
+}
+
 //#450
 /**
 */
