@@ -764,6 +764,8 @@ private:
 	AWindowID				SPI_GetMostNumberTabsTextWindowID() const;//#850 
 	void					SPI_UpdateTextWindowViewBoundsAll();
 	void					SPI_UpdateTextDrawPropertyAll( const AModeIndex inModeIndex );
+	void					SPI_ShowHideRightSidebarAll();//#1350
+	void					SPI_ShowHideLeftSidebarAll();//#1350
 	void					SPI_UpdateLineImageInfo( const AModeIndex inModeIndex );//#450
 	//#291 void					SPI_UpdatePropertyJumpListAll();
 	//#291 void					SPI_UpdateJumpListWithColor();//R0006
