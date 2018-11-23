@@ -4056,7 +4056,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 				pt.y	= screenbounds.top;
 				
 				//「ドキュメントはタブに開く」がONの場合、ウインドウは固定位置に開く（前回閉じた時のウインドウ位置）
-				if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow) == true )
+				//#1327 タブモードでなくても新規ドキュメントは前回閉じたウインドウの位置に開くようにする（ウインドウモードで、新規ドキュメントを開く位置を固定したい） if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow) == true )
 				{
 					GetApp().GetAppPref().GetData_Point(AAppPrefDB::kNewDocumentWindowPoint,pt);
 				}
@@ -6913,7 +6913,7 @@ void	AWindow_Text::NVIDO_Hide()
 		GetApp().GetAppPref().SetData_Bool(AAppPrefDB::kSingleWindowBounds_Zoomed,NVI_IsZoomed());
 		
 		//「ドキュメントはタブに開く」がONのときは、ウインドウ位置を記憶する
-		if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow) == true )
+		//#1327 タブモードでなくても新規ドキュメントは前回閉じたウインドウの位置に開くようにする（ウインドウモードで、新規ドキュメントを開く位置を固定したい）if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow) == true )
 		{
 			ARect	maincolumnrect = {0};
 			SPI_GetWindowMainColumnBounds(maincolumnrect);
@@ -9481,7 +9481,7 @@ AControlID	AWindow_Text::SPI_GetCurrentSubTextControlID() const
 /**
 サブペイン表示・非表示切り替え
 */
-void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow )
+void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow, const ABool inAnimate )//#1350
 {
 	if( inShow == true )
 	{
@@ -9527,7 +9527,7 @@ void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow )
 				AStSuppressTextWindowUpdateViewBounds	s(GetObjectID());
 				//
 				mDoingSetWindowBoundsAnimate = true;
-				NVI_SetWindowBounds(newBounds,true);//#341 #688
+				NVI_SetWindowBounds(newBounds,inAnimate);//#341 #688 #1350
 				mDoingSetWindowBoundsAnimate = false;
 			}
 			
@@ -9631,7 +9631,7 @@ void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow )
 				AStSuppressTextWindowUpdateViewBounds	s(GetObjectID());
 				//
 				mDoingSetWindowBoundsAnimate = true;
-				NVI_SetWindowBounds(newBounds,true);//#341 #688
+				NVI_SetWindowBounds(newBounds,inAnimate);//#341 #688 #1350
 				mDoingSetWindowBoundsAnimate = false;
 			}
 			
@@ -9669,6 +9669,8 @@ void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow )
 	if( shouldSave == true )
 	{
 		GetApp().NVI_GetAppPrefDB().SetData_Bool(AAppPrefDB::kLeftSideBarDisplayed,mLeftSideBarDisplayed);
+		//環境設定のチェックボックスを更新 #1350
+		GetApp().SPI_GetAppPrefWindow().NVI_UpdateProperty();
 	}
 	//#602
 	UpdateVSeparatorHelpTag();
@@ -10385,7 +10387,7 @@ void	AWindow_Text::SPI_GetWindowBoundsWithoutSubPane( ARect& outRect ) const
 /**
 右サイドバーの表示・非表示設定
 */
-void	AWindow_Text::ShowHideRightSideBar( const ABool inShow )
+void	AWindow_Text::ShowHideRightSideBar( const ABool inShow, const ABool inAnimate )//#1350
 {
 	//
 	if( inShow == true )
@@ -10432,7 +10434,7 @@ void	AWindow_Text::ShowHideRightSideBar( const ABool inShow )
 				AStSuppressTextWindowUpdateViewBounds	s(GetObjectID());
 				//
 				mDoingSetWindowBoundsAnimate = true;
-				NVI_SetWindowBounds(bounds,true);
+				NVI_SetWindowBounds(bounds,inAnimate);//#1350
 				mDoingSetWindowBoundsAnimate = false;
 			}
 			
@@ -10471,7 +10473,7 @@ void	AWindow_Text::ShowHideRightSideBar( const ABool inShow )
 				AStSuppressTextWindowUpdateViewBounds	s(GetObjectID());
 				//
 				mDoingSetWindowBoundsAnimate = true;
-				NVI_SetWindowBounds(bounds,true);
+				NVI_SetWindowBounds(bounds,inAnimate);//#1350
 				mDoingSetWindowBoundsAnimate = false;
 			}
 			
@@ -10512,6 +10514,8 @@ void	AWindow_Text::ShowHideRightSideBar( const ABool inShow )
 	if( shouldSave == true )
 	{
 		GetApp().NVI_GetAppPrefDB().SetData_Bool(AAppPrefDB::kRightSideBarDisplayed,mRightSideBarDisplayed);
+		//環境設定のチェックボックスを更新 #1350
+		GetApp().SPI_GetAppPrefWindow().NVI_UpdateProperty();
 	}
 	//#602
 	UpdateVSeparatorHelpTag();
