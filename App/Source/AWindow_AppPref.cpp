@@ -1126,6 +1126,13 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	//タブ幅 #1349
 	NVM_RegisterDBData(AAppPrefDB::kTabWidth,						true);
 	
+	//右サイドバー #1350
+	NVM_RegisterDBData(AAppPrefDB::kRightSideBarDisplayed,			true);
+	
+	//左サイドバー #1350
+	NVM_RegisterDBData(AAppPrefDB::kLeftSideBarDisplayed,			true);
+	
+	
 	/*#844
 	//起動アプリケーション　テーブルの設定
 	NVM_RegisterDBTable(kTable_LaunchApp,AAppPrefDB::kLaunchApp_CheckExtension,
@@ -1888,6 +1895,18 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 	  case AAppPrefDB::kTabWidth:
 		{
 			GetApp().SPI_UpdateTextWindowViewBoundsAll();
+			break;
+		}
+		//右サイドバー #1350
+	  case AAppPrefDB::kRightSideBarDisplayed:
+		{
+			GetApp().SPI_ShowHideRightSidebarAll();
+			break;
+		}
+		//左サイドバー #1350
+	  case AAppPrefDB::kLeftSideBarDisplayed:
+		{
+			GetApp().SPI_ShowHideLeftSidebarAll();
 			break;
 		}
 	  default:
