@@ -2042,6 +2042,10 @@ private:
 	static int				Lua_GetMiLuaScriptingVersion( lua_State* L );
 	static int				Lua_AutoTest( lua_State* L );
 	
+	//はじめにお読みくださいを表示する #1351
+  public:
+	void					SPI_ShowReadMeFirst();
+	
 	//コンテクストメニュー
 	
 	//致命的エラー発生時のデータバックアップ
