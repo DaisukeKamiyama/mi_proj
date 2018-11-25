@@ -205,6 +205,11 @@ AppDelegate
 	[mSpeechSynthesizer setDelegate:self];
 	//mSpeechVoiceList = [NSSpeechSynthesizer availableVoices];
 	mIsSpeaking = NO;
+	
+	//サービスメニュー #1309
+	NSArray*	sendTypes = [NSArray arrayWithObjects:NSPasteboardTypeString, nil];
+	NSArray*	returnTypes = [NSArray arrayWithObjects:NSPasteboardTypeString, nil];
+	[NSApp registerServicesMenuSendTypes:sendTypes returnTypes:returnTypes];
 }
 
 /**
