@@ -48,6 +48,9 @@ UserPaneViewクラス
 	//縦書きモード #558
 	BOOL	mVerticalMode;
 	
+	//サービスメニュー可否 #1309
+	BOOL	mServiceMenuAvailable;
+	
 	//mouse tracking rect
 	//AArray<ALocalRect>	mAdditionalTrackingRectArray;
 	AArray<NSTrackingRectTag>	mTrackingRectTagArray;
@@ -77,6 +80,7 @@ UserPaneViewクラス
 - (void)setNeedsPanelToBecomeKey:(ABool)inNeedsPanelToBecomeKey;
 - (void)setOpaque:(ABool)inOpqque;
 - (void)setVerticalMode:(ABool)inVertical;//#558
+- (void)setServiceMenuAvailable:(ABool)inAvailable;//#1309
 - (void)resetSelectedRangeForTextInput;
 //- (void)setMouseTrackingRect:(const AArray<ALocalRect>&)inLocalRectArray;
 - (void)fixInlineInput;
