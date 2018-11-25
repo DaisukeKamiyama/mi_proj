@@ -3490,11 +3490,11 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box verticalHuggingPriority="750" boxType="separator" id="CmK-zq-p58">
-                                            <rect key="frame" x="21" y="633" width="456" height="5"/>
+                                            <rect key="frame" x="21" y="581" width="456" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <box verticalHuggingPriority="750" boxType="separator" id="sub-sK-FGI">
-                                            <rect key="frame" x="21" y="542" width="456" height="5"/>
+                                            <rect key="frame" x="21" y="490" width="456" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="pQT-g6-euT">
@@ -3516,7 +3516,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="qYd-Lw-Cpi">
-                                            <rect key="frame" x="158" y="635" width="349" height="44"/>
+                                            <rect key="frame" x="158" y="583" width="349" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="* To hide/show Toolbar, select [View -&gt; Hide (Show) Toolbar] menu." id="mF5-vb-adK">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3525,7 +3525,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="KbU-sB-1fQ">
-                                            <rect key="frame" x="12" y="522" width="138" height="14"/>
+                                            <rect key="frame" x="12" y="470" width="138" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Text Area" id="kLn-wX-e0V">
                                                 <font key="font" metaFont="smallSystemBold"/>
@@ -3534,7 +3534,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="A0K-XB-ApH">
-                                            <rect key="frame" x="159" y="515" width="338" height="21"/>
+                                            <rect key="frame" x="159" y="463" width="338" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="Vjb-oR-l3F">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3543,7 +3543,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="WJZ-pF-anW">
-                                            <rect key="frame" x="10" y="608" width="138" height="14"/>
+                                            <rect key="frame" x="10" y="556" width="138" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Tab Display" id="btu-zp-Unl">
                                                 <font key="font" metaFont="smallSystemBold"/>
@@ -3552,7 +3552,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="adk-T8-BBV">
-                                            <rect key="frame" x="157" y="601" width="338" height="21"/>
+                                            <rect key="frame" x="157" y="549" width="338" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="VO7-Aw-mdl">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3561,7 +3561,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button tag="453" id="Rrr-vK-mf8" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="157" y="703" width="330" height="24"/>
+                                            <rect key="frame" x="157" y="653" width="330" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show Horizontal Scrollbar" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Ags-Vf-uI4">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3576,8 +3576,16 @@ DQ
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
+                                        <button tag="1187" id="4Aw-Zv-jLL" customClass="CocoaTabSelectButton">
+                                            <rect key="frame" x="157" y="702" width="332" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show Right Sidebar" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="jva-zq-roj">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </buttonCell>
+                                        </button>
                                         <button tag="443" id="cST-DC-PQX">
-                                            <rect key="frame" x="157" y="684" width="332" height="18"/>
+                                            <rect key="frame" x="157" y="632" width="332" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show Status Bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="313" inset="2" id="jvp-Tj-FKe">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3585,7 +3593,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <button tag="468" id="IXT-oT-nLc" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="158" y="494" width="330" height="24"/>
+                                            <rect key="frame" x="158" y="442" width="330" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Display margin before/after line" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="468" inset="2" id="EuX-FD-f45">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3593,7 +3601,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="421-7Z-EwG">
-                                            <rect key="frame" x="-36" y="499" width="191" height="14"/>
+                                            <rect key="frame" x="-36" y="447" width="191" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Left-Right Margin :" id="gqr-pn-eTm">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3602,7 +3610,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="ABL-aZ-03t">
-                                            <rect key="frame" x="32" y="470" width="191" height="14"/>
+                                            <rect key="frame" x="32" y="418" width="191" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Text Width :" id="hry-CF-1fr">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3611,7 +3619,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" tag="469" id="84I-4Q-dP4" customClass="CocoaTextField">
-                                            <rect key="frame" x="229" y="467" width="57" height="22"/>
+                                            <rect key="frame" x="229" y="415" width="57" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="UJW-gE-p7c">
                                                 <font key="font" metaFont="system"/>
@@ -3620,7 +3628,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="GI7-mq-ojz">
-                                            <rect key="frame" x="314" y="471" width="213" height="14"/>
+                                            <rect key="frame" x="314" y="419" width="213" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="characters (half-width)" id="gvU-Kr-TFS">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3629,12 +3637,12 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980469" id="nBL-Nk-ikY">
-                                            <rect key="frame" x="290" y="464" width="19" height="27"/>
+                                            <rect key="frame" x="290" y="412" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="mUy-Sw-Sl5"/>
                                         </stepper>
                                         <textField verticalHuggingPriority="750" id="XAY-53-WYz">
-                                            <rect key="frame" x="-25" y="373" width="178" height="14"/>
+                                            <rect key="frame" x="-25" y="321" width="178" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Transparency for active : " id="EGo-Kr-23g">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3643,17 +3651,17 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <slider verticalHuggingPriority="750" tag="472" id="sb5-gM-yAJ">
-                                            <rect key="frame" x="156" y="345" width="96" height="21"/>
+                                            <rect key="frame" x="156" y="293" width="96" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" state="on" alignment="left" tag="165" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="7r0-W2-iRH"/>
                                         </slider>
                                         <slider verticalHuggingPriority="750" tag="471" id="ral-dV-fPg">
-                                            <rect key="frame" x="156" y="369" width="96" height="21"/>
+                                            <rect key="frame" x="156" y="317" width="96" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" state="on" alignment="left" tag="165" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="p3J-VJ-3RA"/>
                                         </slider>
                                         <textField verticalHuggingPriority="750" id="6ce-3c-CmI">
-                                            <rect key="frame" x="-25" y="350" width="178" height="14"/>
+                                            <rect key="frame" x="-25" y="298" width="178" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Transparency for deactive : " id="Pdm-Fl-vyf">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3662,12 +3670,12 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <slider verticalHuggingPriority="750" tag="475" id="eN0-o8-Dga">
-                                            <rect key="frame" x="157" y="555" width="179" height="21"/>
+                                            <rect key="frame" x="157" y="503" width="179" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <sliderCell key="cell" state="on" alignment="left" tag="165" minValue="80" maxValue="300" doubleValue="160" tickMarkPosition="above" sliderType="linear" id="JCc-zC-h4c"/>
                                         </slider>
                                         <textField verticalHuggingPriority="750" id="FQ2-B2-U6K">
-                                            <rect key="frame" x="-2" y="559" width="156" height="14"/>
+                                            <rect key="frame" x="-2" y="507" width="156" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Tab Width :" id="cAy-Z3-a3N">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3676,7 +3684,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="JkC-7E-UWD">
-                                            <rect key="frame" x="-25" y="422" width="175" height="14"/>
+                                            <rect key="frame" x="-25" y="370" width="175" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Window Transparency" id="HZO-Wm-FHT">
                                                 <font key="font" metaFont="smallSystemBold"/>
@@ -3685,7 +3693,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="Ggt-wJ-NeE">
-                                            <rect key="frame" x="160" y="415" width="338" height="21"/>
+                                            <rect key="frame" x="160" y="363" width="338" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Set transparency of text windows" id="IMz-sX-Jc4">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3694,7 +3702,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <button tag="470" id="P3d-6H-YAK" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="159" y="393" width="330" height="24"/>
+                                            <rect key="frame" x="159" y="341" width="330" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Display window transparently" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="J9K-q5-wu9">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3702,7 +3710,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="iJS-bA-e2h">
-                                            <rect key="frame" x="-38" y="398" width="191" height="14"/>
+                                            <rect key="frame" x="-38" y="346" width="191" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Transparency Mode :" id="dSP-7c-EEO">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3711,7 +3719,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField hidden="YES" verticalHuggingPriority="750" tag="997009" id="b3Y-da-QJE">
-                                            <rect key="frame" x="20" y="305" width="108" height="14"/>
+                                            <rect key="frame" x="20" y="253" width="108" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="lPp-ai-SXa">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3720,11 +3728,11 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <box verticalHuggingPriority="750" boxType="separator" id="ENK-Bd-m1D">
-                                            <rect key="frame" x="21" y="451" width="456" height="5"/>
+                                            <rect key="frame" x="21" y="399" width="456" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <button tag="473" id="wf0-0T-lz7" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="157" y="579" width="330" height="24"/>
+                                            <rect key="frame" x="157" y="527" width="330" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Display parent folder name" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="V30-aB-17F">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3732,7 +3740,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="DWI-cb-LzC">
-                                            <rect key="frame" x="-37" y="584" width="191" height="14"/>
+                                            <rect key="frame" x="-37" y="532" width="191" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Tab Title :" id="3Gm-xV-OiP">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3740,6 +3748,14 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button tag="1185" id="Hi1-zH-cD4" customClass="CocoaTabSelectButton">
+                                            <rect key="frame" x="157" y="678" width="332" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show Left Sidebar" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="Y3O-bI-yVo">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </buttonCell>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
