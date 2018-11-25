@@ -380,6 +380,11 @@ class CUserPane: public AObjectArrayItem
 	void					ChangeToVerticalCTM( CGContextRef inContextRef );
 	ABool								mVerticalMode;
 	
+	//#1309
+	//サービスメニュー可否
+  public:
+	void					SetServiceMenuAvailable( const ABool inAvailable );
+	
 	/*#688
   public:
 	virtual void			TellChangedToWindow();
