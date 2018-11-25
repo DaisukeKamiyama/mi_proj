@@ -134,6 +134,9 @@ AView_Text::AView_Text( /*#199 AObjectArrayItem* inParent, AWindow& inWindow*/
 	mMarkEndTextPoint.x = mMarkEndTextPoint.y = -1;
 	//左下が丸いのを考慮したスクロールをしないように設定（text viewでは必要ないので） #947
 	NVI_SetAdjustScrollForRoundedCorner(false);
+	
+	//サービスメニュー可否設定 #1309
+	NVI_SetServiceMenuAvailable();
 }
 
 //デストラクタ
@@ -1200,6 +1203,12 @@ ABool	AView_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, cons
 		{
 			AText	text;
 			GetSelectedText(text);
+			//選択中でない場合はすべてスピーチ #1313
+			if( text.GetItemCount() == 0 )
+			{
+				GetTextDocumentConst().SPI_GetText(text);
+			}
+			//
 			GetApp().NVI_SpeakText(text);
 			break;
 		}
@@ -1581,9 +1590,12 @@ void	AView_Text::EVTDO_UpdateMenu()
 	//比較
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_Compare,(GetTextDocumentConst().SPI_GetDiffTargetDocumentID() != kObjectID_Invalid));
 	//Speech #851
+	/*#1313
 	AText	selectedText;
 	GetSelectedText(selectedText);
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_StartSpeaking,(selectedText.GetItemCount()>0));
+	*/
+	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_StartSpeaking,true);//#1313
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_StopSpeaking,GetApp().NVI_IsSpeaking());
 }
 
