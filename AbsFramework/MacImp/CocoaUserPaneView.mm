@@ -63,6 +63,8 @@ const AItemCount	kCurrentInlineInputStringMax = 65536;
 	mIsOpaque = NO;
 	//縦書きモード #558
 	mVerticalMode = NO;
+	//サービスメニュー #1309
+	mServiceMenuAvailable = NO;
 	//継承処理実行
 	self = [super initWithFrame:inFrame];
 	if( self != nil )
@@ -174,6 +176,91 @@ deactivateウインドウをクリックしたときの最初のマウスクリ�
 	{
 		mVerticalMode = NO;
 	}
+}
+
+//#1309
+/**
+サービスメニュー可否
+可に設定した場合のみ、validRequestorForSendTypeでselfを返す（＝メインメニューやコンテキストメニューにサービスメニューが表示される）
+*/
+- (void)setServiceMenuAvailable:(ABool)inAvailable
+{
+	if( inAvailable == true )
+	{
+		mServiceMenuAvailable = YES;
+	}
+	else
+	{
+		mServiceMenuAvailable = NO;
+	}
+}
+
+//#1309
+/**
+サービスメニュー　有効なタイプかどうかの判定
+*/
+- (id)validRequestorForSendType:(NSString *)sendType returnType:(NSString *)returnType
+{
+	if( mServiceMenuAvailable == YES )
+	{
+		return self;
+	}
+	else
+	{
+		return [super validRequestorForSendType:sendType returnType:returnType];
+	}
+}
+
+//#1309
+/**
+サービスメニュー（mi→サービス）
+*/
+- (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types
+{
+	/*
+	if ([types containsObject:NSPasteboardTypeString] == NO && [types containsObject:NSStringPboardType] == NO)
+	{
+		return NO;
+	}
+	*/
+	ABool	result = false;
+	
+	OS_CALLBACKBLOCK_START_WITHERRRETURNVALUE(false,NO);
+	
+	NSArray*	typesDeclared = [NSArray arrayWithObject:NSPasteboardTypeString];
+	[pboard declareTypes:typesDeclared owner:nil];
+	
+	//AWindow::EVT_DoServiceCopy()実行
+	result = mWindowImp->APICB_CocoaDoWriteSelectionToPasteboard((AScrapRef)pboard);
+	
+	OS_CALLBACKBLOCK_END;
+	
+	return (result==true)?YES:NO;
+}
+
+//#1309
+/**
+サービスメニュー（サービス→mi）
+*/
+- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard
+{
+	/*
+	NSArray*	types = [pboard types];
+	if ([types containsObject:NSPasteboardTypeString] == NO && [types containsObject:NSStringPboardType] == NO)
+	{
+		return NO;
+	}
+	*/
+	ABool	result = false;
+	
+	OS_CALLBACKBLOCK_START_WITHERRRETURNVALUE(false,NO);
+	
+	//AWindow::EVT_DoServicePaste()実行
+	result = mWindowImp->APICB_CocoaDoReadSelectionFromPasteboard((AScrapRef)pboard);
+	
+	OS_CALLBACKBLOCK_END;
+	
+	return (result==true)?YES:NO;
 }
 
 #pragma mark ===========================
