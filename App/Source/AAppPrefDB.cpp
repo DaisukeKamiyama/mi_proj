@@ -118,7 +118,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Bool(kInlineInputColorLine,						"inlineInputColorLine",				false);
 	CreateData_Bool(kFindDefaultIgnoreCase,						"findDefaultIgnoreCase",			true);
 	CreateData_Bool(kFindDefaultWholeWord,						"findDefaultWholeWord",				false);
-	CreateData_Bool(kFindDefaultAimai,							"findDefaultAimai",					true);
+	CreateData_Bool(kFindDefaultAimai,							"findDefaultAimai",					false);//#1352
 	CreateData_Bool(kFindDefaultRegExp,							"findDefaultRegExp",				false);
 	CreateData_Bool(kFindDefaultIgnoreSpaces,					"FindDefaultIgnoreSpaces",			false);//#165
 	CreateData_Bool(kFindDefaultLoop,							"findDefaultLoop",					false);
