@@ -14,7 +14,7 @@
 "DisplayReturnCode" = "true"
 "DisplayTabCode" = "false"
 "DisplaySpaceCode" = "false"
-"DisplayZenkakuSpaceCode" = "true"
+"DisplayZenkakuSpaceCode" = "false"
 "DisplayGenkoyoshi" = "false"
 "CheckBrace" = "true"
 "SelectInsideBraceByDoubleClick" = "true"
@@ -47,7 +47,8 @@
 "DefaultPrintOption_PrintLineNumber" = "true"
 "DefaultPrintOption_PrintSeparateLine" = "true"
 "DefaultPrintOption_ForceWordWrap" = "true"
-"LetterColor" = "193027"
+"LetterColor" = "222222"
+"ControlCodeColor" = "B3B3B3"
 "BackgroundColor" = "FFFFFF"
 "SpecialCodeColor" = "C3C3C3"
 "CommentColor" = "FF0000"
@@ -69,15 +70,17 @@
 "CommentStart" = ""
 "CommentEnd" = ""
 "CommentLineStart" = ""
-"LiteralStart1" = ""
-"LiteralEnd1" = ""
-"LiteralStart2" = ""
-"LiteralEnd2" = ""
+"LiteralStart1" = "["
+"LiteralEnd1" = "]"
+"LiteralStart2" = "「"
+"LiteralEnd2" = "」"
 "EscapeString" = ""
 "OtherStart1" = ""
 "OtherEnd1" = ""
 "OtherStart2" = ""
 "OtherEnd2" = ""
+"IncIndentRegExp" = ""
+"DecIndentRegExp" = ""
 "CharsForWord" = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
 "CharsForHeadOfWord" = ""
 "CharsForTailOfWord" = ""
@@ -85,7 +88,7 @@
 "TeXPreviewer" = ""
 "DefaultFontNameUni" = "Monaco"
 "DefaultFontName" = "Osaka"
-"DefaultFontSize" = "9"
+"DefaultFontSize" = "12"
 "DefaultTabWidth" = "4"
 "IndentWidth" = "4"
 "DefaultWindowWidth" = "900"
@@ -102,7 +105,7 @@
 "DefaultPrintOption_LineNumberFontNameUni" = "default"
 "DefaultPrintOption_LineNumberFontName" = "Osaka"
 "DefaultPrintOption_LineMargin" = "0"
-"LineMargin" = "0"
+"LineMargin" = "2"
 "CIndent_Normal" = "4"
 "CIndent_Fukubun" = "8"
 "CIndent_Label" = "-2"
@@ -190,9 +193,9 @@
 "Indent0ForEmptyLine" = "false"
 "IndentWhenPaste" = "false"
 "EnableMode" = "true"
-"SameAsNormalMode_Font" = "true"
-"SameAsNormalMode_Colors" = "true"
-"SameAsNormalMode_TextDisplay" = "true"
+"SameAsNormalMode_Font" = "false"
+"SameAsNormalMode_Colors" = "false"
+"SameAsNormalMode_TextDisplay" = "false"
 "SameAsNormalMode_BackgroundDisplay" = "true"
 "SameAsNormalMode_TextLayout" = "true"
 "SameAsNormalMode_TextProperty" = "true"
@@ -207,7 +210,7 @@
 "SyntaxColorSlot6_Color" = "B9A300"
 "SyntaxColorSlot7_Color" = "0000FF"
 "SyntaxColorSlotComment_Color" = "FF0000"
-"SyntaxColorSlotLiteral_Color" = "555555"
+"SyntaxColorSlotLiteral_Color" = "333333"
 "SyntaxColorSlot0_Bold" = "false"
 "SyntaxColorSlot1_Bold" = "false"
 "SyntaxColorSlot2_Bold" = "false"
@@ -217,7 +220,7 @@
 "SyntaxColorSlot6_Bold" = "false"
 "SyntaxColorSlot7_Bold" = "false"
 "SyntaxColorSlotComment_Bold" = "false"
-"SyntaxColorSlotLiteral_Bold" = "false"
+"SyntaxColorSlotLiteral_Bold" = "true"
 "SyntaxColorSlot0_Italic" = "false"
 "SyntaxColorSlot1_Italic" = "false"
 "SyntaxColorSlot2_Italic" = "false"
@@ -246,7 +249,7 @@
 "FindHighlightColor" = "FDE900"
 "FindHighlightColorPrev" = "E6E6FA"
 "CurrentWordHighlightColor" = "FFFF00"
-"TextMarkerHightlightColor" = "FF7C66"
+"TextMarkerHightlightColor" = "FFCD96"
 "SelectionColorForFind" = "FFD700"
 "IndentAutoDetect" = "true"
 "KeyBindDefaultIsNormalMode" = "false"
@@ -259,6 +262,31 @@
 "SelectionOpacity" = "80"
 "DefaultSyntaxPart" = "自動"
 "ShiftleftByBackspace" = "true"
+"VerticalMode" = "false"
+"PluginData_Id" = 
+{
+
+}
+"PluginData_Name" = 
+{
+
+}
+"PluginData_Options" = 
+{
+
+}
+"PluginData_Enabled" = 
+{
+
+}
+"PluginDisplayName_Id_Language" = 
+{
+
+}
+"PluginDisplayName_DisplayName" = 
+{
+
+}
 "AdditionalCategory_Name" = 
 {
 
@@ -426,10 +454,10 @@
 }
 "JumpSetup_LineColor" = 
 {
-	"1724B3",
-	"FF0A0E",
-	"1B992C",
-	"D76311"
+	"F61200",
+	"038497",
+	"FF5A4D",
+	"8ADA00"
 }
 "JumpSetup_KeywordColor" = 
 {
@@ -491,7 +519,7 @@
 {
 	"1",
 	"1",
-	"1",
+	"2",
 	"1"
 }
 "JumpSetup_SimplerSetting" = 
