@@ -435,7 +435,7 @@ AModePrefDB::AModePrefDB( AObjectArrayItem* inParent )
 	CreateData_Color(kFirstSelectionColor,					"SelectionColorForFind",			AColorWrapper::GetColorByHTMLFormatColor("FFD700"));
 	
 	//#912
-	CreateData_Bool(kIndentAutoDetect,						"IndentAutoDetect",					true);
+	CreateData_Bool(kIndentAutoDetect,						"IndentAutoDetect",					false);//#1341
 	
 	//#481
 	CreateData_Bool(kKeyBindDefaultIsNormalMode,			"KeyBindDefaultIsNormalMode",		false);
