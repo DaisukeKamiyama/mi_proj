@@ -3087,6 +3087,12 @@ void	AApp::InitModePref()
 		SPI_ModeUpdate(i,false);
 	}
 	*/
+	
+	//標準モードを生成したとき（＝最初の起動時）は、はじめにお読みくださいを表示する #1351 #1333
+	if( normalModeCreatedNewly == true )
+	{
+		SPI_ShowReadMeFirst();
+	}
 }
 
 //#920
@@ -5450,6 +5456,12 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			ALaunchWrapper::OpenURLWithDefaultBrowser(url);
 			break;
 		}
+		//はじめにお読みください #1351
+	  case kMenuItemID_ReadMeFirst:
+		{
+			SPI_ShowReadMeFirst();
+			break;
+		}
 		//#539 #endif
 		//デバッグ
 	  case kMenuItemID_HashStatics://#271
@@ -5824,6 +5836,8 @@ void	AApp::EVTDO_UpdateMenu()
 	//#539#if IMPLEMENTATION_FOR_WINDOWS
 	//win
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_Help,true);
+	//#1351
+	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReadMeFirst,true);
 	//#539#endif
 	//#476
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_FullScreenMode,true);
@@ -17089,6 +17103,24 @@ int	AApp::Lua_AutoTest( lua_State* L )
 		Lua_Error(L,"(MI999) unknown error happens.");
 	}
 	return 0;
+}
+
+#pragma mark ===========================
+
+//#1351
+/**
+はじめにお読みくださいを表示する
+*/
+void	AApp::SPI_ShowReadMeFirst()
+{
+	AFileAcc	helpFolder;
+	AFileWrapper::GetHelpFolder("ja",helpFolder);
+	AFileAcc	readme;
+	readme.SpecifyChild(helpFolder,"README");
+	ADocumentID	docID = SPNVI_CreateDocumentFromLocalFile(readme);
+	AText	modename("headers");
+	AModeIndex modeIndex = SPI_FindModeIndexByModeRawName(modename);
+	SPI_GetTextDocumentByID(docID).SPI_SetMode(modeIndex);
 }
 
 #pragma mark ===========================
