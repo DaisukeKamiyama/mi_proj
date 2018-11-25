@@ -248,6 +248,7 @@ const AMenuItemID	kMenuItemID_KeyRecordPlay				= 3104;//'KyRP';
 const AMenuItemID	kMenuItemID_KeyRecordRecentlyPlay		= 'KRRP';
 //#539
 const AMenuItemID	kMenuItemID_Help						= 3201;//'help';
+const AMenuItemID	kMenuItemID_ReadMeFirst					= 3202;//#1351
 //#404
 const AMenuItemID	kMenuItemID_FullScreenMode				= 3301;//'SwFS';
 //#455
