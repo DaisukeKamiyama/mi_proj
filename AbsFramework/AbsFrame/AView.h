@@ -746,6 +746,14 @@ class AView : public AObjectArrayItem
 		return mViewImp.GetVerticalMode();
 	}
 	
+	//#1309
+	//サービスメニュー可否
+  public:
+	void					NVI_SetServiceMenuAvailable()
+	{
+		mViewImp.SetServiceMenuAvailable(true);
+	}
+	
 	//Object情報取得
   public:
 	virtual AConstCharPtr	GetClassName() const { return "AView"; }
