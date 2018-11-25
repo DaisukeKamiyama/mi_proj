@@ -4178,3 +4178,13 @@ void	CUserPane::SetVerticalMode( const ABool inVerticalMode )
 	}
 }
 
+//#1309
+/**
+サービスメニュー可否
+*/
+void	CUserPane::SetServiceMenuAvailable( const ABool inAvailable )
+{
+	CocoaUserPaneView*	view = GetWin().GetCocoaObjects().FindCocoaUserPaneViewByTag(mControlID);
+	[view setServiceMenuAvailable:inAvailable];
+}
+
