@@ -10863,7 +10863,7 @@ void	AWindow_Text::SPI_UpdateOverlayWindowAlpha()
 //各ポップアップウインドウサイズ
 const ANumber	kPopupCandidateWindowHeight = 150;
 const ANumber	kPopupIdInfoWindowHeight = 200;
-const ANumber	kPopupIdInfoWindowWidth = 300;
+const ANumber	kPopupIdInfoWindowWidth = 280;//#1354 Retina ONの場合、少し大きすぎる感あるので少し小さくする。
 const ANumber	kPopupAdjustThreasholdHeight = 30;
 
 /**
