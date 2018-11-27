@@ -28,8 +28,8 @@ AView_IdInfo
 #include "AApp.h"
 
 //ポップアップid infoのhideタイマー値
-const ANumber	kTimerForHidePopupIdInfo = 80;
-const ANumber	kTimerForHidePopupIdInfo_AfterArgIndexChanged = 160;
+const ANumber	kTimerForHidePopupIdInfo = 70;//#1354 80→70
+const ANumber	kTimerForHidePopupIdInfo_AfterArgIndexChanged = 150;//#1354 160→150
 
 //角丸の半径 #1079
 const AFloatNumber	kRoundedRectRad = 3.0f;
@@ -342,7 +342,7 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		ANumber	labelfontheight = 9 ,labelfontascent = 7;
 		NVMC_GetMetricsForDefaultTextProperty(labelfontheight,labelfontascent);
 		//カテゴリー名フォント取得
-		NVMC_SetDefaultTextProperty(labelfontname,fontsize-0.5,/*kColor_Black*/letterColor,kTextStyle_Normal,true,mAlpha);
+		NVMC_SetDefaultTextProperty(labelfontname,fontsize-1.0,/*kColor_Black*/letterColor,kTextStyle_Normal,true,mAlpha);//#1354 0.5→1.0
 		ANumber	categoryfontheight = 9, categoryfontascent = 7;
 		NVMC_GetMetricsForDefaultTextProperty(categoryfontheight,categoryfontascent);
 		//カテゴリテキスト取得
@@ -367,7 +367,7 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		filenameImageRect.left		= itemImageRect.left + kHeaderLeftMargin;//#643
 		filenameImageRect.bottom 	= itemImageRect.top + labelfontheight +kHeaderTopMargin;//#643
 		filenameImageRect.top		+= kHeaderTopMargin;
-		filenameImageRect.right		-= NVMC_GetDrawTextWidth(categoryname) + 32;
+		filenameImageRect.right		-= NVMC_GetDrawTextWidth(categoryname) + 4;//#1354 32→4
 		ALocalRect	filenameLocalRect = {0};
 		NVM_GetLocalRectFromImageRect(filenameImageRect,filenameLocalRect);
 		//filenameが空の場合はキーワードを格納
@@ -1644,9 +1644,9 @@ void	AView_IdInfo::SPI_DoTickTimer()
 	//タイマーカウンタデクリメント
 	mHideCounter--;
 	//タイマーカウンタが16以下ならα値減少
-	if( mHideCounter <= 16 )
+	if( mHideCounter <= 10 )//#1354 16→10
 	{
-		mAlpha = 0.9*mHideCounter/16;
+		mAlpha = 0.9*mHideCounter/10;//#1354 16→10
 		NVI_Refresh();
 		NVM_GetWindow().NVI_UpdateWindow();
 	}
