@@ -106,6 +106,7 @@ ADocument_Text::ADocument_Text( AObjectArrayItem* inParent, const AObjectID inDo
 ,mDuplicatedDocumentID(kObjectID_Invalid)
 ,mTemporaryFontSize(0)//#966
 ,mPrintRect(kLocalRect_0000),mPrintPaperWidth(0),mPrintPaperHeight(0)//#558
+,mIsReadMeFile(false)//#1351
 {
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("ADocument_Text::ADocument_Text() started.",this);
 	
@@ -9130,6 +9131,9 @@ void	ADocument_Text::SPI_CorrectTextPoint( ATextPoint& ioTextPoint ) const
 //R0000
 void	ADocument_Text::SPI_UpdateFileAttribute()
 {
+	//ReadMeファイルの場合は何もせずリターン（readonlyを維持するため） #1351
+	if( mIsReadMeFile == true )   return;
+	
 	AFileAcc	file;
 	if( NVI_GetFile(file) == true )
 	{
