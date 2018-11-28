@@ -17121,6 +17121,7 @@ void	AApp::SPI_ShowReadMeFirst()
 	AText	modename("headers");
 	AModeIndex modeIndex = SPI_FindModeIndexByModeRawName(modename);
 	SPI_GetTextDocumentByID(docID).SPI_SetMode(modeIndex);
+	SPI_GetTextDocumentByID(docID).NVI_SetReadOnly(true);
 }
 
 #pragma mark ===========================
