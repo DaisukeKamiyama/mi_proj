@@ -1334,6 +1334,12 @@ private:
   private:
 	ABool								mCreatedAutomatically;
 	
+	//#1351
+  public:
+	void					SPI_SetReadMeFile() { mIsReadMeFile = true; }
+  private:
+	ABool								mIsReadMeFile;
+	
 	//R0199スペルチェック
   public:
 	void					SPI_ClearSpellCheckCache() { mMisspellCacheArray.DeleteAll(); mCorrectspellCacheArray.DeleteAll(); }
