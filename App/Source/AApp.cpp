@@ -17122,6 +17122,7 @@ void	AApp::SPI_ShowReadMeFirst()
 	AModeIndex modeIndex = SPI_FindModeIndexByModeRawName(modename);
 	SPI_GetTextDocumentByID(docID).SPI_SetMode(modeIndex);
 	SPI_GetTextDocumentByID(docID).NVI_SetReadOnly(true);
+	SPI_GetTextDocumentByID(docID).SPI_SetReadMeFile();
 }
 
 #pragma mark ===========================
