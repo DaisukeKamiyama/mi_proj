@@ -437,7 +437,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button tag="444" id="3Bp-je-076" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="156" y="282" width="339" height="24"/>
+                                            <rect key="frame" x="156" y="282" width="372" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Adjust Scroll for editing apart from window bottom" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="IC2-Dj-bLT">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
