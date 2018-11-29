@@ -7065,7 +7065,7 @@ void	AApp::SPI_UpdateNewMenu()
 #if IMPLEMENTATION_FOR_WINDOWS
 		modifiers = kMenuShoftcutModifierKeysMask_Control;
 #endif
-		if( modeRawName.Compare(newShortcutModeName) == true )
+		if( modeRawName.Compare(newShortcutModeName) == true || modeDisplayName.Compare(newShortcutModeName) == true )//#1356 バージョン2では表示用モード名が格納されているので表示用モード名と一致した時でもコマンドNを設定する
 		{
 			shortcut = 'N';
 		}
