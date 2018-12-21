@@ -144,5 +144,7 @@
 	<string>mi.sdef</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>mi のツール、ツールバー、キーバインドから、他のアプリケーションにアクセスするための AppleEvent を送信しようとしています。The selected tool, toolbar or keybind is sending AppleEvent to access other applicaitons.</string>
 </dict>
 </plist>
