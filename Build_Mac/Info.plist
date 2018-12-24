@@ -102,7 +102,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.2b1</string>
+	<string>3.0.2b2</string>
 	<key>CFBundleSignature</key>
 	<string>MMKE</string>
 	<key>CFBundleURLTypes</key>
@@ -128,6 +128,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>mi のツール、ツールバー、キーバインドから、他のアプリケーションにアクセスするための AppleEvent を送信します。
+The selected tool, toolbar or keybind sends AppleEvent to access other applicaitons.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHighResolutionCapable</key>
@@ -144,7 +147,5 @@
 	<string>mi.sdef</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>mi のツール、ツールバー、キーバインドから、他のアプリケーションにアクセスするための AppleEvent を送信しようとしています。The selected tool, toolbar or keybind is sending AppleEvent to access other applicaitons.</string>
 </dict>
 </plist>
