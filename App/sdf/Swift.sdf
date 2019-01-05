@@ -60,8 +60,8 @@ state(idle)
 	{"{", {IncIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
 	#func
-	{"func",{SetVarStart(info), ChangeState(func)}}
-	{"init",{SetVarStart(info), ChangeState(func)}}
+	{"func",{SetVarStart(info), SetVarNextToken(funcname), ChangeState(func)}}
+	{"init",{SetVarStart(info), SetVarCurrentToken(funcname), ChangeState(func)}}
 	#class
 	{"class",{ChangeState(class)}}
 	{"struct",{ChangeState(class)}}
@@ -87,7 +87,7 @@ state(func)
 {
 	StateAttribute_SyntaxPart("Swift")
 	{":", {SetVarLastWord(argname),AddLocalId([argument], argname, argname, "", "")}}
-	{"(", {SetVarLastWord(funcname), IncIndentFromNext}}
+	{"(", {IncIndentFromNext}}
 	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), BlockStart(funcblock), IncIndentFromNext, ChangeState(func_idle)}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent, ChangeState(idle)}}
@@ -103,6 +103,9 @@ state(func)
 state(func_idle)
 {
 	StateAttribute_SyntaxPart("Swift")
+	#func
+	{"func",{SetVarStart(info), SetVarNextToken(funcname), ChangeState(func)}}
+	{"init",{SetVarStart(info), SetVarCurrentToken(funcname), ChangeState(func)}}
 	#インデント
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
