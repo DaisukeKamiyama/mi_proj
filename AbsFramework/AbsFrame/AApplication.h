@@ -62,6 +62,7 @@ class AApplication : public AObjectArrayItem
 	//Imp
   public:
 	CAppImp&				GetImp() {return mAppImp;}//#688
+	const CAppImp&			GetImpConst() const  {return mAppImp;}//#1316
   private:
 	CAppImp								mAppImp;
 	
@@ -176,6 +177,7 @@ private:
 	void					NVI_GetBuildNumber( AText& outText ) const;//#1096
 	ALanguage				NVI_GetLanguage() const;//#305
 	void					NVI_GetLanguageName( AText& outText ) const;
+	ABool					NVI_IsDarkMode() const;//#1316
 	
 	//メインスレッド制御
   public:
