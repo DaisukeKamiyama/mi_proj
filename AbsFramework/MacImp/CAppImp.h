@@ -171,6 +171,7 @@ class CAppImp: public AObjectArrayItem
 	void					GetVersion( AText& outText ) const;
 	void					GetBuildNumber( AText& outText ) const;//#1096
 	ALanguage				GetLanguage() const;//#305
+	ABool					IsDarkMode() const;//#1316
   private:
 	ALanguage						mLanguage;//#305
 	AText							mApplicationVersionText;//#645
