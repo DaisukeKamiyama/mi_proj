@@ -208,6 +208,16 @@ void	AView_Toolbar::EVTDO_DoDraw()
 	{
 		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F6F6F6");
 	}
+	//ダークモード #1316
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("363636");
+		if( NVI_GetWindow().NVI_IsWindowActive() == false )
+		{
+			backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("2C2C2C");
+		}
+	}
+	//
 	NVMC_PaintRect(viewRect,backgroundColor,1.0);
 	
 	//==================区切り線描画==================
@@ -217,6 +227,12 @@ void	AView_Toolbar::EVTDO_DoDraw()
 	{
 		color = kColor_Gray90Percent;
 	}
+	//ダークモード #1316
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		color = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	}
+	//
 	NVMC_DrawLine(spt,ept,/*#1079 AColorWrapper::GetColorByHTMLFormatColor("4c4b4b")*/color,1.0);
 	
 }
