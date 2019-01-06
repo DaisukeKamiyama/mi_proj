@@ -1376,6 +1376,22 @@ ALanguage	CAppImp::GetLanguage() const
 	return mLanguage;
 }
 
+//#1316
+/**
+ダークモードかどうかの判定
+*/
+ABool	CAppImp::IsDarkMode() const
+{
+	if( NSApp.effectiveAppearance == [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua] )
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 #pragma mark ===========================
 
 #pragma mark ---JavaScript
