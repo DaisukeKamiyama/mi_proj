@@ -122,6 +122,8 @@ class AView_Button : public AView
 	void					SPI_SetTextProperty( const AText& inFontName, const AFloatNumber inFontSize, const AJustification inJustification, 
 							const ATextStyle inTextStyle,//#724
 							const AColor inColor = kColor_Gray30Percent, const AColor inColorDeactive = kColor_Gray60Percent,
+												 const AColor inDarkColor = kColor_Gray91Percent,//#1316
+												 const AColor inDarkColorDeactive = kColor_Gray40Percent,//#1316
 							const ABool inRefresh = false );//#530
 	void					SPI_SetWidthToFitTextWidth( const ANumber inMaxWidth = kNumber_MaxNumber );//#724
 	void					SPI_SetTextFromMenuIndex( const AIndex inIndex );
@@ -212,6 +214,8 @@ class AView_Button : public AView
 	ATextStyle							mTextStyle;//#724
 	AColor								mColor;
 	AColor								mColorDeactive;
+	AColor								mDarkColor;//#1316
+	AColor								mDarkColorDeactive;//#1316
 	AContextMenuID						mMenuID;
 	ATextArray							mMenuTextArray;
 	ATextArray							mActionTextArray;
