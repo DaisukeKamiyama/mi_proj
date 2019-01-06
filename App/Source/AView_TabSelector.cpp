@@ -407,6 +407,30 @@ void	AView_TabSelector::EVTDO_DoDraw()
 	AColor	deactiveTabPaintColor_Hover = kColor_Gray93Percent;
 	AColor	deactiveTabFrameColor_Hover = kColor_Gray70Percent;
 	AColor	deactiveTabLetterColor = kColor_Gray20Percent;
+	//ダークモード #1316
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		//背景
+		tabareaPaintColor = AColorWrapper::GetColorByHTMLFormatColor("222222");
+		tabareaFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		//アクティブタブ
+		activeTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		activeTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		activeTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		activeTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		activeTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+		//２番目タブ
+		secondTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		secondTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		secondTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		secondTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		//その他デアクティブタブ
+		deactiveTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		deactiveTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		deactiveTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		deactiveTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		deactiveTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("6E6E6E");
+	}
 	//ウインドウがアクティブでないときの色
 	if( NVI_GetWindow().NVI_IsWindowActive() == false )
 	{
