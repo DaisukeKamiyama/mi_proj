@@ -656,6 +656,15 @@ void	AApplication::NVI_GetLanguageName( AText& outText ) const
 	}
 }
 
+//#1316
+/**
+ダークモードかどうかの判定
+*/
+ABool	AApplication::NVI_IsDarkMode() const
+{
+	return GetImpConst().IsDarkMode();
+}
+
 
 #pragma mark ===========================
 
