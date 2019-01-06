@@ -53,6 +53,7 @@ AView_Button::AView_Button( const AWindowID inWindowID, const AControlID inID )
 		,mFrameColor(kColor_Gray80Percent)//amazon
 		,mMouseTrackResultIsDrag(false)//win
 		,mColor(kColor_Gray10Percent),mColorDeactive(kColor_Gray60Percent)
+,mDarkColor(kColor_Gray91Percent),mDarkColorDeactive(kColor_Gray40Percent)//#1316
 ,mButtonViewType(kButtonViewType_None)//kButtonViewType_Rect20)//#634
 ,mButtonBehaviorType(kButtonBehaviorType_Normal)//#634
 ,mPreviousMouseGlobalPoint(kGlobalPoint_00)//#634
@@ -106,7 +107,7 @@ void	AView_Button::InitTextPropertyIfNotInited()
 	
 	AText	defaultfontname;
 	AFontWrapper::GetDialogDefaultFontName(defaultfontname);//#375
-	SPI_SetTextProperty(defaultfontname,mFontSize,mTextJustification,mTextStyle,mColor,mColorDeactive);
+	SPI_SetTextProperty(defaultfontname,mFontSize,mTextJustification,mTextStyle,mColor,mColorDeactive,mDarkColor,mDarkColorDeactive);//#1316
 }
 
 /**
@@ -448,6 +449,15 @@ void	AView_Button::EVTDO_DoDraw()
 		if( active == false )
 		{
 			lettercolor = mColorDeactive;
+		}
+		//ダークモード #1316
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			lettercolor = mDarkColor;
+			if( active == false )
+			{
+				lettercolor = mDarkColorDeactive;
+			}
 		}
 		
 		//------------------メニュー下三角形描画判定------------------
@@ -1334,7 +1344,9 @@ void	AView_Button::SPI_SetIconImageID( AImageID inIconImageID,
 */
 void	AView_Button::SPI_SetTextProperty( const AText& inFontName, const AFloatNumber inFontSize, const AJustification inJustification, 
 		const ATextStyle inTextStyle,//#724
-		const AColor inColor, const AColor inColorDeactive, const ABool inRefresh )//#530
+	   const AColor inColor, const AColor inColorDeactive,
+	   const AColor inDarkColor, const AColor inDarkColorDeactive,//#1316
+	   const ABool inRefresh )//#530
 {
 	mFontName.SetText(inFontName);
 	mFontSize = inFontSize;
@@ -1345,6 +1357,8 @@ void	AView_Button::SPI_SetTextProperty( const AText& inFontName, const AFloatNum
 	mTextStyle = inTextStyle;//#724
 	mColor = inColor;
 	mColorDeactive = inColorDeactive;
+	mDarkColor = inDarkColor;//#1316
+	mDarkColorDeactive = inDarkColorDeactive;//#1316
 	NVMC_SetDefaultTextProperty(inFontName,mFontSize,inColor,mTextStyle,true);
 	NVMC_GetMetricsForDefaultTextProperty(mFontHeight,mFontAscent);
 	mTextJustification = inJustification;
