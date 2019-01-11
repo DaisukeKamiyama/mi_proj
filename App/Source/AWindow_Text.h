@@ -501,8 +501,8 @@ class AWindow_Text : public AWindow
 												   const ANumber w_MainTextMargin, //#1186
 												   const ANumber w_TextView, const ANumber w_LineNumber, AWindowPoint pt_VScrollbarArea );//#725
 	ANumber					GetLineNumberWidth( const AIndex inTabIndex ) const;//#450
-	ABool					UpdateLayout_SubTextColumn( const AIndex inTabIndex, const ATextWindowLayoutData& layout );
-	void					UpdateLayout_SubTextPane( const AIndex inTabIndex, const AWindowPoint pt_SubTextPane, 
+	ABool					UpdateLayout_SubTextColumn( /*#1364 const AIndex inTabIndex,*/ const ATextWindowLayoutData& layout );
+	void					UpdateLayout_SubTextPane( /*#1364 const AIndex inTabIndex,*/ const AWindowPoint pt_SubTextPane, 
 													 const ANumber w_SubTextPane, const ANumber h_SubTextPane, const ANumber h_SubHScrollbar );//#725
 	void					UpdateLayout_AdjustLeftSideBarHeight( const ANumber inLeftSideBarHeight,
 							const AIndex inAdjustStartIndex = 0 );//#725
