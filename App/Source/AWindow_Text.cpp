@@ -4724,7 +4724,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 	//　　サブテキストカラム配置
 	//=============================================
 	//サブテキストカラム・分割線配置（サブテキストカラムが存在している場合のみ） #725
-	subTextPaneDisplayed = UpdateLayout_SubTextColumn(inTabIndex,layout);
+	subTextPaneDisplayed = UpdateLayout_SubTextColumn(/*#1364 inTabIndex,*/layout);
 	
 	//=============================================
 	//　　タブセレクタ配置
@@ -5937,13 +5937,13 @@ void	AWindow_Text::UpdateLayout_TextView( const AIndex inTabIndex,
 /**
 サブテキスト配置
 */
-ABool	AWindow_Text::UpdateLayout_SubTextColumn( const AIndex inTabIndex, const ATextWindowLayoutData& layout )
+ABool	AWindow_Text::UpdateLayout_SubTextColumn( /*#1364 const AIndex inTabIndex,*/ const ATextWindowLayoutData& layout )
 {
 	ABool	subTextPaneDisplayed = false;
 	if( layout.w_SubTextPaneColumn > 0 )
 	{
 		//サブテキストカラム配置
-		UpdateLayout_SubTextPane(inTabIndex,layout.pt_SubTextPaneColumn,layout.w_SubTextPaneColumn,layout.h_SubTextPaneColumn,
+		UpdateLayout_SubTextPane(/*#1364 inTabIndex,*/layout.pt_SubTextPaneColumn,layout.w_SubTextPaneColumn,layout.h_SubTextPaneColumn,
 								 layout.h_subHScrollbar);
 		//サブテキストペイン表示済みフラグをON
 		subTextPaneDisplayed = true;
@@ -5984,7 +5984,7 @@ ABool	AWindow_Text::UpdateLayout_SubTextColumn( const AIndex inTabIndex, const A
 /**
 サブテキストペイン配置
 */
-void	AWindow_Text::UpdateLayout_SubTextPane( const AIndex inTabIndex, const AWindowPoint pt_SubTextPane_origin, 
+void	AWindow_Text::UpdateLayout_SubTextPane( /*#1364 const AIndex inTabIndex,*/ const AWindowPoint pt_SubTextPane_origin, 
 		const ANumber w_SubTextPane, const ANumber h_SubTextPane, const ANumber h_SubHScrollbar )
 {
 	//#675 UpdateViewBounds抑制状態中は何もしない
@@ -6005,7 +6005,7 @@ void	AWindow_Text::UpdateLayout_SubTextPane( const AIndex inTabIndex, const AWin
 		if( textViewControlID != kControlID_Invalid )
 		{
 			//行番号幅取得
-			ANumber	lineNumberWidth = GetLineNumberWidth(inTabIndex);//#450
+			ANumber	lineNumberWidth = GetLineNumberWidth(tabIndex);//#450 #1364 inTabIndex→tabIndex
 			AWindowPoint	pt2 = pt_SubTextPane;
 			//上部ボタン配置
 			if( mDiffDisplayMode == false )
@@ -6088,7 +6088,7 @@ void	AWindow_Text::UpdateLayout_SubTextPane( const AIndex inTabIndex, const AWin
 			//サブテキストHスクロールバー配置
 			{
 				AControlID	hScrollbarControlID = mTabDataArray.GetObject(tabIndex).GetSubTextHScrollbarControlID();
-				if( h_SubHScrollbar > 0 )
+				if( h_SubHScrollbar > 0 && NVI_GetDocumentIDByTabIndex(tabIndex) == mSubTextCurrentDocumentID )//#1364 現在サブテキストに表示中のタブの場合のみHスクロールバーを表示する
 				{
 					AWindowPoint	pt = {0};
 					pt.x = pt_SubTextPane.x;
@@ -6489,7 +6489,7 @@ ABool	AWindow_Text::UpdateLayout_LeftSideBar( const AIndex inTabIndex, const ATe
 					  case kSubWindowType_SubTextPane:
 						{
 							//サブテキストペイン配置
-							UpdateLayout_SubTextPane(inTabIndex,pt,
+							UpdateLayout_SubTextPane(/*#1364 inTabIndex,*/pt,
 													 inLayout.w_LeftSideBar - k_wLeftSideBarVisibleArea,subPaneHeight,
 													 inLayout.h_subHScrollbar);
 							//サブテキストペイン表示フラグON
