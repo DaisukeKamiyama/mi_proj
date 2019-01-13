@@ -65,6 +65,40 @@ void	AColorWrapper::GetHighlightColor( AColor& outColor)
 	outColor = sHighlightColor;
 }
 
+//#1316
+/**
+テキスト選択色取得
+システム環境設定の変更を即反映させたいので、staticメンバー変数にキャッシュする方法は今回は使わない（処理速度に問題があれば再検討）
+*/
+AColor	AColorWrapper::GetHighlightColor()
+{
+    CGFloat    r = 0, g = 0, b = 0, a = 0;
+	[[[NSColor selectedTextBackgroundColor] colorUsingColorSpaceName:NSDeviceRGBColorSpace] getRed:&r green:&g blue:&b alpha:&a];
+	AColor	color = {r*65535,g*65535,b*65535};
+	return color;
+}
+
+//#1316
+/**
+コントロールアクセント色取得
+macOS10.14+の場合は「アクセントカラー」、10.14未満の場合はテキスト選択色と同じ。
+システム環境設定の変更を即反映させたいので、staticメンバー変数にキャッシュする方法は今回は使わない（処理速度に問題があれば再検討）
+*/
+AColor	AColorWrapper::GetControlAccentColor()
+{
+	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_14 )
+	{
+		CGFloat    r = 0, g = 0, b = 0, a = 0;
+		[[[NSColor controlAccentColor] colorUsingColorSpaceName:NSDeviceRGBColorSpace] getRed:&r green:&g blue:&b alpha:&a];
+		AColor	color = {r*65535,g*65535,b*65535};
+		return color;
+	}
+	else
+	{
+		return AColorWrapper::GetHighlightColor();
+	}
+}
+
 //#1034
 #if 0 
 /**
