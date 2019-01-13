@@ -1382,9 +1382,16 @@ ALanguage	CAppImp::GetLanguage() const
 */
 ABool	CAppImp::IsDarkMode() const
 {
-	if( NSApp.effectiveAppearance == [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua] )
+	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_14 )
 	{
-		return true;
+		if( NSApp.effectiveAppearance == [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua] )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else
 	{
