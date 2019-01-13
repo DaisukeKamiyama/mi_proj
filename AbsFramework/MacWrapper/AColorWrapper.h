@@ -34,6 +34,8 @@ class AColorWrapper
   public:
 	static void	Init();//B0000 çÇë¨âª
 	static void	GetHighlightColor( AColor& outColor);
+	static AColor	GetHighlightColor();//#1316
+	static AColor	GetControlAccentColor();//#1316
 	//#1034 static void	GetListHighlightColor( AColor& outColor);
 	//#1034 static void	GetListHighlightColorDeactivated( AColor& outColor);
 	static ABool	CompareColor( const AColor& inColor1, const AColor& inColor2 );
