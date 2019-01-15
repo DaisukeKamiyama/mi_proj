@@ -340,8 +340,7 @@ void	AWindow_WordsList::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_CreateButtonView(kControlID_ImportFileProgressText,pt,10,kHeight_ProgressIndicator,
 							 kControlID_Background);//kControlID_ImportFileProgressTextPanel);
 		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetButtonViewType(kButtonViewType_NoFrame);
-		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-					kTextStyle_DropShadow,kColor_Black,kColor_Black);
+		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Normal);//#1316
 		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetDropShadowColor(kColor_Gray80Percent);
 		//
 		AText	text;
@@ -473,18 +472,18 @@ void	AWindow_WordsList::NVIDO_UpdateProperty()
 	//ヘッダ部分フォント、色
 	AText	headerfontname;
 	AFontWrapper::GetDialogDefaultFontName(headerfontname);
-	AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
-	NVI_GetButtonViewByControlID(kControlID_FindTitle).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-																		   kTextStyle_Bold,headerlettercolor,headerlettercolor);
-	NVI_GetButtonViewByControlID(kControlID_FindPath).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-																		  kTextStyle_Bold,headerlettercolor,headerlettercolor);
+    //#1316 AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+	NVI_GetButtonViewByControlID(kControlID_FindTitle).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_FindPath).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Bold);//#1316
 	
 	//ロックボタン色設定
 	AText	fontname;
 	AFontWrapper::GetDialogDefaultFontName(fontname);
-	AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
-	NVI_GetButtonViewByControlID(kControlID_LockDisplay).SPI_SetTextProperty(fontname,9.0,kJustification_Center,
-																			 kTextStyle_Bold|kTextStyle_DropShadow,color,color);
+    //#1316 AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
+	NVI_GetButtonViewByControlID(kControlID_LockDisplay).
+			SPI_SetTextProperty(fontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
 	
 	//view bounds更新
 	UpdateViewBounds();
