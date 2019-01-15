@@ -1230,7 +1230,11 @@ void	AWindow_TextSheet_SCMCommit::UpdateDiff()
 		AText	line;
 		resulttext.GetLine(pos,line);
 		ATextStyle	style = kTextStyle_Normal;
-		AColor	color = kColor_Black;
+		AColor	color = AColorWrapper::GetColorByHTMLFormatColor("000000");//#1316 kColor_Black;
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			color = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+		}
 		if( line.GetItemCount() > 0 )
 		{
 			AUChar	ch = line.Get(0);
@@ -1239,18 +1243,29 @@ void	AWindow_TextSheet_SCMCommit::UpdateDiff()
 			  case '@':
 				{
 					style = kTextStyle_Underline | kTextStyle_Bold;
-					GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Changed,color);
+					//#1316 GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Changed,color);
+					color = AColorWrapper::GetColorByHTMLFormatColor("007500");
+					if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("00D000");
+					}
 					diffcount++;
 					break;
 				}
 			  case '+':
 				{
-					GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Added,color);
+					//#1316 GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Added,color);
+					color = AColorWrapper::GetColorByHTMLFormatColor("0000FF");
+					if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("00C0FF");
+					}
 					break;
 				}
 			  case '-':
 				{
-					GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Deleted,color);
+					//#1316 GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kDiffColor_Deleted,color);
+					color = AColorWrapper::GetColorByHTMLFormatColor("FF0000");
 					break;
 				}
 			}
