@@ -477,7 +477,7 @@ void	AWindow_KeyRecord::NVIDO_UpdateProperty()
 	//edit box色設定
 	NVI_GetEditBoxView(kControlID_Text).NVI_SetTextFont(fontName,fontSize);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetTextColor(GetApp().SPI_GetSubWindowLetterColor(),GetApp().SPI_GetSubWindowLetterColor());
-	/*#1316 色はボタンクラス側で設定する
+	/*#1316 色はEditBoxクラス側で設定する
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColor(GetApp().SPI_GetSubWindowBackgroundColor(true),
 															   kColor_Gray70Percent,kColor_Gray70Percent);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColorForEmptyState(GetApp().SPI_GetSubWindowBackgroundColor(true),
