@@ -319,8 +319,8 @@ void	AWindow_CallGraf::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_CreateButtonView(kControlID_ImportFileProgressText,pt,10,kHeight_ProgressIndicator,
 							 kControlID_Background);//kControlID_ImportFileProgressStatusBar);
 		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetButtonViewType(kButtonViewType_NoFrame);
-		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-					kTextStyle_DropShadow,kColor_Black,kColor_Black);
+		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).
+				SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Normal);//#1316
 		NVI_GetButtonViewByControlID(kControlID_ImportFileProgressText).SPI_SetDropShadowColor(kColor_Gray80Percent);
 		//
 		AText	text;
@@ -458,9 +458,9 @@ void	AWindow_CallGraf::NVIDO_UpdateProperty()
 	//ホームボタン色設定
 	AText	fontname;
 	AFontWrapper::GetDialogDefaultFontName(fontname);
-	AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
-	NVI_GetButtonViewByControlID(kControlID_ReturnHome).SPI_SetTextProperty(fontname,9.0,kJustification_Center,
-																			kTextStyle_Bold|kTextStyle_DropShadow,color,color);
+    //#1316 AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
+	NVI_GetButtonViewByControlID(kControlID_ReturnHome).
+			SPI_SetTextProperty(fontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
 	
 	//view bounds更新
 	UpdateViewBounds();
