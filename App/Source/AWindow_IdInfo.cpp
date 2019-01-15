@@ -416,8 +416,10 @@ void	AWindow_IdInfo::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_SetControlBindings(kControlID_SearchBox,true,true,true,false,false,true);
 		//フォント設定
 		NVI_GetEditBoxView(kControlID_SearchBox).NVI_SetTextFont(fontname,fontsize);
+		/*#1316 色はEditBox側で設定
 		NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetBackgroundColor(
 					kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
+					*/
 		NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetTextColor(
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"),
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"));
@@ -591,9 +593,11 @@ void	AWindow_IdInfo::NVIDO_UpdateProperty()
 	NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetTextForEmptyState(filtertext,shortcuttext);
 	//検索ボックスにフォント設定
 	NVI_GetEditBoxView(kControlID_SearchBox).NVI_SetTextFont(fontname,fontsize);
+	/*#1316 色はEditBox側で設定
 	NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetBackgroundColorForEmptyState(
 																				 GetApp().SPI_GetSubWindowBackgroundColor(true),
 																				 GetApp().SPI_GetSubWindowBackgroundColor(false));
+																				 */
 	//view bounds更新
 	UpdateViewBounds();
 	//
