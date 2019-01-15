@@ -483,7 +483,7 @@ void	AWindow_TextMarker::NVIDO_Create( const ADocumentID inDocumentID )
 	{
 		AWindowPoint	pt = {0,0};
 		NVI_CreateEditBoxView(kControlID_Text,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,
-							  kEditBoxType_NoFrameDraw);
+							  kEditBoxType_Normal);//#1316 kEditBoxType_NoFrameDraw);
 		AText	filtertext;
 		filtertext.SetLocalizedText("TextMarkerEmptyText");
 		NVI_GetEditBoxView(kControlID_Text).SPI_SetTextForEmptyState(filtertext,GetEmptyText());
@@ -498,8 +498,10 @@ void	AWindow_TextMarker::NVIDO_Create( const ADocumentID inDocumentID )
 		AWindowPoint	pt = {0,0};
 		NVI_CreateEditBoxView(kControlID_NameEditBox,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,kEditBoxType_Normal);
 		NVI_GetEditBoxView(kControlID_NameEditBox).NVI_SetTextFont(fontName,fontSize);
+		/*#1316 色はEditBoxクラス側で設定する
 		NVI_GetEditBoxView(kControlID_NameEditBox).SPI_SetBackgroundColor(
 					kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
+					*/
 		NVI_GetEditBoxView(kControlID_NameEditBox).NVI_SetAutomaticSelectBySwitchFocus(false);
 	}
 	
@@ -600,28 +602,26 @@ void	AWindow_TextMarker::NVIDO_UpdateProperty()
 	//ヘッダ色取得
 	AText	headerfontname;
 	AFontWrapper::GetDialogDefaultFontName(headerfontname);
-	AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+	//#1316 色はボタンクラス側で設定する AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
 	
 	//制御ボタン色設定
-	NVI_GetButtonViewByControlID(kControlID_SelectGroupButton).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																				   kTextStyle_Bold,
-																				   headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_AddGroupButton).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																				kTextStyle_Bold|kTextStyle_DropShadow,
-																				headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_DeleteGroupButton).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																				   kTextStyle_Bold|kTextStyle_DropShadow,
-																				   headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_ChangeGroupNameButton).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																					   kTextStyle_Bold|kTextStyle_DropShadow,
-																					   headerlettercolor,kColor_Gray50Percent);
+	NVI_GetButtonViewByControlID(kControlID_SelectGroupButton).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_AddGroupButton).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_DeleteGroupButton).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_ChangeGroupNameButton).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
 	//edit box色設定
 	NVI_GetEditBoxView(kControlID_Text).NVI_SetTextFont(fontName,fontSize);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetTextColor(GetApp().SPI_GetSubWindowLetterColor(),GetApp().SPI_GetSubWindowLetterColor());
+	/*#1316 色はEditBoxクラス側で設定する
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColor(GetApp().SPI_GetSubWindowBackgroundColor(true),
 															   kColor_Gray70Percent,kColor_Gray70Percent);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColorForEmptyState(GetApp().SPI_GetSubWindowBackgroundColor(true),
 																			GetApp().SPI_GetSubWindowBackgroundColor(false));
+																			*/
 	
 	//描画更新
 	NVI_RefreshWindow();
@@ -663,7 +663,7 @@ void	AWindow_TextMarker::UpdateViewBounds()
 		}
 	  default:
 		{
-			leftMargin = 0;
+			leftMargin = 3;//#1316 0;
 			rightMargin = 0;
 			bottomMargin = 0;
 			break;
