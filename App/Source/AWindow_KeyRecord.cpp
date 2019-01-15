@@ -397,7 +397,7 @@ void	AWindow_KeyRecord::NVIDO_Create( const ADocumentID inDocumentID )
 	//テキストボックス生成
 	{
 		AWindowPoint	pt = {0,0};
-		NVI_CreateEditBoxView(kControlID_Text,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,kEditBoxType_NoFrameDraw);
+		NVI_CreateEditBoxView(kControlID_Text,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,kEditBoxType_Normal);//#1316 kEditBoxType_NoFrameDraw);
 		NVI_GetEditBoxView(kControlID_Text).SPI_SetTextForEmptyState(GetEmptyText(),GetEmptyText());
 		NVI_GetEditBoxView(kControlID_Text).SPI_SetEnableFocusRing(false);
 		NVI_GetEditBoxView(kControlID_Text).NVI_SetCatchReturn(true);
@@ -464,27 +464,25 @@ void	AWindow_KeyRecord::NVIDO_UpdateProperty()
 	//ヘッダ用フォント取得
 	AText	headerfontname;
 	AFontWrapper::GetDialogDefaultFontName(headerfontname);
-	AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+    //#1316 色はボタンクラス側で設定する AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
 	//制御ボタン色設定
-	NVI_GetButtonViewByControlID(kControlID_RecordStart).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																			 kTextStyle_Bold|kTextStyle_DropShadow,
-																			 headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_RecordStop).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																			kTextStyle_Bold|kTextStyle_DropShadow,
-																			headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_Play).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																	  kTextStyle_Bold|kTextStyle_DropShadow,
-																	  headerlettercolor,kColor_Gray50Percent);
-	NVI_GetButtonViewByControlID(kControlID_AddMacro).SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,
-																		  kTextStyle_Bold|kTextStyle_DropShadow,
-																		  headerlettercolor,kColor_Gray50Percent);
+	NVI_GetButtonViewByControlID(kControlID_RecordStart).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_RecordStop).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_Play).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
+	NVI_GetButtonViewByControlID(kControlID_AddMacro).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
 	//edit box色設定
 	NVI_GetEditBoxView(kControlID_Text).NVI_SetTextFont(fontName,fontSize);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetTextColor(GetApp().SPI_GetSubWindowLetterColor(),GetApp().SPI_GetSubWindowLetterColor());
+	/*#1316 色はボタンクラス側で設定する
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColor(GetApp().SPI_GetSubWindowBackgroundColor(true),
 															   kColor_Gray70Percent,kColor_Gray70Percent);
 	NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColorForEmptyState(GetApp().SPI_GetSubWindowBackgroundColor(true),
 																			GetApp().SPI_GetSubWindowBackgroundColor(false));
+																			*/
 	
 	//view bounds更新
 	UpdateViewBounds();
@@ -539,7 +537,7 @@ void	AWindow_KeyRecord::UpdateViewBounds()
 		}
 	  default:
 		{
-			leftMargin = 0;
+			leftMargin = 3;//#1316 0;
 			rightMargin = 0;
 			bottomMargin = 0;
 			break;
