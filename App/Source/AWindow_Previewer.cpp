@@ -240,9 +240,9 @@ void	AWindow_Previewer::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_GetButtonViewByControlID(kControlID_LetterSize).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHover);
 		AText	fontname;
 		AFontWrapper::GetDialogDefaultFontName(fontname);
-		AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
-		NVI_GetButtonViewByControlID(kControlID_LetterSize).SPI_SetTextProperty(fontname,9.0,kJustification_Center,
-					kTextStyle_Bold|kTextStyle_DropShadow,color,color);
+        //#1316 AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
+		NVI_GetButtonViewByControlID(kControlID_LetterSize).
+				SPI_SetTextProperty(fontname,9.0,kJustification_Center,kTextStyle_Bold);//#1316
 		//
 		NVI_GetButtonViewByControlID(kControlID_LetterSize).SPI_SetMenu(kContextMenuID_Percent,kMenuItemID_Invalid);
 	}
