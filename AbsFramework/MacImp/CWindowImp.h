@@ -956,3 +956,14 @@ class CWindowImp: public AObjectArrayItem
 #define ConvertFloatToFract(a)     ((Fract)((float)(a) * __fract1))
 #define ConvertColorToFract(a)     (((Fract) (a) << 14) + ((Fract)(a) + 2 >> 2))
 #define ConvertFractToColor(a)     ((gxColorValue) ((a) - ((a) >> 16) + 8191 >> 14))
+
+//#1369
+/**
+HoverButtonクラス
+マウスホバー時にハイライト状態にするクラス
+*/
+@interface HoverButton : NSButton
+{
+}
+@end
+
