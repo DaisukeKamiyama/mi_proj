@@ -14967,4 +14967,35 @@ ALocalRect	CWindowImp::ConvertVerticalCoordinateFromImpToApp( const AControlID i
 	return localRect;
 }
 
+//#1369
+//マウスホバー時にハイライト状態にするクラス
+@implementation HoverButton
 
+/**
+初期設定
+*/
+- (void)awakeFromNib
+{
+	NSTrackingArea* trackingArea = [[NSTrackingArea alloc]
+									initWithRect:[self bounds]
+									options:NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways
+									owner:self userInfo:nil];
+	[self addTrackingArea:trackingArea];
+}
+
+/**
+マウスenter時
+*/
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+	[self highlight:YES];
+}
+
+/**
+マウスexit時
+*/
+- (void)mouseExited:(NSEvent *)theEvent
+{
+	[self highlight:NO];
+}
+@end
