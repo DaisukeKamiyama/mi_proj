@@ -62,7 +62,8 @@ void	AColorWrapper::GetHighlightColor( AColor& outColor)
 	SInt32	size = sizeof(RGBColor);
 	::GetCollectionItem(collect,kThemeHighlightColorTag,0,&size,&outColor);
 	::DisposeCollection(collect);*/
-	outColor = sHighlightColor;
+	//#1316 システム環境設定の変更を即反映させたいので、staticメンバー変数にキャッシュする方法はやめる outColor = sHighlightColor;
+	outColor = AColorWrapper::GetHighlightColor();//#1316
 }
 
 //#1316
