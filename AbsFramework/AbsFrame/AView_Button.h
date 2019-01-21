@@ -111,7 +111,7 @@ class AView_Button : public AView
 	
 	//<インターフェイス>
   public:
-	void					SPI_SetIcon( AImageID inIconImageID, const ANumber inLeftOffset = 0, const ANumber inTopOffset = 0,
+	void					SPI_SetIcon( AImageID inIconImageID, const AFloatNumber inLeftOffset = 0, const AFloatNumber inTopOffset = 0,//#1316
 										const ANumber inWidth = 16, const ANumber inHeight = 16,
 										const ABool inRefresh = false, 
 										const AImageID inHoverIconImageID = kImageID_Invalid,//#530
@@ -121,9 +121,6 @@ class AView_Button : public AView
 											   const AImageID inToggleOnImageID = kImageID_Invalid );
 	void					SPI_SetTextProperty( const AText& inFontName, const AFloatNumber inFontSize, const AJustification inJustification, 
 							const ATextStyle inTextStyle,//#724
-							const AColor inColor = kColor_Gray30Percent, const AColor inColorDeactive = kColor_Gray60Percent,
-												 const AColor inDarkColor = kColor_Gray91Percent,//#1316
-												 const AColor inDarkColorDeactive = kColor_Gray40Percent,//#1316
 							const ABool inRefresh = false );//#530
 	void					SPI_SetWidthToFitTextWidth( const ANumber inMaxWidth = kNumber_MaxNumber );//#724
 	void					SPI_SetTextFromMenuIndex( const AIndex inIndex );
@@ -139,7 +136,6 @@ class AView_Button : public AView
 	void					SPI_SetButtonValidXRange( const ANumber inStartX, const ANumber inEndX );//#634
 	void					SPI_SetButtonViewType( const AButtonViewType inType );//#724
 	void					SPI_SetDropShadowColor( const AColor inColor ) { mDropShadowColor = inColor; }//#724
-	void					SPI_SetLetterColor( const AColor inColor, const AColor inDeactiveColor ) { mColor = inColor; mColorDeactive = inDeactiveColor; }
 	void					SPI_SetEllipsisMode( const AEllipsisMode inEllipsisMode, const ANumber inCharacterCount )
 	{ mEllipsisMode = inEllipsisMode; mEllipsisCharacterCount = inCharacterCount; }//#725
   private:
@@ -201,8 +197,8 @@ class AView_Button : public AView
 	ABool								mToggleMode;
 	ABool								mMouseDown;
 	ABool								mDisplayingContextMenu;//#724
-	ANumber								mIconLeftOffset;
-	ANumber								mIconTopOffset;
+	AFloatNumber						mIconLeftOffset;//#1316
+	AFloatNumber						mIconTopOffset;//#1316
 	ANumber								mIconWidth;
 	ANumber								mIconHeight;
 	ANumber								mFontHeight;
@@ -212,10 +208,6 @@ class AView_Button : public AView
 	AText								mFontName;
 	AFloatNumber						mFontSize;
 	ATextStyle							mTextStyle;//#724
-	AColor								mColor;
-	AColor								mColorDeactive;
-	AColor								mDarkColor;//#1316
-	AColor								mDarkColorDeactive;//#1316
 	AContextMenuID						mMenuID;
 	ATextArray							mMenuTextArray;
 	ATextArray							mActionTextArray;
