@@ -137,10 +137,10 @@ void	AView_WordsList::EVTDO_DoDraw()
 	
 	//描画色設定
 	AColor	letterColor = kColor_Black;
-	AColor	dropShadowColor = kColor_White;
+	//#1316 AColor	dropShadowColor = kColor_White;
 	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
-	NVMC_SetDropShadowColor(dropShadowColor);
+	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+	//#1316 NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//=========================描画データ取得=========================
 	//フォント取得
@@ -466,7 +466,7 @@ void	AView_WordsList::EVTDO_DoDraw()
 		}
 	}
 	//サマリ描画（マルチライン）
-	AColor	summaryColor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+	AColor	summaryColor = kColor_Black;//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowHeaderLetterColor();
 	NVI_DrawTextMultiLine(summaryLocalRect,summaryText,labelfontname,fontsize,summaryColor,kTextStyle_Bold,true);
 }
 
