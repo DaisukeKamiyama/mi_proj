@@ -82,9 +82,9 @@ void	AWindow_ToolTip::NVIDO_Create( const ADocumentID inDocumentID )
 		AFontWrapper::GetDialogDefaultFontName(headerfontname);
 		AColor	backgrondColor = kColor_Gray97Percent;//#1079 AColorWrapper::GetColorByHTMLFormatColor("fcfac7");
 		AWindowPoint	pt = {0,0};
-		NVI_CreateEditBoxView(kControlID_Text,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,kEditBoxType_ThinFrame);
-		NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColor(
-					backgrondColor,backgrondColor,backgrondColor);
+		NVI_CreateEditBoxView(kControlID_Text,pt,10,10,kControlID_Invalid,kIndex_Invalid,false,false,false,true,kEditBoxType_ToolTip);//#1316 kEditBoxType_ThinFrame);
+        /*#1316 NVI_GetEditBoxView(kControlID_Text).SPI_SetBackgroundColor(
+					backgrondColor,backgrondColor,backgrondColor);*/
 		NVI_GetEditBoxView(kControlID_Text).NVI_SetTextFont(headerfontname,10.0);
 		NVI_GetEditBoxView(kControlID_Text).SPI_SetTransparency(0.98);//#1079 0.8Ç©ÇÁïœçX
 		NVI_GetEditBoxView(kControlID_Text).SPI_SetEnableFocusRing(false);
