@@ -481,7 +481,7 @@ void	AView_CallGraf::DrawItem( const ALocalRect& inLocalBoxRect,
 	NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//カテゴリ色取得
-	AColor	categoryColor = GetApp().SPI_GetSubWindowsBoxHeaderColor();//背景黒の場合も含めた色設計が難しいので、固定色 kColor_Black;
+	AColor	categoryColor = kColor_Black;//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowsBoxHeaderColor();//背景黒の場合も含めた色設計が難しいので、固定色 kColor_Black;
 	/*
 	if( inCategoryIndex != kIndex_Invalid )
 	{
@@ -592,7 +592,7 @@ void	AView_CallGraf::DrawItem( const ALocalRect& inLocalBoxRect,
 	}
 	
 	//カテゴリ色を暗くして彩度を上げた色を取得
-	AColor	categoryColorDraken = GetApp().SPI_GetSubWindowBoxFunctionNameColor();//背景黒の場合も含めた色設計が難しいので、固定色 AColorWrapper::ChangeHSV(categoryColor,0,3.0,0.3);
+	AColor	categoryColorDraken = kColor_Black;//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowBoxFunctionNameColor();//背景黒の場合も含めた色設計が難しいので、固定色 AColorWrapper::ChangeHSV(categoryColor,0,3.0,0.3);
 	//func名描画
 	ALocalRect	funcNameRect = contentRect;
 	funcNameRect.left += 8;
