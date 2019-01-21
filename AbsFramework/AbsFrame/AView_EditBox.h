@@ -153,9 +153,9 @@ class AView_EditBox : public AView
 	
 	//属性設定
   public:
-	void					SPI_SetTextDrawProperty( const AText& inFontName, const AFloatNumber inFontSize, const AColor inColor, const AColor inColorDeactive );
-	void					SPI_SetTextColor( const AColor inColor, const AColor inColorDeactive );//#677
-	void					SPI_SetBackgroundColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive );
+	void					SPI_SetTextDrawProperty( const AText& inFontName, const AFloatNumber inFontSize );//#1316 , const AColor inColor, const AColor inColorDeactive );
+	//#1316 void					SPI_SetTextColor( const AColor inColor, const AColor inColorDeactive );//#677
+	//#1316 void					SPI_SetBackgroundColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive );
 	void					SPI_SetEnableEdiit( const ABool inEnable );
 	void					SPI_UpdateScrollBarUnit();//#135
 	void					SPI_SetLineStyle( const AArray<ATextStyle>& inStyleArray, const AArray<AColor>& inColorArray );//#455
@@ -292,7 +292,7 @@ class AView_EditBox : public AView
 	const ATextPoint&		GetSelectTextPoint() const { return mSelectTextPoint; }//#231 mSelectTextPoint直接設定を検出するために、mSelectTextPointは読み込みであっても直接アクセスしないようにする
 	AText								mFontName;
 	AFloatNumber						mFontSize;
-	AColor								mColor;
+	//#1316 AColor								mColor;
 	ANumber								mLineHeight;
 	ANumber								mLineAscent;
 	ABool								mCaretMode;
@@ -311,10 +311,10 @@ class AView_EditBox : public AView
 	ATextPoint							mFirstSelectEnd;//win
 	AIndex								mClickTextIndex;//win
 	AIndex								mClickTextLineIndex;//win
-	AColor								mBackgroundColor;
-	AColor								mFrameColor;
-	AColor								mColorDeactive;
-	AColor								mFrameColorDeactive;
+	//#1316 AColor								mBackgroundColor;
+	//#1316 AColor								mFrameColor;
+	//#1316 AColor								mColorDeactive;
+	//#1316 AColor								mFrameColorDeactive;
 	//#135 AViewID								mFrameViewID;
 	
 	//#688
@@ -357,6 +357,7 @@ class AView_EditBox : public AView
   public:
 	void					SPI_SetTextForEmptyState( const AText& inText, const AText& inShortcutText )
 	{ mTextForEmptyState.SetText(inText); mTextForEmptyState_Shortcut.SetText(inShortcutText); }
+	/*#1316
 	void					SPI_SetBackgroundColorForEmptyState( const AColor& inActiveColor, const AColor& inDeactiveColor )
 	{ 
 		mEnableBackgroundColorForEmptyState = true;
@@ -364,12 +365,15 @@ class AView_EditBox : public AView
 		mBackgroundDeactiveColorForEmptyState = inDeactiveColor;
 		UpdateBackgroundColor();
 	}
+	*/
   private:
 	AText								mTextForEmptyState;
 	AText								mTextForEmptyState_Shortcut;
+	/*#1316
 	ABool								mEnableBackgroundColorForEmptyState;
 	AColor								mBackgroundActiveColorForEmptyState;
 	AColor								mBackgroundDeactiveColorForEmptyState;
+	*/
 	
 	//透明度 #291
   public:
