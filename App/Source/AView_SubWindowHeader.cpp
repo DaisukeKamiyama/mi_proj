@@ -86,7 +86,12 @@ void	AView_SubWindowHeader::EVTDO_DoDraw()
 	NVMC_SetDefaultTextProperty(headerfontname,9.0,kColor_Black,kTextStyle_Normal,true);
 	
 	//背景色描画
-	AColor	backgroundColor = GetApp().SPI_GetSubWindowHeaderBackgroundColor();
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");//#1316 GetApp().SPI_GetSubWindowHeaderBackgroundColor();
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+	}
+
 	ALocalRect	frameRect = {0};
 	NVM_GetLocalViewRect(frameRect);
 	NVMC_PaintRect(frameRect,backgroundColor);
@@ -99,7 +104,11 @@ void	AView_SubWindowHeader::EVTDO_DoDraw()
 	textRect.right -= 3;
 	
 	//文字色取得
-	AColor	letterColor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//#1316 GetApp().SPI_GetSubWindowHeaderLetterColor();
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+	}
 	
 	//テキスト取得
 	AText	ellipsisTitle;
