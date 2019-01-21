@@ -427,11 +427,13 @@ void	AWindow_JumpList::NVIDO_Create( const ADocumentID inDocumentID )
 		AWindowPoint	pt = {0,0};
 		NVI_CreateEditBoxView(kControlID_Filter,pt,10,10,kControlID_Background,kIndex_Invalid,true,false,false,true,kEditBoxType_FilterBox);
 		NVI_GetEditBoxView(kControlID_Filter).NVI_SetTextFont(fontName,fontSize);
+		/*#1316
 		NVI_GetEditBoxView(kControlID_Filter).SPI_SetBackgroundColor(
 					kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
 		NVI_GetEditBoxView(kControlID_Filter).SPI_SetTextColor(
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"),
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"));
+					*/
 		NVI_GetEditBoxView(kControlID_Filter).SPI_SetEnableFocusRing(false);
 		NVI_SetAutomaticSelectBySwitchFocus(kControlID_Filter,true);
 		NVI_SetControlBindings(kControlID_Filter,true,true,true,false,false,true);
@@ -618,10 +620,12 @@ void	AWindow_JumpList::NVIDO_UpdateProperty()
 			NVI_GetEditBoxView(kControlID_Filter).SPI_SetTransparency(1.0);
 		}
 	}
+	/*#1316
 	//フィルタの色設定
 	NVI_GetEditBoxView(kControlID_Filter).SPI_SetBackgroundColorForEmptyState(
 																			  GetApp().SPI_GetSubWindowBackgroundColor(true),
 																			  GetApp().SPI_GetSubWindowBackgroundColor(false));
+																			  */
 	//view bounds更新
 	UpdateViewBounds();
 	//ウインドウ位置更新
