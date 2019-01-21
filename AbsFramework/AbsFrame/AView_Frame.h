@@ -54,9 +54,12 @@ class AView_Frame : public AView
 	
 	//<インターフェイス>
   public:
+	/*#1316
 	void					SPI_SetColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive,
 							const AFloatNumber inTransparency = 1.0 );//#688
-	void					SPI_SetFrameBackgroundColor( const ABool inEnableFrameBackgroundColor, const AColor inColor );//win
+							*/
+	void					SPI_SetExistText( const ABool inExist );//#1316
+	//#1316 void					SPI_SetFrameBackgroundColor( const ABool inEnableFrameBackgroundColor, const AColor inColor );//win
 	void					SPI_SetFocused( const ABool inFocused );//#135
 	void					SPI_GetRealFrameBounds( AWindowRect& outRect ) const;//#135
 	void					SPI_SetRealFramePositionAndSize( const AWindowPoint& inRealFramePoint, 
@@ -76,15 +79,20 @@ class AView_Frame : public AView
 	//<データ>
   private:
 	AControlID							mContentControlID;
+	/*#1316
 	AColor								mBackgroundColor;
 	AColor								mFrameColor;
 	AColor								mFrameColorDeactive;
+	*/
 	ABool								mFocused;
 	ABool								mEnableFocusRing;//#798
-	AFloatNumber						mBackgroundTransparency;//#688
+	//#1316 AFloatNumber						mBackgroundTransparency;//#688
+	/*#1316
 	//フレーム部分背景色 win
 	ABool								mEnableFrameBackgroundColor;
 	AColor								mFrameBackgroundColor;
+	*/
+	ABool								mExistText;//#1316
 	
 	//Object Type
   private:
