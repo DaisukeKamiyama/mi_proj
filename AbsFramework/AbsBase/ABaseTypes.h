@@ -206,6 +206,11 @@ const AColor kColor_Moccasin		= {0xFF*0xFF,0xE4*0xE4,0xB5*0xB5};
 const AColor kColor_Honeydew		= {0xF0*0xF0,0xFF*0xFF,0xF0*0xF0};
 const AColor kColor_Orange			= {0xFF*0xFF,0xA5*0xA5,0x00*0x00};
 const AColor kColor_Lavender		= {0xE6*0xE6,0xE6*0xE6,0xFA*0xFA};
+const AColor kColor_List_Normal		= {0,0,0};//#1316
+const AColor kColor_List_Blue		= {0,0,65535};//#1316
+const AColor kColor_List_Red		= {65535,0,0};//#1316
+const AColor kColor_List_Pink		= {65535,0,50000};//#1316
+const AColor kColor_List_Gray		= {30000,30000,30000};//#1316
 
 #elif IMPLEMENTATION_FOR_WINDOWS
 
@@ -381,6 +386,8 @@ const AOSVersion	kOSVersion_MacOSX_10_5 = 0x1050;
 const AOSVersion	kOSVersion_MacOSX_10_4 = 0x1040;
 */
 typedef int32_t AOSVersion;
+const AOSVersion	kOSVersion_MacOSX_10_14 = 14;//#1316
+const AOSVersion	kOSVersion_MacOSX_10_13 = 13;//#1316
 const AOSVersion	kOSVersion_MacOSX_10_12 = 12;//#1190
 const AOSVersion	kOSVersion_MacOSX_10_11 = 11;//#1190
 const AOSVersion	kOSVersion_MacOSX_10_10 = 10;
