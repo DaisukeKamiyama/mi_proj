@@ -1028,7 +1028,7 @@ void	AWindow_TextSheet_SCMCommit::NVIDO_Create( const ADocumentID inDocumentID )
 	//
 	NVI_CreateEditBoxView(kMessageText,false,false,true);
 	NVI_GetEditBoxView(kMessageText).SPI_SetEnableEdiit(true);
-	NVI_GetEditBoxView(kMessageText).SPI_SetTextDrawProperty(defaultfontname,9.0,kColor_Black,kColor_Gray20Percent);
+    NVI_GetEditBoxView(kMessageText).SPI_SetTextDrawProperty(defaultfontname,9.0);//#1316,kColor_Black,kColor_Gray20Percent);
 	NVI_GetEditBoxView(kMessageText).NVI_SetCatchReturn(true);
 	NVI_GetEditBoxView(kMessageText).NVI_SetCatchTab(true);
 	NVI_SetControlBindings(kMessageText,true,false,true,true,false,true);
@@ -1042,17 +1042,17 @@ void	AWindow_TextSheet_SCMCommit::NVIDO_Create( const ADocumentID inDocumentID )
 	//
 	NVI_CreateEditBoxView(kAdditionalArgText,false,false,true);
 	NVI_GetEditBoxView(kAdditionalArgText).SPI_SetEnableEdiit(true);
-	NVI_GetEditBoxView(kAdditionalArgText).SPI_SetTextDrawProperty(defaultfontname,9.0,kColor_Black,kColor_Gray20Percent);
+    NVI_GetEditBoxView(kAdditionalArgText).SPI_SetTextDrawProperty(defaultfontname,9.0);//#1316 ,kColor_Black,kColor_Gray20Percent);
 	NVI_SetControlBindings(kAdditionalArgText,true,false,true,true,false,true);
 	//
 	NVI_CreateEditBoxView(kDiffText,true,true,true);
 	NVI_GetEditBoxView(kDiffText).SPI_SetEnableEdiit(false);
-	NVI_GetEditBoxView(kDiffText).SPI_SetTextDrawProperty(defaultfontname,9.0,kColor_Black,kColor_Gray20Percent);
+    NVI_GetEditBoxView(kDiffText).SPI_SetTextDrawProperty(defaultfontname,9.0);//#1316 ,kColor_Black,kColor_Gray20Percent);
 	NVI_SetControlBindings(kDiffText,true,true,true,true,false,false);
 	//
 	NVI_CreateEditBoxView(kResultText,false,false,true);
 	NVI_GetEditBoxView(kResultText).SPI_SetEnableEdiit(false);
-	NVI_GetEditBoxView(kResultText).SPI_SetTextDrawProperty(defaultfontname,9.0,kColor_Black,kColor_Gray20Percent);
+    NVI_GetEditBoxView(kResultText).SPI_SetTextDrawProperty(defaultfontname,9.0);//#1316 ,kColor_Black,kColor_Gray20Percent);
 	NVI_SetControlBindings(kResultText,true,false,true,true,false,true);
 	//
 	NVI_SetDefaultOKButton(kCommitButton);
