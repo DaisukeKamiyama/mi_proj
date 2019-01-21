@@ -84,7 +84,7 @@ void	AView_CallGrafHeader::EVTDO_DoDraw()
 	NVMC_PaintRect(frameRect,backgroundColor);
 	
 	//文字色取得
-	AColor	letterColor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+	AColor	letterColor = kColor_Black;//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowHeaderLetterColor();
 	
 	//カラムの幅を計算
 	ANumber	columnWidth = (frameRect.right-frameRect.left)/2;
