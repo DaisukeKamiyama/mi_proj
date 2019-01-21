@@ -214,7 +214,13 @@ void	AView_VSeparator::EVTDO_DoDraw()
 	{
 		//NVMC_EraseRect(viewRect);
 		//EraseRectにすると、描画しない部分がマウスイベント透過されてしまうので、非常に薄い色で描画する。
-		NVMC_PaintRect(viewRect,kColor_White,0.05);
+		//#1316 目立たないようにするため、ダークモードは黒で表示。また、αもさらに下げる。
+		AColor	color = kColor_White;
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			color = kColor_Black;
+		}
+		NVMC_PaintRect(viewRect,color,0.001);
 	}
 	
 	//
