@@ -7122,20 +7122,21 @@ AViewID	AWindow::NVI_CreateEditBoxView( const AControlID inEditViewControlID,
 	if( inHasFrame == true )
 	{
 		//edit boxがfilter boxの場合は、左余白を多めにする（虫眼鏡アイコン表示用）
-		ANumber	frameLeftMargin = 4;
+		ANumber	frameLeftMargin = 4, frameRightMargin = 4;//#1316
 		if( inEditBoxType == kEditBoxType_FilterBox )
 		{
-			frameLeftMargin += 18;
+			frameLeftMargin += 22;//#1316 18;
+			frameRightMargin += 8;//#1316
 		}
 		//frame view取得
-		NVI_GetViewByControlID(inEditViewControlID).NVI_CreateFrameView(frameLeftMargin);
+		NVI_GetViewByControlID(inEditViewControlID).NVI_CreateFrameView(frameLeftMargin,frameRightMargin);//#1316
 		//フレームの表示タイプを設定
 		AFrameViewType	frameViewType = kFrameViewType_EditBox;
 		switch(inEditBoxType)
 		{
-		  case kEditBoxType_ThinFrame:
+		  case kEditBoxType_ToolTip://#1316 kEditBoxType_ThinFrame:
 			{
-				frameViewType = kFrameViewType_Normal;
+				frameViewType = kFrameViewType_ToolTip;//#1316 kFrameViewType_Normal;
 				break;
 			}
 		  case kEditBoxType_FilterBox:
