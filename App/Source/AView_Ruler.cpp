@@ -108,18 +108,33 @@ void	AView_Ruler::EVTDO_DoDraw()
 	
 	//タブ選択ビュー全体の表示
 	//NVMC_PaintRect(viewRect,kColor_Gray95Percent,1.0);
-	NVMC_PaintRectWithVerticalGradient(viewRect,kColor_Gray85Percent,kColor_Gray97Percent,1.0,1.0);
+	//色 #1316
+	AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+	AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("D9D9D9");
+	AColor	borderColor = AColorWrapper::GetColorByHTMLFormatColor("CCCCCC");
+	AColor	caretColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	//ダークモード
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+		backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("181818");
+		borderColor = AColorWrapper::GetColorByHTMLFormatColor("4C4C4C");
+		caretColor = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+	}
+	//背景描画
+	NVMC_PaintRectWithVerticalGradient(viewRect,backgroundStartColor,backgroundEndColor,1.0,1.0);
+	//境界線
 	ALocalPoint	spt,ept;
 	spt.x = viewRect.left;
 	spt.y = viewRect.bottom-1;//win 080618
 	ept.x = viewRect.right;
 	ept.y = viewRect.bottom-1;//win 080618
-	NVMC_DrawLine(spt,ept,kColor_Gray80Percent,1.0);
+	NVMC_DrawLine(spt,ept,borderColor,1.0);
 	
 	//
 	AText	fontname;//win
 	AFontWrapper::GetDialogDefaultFontName(fontname);//win #375
-	NVMC_SetDefaultTextProperty(fontname,kFontSize,kColor_Gray40Percent,kTextStyle_Normal,true);
+	NVMC_SetDefaultTextProperty(fontname,kFontSize,kColor_Gray50Percent,kTextStyle_Normal,true);
 	
 	//
 	/*
@@ -146,7 +161,7 @@ void	AView_Ruler::EVTDO_DoDraw()
 		imageept.y = viewRect.bottom -1;
 		NVM_GetLocalPointFromImagePoint(imagespt,spt);
 		NVM_GetLocalPointFromImagePoint(imageept,ept);
-		NVMC_DrawLine(spt,ept,kColor_Gray40Percent,1.0);
+		NVMC_DrawLine(spt,ept,kColor_Gray50Percent,1.0);
 		if( i%mRulerScaleCount == 0 )
 		{
 			AText	text;
@@ -172,7 +187,7 @@ void	AView_Ruler::EVTDO_DoDraw()
 		ALocalPoint	spt = pt, ept = pt;
 		spt.y = viewRect.top;
 		ept.y = viewRect.bottom;
-		NVMC_DrawLine(spt,ept,kColor_Black,1.0,0,2.0);
+		NVMC_DrawLine(spt,ept,caretColor,1.0,0,2.0);
 	}
 	if( mCaretImageX != mSelectImageX )
 	{
@@ -182,7 +197,7 @@ void	AView_Ruler::EVTDO_DoDraw()
 		ALocalPoint	spt = pt, ept = pt;
 		spt.y = viewRect.top;
 		ept.y = viewRect.bottom;
-		NVMC_DrawLine(spt,ept,kColor_Black,1.0,0,2.0);
+		NVMC_DrawLine(spt,ept,caretColor,1.0,0,2.0);
 	}
 	
 	/*
