@@ -37,15 +37,15 @@ AFloatNumber	AView_EditBox::sDefaultFontSize = 12.0;
 #pragma mark ---コンストラクタ／デストラクタ
 //コンストラクタ
 AView_EditBox::AView_EditBox( const AWindowID inWindowID, const AControlID inID ) //#182
-: AView(inWindowID,inID), mCaretMode(true), mCaretBlinkStateVisible(false), mFontSize(12.0), mColor(kColor_Black), 
+: AView(inWindowID,inID), mCaretMode(true), mCaretBlinkStateVisible(false), mFontSize(12.0),//#1316 mColor(kColor_Black), 
 		mOldArrowImageX(0), mListViewID(kControlID_Invalid), mInlineInputNotFixedTextLen(0),
 		mMouseTrackingMode(kMouseTrackingMode_None)//#688 , mMouseTrackByLoop(true)
-		,mBackgroundColor(kColor_White),mFrameColor(kColor_Gray),mColorDeactive(kColor_Gray70Percent),mFrameColorDeactive(kColor_Gray50Percent)
+//#1316		,mBackgroundColor(kColor_White),mFrameColor(kColor_Gray),mColorDeactive(kColor_Gray70Percent),mFrameColorDeactive(kColor_Gray50Percent)
 		/*#135 ,mFrameViewID(kObjectID_Invalid)*/, mEnableEdit(true)
 		,mAdjustScrollXOffsetRight(30), mAdjustScrollXOffsetLeft(50)//#261
 		,mDragging(false), mDragDrawn(false), mDragWordDragDrop(false)//#135
 		,mContextMenuID(kContextMenuID_EditBox)//#135
-		,mEnableBackgroundColorForEmptyState(false), mBackgroundActiveColorForEmptyState(kColor_White), mBackgroundDeactiveColorForEmptyState(kColor_White)//#798
+//#1316,mEnableBackgroundColorForEmptyState(false), mBackgroundActiveColorForEmptyState(kColor_White), mBackgroundDeactiveColorForEmptyState(kColor_White)//#798
 ,mTransparency(1.0), mEditBoxType(kEditBoxType_Normal)
 , mHoveringSearchCancelButton(false), mPressingSearchCancelButton(false), mTrackingPressSearchCancelButton(false)
 ,mDrawLineEnd(true), mCenterizeWhen1Line(false)//#894
@@ -100,7 +100,7 @@ void	AView_EditBox::NVIDO_Init()
 	AFontWrapper::GetDefaultFontName(defaultfontname);
 	*/
 	//win SPI_SetTextDrawProperty(windefaultfontname,14.0,kColor_Black,kColor_Gray70Percent);//#182 kColor_Gray20Percent,kColor_Gray20Percent);
-	SPI_SetTextDrawProperty(sDefaultFontName,sDefaultFontSize,kColor_Black,kColor_Gray70Percent);//win
+    SPI_SetTextDrawProperty(sDefaultFontName,sDefaultFontSize);//#1316 ,kColor_Black,kColor_Gray70Percent);//win
 	//#135
 	NVI_SetAutomaticSelectBySwitchFocus(true);
 	//#137 デフォルトではReturn/TabはEditBoxでは処理しない
@@ -347,18 +347,79 @@ void	AView_EditBox::EVTDO_DoDraw()
 	//背景描画
 	ALocalRect	localFrameRect;
 	NVM_GetLocalViewRect(localFrameRect);
+	switch(mEditBoxType)
+	{
+		//tool tipの場合
+	  case kEditBoxType_ToolTip:
+		{
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+			}
+			NVMC_PaintRect(localFrameRect,backgroundColor);
+			break;
+		}
+		//filter boxの場合
+	  case kEditBoxType_FilterBox:
+		{
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("202020");
+			}
+			if( GetTextDocumentConst().SPI_GetTextLength() == 0 )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+				if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+				{
+					backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+				}
+			}
+			NVMC_PaintRect(localFrameRect,backgroundColor);
+			break;
+		}
+		//
+	  case kEditBoxType_NoFrameDraw:
+		{
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("202020");
+			}
+			NVMC_PaintRect(localFrameRect,backgroundColor);
+			break;
+		}
+		//edit box等の場合
+	  default:
+		{
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//3D3D3D");
+			}
+			NVMC_PaintRect(localFrameRect,backgroundColor);
+			break;
+		}
+	}
+	/*#1316
 	if( NVI_GetFrameViewControlID() == kControlID_Invalid )
 	{
-		NVMC_PaintRect(localFrameRect,mBackgroundColor,mTransparency);
+		NVMC_PaintRect(localFrameRect,backgroundColor,mTransparency);
 	}
 	//#1338 フレームviewが存在する場合でも背景色（α=1.0）でpaintする。Mojave+Xcode10だと、キャレットXOR描画が、そのviewのα値に従う（背後のviewには従わない）ため。
 	else
 	{
-		NVMC_PaintRect(localFrameRect,mBackgroundColor,1.0);
+		NVMC_PaintRect(localFrameRect,backgroundColor,1.0);
 	}
+	*/
 	
 	//文字色取得
-	AColor	color = mColor;
+	AColor	color = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		color = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+	}
 	//
 	if( NVMC_IsControlEnabled() == false )
 	{
@@ -377,6 +438,7 @@ void	AView_EditBox::EVTDO_DoDraw()
 	*/
 	
 	//#798
+	/*#1316 上のkEditBoxType_FilterBoxの場合のcaseに移動
 	//テキストが空の場合の背景描画
 	if( GetTextDocumentConst().SPI_GetTextLength() == 0 && mEnableBackgroundColorForEmptyState == true )
 	{
@@ -385,17 +447,24 @@ void	AView_EditBox::EVTDO_DoDraw()
 		{
 			backgroundColor = mBackgroundDeactiveColorForEmptyState;
 		}
-		NVMC_PaintRect(localFrameRect,backgroundColor,mTransparency);
+		NVMC_PaintRect(localFrameRect,backgroundColor);
 	}
+	*/
 	//テキストが空の場合のテキスト描画
 	if( GetTextDocumentConst().SPI_GetTextLength() == 0 && mTextForEmptyState.GetItemCount() > 0 )
 	{
+		//
+		AColor	emptyColor = kColor_Gray60Percent;
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			emptyColor = AColorWrapper::GetColorByHTMLFormatColor("505050");
+		}
 		//テキストが空の場合のテキスト描画
-		NVMC_DrawText(localFrameRect,mTextForEmptyState,kColor_Gray60Percent,kTextStyle_Normal);
+		NVMC_DrawText(localFrameRect,mTextForEmptyState,emptyColor,kTextStyle_Normal);
 		//ショートカット文字表示
 		ALocalRect	r = localFrameRect;
 		r.left = localFrameRect.right - NVMC_GetDrawTextWidth(mTextForEmptyState_Shortcut) - 3;
-		NVMC_DrawText(r,mTextForEmptyState_Shortcut,kColor_Gray60Percent,kTextStyle_Normal);
+		NVMC_DrawText(r,mTextForEmptyState_Shortcut,emptyColor,kTextStyle_Normal);
 	}
 	
 	//検索キャンセルボタン表示
@@ -2954,6 +3023,9 @@ void	AView_EditBox::UpdateBackgroundColor()
 	//フレームが存在していたら、フレームの背景色設定
 	if( NVI_ExistFrameView() == true )
 	{
+		//テキスト存在するかどうかを設定 #1316
+		NVI_GetFrameView().SPI_SetExistText( GetTextDocumentConst().SPI_GetTextLength() > 0 );
+		/*#1316
 		if( GetTextDocumentConst().SPI_GetTextLength() > 0 )
 		{
 			//テキスト存在する場合
@@ -2964,6 +3036,7 @@ void	AView_EditBox::UpdateBackgroundColor()
 			//テキストが空の場合
 			NVI_GetFrameView().SPI_SetColor(mBackgroundActiveColorForEmptyState,mFrameColor,mFrameColorDeactive,mTransparency);
 		}
+		*/
 		//描画更新
 		NVI_GetFrameView().NVI_Refresh();
 	}
@@ -3109,7 +3182,7 @@ AFloatNumber	AView_EditBox::NVIDO_GetFloatNumber() const
 */
 void	AView_EditBox::NVIDO_SetTextFont( const AText& inFontName, const AFloatNumber inFontSize )
 {
-	SPI_SetTextDrawProperty(inFontName,inFontSize,mColor,mColorDeactive);
+	SPI_SetTextDrawProperty(inFontName,inFontSize);//#1316 ,mColor,mColorDeactive);
 }
 
 //#349
@@ -3119,7 +3192,7 @@ void	AView_EditBox::NVIDO_SetTextFont( const AText& inFontName, const AFloatNumb
 void	AView_EditBox::SPI_SetTextFontSize( const AFloatNumber inFontSize )
 {
 	AText	fontname(mFontName);
-	SPI_SetTextDrawProperty(fontname,inFontSize,mColor,mColorDeactive);
+	SPI_SetTextDrawProperty(fontname,inFontSize);//#1316 ,mColor,mColorDeactive);
 }
 
 #pragma mark ===========================
@@ -3127,7 +3200,7 @@ void	AView_EditBox::SPI_SetTextFontSize( const AFloatNumber inFontSize )
 #pragma mark ---属性設定
 
 //フォント等のText描画プロパティが変更された場合の処理
-void	AView_EditBox::SPI_SetTextDrawProperty( const AText& inFontName, const AFloatNumber inFontSize, const AColor inColor, const AColor inColorDeactive )
+void	AView_EditBox::SPI_SetTextDrawProperty( const AText& inFontName, const AFloatNumber inFontSize /*#1316, const AColor inColor, const AColor inColorDeactive*/ )
 {
 	mFontName.SetText(inFontName);
 	mFontSize = inFontSize;
@@ -3137,9 +3210,11 @@ void	AView_EditBox::SPI_SetTextDrawProperty( const AText& inFontName, const AFlo
 	if( mFontSize < 7.8 )   mFontSize = 7.8;
 #endif
 	*/
+	/*#1316
 	mColor = inColor;
 	mColorDeactive = inColorDeactive;
-	NVMC_SetDefaultTextProperty(inFontName,inFontSize,inColor,kTextStyle_Normal,true);
+	*/
+	NVMC_SetDefaultTextProperty(inFontName,inFontSize,kColor_Gray50Percent,kTextStyle_Normal,true);
 	NVMC_GetMetricsForDefaultTextProperty(mLineHeight,mLineAscent);
 	//#894
 	//行数が1行のみの場合、上下方向センター表示するようにImageYマージン／スクロール位置を調整
@@ -3153,6 +3228,7 @@ void	AView_EditBox::SPI_SetTextDrawProperty( const AText& inFontName, const AFlo
 /**
 テキスト色設定
 */
+/*#1316
 void	AView_EditBox::SPI_SetTextColor( const AColor inColor, const AColor inColorDeactive )
 {
 	mColor = inColor;
@@ -3165,6 +3241,7 @@ void	AView_EditBox::SPI_SetTextColor( const AColor inColor, const AColor inColor
 	//
 	NVI_Refresh();
 }
+*/
 
 //#894
 /**
@@ -3210,6 +3287,7 @@ void	AView_EditBox::SPI_UpdateScrollBarUnit()
 	NVI_SetScrollBarUnit(kHScrollBarUnit,GetLineHeightWithMargin(),rect.right-rect.left-kHScrollBarUnit*5,rect.bottom-rect.top-GetLineHeightWithMargin()*5);
 }
 
+/*#1316
 //背景色等設定
 void	AView_EditBox::SPI_SetBackgroundColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive )
 {
@@ -3219,10 +3297,11 @@ void	AView_EditBox::SPI_SetBackgroundColor( const AColor inBackColor, const ACol
 	mFrameColorDeactive = inFrameColorDeactive;
 	//
 	//#135 SPI_GetFrameView().SPI_SetColor(inBackColor,inFrameColor,inFrameColorDeactive);
-	/*#199 dynamic_cast<AView_Frame&>(NVM_GetWindow().NVI_GetViewByControlID(mFrameViewControlID)).SPI_SetColor(inBackColor,inFrameColor,inFrameColorDeactive);
-	*/
+	*#199 dynamic_cast<AView_Frame&>(NVM_GetWindow().NVI_GetViewByControlID(mFrameViewControlID)).SPI_SetColor(inBackColor,inFrameColor,inFrameColorDeactive);
+	*
 	NVI_SetFrameViewColor(inBackColor,inFrameColor,inFrameColorDeactive);
 }
+*/
 
 /**
 編集可／不可設定
