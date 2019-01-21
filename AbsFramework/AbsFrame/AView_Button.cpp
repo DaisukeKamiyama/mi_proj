@@ -28,7 +28,9 @@ AView_Button
 #include "../Frame.h"
 
 //アイコンとテキストの間のスペース
-const ANumber	kSpaceBetweenIconAndText = 2;
+const ANumber	kSpaceBetweenIconAndText = 2;//#1316 2;
+//アイコンの左スペース
+const ANumber	kIconLeftMargin = 3;//#1316
 
 #pragma mark ===========================
 #pragma mark [クラス]AView_Button
@@ -52,8 +54,7 @@ AView_Button::AView_Button( const AWindowID inWindowID, const AControlID inID )
 		,mTransparency(1.0), mAlwaysActiveColors(false)//#291
 		,mFrameColor(kColor_Gray80Percent)//amazon
 		,mMouseTrackResultIsDrag(false)//win
-		,mColor(kColor_Gray10Percent),mColorDeactive(kColor_Gray60Percent)
-,mDarkColor(kColor_Gray91Percent),mDarkColorDeactive(kColor_Gray40Percent)//#1316
+//#1316		,mColor(kColor_Gray10Percent),mColorDeactive(kColor_Gray60Percent)
 ,mButtonViewType(kButtonViewType_None)//kButtonViewType_Rect20)//#634
 ,mButtonBehaviorType(kButtonBehaviorType_Normal)//#634
 ,mPreviousMouseGlobalPoint(kGlobalPoint_00)//#634
@@ -61,7 +62,7 @@ AView_Button::AView_Button( const AWindowID inWindowID, const AControlID inID )
 ,mHelpTagSide(kHelpTagSide_Default)//#661
 ,mFontSize(9.0), mTextStyle(kTextStyle_Normal)//#724
 ,mDisplayingContextMenu(false)//#724
-,mDropShadowColor(kColor_White)//#724
+//#1316 ,mDropShadowColor(kColor_White)//#724
 ,mEllipsisMode(kEllipsisMode_FixedLastCharacters),mEllipsisCharacterCount(5)//#725
 ,mDragging(false)//#850
 ,mTemporaryInvisible(false)//#724
@@ -107,7 +108,7 @@ void	AView_Button::InitTextPropertyIfNotInited()
 	
 	AText	defaultfontname;
 	AFontWrapper::GetDialogDefaultFontName(defaultfontname);//#375
-	SPI_SetTextProperty(defaultfontname,mFontSize,mTextJustification,mTextStyle,mColor,mColorDeactive,mDarkColor,mDarkColorDeactive);//#1316
+	SPI_SetTextProperty(defaultfontname,mFontSize,mTextJustification,mTextStyle);//#1316
 }
 
 /**
@@ -402,7 +403,7 @@ const ANumber	kTopPadding_TextWithOvalHover = 2;
 const ANumber	kBottomPadding_TextWithOvalHover = 2;
 
 //
-const ANumber	kWidth_MenuTriangle = 8;
+const ANumber	kWidth_MenuTriangle = 10;//#1316 8;
 //
 
 
@@ -417,6 +418,7 @@ void	AView_Button::EVTDO_DoDraw()
 	//（オーバーレイの場合は）透明色で全体消去 win
 	NVMC_EraseRect(frame);
 	
+	/*#1316
 	ABool	active = (NVM_GetWindow().NVI_IsWindowActive() == true || NVM_GetWindow().NVI_IsFloating() == true);
 	if( mAlwaysActiveColors == true )//#291
 	{
@@ -426,16 +428,13 @@ void	AView_Button::EVTDO_DoDraw()
 	{
 		active = false;
 	}
-	if( (mTextStyle&kTextStyle_DropShadow) != 0 )
-	{
-		NVMC_SetDropShadowColor(mDropShadowColor);
-	}
+	*/
 	
 	//==================Ovalホバー付きテキストタイプボタン==================
 	//Ovalホバー付きテキストボタン専用処理
 	if( mButtonViewType == kButtonViewType_TextWithOvalHover || 
-				mButtonViewType == kButtonViewType_TextWithOvalHoverWithFixedWidth ||
-				mButtonViewType == kButtonViewType_TextWithNoHoverWithFixedWidth )
+		mButtonViewType == kButtonViewType_TextWithOvalHoverWithFixedWidth ||
+		mButtonViewType == kButtonViewType_TextWithNoHoverWithFixedWidth )
 	{
 		//------------------テキスト描画領域計算------------------
 		ALocalRect	textrect = frame;
@@ -445,18 +444,17 @@ void	AView_Button::EVTDO_DoDraw()
 		textrect.bottom	= (frame.top+frame.bottom)/2 + (mFontHeight+1)/2;
 		
 		//文字色
-		AColor	lettercolor = mColor;
-		if( active == false )
-		{
-			lettercolor = mColorDeactive;
-		}
-		//ダークモード #1316
+		AColor	lettercolor = AColorWrapper::GetColorByHTMLFormatColor("000000");
 		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
 		{
-			lettercolor = mDarkColor;
-			if( active == false )
+			lettercolor = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+		}
+		if( NVMC_IsControlEnabled() == false )
+		{
+			lettercolor = AColorWrapper::GetColorByHTMLFormatColor("A0A0A0");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
 			{
-				lettercolor = mDarkColorDeactive;
+				lettercolor = AColorWrapper::GetColorByHTMLFormatColor("404040");
 			}
 		}
 		
@@ -471,7 +469,7 @@ void	AView_Button::EVTDO_DoDraw()
 		
 		//------------------ホバー描画------------------
 		if( mButtonViewType == kButtonViewType_TextWithOvalHover || 
-					mButtonViewType == kButtonViewType_TextWithOvalHoverWithFixedWidth )
+			mButtonViewType == kButtonViewType_TextWithOvalHoverWithFixedWidth )
 		{
 			//ホバー中、または、コンテキストメニュー表示中に、ホバー表示する
 			if( mMouseHover == true || mDisplayingContextMenu == true || mToggleOn == true )
@@ -482,28 +480,9 @@ void	AView_Button::EVTDO_DoDraw()
 				//ホバー描画
 				NVMC_PaintRoundedRect(ovalrect,mOvalHoverColor,mOvalHoverColor,kGradientType_None,1.0,1.0,
 									  kNumber_MaxNumber,true,true,true,true);
-				//ドロップシャドウ色設定
-				if( active == true )
-				{
-					NVMC_SetDropShadowColor(kColor_Gray30Percent);
-				}
-				else
-				{
-					NVMC_SetDropShadowColor(kColor_White);
-				}
 				//文字色設定
 				lettercolor = kColor_White;
 			}
-			/*#
-			else
-			{
-			//ホバー中でない場合の文字色設定
-			if( active == false )
-			{
-			lettercolor = mColorDeactive;
-			}
-			}
-			*/
 		}
 		
 		//------------------アイコン描画------------------
@@ -566,491 +545,141 @@ void	AView_Button::EVTDO_DoDraw()
 			ALocalPoint	pt = {textrect.left + drawntextwidth +5 , (textrect.top+textrect.bottom)/2 - 8};
 			NVMC_DrawImage(kImageID_iconSwTriangles,pt);
 		}
-		
-		return;
 	}
-	
-	//#724 #725
-	//==================通常ボタン（ホバーボタン以外）==================
-	switch(mButtonViewType)
-	{
-	  case kButtonViewType_Rect20:
-		{
-			ALocalPoint	pt = {frame.left,frame.top};
-			if( mMouseDown == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20Rect_p_1,kImageID_btn20Rect_p_2,kImageID_btn20Rect_p_3,pt,frame.right-frame.left);
-			}
-			else if( mMouseHover == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20Rect_h_1,kImageID_btn20Rect_h_2,kImageID_btn20Rect_h_3,pt,frame.right-frame.left);
-			}
-			else
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20Rect_1,kImageID_btn20Rect_2,kImageID_btn20Rect_3,pt,frame.right-frame.left);
-			}
-			break;
-		}
-	  case kButtonViewType_RoundedRect20:
-		{
-			ALocalPoint	pt = {frame.left,frame.top};
-			if( mMouseDown == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20RoundedRect_p_1,kImageID_btn20RoundedRect_p_2,kImageID_btn20RoundedRect_p_3,pt,frame.right-frame.left);
-			}
-			else if( mMouseHover == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20RoundedRect_h_1,kImageID_btn20RoundedRect_h_2,kImageID_btn20RoundedRect_h_3,pt,frame.right-frame.left);
-			}
-			else
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn20RoundedRect_1,kImageID_btn20RoundedRect_2,kImageID_btn20RoundedRect_3,pt,frame.right-frame.left);
-			}
-			break;
-		}
-	  case kButtonViewType_Rect16:
-		{
-			ALocalPoint	pt = {frame.left,frame.top};
-			if( mMouseDown == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn16Rect_p_1,kImageID_btn16Rect_p_2,kImageID_btn16Rect_p_3,pt,frame.right-frame.left);
-			}
-			else if( mMouseHover == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn16Rect_h_1,kImageID_btn16Rect_h_2,kImageID_btn16Rect_h_3,pt,frame.right-frame.left);
-			}
-			else
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_btn16Rect_1,kImageID_btn16Rect_2,kImageID_btn16Rect_3,pt,frame.right-frame.left);
-			}
-			break;
-		}
-	  case kButtonViewType_Rect16Footer:
-		{
-			ALocalPoint	pt = {frame.left,frame.top};
-			if( mMouseDown == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_panel16Footer_1,kImageID_panel16Footer_2,kImageID_panel16Footer_3,pt,frame.right-frame.left);
-			}
-			else if( mMouseHover == true )
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_panel16Footer_1,kImageID_panel16Footer_2,kImageID_panel16Footer_3,pt,frame.right-frame.left);
-			}
-			else
-			{
-				NVMC_DrawImageFlexibleWidth(kImageID_panel16Footer_1,kImageID_panel16Footer_2,kImageID_panel16Footer_3,pt,frame.right-frame.left);
-			}
-			break;
-		}
-	  case kButtonViewType_ScrollBar:
-		{
-			ALocalPoint	pt = {frame.left,frame.top};
-			if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_7 )
-			{
-				if( mMouseDown == true )
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
-				}
-				else if( mMouseHover == true )
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
-				}
-				else
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
-				}
-			}
-			else
-			{
-				if( mMouseDown == true )
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
-				}
-				else if( mMouseHover == true )
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
-				}
-				else
-				{
-					NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
-				}
-			}
-			break;
-		}
-	  case kButtonViewType_NoFrame:
-	  case kButtonViewType_NoFrameWithTextHover:
-		{
-			//処理無し
-			break;
-		}
-	  default:
-		{
-			//処理なし
-			break;
-		}
-	}
-#if 0
-	//
-	if( active == true )
-	{
-		if( mMouseHover == false || mToggleOn == true )
-		{
-			//通常状態 
-			if( mToggleOn == false )
-			{
-				//#597
-				/*
-				//ボタン上半分表示
-				ALocalRect	f1 = frame;
-				f1.bottom = f1.top + (frame.bottom-frame.top)/2;
-				NVMC_PaintRect(f1,kColor_Gray94Percent,mTransparency);//#291
-				//ボタン下半分gradient表示
-				ALocalRect	f2 = frame;
-				f2.top = f1.bottom;
-				AColor	startColor = kColor_Gray93Percent;
-				AColor	endColor = kColor_Gray90Percent;
-				NVMC_PaintRectWithVerticalGradient(f2,startColor,endColor,mTransparency,true);
-				*/
-				{
-					ALocalPoint	pt = {frame.left,frame.top};
-					NVMC_DrawImageFlexibleWidth(300,301,302/*kImageID_RectButton*/,pt,frame.right-frame.left);
-				}
-				//ボタン外周描画
-				/*
-				switch(mButtonViewType)
-				{
-				  case kButtonViewType_Rect:
-					{
-						NVMC_FrameRect(frame,mFrameColor);//amazon kColor_Gray80Percent);//#291 kColor_Gray70Percent);
-						break;
-					}
-					//#634
-				  case kButtonViewType_RoundedCorner:
-					{
-						ALocalPoint	spt, ept;
-						spt.x = frame.left+1;
-						spt.y = frame.top;
-						ept.x = frame.right-1;
-						ept.y = frame.top;
-						NVMC_DrawLine(spt,ept,mFrameColor);
-						spt.x = frame.left+1;
-						spt.y = frame.bottom-1;
-						ept.x = frame.right-1;
-						ept.y = frame.bottom-1;
-						NVMC_DrawLine(spt,ept,mFrameColor);
-						spt.x = frame.left;
-						spt.y = frame.top;
-						ept.x = frame.left;
-						ept.y = frame.bottom-2;
-						NVMC_DrawLine(spt,ept,mFrameColor);
-						spt.x = frame.right-1;
-						spt.y = frame.top;
-						ept.x = frame.right-1;
-						ept.y = frame.bottom-2;
-						NVMC_DrawLine(spt,ept,mFrameColor);
-						break;
-					}
-				}
-				
-				ALocalPoint	spt, ept;
-				spt.x = frame.left+1;
-				spt.y = frame.top+1;
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				spt.x = frame.right-2;
-				spt.y = frame.bottom-2;
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-				*/
-			}
-			else
-			{
-				/*win トグルon時の描画変更
-				NVMC_PaintRect(frame,kColor_Gray80Percent,mTransparency);//#291
-				NVMC_FrameRect(frame,mFrameColor);//amazon kColor_Gray80Percent);//#291 kColor_Gray70Percent);
-				ALocalPoint	spt, ept;
-				spt.x = frame.left+1;
-				spt.y = frame.top+1;
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_Gray70Percent);
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_Gray70Percent);
-				spt.x = frame.right-2;
-				spt.y = frame.bottom-2;
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				*/
-				AColor	hilightColor;
-				AColorWrapper::GetHighlightColor(hilightColor);
-				NVMC_PaintRect(frame,kColor_Gray92Percent);
-				NVMC_PaintRect(frame,hilightColor,0.7);
-				NVMC_FrameRect(frame,hilightColor);
-				ALocalPoint	spt, ept;
-				spt.x = frame.left+1;
-				spt.y = frame.top+1;
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				spt.x = frame.right-2;
-				spt.y = frame.bottom-2;
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-			}
-		}
-		else
-		{
-			//マウスオーバー
-			if( mMouseDown == true )
-			{
-				//マウスダウン中のマウスオーバー 
-				AColor	hilightColor;
-				AColorWrapper::GetHighlightColor(hilightColor);
-				NVMC_PaintRect(frame,kColor_Gray92Percent);
-				NVMC_PaintRect(frame,hilightColor,0.7);
-				NVMC_FrameRect(frame,hilightColor);
-				ALocalPoint	spt, ept;
-				spt.x = frame.left+1;
-				spt.y = frame.top+1;
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				spt.x = frame.right-2;
-				spt.y = frame.bottom-2;
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-			}
-			else
-			{
-				//通常のマウスオーバー 
-				AColor	hilightColor;
-				AColorWrapper::GetHighlightColor(hilightColor);
-				NVMC_PaintRect(frame,kColor_Gray92Percent);
-				NVMC_PaintRect(frame,hilightColor,0.2);
-				NVMC_FrameRect(frame,hilightColor);
-				ALocalPoint	spt, ept;
-				spt.x = frame.left+1;
-				spt.y = frame.top+1;
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_White);
-				spt.x = frame.right-2;
-				spt.y = frame.bottom-2;
-				ept.x = frame.right-2;
-				ept.y = frame.top+1;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-				ept.x = frame.left+1;
-				ept.y = frame.bottom-2;
-				NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-			}
-		}
-	}
-	//ウインドウがdeactive
+	//==================通常ボタン（Ovalホバー付きテキストタイプボタン以外）==================
 	else
 	{
-		NVMC_PaintRect(frame,kColor_Gray92Percent);
-		NVMC_FrameRect(frame,kColor_Gray80Percent);
-		ALocalPoint	spt, ept;
-		spt.x = frame.left+1;
-		spt.y = frame.top+1;
-		ept.x = frame.left+1;
-		ept.y = frame.bottom-2;
-		NVMC_DrawLine(spt,ept,kColor_White);
-		ept.x = frame.right-2;
-		ept.y = frame.top+1;
-		NVMC_DrawLine(spt,ept,kColor_White);
-		spt.x = frame.right-2;
-		spt.y = frame.bottom-2;
-		ept.x = frame.right-2;
-		ept.y = frame.top+1;
-		NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-		ept.x = frame.left+1;
-		ept.y = frame.bottom-2;
-		NVMC_DrawLine(spt,ept,kColor_Gray90Percent);
-	}
-#endif
-	
-	//------------------描画領域計算------------------
-	ALocalRect	drawrect = frame;
-	drawrect.left += 3;
-	drawrect.top = (frame.top+frame.bottom)/2 - mFontHeight/2 -1;
-	drawrect.right -= 3;
-	drawrect.bottom = (frame.top+frame.bottom)/2 + mFontHeight/2 +1;
-	
-	//------------------アイコン表示幅取得------------------
-	ANumber	iconImageWidth = 0;
-	if( mIconImageID != kImageID_Invalid )
-	{
-		iconImageWidth = mIconWidth+4;
-	}
-	
-	//------------------メニュー▼表示幅取得------------------
-	ANumber	menuTriangleWidth = 0;
-	if( mMenuID != kIndex_Invalid || mMenuTextArray.GetItemCount() > 0 )
-	{
-		menuTriangleWidth = kWidth_MenuTriangle + 4;
-	}
-	
-	//------------------センタリングなら描画領域を中央寄せにする------------------
-	switch(mTextJustification)
-	{
-	  case kJustification_Center:
-	  case kJustification_CenterTruncated:
+		//#724 #725
+		switch(mButtonViewType)
 		{
-			ANumber	textwidth = NVMC_GetDrawTextWidth(mText);
-			if( drawrect.right - drawrect.left > textwidth + iconImageWidth + menuTriangleWidth )
+		  case kButtonViewType_Rect20:
+		  case kButtonViewType_RoundedRect20:
+		  case kButtonViewType_Rect16:
+		  case kButtonViewType_Rect16Footer:
+		  case kButtonViewType_ScrollBar:
 			{
-				ANumber	m = ((drawrect.left+iconImageWidth)+(drawrect.right-menuTriangleWidth))/2;
-				drawrect.left	= m - textwidth/2 - iconImageWidth -2;
-				drawrect.right	= m + textwidth/2 + menuTriangleWidth +2;
-				//NVMC_FrameRect(drawrect,kColor_Black);
+				AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+				AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("D9D9D9");
+				AColor	backgroundStartColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+				AColor	backgroundEndColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("E1E1E1");
+				AColor	frameColor = AColorWrapper::GetColorByHTMLFormatColor("D0D0D0");
+				if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+				{
+					backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+					backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("181818");
+					backgroundStartColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
+					backgroundEndColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("202020");
+					frameColor = AColorWrapper::GetColorByHTMLFormatColor("202020");
+				}
+				ALocalPoint	pt = {frame.left,frame.top};
+				if( mMouseDown == true )
+				{
+					NVMC_PaintRectWithVerticalGradient(frame,backgroundStartColor,backgroundEndColor,1.0,1.0);
+					frame.top -= 1;
+					frame.right += 1;
+					NVMC_FrameRect(frame, frameColor);
+				}
+				else if( mMouseHover == true )
+				{
+					NVMC_PaintRectWithVerticalGradient(frame,backgroundStartColor_Hover,backgroundEndColor_Hover,1.0,1.0);
+					frame.top -= 1;
+					frame.right += 1;
+					NVMC_FrameRect(frame, frameColor);
+				}
+				else
+				{
+					NVMC_PaintRectWithVerticalGradient(frame,backgroundStartColor,backgroundEndColor,1.0,1.0);
+					frame.top -= 1;
+					frame.right += 1;
+					NVMC_FrameRect(frame, frameColor);
+				}
+				break;
+			}
+			/*#1316
+		  case kButtonViewType_ScrollBar:
+			{
+				ALocalPoint	pt = {frame.left,frame.top};
+				if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_7 )
+				{
+					if( mMouseDown == true )
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
+					}
+					else if( mMouseHover == true )
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
+					}
+					else
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_107,pt);
+					}
+				}
+				else
+				{
+					if( mMouseDown == true )
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
+					}
+					else if( mMouseHover == true )
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
+					}
+					else
+					{
+						NVMC_DrawImage(kImageID_frameScrlbarTop_106,pt);
+					}
+				}
+				break;
+			}
+			*/
+		  case kButtonViewType_NoFrame:
+		  case kButtonViewType_NoFrameWithTextHover:
+			{
+				//処理無し
+				break;
+			}
+		  default:
+			{
+				//処理なし
+				break;
 			}
 		}
-	  default:
+		
+		//------------------描画領域計算------------------
+		ALocalRect	drawrect = frame;
+		drawrect.left += 3;
+		drawrect.top = (frame.top+frame.bottom)/2 - mFontHeight/2 -1;
+		drawrect.right -= 3;
+		drawrect.bottom = (frame.top+frame.bottom)/2 + mFontHeight/2 +1;
+		
+		//------------------アイコン表示幅取得------------------
+		ANumber	iconImageWidth = 0;
+		if( mIconImageID != kImageID_Invalid )
 		{
-			//処理なし
-			break;
+			iconImageWidth = mIconWidth + kIconLeftMargin + kSpaceBetweenIconAndText;//#1316
 		}
-	}
-	
-	//------------------アイコン描画------------------
-	if( iconImageWidth > 0 )
-	{
+		
+		//------------------メニュー▼表示幅取得------------------
+		ANumber	menuTriangleWidth = 0;
+		if( mMenuID != kIndex_Invalid || mMenuTextArray.GetItemCount() > 0 )
+		{
+			menuTriangleWidth = kWidth_MenuTriangle + kSpaceBetweenIconAndText;//#1316 4;
+		}
+		
+		//------------------センタリングなら描画領域を中央寄せにする------------------
 		switch(mTextJustification)
 		{
 		  case kJustification_Center:
 		  case kJustification_CenterTruncated:
 			{
-				//
-				ALocalPoint	pt = {drawrect.left,mIconTopOffset};
-				if( mMouseHover == true && mHoverIconImageID != kImageID_Invalid )
+				ANumber	textwidth = NVMC_GetDrawTextWidth(mText);
+				if( drawrect.right - drawrect.left > textwidth + iconImageWidth + menuTriangleWidth )
 				{
-					NVMC_DrawImage(mHoverIconImageID,pt);
+					ANumber	m = ((drawrect.left+iconImageWidth)+(drawrect.right-menuTriangleWidth))/2;
+					drawrect.left	= m - textwidth/2 - iconImageWidth -2;
+					drawrect.right	= m + textwidth/2 + menuTriangleWidth +2;
+					//NVMC_FrameRect(drawrect,kColor_Black);
 				}
-				else
-				{
-					NVMC_DrawImage(mIconImageID,pt);
-				}
-				break;
-			}
-		  default:
-			{
-				//
-				ALocalPoint	pt = {mIconLeftOffset,mIconTopOffset};
-				if( mIconLeftOffset < 0 )
-				{
-					pt.x = frame.right+mIconLeftOffset;
-				}
-				if( mMouseHover == true && mHoverIconImageID != kImageID_Invalid )
-				{
-					NVMC_DrawImage(mHoverIconImageID,pt);
-				}
-				else
-				{
-					NVMC_DrawImage(mIconImageID,pt);
-				}
-				break;
-			}
-		}
-	}
-	//------------------Menu用▼描画------------------
-	if( menuTriangleWidth > 0 )
-	{
-		ALocalPoint	pt = {drawrect.right - kWidth_MenuTriangle,(drawrect.top+drawrect.bottom)/2 - 7};
-		NVMC_DrawImage(kImageID_iconSwTriangles,pt);
-	}
-	//------------------テキスト描画------------------
-	if( mText.GetItemCount() > 0 )
-	{
-		//
-		ALocalRect	textrect = drawrect;
-		textrect.left += iconImageWidth;
-		textrect.right -= menuTriangleWidth;
-		//テキスト取得
-		AText	text;
-		text.SetText(mText);
-		//Canonical Compへ変換（ファイル名由来データの場合、濁点等が分離している場合があり、そのままだと分離表示されるため）
-		text.ConvertToCanonicalComp();
-		//ellipsisテキスト取得
-		switch( mEllipsisMode )
-		{
-		  case kEllipsisMode_FixedFirstCharacters:
-			{
-				NVI_GetEllipsisTextWithFixedFirstCharacters(mText,textrect.right-textrect.left,mEllipsisCharacterCount,text);
-				break;
-			}
-		  case kEllipsisMode_FixedLastCharacters:
-			{
-				NVI_GetEllipsisTextWithFixedLastCharacters(mText,textrect.right-textrect.left,mEllipsisCharacterCount,text);
-				break;
-			}
-		  default:
-			{
-				//処理なし
-				break;
-			}
-		}
-		//色取得
-		AColor	color = mColor;
-		//
-		if( mButtonViewType == kButtonViewType_NoFrameWithTextHover )
-		{
-			if( mMouseHover == true )
-			{
-				//AColorWrapper::GetHighlightColor(color);
-				color = kColor_Blue;
-			}
-		}
-		
-		if( active == false )
-		{
-			color = mColorDeactive;
-		}
-		
-		//
-		switch(mButtonViewType)
-		{
-		  case kButtonViewType_Rect16:
-			{
-				if( active == true )
-				{
-					color = kColor_Gray10Percent;
-				}
-				else
-				{
-					color = kColor_Gray60Percent;
-				}
-				break;
 			}
 		  default:
 			{
@@ -1059,15 +688,112 @@ void	AView_Button::EVTDO_DoDraw()
 			}
 		}
 		
-		//テキストスタイル取得（active時はドロップシャドウ）
-		ATextStyle	style = kTextStyle_DropShadow;
-		if( active == false )
+		//------------------アイコン描画------------------
+		if( iconImageWidth > 0 )
 		{
-			style = kTextStyle_Normal;
+			switch(mTextJustification)
+			{
+			  case kJustification_Center:
+			  case kJustification_CenterTruncated:
+				{
+					//
+					ALocalPoint	pt = {drawrect.left + kIconLeftMargin,mIconTopOffset};//#1316
+					if( mMouseHover == true && mHoverIconImageID != kImageID_Invalid )
+					{
+						NVMC_DrawImage(mHoverIconImageID,pt);
+					}
+					else
+					{
+						NVMC_DrawImage(mIconImageID,pt);
+					}
+					break;
+				}
+			  default:
+				{
+					//
+					ALocalPoint	pt = {mIconLeftOffset,mIconTopOffset};
+					if( mIconLeftOffset < 0 )
+					{
+						pt.x = frame.right+mIconLeftOffset;
+					}
+					if( mMouseHover == true && mHoverIconImageID != kImageID_Invalid )
+					{
+						NVMC_DrawImage(mHoverIconImageID,pt);
+					}
+					else
+					{
+						NVMC_DrawImage(mIconImageID,pt);
+					}
+					break;
+				}
+			}
 		}
-		
-		//テキスト描画
-		NVMC_DrawText(textrect,text,color,style,mTextJustification);
+		//------------------Menu用▼描画------------------
+		if( menuTriangleWidth > 0 )
+		{
+			ALocalPoint	pt = {drawrect.right - kWidth_MenuTriangle,(drawrect.top+drawrect.bottom)/2 - 7};
+			NVMC_DrawImage(kImageID_iconSwTriangles,pt);
+		}
+		//------------------テキスト描画------------------
+		if( mText.GetItemCount() > 0 )
+		{
+			//
+			ALocalRect	textrect = drawrect;
+			textrect.left += iconImageWidth;
+			textrect.right -= menuTriangleWidth;
+			//テキスト取得
+			AText	text;
+			text.SetText(mText);
+			//Canonical Compへ変換（ファイル名由来データの場合、濁点等が分離している場合があり、そのままだと分離表示されるため）
+			text.ConvertToCanonicalComp();
+			//ellipsisテキスト取得
+			switch( mEllipsisMode )
+			{
+			  case kEllipsisMode_FixedFirstCharacters:
+				{
+					NVI_GetEllipsisTextWithFixedFirstCharacters(mText,textrect.right-textrect.left,mEllipsisCharacterCount,text);
+					break;
+				}
+			  case kEllipsisMode_FixedLastCharacters:
+				{
+					NVI_GetEllipsisTextWithFixedLastCharacters(mText,textrect.right-textrect.left,mEllipsisCharacterCount,text);
+					break;
+				}
+			  default:
+				{
+					//処理なし
+					break;
+				}
+			}
+			//色取得
+			AColor	color = AColorWrapper::GetColorByHTMLFormatColor("505050");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				color = AColorWrapper::GetColorByHTMLFormatColor("A0A0A0");
+			}
+			if( NVMC_IsControlEnabled() == false )
+			{
+				color = AColorWrapper::GetColorByHTMLFormatColor("A0A0A0");
+				if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+				{
+					color = AColorWrapper::GetColorByHTMLFormatColor("505050");
+				}
+			}
+			
+			//テキストスタイル
+			ATextStyle	style = mTextStyle;
+			//テキストのみボタン（×ボタン等）の場合は、ホバー時ボールドにする。
+			if( mButtonViewType == kButtonViewType_NoFrameWithTextHover )
+			{
+				if( mMouseHover == true )
+				{
+					style |= kTextStyle_Bold;
+				}
+			}
+			
+			//テキスト描画
+			NVMC_DrawText(textrect,text,color,style,mTextJustification);
+		}
 	}
 	//fprintf(stderr,"AView_Button::EVTDO_DoDraw()");
 }
@@ -1305,7 +1031,7 @@ ABool	AView_Button::NVIDO_GetBool() const
 アイコン設定
 */
 void	AView_Button::SPI_SetIcon( const AImageID inIconImageID, 
-								  const ANumber inLeftOffset, const ANumber inTopOffset,
+								   const AFloatNumber inLeftOffset, const AFloatNumber inTopOffset,//#1316
 								  const ANumber inWidth, const ANumber inHeight, const ABool inRefresh, 
 								  const AImageID inHoverIconImageID,//#530
 								  const AImageID inToggleOnImageID )
@@ -1344,8 +1070,6 @@ void	AView_Button::SPI_SetIconImageID( AImageID inIconImageID,
 */
 void	AView_Button::SPI_SetTextProperty( const AText& inFontName, const AFloatNumber inFontSize, const AJustification inJustification, 
 		const ATextStyle inTextStyle,//#724
-	   const AColor inColor, const AColor inColorDeactive,
-	   const AColor inDarkColor, const AColor inDarkColorDeactive,//#1316
 	   const ABool inRefresh )//#530
 {
 	mFontName.SetText(inFontName);
@@ -1355,11 +1079,7 @@ void	AView_Button::SPI_SetTextProperty( const AText& inFontName, const AFloatNum
 	if( mFontSize < 7.8 )   mFontSize = 7.8;
 #endif
 	mTextStyle = inTextStyle;//#724
-	mColor = inColor;
-	mColorDeactive = inColorDeactive;
-	mDarkColor = inDarkColor;//#1316
-	mDarkColorDeactive = inDarkColorDeactive;//#1316
-	NVMC_SetDefaultTextProperty(inFontName,mFontSize,inColor,mTextStyle,true);
+	NVMC_SetDefaultTextProperty(inFontName,mFontSize,kColor_Black,mTextStyle,true);
 	NVMC_GetMetricsForDefaultTextProperty(mFontHeight,mFontAscent);
 	mTextJustification = inJustification;
 	//#724
