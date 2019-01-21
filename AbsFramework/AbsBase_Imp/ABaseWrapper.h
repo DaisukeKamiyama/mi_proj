@@ -186,6 +186,7 @@ class AEnvWrapper
 			//#1079 gOSVersion = NSAppKitVersionNumber;
 			if( [[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)] ) 
 			{
+				//macOS 10.10ˆÈ~‚ÍoperatingSystemVersion‚É‘Î‰‚µ‚Ä‚¢‚é‚Ì‚Å‚±‚¿‚ç‚ªÀs‚³‚ê‚é
 				NSOperatingSystemVersion	osver = [[NSProcessInfo processInfo] operatingSystemVersion];
 				gOSVersion = osver.minorVersion;
 			}
