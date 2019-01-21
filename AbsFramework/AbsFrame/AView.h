@@ -697,8 +697,6 @@ class AView : public AObjectArrayItem
   public:
 	void					NVI_CreateFrameView( const ANumber inLeftMargin = 4, const ANumber inRightMargin = 4, 
 							const ANumber inTopMargin = 3, const ANumber inBottomMargin = 3 );
-	void					NVI_SetFrameViewColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive );
-	void					NVI_SetFrameBackgroundColor( const ABool inEnableFrameBackgroundColor, const AColor inColor );//win
 	ANumber					NVI_GetFrameLeftMargin() const { return mFrameLeftMargin; }
 	ANumber					NVI_GetFrameRightMargin() const { return mFrameRightMargin; }
 	ANumber					NVI_GetFrameTopMargin() const { return mFrameTopMargin; }
