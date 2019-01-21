@@ -132,6 +132,7 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 ,mJavaScriptModalAlertWindowID(kObjectID_Invalid)//#1217
 ,mJavaScriptModalCancelAlertWindowID(kObjectID_Invalid)//#1217
 {
+	/*#1316
 	//色初期化
 	mSkinColor_TabLetter = AColorWrapper::GetColorByHTMLFormatColor("333333");
 	mSkinColor_TabLetterTopmost = AColorWrapper::GetColorByHTMLFormatColor("000000");
@@ -156,7 +157,7 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	mSkinColor_SubWindowBoxMatchedColor = AColorWrapper::GetColorByHTMLFormatColor("FF0000");
 	mSkinColor_FileListDiffColor = AColorWrapper::GetColorByHTMLFormatColor("0000C3");
 	mSkinColor_JumpListDiffColor = AColorWrapper::GetColorByHTMLFormatColor("FF0000");
-	
+	*/
 	//mModePrefDBArrayのリストのリスト途中への追加・削除は行わないので、リストのスレッドmutexは不要（SPI_GetModePrefDB()は多くコールされるので、重くなってしまう）
 	mModePrefDBArray.EnableThreadSafe(false);
 	
@@ -734,7 +735,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	//Image読み込み
 	
 	//色ロード
-	LoadColors(useCustom,customskinfolder);
+	//#1316 LoadColors(useCustom,customskinfolder);
 	
 	//イメージファイル読み込み
 	//#130
@@ -937,6 +938,7 @@ void	AApp::LoadImageFile( const ABool inUseCustom ,const AFileAcc& inCustomFolde
 	{
 		CUserPane::UnregisterImage(inImageID);
 	}
+	/*#1316
 	//カスタム使用フラグONならそちらから読み込みを試す
 	if( inUseCustom == true )
 	{
@@ -951,6 +953,7 @@ void	AApp::LoadImageFile( const ABool inUseCustom ,const AFileAcc& inCustomFolde
 			return;
 		}
 	}
+	*/
 	
 	//標準skin使用
 	
@@ -962,6 +965,7 @@ void	AApp::LoadImageFile( const ABool inUseCustom ,const AFileAcc& inCustomFolde
 /**
 色ロード
 */
+/*#1316
 void	AApp::LoadColors( const ABool inUseCustom ,const AFileAcc& inCustomFolder )
 {
 	AFileAcc	colorsFile;
@@ -1113,6 +1117,7 @@ void	AApp::LoadColors( const ABool inUseCustom ,const AFileAcc& inCustomFolder )
 		index++;
 	}
 }
+*/
 
 #pragma mark ===========================
 
@@ -12168,12 +12173,12 @@ AColor	AApp::SPI_GetSubWindowBackgroundColor( const ABool inActive ) const
 サブウインドウ内ボックス色取得
 */
 void	AApp::SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID, 
-									   AColor& outLetterColor, AColor& outDropShadowColor,
+										AColor& outLetterColor, //#1316 AColor& outDropShadowColor,
 									   AColor& outBoxColor1, AColor& outBoxColor2, AColor& outBoxColor3 ) const
 {
 	//ポップアップウインドウ以外の場合は、文字色：黒、ボックス：白
 	outLetterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//#1316 mSkinColor_SubWindowBoxLetterColor;
-	outDropShadowColor = mSkinColor_SubWindowBoxLetterDropShadowColor;
+	//#1316 outDropShadowColor = mSkinColor_SubWindowBoxLetterDropShadowColor;
 	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");//#1316 mSkinColor_SubWindowBoxBackgroundColor;
 	//
 	if( GetApp().NVI_IsDarkMode() == true )
@@ -12287,10 +12292,12 @@ AColor	AApp::SPI_GetSubWindowHeaderBackgroundColor() const
 /**
 サブウインドウヘッダー部分文字色取得
 */
+/*#1316
 AColor	AApp::SPI_GetSubWindowHeaderLetterColor() const
 {
 	return mSkinColor_SubWindowHeaderLetterColor;
 }
+*/
 
 /**
 サブウインドウ用タイトルバー文字色取得
@@ -12311,10 +12318,12 @@ AColor	AApp::SPI_GetSubWindowTitlebarTextColor() const
 /**
 サブウインドウ用タイトルバー文字ドロップシャドウ色取得
 */
+/*#1316
 AColor	AApp::SPI_GetSubWindowTitlebarTextDropShadowColor() const
 {
 	return mSkinColor_SubWindowTitlebarTextDropShadowColor;
 }
+*/
 
 /**
 サブウインドウタイトルのボタンホバー色取得
