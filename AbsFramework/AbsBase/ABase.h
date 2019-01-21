@@ -198,10 +198,11 @@ extern void	OrderTextPoint( const ATextPoint& inSelectTextPoint1, const ATextPoi
 
 const AImagePoint kImagePoint_00 = {0,0};
 
+//#1316 ANumber→AFloatNumber
 struct ALocalPoint
 {
-	ANumber	x;
-	ANumber	y;
+	AFloatNumber	x;
+	AFloatNumber	y;
 };
 
 struct AWindowPoint
@@ -228,12 +229,13 @@ struct AImageRect
 	ANumber	bottom;
 };
 
+//#1316 ANumber→AFloatNumber
 struct ALocalRect
 {
-	ANumber	left;
-	ANumber	top;
-	ANumber	right;
-	ANumber	bottom;
+	AFloatNumber	left;
+	AFloatNumber	top;
+	AFloatNumber	right;
+	AFloatNumber	bottom;
 };
 
 struct AWindowRect
@@ -529,6 +531,7 @@ const AImageID	kImageID_iconSwCancel 			= 13;
 const AImageID	kImageID_iconSwCancel_h			= 14;
 const AImageID	kImageID_iconSwCancel_p			= 15;
 const AImageID	kImageID_iconSwSearch			= 16;
+/*#1316
 //Rect20ボタンImage
 const AImageID	kImageID_btn20Rect_1			= 40;
 const AImageID	kImageID_btn20Rect_2			= 41;
@@ -568,6 +571,7 @@ const AImageID	kImageID_iconSwFile				= 80;
 //
 const AImageID	kImageID_frameScrlbarTop_106	= 85;
 const AImageID	kImageID_frameScrlbarTop_107	= 86;
+*/
 //ポップアップメニュー用Image
 const AImageID	kImageID_iconSwTriangles		= 90;
 //
@@ -588,7 +592,7 @@ enum AEditBoxType
 {
 	kEditBoxType_Normal = 0,
 	kEditBoxType_FilterBox,
-	kEditBoxType_ThinFrame,
+	kEditBoxType_ToolTip,//#1316 kEditBoxType_ThinFrame→kEditBoxType_ToolTip
 	kEditBoxType_NoFrameDraw,
 };
 
@@ -598,7 +602,7 @@ FrameViewタイプ
 */
 enum AFrameViewType
 {
-	kFrameViewType_Normal = 0,
+	kFrameViewType_ToolTip = 0,//#1316 kFrameViewType_Normal→kFrameViewType_ToolTip
 	kFrameViewType_EditBox,
 	kFrameViewType_FilterBox,
 	kFrameViewType_NoFrameDraw,
