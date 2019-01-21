@@ -91,10 +91,10 @@ void	AView_SubWindowStatusBar::EVTDO_DoDraw()
 	
 	//ï`âÊêFê›íË
 	AColor	letterColor = kColor_Black;
-	AColor	dropShadowColor = kColor_White;
+	//#1316 AColor	dropShadowColor = kColor_White;
 	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
-	NVMC_SetDropShadowColor(dropShadowColor);
+	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+    //#1316 NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//==================
 	
