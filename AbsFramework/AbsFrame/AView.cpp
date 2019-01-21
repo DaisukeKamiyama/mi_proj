@@ -910,25 +910,6 @@ AView_Frame&	AView::GetFrameView()
 	return dynamic_cast<AView_Frame&>(NVM_GetWindow().NVI_GetViewByControlID(mFrameViewControlID));
 }
 
-/**
-Frame色設定
-*/
-void	AView::NVI_SetFrameViewColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive )
-{
-	if( ExistFrameView() == false )   return;
-	GetFrameView().SPI_SetColor(inBackColor,inFrameColor,inFrameColorDeactive);
-}
-
-//win
-/**
-フレーム部分背景色設定
-*/
-void	AView::NVI_SetFrameBackgroundColor( const ABool inEnableFrameBackgroundColor, const AColor inColor )
-{
-	if( ExistFrameView() == false )   return;
-	GetFrameView().SPI_SetFrameBackgroundColor(inEnableFrameBackgroundColor,inColor);
-}
-
 #pragma mark ===========================
 
 #pragma mark ---ScrollBar
