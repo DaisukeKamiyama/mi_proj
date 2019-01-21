@@ -388,11 +388,11 @@ void	AWindow_CandidateList::NVIDO_UpdateProperty()
 		GetApp().SPI_GetSubWindowsFont(fontname,fontsize);
 		//ï`âÊêFê›íË
 		AColor	letterColor = kColor_Black;
-		AColor	dropShadowColor = kColor_White;
+		//#1316 AColor	dropShadowColor = kColor_White;
 		AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-		GetApp().SPI_GetSubWindowBoxColor(GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
-		NVI_GetButtonViewByControlID(kControlID_SelectSearchMode).SPI_SetTextProperty(fontname,9.0,kJustification_Left,
-																					  kTextStyle_Normal,letterColor,letterColor);
+		GetApp().SPI_GetSubWindowBoxColor(GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+		NVI_GetButtonViewByControlID(kControlID_SelectSearchMode).
+				SPI_SetTextProperty(fontname,9.0,kJustification_Left,kTextStyle_Normal);
 	}
 	//view boundsçXêV
 	UpdateViewBounds();
