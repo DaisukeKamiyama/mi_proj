@@ -743,6 +743,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"iconSwCancel_p.png",kImageID_iconSwCancel_p,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"iconSwSearch.png",kImageID_iconSwSearch,inRemoveOld);
 	
+	/*#1316
 	//Rect20ボタンイメージ
 	LoadImageFile(useCustom,customskinfolder,"btn20Rect_1.png",kImageID_btn20Rect_1,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"btn20Rect_2.png",kImageID_btn20Rect_2,inRemoveOld);
@@ -780,7 +781,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"panel16Footer_1.png",kImageID_panel16Footer_1,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"panel16Footer_2.png",kImageID_panel16Footer_2,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"panel16Footer_3.png",kImageID_panel16Footer_3,inRemoveOld);
-	
+	*/
 	//ポップアップメニュー用トライアングル
 	LoadImageFile(useCustom,customskinfolder,"iconSwTriangles1.png",kImageID_iconSwTriangles,inRemoveOld);
 	
@@ -792,17 +793,20 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"barSwCursorDown_h.png",kImageID_barSwCursorDown_h,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"barSwCursorDown_d.png",kImageID_barSwCursorDown_p,inRemoveOld);
 	
+	/*#1316
 	//ファイルイメージ
 	LoadImageFile(useCustom,customskinfolder,"iconSwDocumentOutline.png",kImageID_iconSwFile,inRemoveOld);
 	
 	//スクロールバー内ボタン
 	LoadImageFile(useCustom,customskinfolder,"frameScrlbarTop_106.png",kImageID_frameScrlbarTop_106,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"framescrlbartop_107.png",kImageID_frameScrlbarTop_107,inRemoveOld);
+	*/
 	
 	//サイドバータイトルアイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_P.png",kImageID_iconSwBox_P,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_R.png",kImageID_iconSwBox_R,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_S.png",kImageID_iconSwBox_S,inRemoveOld);
+	LoadImageFile(useCustom,customskinfolder,"iconSwBox_ProjectFolder.png", kImageID_iconSwBox_ProjectFolder,inRemoveOld);
+	LoadImageFile(useCustom,customskinfolder,"iconSwBox_RecentlyOpened.png", kImageID_iconSwBox_RecentlyOpened,inRemoveOld);
+	LoadImageFile(useCustom,customskinfolder,"iconSwBox_SameFolder.png", kImageID_iconSwBox_SameFolder,inRemoveOld);
+	LoadImageFile(useCustom,customskinfolder,"iconSwBox_Remote.png", kImageID_iconSwBox_Remote,inRemoveOld);//#1316
 	LoadImageFile(useCustom,customskinfolder,"iconSwTree.png",kImageID_iconSwTree,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"iconSwList.png",kImageID_iconSwList,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"iconSwMarkerPen.png",kImageID_iconSwMarkerPen,inRemoveOld);
@@ -816,6 +820,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"iconSwShow.png",kImageID_iconSwShow,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"iconSwDocument.png",kImageID_iconSwDocument,inRemoveOld);
 	
+	/*#1316
 	//タブ背景
 	LoadImageFile(useCustom,customskinfolder,"bgTabBar_1.png",kImageID_Tab0,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"bgTabBar_2.png",kImageID_Tab1,inRemoveOld);
@@ -845,6 +850,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"tabOther_h_1.png",kImageID_tabOther_h_1,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"tabOther_h_2.png",kImageID_tabOther_h_2,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"tabOther_h_3.png",kImageID_tabOther_h_3,inRemoveOld);
+	*/
 	//タブdirtyマーク
 	LoadImageFile(useCustom,customskinfolder,"tabDot.png",kImageID_tabDot,inRemoveOld);
 	
@@ -857,9 +863,10 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	
 	//フラグマーク等
 	LoadImageFile(useCustom,customskinfolder,"iconSwlFlag.png",kImageID_iconSwlFlag,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwlPin.png",kImageID_iconSwlPin,inRemoveOld);
+	//#1316 LoadImageFile(useCustom,customskinfolder,"iconSwlPin.png",kImageID_iconSwlPin,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"iconSwlParentPath.png",kImageID_iconSwlParentPath,inRemoveOld);
 	
+	/*#1316
 	//サブウインドウタイトルバー（フローティングウイン
 	LoadImageFile(useCustom,customskinfolder,"barSwTitleBarWithBorder_1.png",kImageID_SubWindowTitlebar_Floating0,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"barSwTitleBarWithBorder_2.png",kImageID_SubWindowTitlebar_Floating1,inRemoveOld);
@@ -869,6 +876,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_0.png",kImageID_SubWindowTitlebar_Overlay0,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_1.png",kImageID_SubWindowTitlebar_Overlay1,inRemoveOld);
 	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_2.png",kImageID_SubWindowTitlebar_Overlay2,inRemoveOld);
+	*/
 	
 	//サブウインドウクローズボタン
 	LoadImageFile(useCustom,customskinfolder,"barSwCloseButton_1.png",kImageID_barSwCloseButton_1,inRemoveOld);
@@ -911,8 +919,10 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile(useCustom,customskinfolder,"iconSwTool.png",kImageID_iconSwTool,inRemoveOld);
 	
 	LoadImageFile(useCustom,customskinfolder,"iconTbSeparateVertical.Template.pdf",kImageID_iconTbSeparateVertical,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconTbKeyRecord.Template.pdf",kImageID_iconTbKeyRecord,inRemoveOld);
+	LoadImageFile(useCustom,customskinfolder,"iconSwKeyRecord.png",kImageID_iconTbKeyRecord,inRemoveOld);
 	
+	//#1368
+	LoadImageFile(useCustom,customskinfolder,"swSwitchFunction.png",kImageID_swSwitchFunction,inRemoveOld);
 }
 
 /**
@@ -5372,7 +5382,7 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 		}
 	  case kMenuItemID_AddTextMarkerInFloating:
 		{
-			SPI_CreateFloatingSubWindow(kSubWindowType_TextMarker,0,200,180);
+			SPI_CreateFloatingSubWindow(kSubWindowType_TextMarker,0,300,180);//#1316 幅変更
 			break;
 		}
 	  case kMenuItemID_AddCandidateListInFloating:
@@ -5407,12 +5417,12 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 		}
 	  case kMenuItemID_AddKeyRecordInFloating:
 		{
-			SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,200,150);
+			SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,300,150);//#1316 幅変更
 			break;
 		}
 	  case kMenuItemID_AddKeyRecordInFloating_AndStart:
 		{
-			SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,200,150);
+			SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,300,150);//#1316 幅変更
 			SPI_StartRecord();
 			break;
 		}
@@ -12132,6 +12142,7 @@ void	AApp::SPI_GetSubWindowsFont( AText& outFontName, AFloatNumber& outFontSize 
 */
 AColor	AApp::SPI_GetSubWindowBackgroundColor( const ABool inActive ) const
 {
+	/*#1316
 	if( inActive == true )
 	{
 		return mSkinColor_SubWindowBackgroundColor;
@@ -12140,6 +12151,16 @@ AColor	AApp::SPI_GetSubWindowBackgroundColor( const ABool inActive ) const
 	{
 		return mSkinColor_SubWindowBackgroundColor;
 		//#1275 return mSkinColor_SubWindowBackgroundColorDeactive;
+	}
+	*/
+	//
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+	}
+	else
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("303030");
 	}
 }
 
@@ -12151,9 +12172,15 @@ void	AApp::SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID,
 									   AColor& outBoxColor1, AColor& outBoxColor2, AColor& outBoxColor3 ) const
 {
 	//ポップアップウインドウ以外の場合は、文字色：黒、ボックス：白
-	outLetterColor = mSkinColor_SubWindowBoxLetterColor;
+	outLetterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//#1316 mSkinColor_SubWindowBoxLetterColor;
 	outDropShadowColor = mSkinColor_SubWindowBoxLetterDropShadowColor;
-	AColor	boxBaseColor = mSkinColor_SubWindowBoxBackgroundColor;
+	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");//#1316 mSkinColor_SubWindowBoxBackgroundColor;
+	//
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		outLetterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+		boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+	}
 	//ポップアップウインドウの場合は、モード設定の文字色、背景色に従う
 	if( GetApp().SPI_GetSubWindowLocationType(inSubWindowID) == kSubWindowLocationType_Popup )
 	{
@@ -12203,7 +12230,15 @@ AColor	AApp::SPI_GetSubWindowRoundedRectBoxHoverColor() const
 */
 AColor	AApp::SPI_GetSubWindowLetterColor() const
 {
-	return mSkinColor_SubWindowLetterColor;
+	//#1316 return mSkinColor_SubWindowLetterColor;
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("303030");
+	}
+	else
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+	}
 }
 
 /**
@@ -12211,7 +12246,15 @@ AColor	AApp::SPI_GetSubWindowLetterColor() const
 */
 AColor	AApp::SPI_GetSideBarFrameColor() const
 {
-	return AColorWrapper::GetColorByHTMLFormatColor("b4b4b4");//"686b6e");
+	//#1316 return AColorWrapper::GetColorByHTMLFormatColor("b4b4b4");//"686b6e");
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("B4B4B4");
+	}
+	else
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("000000");
+	}
 }
 
 /**
@@ -12230,7 +12273,15 @@ AColor	AApp::SPI_GetSideBarEmptySpaceColor() const
 */
 AColor	AApp::SPI_GetSubWindowHeaderBackgroundColor() const
 {
-	return mSkinColor_SubWindowHeaderBackgroundColor;
+	//#1316 return mSkinColor_SubWindowHeaderBackgroundColor;
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+	}
+	else
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("303030");
+	}
 }
 
 /**
@@ -12246,7 +12297,15 @@ AColor	AApp::SPI_GetSubWindowHeaderLetterColor() const
 */
 AColor	AApp::SPI_GetSubWindowTitlebarTextColor() const
 {
-	return mSkinColor_SubWindowTitlebarTextColor;
+	//#1316 return mSkinColor_SubWindowTitlebarTextColor;
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("303030");
+	}
+	else
+	{
+		return AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+	}
 }
 
 /**
@@ -13590,7 +13649,7 @@ void	AApp::SPI_SelectOrCreateTextMarkerWindow()
 		}
 	}
 	//上記で見つからなければ、生成
-	SPI_CreateFloatingSubWindow(kSubWindowType_TextMarker,0,200,180);
+	SPI_CreateFloatingSubWindow(kSubWindowType_TextMarker,0,300,180);//#1316 幅変更
 }
 
 /**
@@ -14631,7 +14690,7 @@ void	AApp::SPI_ShowKeyRecordWindow()
 {
 	if( SPI_FindKeyRecordWindow() == kObjectID_Invalid )
 	{
-		SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,200,150);
+		SPI_CreateFloatingSubWindow(kSubWindowType_KeyRecord,0,300,150);//#1316 幅変更
 	}
 }
 
