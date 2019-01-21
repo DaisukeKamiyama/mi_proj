@@ -1149,7 +1149,7 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 	//Text描画
 	
 	status = ::ATSUDrawText(inTextLayout,kATSUFromTextBeginning, kATSUToTextEnd,
-				ConvertIntToFixed(x), -(ConvertIntToFixed(y)+ConvertIntToFixed(lineAscent)) );
+							ConvertIntToFixed(x), -(ConvertIntToFixed(y)+ConvertIntToFixed(lineAscent)) );
 	
 	::CGContextRestoreGState(mContextRef);
 	/*test
@@ -1183,12 +1183,12 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 	OSStatus	status = noErr;
 	
 	//lineAscentは、ATSUGetUnjustifiedBounds()で取得すると、表示する文字によってascentが変化するので、下記で取得。
-	ANumber	lineHeight,lineAscent;
+	AFloatNumber	lineHeight,lineAscent;//#1316 ANumber→AFloatNumber
 	GetMetricsForDefaultTextProperty(lineHeight,lineAscent);
 	
 	//
-	ANumber	x = inDrawRect.left;
-	ANumber	y = inDrawRect.top;//#450
+	AFloatNumber	x = inDrawRect.left;//#1316 ANumber→AFloatNumber
+	AFloatNumber	y = inDrawRect.top;//#450 #1316 ANumber→AFloatNumber
 	if( inJustification != kJustification_Left )
 	{
 		CGFloat	ascent = 9, descent = 3, leading = 3;
@@ -1269,7 +1269,7 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 	
 	//Text描画
 	::CGContextSetTextMatrix(mContextRef, CGAffineTransformIdentity);
-	ANumber	texty = y+lineAscent;
+	AFloatNumber	texty = y+lineAscent;//#1316 ANumber→AFloatNumber
 	if( mVerticalMode == true )
 	{
 		//縦書きの場合ちょい下（左）になるようにする（とりあえず試行錯誤による調整・・・） #558
@@ -2675,6 +2675,7 @@ ABool	CUserPane::IsInLiveResize() const
 //イメージデータ
 AHashArray<AImageID>	gImageIDArray;
 AArray<NSImage*>	gImageArray;
+AArray<NSImage*>	gDarkImageArray;//#1316
 ATextArray	gImageArray_FilePath;//#1090
 ATextArray	gImageArray_Name;//#1090
 AArray<ANumber>	gImageArray_Width;//#1090
@@ -2692,6 +2693,7 @@ void	CUserPane::RegisterImageByFile( const AImageID inImageID, const AFileAcc& i
 	//Arrayに格納 #1090
 	gImageIDArray.Add(inImageID);
 	gImageArray.Add(nil);
+	gDarkImageArray.Add(nil);//#1316
 	gImageArray_FilePath.Add(filepath);
 	gImageArray_Name.Add(GetEmptyText());
 	gImageArray_Width.Add(0);
@@ -2706,6 +2708,7 @@ void	CUserPane::RegisterImageByName( const AImageID inImageID, const AText& inIm
 	//Arrayに格納 #1090
 	gImageIDArray.Add(inImageID);
 	gImageArray.Add(nil);
+	gDarkImageArray.Add(nil);//#1316
 	gImageArray_FilePath.Add(GetEmptyText());
 	gImageArray_Name.Add(inImageFileName);
 	gImageArray_Width.Add(0);
@@ -2762,6 +2765,14 @@ AIndex	CUserPane::LoadImage( const AImageID inImageID )
 			NSSize	size = [image size];
 			gImageArray_Width.Set(index,size.width);
 			gImageArray_Height.Set(index,size.height);
+			
+			//ダークモード用イメージ #1316
+			AText	darkImageFileName;
+			darkImageFileName.SetText(imageFileName);
+			darkImageFileName.AddCstring("_dark");
+			AStCreateNSStringFromAText	darkfilenamestr(darkImageFileName);
+			NSImage*	darkImage = [NSImage imageNamed:darkfilenamestr.GetNSString()];
+			gDarkImageArray.Set(index,darkImage);
 		}
 	}
 	return index;
@@ -2776,6 +2787,7 @@ void	CUserPane::UnregisterImage( const AImageID inImageID )
 	{
 		gImageIDArray.Delete1(index);
 		gImageArray.Delete1(index);
+		gDarkImageArray.Delete1(index);//#1316
 		gImageArray_FilePath.Delete1(index);//#1090
 		gImageArray_Name.Delete1(index);//#1090
 		gImageArray_Width.Delete1(index);//#1090
@@ -2792,6 +2804,15 @@ void	CUserPane::DrawImage( const AImageID inImageID, const ALocalPoint& inPoint,
 	//NSImage取得
 	AIndex	index = LoadImage(inImageID);
 	NSImage*	image = gImageArray.Get(index);
+	//#1316
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		NSImage*	darkImage = gDarkImageArray.Get(index);
+		if( darkImage != nil )
+		{
+			image = darkImage;
+		}
+	}
 	ANumber	imagewidth = gImageArray_Width.Get(index);//#1090 [image size].width;
 	ANumber	imageheight = gImageArray_Height.Get(index);//#1090 [image size].height;
 	//描画サイズ取得（引数指定がなければイメージサイズを使用）
@@ -3444,6 +3465,16 @@ ABool	CUserPane::IsRectInDrawUpdateRegion( const ALocalRect& inLocalRect ) const
 現在のTextPropertyでの行の高さ等の情報を取得
 */
 void	CUserPane::GetMetricsForDefaultTextProperty( ANumber& outLineHeight, ANumber& outLineAscent ) 
+{
+	if( mLineHeight == 0 )
+	{
+		UpdateMetrics();
+	}
+	outLineHeight = mLineHeight;
+	outLineAscent = mLineAscent;
+}
+//#1316
+void	CUserPane::GetMetricsForDefaultTextProperty( AFloatNumber& outLineHeight, AFloatNumber& outLineAscent ) 
 {
 	if( mLineHeight == 0 )
 	{
