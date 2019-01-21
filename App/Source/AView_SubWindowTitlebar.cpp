@@ -98,9 +98,25 @@ void	AView_SubWindowTitlebar::EVTDO_DoDraw()
 	{
 		//---------------オーバーレイ時---------------
 		
+		/* #1316
 		//タイトルバーImage描画
 		NVMC_DrawImageFlexibleWidth(kImageID_SubWindowTitlebar_Overlay0,kImageID_SubWindowTitlebar_Overlay1,kImageID_SubWindowTitlebar_Overlay2,
 					pt,localFrameRect.right-localFrameRect.left);
+		*/
+		NVMC_PaintRect(localFrameRect,GetApp().SPI_GetSubWindowHeaderBackgroundColor());
+		switch(GetApp().SPI_GetSubWindowLocationType(NVM_GetWindowConst().GetObjectID()))
+		{
+		  case kSubWindowLocationType_RightSideBar:
+			{
+				NVMC_FrameRect(localFrameRect,GetApp().SPI_GetSideBarFrameColor(),1.0,true,false,false,false,1.0);
+				break;
+			}
+		  case kSubWindowLocationType_LeftSideBar:
+			{
+				NVMC_FrameRect(localFrameRect,GetApp().SPI_GetSideBarFrameColor(),1.0,false,false,true,false,1.0);
+				break;
+			}
+		}
 		
 		//折りたたみ状態取得
 		ABool	collapsed = false;
@@ -159,8 +175,11 @@ void	AView_SubWindowTitlebar::EVTDO_DoDraw()
 	{
 		//---------------フローティング／ポップアップ時---------------
 		
+		/* #1316
 		NVMC_DrawImageFlexibleWidth(kImageID_SubWindowTitlebar_Floating0,kImageID_SubWindowTitlebar_Floating1,kImageID_SubWindowTitlebar_Floating2,
 					pt,localFrameRect.right-localFrameRect.left);
+		*/
+		NVMC_PaintRect(localFrameRect,GetApp().SPI_GetSubWindowHeaderBackgroundColor());
 		
 		//---------------クローズボタンイメージ描画---------------
 		{
@@ -192,10 +211,10 @@ void	AView_SubWindowTitlebar::EVTDO_DoDraw()
 	
 	//タイトルバーテキスト描画
 	ALocalRect	rect =	localFrameRect;
-	rect.top = 3;
-	rect.bottom = 17;
+	rect.top = 3.2;
+	rect.bottom = 17.2;
 	AColor	color = GetApp().SPI_GetSubWindowTitlebarTextColor();
-	NVMC_SetDropShadowColor(GetApp().SPI_GetSubWindowTitlebarTextDropShadowColor());
+	//#1316 NVMC_SetDropShadowColor(GetApp().SPI_GetSubWindowTitlebarTextDropShadowColor());
 	AJustification	justification = kJustification_Center;
 	ABool	titleJustificationLeft = (IsOverlay() == true );
 	if( titleJustificationLeft == true )
@@ -210,7 +229,7 @@ void	AView_SubWindowTitlebar::EVTDO_DoDraw()
 	{
 		ALocalPoint	pt = {0};
 		pt.x = localFrameRect.left + kWidth_LeftMargin_Overlay + kWidth_FoldingTriangleIcon;
-		pt.y = localFrameRect.top+3;
+		pt.y = localFrameRect.top+2;//#1316 +3;
 		if( titleJustificationLeft == false )
 		{
 			pt.x = (localFrameRect.left+localFrameRect.right)/2-NVMC_GetDrawTextWidth(mTitleText)/2 - 18;
@@ -613,9 +632,9 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 			
 			//描画色設定
 			AColor	letterColor = kColor_Black;
-			AColor	dropShadowColor = kColor_White;
+			//#1316 AColor	dropShadowColor = kColor_White;
 			AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-			GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
+			GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
 			
 			//
 			switch( GetApp().SPI_GetSubWindowType(NVM_GetWindow().GetObjectID()) )
@@ -703,7 +722,7 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 			//右端以外をサイドバーフレーム色で描画
 			AColor	color = GetApp().SPI_GetSideBarFrameColor();
 			ABool	drawBottom = !(GetApp().SPI_IsSubWindowSideBarBottom(NVM_GetWindow().GetObjectID()));
-			NVMC_FrameRect(localFrameRect,color,1.0,true,true,false,drawBottom,1.0);
+			NVMC_FrameRect(localFrameRect,color,1.0,true,false,false,drawBottom,1.0);
 			break;
 		}
 		//左サイドバー
@@ -715,7 +734,7 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 			//左端以外をサイドバーフレーム色で描画
 			AColor	color = GetApp().SPI_GetSideBarFrameColor();
 			ABool	drawBottom = !(GetApp().SPI_IsSubWindowSideBarBottom(NVM_GetWindow().GetObjectID()));
-			NVMC_FrameRect(localFrameRect,color,1.0,false,true,true,drawBottom,1.0);
+			NVMC_FrameRect(localFrameRect,color,1.0,false,false,true,drawBottom,1.0);
 			break;
 		}
 	}
