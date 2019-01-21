@@ -475,10 +475,10 @@ void	AView_CallGraf::DrawItem( const ALocalRect& inLocalBoxRect,
 	
 	//描画色設定
 	AColor	letterColor = kColor_Black;
-	AColor	dropShadowColor = kColor_White;
+	//#1316 AColor	dropShadowColor = kColor_White;
 	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
-	NVMC_SetDropShadowColor(dropShadowColor);
+	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+	//#1316 NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//カテゴリ色取得
 	AColor	categoryColor = kColor_Black;//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowsBoxHeaderColor();//背景黒の場合も含めた色設計が難しいので、固定色 kColor_Black;
