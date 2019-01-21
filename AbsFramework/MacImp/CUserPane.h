@@ -326,6 +326,7 @@ class CUserPane: public AObjectArrayItem
 	AFloatNumber			GetDrawTextWidth( CTextDrawData& inTextDrawData ) ;
 	ABool					IsRectInDrawUpdateRegion( const ALocalRect& inLocalRect ) const;
 	void					GetMetricsForDefaultTextProperty( ANumber& outLineHeight, ANumber& outLineAscent ) ;
+	void					GetMetricsForDefaultTextProperty( AFloatNumber& outLineHeight, AFloatNumber& outLineAscent );//#1316
 	//win void					GetMousePoint( ALocalPoint& outLocalPoint ) ;
 	ALocalRect				GetDrawUpdateRect() const { return mCocoaDrawDirtyRect; }//#852
   private:
