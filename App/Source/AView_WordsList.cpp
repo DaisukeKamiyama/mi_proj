@@ -266,7 +266,7 @@ void	AView_WordsList::EVTDO_DoDraw()
 		//ヘッダ文字色
 		AColor	headerLetterColor = letterColor;
 		//ヘッダ色取得
-		AColor	headercolor = GetApp().SPI_GetSubWindowsBoxHeaderColor();;//青色固定（カテゴリ色にするのは、背景黒系の色などで色彩設計が難しいので） mHeaderColorArray.Get(i);
+		AColor	headercolor = kColor_Blue;//#1316 ★機能復活するならダークモード対応必要 GetApp().SPI_GetSubWindowsBoxHeaderColor();;//青色固定（カテゴリ色にするのは、背景黒系の色などで色彩設計が難しいので） mHeaderColorArray.Get(i);
 		if( mClickedArray.Get(i) == true )
 		{
 			headercolor = kColor_Gray;
@@ -349,7 +349,7 @@ void	AView_WordsList::EVTDO_DoDraw()
 		
 		//InfoText（見出し）フォント設定
 		{
-			NVMC_SetDefaultTextProperty(fontname,fontsize-0.5,GetApp().SPI_GetSubWindowBoxFunctionNameColor(),kTextStyle_Bold,true);
+			NVMC_SetDefaultTextProperty(fontname,fontsize-0.5,kColor_Black,kTextStyle_Bold,true);//#1316 ★機能復活するならダークモード対応必要 
 			ANumber	infotextfontheight = 9, infotextfontascent = 7;
 			NVMC_GetMetricsForDefaultTextProperty(infotextfontheight,infotextfontascent);
 			//関数名取得
@@ -401,7 +401,7 @@ void	AView_WordsList::EVTDO_DoDraw()
 				{
 					//ワード一致箇所が現在行の中にあれば、赤色にする
 					textDrawData.attrPos.Add(textDrawData.OriginalTextArray_UnicodeOffset.Get(s));
-					textDrawData.attrColor.Add(GetApp().SPI_GetSubWindowBoxMatchedColor());
+					textDrawData.attrColor.Add(kColor_Red);//#1316 ★機能復活するならダークモード対応必要GetApp().SPI_GetSubWindowBoxMatchedColor());
 					textDrawData.attrStyle.Add(kTextStyle_Bold);
 					textDrawData.attrPos.Add(textDrawData.OriginalTextArray_UnicodeOffset.Get(e));
 					textDrawData.attrColor.Add(letterColor);
