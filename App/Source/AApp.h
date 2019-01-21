@@ -165,6 +165,7 @@ class AApp : public AApplication
 										  const AConstCharPtr inFilename, const AImageID inImageID, const ABool inRemoveOld );
 	void					LoadColors( const ABool inUseCustom ,const AFileAcc& inCustomFolder );
 	
+	/*#1316
 	//skin色取得
   public:
 	AColor					SPI_GetTabLetterColor() const { return mSkinColor_TabLetter; }
@@ -178,8 +179,10 @@ class AApp : public AApplication
 	AColor					SPI_GetSubWindowsBoxHeaderColor() const { return mSkinColor_SubWindowBoxHeaderColor; }
 	AColor					SPI_GetSubWindowBoxFunctionNameColor() const { return mSkinColor_SubWindowBoxFunctionNameColor; }
 	AColor					SPI_GetSubWindowBoxMatchedColor() const { return mSkinColor_SubWindowBoxMatchedColor; }
-	AColor					SPI_GetFileListDiffColor() const { return mSkinColor_FileListDiffColor; }
-	AColor					SPI_GetJumpListDiffColor() const { return mSkinColor_JumpListDiffColor; }
+	*/
+	//#1316 AColor					SPI_GetFileListDiffColor() const { return mSkinColor_FileListDiffColor; }
+	//#1316 AColor					SPI_GetJumpListDiffColor() const { return mSkinColor_JumpListDiffColor; }
+	/*#1316
   private:
 	AColor								mSkinColor_TabLetter;
 	AColor								mSkinColor_TabLetterTopmost;
@@ -204,7 +207,7 @@ class AApp : public AApplication
 	AColor								mSkinColor_SubWindowBoxMatchedColor;
 	AColor								mSkinColor_FileListDiffColor;
 	AColor								mSkinColor_JumpListDiffColor;
-	
+	*/
 	//バージョン2.1の標準添付ツールバー名称リスト
   public:
 	ABool					SPI_IsV2ToolbarItemNameToHide( const AText& inName ) const;
@@ -1222,16 +1225,16 @@ private:
 	void					SPI_GetSubWindowsFont( AText& outFontName, AFloatNumber& outFontSize ) const;
 	AColor					SPI_GetSubWindowBackgroundColor( const ABool inActive ) const;
 	void					SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID, 
-													 AColor& outLetterColor, AColor& outDropShadowColor, AColor& outBoxColor1, AColor& outBoxColor2, AColor& outBoxColor3 ) const;
+							AColor& outLetterColor, /*#1316 AColor& outDropShadowColor,*/ AColor& outBoxColor1, AColor& outBoxColor2, AColor& outBoxColor3 ) const;
 	//AColor					SPI_GetSideBarEmptySpaceColor() const;
 	AColor					SPI_GetSubWindowRoundedRectBoxSelectionColor( const AWindowID inSubWindowID ) const;
 	AColor					SPI_GetSubWindowRoundedRectBoxHoverColor() const;
 	AColor					SPI_GetSubWindowLetterColor() const;
 	AColor					SPI_GetSideBarFrameColor() const;
 	AColor					SPI_GetSubWindowHeaderBackgroundColor() const;
-	AColor					SPI_GetSubWindowHeaderLetterColor() const;
+	//#1316 AColor					SPI_GetSubWindowHeaderLetterColor() const;
 	AColor					SPI_GetSubWindowTitlebarTextColor() const;
-	AColor					SPI_GetSubWindowTitlebarTextDropShadowColor() const;
+	//#1316 AColor					SPI_GetSubWindowTitlebarTextDropShadowColor() const;
 	AColor					SPI_GetSubWindowTitlebarButtonHoverColor() const;
 	AFloatNumber			SPI_GetPopupWindowAlpha() const;
 	AFloatNumber			SPI_GetFloatingWindowAlpha() const;
