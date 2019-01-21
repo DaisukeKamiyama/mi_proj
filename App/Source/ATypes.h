@@ -989,21 +989,23 @@ enum
 //==================ImageID==================
 //
 const AImageID	kImageID_iconSwlFlag					= 102;
-const AImageID	kImageID_iconSwlPin						= 103;
+//#1316 const AImageID	kImageID_iconSwlPin						= 103;
 const AImageID	kImageID_iconSwlParentPath				= 104;
+/*#1316
 const AImageID	kImageID_SubWindowTitlebar_Floating0	= 110;
 const AImageID	kImageID_SubWindowTitlebar_Floating1	= 111;
 const AImageID	kImageID_SubWindowTitlebar_Floating2	= 112;
 const AImageID	kImageID_SubWindowTitlebar_Overlay0		= 120;
 const AImageID	kImageID_SubWindowTitlebar_Overlay1		= 121;
 const AImageID	kImageID_SubWindowTitlebar_Overlay2		= 122;
+*/
 
 //
 const AImageID	kImageID_barSwCloseButton_1				= 130;
 const AImageID	kImageID_barSwCloseButton_p				= 131;
 const AImageID	kImageID_barSwCloseButton_h				= 132;
 
-
+/*#1316
 //
 const AImageID	kImageID_Tab0					= 200;
 const AImageID	kImageID_Tab1					= 201;
@@ -1039,6 +1041,7 @@ const AImageID	kImageID_tabNext_h_3			= 231;
 const AImageID	kImageID_tabOther_h_1			= 232;
 const AImageID	kImageID_tabOther_h_2			= 233;
 const AImageID	kImageID_tabOther_h_3			= 234;
+*/
 
 //
 const AImageID	kImageID_tabDot					= 235;
@@ -1052,6 +1055,7 @@ const AImageID	kImageID_iconPnRight			= 238;
 const AImageID	kImageID_iconPnOption			= 239;
 const AImageID	kImageID_iconPnHandle			= 240;
 
+/*#1316
 //
 const AImageID	kImageID_bg32MacroBar_1			= 250;
 const AImageID	kImageID_bg32MacroBar_2			= 251;
@@ -1062,7 +1066,7 @@ const AImageID	kImageID_bg32MacroBar_6			= 255;
 const AImageID	kImageID_bg32MacroBar_7			= 256;
 const AImageID	kImageID_bg32MacroBar_8			= 257;
 const AImageID	kImageID_bg32MacroBar_9			= 258;
-
+*/
 const AImageID	kImageID_RectButton0			= 300;
 const AImageID	kImageID_RectButton1			= 301;
 const AImageID	kImageID_RectButton2			= 302;
@@ -1102,9 +1106,9 @@ const AImageID	kImageID_iconTbSeparateVertical = 380;
 const AImageID	kImageID_iconTbKeyRecord = 381;
 
 //サイドバータイトルアイコン
-const AImageID	kImageID_iconSwBox_P				= 1101;
-const AImageID	kImageID_iconSwBox_R				= 1102;
-const AImageID	kImageID_iconSwBox_S				= 1103;
+const AImageID	kImageID_iconSwBox_ProjectFolder	= 1101;
+const AImageID	kImageID_iconSwBox_RecentlyOpened	= 1102;
+const AImageID	kImageID_iconSwBox_SameFolder		= 1103;
 const AImageID	kImageID_iconSwBox_Remote			= 1104;
 const AImageID	kImageID_iconSwTree					= 1105;
 const AImageID	kImageID_iconSwList					= 1106;
@@ -1121,6 +1125,9 @@ const AImageID	kImageID_iconSwShow					= 1203;
 const AImageID	kImageID_iconSwDocument				= 1204;
 
 const AImageID	kImageID_testblack				= 1205;
+
+//ファイルリストサブウインドウ機能切り替えボタン
+const AImageID	kImageID_swSwitchFunction			= 1301;//#1368
 
 //ABase.h に移動const AIconID	kIconID_NoIcon					= 101;
 const AIconID	kIconID_Mi_Batsu				= 101;
