@@ -40,7 +40,7 @@ const AFloatNumber	kListFrameDefaultFontSize = 9.0;
 //リスト項目アイコンの幅、マージン
 const ANumber	kImageIconWidth = 16;
 const ANumber	kImageIconLeftMargin = 4;
-const ANumber	kImageIconTopMargin = 0;
+const ANumber	kImageIconTopMargin = 1;//#1316 0;
 
 //アウトライン１レベル辺りの幅
 const AFloatNumber	kOutlineWidthPerLevel = 0.5;
@@ -364,6 +364,7 @@ void	AView_List::EVTDO_DoDraw()
 	ALocalRect	localFrame;
 	NVM_GetLocalViewRect(localFrame);
 	
+	/*#1316 AView_Listでは背景描画しない。（Frame有りの場合はFrameで背景描画、無しの場合は透明）
 	//==================背景データ取得（このviewでは背景描画しない）==================
 	
 	//背景色取得
@@ -372,6 +373,7 @@ void	AView_List::EVTDO_DoDraw()
 	{
 		backgroundColor = mBackgroundColorDeactivate;
 	}
+	*/
 	//背景描画
 	//NVMC_EraseRect(localFrame);//Windows用（透明色描画）
 	//NVMC_PaintRect(localFrame,backgroundColor,mTransparency);//#291
@@ -389,7 +391,8 @@ void	AView_List::EVTDO_DoDraw()
 		hoverLocalRect.top		+= 2;
 		hoverLocalRect.right	-= 2;
 		hoverLocalRect.bottom	-= 2;
-		NVMC_FrameRoundedRect(hoverLocalRect,kColor_Blue,0.3,3,true,true,true,true,true,true,true,true,1.0);
+		NVMC_FrameRoundedRect(hoverLocalRect,AColorWrapper::GetControlAccentColor(),0.7,
+							  3,true,true,true,true,true,true,true,true,1.0);
 	}
 	
 	//==================各行描画==================
@@ -442,6 +445,13 @@ void	AView_List::EVTDO_DoDraw()
 		//==================Selection描画==================
 		if( selected == true )//#237
 		{
+			AFloatNumber	alpha = 0.7;
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				alpha = 0.4;
+			}
+			NVMC_PaintRect(rowLocalRect,AColorWrapper::GetControlAccentColor(),alpha);
+			/*#1316
 			//選択色取得
 			AColor	selColor1 = kColor_Blue, selColor2 = kColor_Blue, selColor3 = kColor_Blue;
 			if( NVM_GetWindow().NVI_IsWindowActive() == true ) 
@@ -462,8 +472,8 @@ void	AView_List::EVTDO_DoDraw()
 			//選択部分の最上部1pixelを描画
 			ALocalRect	rect = rowLocalRect;
 			rect.bottom = rect.top+1;
-			NVMC_PaintRect(rect,selColor1,1.0);
-			
+			NVMC_PaintRect(rect,selColor,1.0);
+			*/
 		}
 		
 		/*
@@ -592,7 +602,7 @@ void	AView_List::EVTDO_DoDraw()
 			//描画領域取得
 			ALocalRect	drawRect = {0};
 			NVM_GetLocalRectFromImageRect(cellImageRect,drawRect);
-			drawRect.top += mRowMargin/2 -1;
+			drawRect.top += mRowMargin/2 + 0.1;//#1316 -1;
 			drawRect.left += kCellLeftMargin;
 			drawRect.right -= kCellRightMargin;
 			drawRect.bottom += 32;
@@ -635,12 +645,54 @@ void	AView_List::EVTDO_DoDraw()
 					text.InsertText(0,t);
 					*/
 					//色取得
-					AColor	color = kColor_Black;
+					AColor	color = kColor_List_Normal;//#1316 kColor_Black;
 					mDataBase.GetData_ColorArray(kColor,DBRowIndex,color);//#695
+					//#1316
+					//kColor_List_カラーをダークモードかどうかに従って、実際の色に変換
+					if( AColorWrapper::CompareColor(color,kColor_List_Normal) == true )
+					{
+						if( selected == true )
+						{
+							color = kColor_White;
+						}
+						else
+						{
+							color = AColorWrapper::GetColorByHTMLFormatColor("303030");
+							if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+							{
+								color = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+							}
+						}
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Blue) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("0000FF");
+						if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+						{
+							color = AColorWrapper::GetColorByHTMLFormatColor("00C0FF");
+						}
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Red) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("FF0000");
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Pink) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("FF00C3");
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Gray) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("757575");
+					}
 					
 					//スタイル取得
 					ATextStyle	style = static_cast<ATextStyle>(mDataBase.GetData_NumberArray(kTextStyle,DBRowIndex));//#695
-					
+					//選択行はボールドに #1316
+					if( selected == true )
+					{
+						style |= kTextStyle_Bold;
+					}
+					/*#1316
 					if( selected == true )
 					{
 						//------------------選択行の場合------------------
@@ -659,6 +711,7 @@ void	AView_List::EVTDO_DoDraw()
 						//boldに設定
 						//#1089 style |= kTextStyle_Bold;
 					}
+					*/
 					//テキストプロパティ設定
 					NVMC_SetDefaultTextProperty(mFontName,mFontSize,color,style,true);
 					//ellipsisテキスト取得
@@ -684,8 +737,52 @@ void	AView_List::EVTDO_DoDraw()
 					//色取得
 					AColor	color = kColor_Black;
 					mDataBase.GetData_ColorArray(kColor,DBRowIndex,color);//#695
+					//#1316
+					//kColor_List_カラーをダークモードかどうかに従って、実際の色に変換
+					if( AColorWrapper::CompareColor(color,kColor_List_Normal) == true )
+					{
+						if( selected == true )
+						{
+							color = kColor_White;
+						}
+						else
+						{
+							color = AColorWrapper::GetColorByHTMLFormatColor("303030");
+							if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+							{
+								color = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+							}
+						}
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Blue) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("0000FF");
+						if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+						{
+							color = AColorWrapper::GetColorByHTMLFormatColor("00C0FF");
+						}
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Red) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("FF0000");
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Pink) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("FF00C3");
+					}
+					else if( AColorWrapper::CompareColor(color,kColor_List_Gray) == true )
+					{
+						color = AColorWrapper::GetColorByHTMLFormatColor("757575");
+					}
+					
 					//スタイル取得
 					ATextStyle	style = static_cast<ATextStyle>(mDataBase.GetData_NumberArray(kTextStyle,DBRowIndex));//#695
+					//選択行はボールドに #1316
+					if( selected == true )
+					{
+						style |= kTextStyle_Bold;
+					}
+					/*#1316
 					if( selected == true )//#237
 					{
 						//------------------選択行の場合------------------
@@ -704,6 +801,7 @@ void	AView_List::EVTDO_DoDraw()
 						//boldに設定
 						style |= kTextStyle_Bold;
 					}
+					*/
 					//テキスト描画
 					NVMC_DrawText(drawRect,text,color,style);
 					break;
@@ -719,9 +817,10 @@ void	AView_List::EVTDO_DoDraw()
 					}
 					ALocalRect	drawRect = {0};
 					NVM_GetLocalRectFromImageRect(cellImageRect,drawRect);
-					drawRect.top += mRowMargin/2 -1;//#232
+					drawRect.top += (drawRect.bottom-drawRect.top)/2 - 8;//#1316 mRowMargin/2 -1;
 					drawRect.left += kCellLeftMargin;
 					drawRect.right = drawRect.left + (drawRect.bottom-drawRect.top);
+					drawRect.bottom = drawRect.top + 16;//#1316
 					//#1012 NVMC_DrawIcon(drawRect,iconID,enabled,true);//#232
 					ALocalPoint	pt = {0};
 					pt.x = drawRect.left;
@@ -3196,14 +3295,26 @@ void	AView_ListFrame::NVIDO_DoDeleted()
 //描画要求時のコールバック(AView用)
 void	AView_ListFrame::EVTDO_DoDraw()
 {
+	//#1316
+	AColor	frameColor = AColorWrapper::GetColorByHTMLFormatColor("D0D0D0");
+	AColor	fillColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		frameColor = AColorWrapper::GetColorByHTMLFormatColor("505050");
+		fillColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("909090");
+	}
+	//
 	ALocalRect	localFrame;
 	NVM_GetLocalViewRect(localFrame);
-	NVMC_PaintRect(localFrame,kColor_White,1.0);
+	NVMC_PaintRect(localFrame,fillColor,1.0);
 	//ヘッダ描画
 	if( mHeaderEnable == true )
 	{
 		ALocalRect	headerRect = localFrame;
 		headerRect.bottom = headerRect.top + kHeaderHeight;
+		/*#1316
 		//Mac OSのリストヘッダに似せてgradient描画
 		ALocalRect	headerRect1 = headerRect;
 		headerRect1.bottom = headerRect.top + kHeaderHeight/2;
@@ -3211,8 +3322,17 @@ void	AView_ListFrame::EVTDO_DoDraw()
 		ALocalRect	headerRect2 = headerRect;
 		headerRect2.top = headerRect.top + kHeaderHeight/2;
 		NVMC_PaintRectWithVerticalGradient(headerRect2,kColor_Gray90Percent,kColor_White,1.0,1.0);
+		*/
+		AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("ECECEC");//D9D9D9");
+		AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("ECECEC");//F7F7F7");
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("383838");//282828");
+			backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//"181818");
+		}
+		NVMC_PaintRectWithVerticalGradient(headerRect,backgroundStartColor,backgroundEndColor,1.0,1.0);
 		//フレーム描画
-		NVMC_FrameRect(headerRect,kListFrameColor,1.0);
+		NVMC_FrameRect(headerRect,frameColor);//#1316 kListFrameColor,1.0);
 		//
 		ANumber	x = 0;
 		for( AIndex i = 0; i < mColumnWidth.GetItemCount(); i++ )
@@ -3231,12 +3351,14 @@ void	AView_ListFrame::EVTDO_DoDraw()
 				drawRect.right = headerRect.right-1;
 			}
 			//タイトル描画
+			/*#1316
 			AColor	color = kColor_Black;
 			if( NVM_GetWindow().NVI_IsWindowActive() == false )
 			{
 				color = kColor_Gray;
 			}
-			NVMC_DrawText(drawRect,title,color,kTextStyle_Normal);
+			*/
+			NVMC_DrawText(drawRect,title,letterColor,kTextStyle_Normal);
 			
 			//
 			x += mColumnWidth.Get(i);
@@ -3248,16 +3370,18 @@ void	AView_ListFrame::EVTDO_DoDraw()
 				spt.y = headerRect.top;
 				ept.x = x - mHeaderOffset;
 				ept.y = headerRect.bottom-1;//win 080618
-				NVMC_DrawLine(spt,ept,kListFrameColor);
+				NVMC_DrawLine(spt,ept,frameColor);//#1316 kListFrameColor);
 			}
 		}
 	}
 	//
-	AColor	color = kListFrameColor;
+	AColor	color = frameColor;//#1316 kListFrameColor;
+	/*#1316
 	if( NVM_GetWindow().NVI_IsWindowActive() == false )
 	{
 		color = kColor_Gray80Percent;
 	}
+	*/
 	if( mFocused == true )
 	{
 		AColorWrapper::GetHighlightColor(color);
