@@ -117,9 +117,15 @@ void	AView_KeyToolList::EVTDO_DoDraw()
 	AText	fontname;
 	AFloatNumber	fontsize = 9.0;
 	GetApp().SPI_GetSubWindowsFont(fontname,fontsize);
+	//#1316
+	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+	{
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+	}
 	//
 	ANumber	viewwidth = NVI_GetViewWidth();
-	NVMC_SetDefaultTextProperty(fontname,fontsize,kColor_Black,kTextStyle_Normal,true);
+	NVMC_SetDefaultTextProperty(fontname,fontsize,letterColor,kTextStyle_Normal,true);//#1316
 	
 	//=========================各項目毎ループ=========================
 	//
@@ -160,7 +166,7 @@ void	AView_KeyToolList::EVTDO_DoDraw()
 		ALocalRect	textRect = drawRect;
 		//テキスト描画
 		//NVMC_DrawText(textRect,drawRect,textDrawData);
-		NVMC_DrawText(textRect,infotext,kColor_Black,textstyle);
+		NVMC_DrawText(textRect,infotext,letterColor,textstyle);//#1316
 	}
 }
 
