@@ -42,12 +42,13 @@ AView_Frame
 @param inContentControlID 中に表示するViewのControlID
 */
 AView_Frame::AView_Frame( const AWindowID inWindowID, const AControlID inID, const AControlID inContentControlID ) 
-		: AView(inWindowID,inID), mContentControlID(inContentControlID), 
-		mBackgroundColor(kColor_White), mFrameColor(kColor_Gray), mFrameColorDeactive(kColor_Gray70Percent)
+		: AView(inWindowID,inID), mContentControlID(inContentControlID)
+//#1316 ,mBackgroundColor(kColor_White), mFrameColor(kColor_Gray), mFrameColorDeactive(kColor_Gray70Percent)
 		,mFocused(false)//#135
-		,mEnableFrameBackgroundColor(false),mFrameBackgroundColor(kColor_White)//win
-,mEnableFocusRing(true), mFrameViewType(kFrameViewType_Normal) //#798 #725
-,mBackgroundTransparency(1.0)//#688
+//#1316		,mEnableFrameBackgroundColor(false),mFrameBackgroundColor(kColor_White)//win
+,mEnableFocusRing(true), mFrameViewType(/*#1316 kFrameViewType_Normal*/kFrameViewType_ToolTip) //#798 #725
+//#1316 ,mBackgroundTransparency(1.0)//#688
+,mExistText(false)//#1316
 {
 }
 
@@ -99,134 +100,103 @@ void	AView_Frame::EVTDO_DoDraw()
 	ALocalRect	localFrameRect;
 	NVM_GetLocalViewRect(localFrameRect);
 	
-	//==============背景描画==============
-	
-	//全体を背景色消去 win
-	if( mEnableFrameBackgroundColor == false )
-	{
-		NVMC_EraseRect(localFrameRect);
-	}
-	else
-	{
-		NVMC_PaintRect(localFrameRect,mFrameBackgroundColor);
-	}
-	//
-	AColor	framecolor = mFrameColor;
-	if( NVM_GetWindow().NVI_IsWindowActive() == false )
-	{
-		framecolor = mFrameColorDeactive;
-	}
-	//Disable時はDeactive色にする
-	if( NVI_GetEnabled() == false )
-	{
-		framecolor = mFrameColorDeactive;
-	}
-#if IMPLEMENTATION_FOR_WINDOWS
-	//win
-	if( mFocused == true && mEnableFocusRing == true )//#798
-	{
-		AColorWrapper::GetHighlightColor(framecolor);
-	}
-#endif
 	//#135
 	ALocalRect	realFrameRect = localFrameRect;
 	realFrameRect.left		+= kFocusWidth;
 	realFrameRect.right		-= kFocusWidth;
 	realFrameRect.top		+= kFocusWidth;
 	realFrameRect.bottom	-= kFocusWidth;
-	//背景描画
-	NVMC_PaintRect(realFrameRect,mBackgroundColor,mBackgroundTransparency);
 	
 	//==============フレーム描画==============
 	
 	switch(mFrameViewType)
 	{
-	  case kFrameViewType_Normal:
+		//tool tipの場合
+	  case kFrameViewType_ToolTip://#1316 kFrameViewType_Normal:
 		{
-			NVMC_FrameRect(realFrameRect,framecolor);
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+			AColor	frameColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+				frameColor = AColorWrapper::GetColorByHTMLFormatColor("404040");
+			}
+			NVMC_PaintRect(realFrameRect,backgroundColor);
+			NVMC_FrameRect(realFrameRect,frameColor);
 			break;
 		}
 		//edit boxの場合
 	  case kFrameViewType_EditBox:
 		{
+			//背景描画
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+			}
+			NVMC_PaintRect(realFrameRect,backgroundColor);
 			//コントロールがenableの場合のみフレーム描画
 			if( NVI_GetEnabled() == true )
 			{
-				//Mac OS X 10.7に近いフレーム表示
-				//フレーム
-				NVMC_FrameRect(realFrameRect,AColorWrapper::GetColorByHTMLFormatColor("9e9e9e"));
-				ALocalPoint	spt = {0}, ept = {0};
-				//左シャドウ
-				spt.x = realFrameRect.left+1;
-				spt.y = realFrameRect.top +1;
-				ept.x = realFrameRect.left+1;
-				ept.y = realFrameRect.bottom-2;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("f7f7f7"));
-				//右シャドウ
-				spt.x = realFrameRect.right-2;
-				spt.y = realFrameRect.top+1;
-				ept.x = realFrameRect.right-2;
-				ept.y = realFrameRect.bottom-2;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("f7f7f7"));
-				//下シャドウ
-				spt.x = realFrameRect.left+1;
-				spt.y = realFrameRect.bottom-2;
-				ept.x = realFrameRect.right-3;
-				ept.y = realFrameRect.bottom-2;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("fdfdfd"));
-				//上シャドウ
-				ALocalRect	r = realFrameRect;
-				r.left		+= 1;
-				r.right		-= 1;
-				r.top		+= 1;
-				r.bottom	= r.top+2;
-				NVMC_PaintRectWithVerticalGradient(r,AColorWrapper::GetColorByHTMLFormatColor("e0e0e0"),
-													 AColorWrapper::GetColorByHTMLFormatColor("f8f8f8"),1.0,1.0);
-				/*
-				ALocalPoint	spt = {0}, ept = {0};
-				//上線
-				spt.x = realFrameRect.left;
-				spt.y = realFrameRect.top;
-				ept.x = realFrameRect.right-1;
-				ept.y = realFrameRect.top;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("c1c1c1"));
-				//左線
-				spt.x = realFrameRect.left;
-				spt.y = realFrameRect.top+1;
-				ept.x = realFrameRect.left;
-				ept.y = realFrameRect.bottom-1;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("c1c1c1"));
-				//右線
-				spt.x = realFrameRect.right-1;
-				spt.y = realFrameRect.top +1;
-				ept.x = realFrameRect.right-1;
-				ept.y = realFrameRect.bottom-1;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("c1c1c1"));
-				//下線
-				spt.x = realFrameRect.left;
-				spt.y = realFrameRect.bottom-1;
-				ept.x = realFrameRect.right-1;
-				ept.y = realFrameRect.bottom-1;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("c1c1c1"));
-				//上シャドウ
-				spt.x = realFrameRect.left+1;
-				spt.y = realFrameRect.top+1;
-				ept.x = realFrameRect.right-2;
-				ept.y = realFrameRect.top+1;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("d4d4d4"),0.8);
-				*/
-				
+				if( AApplication::GetApplication().NVI_IsDarkMode() == false )
+				{
+					NVMC_FrameRect(realFrameRect,AColorWrapper::GetColorByHTMLFormatColor("B1B1B1"));
+					ALocalRect	frameRect2 = realFrameRect;
+					frameRect2.left += 1;
+					frameRect2.right -= 1;
+					frameRect2.top += 1;
+					frameRect2.bottom -= 1;
+					NVMC_FrameRect(frameRect2,AColorWrapper::GetColorByHTMLFormatColor("F0F0F0"));
+				}
+				else
+				{
+					NVMC_FrameRect(realFrameRect,AColorWrapper::GetColorByHTMLFormatColor("434343"));
+					ALocalRect	frameRect2 = realFrameRect;
+					frameRect2.bottom = realFrameRect.top + 1;
+					NVMC_FrameRect(frameRect2,AColorWrapper::GetColorByHTMLFormatColor("4A4A4A"));
+					ALocalRect	frameRect3 = realFrameRect;
+					frameRect3.top = realFrameRect.top + 1;
+					frameRect3.bottom = realFrameRect.top + 2;
+					NVMC_FrameRect(frameRect3,AColorWrapper::GetColorByHTMLFormatColor("383838"));
+					ALocalRect	frameRect4 = realFrameRect;
+					frameRect4.top = realFrameRect.bottom - 2;
+					frameRect4.bottom = realFrameRect.bottom - 1;
+					NVMC_FrameRect(frameRect4,AColorWrapper::GetColorByHTMLFormatColor("404040"));
+					ALocalRect	frameRect5 = realFrameRect;
+					frameRect5.top = realFrameRect.bottom - 1;
+					NVMC_FrameRect(frameRect5,AColorWrapper::GetColorByHTMLFormatColor("666666"));
+				}
 			}
 			break;
 		}
 		//filter boxの場合
 	  case kFrameViewType_FilterBox:
 		{
+			//
+			AColor	frameColor = AColorWrapper::GetColorByHTMLFormatColor("D0D0D0");
+			AColor	fillColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				frameColor = AColorWrapper::GetColorByHTMLFormatColor("505050");
+				fillColor = AColorWrapper::GetColorByHTMLFormatColor("202020");
+			}
+			ALocalRect	rect = realFrameRect;
+			rect.left += 4;
+			rect.right -= 4;
+			rect.bottom -= 2;
+            AFloatNumber	r = 10.0;
+			if( mExistText == true )
+			{
+				NVMC_PaintRoundedRect(rect,fillColor,fillColor,
+									  kGradientType_None,1.0,1.0,r,true,true,true,true);
+			}
+			NVMC_FrameRoundedRect(rect,frameColor,1.0,r,true,true,true,true,true,true,true,true,1.0);
 			//虫眼鏡アイコン
 			{
-				ALocalPoint	pt = {realFrameRect.left + 3, 6};
+				ALocalPoint	pt = {rect.left + 4, 6};
 				NVMC_DrawImage(kImageID_iconSwSearch,pt);
 			}
+			/*#1316
 			//上の線描画
 			{
 				ALocalPoint	spt = {0}, ept = {0};
@@ -234,7 +204,7 @@ void	AView_Frame::EVTDO_DoDraw()
 				spt.y = realFrameRect.top;
 				ept.x = realFrameRect.right-1;
 				ept.y = realFrameRect.top;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("bbc6d2"));//"4a91d5"));//"bbc6d2"));
+				NVMC_DrawLine(spt,ept,frameColor);//#1316 AColorWrapper::GetColorByHTMLFormatColor("bbc6d2"));//"4a91d5"));//"bbc6d2"));
 			}
 			//下の線描画
 			{
@@ -243,13 +213,20 @@ void	AView_Frame::EVTDO_DoDraw()
 				spt.y = realFrameRect.bottom-1;
 				ept.x = realFrameRect.right-1;
 				ept.y = realFrameRect.bottom-1;
-				NVMC_DrawLine(spt,ept,AColorWrapper::GetColorByHTMLFormatColor("bbc6d2"));//"4a91d5"));//"bbc6d2"));
+				NVMC_DrawLine(spt,ept,frameColor);//#1316 AColorWrapper::GetColorByHTMLFormatColor("bbc6d2"));//"4a91d5"));//"bbc6d2"));
 			}
+			*/
 			break;
 		}
 		//フレーム描画無し
 	  case kFrameViewType_NoFrameDraw:
 		{
+			AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+			if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+			{
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+			}
+			NVMC_PaintRect(realFrameRect,backgroundColor);
 			break;
 		}
 	}
@@ -276,25 +253,36 @@ void	AView_Frame::EVTDO_DoDraw()
 @param inFrameColor 枠色
 @param inFrameColorDeactive deactivate時の枠色
 */
+/*#1316
 void	AView_Frame::SPI_SetColor( const AColor inBackColor, const AColor inFrameColor, const AColor inFrameColorDeactive,
 		const AFloatNumber inTransparency )
 {
-	//
 	mBackgroundColor = inBackColor;
 	mFrameColor = inFrameColor;
 	mFrameColorDeactive = inFrameColorDeactive;
 	mBackgroundTransparency = inTransparency;
+}
+*/
+
+/**
+EditBoxの中身のテキストが存在しているかどうかを設定
+*/
+void	AView_Frame::SPI_SetExistText( const ABool inExist )
+{
+	mExistText = inExist;
 }
 
 //win
 /**
 フレーム部分背景色設定
 */
+/*#1316
 void	AView_Frame::SPI_SetFrameBackgroundColor( const ABool inEnableFrameBackgroundColor, const AColor inColor )
 {
 	mEnableFrameBackgroundColor = inEnableFrameBackgroundColor;
 	mFrameBackgroundColor = inColor;
 }
+*/
 
 //#135
 /**
