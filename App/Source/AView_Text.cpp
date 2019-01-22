@@ -3504,6 +3504,12 @@ void	AView_Text::EVTDO_DoDraw()
 	//#1132 行がない部分にも描画するよう修正
 	if( drawMasume == true )
 	{
+		//#1316
+		AColor	masumeColor = kColor_Gray80Percent;
+		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+		{
+			masumeColor = kColor_Gray30Percent;
+		}
 		//行ごとのループ（最終行以降1000行までループ。ただし、frame外に出たらbreak）
 		for( AIndex lineIndex = startLineIndex; lineIndex < lineCount + 1000; lineIndex++ )
 		{
@@ -3545,7 +3551,7 @@ void	AView_Text::EVTDO_DoDraw()
 				imageept.y = imagespt.y + mLineHeight -1;//win 080618
 				NVM_GetLocalPointFromImagePoint(imagespt,spt);
 				NVM_GetLocalPointFromImagePoint(imageept,ept);
-				NVMC_DrawLine(spt,ept,kColor_Gray80Percent);
+				NVMC_DrawLine(spt,ept,masumeColor);
 			}
 			//
 			imagespt.x = lineImageRect.left;
@@ -3554,13 +3560,13 @@ void	AView_Text::EVTDO_DoDraw()
 			imageept.y = lineImageRect.top;//win 080618
 			NVM_GetLocalPointFromImagePoint(imagespt,spt);
 			NVM_GetLocalPointFromImagePoint(imageept,ept);
-			NVMC_DrawLine(spt,ept,kColor_Gray80Percent);
+			NVMC_DrawLine(spt,ept,masumeColor);
 			//
 			imagespt.y += mLineHeight;
 			imageept.y += mLineHeight;
 			NVM_GetLocalPointFromImagePoint(imagespt,spt);
 			NVM_GetLocalPointFromImagePoint(imageept,ept);
-			NVMC_DrawLine(spt,ept,kColor_Gray80Percent);
+			NVMC_DrawLine(spt,ept,masumeColor);
 		}
 	}
 	
@@ -3624,13 +3630,16 @@ void	AView_Text::EVTDO_DoDraw()
 					//
 					if( syntaxPartShouldShown == true )
 					{
+						//#1316
+						AColor	separatorColor = AColorWrapper::GetColorByHTMLFormatColor("f4edbb");
+						if( GetApp().NVI_IsDarkMode() == true )
+						{
+							separatorColor = AColorWrapper::GetColorByHTMLFormatColor("505050");
+						}
 						//文法パート区切り描画
 						ALocalRect	separatorRect = lineLocalRect;
 						separatorRect.bottom = separatorRect.top+2;
-						NVMC_PaintRectWithVerticalGradient(separatorRect,
-														   AColorWrapper::GetColorByHTMLFormatColor("f4edbb"),
-														   AColorWrapper::GetColorByHTMLFormatColor("f4edbb"),
-														   0.8,0.0);
+						NVMC_PaintRectWithVerticalGradient(separatorRect,separatorColor,separatorColor,0.8,0.0);
 						//文法パート名取得
 						AText	syntaxName;
 						syntaxDefinition.GetSyntaxPartName(syntaxPartIndex,syntaxName);
