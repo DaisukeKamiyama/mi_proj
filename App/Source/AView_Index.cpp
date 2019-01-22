@@ -245,6 +245,14 @@ void	AView_Index::EVTDO_DoDraw()
 				
 				//------------------選択行------------------
 				
+				//#1316
+				AFloatNumber	alpha = 0.7;
+				if( AApplication::GetApplication().NVI_IsDarkMode() == true )
+				{
+					alpha = 0.4;
+				}
+				NVMC_PaintRect(rowLocalRect,AColorWrapper::GetControlAccentColor(),alpha);
+				/*#1316
 				//選択色取得
 				AColor	selColor1 = kColor_Blue, selColor2 = kColor_Blue, selColor3 = kColor_Blue;
 				if( NVM_GetWindow().NVI_IsWindowActive() == true ) 
@@ -266,7 +274,7 @@ void	AView_Index::EVTDO_DoDraw()
 				ALocalRect	rect = rowLocalRect;
 				rect.bottom = rect.top+1;
 				NVMC_PaintRect(rect,selColor1,1.0);
-				
+				*/
 				//文字色は白色にする
 				color = kColor_White;
 			}
@@ -285,7 +293,8 @@ void	AView_Index::EVTDO_DoDraw()
 				rect.top		+= 2;
 				rect.right		-= 2;
 				rect.bottom		-= 2;
-				NVMC_FrameRoundedRect(rect,kColor_Blue,0.3,3,true,true,true,true,true,true,true,true,1.0);
+				NVMC_FrameRoundedRect(rect,AColorWrapper::GetControlAccentColor(),0.7,
+									  3,true,true,true,true,true,true,true,true,1.0);
 			}
 		}
 		
