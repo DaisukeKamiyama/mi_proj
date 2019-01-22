@@ -156,12 +156,13 @@ class AModePrefDB : public ADataBase
 	ANumber						GetModeData_Number( ADataID inID ) const;
 	AFloatNumber				GetModeData_FloatNumber( ADataID inID ) const;
 	void						GetModeData_Color( ADataID inID, AColor& outData ) const;
+	void						GetModeData_Color( ADataID inID, AColor& outData, const ABool inDarkMode ) const;//#1316
   private:
 	ABool						IsSameAsNormal( const ADataID inID ) const;
 	
 	//#889
   public:
-	void						ApplyFromColorScheme();
+	void						ApplyFromColorScheme( const AText& inSchemeName );//#1316
 	
 	//システムヘッダ #253
   public:
@@ -482,7 +483,7 @@ class AModePrefDB : public ADataBase
 		ABoolArray	tmpArray;
 		return mKeywordList.GetTypeTextByKeywordText(inKeyword,true,tmpArray,outType);
 	}
-	void						GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, ATextStyle& outTextStyle ) const;
+	void						GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, ATextStyle& outTextStyle, const ABool inDarkMode ) const;//#1316
 	void						GetKeywordCSVFileFromPath( const AText& inPath, AFileAcc& outFile ) const;
 	AItemCount					GetKeywordListItemCount() const { return mKeywordList.GetItemCount(); }//#1160
   private:
@@ -495,6 +496,9 @@ class AModePrefDB : public ADataBase
 	AArray<AColor>							mCategoryArray_Color;
 	AArray<AColor>							mCategoryArray_ImportColor;
 	AArray<AColor>							mCategoryArray_LocalColor;
+	AArray<AColor>							mCategoryArray_Color_Dark;//#1316
+	AArray<AColor>							mCategoryArray_ImportColor_Dark;//#1316
+	AArray<AColor>							mCategoryArray_LocalColor_Dark;//#1316
 	AArray<ATextStyle>						mCategoryArray_TextStyle;
 	AArray<ATextStyle>						mCategoryArray_MenuTextStyle;
 	AArray<ABool>							mCategoryArray_PriorToOtherColor;//R0195
@@ -538,12 +542,13 @@ class AModePrefDB : public ADataBase
   public:
 	void						GetSyntaxDefinitionCategoryColorByName( const AText& inName, 
 								AColor& outColor, AColor& outImportColor, AColor& outLocalColor, ATextStyle& outMenuTextStyle,
-								ATextStyle& outTextStyle ) const;//R0195 #844
+								ATextStyle& outTextStyle, const ABool inDarkMode ) const;//R0195 #844 #1316
 	void						GetLetterColorForState( const AIndex inStateIndex, AColor& outColor, ATextStyle& outStyle, ABool& outStateColorValid ) const;
 	void						UpdateSyntaxDefinitionStateColorArray();
   private:
 	//AIndex						FindOrAddSyntaxDefinitionCategoryData( const AText& inName );//B0000
 	AArray<AColor>							mSyntaxDefinitionStateColorArray;
+	AArray<AColor>							mSyntaxDefinitionStateColorArray_Dark;//#1316
 	AArray<ABool>							mSyntaxDefinitionStateColorValidArray;
 	AArray<ATextStyle>						mSyntaxDefinitionStateArray_TextStyle;//#844
 	
@@ -695,11 +700,11 @@ class AModePrefDB : public ADataBase
 	
 	//color scheme #889
   public:
-	void						UpdateColorScheme();
+	//#1316 void						UpdateColorScheme();
 	void						SaveLastColors();
 	void						ExportColors( const AFileAcc& inFile );
   private:
-	AColorSchemeDB							mColorSchemeDB;
+	//#1316 モード設定でカラースキームオブジェクトを保持する必要はないので削除 AColorSchemeDB							mColorSchemeDB;
 	
 	//自動インデントDisable設定 #997
   public:
