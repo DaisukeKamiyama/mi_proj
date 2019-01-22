@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
@@ -14,48 +14,49 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu autoenablesItems="NO" id="3">
             <items>
-                <menuItem title="Add Recently Open File List" image="iconSwBox_R" tag="5001" id="27">
+                <menuItem title="Add Recently Open File List" image="iconSwBox_RecentlyOpenedT.Template" tag="5001" id="27">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Same Folder File List" image="iconSwBox_S" tag="5002" id="31">
+                <menuItem title="Add Same Folder File List" image="iconSwBox_SameFolderT.Template" tag="5002" id="31">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Same Project File List" image="iconSwBox_P" tag="5003" id="32">
+                <menuItem title="Add Same Project File List" image="iconSwBox_ProjectFolderT.Template" tag="5003" id="32">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Remote File List" image="iconSwBox_R" tag="5004" id="33">
+                <menuItem title="Add Remote File List" image="iconSwBox_RemoteT.Template" tag="5004" id="33">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Header List" image="iconSwList" tag="5005" id="34">
+                <menuItem title="Add Header List" image="iconSwListT.Template" tag="5005" id="34">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Text Count Window" image="iconSwTextCount" tag="5006" id="35">
+                <menuItem title="Add Text Count Window" image="iconSwTextCountT.Template" tag="5006" id="35">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Text Marker Window" image="iconSwMarkerPen" tag="5007" id="36">
+                <menuItem title="Add Text Marker Window" image="iconSwMarkerPenT.Template" tag="5007" id="36">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Keyword Info List" image="iconSwKeyWord" tag="5010" id="39">
+                <menuItem title="Add Keyword Info List" image="iconSwKeyWordT.Template" tag="5010" id="39">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Preview" image="iconSwPreview" tag="5012" id="41">
+                <menuItem title="Add Preview" image="iconSwPreviewT.Template" tag="5012" id="41">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Add Key Record Window" image="iconTbKeyRecord.Template" tag="5014" id="44">
+                <menuItem title="Add Key Record Window" image="iconSwKeyRecordT.Template" tag="5014" id="44">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
         </menu>
     </objects>
     <resources>
-        <image name="iconSwBox_P" width="16" height="16"/>
-        <image name="iconSwBox_R" width="16" height="16"/>
-        <image name="iconSwBox_S" width="16" height="16"/>
-        <image name="iconSwKeyWord" width="16" height="16"/>
-        <image name="iconSwList" width="16" height="16"/>
-        <image name="iconSwMarkerPen" width="16" height="16"/>
-        <image name="iconSwPreview" width="16" height="16"/>
-        <image name="iconSwTextCount" width="16" height="16"/>
-        <image name="iconTbKeyRecord.Template" width="18" height="18"/>
+        <image name="iconSwBox_ProjectFolderT.Template" width="16" height="16"/>
+        <image name="iconSwBox_RecentlyOpenedT.Template" width="16" height="16"/>
+        <image name="iconSwBox_RemoteT.Template" width="16" height="16"/>
+        <image name="iconSwBox_SameFolderT.Template" width="16" height="16"/>
+        <image name="iconSwKeyRecordT.Template" width="16" height="16"/>
+        <image name="iconSwKeyWordT.Template" width="16" height="16"/>
+        <image name="iconSwListT.Template" width="16" height="16"/>
+        <image name="iconSwMarkerPenT.Template" width="16" height="16"/>
+        <image name="iconSwPreviewT.Template" width="16" height="16"/>
+        <image name="iconSwTextCountT.Template" width="16" height="16"/>
     </resources>
 </document>

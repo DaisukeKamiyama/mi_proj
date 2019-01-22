@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,15 +16,15 @@
         <window title="Find / Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="97" customClass="CocoaWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="145" y="10" width="316" height="724"/>
+            <rect key="contentRect" x="145" y="10" width="316" height="1029"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
             <value key="minSize" type="size" width="300" height="100"/>
             <view key="contentView" id="98">
-                <rect key="frame" x="0.0" y="0.0" width="316" height="724"/>
+                <rect key="frame" x="0.0" y="0.0" width="316" height="1029"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" tag="106" id="545">
-                        <rect key="frame" x="179" y="623" width="134" height="32"/>
+                        <rect key="frame" x="179" y="928" width="134" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Find Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="552">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -38,7 +38,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="105" id="546">
-                        <rect key="frame" x="47" y="623" width="134" height="32"/>
+                        <rect key="frame" x="47" y="928" width="134" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Find Previous" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="551">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -49,7 +49,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="104" id="547">
-                        <rect key="frame" x="179" y="596" width="134" height="28"/>
+                        <rect key="frame" x="179" y="901" width="134" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Find From First" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="550">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -60,7 +60,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="103" id="548">
-                        <rect key="frame" x="63" y="596" width="118" height="28"/>
+                        <rect key="frame" x="63" y="901" width="118" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="List" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="549">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -71,7 +71,7 @@ DQ
                         </connections>
                     </button>
                     <customView id="918" customClass="CocoaCollapsableView">
-                        <rect key="frame" x="0.0" y="230" width="316" height="175"/>
+                        <rect key="frame" x="0.0" y="535" width="316" height="175"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="130" id="648" customClass="CocoaDisclosureButton">
@@ -171,7 +171,7 @@ DQ
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
-                            <button tag="134" id="1441">
+                            <button tag="134" id="1441" customClass="HoverButton">
                                 <rect key="frame" x="18" y="152" width="280" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Find Options" bezelStyle="regularSquare" alignment="left" controlSize="small" inset="2" id="1442">
@@ -198,7 +198,7 @@ DQ
                         </connections>
                     </customView>
                     <customView id="937" customClass="CocoaCollapsableView">
-                        <rect key="frame" x="0.0" y="405" width="316" height="185"/>
+                        <rect key="frame" x="0.0" y="710" width="316" height="185"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" tag="108" id="957" customClass="CocoaTextField">
@@ -310,7 +310,7 @@ DQ
                                     <outlet property="nextKeyView" destination="963" id="1540"/>
                                 </connections>
                             </popUpButton>
-                            <button tag="135" id="1439">
+                            <button tag="135" id="1439" customClass="HoverButton">
                                 <rect key="frame" x="18" y="162" width="280" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Replace" bezelStyle="regularSquare" alignment="left" controlSize="small" inset="2" id="1440">
@@ -346,7 +346,7 @@ DQ
                         </connections>
                     </customView>
                     <customView id="985" customClass="CocoaCollapsableView">
-                        <rect key="frame" x="0.0" y="-41" width="316" height="271"/>
+                        <rect key="frame" x="0.0" y="264" width="316" height="271"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" tag="201" id="542">
@@ -376,7 +376,7 @@ DQ
                                     <outlet property="collapsableView" destination="985" id="1432"/>
                                 </connections>
                             </button>
-                            <button tag="137" id="1445">
+                            <button tag="137" id="1445" customClass="HoverButton">
                                 <rect key="frame" x="18" y="248" width="280" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Find Memory" bezelStyle="regularSquare" alignment="left" controlSize="small" inset="2" id="1446">
@@ -402,7 +402,7 @@ DQ
                         </connections>
                     </customView>
                     <textField verticalHuggingPriority="750" id="447">
-                        <rect key="frame" x="-3" y="685" width="66" height="14"/>
+                        <rect key="frame" x="-3" y="990" width="66" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Find : " id="472">
                             <font key="font" metaFont="smallSystemBold"/>
@@ -411,7 +411,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" tag="101" id="449">
-                        <rect key="frame" x="287" y="680" width="24" height="22"/>
+                        <rect key="frame" x="287" y="985" width="24" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" id="469">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -423,16 +423,16 @@ DQ
                         </connections>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" id="662">
-                        <rect key="frame" x="67" y="658" width="243" height="14"/>
+                        <rect key="frame" x="67" y="963" width="243" height="14"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Press ctrl+return to input return code" id="663">
                             <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField hidden="YES" verticalHuggingPriority="750" tag="129" id="1515">
-                        <rect key="frame" x="17" y="-270" width="129" height="14"/>
+                        <rect key="frame" x="17" y="35" width="129" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Bottom Marker" id="1516">
                             <font key="font" metaFont="smallSystem"/>
@@ -441,7 +441,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <customView id="1547" customClass="CocoaCollapsableView">
-                        <rect key="frame" x="0.0" y="-217" width="316" height="177"/>
+                        <rect key="frame" x="0.0" y="88" width="316" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="139" id="1549" customClass="CocoaDisclosureButton">
@@ -455,7 +455,7 @@ DQ
                                     <outlet property="collapsableView" destination="1547" id="1554"/>
                                 </connections>
                             </button>
-                            <button tag="140" id="1550">
+                            <button tag="140" id="1550" customClass="HoverButton">
                                 <rect key="frame" x="18" y="154" width="280" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Advanced Search" bezelStyle="regularSquare" alignment="left" controlSize="small" inset="2" id="1551">
@@ -484,7 +484,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Replace selected text using file: Find string is written at odd lines and replace string is written at even lines." id="1562">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -493,7 +493,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Extract matched text to new document. If replace string is specified, it is extracted after replaced." id="1564">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -503,7 +503,7 @@ DQ
                         </connections>
                     </customView>
                     <textField verticalHuggingPriority="750" tag="102" id="448" customClass="CocoaTextField">
-                        <rect key="frame" x="68" y="674" width="214" height="36"/>
+                        <rect key="frame" x="68" y="979" width="214" height="36"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="471">
                             <font key="font" metaFont="smallSystem"/>
@@ -516,7 +516,7 @@ DQ
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="417" y="332"/>
+            <point key="canvasLocation" x="417" y="484.5"/>
         </window>
     </objects>
     <resources>

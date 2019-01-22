@@ -3419,20 +3419,11 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <box verticalHuggingPriority="750" boxType="separator" id="1637">
-                                            <rect key="frame" x="21" y="236" width="469" height="5"/>
+                                            <rect key="frame" x="29" y="159" width="469" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
-                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997008" id="1259">
-                                            <rect key="frame" x="32" y="170" width="108" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1260">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <button verticalHuggingPriority="750" tag="7701" id="1638">
-                                            <rect key="frame" x="364" y="184" width="130" height="28"/>
+                                            <rect key="frame" x="372" y="107" width="130" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Update Menu" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1639">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3440,7 +3431,7 @@ DQ
                                             </buttonCell>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1621">
-                                            <rect key="frame" x="29" y="192" width="115" height="14"/>
+                                            <rect key="frame" x="37" y="115" width="115" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Skin :" id="1636">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3449,7 +3440,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" tag="460" id="1624">
-                                            <rect key="frame" x="146" y="187" width="199" height="22"/>
+                                            <rect key="frame" x="154" y="110" width="199" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="1631" id="1629">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -3464,7 +3455,7 @@ DQ
                                             </popUpButtonCell>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1625">
-                                            <rect key="frame" x="13" y="216" width="124" height="14"/>
+                                            <rect key="frame" x="21" y="139" width="124" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Skin" id="1628">
                                                 <font key="font" metaFont="smallSystemBold"/>
@@ -3473,11 +3464,20 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="1626">
-                                            <rect key="frame" x="147" y="209" width="338" height="21"/>
+                                            <rect key="frame" x="155" y="132" width="338" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Select alternative UI skin." id="1627">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997008" id="1259">
+                                            <rect key="frame" x="37" y="228" width="108" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1260">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
