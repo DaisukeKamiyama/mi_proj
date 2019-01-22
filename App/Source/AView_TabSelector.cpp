@@ -45,14 +45,9 @@ AView_TabSelector::AView_TabSelector( /*#199 AObjectArrayItem* inParent, AWindow
 ,mHoverCloseButton(false)//#164
 ,mDragging(false),mDraggingCurrentDisplayIndex(kIndex_Invalid),mDraggingTabShouldHide(false)//#575 #850
 ,mMouseClickCount(0)
-,mKitadaMode(false)//#1079
 {
 	NVMC_SetOffscreenMode(true);//win
 	//#92 初期化はNVIDO_Init()へ移動
-	if( false )
-	{
-		mKitadaMode = (AEnvWrapper::GetOSVersion() < kOSVersion_MacOSX_10_10 );
-	}
 	
 	//viewを不透明に設定 #1090
 	NVMC_SetOpaque(true);
@@ -386,81 +381,75 @@ void	AView_TabSelector::EVTDO_DoDraw()
 	//×ボタン用表示幅取得
 	ANumber	closeTextWidth = NVMC_GetDrawTextWidth(closetext);
 	
-	//各色 #1079
+	//アクティブ時色
 	//背景
-	AColor	tabareaPaintColor = kColor_Gray85Percent;
-	AColor	tabareaFrameColor = kColor_Gray70Percent;
-	//アクティブタブ
-	AColor	activeTabPaintColor = kColor_Gray98Percent;
-	AColor	activeTabFrameColor = kColor_Gray70Percent;
-	AColor	activeTabPaintColor_Hover = kColor_White;
-	AColor	activeTabFrameColor_Hover = kColor_Gray70Percent;
-	AColor	activeTabLetterColor = kColor_Black;
-	//２番目タブ
-	AColor	secondTabPaintColor = kColor_Gray91Percent;
-	AColor	secondTabFrameColor = kColor_Gray70Percent;
-	AColor	secondTabPaintColor_Hover = kColor_Gray97Percent;
-	AColor	secondTabFrameColor_Hover = kColor_Gray70Percent;
-	//その他デアクティブタブ
-	AColor	deactiveTabPaintColor = kColor_Gray87Percent;
-	AColor	deactiveTabFrameColor = kColor_Gray70Percent;
-	AColor	deactiveTabPaintColor_Hover = kColor_Gray93Percent;
-	AColor	deactiveTabFrameColor_Hover = kColor_Gray70Percent;
-	AColor	deactiveTabLetterColor = kColor_Gray20Percent;
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("D8D8D8");
+	//枠線
+	AColor	tabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+	//1番目タブ
+	AColor	firstTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+	AColor	firstTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	AColor	firstTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("FFFFFF");
+	//2番目タブ
+	AColor	secondTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+	AColor	secondTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+	AColor	secondTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+	//3番目以降タブ
+	AColor	thirdTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("E0E0E0");
+	AColor	thirdTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("333333");
+	AColor	thirdTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("EDEDED");
+	//タブ領域境界線
+	AColor	boaderColor = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
+	//クローズボタン
+	AColor	closeButtonColor = kColor_Black;
+	//非アクティブ時色
+	if( NVI_GetWindow().NVI_IsWindowActive() == false )
+	{
+		//背景
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+		//枠線
+		tabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("E6E6E6");
+		//1番目タブ
+		firstTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+		firstTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("B2B2B2");
+		//2番目タブ
+		secondTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+		secondTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("B2B2B2");
+		//3番目タブ
+		thirdTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+		thirdTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("B2B2B2");
+		//タブ領域境界線
+		boaderColor = AColorWrapper::GetColorByHTMLFormatColor("E6E6E6");
+	}
 	//ダークモード #1316
 	if( AApplication::GetApplication().NVI_IsDarkMode() == true )
 	{
 		//背景
-		tabareaPaintColor = AColorWrapper::GetColorByHTMLFormatColor("222222");
-		tabareaFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
-		//アクティブタブ
-		activeTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		activeTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
-		activeTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		activeTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		activeTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("222222");
+		//枠線
+		tabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		//1番目タブ
+		firstTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		firstTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+		firstTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("383838");
 		//２番目タブ
 		secondTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		secondTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
-		secondTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		secondTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		//その他デアクティブタブ
-		deactiveTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		deactiveTabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
-		deactiveTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		deactiveTabFrameColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("303030");
-		deactiveTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("6E6E6E");
-	}
-	//ウインドウがアクティブでないときの色
-	if( NVI_GetWindow().NVI_IsWindowActive() == false )
-	{
-		tabareaPaintColor = kColor_Gray97Percent;
-		activeTabPaintColor = kColor_Gray97Percent;
-		activeTabFrameColor = kColor_Gray90Percent;
-		secondTabPaintColor = kColor_Gray97Percent;
-		secondTabFrameColor = kColor_Gray90Percent;
-		deactiveTabPaintColor = kColor_Gray97Percent;
-		deactiveTabFrameColor = kColor_Gray90Percent;
-		activeTabLetterColor = kColor_Gray70Percent;
-		deactiveTabLetterColor = kColor_Gray70Percent;
+		secondTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("909090");
+		secondTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("383838");
+		//3番目タブ
+		thirdTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+		thirdTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("707070");
+		thirdTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("383838");
+		//タブ領域境界線
+		boaderColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
+		//クローズボタン
+		closeButtonColor = kColor_White;
 	}
 	
 	//=====================タブエリア背景描画=====================
-	if( mKitadaMode == true )
-	{
-		//北田さんデザイン版タブ背景
-		ALocalPoint	pt = {0,0};
-		NVMC_DrawImageFlexibleWidthAndHeight(kImageID_Tab0,kImageID_Tab1,kImageID_Tab2,
-					kImageID_Tab3,kImageID_Tab4,kImageID_Tab5,kImageID_Tab6,kImageID_Tab7,kImageID_Tab8,
-					pt,viewRect.right-viewRect.left,viewRect.bottom-viewRect.top);
-	}
-	else
-	{
-		//フラット塗りつぶし #1079
-		ALocalRect	r = viewRect;
-		r.top -= 1;
-		NVMC_PaintRect(r,tabareaPaintColor);
-	}
+	ALocalRect	r = viewRect;
+	r.top -= 1;
+	NVMC_PaintRect(r,backgroundColor);
 	
 	AItemCount	tabCountInOneRow = GetTabCountInOneRow(NVI_GetViewWidth());
 	//１つのタブ毎の表示
@@ -501,7 +490,7 @@ void	AView_TabSelector::EVTDO_DoDraw()
 		//×ボタン用文字フォント設定
 		AText	defaultfontname;
 		AFontWrapper::GetDialogDefaultFontName(defaultfontname);
-		NVMC_SetDefaultTextProperty(defaultfontname,16.0,kColor_Black,kTextStyle_Normal,true);
+		NVMC_SetDefaultTextProperty(defaultfontname,16.0,closeButtonColor,kTextStyle_Normal,true);
 		//×ボタン用rect ★ topをマイナスにしないと位置が合わない・・・
 		ALocalRect	closetextrect = rect;
 		closetextrect.top -= 2;
@@ -516,185 +505,58 @@ void	AView_TabSelector::EVTDO_DoDraw()
 		closeHoverRect.right = closeHoverRect.left + closeTextWidth + 6;
 		
 		//=====================各タブボタンイメージ描画=====================
+		//
+		AColor	tabPaintColor = thirdTabPaintColor;
+		AColor	letterColor = thirdTabLetterColor;
+		AColor	tabPaintColor_Hover = thirdTabPaintColor_Hover;
+		//
 		if( NVM_GetWindow().NVI_GetCurrentTabIndex() == index )
 		{
-			// -------------------- アクティブなタブimage描画 --------------------
-			ALocalPoint	pt = {rect.left,rect.top+kButtonTopMargin};
-			if( mHoverIndex != kIndex_Invalid && index == mHoverIndex )
+			tabPaintColor = firstTabPaintColor;
+			letterColor = firstTabLetterColor;
+			tabPaintColor_Hover = firstTabPaintColor_Hover;
+		}
+		else if( NVM_GetWindow().NVI_GetTabCount() >= 2 )
+		{
+			if( NVM_GetWindow().NVI_GetTabIndexByZOrderIndex(1) == index )
 			{
-				//ホバー
-				if( mKitadaMode == true )
-				{
-					//北田さんデザイン版タブ
-					NVMC_DrawImageFlexibleWidth(kImageID_tabFront_h_1,kImageID_tabFront_h_2,kImageID_tabFront_h_3,pt,mTabColumnWidth);
-				}
-				else
-				{
-					//フラット塗りつぶし #1079
-					NVMC_PaintRect(r,activeTabPaintColor_Hover);
-					NVMC_FrameRect(r,activeTabFrameColor_Hover);
-					//×ボタン囲みrounded rect描画
-					if( mHoverCloseButton == true )
-					{
-						NVMC_PaintRoundedRect(closeHoverRect,kColor_Gray93Percent,kColor_Gray93Percent,kGradientType_None,
-											  1.0,1.0,2.0,true,true,true,true);
-					}
-					//×ボタン描画
-					NVMC_DrawText(closetextrect,closetext);
-				}
+				tabPaintColor = secondTabPaintColor;
+				letterColor = secondTabLetterColor;
+				tabPaintColor_Hover = secondTabPaintColor_Hover;
 			}
-			else
+		}
+		// -------------------- タブimage描画 --------------------
+		ALocalPoint	pt = {rect.left,rect.top+kButtonTopMargin};
+		if( mHoverIndex != kIndex_Invalid && index == mHoverIndex )
+		{
+			//ホバー
+			NVMC_PaintRect(r,tabPaintColor_Hover);
+			//×ボタン囲みrounded rect描画
+			if( mHoverCloseButton == true )
 			{
-				//通常
-				if( mKitadaMode == true )
-				{
-					//北田さんデザイン版タブ
-					NVMC_DrawImageFlexibleWidth(kImageID_tabFront_1,kImageID_tabFront_2,kImageID_tabFront_3,pt,mTabColumnWidth);
-				}
-				else
-				{
-					//フラット塗りつぶし #1079
-					NVMC_PaintRect(r,activeTabPaintColor);
-					NVMC_FrameRect(r,activeTabFrameColor);
-				}
+				NVMC_PaintRoundedRect(closeHoverRect,closeButtonColor,closeButtonColor,kGradientType_None,
+									  0.1,0.1,2.0,true,true,true,true);
 			}
+			//×ボタン描画
+			NVMC_DrawText(closetextrect,closetext);
 		}
 		else
 		{
-			//非アクティブなタブimage描画
-			//タブ内塗りつぶし
-			if( NVM_GetWindow().NVI_GetTabCount() >= 2 && NVM_GetWindow().NVI_GetTabIndexByZOrderIndex(1) == index )
-			{
-				// --------------------２番目タブイメージ描画 --------------------
-				ALocalPoint	pt = {rect.left,rect.top+kButtonTopMargin};
-				if( mHoverIndex != kIndex_Invalid && index == mHoverIndex )
-				{
-					//ホバー
-					if( mKitadaMode == true )
-					{
-						//北田さんデザイン版タブ
-						NVMC_DrawImageFlexibleWidth(kImageID_tabNext_h_1,kImageID_tabNext_h_2,kImageID_tabNext_h_3,pt,mTabColumnWidth);
-					}
-					else
-					{
-						//フラット塗りつぶし #1079
-						NVMC_PaintRect(r,secondTabPaintColor_Hover);
-						NVMC_FrameRect(r,secondTabFrameColor_Hover);
-						//×ボタン囲みrounded rect描画
-						if( mHoverCloseButton == true )
-						{
-							NVMC_PaintRoundedRect(closeHoverRect,kColor_Gray90Percent,kColor_Gray90Percent,kGradientType_None,
-												  1.0,1.0,2.0,true,true,true,true);
-						}
-						//×ボタン描画
-						NVMC_DrawText(closetextrect,closetext);
-					}
-				}
-				else
-				{
-					//通常
-					if( mKitadaMode == true )
-					{
-						//北田さんデザイン版タブ
-						NVMC_DrawImageFlexibleWidth(kImageID_tabNext_1,kImageID_tabNext_2,kImageID_tabNext_3,pt,mTabColumnWidth);
-					}
-					else
-					{
-						//フラット塗りつぶし #1079
-						NVMC_PaintRect(r,secondTabPaintColor);
-						NVMC_FrameRect(r,secondTabFrameColor);
-					}
-				}
-			}
-			else
-			{
-				// -------------------- ３番目以降タブイメージ描画 --------------------
-				ALocalPoint	pt = {rect.left,rect.top+kButtonTopMargin};
-				if( mHoverIndex != kIndex_Invalid && index == mHoverIndex )
-				{
-					//ホバー
-					if( mKitadaMode == true )
-					{
-						//北田さんデザイン版タブ
-						NVMC_DrawImageFlexibleWidth(kImageID_tabNext_h_1,kImageID_tabNext_h_2,kImageID_tabNext_h_3,pt,mTabColumnWidth);
-					}
-					else
-					{
-						//フラット塗りつぶし #1079
-						NVMC_PaintRect(r,deactiveTabPaintColor_Hover);
-						NVMC_FrameRect(r,deactiveTabFrameColor_Hover);
-						//×ボタン囲みrounded rect描画
-						if( mHoverCloseButton == true )
-						{
-							NVMC_PaintRoundedRect(closeHoverRect,kColor_Gray85Percent,kColor_Gray85Percent,kGradientType_None,
-												  1.0,1.0,2.0,true,true,true,true);
-						}
-						//×ボタン描画
-						NVMC_DrawText(closetextrect,closetext);
-					}
-				}
-				else
-				{
-					//通常
-					if( mKitadaMode == true )
-					{
-						//北田さんデザイン版タブ
-						//処理なし
-					}
-					else
-					{
-						//フラット塗りつぶし #1079
-						NVMC_PaintRect(r,deactiveTabPaintColor);
-						NVMC_FrameRect(r,deactiveTabFrameColor);
-					}
-				}
-			}
+			//通常
+			NVMC_PaintRect(r,tabPaintColor);
 		}
+		//タブ枠線描画
+		NVMC_FrameRect(r,tabFrameColor);
 		
 		//=====================テキスト描画=====================
 		ATextStyle	style = 0;
-		if( mKitadaMode == true )
-		{
-			//北田さんデザイン版文字スタイル
-			style |= kTextStyle_DropShadow|kTextStyle_Bold;
-		}
 		//文字色取得
-		AColor	letterColor = GetApp().SPI_GetTabLetterColor();
-		NVMC_SetDropShadowColor(GetApp().SPI_GetTabLetterDropShadowColor());
-		if( NVM_GetWindow().NVI_IsWindowActive() == false )
-		{
-			letterColor = GetApp().SPI_GetTabLetterColorDeactivate();
-		}
-		if( mKitadaMode == true )
-		{
-			//北田さんデザイン版文字色
-			if( NVM_GetWindow().NVI_GetCurrentTabIndex() == index )
-			{
-				letterColor = GetApp().SPI_GetTabLetterColorTopmost();
-				NVMC_SetDropShadowColor(GetApp().SPI_GetTabLetterTopmostDropShadowColor());
-			}
-		}
-		else
-		{
-			//フラットモード 文字色 #1079
-			if( NVM_GetWindow().NVI_GetCurrentTabIndex() == index )
-			{
-				letterColor = activeTabLetterColor;
-			}
-			else
-			{
-				letterColor = deactiveTabLetterColor;
-			}
-		}
 		NVMC_SetDefaultTextProperty(mFontName,mFontSize,letterColor,style,true);
 		ALocalRect	textRect = rect;
 		textRect.left += kTextLeftMargin;
 		textRect.right -= kTextRightMargin;
 		textRect.bottom -= kTextBottomMargin;
-		//if( mKitadaMode == false )
-		{
-			textRect.bottom += 1;
-		}
+		textRect.bottom += 1;
 		textRect.top = textRect.bottom-mFontHeight;
 		AText	title;
 		NVM_GetWindow().NVI_GetTitle(index,title);
@@ -739,14 +601,9 @@ void	AView_TabSelector::EVTDO_DoDraw()
 		}
 	}
 	//分割線
-	if( mKitadaMode == false )
-	{
-		//フラット塗りつぶし #1079
-		ALocalRect	r = viewRect;
-		r.top = r.bottom -1;
-		NVMC_FrameRect(r,tabareaFrameColor);
-	}
-
+	ALocalRect	borderRect = viewRect;
+	borderRect.top = borderRect.bottom -1;
+	NVMC_FrameRect(borderRect,boaderColor);
 }
 
 //B0000 080810
