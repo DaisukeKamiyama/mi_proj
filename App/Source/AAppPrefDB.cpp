@@ -32,6 +32,7 @@ AAppPrefDB
 #pragma mark ---Constructor/Destructor/Load/Write/Setup
 
 AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
+,mUseLightModeColorScheme(false),mUseDarkModeColorScheme(true)//#1316
 {
 	/*#844
 	mTextEncodingMenuFixedTextArray.Add("UTF-8");
@@ -158,7 +159,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Bool(kDisplayWindowList,							"displayWindowList",				true);
 	num = kJumpListPosition_Right;
 	CreateData_Number(kJumpListPosition,						"jumpListPosition",					num,			0,1);
-	CreateData_Rect(kSingleWindowBounds,						"singleWindowBounds",				100,50,900,1050,	-5000,-5000,5000,5000);//#190
+	CreateData_Rect(kSingleWindowBounds,						"singleWindowBounds",				100,50,930,1050,	-5000,-5000,5000,5000);//#190 #1371 900→930
 	CreateData_Number(kWindowListMode,							"windowListMode",					static_cast<ANumber>(/*windowListMode_RecentFile*/2),	0,3);
 	
 	//				データID									ファイル用Key							初期値			(最小,最大)			(最小,最大)
@@ -464,7 +465,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	//#291
 	//右サイドバー
 	CreateData_Bool(kRightSideBarDisplayed,						"RightSideBarDisplayed",			true);
-	CreateData_Number(kRightSideBarWidth,						"RightSideBarWidth",				230,			100,5000);
+	CreateData_Number(kRightSideBarWidth,						"RightSideBarWidth",				260,			100,5000);//#1371 230→260
 	
 	//#725
 	//サブテキスト
@@ -665,10 +666,14 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	//タブに親フォルダ名表示 #1334
 	CreateData_Bool(kTabShowParentFolder,						"TabShowParentFolder",				false);
 	//タブ幅 #1349
-	CreateData_Number(kTabWidth,								"kTabWidth",						160,				80,300);
+	CreateData_Number(kTabWidth,								"kTabWidth",						210,				80,300);//#1371 160→210
 	
 	//検索結果ポップアップ #1322
 	CreateData_Bool(kShowFindResultPopup,						"ShowFindResultPopup",				true);
+	
+	//ダークモードカラースキーム #1316
+	CreateData_Text(kLightModeColorSchemeName,					"LightModeColorSchemeName",			"");
+	CreateData_Text(kDarkModeColorSchemeName,					"DarkModeColorSchemeName",			"mi-dark");
 	
 	//コールグラフ
 	CreateTableStart();
@@ -877,6 +882,54 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	Add_NumberArray(kSubPaneArray_Height,150);
 	Add_NumberArray(kSubPaneArray_Type,3);//Sub Text Pane
 	Add_NumberArray(kSubPaneArray_Height,700);
+	
+	//#1316
+	UpdateColorSchemeDB();
+}
+
+//#1316
+/**
+環境設定カラースキームをロードする
+*/
+void	AAppPrefDB::UpdateColorSchemeDB()
+{
+	AText	name;
+	GetData_Text(kLightModeColorSchemeName,name);
+	mUseLightModeColorScheme = mLightModeColorSchemeDB.Load(name);
+	GetData_Text(kDarkModeColorSchemeName,name);
+	mUseDarkModeColorScheme = mDarkModeColorSchemeDB.Load(name);
+}
+
+//#1316
+/**
+環境設定カラースキームを使用するかどうかを取得する
+*/
+ABool	AAppPrefDB::UseAppPrefColorScheme( const ABool inDarkMode )
+{
+	if( inDarkMode == false )
+	{
+		return mUseLightModeColorScheme;
+	}
+	else
+	{
+		return mUseDarkModeColorScheme;
+	}
+}
+
+//#1316
+/**
+環境設定カラースキームを取得する
+*/
+const AColorSchemeDB&	AAppPrefDB::GetColorSchemeDB( const ABool inDarkMode ) const
+{
+	if( inDarkMode == false )
+	{
+		return mLightModeColorSchemeDB;
+	}
+	else
+	{
+		return mDarkModeColorSchemeDB;
+	}
 }
 
 /*#844
