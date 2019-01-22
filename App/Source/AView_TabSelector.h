@@ -118,7 +118,6 @@ class AView_TabSelector : public AView
 	AText								mFontName;//win
 	ANumber								mFontHeight;//R0177
 	ANumber								mFontAscent;//R1077
-	ABool								mKitadaMode;//#1079
 	
 	
 	//#498
