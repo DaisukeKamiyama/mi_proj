@@ -37,6 +37,9 @@ const AControlID		kButton_Sort					= 103;
 const AControlID		kControlID_VScrollBar			= 104;
 const ANumber			kVScrollBarWidth = 11;
 
+//#1368
+const AControlID		kControlID_SwitchFunction		= 110;
+
 //#798
 //フィルタ
 const AControlID		kControlID_Filter				= 201;
@@ -476,6 +479,7 @@ ABool	AWindow_FileList::EVTDO_Clicked( const AControlID inID, const AModifierKey
 	{
 	  case kButton_ModeChange:
 	  case kControlID_TitleBar://#725
+	  case kControlID_SwitchFunction://#1368
 		{
 			switch(mMode)
 			{
@@ -766,11 +770,12 @@ void	AWindow_FileList::NVIDO_Create( const ADocumentID inDocumentID )
 		AWindowPoint	pt = {0,0};
 		NVI_CreateEditBoxView(kControlID_Filter,pt,100,13,kControlID_Background,kIndex_Invalid,true,false,false,true,kEditBoxType_FilterBox);
 		NVI_GetEditBoxView(kControlID_Filter).NVI_SetTextFont(fontname,fontsize);
-		NVI_GetEditBoxView(kControlID_Filter).SPI_SetTextColor(
-					AColorWrapper::GetColorByHTMLFormatColor("1574cf"),
-					AColorWrapper::GetColorByHTMLFormatColor("1574cf"));
+		/*#1316
+		NVI_GetEditBoxView(kControlID_Filter).SPI_SetTextColor(AColorWrapper::GetColorByHTMLFormatColor("1574cf"),
+															   AColorWrapper::GetColorByHTMLFormatColor("1574cf"));
 		NVI_GetEditBoxView(kControlID_Filter).SPI_SetBackgroundColor(
-					kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
+																	 kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
+																	 */
 		NVI_GetEditBoxView(kControlID_Filter).SPI_SetEnableFocusRing(false);
 		NVI_SetAutomaticSelectBySwitchFocus(kControlID_Filter,true);
 		NVI_SetControlBindings(kControlID_Filter,true,true,true,false,false,true);
@@ -790,6 +795,19 @@ void	AWindow_FileList::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_CreateProgressIndicator(kControlID_RemoteAccessProgressIndicator,pt,kWidth_ProgressIndicator,kHeight_ProgressIndicator);
 		NVI_SetControlBindings(kControlID_RemoteAccessProgressIndicator,true,true,false,false,true,true);
 		ShowRemoteAccessProgress(false);
+	}
+	
+	//#1368
+	//機能切り替えボタン
+	{
+		AWindowPoint	pt = {0,0};
+		NVI_CreateButtonView(kControlID_SwitchFunction,pt,16,16,kControlID_Invalid);
+		NVI_SetControlBindings(kControlID_SwitchFunction,false,true,true,false,true,true);
+		NVI_GetButtonViewByControlID(kControlID_SwitchFunction).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHover);
+		NVI_GetButtonViewByControlID(kControlID_SwitchFunction).
+				SPI_SetOvalHoverColor(GetApp().SPI_GetSubWindowTitlebarButtonHoverColor());
+		NVI_GetButtonViewByControlID(kControlID_SwitchFunction).SPI_SetIconImageID(kImageID_swSwitchFunction,
+																		   kImageID_Invalid,kImageID_Invalid);
 	}
 }
 
@@ -1166,20 +1184,22 @@ void	AWindow_FileList::NVIDO_UpdateProperty()
 			break;
 		}
 	}
+	/*#1316
 	NVI_GetEditBoxView(kControlID_Filter).SPI_SetBackgroundColorForEmptyState(
 																			  GetApp().SPI_GetSubWindowBackgroundColor(true),
 																			  GetApp().SPI_GetSubWindowBackgroundColor(false));
+	*/
 	
 	//ヘッダ部分フォント
 	AText	headerfontname;
 	AFontWrapper::GetDialogDefaultFontName(headerfontname);
 	//ヘッダ色取得
-	AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
+    //#1316 AColor	headerlettercolor = GetApp().SPI_GetSubWindowHeaderLetterColor();
 	//ヘッダ部制御ボタン色設定
-	NVI_GetButtonViewByControlID(kControlID_ProjectModeFilter).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-																				   kTextStyle_Bold,headerlettercolor,headerlettercolor);
-	NVI_GetButtonViewByControlID(kControlID_FolderPath).SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,
-																			kTextStyle_Bold,headerlettercolor,headerlettercolor);
+	NVI_GetButtonViewByControlID(kControlID_ProjectModeFilter).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Bold);
+	NVI_GetButtonViewByControlID(kControlID_FolderPath).
+			SPI_SetTextProperty(headerfontname,9.0,kJustification_Left,kTextStyle_Bold);
 	
 	//view bounds更新
 	UpdateViewBounds();
@@ -1286,7 +1306,7 @@ void	AWindow_FileList::SPI_UpdateTable()
 	if( NVI_IsWindowCreated() == false )   return;
 	
 	//通常文字色取得
-	AColor	subwindowNormalColor = GetApp().SPI_GetSubWindowLetterColor();
+	AColor	subwindowNormalColor = kColor_List_Normal;//#1316 GetApp().SPI_GetSubWindowLetterColor();
 	
 	AIndex	sel = kIndex_Invalid;
 	GetListView().SPI_BeginSetTable();
@@ -1365,18 +1385,18 @@ void	AWindow_FileList::SPI_UpdateTable()
 						if( filestate == kSCMFileState_NotEntried )
 						{
 							//#844 GetApp().GetAppPref().GetData_Color(AAppPrefDB::kDisplaySCMStateInFileList_NotEntriedColor,color);
-							color = kColor_Gray;//#844
+							color = kColor_List_Gray;//#1316 kColor_Gray;//#844
 						}
 						else if( filestate == kSCMFileState_Others )
 						{
 							//#844 GetApp().GetAppPref().GetData_Color(AAppPrefDB::kDisplaySCMStateInFileList_OthersColor,color);
-							color = kColor_Pink;//#844
+							color = kColor_List_Pink;//#1316 kColor_Pink;//#844
 						}
 						else if( filestate != kSCMFileState_UpToDate && filestate != /*kSCMFolderType_NotSCMFolder*/kSCMFileState_NotSCMFolder )
 						{
 							//#844 GetApp().GetAppPref().GetData_Color(AAppPrefDB::kDisplaySCMStateInFileList_Color,color);
-							color = GetApp().SPI_GetFileListDiffColor();//#844
-							style = kTextStyle_Bold;//#458
+							color = kColor_List_Red;//#1316 GetApp().SPI_GetFileListDiffColor();//#844
+							//#1316 style = kTextStyle_Bold;//#458
 						}
 						colorarray.Add(color);
 						stylearray.Add(style);//#458
@@ -1547,16 +1567,16 @@ void	AWindow_FileList::SPI_UpdateTable()
 					filestate = GetApp().SPI_GetSCMFolderManager().GetFileState(path);//GetFileState(file);
 					if( filestate == kSCMFileState_NotEntried )
 					{
-						color = kColor_Gray;//#844
+						color = kColor_List_Gray;//#1316 kColor_Gray;//#844
 					}
 					else if( filestate == kSCMFileState_Others )
 					{
-						color = kColor_Pink;//#844
+						color = kColor_List_Pink;//#1316 kColor_Pink;//#844
 					}
 					else if( filestate != kSCMFileState_UpToDate && filestate != kSCMFileState_NotSCMFolder )
 					{
-						color = kColor_DarkBlue;//#844
-						style = kTextStyle_Bold;//#458
+						color = kColor_List_Red;//#1316 kColor_DarkBlue;//#844
+						//#1316 style = kTextStyle_Bold;//#458
 					}
 				}
 				//プロジェクト内ファイルフィルターモードに従って、表示対象ファイルかどうかを判定
@@ -1861,28 +1881,28 @@ void	AWindow_FileList::UpdateTitleText()
 		{
 			AText	text;
 			text.SetLocalizedText("FileListWindow_RecentFile");
-			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_R);
+			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_RecentlyOpened);
 			break;
 		}
 	  case kFileListMode_SameFolder:
 		{
 			AText	text;
 			text.SetLocalizedText("FileListWindow_SameFolder");
-			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_S);
+			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_SameFolder);
 			break;
 		}
 	  case kFileListMode_SameProject:
 		{
 			AText	text;
 			text.SetLocalizedText("FileListWindow_SameProject");
-			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_P);
+			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_ProjectFolder);
 			break;
 		}
 	  case kFileListMode_RemoteFile:
 		{
 			AText	text;
 			text.SetLocalizedText("FileListWindow_RemoteFile");
-			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_R);
+			GetTitlebarViewByControlID(kControlID_TitleBar).SPI_SetTitleTextAndIconImageID(text,kImageID_iconSwBox_Remote);
 			break;
 		}
 	  default:
@@ -2040,49 +2060,6 @@ void	AWindow_FileList::SPI_SetCurrentPath( const AText& inText )
 		}
 	}
 }
-
-#if 0
-//#725 削除
-//#291
-/**
-オーバーレイモード時の透明度設定
-*/
-void	AWindow_FileList::SPI_UpdateOverlayWindowAlpha()
-{
-	if( NVI_GetOverlayMode() == true )
-	{
-		NVI_GetListView(mListViewControlID).SPI_SetTransparency(GetApp().SPI_GetOverlayWindowsAlpha());
-		NVI_GetButtonViewByControlID(kButton_ModeChange).SPI_SetTransparency(GetApp().SPI_GetOverlayWindowsAlpha());
-		NVI_GetButtonViewByControlID(kButton_Sort).SPI_SetTransparency(GetApp().SPI_GetOverlayWindowsAlpha());
-	}
-}
-
-//#634
-/**
-サイドバーモードの透過率・背景色に切り替え
-*/
-void	AWindow_FileList::SPI_SetSideBarMode( const ABool inSideBarMode, const AColor inSideBarColor )
-{
-	if( NVI_GetOverlayMode() == true )
-	{
-		if( inSideBarMode == true )
-		{
-			//できる限り文字をきれいに表示させるために不透過率はできるだけ高めに設定する。（背景のグラデーションがうっすら透過する程度）
-			NVI_GetListView(mListViewControlID).SPI_SetBackgroundColor(inSideBarColor,kColor_Gray97Percent);
-			NVI_GetListView(mListViewControlID).SPI_SetTransparency(0.8);
-			NVI_GetButtonViewByControlID(kButton_ModeChange).SPI_SetTransparency(0.8);
-			NVI_GetButtonViewByControlID(kButton_Sort).SPI_SetTransparency(0.8);
-		}
-		else
-		{
-			NVI_GetListView(mListViewControlID).SPI_SetBackgroundColor(kColor_White,kColor_White);
-			NVI_GetListView(mListViewControlID).SPI_SetTransparency(GetApp().SPI_GetOverlayWindowsAlpha());
-			NVI_GetButtonViewByControlID(kButton_ModeChange).SPI_SetTransparency(1);
-			NVI_GetButtonViewByControlID(kButton_Sort).SPI_SetTransparency(1);
-		}
-	}
-}
-#endif
 
 #pragma mark ===========================
 
@@ -2396,6 +2373,13 @@ void	AWindow_FileList::UpdateViewBounds()
 	else
 	{
 		NVI_SetShowControl(kControlID_FolderPath,false);
+	}
+	
+	//#1368
+	//機能切り替えボタン
+	{
+		AWindowPoint	pt = {listViewPoint.x + listViewWidth - 40, 1};
+		NVI_SetControlPosition(kControlID_SwitchFunction,pt);
 	}
 	
 	//プロジェクトモードフィルタボタン配置
