@@ -55,6 +55,59 @@ AColorSchemeDB::AColorSchemeDB() : ADataBase(NULL)
 	CreateData_Number(kSelectionOpacity,"SelectionOpacity",	80,				1,100);
 }
 
+//#1316 AModePrefDB::UpdateColorScheme()から移動
+/**
+指定された名前のカラースキームをロード
+*/
+ABool	AColorSchemeDB::Load( const AText& inSchemeName )
+{
+	ABool	found = true;
+	//ファイルタイプ
+	AColorSchemeType	type = kColorSchemeType_CSV;
+	//csv, epfファイルのファイル名取得
+	AText	csvschemename, epfschemename;
+	csvschemename.SetText(inSchemeName);
+	csvschemename.AddCstring(".csv");
+	epfschemename.SetText(inSchemeName);
+	epfschemename.AddCstring(".epf");
+	//ユーザーカラースキームフォルダ取得
+	AFileAcc	userSchemeFolder;
+	GetApp().SPI_GetUserColorSchemeFolder(userSchemeFolder);
+	//カラースキームファイル取得
+	AFileAcc	file;
+	file.SpecifyChild(userSchemeFolder,csvschemename);
+	//csvファイルが存在しない場合はepfファイルを試す
+	if( file.Exist() == false )
+	{
+		file.SpecifyChild(userSchemeFolder,epfschemename);
+		if( file.Exist() == true )
+		{
+			//epfファイルが存在していたらファイルタイプはepfにする
+			type = kColorSchemeType_EPF;
+		}
+	}
+	//ユーザーカラースキームフォルダに対象名のファイルが存在していなければ、アプリカラースキームフォルダから探す
+	if( file.Exist() == false )
+	{
+		//アプリケーションのカラースキームフォルダ取得
+		AFileAcc	appSchemeFolder;
+		GetApp().SPI_GetAppColorSchemeFolder(appSchemeFolder);
+		//
+		file.SpecifyChild(appSchemeFolder,csvschemename);
+		//ファイルが存在していなければデフォルトのファイルを取得
+		if( file.Exist() == false )
+		{
+			file.SpecifyChild(appSchemeFolder,"mi-default.csv");
+			found = false;
+		}
+	}
+	//カラースキームDB初期化
+	SetAllDataToDefault();
+	//カラースキームDBへ読み込み
+	LoadFromColorSchemeFile(file,type);
+	return found;
+}
+
 /**
 カラースキームファイルから読み込み
 */
