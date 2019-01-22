@@ -1574,7 +1574,7 @@ void	AModePrefDB::LoadOrWaitLoadComplete( const ABool inInitialLoad )
 		//========================各データの更新========================
 		
 		//カラースキームDBの読み込み
-		UpdateColorScheme();
+		//#1316 UpdateColorScheme();
 		
 		//アルファベットテーブル更新
 		UpdateIsAlphabetTable();
@@ -2370,6 +2370,9 @@ void	AModePrefDB::DeleteAllModeData()
 	mCategoryArray_Color.DeleteAll();
 	mCategoryArray_ImportColor.DeleteAll();
 	mCategoryArray_LocalColor.DeleteAll();
+	mCategoryArray_Color_Dark.DeleteAll();//#1316
+	mCategoryArray_ImportColor_Dark.DeleteAll();//#1316
+	mCategoryArray_LocalColor_Dark.DeleteAll();//#1316
 	mCategoryArray_TextStyle.DeleteAll();
 	mCategoryArray_MenuTextStyle.DeleteAll();
 	mCategoryArray_PriorToOtherColor.DeleteAll();//R0195
@@ -2391,6 +2394,7 @@ void	AModePrefDB::DeleteAllModeData()
 	mLegacyKeywordTempDataArray.DeleteAll();//#427
 	//文法定義色データ全削除
 	mSyntaxDefinitionStateColorArray.DeleteAll();
+	mSyntaxDefinitionStateColorArray_Dark.DeleteAll();//#1316
 	mSyntaxDefinitionStateColorValidArray.DeleteAll();
 	mSyntaxDefinitionStateArray_TextStyle.DeleteAll();//#844
 	//suffixハッシュ全削除
@@ -2583,6 +2587,7 @@ void	AModePrefDB::ModeBackup( const ABool inReveal )
 /**
 カラースキームDB更新
 */
+/*#1316 AColorSchemeDB::Load()へ移動
 void	AModePrefDB::UpdateColorScheme()
 {
 	//現在のスキーム名取得
@@ -2631,6 +2636,7 @@ void	AModePrefDB::UpdateColorScheme()
 	//カラースキームDBへ読み込み
 	mColorSchemeDB.LoadFromColorSchemeFile(file,type);
 }
+*/
 
 //#889
 /**
@@ -2973,6 +2979,24 @@ void	AModePrefDB::GetModeData_Text( ADataID inID, AText& outText ) const
 */
 ANumber	AModePrefDB::GetModeData_Number( ADataID inID ) const
 {
+	//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
+	if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
+	{
+		const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
+		switch(inID)
+		{
+		  case kSelectionOpacity:
+			{
+				return colorSchemeDB.GetData_Number(AColorSchemeDB::kSelectionOpacity);
+			}
+		  case kDiffColorOpacity:
+			{
+				return colorSchemeDB.GetData_Number(AColorSchemeDB::kDiffOpacity);
+			}
+		}
+	}
+	
+	//
 	if( mModeID == 0 || IsSameAsNormal(inID) == false )
 	{
 		return ADataBase::GetData_Number(inID);
@@ -3003,6 +3027,110 @@ AFloatNumber	AModePrefDB::GetModeData_FloatNumber( ADataID inID ) const
 */
 void	AModePrefDB::GetModeData_Color( ADataID inID, AColor& outData ) const
 {
+	GetModeData_Color(inID, outData, GetApp().NVI_IsDarkMode());
+}
+void	AModePrefDB::GetModeData_Color( ADataID inID, AColor& outData, const ABool inDarkMode ) const//#1316
+{
+	//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
+	if( GetApp().GetAppPref().UseAppPrefColorScheme(inDarkMode) == true )
+	{
+		const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(inDarkMode);
+		switch(inID)
+		{
+		  case kLetterColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kLetter,outData);
+				return;
+			}
+		  case kBackgroundColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kBackground,outData);
+				return;
+			}
+		  case kSyntaxColorSlotComment_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kComment,outData);
+				return;
+			}
+		  case kSyntaxColorSlotLiteral_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kLiteral,outData);
+				return;
+			}
+		  case kSyntaxColorSlot0_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot0,outData);
+				return;
+			}
+		  case kSyntaxColorSlot1_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot1,outData);
+				return;
+			}
+		  case kSyntaxColorSlot2_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot2,outData);
+				return;
+			}
+		  case kSyntaxColorSlot3_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot3,outData);
+				return;
+			}
+		  case kSyntaxColorSlot4_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot4,outData);
+				return;
+			}
+		  case kSyntaxColorSlot5_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot5,outData);
+				return;
+			}
+		  case kSyntaxColorSlot6_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot6,outData);
+				return;
+			}
+		  case kSyntaxColorSlot7_Color:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kSlot7,outData);
+				return;
+			}
+		  case kFindHighlightColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kHighlight1,outData);
+				return;
+			}
+		  case kFindHighlightColorPrev:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kHighlight2,outData);
+				return;
+			}
+		  case kCurrentWordHighlightColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kHighlight3,outData);
+				return;
+			}
+		  case kTextMarkerHightlightColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kHighlight4,outData);
+				return;
+			}
+		  case kFirstSelectionColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kHighlight5,outData);
+				return;
+			}
+		  case kControlCodeColor:
+			{
+				colorSchemeDB.GetData_Color(AColorSchemeDB::kControlCode,outData);
+				return;
+			}
+		}
+	}
+	
+	//
 	if( mModeID == 0 || IsSameAsNormal(inID) == false )
 	{
 		//==================標準モード、または、標準モードと同じ設定を使う設定=NOの場合==================
@@ -3111,121 +3239,127 @@ void	AModePrefDB::GetModeData_Color( ADataID inID, AColor& outData ) const
 	{
 		//==================標準モードではなく、かつ、標準モードと同じ設定を使う設定=YESの場合==================
 		//標準モードのデータを使う
-		GetApp().SPI_GetModePrefDB(0).GetModeData_Color(inID,outData);
+		GetApp().SPI_GetModePrefDB(0).GetModeData_Color(inID,outData,inDarkMode);//#1316
 	}
 }
 
+//#1316 
 /**
-カラースキームの色を各色に適用する
+カラースキームの色をモード設定色に適用する（モード設定の「カラースキームを適用」ボタンクリック時の処理）
 */
-void	AModePrefDB::ApplyFromColorScheme()
+void	AModePrefDB::ApplyFromColorScheme( const AText& inSchemeName )
 {
+	//AColorSchemeDBにロードする
+	AColorSchemeDB	colorSchemeDB;
+	colorSchemeDB.Load(inSchemeName);
+	
+	//
 	AColor	color = kColor_Black;
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kLetter) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kLetter) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kLetter,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kLetter,color);
 		SetData_Color(kLetterColor,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kBackground) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kBackground) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kBackground,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kBackground,color);
 		SetData_Color(kBackgroundColor,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kComment) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kComment) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kComment,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kComment,color);
 		SetData_Color(kSyntaxColorSlotComment_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kLiteral) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kLiteral) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kLiteral,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kLiteral,color);
 		SetData_Color(kSyntaxColorSlotLiteral_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot0) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot0) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot0,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot0,color);
 		SetData_Color(kSyntaxColorSlot0_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot1) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot1) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot1,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot1,color);
 		SetData_Color(kSyntaxColorSlot1_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot2) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot2) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot2,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot2,color);
 		SetData_Color(kSyntaxColorSlot2_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot3) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot3) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot3,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot3,color);
 		SetData_Color(kSyntaxColorSlot3_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot4) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot4) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot4,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot4,color);
 		SetData_Color(kSyntaxColorSlot4_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot5) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot5) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot5,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot5,color);
 		SetData_Color(kSyntaxColorSlot5_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot6) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot6) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot6,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot6,color);
 		SetData_Color(kSyntaxColorSlot6_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot7) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSlot7) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kSlot7,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kSlot7,color);
 		SetData_Color(kSyntaxColorSlot7_Color,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight1) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight1) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kHighlight1,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kHighlight1,color);
 		SetData_Color(kFindHighlightColor,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight2) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight2) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kHighlight2,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kHighlight2,color);
 		SetData_Color(kFindHighlightColorPrev,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight3) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight3) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kHighlight3,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kHighlight3,color);
 		SetData_Color(kCurrentWordHighlightColor,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight4) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight4) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kHighlight4,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kHighlight4,color);
 		SetData_Color(kTextMarkerHightlightColor,color);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight5) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kHighlight5) == false )
 	{
-		mColorSchemeDB.GetColor(AColorSchemeDB::kHighlight5,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kHighlight5,color);
 		SetData_Color(kFirstSelectionColor,color);
 	}
 	//
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kDiffOpacity) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kDiffOpacity) == false )
 	{
-		ANumber	num = mColorSchemeDB.GetData_Number(AColorSchemeDB::kDiffOpacity);
+		ANumber	num = colorSchemeDB.GetData_Number(AColorSchemeDB::kDiffOpacity);
 		SetData_Number(kDiffColorOpacity,num);
 	}
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kSelectionOpacity) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kSelectionOpacity) == false )
 	{
-		ANumber	num = mColorSchemeDB.GetData_Number(AColorSchemeDB::kSelectionOpacity);
+		ANumber	num = colorSchemeDB.GetData_Number(AColorSchemeDB::kSelectionOpacity);
 		SetData_Number(kSelectionOpacity,num);
 	}
 	//#1142
 	//制御コード文字色
-	if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kControlCode) == false )
+	if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kControlCode) == false )
 	{
 		//カラースキームに制御コード色の設定があれば、その色を設定
-		mColorSchemeDB.GetColor(AColorSchemeDB::kControlCode,color);
+		colorSchemeDB.GetColor(AColorSchemeDB::kControlCode,color);
 		SetData_Color(kControlCodeColor,color);
 	}
-	else if( mColorSchemeDB.IsStillDefault(AColorSchemeDB::kLetter) == false )
+	else if( colorSchemeDB.IsStillDefault(AColorSchemeDB::kLetter) == false )
 	{
 		//カラースキームで制御コード色未設定、かつ、文字色の設定がある場合は、背景色に文字色α30%でブレンドした色を設定
 		AColor	backgroundColor = kColor_White;
@@ -6774,6 +6908,9 @@ void	AModePrefDB::MakeCategoryArrayAndKeywordList()
 	mCategoryArray_Color.DeleteAll();
 	mCategoryArray_ImportColor.DeleteAll();
 	mCategoryArray_LocalColor.DeleteAll();
+	mCategoryArray_Color_Dark.DeleteAll();//#1316
+	mCategoryArray_ImportColor_Dark.DeleteAll();//#1316
+	mCategoryArray_LocalColor_Dark.DeleteAll();//#1316
 	mCategoryArray_TextStyle.DeleteAll();
 	mCategoryArray_MenuTextStyle.DeleteAll();
 	mCategoryArray_PriorToOtherColor.DeleteAll();//R0195
@@ -6809,12 +6946,15 @@ void	AModePrefDB::MakeCategoryArrayAndKeywordList()
 		AText	name;
 		mCategoryArray_Name.Get(i,name);
 		AColor	color, importcolor, localcolor;
+		AColor	color_dark, importcolor_dark, localcolor_dark;//#1316
 		ATextStyle	menustyle = kTextStyle_Normal;
 		//#844 ABool	styleBold, styleItalic, styleUnderline;
 		ATextStyle	style = kTextStyle_Normal;
 		//SDF定義カテゴリの色・スタイルを取得（色SDFに記述されたColorSlotに従って取得）
-		GetSyntaxDefinitionCategoryColorByName(name,color,importcolor,localcolor,menustyle,style);//#844 styleBold,styleItalic,styleUnderline);//R0195
+		GetSyntaxDefinitionCategoryColorByName(name,color,importcolor,localcolor,menustyle,style,false);//#844 styleBold,styleItalic,styleUnderline);//R0195
+		GetSyntaxDefinitionCategoryColorByName(name,color_dark,importcolor_dark,localcolor_dark,menustyle,style,true);//#1316
 		mCategoryArray_Color.Add(color);
+		mCategoryArray_Color_Dark.Add(color_dark);//#1316
 		/*#844 
 		//R0195
 		ATextStyle	style = kTextStyle_Normal;
@@ -6835,6 +6975,8 @@ void	AModePrefDB::MakeCategoryArrayAndKeywordList()
 		mCategoryArray_MenuTextStyle.Add(menustyle);
 		mCategoryArray_ImportColor.Add(importcolor);
 		mCategoryArray_LocalColor.Add(localcolor);
+		mCategoryArray_ImportColor_Dark.Add(importcolor);//#1316
+		mCategoryArray_LocalColor_Dark.Add(localcolor);//#1316
 		mCategoryArray_PriorToOtherColor.Add(false);//R0195
 		//R0000 カテゴリー可否配列 全てのstateに、categoryを追加
 		{
@@ -6860,14 +7002,18 @@ void	AModePrefDB::MakeCategoryArrayAndKeywordList()
 		AText	name;
 		GetData_TextArray(kJumpSetup_Name,i,name);
 		mCategoryArray_Name.Add(name);
-		AColor	color = kColor_Black;
+		AColor	color = kColor_Black, color_dark = kColor_Black;//#1316
 		ATextStyle	style = kTextStyle_Normal;
 		//#889 GetData_ColorArray(kJumpSetup_KeywordColor,i,color);
 		AIndex	colorSlot = GetData_NumberArray(AModePrefDB::kJumpSetup_KeywordColorSlot,i);//#889
-		GetColorSlotData(colorSlot,color,style);//#889
+		GetColorSlotData(colorSlot,color,style,false);//#889
+		GetColorSlotData(colorSlot,color_dark,style,true);//#1316
 		mCategoryArray_Color.Add(color);
 		mCategoryArray_ImportColor.Add(kColor_Black);
 		mCategoryArray_LocalColor.Add(kColor_Black);
+		mCategoryArray_Color_Dark.Add(color_dark);//#1316
+		mCategoryArray_ImportColor_Dark.Add(kColor_Black);//#1316
+		mCategoryArray_LocalColor_Dark.Add(kColor_Black);//#1316
 		mCategoryArray_TextStyle.Add(style);
 		mCategoryArray_MenuTextStyle.Add(kTextStyle_Normal);
 		mCategoryArray_PriorToOtherColor.Add(false);//R0195
@@ -6939,6 +7085,9 @@ void	AModePrefDB::UpdateUserKeywordCategoryAndKeyword()
 	mCategoryArray_Color.DeleteAfter(mAdditionalCategoryStartIndex);
 	mCategoryArray_ImportColor.DeleteAfter(mAdditionalCategoryStartIndex);
 	mCategoryArray_LocalColor.DeleteAfter(mAdditionalCategoryStartIndex);
+	mCategoryArray_Color_Dark.DeleteAfter(mAdditionalCategoryStartIndex);//#1316
+	mCategoryArray_ImportColor_Dark.DeleteAfter(mAdditionalCategoryStartIndex);//#1316
+	mCategoryArray_LocalColor_Dark.DeleteAfter(mAdditionalCategoryStartIndex);//#1316
 	mCategoryArray_TextStyle.DeleteAfter(mAdditionalCategoryStartIndex);
 	mCategoryArray_MenuTextStyle.DeleteAfter(mAdditionalCategoryStartIndex);
 	mCategoryArray_PriorToOtherColor.DeleteAfter(mAdditionalCategoryStartIndex);
@@ -7003,14 +7152,18 @@ void	AModePrefDB::AddNormalKeywordCategoryAndKeyword()
 		AText	name;
 		GetData_TextArray(kAdditionalCategory_Name,i,name);
 		mCategoryArray_Name.Add(name);
-		AColor	color = kColor_Black;
+		AColor	color = kColor_Black, color_dark = kColor_Black;//#1316
 		ATextStyle	style = kTextStyle_Normal;
 		//#889 GetData_ColorArray(kAdditionalCategory_Color,i,color);
 		AIndex	colorSlot = GetData_NumberArray(kAdditionalCategory_ColorSlot,i);//#889
-		GetColorSlotData(colorSlot,color,style);//#889
+		GetColorSlotData(colorSlot,color,style,false);//#889
+		GetColorSlotData(colorSlot,color_dark,style,true);//#1316
 		mCategoryArray_Color.Add(color);
 		mCategoryArray_ImportColor.Add(kColor_Black);
 		mCategoryArray_LocalColor.Add(kColor_Black);
+		mCategoryArray_Color_Dark.Add(color_dark);//#1316
+		mCategoryArray_ImportColor_Dark.Add(kColor_Black);//#1316
+		mCategoryArray_LocalColor_Dark.Add(kColor_Black);//#1316
 		/*#889
 		if( GetData_BoolArray(kAdditionalCategory_Bold,i) == true )
 		{
@@ -7329,15 +7482,20 @@ void	AModePrefDB::UpdateSyntaxDefinitionCategoryColor()
 		AText	name;
 		mCategoryArray_Name.Get(i,name);
 		AColor	color = kColor_Black, importcolor = kColor_Black, localcolor = kColor_Black;
+		AColor	color_dark = kColor_Black, importcolor_dark = kColor_Black, localcolor_dark = kColor_Black;//#1316
 		ATextStyle	menustyle = kTextStyle_Normal;
 		ATextStyle	style = kTextStyle_Normal;
 		//SDF定義カテゴリの色・スタイルを取得（色SDFに記述されたColorSlotに従って取得）
-		GetSyntaxDefinitionCategoryColorByName(name,color,importcolor,localcolor,menustyle,style);
+		GetSyntaxDefinitionCategoryColorByName(name,color,importcolor,localcolor,menustyle,style,false);
+		GetSyntaxDefinitionCategoryColorByName(name,color_dark,importcolor_dark,localcolor_dark,menustyle,style,true);//#1316
 		mCategoryArray_Color.Set(i,color);
+		mCategoryArray_Color_Dark.Set(i,color_dark);//#1316
 		mCategoryArray_TextStyle.Set(i,style);
 		mCategoryArray_MenuTextStyle.Set(i,menustyle);
 		mCategoryArray_ImportColor.Set(i,importcolor);
 		mCategoryArray_LocalColor.Set(i,localcolor);
+		mCategoryArray_ImportColor_Dark.Set(i,importcolor_dark);//#1316
+		mCategoryArray_LocalColor_Dark.Set(i,localcolor_dark);//#1316
 	}
 }
 
@@ -7352,11 +7510,13 @@ void	AModePrefDB::UpdateUserKeywordCategoryColor()
 				i < GetItemCount_Array(kAdditionalCategory_Color);
 				i++ )
 	{
-		AColor	color = kColor_Black;
+		AColor	color = kColor_Black, color_dark = kColor_Black;
 		ATextStyle	style = kTextStyle_Normal;
 		AIndex	colorSlot = GetData_NumberArray(kAdditionalCategory_ColorSlot,i);
-		GetColorSlotData(colorSlot,color,style);
+		GetColorSlotData(colorSlot,color,style,false);
+		GetColorSlotData(colorSlot,color_dark,style,true);//#1316
 		mCategoryArray_Color.Set(mAdditionalCategoryStartIndex+i,color);
+		mCategoryArray_Color_Dark.Set(mAdditionalCategoryStartIndex+i,color_dark);//#1316
 		mCategoryArray_TextStyle.Set(mAdditionalCategoryStartIndex+i,style);
 	}
 }
@@ -7412,13 +7572,20 @@ ABool	AModePrefDB::FindKeyword( const AText& inKeyword, AColor& outColor, ATextS
 	{
 		//IdentifierListにColorSlotが設定されている場合（＝CSVキーワード）、
 		//そちらを優先する。
-		GetColorSlotData(colorSlot,outColor,outStyle);
+		GetColorSlotData(colorSlot,outColor,outStyle,GetApp().NVI_IsDarkMode());
 	}
 	else
 	{
 		//IdentifierListにColorSlotが設定されていない場合（＝CSVキーワード以外）、
 		//カテゴリに設定された色・スタイルを取得
-		outColor = mCategoryArray_Color.Get(categoryIndex);
+		if( GetApp().NVI_IsDarkMode() == false )
+		{
+			outColor = mCategoryArray_Color.Get(categoryIndex);
+		}
+		else
+		{
+			outColor = mCategoryArray_Color_Dark.Get(categoryIndex);
+		}
 		outStyle = mCategoryArray_TextStyle.Get(categoryIndex);
 	}
 	//
@@ -7429,7 +7596,14 @@ ABool	AModePrefDB::FindKeyword( const AText& inKeyword, AColor& outColor, ATextS
 //
 void	AModePrefDB::GetCategoryColor( const AIndex inCategoryIndex, AColor& outColor ) const
 {
-	outColor = mCategoryArray_Color.Get(inCategoryIndex);
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		outColor = mCategoryArray_Color.Get(inCategoryIndex);
+	}
+	else
+	{
+		outColor = mCategoryArray_Color_Dark.Get(inCategoryIndex);
+	}
 }
 
 //
@@ -7441,13 +7615,27 @@ ATextStyle	AModePrefDB::GetCategoryTextStyle( const AIndex inCategoryIndex ) con
 //
 void	AModePrefDB::GetCategoryImportColor( const AIndex inCategoryIndex, AColor& outColor ) const
 {
-	outColor = mCategoryArray_ImportColor.Get(inCategoryIndex);
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		outColor = mCategoryArray_ImportColor.Get(inCategoryIndex);
+	}
+	else
+	{
+		outColor = mCategoryArray_ImportColor_Dark.Get(inCategoryIndex);
+	}
 }
 
 //
 void	AModePrefDB::GetCategoryLocalColor( const AIndex inCategoryIndex, AColor& outColor ) const
 {
-	outColor = mCategoryArray_LocalColor.Get(inCategoryIndex);
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		outColor = mCategoryArray_LocalColor.Get(inCategoryIndex);
+	}
+	else
+	{
+		outColor = mCategoryArray_LocalColor_Dark.Get(inCategoryIndex);
+	}
 }
 
 //
@@ -7784,7 +7972,7 @@ void	AModePrefDB::FindKeywordIdInfo( const AText& inKeyword,
 //カテゴリー色取得（モード設定優先、未設定なら文法定義ファイルのデフォルトカラー）
 void	AModePrefDB::GetSyntaxDefinitionCategoryColorByName( const AText& inName, 
 		AColor& outColor, AColor& outImportColor, AColor& outLocalColor, ATextStyle& outMenuTextStyle, 
-		ATextStyle& outTextStyle ) const //#844
+		ATextStyle& outTextStyle, const ABool inDarkMode ) const //#844 #1316
 {
 	/*#844 従来のSDFカテゴリ色データは使用しない。カラースロットを使用。
 	outBold = false;//R0195
@@ -7812,7 +8000,7 @@ void	AModePrefDB::GetSyntaxDefinitionCategoryColorByName( const AText& inName,
 	*/
 	//カラースロットの色を取得
 	AIndex	colorSlot = mSyntaxDefinition.GetCategoryColorSlot().Get(index);
-	GetColorSlotData(colorSlot,outColor,outTextStyle);
+	GetColorSlotData(colorSlot,outColor,outTextStyle,inDarkMode);//#1316
 	if( GetData_Bool(AModePrefDB::kDarkenImportLightenLocal) == true )
 	{
 		outImportColor = AColorWrapper::ChangeHSV(outColor,0,1.0,0.8);//インポートは少し濃いめの色
@@ -7834,11 +8022,12 @@ void	AModePrefDB::UpdateSyntaxDefinitionStateColorArray()
 {
 	//文法定義state毎の色テーブル更新
 	mSyntaxDefinitionStateColorArray.DeleteAll();
+	mSyntaxDefinitionStateColorArray_Dark.DeleteAll();//#1316
 	mSyntaxDefinitionStateColorValidArray.DeleteAll();
 	mSyntaxDefinitionStateArray_TextStyle.DeleteAll();//#844
 	for( AIndex index = 0; index < mSyntaxDefinition.GetStateCount(); index++ )
 	{
-		AColor	color;
+		AColor	color, color_dark;
 		//#844 if( mSyntaxDefinition.GetSyntaxDefinitionState(index).GetStateColor(color) == true )
 		AIndex	colorSlot = mSyntaxDefinition.GetSyntaxDefinitionState(index).GetColorSlot();
 		if( colorSlot != kIndex_Invalid )
@@ -7847,9 +8036,11 @@ void	AModePrefDB::UpdateSyntaxDefinitionStateColorArray()
 			//#844 GetSyntaxDefinitionStateColorByName(mSyntaxDefinition.GetStateName(index),color);
 			//カラースロットの色取得
 			ATextStyle	textstyle = kTextStyle_Normal;
-			GetColorSlotData(colorSlot,color,textstyle);
+			GetColorSlotData(colorSlot,color,textstyle,false);
+			GetColorSlotData(colorSlot,color_dark,textstyle,true);//#1316
 			//テーブルに追加
 			mSyntaxDefinitionStateColorArray.Add(color);
+			mSyntaxDefinitionStateColorArray_Dark.Add(color_dark);
 			mSyntaxDefinitionStateColorValidArray.Add(true);
 			mSyntaxDefinitionStateArray_TextStyle.Add(textstyle);//#844
 		}
@@ -7858,7 +8049,9 @@ void	AModePrefDB::UpdateSyntaxDefinitionStateColorArray()
 			//------------------カラースロット指定の無いstateの場合------------------
 			//文字色をテーブルに追加
 			GetModeData_Color(AModePrefDB::kLetterColor,color);
+			GetModeData_Color(AModePrefDB::kLetterColor,color_dark);//#1316
 			mSyntaxDefinitionStateColorArray.Add(color);
+			mSyntaxDefinitionStateColorArray_Dark.Add(color_dark);//#1316
 			mSyntaxDefinitionStateColorValidArray.Add(false);
 			mSyntaxDefinitionStateArray_TextStyle.Add(kTextStyle_Normal);//#844
 		}
@@ -7868,7 +8061,7 @@ void	AModePrefDB::UpdateSyntaxDefinitionStateColorArray()
 /**
 カラースロットの色・スタイル取得
 */
-void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, ATextStyle& outTextStyle ) const
+void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, ATextStyle& outTextStyle, const ABool inDarkMode ) const//#1316
 {
 	//
 	ABool	isBold = false, isItalic = false, isUnderline = false;
@@ -7876,7 +8069,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 	{
 	  case 0:
 		{
-			GetModeData_Color(kSyntaxColorSlot0_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot0_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot0_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot0_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot0_Underline);
@@ -7884,7 +8077,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 1:
 		{
-			GetModeData_Color(kSyntaxColorSlot1_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot1_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot1_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot1_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot1_Underline);
@@ -7892,7 +8085,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 2:
 		{
-			GetModeData_Color(kSyntaxColorSlot2_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot2_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot2_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot2_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot2_Underline);
@@ -7900,7 +8093,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 3:
 		{
-			GetModeData_Color(kSyntaxColorSlot3_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot3_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot3_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot3_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot3_Underline);
@@ -7908,7 +8101,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 4:
 		{
-			GetModeData_Color(kSyntaxColorSlot4_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot4_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot4_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot4_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot4_Underline);
@@ -7916,7 +8109,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 5:
 		{
-			GetModeData_Color(kSyntaxColorSlot5_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot5_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot5_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot5_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot5_Underline);
@@ -7924,7 +8117,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 6:
 		{
-			GetModeData_Color(kSyntaxColorSlot6_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot6_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot6_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot6_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot6_Underline);
@@ -7932,7 +8125,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 7:
 		{
-			GetModeData_Color(kSyntaxColorSlot7_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlot7_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlot7_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlot7_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlot7_Underline);
@@ -7940,7 +8133,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 32:
 		{
-			GetModeData_Color(kSyntaxColorSlotComment_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlotComment_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlotComment_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlotComment_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlotComment_Underline);
@@ -7948,7 +8141,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  case 33:
 		{
-			GetModeData_Color(kSyntaxColorSlotLiteral_Color,outColor);
+			GetModeData_Color(kSyntaxColorSlotLiteral_Color,outColor,inDarkMode);//#1316
 			isBold = GetModeData_Bool(kSyntaxColorSlotLiteral_Bold);
 			isItalic = GetModeData_Bool(kSyntaxColorSlotLiteral_Italic);
 			isUnderline = GetModeData_Bool(kSyntaxColorSlotLiteral_Underline);
@@ -7974,13 +8167,20 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 	{
 		outTextStyle |= kTextStyle_Underline;
 	}
-}	
+}
 
 //stateに対応する色を取得する
 //（mSyntaxDefinitionStateColorArray, mSyntaxDefinitionStateColorValidArrayから取得する）
 void	AModePrefDB::GetLetterColorForState( const AIndex inStateIndex, AColor& outColor, ATextStyle& outStyle, ABool& outStateColorValid ) const
 {
-	outColor = mSyntaxDefinitionStateColorArray.Get(inStateIndex);
+	if( GetApp().NVI_IsDarkMode() == false )
+	{
+		outColor = mSyntaxDefinitionStateColorArray.Get(inStateIndex);
+	}
+	else
+	{
+		outColor = mSyntaxDefinitionStateColorArray_Dark.Get(inStateIndex);
+	}
 	outStateColorValid = mSyntaxDefinitionStateColorValidArray.Get(inStateIndex);
 	outStyle = mSyntaxDefinitionStateArray_TextStyle.Get(inStateIndex);//#844
 	//#868
