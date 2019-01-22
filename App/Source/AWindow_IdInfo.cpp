@@ -419,10 +419,10 @@ void	AWindow_IdInfo::NVIDO_Create( const ADocumentID inDocumentID )
 		/*#1316 êFÇÕEditBoxë§Ç≈ê›íË
 		NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetBackgroundColor(
 					kColor_White,kColor_Gray70Percent,kColor_Gray70Percent);
-					*/
 		NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetTextColor(
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"),
 					AColorWrapper::GetColorByHTMLFormatColor("1574cf"));
+					*/
 		NVI_SetAutomaticSelectBySwitchFocus(kControlID_SearchBox,true);
 		NVI_GetEditBoxView(kControlID_SearchBox).SPI_SetEnableFocusRing(false);
 	}
