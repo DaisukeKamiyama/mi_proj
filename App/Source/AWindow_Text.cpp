@@ -4178,16 +4178,16 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	//行番号ボタン生成 #232 ボタンをAView_Button化
 	NVI_CreateButtonView(kControlID_LineNumberButton,pt,kLineNumberButtonWidth,kHeight_Footer-2,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_LineNumberButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
-	NVI_GetButtonViewByControlID(kControlID_LineNumberButton).SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,
-				kTextStyle_DropShadow,kColor_Black,kColor_Black);
-	NVI_GetButtonViewByControlID(kControlID_LineNumberButton).SPI_SetDropShadowColor(kColor_Gray80Percent);
+	NVI_GetButtonViewByControlID(kControlID_LineNumberButton).
+			SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,kTextStyle_Normal);//#1316
+	//#1316 NVI_GetButtonViewByControlID(kControlID_LineNumberButton).SPI_SetDropShadowColor(kColor_Gray80Percent);
 	NVI_GetButtonViewByControlID(kControlID_LineNumberButton).SPI_SetEllipsisMode(kEllipsisMode_FixedLastCharacters,3);
 	//場所ボタン生成 #232 ボタンをAView_Button化
 	NVI_CreateButtonView(kControlID_PositionButton,pt,kPositionButtonWidth,kHeight_Footer-2,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
-	NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,
-				kTextStyle_DropShadow,kColor_Black,kColor_Black);
-	NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetDropShadowColor(kColor_Gray80Percent);
+	NVI_GetButtonViewByControlID(kControlID_PositionButton).
+			SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,kTextStyle_Normal);//#1316
+	//#1316 NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetDropShadowColor(kColor_Gray80Percent);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetEllipsisMode(kEllipsisMode_FixedLastCharacters,5);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton).SPI_SetIcon(kImageID_iconSwList,0,2,18);
 	
@@ -4195,16 +4195,16 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	//サブテキストの行番号ボタン生成
 	NVI_CreateButtonView(kControlID_LineNumberButton_SubText,pt,kLineNumberButtonWidth,kHeight_Footer-2,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
-	NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,
-				kTextStyle_DropShadow,kColor_Black,kColor_Black);
-	NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).SPI_SetDropShadowColor(kColor_Gray80Percent);
+	NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).
+			SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,kTextStyle_Normal);//#1316
+	//#1316 NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).SPI_SetDropShadowColor(kColor_Gray80Percent);
 	NVI_GetButtonViewByControlID(kControlID_LineNumberButton_SubText).SPI_SetEllipsisMode(kEllipsisMode_FixedLastCharacters,3);
 	//サブテキストの場所ボタン生成
 	NVI_CreateButtonView(kControlID_PositionButton_SubText,pt,kPositionButtonWidth,kHeight_Footer-2,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
-	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,
-				kTextStyle_DropShadow,kColor_Black,kColor_Black);
-	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetDropShadowColor(kColor_Gray80Percent);
+	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).
+			SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Left,kTextStyle_Normal);//#1316
+	//#1316 NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetDropShadowColor(kColor_Gray80Percent);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetEllipsisMode(kEllipsisMode_FixedLastCharacters,5);
 	NVI_GetButtonViewByControlID(kControlID_PositionButton_SubText).SPI_SetIcon(kImageID_iconSwList,0,2,18);
 	
@@ -4251,9 +4251,9 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 		AWindowPoint	pt = {-10000,-10000};//#1090
 		NVI_CreateButtonView(kControlID_MainColumnProgressText,pt,10,kHeight_ProgressIndicator,kControlID_Invalid);
 		NVI_GetButtonViewByControlID(kControlID_MainColumnProgressText).SPI_SetButtonViewType(kButtonViewType_NoFrame);
-		NVI_GetButtonViewByControlID(kControlID_MainColumnProgressText).SPI_SetTextProperty(defaultfontname,9.0,kJustification_Left,
-					kTextStyle_DropShadow,kColor_Black,kColor_Black);
-		NVI_GetButtonViewByControlID(kControlID_MainColumnProgressText).SPI_SetDropShadowColor(kColor_Gray80Percent);
+		NVI_GetButtonViewByControlID(kControlID_MainColumnProgressText).
+				SPI_SetTextProperty(defaultfontname,9.0,kJustification_Left,kTextStyle_Normal);//#1316
+		//#1316 NVI_GetButtonViewByControlID(kControlID_MainColumnProgressText).SPI_SetDropShadowColor(kColor_Gray80Percent);
 		
 	}
 	
@@ -4325,7 +4325,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_CreateButtonView(kSubPaneFileNameButtonControlID,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kSubPaneFileNameButtonControlID).SPI_SetButtonViewType(kButtonViewType_Rect20);
 	NVI_GetButtonViewByControlID(kSubPaneFileNameButtonControlID).SPI_SetTextProperty(defaultfontname,kButtonFontSize,kJustification_Center,kTextStyle_Normal);
-	NVI_GetButtonViewByControlID(kSubPaneFileNameButtonControlID).SPI_SetIcon(kImageID_iconSwDocument,5,3);
+	NVI_GetButtonViewByControlID(kSubPaneFileNameButtonControlID).SPI_SetIcon(kImageID_iconSwDocument,5,1.5);//#1316 3);
 	NVI_SetShowControl(kSubPaneFileNameButtonControlID,false);
 	//サブテキスト同期ボタン
 	NVI_CreateButtonView(kSubPaneSyncButtonControlID,pt,10,10,kControlID_Invalid);
@@ -4334,7 +4334,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_SetShowControl(kSubPaneSyncButtonControlID,false);
 	text.SetLocalizedText("SubPaneSyncButton");
 	NVI_GetButtonViewByControlID(kSubPaneSyncButtonControlID).NVI_SetText(text);
-	NVI_GetButtonViewByControlID(kSubPaneSyncButtonControlID).SPI_SetIcon(kImageID_iconSwShow,5,2);
+NVI_GetButtonViewByControlID(kSubPaneSyncButtonControlID).SPI_SetIcon(kImageID_iconSwShow,5,1.5);//#1316 2);
 	//サブテキスト入替ボタン
 	NVI_CreateButtonView(kSubPaneSwapButtonControlID,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kSubPaneSwapButtonControlID).SPI_SetButtonViewType(kButtonViewType_Rect20);
@@ -4342,7 +4342,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_SetShowControl(kSubPaneSwapButtonControlID,false);
 	text.SetLocalizedText("SubPaneSwapButton");
 	NVI_GetButtonViewByControlID(kSubPaneSwapButtonControlID).NVI_SetText(text);
-	NVI_GetButtonViewByControlID(kSubPaneSwapButtonControlID).SPI_SetIcon(kImageID_iconSwReplace,5,2);
+	NVI_GetButtonViewByControlID(kSubPaneSwapButtonControlID).SPI_SetIcon(kImageID_iconSwReplace,5,1.5);//#1316 2);
 	//サブテキストDiffボタン #379
 	NVI_CreateButtonView(kSubPaneDiffButtonControlID,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetButtonViewType(kButtonViewType_Rect20);
@@ -4350,7 +4350,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_SetShowControl(kSubPaneDiffButtonControlID,false);
 	text.SetLocalizedText("SubPaneDiffButton");
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).NVI_SetText(text);
-	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetIcon(kImageID_iconSwCompare,5,2);
+	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetIcon(kImageID_iconSwCompare,5,1.5);//#1316 2);
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetToggleMode(true);
 	NVI_EnableHelpTagCallback(kSubPaneDiffButtonControlID);
 	
@@ -5004,7 +5004,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 				{
 					AWindowPoint	pt = {0};
 					pt.x = layout.pt_RightSideBar.x;// + kWidth_FooterSeparator;
-					pt.y = layout.pt_Footer.y +kFooterButtonsYOffset;
+					pt.y = layout.pt_Footer.y +kFooterButtonsYOffset -2;//#1316
 					ANumber	w = 64;//layout.w_RightSideBar - kWidth_SizeBox - kWidth_RightSideBar_PrefButton - kWidth_RightSideBar_ShowHideButton;
 					NVI_SetControlPosition(kControlID_RightSideBar_SeparatorButton,pt);
 					NVI_SetControlSize(kControlID_RightSideBar_SeparatorButton,w,layout.h_Footer);
@@ -5013,7 +5013,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 				//右サイドバー表示・非表示ボタン
 				{
 					AWindowPoint	pt = {0};
-					pt.x = layout.pt_RightSideBar.x + layout.w_RightSideBar - kWidth_SizeBox - kWidth_RightSideBar_PrefButton - kWidth_RightSideBar_ShowHideButton;
+					pt.x = layout.pt_RightSideBar.x + layout.w_RightSideBar - kWidth_SizeBox /* #1367 - kWidth_RightSideBar_PrefButton*/ - kWidth_RightSideBar_ShowHideButton;
 					pt.y = layout.pt_Footer.y + kFooterButtonsYOffset;
 					NVI_SetControlPosition(kControlID_RightSideBar_ShowHideButton,pt);
 					NVI_SetControlSize(kControlID_RightSideBar_ShowHideButton,kWidth_RightSideBar_ShowHideButton,layout.h_Footer-2);
@@ -5026,7 +5026,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 					pt.y = layout.pt_Footer.y + kFooterButtonsYOffset;
 					NVI_SetControlPosition(kControlID_RightSideBar_PrefButton,pt);
 					NVI_SetControlSize(kControlID_RightSideBar_PrefButton,kWidth_RightSideBar_PrefButton,layout.h_Footer-2);
-					NVI_SetShowControl(kControlID_RightSideBar_PrefButton,true);
+					NVI_SetShowControl(kControlID_RightSideBar_PrefButton,false);//#1367 true);
 				}
 				//
 				mFooterProgressRightPosition = layout.pt_MainColumn.x + layout.w_MainColumn - kWidth_SizeBox;
@@ -5098,7 +5098,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 					pt.y = layout.pt_Footer.y + kFooterButtonsYOffset;
 					NVI_SetControlPosition(kControlID_LeftSideBar_PrefButton,pt);
 					NVI_SetControlSize(kControlID_LeftSideBar_PrefButton,kWidth_LeftSideBar_PrefButton,layout.h_Footer-2);
-					NVI_SetShowControl(kControlID_LeftSideBar_PrefButton,true);
+					NVI_SetShowControl(kControlID_LeftSideBar_PrefButton,false);//#1367 true);
 				}
 			}
 			else
@@ -6056,7 +6056,7 @@ void	AWindow_Text::UpdateLayout_SubTextPane( /*#1364 const AIndex inTabIndex,*/ 
 				//サブペインDiffボタン
 				ANumber	w2 = w_SubTextPane-kSubPaneSyncButtonWidth;
 				NVI_SetControlPosition(kSubPaneDiffButtonControlID,pt2);
-				NVI_SetControlSize(kSubPaneDiffButtonControlID,w2+1,kSubPaneModeButtonHeight);
+				NVI_SetControlSize(kSubPaneDiffButtonControlID,w2/*#1316 +1*/,kSubPaneModeButtonHeight);
 				NVI_SetShowControl(kSubPaneDiffButtonControlID,true);
 				//サブペイン同期ボタン
 				pt2.x += w2;
@@ -6949,6 +6949,7 @@ void	AWindow_Text::NVIDO_UpdateProperty()
 	//
 	//#725 SPI_GetJumpListWindow().NVI_UpdateProperty();
 	
+	/*#1316
 	//サブテキスト制御ボタン色更新
 	NVI_GetButtonViewByControlID(kSubPaneFileNameButtonControlID).SPI_SetLetterColor(GetApp().SPI_GetSubTextColumnButtonLetterColor(),
 																					 GetApp().SPI_GetSubTextColumnButtonLetterColorDeactivate());
@@ -6962,6 +6963,7 @@ void	AWindow_Text::NVIDO_UpdateProperty()
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetLetterColor(GetApp().SPI_GetSubTextColumnButtonLetterColor(),
 																				 GetApp().SPI_GetSubTextColumnButtonLetterColorDeactivate());
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetDropShadowColor(GetApp().SPI_GetSubTextColumnButtonDropShadowColor());
+	*/
 	
 	//サイドバー背景色更新
 	AColor	color = GetApp().SPI_GetSubWindowBackgroundColor(true);
@@ -7917,7 +7919,7 @@ void	AWindow_Text::CreateSplitView( const AIndex inTabIndex, const AIndex inView
 	NVI_CreateButtonView(splitButtonID,pt,10,10,kControlID_Invalid);
 	//#725 NVI_GetButtonViewByControlID(splitButtonID).SPI_SetIcon(kIconID_Mi_SplitView,0,0,16,16);
 	NVI_GetButtonViewByControlID(splitButtonID).SPI_SetButtonViewType(kButtonViewType_ScrollBar);
-	NVI_GetButtonViewByControlID(splitButtonID).SPI_SetIcon(kImageID_iconPnSeparateVertical,0,1);//#725
+	NVI_GetButtonViewByControlID(splitButtonID).SPI_SetIcon(kImageID_iconPnSeparateVertical,0,0);//#1316 1);//#725
 	text.SetLocalizedText("HelpTag_SplitView");//#661
 	NVI_GetButtonViewByControlID(splitButtonID).SPI_SetHelpTag(text,text);//#661
 	/*
@@ -12774,8 +12776,7 @@ void	AWindow_Text::UpdateMacroBarItemPositions( const AIndex inTabIndex, const A
 			AText	fontname;
 			AFontWrapper::GetDialogDefaultFontName(fontname);
 			NVI_GetButtonViewByControlID(controlID).SPI_SetTextProperty(fontname,10.0,kJustification_Center,
-																		0/*#1079 kTextStyle_Bold|kTextStyle_DropShadow*/,
-																		kColor_Black,kColor_Gray60Percent);//#1079
+																		0/*#1079 kTextStyle_Bold|kTextStyle_DropShadow*/);//#1079
 			NVI_GetButtonViewByControlID(controlID).SPI_SetDropShadowColor(kColor_Gray80Percent);
 		}
 		//
@@ -12796,8 +12797,7 @@ void	AWindow_Text::UpdateMacroBarItemPositions( const AIndex inTabIndex, const A
 			AText	fontname;
 			AFontWrapper::GetDialogDefaultFontName(fontname);
 			NVI_GetButtonViewByControlID(controlID).SPI_SetTextProperty(fontname,10.0,kJustification_Center,
-																		0/*#1079 kTextStyle_Bold|kTextStyle_DropShadow*/,
-																		kColor_Black,kColor_Gray60Percent);//#1079
+																		0/*#1079 kTextStyle_Bold|kTextStyle_DropShadow*/);//#1079
 			NVI_GetButtonViewByControlID(controlID).SPI_SetDropShadowColor(kColor_Gray80Percent);
 			//dragging中で非表示の場合は、temporaryで非表示にする
 			NVI_GetButtonViewByControlID(controlID).SPI_SetTemporaryInvisible(i==mDraggingMacroBarCurrentItemDisplayIndex);
