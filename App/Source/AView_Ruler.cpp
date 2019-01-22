@@ -109,8 +109,8 @@ void	AView_Ruler::EVTDO_DoDraw()
 	//タブ選択ビュー全体の表示
 	//NVMC_PaintRect(viewRect,kColor_Gray95Percent,1.0);
 	//色 #1316
-	AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
-	AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("D9D9D9");
+	AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("D9D9D9");
+	AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
 	AColor	borderColor = AColorWrapper::GetColorByHTMLFormatColor("CCCCCC");
 	AColor	caretColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
 	//ダークモード
