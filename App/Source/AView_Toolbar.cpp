@@ -225,7 +225,7 @@ void	AView_Toolbar::EVTDO_DoDraw()
 	AColor	color = kColor_Gray70Percent;
 	if( NVI_GetWindow().NVI_IsWindowActive() == false )
 	{
-		color = kColor_Gray90Percent;
+		color = AColorWrapper::GetColorByHTMLFormatColor("E5E5E5");//#1316
 	}
 	//ダークモード #1316
 	if( GetApp().NVI_IsDarkMode() == true )
