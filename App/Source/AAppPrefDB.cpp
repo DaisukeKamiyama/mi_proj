@@ -904,7 +904,7 @@ void	AAppPrefDB::UpdateColorSchemeDB()
 /**
 環境設定カラースキームを使用するかどうかを取得する
 */
-ABool	AAppPrefDB::UseAppPrefColorScheme( const ABool inDarkMode )
+ABool	AAppPrefDB::UseAppPrefColorScheme( const ABool inDarkMode ) const
 {
 	if( inDarkMode == false )
 	{
