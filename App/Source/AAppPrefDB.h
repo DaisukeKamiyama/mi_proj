@@ -32,6 +32,7 @@ AAppPrefDB
 #ifndef MODEPREFCONVERTER
 #import <Sparkle/SUUpdater.h>
 #endif
+#include "AColorSchemeDB.h"
 
 /**
 候補キータイプ
@@ -97,6 +98,18 @@ class AAppPrefDB : public ADataBase
 	//自動更新
   public:
 	void					SPI_UpdateSparkleUpdateLevel();
+	
+	//#1316
+	//環境設定カラースキーム
+  public:
+	void					UpdateColorSchemeDB();
+	ABool					UseAppPrefColorScheme( const ABool inDarkMode ) const;
+	const AColorSchemeDB&	GetColorSchemeDB( const ABool inDarkMode ) const;
+  private:
+	ABool					mUseLightModeColorScheme;
+	ABool					mUseDarkModeColorScheme;
+	AColorSchemeDB			mLightModeColorSchemeDB;
+	AColorSchemeDB			mDarkModeColorSchemeDB;
 	
 	//
   public:
@@ -293,6 +306,9 @@ class AAppPrefDB : public ADataBase
 	const static APrefID	kShowFindResultPopup				= 474;
 	//タブ幅 #1349
 	const static APrefID	kTabWidth							= 475;
+	//環境設定カラースキーム #1316
+	const static APrefID	kLightModeColorSchemeName			= 476;
+	const static APrefID	kDarkModeColorSchemeName			= 477;
 	
 	//AWindow_AppPrefでは設定項目が無いもの（ウインドウ位置等）
 	//番号は1001番以降それぞれ重複しない番号をとる。（この番号は他の箇所には影響しない）
