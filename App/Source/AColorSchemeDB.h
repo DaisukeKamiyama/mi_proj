@@ -43,10 +43,11 @@ class AColorSchemeDB : public ADataBase
 	AColorSchemeDB();
 	
   public:
-	void	LoadFromColorSchemeFile( const AFileAcc& inFile, const AColorSchemeType inType );
+	ABool	Load( const AText& inSchemeName );//#1316
 	void	GetColor( const APrefID inPrefID, AColor& ioColor ) const;
 	static AIndex	GetColorSlotIndexFromName( const AText& inName );
   private:
+	void	LoadFromColorSchemeFile( const AFileAcc& inFile, const AColorSchemeType inType );
 	void	LoadFromCSVFile( const AFileAcc& inFile );
 	void	LoadFromEPFFile( const AFileAcc& inFile );
 	AColor	ParseFromEqual_EPFFile( const AText& inText, const AIndex inPos ) const;
