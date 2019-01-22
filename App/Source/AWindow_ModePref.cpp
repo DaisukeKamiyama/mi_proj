@@ -2422,10 +2422,16 @@ ABool	AWindow_ModePref::EVTDO_Clicked( const AControlID inID, const AModifierKey
 		{
 			//現在の色を保存
 			GetApp().SPI_GetModePrefDB(mModeIndex).SaveLastColors();
+			/*#1316
 			//カラースキームdb更新
 			GetApp().SPI_GetModePrefDB(mModeIndex).UpdateColorScheme();
 			//mode pref dbの各色をカラースキームから更新
 			GetApp().SPI_GetModePrefDB(mModeIndex).ApplyFromColorScheme();
+			*/
+			//カラースキームからモード設定色へコピー #1316
+			AText	schemename;
+			GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Text(AModePrefDB::kColorSchemeName,schemename);
+			GetApp().SPI_GetModePrefDB(mModeIndex).ApplyFromColorScheme(schemename);
 			//色更新時処理
 			UpdateColors();
 			//表示更新
@@ -3132,7 +3138,7 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	//モード情報
 	NVI_CreateEditBoxView(AModePrefDB::kModeComment,true,false,true);//#180
 	NVI_GetEditBoxView(AModePrefDB::kModeComment).
-			SPI_SetTextDrawProperty(appdefaultfontname,9.0,kColor_Black,kColor_Black);//#180
+    SPI_SetTextDrawProperty(appdefaultfontname,9.0);//#1316 ,kColor_Black,kColor_Black);//#180
 	NVI_GetEditBoxView(AModePrefDB::kModeComment).NVI_SetCatchReturn(true);//#180
 	NVI_GetEditBoxView(AModePrefDB::kModeComment).NVI_SetCatchTab(true);//#180
 	NVI_GetEditBoxView(AModePrefDB::kModeComment).NVI_SetAutomaticSelectBySwitchFocus(false);
@@ -3438,7 +3444,7 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	
 	//インポートファイル
 	NVI_CreateEditBoxView(AModePrefDB::kSystemHeaderFiles,true,true,true);//#253
-	NVI_GetEditBoxView(AModePrefDB::kSystemHeaderFiles).SPI_SetTextDrawProperty(appdefaultfontname,9.0,kColor_Black,kColor_Black);//#253 #375
+    NVI_GetEditBoxView(AModePrefDB::kSystemHeaderFiles).SPI_SetTextDrawProperty(appdefaultfontname,9.0);//#1316 ,kColor_Black,kColor_Black);//#253 #375
 	NVI_GetEditBoxView(AModePrefDB::kSystemHeaderFiles).NVI_SetCatchReturn(true);//#253
 	NVM_RegisterDBData(AModePrefDB::kImportSystemHeaderFiles,			false);
 	NVM_RegisterDBData(AModePrefDB::kSystemHeaderFiles,					false,AModePrefDB::kImportSystemHeaderFiles);//#253
@@ -4166,7 +4172,7 @@ void	AWindow_ModePref::NVMDO_UpdateTableView( const AControlID inTableControlID,
 								AText   t;
 								t.SetLocalizedText("KeyBindAction_OSDefault");
 								textArray.Add(t);
-								colorArray.Add(kColor_Black);
+								colorArray.Add(kColor_List_Normal);//#1316 kColor_Black);
 							}
                             else
 							{
@@ -4185,7 +4191,7 @@ void	AWindow_ModePref::NVMDO_UpdateTableView( const AControlID inTableControlID,
 								if( keybindDefault == true )
 								{
 									//キーバインド動作設定無しの場合は黒色表示
-									colorArray.Add(kColor_Black);
+									colorArray.Add(kColor_List_Normal);//#1316 kColor_Black);
 								}
 								else
 								{
@@ -4224,7 +4230,7 @@ void	AWindow_ModePref::NVMDO_UpdateTableView( const AControlID inTableControlID,
 								i <  GetApp().SPI_GetModePrefDB(mModeIndex).GetItemCount_Array(AModePrefDB::kAdditionalCategory_Name);
 								i++ )
 					{
-						AColor	color = kColor_Black;
+						AColor	color = kColor_List_Normal;//#1316 kColor_Black;
 						AColor	backgroundColor = kColor_White;
 						ABool	rowEditable = true;
 						if( GetApp().SPI_GetModePrefDB(mModeIndex).
@@ -4382,7 +4388,7 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 				pathArray.Add(path);
 				//#427 自動更新ツールは文字色・背景色を変える
 				AColor	backgroundColor = kColor_White;
-				AColor	color = kColor_Black;
+				AColor	color = kColor_List_Normal;//#1316 kColor_Black;
 				if( GetApp().SPI_GetModePrefDB(mModeIndex).GetToolAutoUpdateFlag(mCurrentToolMenuObjectID,i) == true )
 				{
 					backgroundColor = kColor_Gray92Percent;
@@ -4434,7 +4440,7 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 				//iconArray.Add(iconID);
 				//#427 自動更新ツールは文字色・背景色を変える
 				AColor	backgroundColor = kColor_White;
-				AColor	color = kColor_Black;
+				AColor	color = kColor_List_Normal;//#1316 kColor_Black;
 				if( GetApp().SPI_GetModePrefDB(mModeIndex).GetToolbarAutoUpdateFlag(i) == true )
 				{
 					backgroundColor = kColor_Gray92Percent;
@@ -5329,7 +5335,7 @@ void	AWindow_ModePref::UpdateColors()
 		{
 			if( GetApp().SPI_GetModePrefDB(i,false).IsLoaded() == true )
 			{
-				GetApp().SPI_GetModePrefDB(i).UpdateColorScheme();
+				//#1316 GetApp().SPI_GetModePrefDB(i).UpdateColorScheme();
 				GetApp().SPI_GetModePrefDB(i).UpdateUserKeywordCategoryColor();
 				GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionStateColorArray();
 				GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionCategoryColor();
@@ -5339,7 +5345,7 @@ void	AWindow_ModePref::UpdateColors()
 	else
 	{
 		//------------------標準モード以外の場合はこのモードの色情報を更新------------------
-		GetApp().SPI_GetModePrefDB(mModeIndex).UpdateColorScheme();
+		//#1316 GetApp().SPI_GetModePrefDB(mModeIndex).UpdateColorScheme();
 		GetApp().SPI_GetModePrefDB(mModeIndex).UpdateUserKeywordCategoryColor();
 		GetApp().SPI_GetModePrefDB(mModeIndex).UpdateSyntaxDefinitionStateColorArray();
 		GetApp().SPI_GetModePrefDB(mModeIndex).UpdateSyntaxDefinitionCategoryColor();
