@@ -10772,8 +10772,8 @@ void	ADocument_Text::SetDiffArray( const AArray<ADiffType>& inDiffTypeArray,
 		const ATextArray& inDeletedText, const ABool inSetParagraphIndexArray )
 {
 	//色取得
-	AColor	subWindowNormalColor = GetApp().SPI_GetSubWindowLetterColor();
-	AColor	jumpListDiffColor = GetApp().SPI_GetJumpListDiffColor();
+	AColor	subWindowNormalColor = kColor_List_Normal;//#1316 GetApp().SPI_GetSubWindowLetterColor();
+	AColor	jumpListDiffColor = kColor_List_Red;//#1316 GetApp().SPI_GetJumpListDiffColor();
 	
 	//#304 上記フラグの前にあった処理をここに移動
 	mDiffDisplayArray_DiffType.DeleteAll();
@@ -12715,7 +12715,7 @@ void	ADocument_Text::ClearDiffDisplay()
 	SPI_RefreshTextViews();//#212
 	
 	//色取得
-	AColor	subWindowNormalColor = GetApp().SPI_GetSubWindowLetterColor();
+	AColor	subWindowNormalColor = kColor_List_Normal;//#1316 GetApp().SPI_GetSubWindowLetterColor();
 	//
 	for( AIndex i = 0; i < mJump_MenuColorArray.GetItemCount(); i++ )
 	{
@@ -14709,7 +14709,7 @@ void	ADocument_Text::AddToJumpMenu( const AArray<AUniqID>& inIdentifierUniqIDArr
 	mJump_MenuOutlineLevelArray.Reserve(firstItemMenuIndex,itemCount);//#130
 	
 	//色取得
-	AColor	subWindowNormalColor = GetApp().SPI_GetSubWindowLetterColor();
+	AColor	subWindowNormalColor = kColor_List_Normal;//#1316 GetApp().SPI_GetSubWindowLetterColor();
 	
 	//各項目追加
 	for( AIndex i = 0; i < itemCount; i++ )
@@ -15178,7 +15178,7 @@ void	ADocument_Text::SPI_UpdateJumpList_Deleted( const AIndex inIndex )
 void	ADocument_Text::SPI_UpdateJumpList_Inserted( const AIndex inIndex, const AItemCount inCount )
 {
 	//色取得
-	AColor	subWindowNormalColor = GetApp().SPI_GetSubWindowLetterColor();
+	AColor	subWindowNormalColor = kColor_List_Normal;//#1316 GetApp().SPI_GetSubWindowLetterColor();
 	
 	//ソートボタン更新必要フラグ
 	ABool	sortButtonShouldBeUpdated = false;
