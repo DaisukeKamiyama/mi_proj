@@ -110,11 +110,18 @@ void	AView_Notification::EVTDO_DoDraw()
 	
 	//==================色取得==================
 	
-	//描画色設定
-	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	boxBaseColor1 = AColorWrapper::ChangeHSV(kColor_White,0,1.0,1.2);
-	boxBaseColor2 = AColorWrapper::ChangeHSV(kColor_White,0,1.0,0.95);
-	boxBaseColor3 = AColorWrapper::ChangeHSV(kColor_White,0,1.0,0.93);
+	//#1316
+	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
+	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+	//
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+		boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+	}
+	AColor	boxBaseColor1 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,1.2);
+	AColor	boxBaseColor2 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.95);
+	AColor	boxBaseColor3 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.93);
 	
 	//各項目毎のループ
 	for( AIndex index = 0; index < mArray_Text.GetItemCount(); index++ )
@@ -139,7 +146,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		
 		//==================ヘッダ描画==================
 		//フォント設定
-		NVMC_SetDefaultTextProperty(labelfontname,9.5,kColor_Black,kTextStyle_DropShadow,true,alpha);
+		NVMC_SetDefaultTextProperty(labelfontname,9.5,letterColor,kTextStyle_DropShadow,true,alpha);
 		//ヘッダrect取得
 		ALocalRect	headerLocalRect = itemLocalRect;
 		headerLocalRect.bottom = headerLocalRect.top + kHeight_Header;
@@ -164,7 +171,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		
 		//==================content描画==================
 		//フォント設定
-		NVMC_SetDefaultTextProperty(labelfontname,10.0,kColor_Gray20Percent,kTextStyle_DropShadow,true,alpha);
+		NVMC_SetDefaultTextProperty(labelfontname,10.0,letterColor,kTextStyle_DropShadow,true,alpha);
 		//内容テキスト取得
 		AText	text;
 		mArray_Text.Get(index,text);
