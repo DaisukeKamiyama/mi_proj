@@ -105,11 +105,13 @@ class AAppPrefDB : public ADataBase
 	void					UpdateColorSchemeDB();
 	ABool					UseAppPrefColorScheme( const ABool inDarkMode ) const;
 	const AColorSchemeDB&	GetColorSchemeDB( const ABool inDarkMode ) const;
+    void					SetPrintColorSchemeMode( const ABool inPrintColorSchemeMode ) { mPrintColorSchemeMode = inPrintColorSchemeMode; }
   private:
 	ABool					mUseLightModeColorScheme;
 	ABool					mUseDarkModeColorScheme;
 	AColorSchemeDB			mLightModeColorSchemeDB;
 	AColorSchemeDB			mDarkModeColorSchemeDB;
+	ABool					mPrintColorSchemeMode;
 	
 	//
   public:
