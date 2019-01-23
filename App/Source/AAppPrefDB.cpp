@@ -32,7 +32,7 @@ AAppPrefDB
 #pragma mark ---Constructor/Destructor/Load/Write/Setup
 
 AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
-,mUseLightModeColorScheme(false),mUseDarkModeColorScheme(true)//#1316
+,mUseLightModeColorScheme(false),mUseDarkModeColorScheme(true),mPrintColorSchemeMode(false)//#1316
 {
 	/*#844
 	mTextEncodingMenuFixedTextArray.Add("UTF-8");
@@ -906,6 +906,12 @@ void	AAppPrefDB::UpdateColorSchemeDB()
 */
 ABool	AAppPrefDB::UseAppPrefColorScheme( const ABool inDarkMode ) const
 {
+	//印刷中は常にモード設定カラースキームに従う
+	if( mPrintColorSchemeMode == true )
+	{
+		return false;
+	}
+	//
 	if( inDarkMode == false )
 	{
 		return mUseLightModeColorScheme;
