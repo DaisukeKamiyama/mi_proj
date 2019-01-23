@@ -1832,6 +1832,10 @@ AItemCount	ADocument_Text::EVTDO_GetPrintPageCount()
 //
 void	ADocument_Text::EVTDO_PrintPage( const AIndex inPageIndex ) 
 {
+	//#1316
+	//印刷中カラースキームモードにする
+	GetApp().GetAppPref().SetPrintColorSchemeMode(true);
+	
 	//#524
 	AIndex	printRangeStartLineIndex = 0;
 	AIndex	printRangeEndLineIndex = mTextInfoForPrint.GetLineCount();
@@ -2079,6 +2083,10 @@ void	ADocument_Text::EVTDO_PrintPage( const AIndex inPageIndex )
 	1mmくらい誤差が出るが、まあよしとする
 	72dpi座標系に変換しているから？
 	*/
+	
+	//#1316
+	//印刷中カラースキームモードを解除する
+	GetApp().GetAppPref().SetPrintColorSchemeMode(false);
 }
 
 //テキスト印刷フォントを取得
