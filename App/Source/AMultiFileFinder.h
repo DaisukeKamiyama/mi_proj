@@ -60,6 +60,13 @@ class AMultiFileFinder : public AThread
 	ABool			mFileFilterExist;
 	ARegExp			mFileFilterRegExp;
 	
+	//#1378
+	//マルチファイル検索終了判定は、検索終了イベント受信時にまだスレッドが動作しているので、スレッド動作中かどうかではなく、フラグ参照に変える。
+  public:
+	ABool	SPI_IsWorking() const { return mWorking; }
+  private:
+	ABool		mWorking;
+	
 	//#890
 	//検索途中中断
   public:
