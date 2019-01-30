@@ -1172,9 +1172,9 @@ MacroBarTitle = "Macro: ";
 AddMacro = "Add Macro";
 
 CommandKey = "⌘";
-OptionKey = "⌥";
-ShiftKey = "⇧";
-ControlKey = "^";
+OptionKey = "option";
+ShiftKey = "shift";
+ControlKey = "control";
 
 PositionButtonTitle = "見出し：";
 
@@ -1311,10 +1311,10 @@ ShowToolBar = "Show Tool Bar";
 HideToolBar = "Hide Tool Bar";
 
 CandidateList_AndSoOn = "他";
-CandidateList_Count = "候補：^0項目";
+CandidateList_Count = "^0項目　";
 CandidateList_Key_BeforeAbbrevMode = "^1キーで補完入力";
 CandidateList_Key_BeforeAbbrevMode_ArrowKeyAvailable = "^1キーまたは↑↓キーで補完入力";
-CandidateList_Key_AfterAbbrevMode = "↑↓キーで候補選択、return キーで確定、esc キーでキャンセル";
+CandidateList_Key_AfterAbbrevMode = "↑↓:候補選択　return:確定　esc:キャンセル";
 CandidateList_ParentKeywordMatched = "  (親キーワード一致)";
 CandidateList_FoundInHistory = "（最近補完した項目）";
 CandidateList_MaxItems = "（項目数が多いため以降省略）";
@@ -1326,11 +1326,6 @@ ValidSyntaxPartAll = "All Syntax Parts";
 Letter_Edit = "✏";
 Letter_ParentKeyword = "◇";
 Letter_ParentKeyword_Matched = "◆";
-
-ModePref_KeywordKind_Embed = "This keyword category is embedded in this mode. The keywords are read-only, and they may be updated by upgrade of application.";
-ModePref_KeywordKind_User = "You can input keywords using Edit Box or load from CSV File which describes keywords.";
-ModePref_ToolKind_Embed = "このツールは、このモードに最初から組み込まれており、内容は読み込み専用です。また、アプリケーションのアップグレード時に自動更新されます。";
-ModePref_ToolKind_User = "ツールメニュー選択時に、エディットボックスに入力されたテキストやコマンド（＝ツールコマンド）がドキュメントに挿入されます。";
 
 FindList_Aborted = "この検索は途中で中止されました";
 FindList_ResultCount = "以上、^0個の項目が見つかりました（ファイル：^1個）";
@@ -1385,7 +1380,7 @@ AppPref_RemoteFile = "Remote File";
 AppPref_Compare = "Compare";
 AppPref_Print = "Print";
 AppPref_Detail = "Detail";
-AppPref_Features = "Features";
+AppPref_Features = "Other Features";
 AppPref_Display = "Display";
 AppPref_Operation = "Operation";
 
@@ -1396,7 +1391,7 @@ ModePref_Display = "Display";
 ModePref_Keyword = "Keyword";
 ModePref_Header = "Header";
 ModePref_Syntax = "Syntax";
-ModePref_Features = "Features";
+ModePref_Features = "Other Features";
 ModePref_Indent = "Indent";
 ModePref_KeyBind = "Key Bind";
 ModePref_Tool = "Tool";
