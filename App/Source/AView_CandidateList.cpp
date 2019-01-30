@@ -146,10 +146,17 @@ void	AView_CandidateList::EVTDO_DoDraw()
 	//==================色取得==================
 	
 	//描画色設定
-	AColor	letterColor = kColor_Black;
+	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//#1316
+	//#1316
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
+	}
 	//#1316 AColor	dropShadowColor = kColor_White;
+	/*#1316
 	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
+	*/
     //#1316 NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//=========================候補項目毎のループ=========================
@@ -169,39 +176,10 @@ void	AView_CandidateList::EVTDO_DoDraw()
 		//項目が描画領域に入っているかの判定
 		if( NVMC_IsRectInDrawUpdateRegion(localItemRect) == false )   continue;
 		
+		/*#1316 スコープによる色分けはダークモードなどで見えづらくなるので、必要性も薄いので削除する。
 		//=========================項目の背景描画=========================
 		//項目の背景色取得
 		AColor	bgcolor = kColor_White;//#725
-		/*#717
-		switch( mScopeTypeArray.Get(i) )
-		{
-		  case kScopeType_Local:
-			{
-				bgcolor = kColor_Bisque;//#725
-				break;
-			}
-		  case kScopeType_Global:
-			{
-				bgcolor = kColor_Red;//#725
-				break;
-			}
-		  case kScopeType_Import:
-			{
-				bgcolor = kColor_Blue;//#725
-				break;
-			}
-		  case kScopeType_Import_Near:
-			{
-				bgcolor = kColor_Blue;//#725
-				break;
-			}
-		  default:
-			{
-				//処理無し
-				break;
-			}
-		}
-		*/
 		//優先順位によって背景色変更
 		ABool	priorityColor = true;
 		switch( mPriorityArray.Get(i) )
@@ -240,6 +218,7 @@ void	AView_CandidateList::EVTDO_DoDraw()
 		{
 			NVMC_PaintRect(localItemRect,bgcolor,0.05);
 		}
+		*/
 		
 		//=========================選択描画=========================
 		//選択描画
@@ -506,7 +485,13 @@ void	AView_CandidateList::EVTDO_DoDraw()
 			ALocalRect	rect = textRect;
 			rect.left = mKeywordStartX;
 			rect.right = mKeywordStartX + NVMC_GetDrawTextWidth(keywordText);
-			NVMC_PaintRect(rect,kColor_Yellow,0.2+0.3*selectionOpacity);
+			AFloatNumber alpha = 0.3*selectionOpacity;//#1316
+			if( GetApp().NVI_IsDarkMode() == false )
+			{
+				//ダークモードではない場合のみ、アルファを+0.2する
+				alpha += 0.2;
+			}
+			NVMC_PaintRect(rect,kColor_Yellow,alpha);
 		}
 		//テキスト描画
 		NVMC_DrawText(textRect,drawRect,textDrawData);
