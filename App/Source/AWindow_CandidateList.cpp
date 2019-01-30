@@ -389,8 +389,10 @@ void	AWindow_CandidateList::NVIDO_UpdateProperty()
 		//描画色設定
 		AColor	letterColor = kColor_Black;
 		//#1316 AColor	dropShadowColor = kColor_White;
+		/*#1316
 		AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-		GetApp().SPI_GetSubWindowBoxColor(GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+		GetApp().SPI_GetSubWindowBoxColor(GetObjectID(),letterColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
+		*/
 		NVI_GetButtonViewByControlID(kControlID_SelectSearchMode).
 				SPI_SetTextProperty(fontname,9.0,kJustification_Left,kTextStyle_Normal);
 	}
@@ -522,6 +524,17 @@ void	AWindow_CandidateList::SPI_SetInfo( const AModeIndex inModeIndex,
 		mCurrentModeIndexForAbbrevKeyText = inModeIndex;
 	}
 	*/
+	//#1379 #1160でモード設定補完キーの場合の処理も消していたので復活
+	//モードが変換した場合のみ、補完キー取得（GetKeyTextFromKeybindAction()はけっこう時間がかかる）
+	if( mCurrentModeIndexForAbbrevKeyText != inModeIndex && inModeIndex != kIndex_Invalid )
+	{
+		GetApp().SPI_GetModePrefDB(inModeIndex).GetKeyTextFromKeybindAction(keyAction_abbrevnext,mAbbrevKeyText);
+		//キーバインド割当が無いときは?と表示（未割当を明確にするため）
+		if( mAbbrevKeyText.GetItemCount() == 0 )
+		{
+			mAbbrevKeyText.SetCstring("?");
+		}
+	}
 }
 
 //
@@ -719,7 +732,7 @@ void	AWindow_CandidateList::UpdateViewBounds()
 	//ListView配置・表示
 	{
 		NVI_SetControlPosition(kControlID_ListView,listViewPoint);
-		NVI_SetControlSize(kControlID_ListView,listViewWidth - vscrollbarWidth,listViewHeight-3);
+		NVI_SetControlSize(kControlID_ListView,listViewWidth - vscrollbarWidth,listViewHeight);//#1316 -3);
 		NVI_SetShowControl(kControlID_ListView,true);
 	}
 	
