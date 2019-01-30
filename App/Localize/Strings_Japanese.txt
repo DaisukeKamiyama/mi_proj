@@ -1100,7 +1100,7 @@ SubWindowTitle_DocInfo = "テキスト情報";
 SubWindowTitle_ToolList = "ツール";
 SubWindowTitle_JumpList = "見出しリスト";
 SubWindowTitle_JumpList_SubText = "見出しリスト（サブテキスト）";
-SubWindowTitle_FindResult = "検索結果　（⌘ + option + ↑↓ で項目移動）";
+SubWindowTitle_FindResult = "検索結果　（⌘ + option + ↑↓ で項目移動　escでクローズ）";
 
 SearchKeyword = "キーワードを検索（部分一致）";
 Filter = "絞り込み検索（部分一致）";
@@ -1172,9 +1172,9 @@ MacroBarTitle = "ツールバー：";
 AddMacro = "＋";
 
 CommandKey = "⌘";
-OptionKey = "⌥";
-ShiftKey = "⇧";
-ControlKey = "^";
+OptionKey = "option";
+ShiftKey = "shift";
+ControlKey = "control";
 
 PositionButtonTitle = "見出し：";
 
@@ -1311,10 +1311,10 @@ ShowToolBar = "ツールバーを表示";
 HideToolBar = "ツールバーを隠す";
 
 CandidateList_AndSoOn = "他";
-CandidateList_Count = "候補：^0項目";
+CandidateList_Count = "^0項目　";
 CandidateList_Key_BeforeAbbrevMode = "^1キーで補完入力";
 CandidateList_Key_BeforeAbbrevMode_ArrowKeyAvailable = "^1キーまたは↑↓キーで補完入力";
-CandidateList_Key_AfterAbbrevMode = "↑↓キーで候補選択、return キーで確定、esc キーでキャンセル";
+CandidateList_Key_AfterAbbrevMode = "↑↓:候補選択　return:確定　esc:キャンセル";
 CandidateList_ParentKeywordMatched = "  (親キーワード一致)";
 CandidateList_FoundInHistory = "（最近補完した項目）";
 CandidateList_MaxItems = "（項目数が多いため以降省略）";
@@ -1326,11 +1326,6 @@ ValidSyntaxPartAll = "すべての文法パート";
 Letter_Edit = "✏";
 Letter_ParentKeyword = "◇";
 Letter_ParentKeyword_Matched = "◆";
-
-ModePref_KeywordKind_Embed = "このカテゴリーは、このモードに最初から組み込まれており、内容は読み込み専用です。また、アプリケーションのアップグレード時に自動更新されます。";
-ModePref_KeywordKind_User = "エディットボックスにキーワードを入力、または、キーワードを記述した CSV ファイルを指定することができます。";
-ModePref_ToolKind_Embed = "このツールは、このモードに最初から組み込まれており、内容は読み込み専用です。また、アプリケーションのアップグレード時に自動更新されます。";
-ModePref_ToolKind_User = "ツールメニュー選択時に、エディットボックスに入力されたテキストやコマンド（＝ツールコマンド）がドキュメントに挿入されます。";
 
 FindList_Aborted = "この検索は途中で中止されました";
 FindList_ResultCount = "以上、^0個の項目が見つかりました（ファイル：^1個）";
@@ -1385,7 +1380,7 @@ AppPref_RemoteFile = "リモートファイル";
 AppPref_Compare = "比較";
 AppPref_Print = "印刷";
 AppPref_Detail = "詳細";
-AppPref_Features = "機能";
+AppPref_Features = "その他の機能";
 AppPref_Display = "表示";
 AppPref_Operation = "操作";
 
@@ -1396,7 +1391,7 @@ ModePref_Display = "表示";
 ModePref_Keyword = "キーワード";
 ModePref_Header = "見出し";
 ModePref_Syntax = "文法";
-ModePref_Features = "機能";
+ModePref_Features = "その他の機能";
 ModePref_Indent = "インデント";
 ModePref_KeyBind = "キーバインド";
 ModePref_Tool = "ツール";
