@@ -30,7 +30,7 @@ AView_Notification
 
 //各高さ
 const ANumber	kHeight_ItemBox = 38;
-const ANumber	kHeight_Header = 18;
+const ANumber	kHeight_Header = 19;//#1316
 const ANumber	kHeight_ItemMargin = 4;
 const ANumber	kHeight_ItemBoxWithMargin = kHeight_ItemBox + kHeight_ItemMargin;
 
@@ -112,16 +112,18 @@ void	AView_Notification::EVTDO_DoDraw()
 	
 	//#1316
 	AColor	letterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
-	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("FAFAFA");
 	//
 	if( GetApp().NVI_IsDarkMode() == true )
 	{
-		letterColor = AColorWrapper::GetColorByHTMLFormatColor("F0F0F0");
-		boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("282828");
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("DDDDDD");
+		boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
 	}
+	/*#1316
 	AColor	boxBaseColor1 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,1.2);
 	AColor	boxBaseColor2 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.95);
 	AColor	boxBaseColor3 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.93);
+	*/
 	
 	//各項目毎のループ
 	for( AIndex index = 0; index < mArray_Text.GetItemCount(); index++ )
@@ -140,20 +142,22 @@ void	AView_Notification::EVTDO_DoDraw()
 		//round rect描画
 		NVMC_PaintRoundedRect(itemLocalRect,
 							  //kColor_White,kColor_Gray95Percent,
-							  boxBaseColor1,boxBaseColor3,
+							  boxBaseColor,boxBaseColor,
 							  kGradientType_Vertical,alpha,alpha,
 							  kRoundedRectRad,true,true,true,true);
 		
 		//==================ヘッダ描画==================
 		//フォント設定
-		NVMC_SetDefaultTextProperty(labelfontname,9.5,letterColor,kTextStyle_DropShadow,true,alpha);
+		NVMC_SetDefaultTextProperty(labelfontname,9.5,letterColor,kTextStyle_Normal,true,alpha);
 		//ヘッダrect取得
 		ALocalRect	headerLocalRect = itemLocalRect;
 		headerLocalRect.bottom = headerLocalRect.top + kHeight_Header;
 		//ヘッダ描画
+		/*#1316
 		AColor	headercolor_start = AColorWrapper::ChangeHSV(color,0,0.8,1.0);
 		AColor	headercolor_end = AColorWrapper::ChangeHSV(color,0,1.2,1.0);
-		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15*alpha,0.15*alpha,
+		*/
+		NVMC_PaintRoundedRect(headerLocalRect,color,color,kGradientType_Vertical,0.08*alpha,0.08*alpha,//#1316 0.15→0.08
 							  kRoundedRectRad,true,true,true,true);
 		//ヘッダタイトル取得
 		AText	title;
@@ -171,7 +175,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		
 		//==================content描画==================
 		//フォント設定
-		NVMC_SetDefaultTextProperty(labelfontname,10.0,letterColor,kTextStyle_DropShadow,true,alpha);
+		NVMC_SetDefaultTextProperty(labelfontname,10.0,letterColor,kTextStyle_Normal,true,alpha);
 		//内容テキスト取得
 		AText	text;
 		mArray_Text.Get(index,text);
@@ -191,7 +195,7 @@ void	AView_Notification::EVTDO_DoDraw()
 		
 		//==================フレーム描画==================
 		//フレーム描画
-		NVMC_FrameRoundedRect(itemLocalRect,kColor_Gray50Percent,alpha,kRoundedRectRad,true,true,true,true);
+		NVMC_FrameRoundedRect(itemLocalRect,kColor_Gray50Percent,alpha*0.6,kRoundedRectRad,true,true,true,true);//#1316 alpha→alpha*0.6
 	}
 }
 
@@ -423,7 +427,7 @@ void	AView_Notification::SPI_SetNotification_FindResult( const ABool inFoundInNe
 {
 	//テキスト取得
 	AText	text, title;
-	AColor	color = kColor_Gray70Percent;
+	AColor	color = kColor_Gray50Percent;//#1316 70%→50%
 	if( inFoundInNext == false && inFoundInPrev == false )
 	{
 		//検索結果なし（前にも後にもなし）
