@@ -40,6 +40,7 @@ AMultiFileFinder::AMultiFileFinder( AObjectArrayItem* inParent ) : AThread(inPar
 ,mHitCount(0),mHitFileCount(0),mAbortRecognizeSyntax(false)//R0238 #828
 ,mForMultiFileReplace(false)//#65
 ,mExtractMatchedText(false)//#937
+,mWorking(false)//#1378
 {
 }
 
@@ -50,6 +51,10 @@ AMultiFileFinder::AMultiFileFinder( AObjectArrayItem* inParent ) : AThread(inPar
 void	AMultiFileFinder::NVIDO_ThreadMain()
 {
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("AMultiFileFinder::NVIDO_ThreadMain started.",this);
+	
+	//#1378
+	mWorking = true;
+	
 	try
 	{
 		//åüçıé¿çs
@@ -111,6 +116,10 @@ void	AMultiFileFinder::NVIDO_ThreadMain()
 	AArray<AObjectID>	objectIDArray;
 	objectIDArray.Add(mIndexWindowDocumentID);
 	ABase::PostToMainInternalEventQueue(kInternalEvent_MultiFileFind_Completed,GetObjectID(),0,mExtractedText,objectIDArray);
+	
+	//#1378
+	mWorking = false;
+	
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("AMultiFileFinder::NVIDO_ThreadMain ended.",this);
 }
 
