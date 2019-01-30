@@ -2655,7 +2655,13 @@ Controlのメニューを設定する
 */
 void	AWindow::NVI_SetMenuItemsFromTextArray( const AControlID inID, const ATextArray& inTextArray )
 {
+	//現在選択中の項目のテキストを記憶 #1316
+	AText	text;
+	NVI_GetControlText(inID,text);
+	//
 	GetImp().SetMenuItemsFromTextArray(inID,inTextArray);
+	//記憶していたテキストを設定 #1316
+	NVI_SetControlText(inID,text);
 }
 
 //win
