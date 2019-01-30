@@ -228,7 +228,7 @@ class AAppPrefDB : public ADataBase
 	const static APrefID	kDrawLineForCurrentLine				= 428;//#844
 	const static APrefID	kCurrentLineColor					= 429;//#844
 	//候補ポップアップ表示 #717
-	const static APrefID	kPopupCandidateBelowInputText		= 430;
+	const static APrefID	kPopupCandidateBelowInputText		= 430;//#1375 「直下」にポップアップは使わないことにする。kPopupCandidateBelowInputTextが設定されていたら設定ロード時にkPopupCandidateNearInputTextのほうをONにして、kPopupCandidateBelowInputTextはOFFにする。
 	const static APrefID	kPopupCandidateNearInputText		= 431;
 	//unicode decomp #863
 	const static APrefID	kDisplayEachCanonicalDecompChar		= 432;
