@@ -116,7 +116,7 @@ void	AView_Notification::EVTDO_DoDraw()
 	//
 	if( GetApp().NVI_IsDarkMode() == true )
 	{
-		letterColor = AColorWrapper::GetColorByHTMLFormatColor("DDDDDD");
+		letterColor = AColorWrapper::GetColorByHTMLFormatColor("AAAAAA");
 		boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
 	}
 	/*#1316
