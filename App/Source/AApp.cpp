@@ -714,6 +714,7 @@ AApp::~AApp()
 */
 void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 {
+	/*#1316
 	ABool	useCustom = false;
 	AFileAcc	customskinfolder;
 	//カスタムskin名取得
@@ -731,6 +732,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 			useCustom = true;
 		}
 	}
+	*/
 	
 	//Image読み込み
 	
@@ -739,197 +741,197 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	
 	//イメージファイル読み込み
 	//#130
-	LoadImageFile(useCustom,customskinfolder,"iconSwCancel.png",kImageID_iconSwCancel,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwCancel_h.png",kImageID_iconSwCancel_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwCancel_p.png",kImageID_iconSwCancel_p,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwSearch.png",kImageID_iconSwSearch,inRemoveOld);
+	LoadImageFile("iconSwCancel.png",kImageID_iconSwCancel,inRemoveOld);
+	LoadImageFile("iconSwCancel_h.png",kImageID_iconSwCancel_h,inRemoveOld);
+	LoadImageFile("iconSwCancel_p.png",kImageID_iconSwCancel_p,inRemoveOld);
+	LoadImageFile("iconSwSearch.png",kImageID_iconSwSearch,inRemoveOld);
 	
 	/*#1316
 	//Rect20ボタンイメージ
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_1.png",kImageID_btn20Rect_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_2.png",kImageID_btn20Rect_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_3.png",kImageID_btn20Rect_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_h_1.png",kImageID_btn20Rect_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_h_2.png",kImageID_btn20Rect_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_h_3.png",kImageID_btn20Rect_h_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_p_1.png",kImageID_btn20Rect_p_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_p_2.png",kImageID_btn20Rect_p_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20Rect_p_3.png",kImageID_btn20Rect_p_3,inRemoveOld);
+	LoadImageFile("btn20Rect_1.png",kImageID_btn20Rect_1,inRemoveOld);
+	LoadImageFile("btn20Rect_2.png",kImageID_btn20Rect_2,inRemoveOld);
+	LoadImageFile("btn20Rect_3.png",kImageID_btn20Rect_3,inRemoveOld);
+	LoadImageFile("btn20Rect_h_1.png",kImageID_btn20Rect_h_1,inRemoveOld);
+	LoadImageFile("btn20Rect_h_2.png",kImageID_btn20Rect_h_2,inRemoveOld);
+	LoadImageFile("btn20Rect_h_3.png",kImageID_btn20Rect_h_3,inRemoveOld);
+	LoadImageFile("btn20Rect_p_1.png",kImageID_btn20Rect_p_1,inRemoveOld);
+	LoadImageFile("btn20Rect_p_2.png",kImageID_btn20Rect_p_2,inRemoveOld);
+	LoadImageFile("btn20Rect_p_3.png",kImageID_btn20Rect_p_3,inRemoveOld);
 	
 	//RoundedRect20ボタンイメージ
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_1.png",kImageID_btn20RoundedRect_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_2.png",kImageID_btn20RoundedRect_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_3.png",kImageID_btn20RoundedRect_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_h_1.png",kImageID_btn20RoundedRect_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_h_2.png",kImageID_btn20RoundedRect_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_h_3.png",kImageID_btn20RoundedRect_h_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_p_1.png",kImageID_btn20RoundedRect_p_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_p_2.png",kImageID_btn20RoundedRect_p_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn20RoundedRect_p_3.png",kImageID_btn20RoundedRect_p_3,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_1.png",kImageID_btn20RoundedRect_1,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_2.png",kImageID_btn20RoundedRect_2,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_3.png",kImageID_btn20RoundedRect_3,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_h_1.png",kImageID_btn20RoundedRect_h_1,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_h_2.png",kImageID_btn20RoundedRect_h_2,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_h_3.png",kImageID_btn20RoundedRect_h_3,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_p_1.png",kImageID_btn20RoundedRect_p_1,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_p_2.png",kImageID_btn20RoundedRect_p_2,inRemoveOld);
+	LoadImageFile("btn20RoundedRect_p_3.png",kImageID_btn20RoundedRect_p_3,inRemoveOld);
 	
 	//Rect16ボタンイメージ
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_1.png",kImageID_btn16Rect_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_2.png",kImageID_btn16Rect_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_3.png",kImageID_btn16Rect_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_h_1.png",kImageID_btn16Rect_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_h_2.png",kImageID_btn16Rect_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_h_3.png",kImageID_btn16Rect_h_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_p_1.png",kImageID_btn16Rect_p_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_p_2.png",kImageID_btn16Rect_p_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btn16Rect_p_3.png",kImageID_btn16Rect_p_3,inRemoveOld);
+	LoadImageFile("btn16Rect_1.png",kImageID_btn16Rect_1,inRemoveOld);
+	LoadImageFile("btn16Rect_2.png",kImageID_btn16Rect_2,inRemoveOld);
+	LoadImageFile("btn16Rect_3.png",kImageID_btn16Rect_3,inRemoveOld);
+	LoadImageFile("btn16Rect_h_1.png",kImageID_btn16Rect_h_1,inRemoveOld);
+	LoadImageFile("btn16Rect_h_2.png",kImageID_btn16Rect_h_2,inRemoveOld);
+	LoadImageFile("btn16Rect_h_3.png",kImageID_btn16Rect_h_3,inRemoveOld);
+	LoadImageFile("btn16Rect_p_1.png",kImageID_btn16Rect_p_1,inRemoveOld);
+	LoadImageFile("btn16Rect_p_2.png",kImageID_btn16Rect_p_2,inRemoveOld);
+	LoadImageFile("btn16Rect_p_3.png",kImageID_btn16Rect_p_3,inRemoveOld);
 	
 	//Rect16Footerボタンイメージ
-	LoadImageFile(useCustom,customskinfolder,"panel16Footer_1.png",kImageID_panel16Footer_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"panel16Footer_2.png",kImageID_panel16Footer_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"panel16Footer_3.png",kImageID_panel16Footer_3,inRemoveOld);
+	LoadImageFile("panel16Footer_1.png",kImageID_panel16Footer_1,inRemoveOld);
+	LoadImageFile("panel16Footer_2.png",kImageID_panel16Footer_2,inRemoveOld);
+	LoadImageFile("panel16Footer_3.png",kImageID_panel16Footer_3,inRemoveOld);
 	*/
 	//ポップアップメニュー用トライアングル
-	LoadImageFile(useCustom,customskinfolder,"iconSwTriangles1.png",kImageID_iconSwTriangles,inRemoveOld);
+	LoadImageFile("iconSwTriangles1.png",kImageID_iconSwTriangles,inRemoveOld);
 	
 	//折りたたみ三角形
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorRight.png",kImageID_barSwCursorRight,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorRight_h.png",kImageID_barSwCursorRight_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorRight_d.png",kImageID_barSwCursorRight_p,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorDown.png",kImageID_barSwCursorDown,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorDown_h.png",kImageID_barSwCursorDown_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCursorDown_d.png",kImageID_barSwCursorDown_p,inRemoveOld);
+	LoadImageFile("barSwCursorRight.png",kImageID_barSwCursorRight,inRemoveOld);
+	LoadImageFile("barSwCursorRight_h.png",kImageID_barSwCursorRight_h,inRemoveOld);
+	LoadImageFile("barSwCursorRight_d.png",kImageID_barSwCursorRight_p,inRemoveOld);
+	LoadImageFile("barSwCursorDown.png",kImageID_barSwCursorDown,inRemoveOld);
+	LoadImageFile("barSwCursorDown_h.png",kImageID_barSwCursorDown_h,inRemoveOld);
+	LoadImageFile("barSwCursorDown_d.png",kImageID_barSwCursorDown_p,inRemoveOld);
 	
 	/*#1316
 	//ファイルイメージ
-	LoadImageFile(useCustom,customskinfolder,"iconSwDocumentOutline.png",kImageID_iconSwFile,inRemoveOld);
+	LoadImageFile("iconSwDocumentOutline.png",kImageID_iconSwFile,inRemoveOld);
 	
 	//スクロールバー内ボタン
-	LoadImageFile(useCustom,customskinfolder,"frameScrlbarTop_106.png",kImageID_frameScrlbarTop_106,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"framescrlbartop_107.png",kImageID_frameScrlbarTop_107,inRemoveOld);
+	LoadImageFile("frameScrlbarTop_106.png",kImageID_frameScrlbarTop_106,inRemoveOld);
+	LoadImageFile("framescrlbartop_107.png",kImageID_frameScrlbarTop_107,inRemoveOld);
 	*/
 	
 	//サイドバータイトルアイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_ProjectFolder.png", kImageID_iconSwBox_ProjectFolder,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_RecentlyOpened.png", kImageID_iconSwBox_RecentlyOpened,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_SameFolder.png", kImageID_iconSwBox_SameFolder,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwBox_Remote.png", kImageID_iconSwBox_Remote,inRemoveOld);//#1316
-	LoadImageFile(useCustom,customskinfolder,"iconSwTree.png",kImageID_iconSwTree,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwList.png",kImageID_iconSwList,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwMarkerPen.png",kImageID_iconSwMarkerPen,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwPreview.png",kImageID_iconSwPreview,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwKeyWord.png",kImageID_iconSwKeyWord,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwTextCount.png",kImageID_iconSwTextCount,inRemoveOld);
+	LoadImageFile("iconSwBox_ProjectFolder.png", kImageID_iconSwBox_ProjectFolder,inRemoveOld);
+	LoadImageFile("iconSwBox_RecentlyOpened.png", kImageID_iconSwBox_RecentlyOpened,inRemoveOld);
+	LoadImageFile("iconSwBox_SameFolder.png", kImageID_iconSwBox_SameFolder,inRemoveOld);
+	LoadImageFile("iconSwBox_Remote.png", kImageID_iconSwBox_Remote,inRemoveOld);//#1316
+	LoadImageFile("iconSwTree.png",kImageID_iconSwTree,inRemoveOld);
+	LoadImageFile("iconSwList.png",kImageID_iconSwList,inRemoveOld);
+	LoadImageFile("iconSwMarkerPen.png",kImageID_iconSwMarkerPen,inRemoveOld);
+	LoadImageFile("iconSwPreview.png",kImageID_iconSwPreview,inRemoveOld);
+	LoadImageFile("iconSwKeyWord.png",kImageID_iconSwKeyWord,inRemoveOld);
+	LoadImageFile("iconSwTextCount.png",kImageID_iconSwTextCount,inRemoveOld);
 	
 	//メインウインドウ内各アイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwCompare.png",kImageID_iconSwCompare,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwReplace.png",kImageID_iconSwReplace,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwShow.png",kImageID_iconSwShow,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwDocument.png",kImageID_iconSwDocument,inRemoveOld);
+	LoadImageFile("iconSwCompare.png",kImageID_iconSwCompare,inRemoveOld);
+	LoadImageFile("iconSwReplace.png",kImageID_iconSwReplace,inRemoveOld);
+	LoadImageFile("iconSwShow.png",kImageID_iconSwShow,inRemoveOld);
+	LoadImageFile("iconSwDocument.png",kImageID_iconSwDocument,inRemoveOld);
 	
 	/*#1316
 	//タブ背景
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_1.png",kImageID_Tab0,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_2.png",kImageID_Tab1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_3.png",kImageID_Tab2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_4.png",kImageID_Tab3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_5.png",kImageID_Tab4,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_6.png",kImageID_Tab5,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_7.png",kImageID_Tab6,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_8.png",kImageID_Tab7,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"bgTabBar_9.png",kImageID_Tab8,inRemoveOld);
+	LoadImageFile("bgTabBar_1.png",kImageID_Tab0,inRemoveOld);
+	LoadImageFile("bgTabBar_2.png",kImageID_Tab1,inRemoveOld);
+	LoadImageFile("bgTabBar_3.png",kImageID_Tab2,inRemoveOld);
+	LoadImageFile("bgTabBar_4.png",kImageID_Tab3,inRemoveOld);
+	LoadImageFile("bgTabBar_5.png",kImageID_Tab4,inRemoveOld);
+	LoadImageFile("bgTabBar_6.png",kImageID_Tab5,inRemoveOld);
+	LoadImageFile("bgTabBar_7.png",kImageID_Tab6,inRemoveOld);
+	LoadImageFile("bgTabBar_8.png",kImageID_Tab7,inRemoveOld);
+	LoadImageFile("bgTabBar_9.png",kImageID_Tab8,inRemoveOld);
 	
 	//タブボタンアクティブ
-	LoadImageFile(useCustom,customskinfolder,"tabFront_1.png",kImageID_tabFront_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabFront_2.png",kImageID_tabFront_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabFront_3.png",kImageID_tabFront_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabFront_h_1.png",kImageID_tabFront_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabFront_h_2.png",kImageID_tabFront_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabFront_h_3.png",kImageID_tabFront_h_3,inRemoveOld);
+	LoadImageFile("tabFront_1.png",kImageID_tabFront_1,inRemoveOld);
+	LoadImageFile("tabFront_2.png",kImageID_tabFront_2,inRemoveOld);
+	LoadImageFile("tabFront_3.png",kImageID_tabFront_3,inRemoveOld);
+	LoadImageFile("tabFront_h_1.png",kImageID_tabFront_h_1,inRemoveOld);
+	LoadImageFile("tabFront_h_2.png",kImageID_tabFront_h_2,inRemoveOld);
+	LoadImageFile("tabFront_h_3.png",kImageID_tabFront_h_3,inRemoveOld);
 	//タブボタン2ndアクティブ
-	LoadImageFile(useCustom,customskinfolder,"tabNext_1.png",kImageID_tabNext_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabNext_2.png",kImageID_tabNext_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabNext_3.png",kImageID_tabNext_3,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabNext_h_1.png",kImageID_tabNext_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabNext_h_2.png",kImageID_tabNext_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabNext_h_3.png",kImageID_tabNext_h_3,inRemoveOld);
+	LoadImageFile("tabNext_1.png",kImageID_tabNext_1,inRemoveOld);
+	LoadImageFile("tabNext_2.png",kImageID_tabNext_2,inRemoveOld);
+	LoadImageFile("tabNext_3.png",kImageID_tabNext_3,inRemoveOld);
+	LoadImageFile("tabNext_h_1.png",kImageID_tabNext_h_1,inRemoveOld);
+	LoadImageFile("tabNext_h_2.png",kImageID_tabNext_h_2,inRemoveOld);
+	LoadImageFile("tabNext_h_3.png",kImageID_tabNext_h_3,inRemoveOld);
 	//タブボタン非アクティブ
-	LoadImageFile(useCustom,customskinfolder,"tabOther_h_1.png",kImageID_tabOther_h_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabOther_h_2.png",kImageID_tabOther_h_2,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"tabOther_h_3.png",kImageID_tabOther_h_3,inRemoveOld);
+	LoadImageFile("tabOther_h_1.png",kImageID_tabOther_h_1,inRemoveOld);
+	LoadImageFile("tabOther_h_2.png",kImageID_tabOther_h_2,inRemoveOld);
+	LoadImageFile("tabOther_h_3.png",kImageID_tabOther_h_3,inRemoveOld);
 	*/
 	//タブdirtyマーク
-	LoadImageFile(useCustom,customskinfolder,"tabDot.png",kImageID_tabDot,inRemoveOld);
+	LoadImageFile("tabDot.png",kImageID_tabDot,inRemoveOld);
 	
 	//フッター内の各制御ボタン用アイコン
-	LoadImageFile(useCustom,customskinfolder,"iconScrlbarSeparateVertical.png",kImageID_iconPnSeparateVertical,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconPnLeft.png",kImageID_iconPnLeft,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconPnRight.png",kImageID_iconPnRight,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconPnOption.png",kImageID_iconPnOption,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconPnHandle.png",kImageID_iconPnHandle,inRemoveOld);
+	LoadImageFile("iconScrlbarSeparateVertical.png",kImageID_iconPnSeparateVertical,inRemoveOld);
+	LoadImageFile("iconPnLeft.png",kImageID_iconPnLeft,inRemoveOld);
+	LoadImageFile("iconPnRight.png",kImageID_iconPnRight,inRemoveOld);
+	LoadImageFile("iconPnOption.png",kImageID_iconPnOption,inRemoveOld);
+	LoadImageFile("iconPnHandle.png",kImageID_iconPnHandle,inRemoveOld);
 	
 	//フラグマーク等
-	LoadImageFile(useCustom,customskinfolder,"iconSwlFlag.png",kImageID_iconSwlFlag,inRemoveOld);
-	//#1316 LoadImageFile(useCustom,customskinfolder,"iconSwlPin.png",kImageID_iconSwlPin,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwlParentPath.png",kImageID_iconSwlParentPath,inRemoveOld);
+	LoadImageFile("iconSwlFlag.png",kImageID_iconSwlFlag,inRemoveOld);
+	//#1316 LoadImageFile("iconSwlPin.png",kImageID_iconSwlPin,inRemoveOld);
+	LoadImageFile("iconSwlParentPath.png",kImageID_iconSwlParentPath,inRemoveOld);
 	
 	/*#1316
 	//サブウインドウタイトルバー（フローティングウイン
-	LoadImageFile(useCustom,customskinfolder,"barSwTitleBarWithBorder_1.png",kImageID_SubWindowTitlebar_Floating0,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwTitleBarWithBorder_2.png",kImageID_SubWindowTitlebar_Floating1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwTitleBarWithBorder_3.png",kImageID_SubWindowTitlebar_Floating2,inRemoveOld);
+	LoadImageFile("barSwTitleBarWithBorder_1.png",kImageID_SubWindowTitlebar_Floating0,inRemoveOld);
+	LoadImageFile("barSwTitleBarWithBorder_2.png",kImageID_SubWindowTitlebar_Floating1,inRemoveOld);
+	LoadImageFile("barSwTitleBarWithBorder_3.png",kImageID_SubWindowTitlebar_Floating2,inRemoveOld);
 	
 	//サブウインドウタイトルバー（オーバーレイウインド
-	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_0.png",kImageID_SubWindowTitlebar_Overlay0,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_1.png",kImageID_SubWindowTitlebar_Overlay1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"ui_SubWindowTitlebar_Overlay_2.png",kImageID_SubWindowTitlebar_Overlay2,inRemoveOld);
+	LoadImageFile("ui_SubWindowTitlebar_Overlay_0.png",kImageID_SubWindowTitlebar_Overlay0,inRemoveOld);
+	LoadImageFile("ui_SubWindowTitlebar_Overlay_1.png",kImageID_SubWindowTitlebar_Overlay1,inRemoveOld);
+	LoadImageFile("ui_SubWindowTitlebar_Overlay_2.png",kImageID_SubWindowTitlebar_Overlay2,inRemoveOld);
 	*/
 	
 	//サブウインドウクローズボタン
-	LoadImageFile(useCustom,customskinfolder,"barSwCloseButton_1.png",kImageID_barSwCloseButton_1,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCloseButton_h.png",kImageID_barSwCloseButton_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"barSwCloseButton_p.png",kImageID_barSwCloseButton_p,inRemoveOld);
+	LoadImageFile("barSwCloseButton_1.png",kImageID_barSwCloseButton_1,inRemoveOld);
+	LoadImageFile("barSwCloseButton_h.png",kImageID_barSwCloseButton_h,inRemoveOld);
+	LoadImageFile("barSwCloseButton_p.png",kImageID_barSwCloseButton_p,inRemoveOld);
 	
 	//折りたたみマークアイコン
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowRight.png",kImageID_btnFldngArrowRight,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowRight_h.png",kImageID_btnFldngArrowRight_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowDown.png",kImageID_btnFldngArrowDown,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowDown_h.png",kImageID_btnFldngArrowDown_h,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowEnd.png",kImageID_btnFldngArrowEnd,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnFldngArrowEnd_h.png",kImageID_btnFldngArrowEnd_h,inRemoveOld);
+	LoadImageFile("btnFldngArrowRight.png",kImageID_btnFldngArrowRight,inRemoveOld);
+	LoadImageFile("btnFldngArrowRight_h.png",kImageID_btnFldngArrowRight_h,inRemoveOld);
+	LoadImageFile("btnFldngArrowDown.png",kImageID_btnFldngArrowDown,inRemoveOld);
+	LoadImageFile("btnFldngArrowDown_h.png",kImageID_btnFldngArrowDown_h,inRemoveOld);
+	LoadImageFile("btnFldngArrowEnd.png",kImageID_btnFldngArrowEnd,inRemoveOld);
+	LoadImageFile("btnFldngArrowEnd_h.png",kImageID_btnFldngArrowEnd_h,inRemoveOld);
 	
 	//リスト項目用アイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwlDocument.png",kImageID_iconSwlDocument,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwlFolder.png",kImageID_iconSwlFolder,inRemoveOld);
+	LoadImageFile("iconSwlDocument.png",kImageID_iconSwlDocument,inRemoveOld);
+	LoadImageFile("iconSwlFolder.png",kImageID_iconSwlFolder,inRemoveOld);
 	
 	//ビューを閉じるボタンアイコン
-	LoadImageFile(useCustom,customskinfolder,"btnEditorClose.png",kImageID_btnEditorClose,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnEditorClose_h.png",kImageID_btnEditorClose_h,inRemoveOld);
+	LoadImageFile("btnEditorClose.png",kImageID_btnEditorClose,inRemoveOld);
+	LoadImageFile("btnEditorClose_h.png",kImageID_btnEditorClose_h,inRemoveOld);
 	
 	//コールグラフ用アイコン
-	LoadImageFile(useCustom,customskinfolder,"btnNaviRight.png",kImageID_btnNaviRight,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"btnNaviLeft.png",kImageID_btnNaviLeft,inRemoveOld);
+	LoadImageFile("btnNaviRight.png",kImageID_btnNaviRight,inRemoveOld);
+	LoadImageFile("btnNaviLeft.png",kImageID_btnNaviLeft,inRemoveOld);
 	
 	//ホームアイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwHome.png",kImageID_iconSwHome,inRemoveOld);
+	LoadImageFile("iconSwHome.png",kImageID_iconSwHome,inRemoveOld);
 	
 	//マクロボタン
-	LoadImageFile(useCustom,customskinfolder,"iconTbCircleCursorButton.png",kImageID_iconTbCircleCursorButton,inRemoveOld);
+	LoadImageFile("iconTbCircleCursorButton.png",kImageID_iconTbCircleCursorButton,inRemoveOld);
 	
 	//ロックボタン
-	LoadImageFile(useCustom,customskinfolder,"iconSwLock.png",kImageID_iconSwLock,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwUnlock.png",kImageID_iconSwUnlock,inRemoveOld);
+	LoadImageFile("iconSwLock.png",kImageID_iconSwLock,inRemoveOld);
+	LoadImageFile("iconSwUnlock.png",kImageID_iconSwUnlock,inRemoveOld);
 	
 	//サブウインドウタイトル用アイコン
-	LoadImageFile(useCustom,customskinfolder,"iconSwSearchList.png",kImageID_iconSwSearchList,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwWordReferrer.png",kImageID_iconSwWordReferrer,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwTool.png",kImageID_iconSwTool,inRemoveOld);
+	LoadImageFile("iconSwSearchList.png",kImageID_iconSwSearchList,inRemoveOld);
+	LoadImageFile("iconSwWordReferrer.png",kImageID_iconSwWordReferrer,inRemoveOld);
+	LoadImageFile("iconSwTool.png",kImageID_iconSwTool,inRemoveOld);
 	
-	LoadImageFile(useCustom,customskinfolder,"iconTbSeparateVertical.Template.pdf",kImageID_iconTbSeparateVertical,inRemoveOld);
-	LoadImageFile(useCustom,customskinfolder,"iconSwKeyRecord.png",kImageID_iconTbKeyRecord,inRemoveOld);
+	LoadImageFile("iconTbSeparateVertical.Template.pdf",kImageID_iconTbSeparateVertical,inRemoveOld);
+	LoadImageFile("iconSwKeyRecord.png",kImageID_iconTbKeyRecord,inRemoveOld);
 	
 	//#1368
-	LoadImageFile(useCustom,customskinfolder,"swSwitchFunction.png",kImageID_swSwitchFunction,inRemoveOld);
+	LoadImageFile("swSwitchFunction.png",kImageID_swSwitchFunction,inRemoveOld);
 }
 
 /**
 イメージロード
 */
-void	AApp::LoadImageFile( const ABool inUseCustom ,const AFileAcc& inCustomFolder, 
+void	AApp::LoadImageFile( /*#1316 const ABool inUseCustom ,const AFileAcc& inCustomFolder, */
 							const AConstCharPtr inFilename, const AImageID inImageID,
 							const ABool inRemoveOld )
 {
@@ -1578,6 +1580,7 @@ void	AApp::Startup_Phase_Data()
 		{
 			//メニュー登録
 			NVI_GetTextArrayMenuManager().RegisterTextArrayMenuID(kTextArrayMenuID_ColorScheme);
+			NVI_GetTextArrayMenuManager().RegisterTextArrayMenuID(kTextArrayMenuID_AppColorScheme);//#1316
 			//メニュー更新
 			SPI_UpdateColorSchemeMenu();
 		}
@@ -1590,6 +1593,7 @@ void	AApp::Startup_Phase_Data()
 			SPI_UpdateAccessPlugInMenu();
 		}
 		
+		/*#1316
 		//skinメニュー作成
 		{
 			//メニュー登録
@@ -1597,6 +1601,7 @@ void	AApp::Startup_Phase_Data()
 			//メニュー更新
 			SPI_UpdateSkinMenu();
 		}
+		*/
 		
 		//defaultモードのモード名メニュー生成（自動更新元モード）
 		{
@@ -2687,6 +2692,10 @@ void	AApp::SPI_UpdateColorSchemeMenu()
 {
 	ATextArray	textArray;
 	AText	text;
+	//#1316
+	ATextArray	textArray2;
+	text.SetLocalizedText("ModeColors");
+	textArray2.Add(text);
 	//------------------アプリ内カラースキーム------------------
 	{
 		//カラースキームフォルダ取得
@@ -2713,6 +2722,7 @@ void	AApp::SPI_UpdateColorSchemeMenu()
 			}
 			//メニュー表示リストにテキスト追加
 			textArray.Add(filename);
+			textArray2.Add(filename);//#1316
 		}
 	}
 	//------------------ユーザー定義カラースキーム------------------
@@ -2744,12 +2754,21 @@ void	AApp::SPI_UpdateColorSchemeMenu()
 			{
 				filename.SetLocalizedText("LastOverwrittenColors");
 			}
+			else
+			{
+				//#1316
+				textArray2.Add(filename);
+			}
 			//メニュー表示リストにテキスト追加
 			textArray.Add(filename);
 		}
 	}
+	
 	//------------------メニュー更新------------------
 	NVI_GetTextArrayMenuManager().UpdateTextArrayMenu(kTextArrayMenuID_ColorScheme,textArray);
+	
+	//#1316
+	NVI_GetTextArrayMenuManager().UpdateTextArrayMenu(kTextArrayMenuID_AppColorScheme,textArray2);
 }
 
 //#193
@@ -2829,6 +2848,7 @@ ABool	AApp::SPI_IsV2ToolbarItemNameToHide( const AText& inName ) const
 /**
 skinメニュー更新
 */
+/*#1316
 void	AApp::SPI_UpdateSkinMenu()
 {
 	ATextArray	textArray;
@@ -2860,10 +2880,12 @@ void	AApp::SPI_UpdateSkinMenu()
 	//------------------メニュー更新------------------
 	NVI_GetTextArrayMenuManager().UpdateTextArrayMenu(kTextArrayMenuID_Skin,textArray);
 }
+*/
 
 /**
 skinルートフォルダ取得
 */
+/*#1316
 void	AApp::SPI_GetUserSkinFolder( AFileAcc& outFolder )
 {
 	AFileAcc	appPrefFolder;
@@ -2871,6 +2893,7 @@ void	AApp::SPI_GetUserSkinFolder( AFileAcc& outFolder )
 	outFolder.SpecifyChild(appPrefFolder,"Skin");
 	outFolder.CreateFolderRecursive();
 }
+*/
 
 //#1003
 /**
@@ -11037,6 +11060,8 @@ AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAu
 	AText	filename;
 	inModeFolder.GetFilename(filename);
 	
+	//#1374
+	
 	//==================自動更新モードデータへの変換を行う①（キーワードとツールを自動更新フォルダへ移動）==================
 	
 	//自動更新モードデータへの変換は、ModePreferences.miが存在する場合のみ対応する
@@ -11536,7 +11561,8 @@ AMultiFileFinder&	AApp::GetMultiFileFinder()
 //マルチファイル検索実行中かどうかを返す 
 ABool	AApp::SPI_IsMultiFileFindWorking()
 {
-	return GetMultiFileFinder().NVI_IsThreadWorking();
+	//#1378 検索終了イベント受信時にまだスレッドが動作しているのでフラグ参照に変える。 return GetMultiFileFinder().NVI_IsThreadWorking();
+	return GetMultiFileFinder().SPI_IsWorking();
 }
 
 //マルチファイル検索開始 
@@ -12171,6 +12197,7 @@ AColor	AApp::SPI_GetSubWindowBackgroundColor( const ABool inActive ) const
 
 /**
 サブウインドウ内ボックス色取得
+→ポップアップウインドウの色に使用する。（テキストエリアの色に似た色を返す。）
 */
 void	AApp::SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID, 
 										AColor& outLetterColor, //#1316 AColor& outDropShadowColor,
@@ -12202,9 +12229,9 @@ void	AApp::SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID,
 			}
 		}
 	}
-	outBoxColor1 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,1.2);
-	outBoxColor2 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.95);
-	outBoxColor3 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.93);
+	outBoxColor1 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.99);//#1316 1.2);
+	outBoxColor2 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.99);//#1316 0.95);
+	outBoxColor3 = AColorWrapper::ChangeHSV(boxBaseColor,0,1.0,0.99);//#1316 0.93);
 }
 
 /**
