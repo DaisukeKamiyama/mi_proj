@@ -575,7 +575,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Bool(kShowFloatingJumpList,						"ShowFloatingJumpList",				false);
 	
 	//キーワード情報ポップアップ
-	CreateData_Bool(kPopupIdInfo,								"PopupIdInfo",						true);
+	CreateData_Bool(kPopupIdInfo,								"PopupIdInfo",						false);//#1354 true);
 	CreateData_Bool(kHideIdInfoPopupByIdle,						"HideIdInfoPopupByIdle",			true);
 	
 	//#844
@@ -882,9 +882,6 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	Add_NumberArray(kSubPaneArray_Height,150);
 	Add_NumberArray(kSubPaneArray_Type,3);//Sub Text Pane
 	Add_NumberArray(kSubPaneArray_Height,700);
-	
-	//#1316
-	UpdateColorSchemeDB();
 }
 
 //#1316
@@ -1317,6 +1314,14 @@ void	AAppPrefDB::Setup()
 		SetDefault_Text(kGitPath);
 	}
 	
+	//#1375
+	//「直下に」のポップアップは使わないことにする。kPopupCandidateBelowInputTextが設定されていたら設定ロード時にkPopupCandidateNearInputTextのほうをONにして、kPopupCandidateBelowInputTextはOFFにする。
+	if( GetData_Bool(kPopupCandidateBelowInputText) == true )
+	{
+		SetData_Bool(kPopupCandidateBelowInputText,false);
+		SetData_Bool(kPopupCandidateNearInputText,true);
+	}
+	
 	//==================
 	//テキストファイル判定用regexp初期化
 	UpdateBinaryFileRegExp();
@@ -1327,6 +1332,9 @@ void	AAppPrefDB::Setup()
 	
 	//SparkleレベルによりfeedURL設定
 	AAppPrefDB::SPI_UpdateSparkleUpdateLevel();
+	
+	//#1316
+	UpdateColorSchemeDB();
 }
 
 //#1102
