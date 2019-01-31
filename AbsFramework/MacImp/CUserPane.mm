@@ -767,7 +767,7 @@ void	CUserPane::DrawText( const ALocalRect& inDrawRect, const ALocalRect& inClip
 	//描画
 	DrawTextCore(inDrawRect,inClipRect,inJustification,GetCTLineFromTextDrawData(inTextDrawData),
 				 inTextDrawData.drawSelection,
-				 inTextDrawData.selectionStart,inTextDrawData.selectionEnd,inTextDrawData.selectionColor,inTextDrawData.selectionAlpha);
+				 inTextDrawData.selectionStart,inTextDrawData.selectionEnd,inTextDrawData.selectionColor,inTextDrawData.selectionAlpha, inTextDrawData.selectionFrameAlpha,inTextDrawData.selectionBackgroundColor);//#1316
 	
 	//R0199　スペルチェック
 	if( mVerticalMode == false )//#558
@@ -989,6 +989,78 @@ CTLineRef	CUserPane::GetCTLineFromTextDrawData( CTextDrawData& inTextDrawData )
 			value:[NSColor colorWithCalibratedRed:(c.red/65535.0) green:(c.green/65535.0) blue:(c.blue/65535.0) alpha:mTextAlpha] range:range];
 			
 		}
+		
+		//#1316
+		// ==================== テキスト属性(RunStyle)設定　追加分 ====================
+		//（ダークモード対応時に追加して一時的に使ったが、最終的には使用していない。additionalAttrPosは常に空。テスト済みなので、将来的に使うことはできるのでそのまま残しておく。）
+		//inTextDrawDataに記載された属性を設定
+		for( AIndex i = 0; i < inTextDrawData.additionalAttrPos.GetItemCount(); i++ )
+		{
+			// -------------------- Range取得 --------------------
+			//lenに、処理するRunLengthの、UniCharでの長さを格納する。
+            AItemCount	len = inTextDrawData.additionalAttrLength.Get(i);
+			//RunLengthの長さが0なら何もしない
+			if( len <= 0 )   continue;
+			//range設定
+			NSRange	range = NSMakeRange(inTextDrawData.additionalAttrPos.Get(i),len);
+			
+			// -------------------- 属性設定 --------------------
+			
+			//フォント設定
+			if( (inTextDrawData.additionalAttrStyle.Get(i)&kTextStyle_Bold) == 0 )
+			{
+				if( (inTextDrawData.additionalAttrStyle.Get(i)&kTextStyle_Italic) == 0 )
+				{
+					//通常フォント
+					[attrString addAttribute:NSFontAttributeName value:CocoaObjects->GetNormalFont() range:range];
+				}
+				else
+				{
+					//italicフォント
+					[attrString addAttribute:NSFontAttributeName value:CocoaObjects->GetItalicFont() range:range];
+				}
+			}
+			else
+			{
+				if( (inTextDrawData.additionalAttrStyle.Get(i)&kTextStyle_Italic) == 0 )
+				{
+					//boldフォント
+					[attrString addAttribute:NSFontAttributeName value:CocoaObjects->GetBoldFont() range:range];
+				}
+				else
+				{
+					//bold+italicフォント
+					[attrString addAttribute:NSFontAttributeName value:CocoaObjects->GetBoldItalicFont() range:range];
+				}
+			}
+			
+			//アンダーライン
+			if( (inTextDrawData.additionalAttrStyle.Get(i)&kTextStyle_Underline) != 0 )
+			{
+				[attrString addAttribute:NSUnderlineStyleAttributeName 
+				value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+			}
+			
+			//ドロップシャドウ
+			if( (inTextDrawData.additionalAttrStyle.Get(i)&kTextStyle_DropShadow) != 0 )
+			{
+				NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+				[shadow setShadowColor:[NSColor colorWithCalibratedRed:(mDropShadowColor.red/65535.0) 
+						green:(mDropShadowColor.green/65535.0) 
+						blue:(mDropShadowColor.blue/65535.0) 
+				alpha:1.0]];
+				[shadow setShadowBlurRadius:1.0];
+				[shadow setShadowOffset:NSMakeSize(0.0f, -1.01f)];
+				[attrString addAttribute:NSShadowAttributeName value:shadow range:range];
+			}
+			
+			// 文字色設定
+			RGBColor	c = inTextDrawData.additionalAttrColor.Get(i);
+			[attrString addAttribute:NSForegroundColorAttributeName 
+			value:[NSColor colorWithCalibratedRed:(c.red/65535.0) green:(c.green/65535.0) blue:(c.blue/65535.0) alpha:mTextAlpha] range:range];
+			
+		}
+		
 		//#558
 		//縦書き属性設定
 		if( mVerticalMode == true )
@@ -1178,7 +1250,7 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 */
 void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& inClipRect, const AJustification inJustification,
 								 const CTLineRef inCTLineRef, const ABool inDrawSelection, 
-								 const AIndex inSelectionStart, const AIndex inSelectionEnd, const AColor inSelectionColor, const AFloatNumber inSelectionAlpha )
+								 const AIndex inSelectionStart, const AIndex inSelectionEnd, const AColor inSelectionColor, const AFloatNumber inSelectionAlpha, const AFloatNumber inSelectionFrameAlpha, const AColor inSelectionBackgroundColor )//#1316
 {
 	OSStatus	status = noErr;
 	
@@ -1264,7 +1336,20 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 			CGFloat	offset = ::CTLineGetOffsetForStringIndex(inCTLineRef,inSelectionEnd,&offset2);
 			rect.right = inDrawRect.left + offset;
 		}
-		PaintRect(rect,inSelectionColor,inSelectionAlpha);
+		if( inSelectionAlpha > 0.0 )
+		{
+			//選択色
+			PaintRect(rect,inSelectionColor,inSelectionAlpha);
+		}
+		if( inSelectionFrameAlpha > 0.0 )
+		{
+			//すでに描画されている透明色と重なると文字が見えづらくなるので、一旦背景色で不透明ペイントする。
+			PaintRect(rect,inSelectionBackgroundColor,1.0);
+			//選択色
+			PaintRect(rect,inSelectionColor,inSelectionAlpha);
+			//フレーム
+			FrameRect(rect,inSelectionColor,inSelectionFrameAlpha,true,true,true,true,1.0);
+		}
 	}
 	
 	//Text描画
@@ -1914,12 +1999,16 @@ void	CUserPane::FrameRect( const ALocalRect& inRect, const AColor& inColor, cons
 	{
 		ALocalRect	leftEdge = inRect;
 		leftEdge.right = leftEdge.left+inLineWidth;
+		leftEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		leftEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
 		PaintRect(leftEdge,inColor,inAlpha);
 	}
 	if( inDrawRightLine == true )
 	{
 		ALocalRect	rightEdge = inRect;
 		rightEdge.left = rightEdge.right-inLineWidth;
+		rightEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		rightEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
 		PaintRect(rightEdge,inColor,inAlpha);
 	}
 	if( inDrawTopLine == true )
