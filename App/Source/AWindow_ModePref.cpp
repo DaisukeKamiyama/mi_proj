@@ -965,6 +965,9 @@ ABool	AWindow_ModePref::EVTDO_ValueChanged( const AControlID inControlID )
 			modepref.SetData_FloatNumber(AModePrefDB::kDefaultFontSize,fontsize);
 			//フォント設定を各ドキュメントに反映
 			GetApp().SPI_TextFontSetInModeIsUpdatedAll(mModeIndex);
+			//環境設定の方のコントロールを更新 #1373
+			GetApp().SPI_GetAppPrefWindow().
+					NVI_SetControlFont(AWindow_AppPref::kFontControl_NormalFont,fontname,fontsize);
 			break;
 		}
 		/*#868
@@ -3529,7 +3532,7 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 				kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,
 				kControlID_Invalid,true,true,true,true,false);//win 080618
 	NVM_RegisterDBTableColumn(	kTable_Indent,kColumn_Indent_RegExp,				AModePrefDB::kIndent_RegExp,
-								kButton_IndentRegExpEdit,			320,"ModePref_Indent_ListViewTitle0",true);//win 080618
+								kButton_IndentRegExpEdit,			480,"ModePref_Indent_ListViewTitle0",true);//win 080618
 	NVM_RegisterDBTableColumn(	kTable_Indent,kColumn_Indent_OffsetCurrentLine,	AModePrefDB::kIndent_OffsetCurrentLine,
 								kButton_IndentCurLineEdit,			60,"ModePref_Indent_ListViewTitle1",true);//win 080618
 	NVM_RegisterDBTableColumn(	kTable_Indent,kColumn_Indent_OffsetNextLine,		AModePrefDB::kIndent_OffsetNextLine,
@@ -3570,7 +3573,7 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 			kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,
 			kControlID_Invalid,false,true,true,true,false);
 	NVM_RegisterDBTableColumn(	kTable_Correspond,kColumn_Correspond_Start,		AModePrefDB::kCorrespond_StartText,
-								kButton_CorrStartEdit,				160,"ModePref_Correspond_ListViewTitle0",true);//win 080618
+								kButton_CorrStartEdit,				240,"ModePref_Correspond_ListViewTitle0",true);//win 080618
 	NVM_RegisterDBTableColumn(	kTable_Correspond,kColumn_Correspond_End,			AModePrefDB::kCorrespond_EndText,
 								kButton_CorrEndEdit,				0,"ModePref_Correspond_ListViewTitle1",true);//win 080618
 	NVM_SetInhibit0LengthForTable(kTable_Correspond,false);//#11
@@ -3723,6 +3726,10 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_RegisterHelpAnchor(90012,"pref.htm#modepref_indent");
 	NVI_RegisterHelpAnchor(90013,"pref.htm#modepref_kanri");
 	*/
+	NVI_RegisterHelpAnchor(90001,"topic.htm#yokutsukau");
+	NVI_RegisterHelpAnchor(90002,"kihon.htm#mode");
+	NVI_RegisterHelpAnchor(90003,"topic.htm#register_keyword");
+	NVI_RegisterHelpAnchor(90004,"topic.htm#filedragdrop");
 	
 	//タイトルバーにモードフォルダ設定
 	AFileAcc	modeFolder;
@@ -4226,26 +4233,31 @@ void	AWindow_ModePref::NVMDO_UpdateTableView( const AControlID inTableControlID,
 				{
 					AColorArray	colorArray, backgroundColorArray;
 					ABoolArray	rowEditableArray;
+					AArray<ATextStyle>	styleArray;//#1316
 					for( AIndex i = 0; 
 								i <  GetApp().SPI_GetModePrefDB(mModeIndex).GetItemCount_Array(AModePrefDB::kAdditionalCategory_Name);
 								i++ )
 					{
 						AColor	color = kColor_List_Normal;//#1316 kColor_Black;
 						AColor	backgroundColor = kColor_White;
+						ATextStyle	style = kTextStyle_Normal;//#1316
 						ABool	rowEditable = true;
 						if( GetApp().SPI_GetModePrefDB(mModeIndex).
 									GetData_BoolArray(AModePrefDB::kAdditionalCategory_AutoUpdate,i) == true )
 						{
-							color = kColor_Blue;
-							backgroundColor = kColor_Gray92Percent;
+							//#1316 color = kColor_Blue;
+							//#1316 backgroundColor = kColor_Gray92Percent;
+							style = kTextStyle_Italic;//#1316
 							rowEditable = false;
 						}
 						colorArray.Add(color);
 						backgroundColorArray.Add(backgroundColor);
+						styleArray.Add(style);//#1316
 						rowEditableArray.Add(rowEditable);
 					}
 					NVI_GetListView(kTable_KeywordCategory).SPI_SetTable_Color(colorArray);
 					NVI_GetListView(kTable_KeywordCategory).SPI_SetTable_BackgroundColor(backgroundColorArray);
+					NVI_GetListView(kTable_KeywordCategory).SPI_SetTable_TextStyle(styleArray);//#1316
 					NVI_GetListView(kTable_KeywordCategory).SPI_SetTable_RowEditable(rowEditableArray);
 					break;
 				}
@@ -4369,6 +4381,7 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 			ATextArray	pathArray;
 			AColorArray	backgroundColorArray;//#427
 			AColorArray	colorArray;//#427
+			AArray<ATextStyle>	styleArray;//#1316
 			for( AIndex i = 0; i < count; i++ )
 			{
 				/*R0173 AText	text;
@@ -4389,10 +4402,12 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 				//#427 自動更新ツールは文字色・背景色を変える
 				AColor	backgroundColor = kColor_White;
 				AColor	color = kColor_List_Normal;//#1316 kColor_Black;
+				ATextStyle	style = kTextStyle_Normal;//#1316
 				if( GetApp().SPI_GetModePrefDB(mModeIndex).GetToolAutoUpdateFlag(mCurrentToolMenuObjectID,i) == true )
 				{
-					backgroundColor = kColor_Gray92Percent;
-					color = kColor_Blue;
+					//#1316 backgroundColor = kColor_Gray92Percent;
+					//#1316 color = kColor_List_Blue;
+					style = kTextStyle_Italic;//#1316
 				}
 				if( GetApp().SPI_GetModePrefDB(mModeIndex).GetToolIsStaticText(mCurrentToolMenuObjectID,i) == true )
 				{
@@ -4400,6 +4415,7 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 				}
 				backgroundColorArray.Add(backgroundColor);
 				colorArray.Add(color);
+				styleArray.Add(style);//#1316
 			}
 			NVI_GetListView(kListView_Tool).SPI_SetEnableFileIcon(true);
 			//#1012 NVI_GetListView(kListView_Tool).SPI_SetEnableIcon(false);
@@ -4408,6 +4424,7 @@ void	AWindow_ModePref::NVIDO_UpdateProperty()
 			NVI_GetListView(kListView_Tool).SPI_SetTable_File(pathArray);
 			NVI_GetListView(kListView_Tool).SPI_SetTable_BackgroundColor(backgroundColorArray);//#427 背景色設定
 			NVI_GetListView(kListView_Tool).SPI_SetTable_Color(colorArray);//#427 文字色設定
+			NVI_GetListView(kListView_Tool).SPI_SetTable_TextStyle(styleArray);//#1316
 			NVI_GetListView(kListView_Tool).SPI_EndSetTable();
 		}
 #if 0
@@ -5618,17 +5635,19 @@ void	AKeywordEditManager::Open( const AIndex inModeIndex, const AIndex inCategor
 	
 	//#868
 	//自動更新かどうかによって説明文の切替
-	AText	categoryKindText;
+	//#1373 AText	categoryKindText;
 	if( GetApp().SPI_GetModePrefDB(mCurrentModeIndex).
 	   GetData_BoolArray(AModePrefDB::kAdditionalCategory_AutoUpdate,mCurrentCategoryIndex) == true )
 	{
-		categoryKindText.SetLocalizedText("ModePref_KeywordKind_Embed");
+		//#1373 categoryKindText.SetLocalizedText("ModePref_KeywordKind_Embed");
+		mModePrefWindow.NVI_SetShowControl(kStaticText_CategoryKind,true);
 	}
 	else
 	{
-		categoryKindText.SetLocalizedText("ModePref_KeywordKind_User");
+		//#1373 categoryKindText.SetLocalizedText("ModePref_KeywordKind_User");
+		mModePrefWindow.NVI_SetShowControl(kStaticText_CategoryKind,false);
 	}
-	mModePrefWindow.NVI_SetControlText(kStaticText_CategoryKind,categoryKindText);
+	//#1373 mModePrefWindow.NVI_SetControlText(kStaticText_CategoryKind,categoryKindText);
 }
 
 //閉じる
@@ -5672,6 +5691,9 @@ ABool	AKeywordEditManager::TryClose( const ABool inForceSave )
 	mCurrentCategoryIndex = kIndex_Invalid;//#427
 	//
 	mOpened = false;
+	
+	//#1373
+	mModePrefWindow.NVI_SetShowControl(kStaticText_CategoryKind,false);
 	
 	//空データをContentViewに表示する
 	mModePrefWindow.NVI_SetControlText(kText_KeywordList,GetEmptyText());
@@ -6028,16 +6050,20 @@ void	AToolEditManager::Open( const AModeIndex inModeIndex, //#868 const ABool in
 	mModePrefWindow.NVI_ClearControlUndoInfo(kText_Tool);//B0323
 	
 	//自動更新かどうかによって説明文切替
-	AText	toolKindText;
+	//#1373 AText	toolKindText;
 	if( autoupdate == true )
 	{
-		toolKindText.SetLocalizedText("ModePref_ToolKind_Embed");
+		//#1373 toolKindText.SetLocalizedText("ModePref_ToolKind_Embed");
+		mModePrefWindow.NVI_SetShowControl(kStaticText_ToolKind,true);
+		mModePrefWindow.NVI_SetShowControl(kButton_Tool_CopyToUserTool,true);
 	}
 	else
 	{
-		toolKindText.SetLocalizedText("ModePref_ToolKind_User");
+		//#1373 toolKindText.SetLocalizedText("ModePref_ToolKind_User");
+		mModePrefWindow.NVI_SetShowControl(kStaticText_ToolKind,false);
+		mModePrefWindow.NVI_SetShowControl(kButton_Tool_CopyToUserTool,false);
 	}
-	mModePrefWindow.NVI_SetControlText(kStaticText_ToolKind,toolKindText);
+	//#1373 mModePrefWindow.NVI_SetControlText(kStaticText_ToolKind,toolKindText);
 }
 
 //ツール内容更新
@@ -6110,6 +6136,10 @@ ABool	AToolEditManager::TryClose( const ABool inForceSave )
 	mCurrentFile.Unspecify();
 	//
 	mOpened = false;
+	
+	//#1373
+	mModePrefWindow.NVI_SetShowControl(kStaticText_ToolKind,false);
+	mModePrefWindow.NVI_SetShowControl(kButton_Tool_CopyToUserTool,false);
 	
 	//#427 ToolContentViewのコントロールをグレイアウトにし、空に設定
 	mModePrefWindow.SPI_UpdateToolContentViewControlGrayout(false,false,false,false,false,false);
