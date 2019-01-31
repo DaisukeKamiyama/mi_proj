@@ -70,6 +70,10 @@ class AWindow_AppPref: public AWindow
 	void					NVIDO_ListViewFileDropped( const AControlID inControlID, const AIndex inRowIndex, const AFileAcc& inFile );
 	void					NVMDO_NotifyDataChangedForSave();//#1239
 	
+	//#1373
+  public:
+	static const AControlID	kFontControl_NormalFont				 = 7011;
+	
 	//Object Type
   private:
 	AWindowType				NVIDO_GetWindowType() const { return kWindowType_AppPref; }
