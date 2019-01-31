@@ -2949,6 +2949,20 @@ ABool	AModePrefDB::IsSameAsNormal( const ADataID inID ) const
 */
 ABool	AModePrefDB::GetModeData_Bool( ADataID inID ) const
 {
+	//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
+	if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
+	{
+		const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
+		switch(inID)
+		{
+		  case kDarkenImportLightenLocal:
+			{
+				return true;
+			}
+		}
+	}
+	
+	//
 	if( mModeID == 0 || IsSameAsNormal(inID) == false )
 	{
 		return ADataBase::GetData_Bool(inID);
@@ -6975,8 +6989,8 @@ void	AModePrefDB::MakeCategoryArrayAndKeywordList()
 		mCategoryArray_MenuTextStyle.Add(menustyle);
 		mCategoryArray_ImportColor.Add(importcolor);
 		mCategoryArray_LocalColor.Add(localcolor);
-		mCategoryArray_ImportColor_Dark.Add(importcolor);//#1316
-		mCategoryArray_LocalColor_Dark.Add(localcolor);//#1316
+		mCategoryArray_ImportColor_Dark.Add(importcolor_dark);//#1316
+		mCategoryArray_LocalColor_Dark.Add(localcolor_dark);//#1316
 		mCategoryArray_PriorToOtherColor.Add(false);//R0195
 		//R0000 カテゴリー可否配列 全てのstateに、categoryを追加
 		{
@@ -8001,9 +8015,9 @@ void	AModePrefDB::GetSyntaxDefinitionCategoryColorByName( const AText& inName,
 	//カラースロットの色を取得
 	AIndex	colorSlot = mSyntaxDefinition.GetCategoryColorSlot().Get(index);
 	GetColorSlotData(colorSlot,outColor,outTextStyle,inDarkMode);//#1316
-	if( GetData_Bool(AModePrefDB::kDarkenImportLightenLocal) == true )
+	if( GetModeData_Bool(AModePrefDB::kDarkenImportLightenLocal) == true )
 	{
-		outImportColor = AColorWrapper::ChangeHSV(outColor,0,1.0,0.8);//インポートは少し濃いめの色
+		outImportColor = AColorWrapper::ChangeHSV(outColor,0,1.0,0.85);//インポートは少し濃いめの色 #1316 0.8→0.85 暗いとダークモードで見づらくなるので効果を少し減らす。
 		outLocalColor = AColorWrapper::ChangeHSV(outColor,0,1.0,1.3);//ローカルは少し明るめの色
 	}
 	else
@@ -8827,6 +8841,11 @@ ABool	AModePrefDB::GetKeyTextFromKeybindAction( const AKeyBindAction inAction, A
 	{
 		//modifier表示文字列を設定
 		outKeyText.AddModifiersKeyText(modifierKeys);
+		//modifier表示文字列があれば"+"を追加 #1379
+		if( outKeyText.GetItemCount() > 0 )
+		{
+			outKeyText.AddCstring("+");
+		}
 		//キーの表示文字列を追加
 		AText	t;
 		t.SetLocalizedText("Keybind_key",key);
