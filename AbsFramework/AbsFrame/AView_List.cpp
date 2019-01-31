@@ -552,7 +552,10 @@ void	AView_List::EVTDO_DoDraw()
 			drawRect.top += mRowMargin/2 -1;//#232
 			drawRect.left += kCellLeftMargin;
 			drawRect.right = drawRect.left + (drawRect.bottom-drawRect.top);
-			NVMC_DrawIconFromFile(drawRect,file,enabled);
+			if( file.Exist() == true )//#1316
+			{
+				NVMC_DrawIconFromFile(drawRect,file,enabled);
+			}
 			imagex = cellImageRect.right;
 		}
 		/*#1012
