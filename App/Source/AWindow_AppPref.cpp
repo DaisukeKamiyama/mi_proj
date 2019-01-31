@@ -107,6 +107,7 @@ const AControlID	kButton_BinaryFileDefinitionSetDefault = 7007;
 const AControlID	kRadio_OpenDocumentWithWindow		 = 7008;
 const AControlID	kRadio_SelectLineByTripleClick		 = 7009;
 const AControlID	kRadio_SelectLineStartByClickLineNumber	 = 7010;
+//#1316 const AControlID	kFontControl_NormalFont				 = 7011;//#1316
 
 //======================== 「サブウインドウ」 タブ ========================
 //
@@ -326,12 +327,14 @@ ABool	AWindow_AppPref::EVTDO_Clicked( const AControlID inID, const AModifierKeys
 			GetApp().SPI_ShowModePrefWindow(kStandardModeIndex);
 			break;
 		}
+		/*#1316
 		//skinメニュー
 	  case kButton_UpdateSkinMenu:
 		{
 			GetApp().SPI_UpdateSkinMenu();
 			break;
 		}
+		*/
 		//
 	  case kButton_FTPAccount_BackupFolderPathSelect:
 		{
@@ -539,6 +542,25 @@ ABool	AWindow_AppPref::EVTDO_ValueChanged( const AControlID inID )
 			//DBに設定
 			apppref.SetData_Text(AAppPrefDB::kPrintOption_LineNumberFontName,fontname);
 			apppref.SetData_FloatNumber(AAppPrefDB::kPrintOption_LineNumberFontSize,fontsize);
+			break;
+		}
+		//#1316
+		//標準フォント設定時処理
+	  case kFontControl_NormalFont:
+		{
+			ADataBase& modepref = GetApp().SPI_GetModePrefDB(kStandardModeIndex);
+			//コントロールからフォント取得
+			AText	fontname;
+			AFloatNumber	fontsize = 9.0;
+			NVI_GetControlFont(kFontControl_NormalFont,fontname,fontsize);
+			//DBにデータ設定
+			modepref.SetData_Text(AModePrefDB::kDefaultFontName,fontname);
+			modepref.SetData_FloatNumber(AModePrefDB::kDefaultFontSize,fontsize);
+			//フォント設定を各ドキュメントに反映
+			GetApp().SPI_TextFontSetInModeIsUpdatedAll(kStandardModeIndex);
+			//モード設定の方のコントロールを更新
+			GetApp().SPI_GetModePrefWindow(kStandardModeIndex).
+					NVI_SetControlFont(AWindow_ModePref::kFontControl_DefaultFont,fontname,fontsize);
 			break;
 		}
 		/*#844
@@ -841,22 +863,38 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	
 	//ウインドウタイトルフルパス表示 #1182
 	NVM_RegisterDBData(AAppPrefDB::kDisplayFullPathTitleBar,		true);
-
+	
+	//環境設定カラースキーム #1316
+	NVI_RegisterTextArrayMenu(AAppPrefDB::kLightModeColorSchemeName,kTextArrayMenuID_AppColorScheme);
+	NVM_RegisterDBData(AAppPrefDB::kLightModeColorSchemeName,		true);
+	NVI_RegisterTextArrayMenu(AAppPrefDB::kDarkModeColorSchemeName,kTextArrayMenuID_AppColorScheme);
+	NVM_RegisterDBData(AAppPrefDB::kDarkModeColorSchemeName,		true);
+	
+	//テキストフォント
+	{
+		ADataBase& modepref = GetApp().SPI_GetModePrefDB(kStandardModeIndex);
+		AText	text;
+		modepref.GetData_Text(AModePrefDB::kDefaultFontName,text);
+		NVI_SetControlFont(kFontControl_NormalFont,text,modepref.GetData_FloatNumber(AModePrefDB::kDefaultFontSize));
+	}
+	
 	//======================== 「サブウインドウ」 タブ ========================
 	
 	//ウインドウ透明度
 	NVM_RegisterDBData(AAppPrefDB::kSubWindowsAlpha_Floating,		true);
 	NVM_RegisterDBData(AAppPrefDB::kSubWindowsAlpha_Popup,			true);
 	
+	/*#1375
 	//補完候補ポップアップ位置ラジオボタングループ登録
 	NVI_RegisterRadioGroup();
 	NVI_AddToLastRegisteredRadioGroup(kRadio_NoPopupCandidate);
 	NVI_AddToLastRegisteredRadioGroup(AAppPrefDB::kPopupCandidateNearInputText);
 	NVI_AddToLastRegisteredRadioGroup(AAppPrefDB::kPopupCandidateBelowInputText);
+	*/
 	
 	//補完候補ポップアップ位置
 	NVM_RegisterDBData(AAppPrefDB::kPopupCandidateNearInputText,		false);
-	NVM_RegisterDBData(AAppPrefDB::kPopupCandidateBelowInputText,		false);
+	//#1375 NVM_RegisterDBData(AAppPrefDB::kPopupCandidateBelowInputText,		false);
 	
 	/*#1160
 	//次候補／前候補キー
@@ -1094,9 +1132,11 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVM_RegisterDBData(AAppPrefDB::kTexTypesetPath,					false);
 	NVM_RegisterDBData(AAppPrefDB::kTexDviToPdfPath,				false);
 	
+	/*#1316
 	//skin
 	NVI_RegisterTextArrayMenu(AAppPrefDB::kSkinName,kTextArrayMenuID_Skin);
 	NVM_RegisterDBData(AAppPrefDB::kSkinName,						true);
+	*/
 	
 	//ドット単位スクロール #891
 	NVM_RegisterDBData(AAppPrefDB::kUseWheelScrollFloatValue,		true);
@@ -1202,6 +1242,12 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_RegisterHelpAnchor(90010,"pref.htm#apppref_touroku");
 	NVI_RegisterHelpAnchor(90011,"pref.htm#apppref_scm");
 	*/
+	
+	//#1373
+	NVI_RegisterHelpAnchor(90001,"topic.htm#ftp");
+	NVI_RegisterHelpAnchor(90002,"topic.htm#diffrepository");
+	NVI_RegisterHelpAnchor(90003,"shellscript.htm#shellscript");
+	NVI_RegisterHelpAnchor(90004,"gamen.htm#subwindow");
 }
 
 #pragma mark ===========================
@@ -1836,6 +1882,7 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 			GetApp().SPI_DoAutoBackupFolderChangedAll();
 			break;
 		}
+		/*#1316
 		//skin更新
 	  case AAppPrefDB::kSkinName:
 		{
@@ -1844,6 +1891,7 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 			GetApp().NVI_RefreshAllWindow();
 			break;
 		}
+		*/
 		//ドット単位スクロール #891
 	  case AAppPrefDB::kUseWheelScrollFloatValue:
 		{
@@ -1907,6 +1955,23 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 	  case AAppPrefDB::kLeftSideBarDisplayed:
 		{
 			GetApp().SPI_ShowHideLeftSidebarAll();
+			break;
+		}
+		//#1316
+	  case AAppPrefDB::kLightModeColorSchemeName:
+	  case AAppPrefDB::kDarkModeColorSchemeName:
+		{
+			GetApp().GetAppPref().UpdateColorSchemeDB();
+			for( AIndex i = 0; i < GetApp().SPI_GetModeCount(); i++ )
+			{
+				if( GetApp().SPI_GetModePrefDB(i,false).IsLoaded() == true )
+				{
+					GetApp().SPI_GetModePrefDB(i).UpdateUserKeywordCategoryColor();
+					GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionStateColorArray();
+					GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionCategoryColor();
+				}
+			}
+			GetApp().NVI_RefreshAllWindow();
 			break;
 		}
 	  default:
