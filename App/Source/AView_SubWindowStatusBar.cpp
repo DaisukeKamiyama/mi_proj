@@ -132,11 +132,13 @@ void	AView_SubWindowStatusBar::EVTDO_DoDraw()
 	rect.bottom		-= 1;
 	
 	//ステータスバー
+	//候補ウインドウ本体部分背景の色に合わせる（候補ウインドウ本体部分背景はAView_SubWindowBackground内で描画されている） #1316
+	AFloatNumber	backgroundAlpha = GetApp().SPI_GetPopupWindowAlpha()+0.1;
 	NVMC_PaintRoundedRect(rect,
 						  //kColor_White,kColor_Gray95Percent
-						  boxBaseColor2,boxBaseColor3,
+						  boxBaseColor2,boxBaseColor2,
 						  kGradientType_Vertical,
-						  mBackgroundTransparency,mBackgroundTransparency,	
+						  backgroundAlpha,backgroundAlpha,	
 						  roundR,false,false,roundedLeftBottom,roundedRightBottom);
 	if( locationType == kSubWindowLocationType_Popup )
 	{
@@ -145,7 +147,7 @@ void	AView_SubWindowStatusBar::EVTDO_DoDraw()
 							  //kColor_Gray20Percent
 							  //kColor_Gray50Percent,
 							  letterColor,
-							  0.5,roundR,false,false,roundedLeftBottom,roundedRightBottom,
+							  0.3,roundR,false,false,roundedLeftBottom,roundedRightBottom,//#1316 アルファ0.5→0.3
 							  true,true,true,true,kLineWidth_PopupCandidateList);
 	}
 	
