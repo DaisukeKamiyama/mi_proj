@@ -837,6 +837,8 @@ void AWindow_Find::NVIDO_Create( const ADocumentID inDocumentID )
 	//
 	NVI_SetWindowWidth(GetApp().NVI_GetAppPrefDB().GetData_Number(AAppPrefDB::kFindWindow_WindowWidth));
 	
+	//#1373
+	NVI_RegisterHelpAnchor(90001,"find.htm#option");
 }
 
 //Hide()時等にウインドウのデータを保存する
