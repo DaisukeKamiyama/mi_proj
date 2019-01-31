@@ -650,19 +650,19 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 					rect.top		+= 1;
 					rect.left		+= 1;
 					rect.right		-= 1;
-					rect.bottom		-= kHeight_CandidateListStatusBar-1;
+					rect.bottom		-= kHeight_CandidateListStatusBar-1;//ステータスバー部分はAView_SubWindowStatusBarで描画する。
 					//描画
 					NVMC_PaintRoundedRect(rect,
 										  //kColor_White,kColor_Gray95Percent
-										  boxBaseColor1,boxBaseColor2,
+										  boxBaseColor2,boxBaseColor2,//#1316 グラデなし
 										  kGradientType_Vertical,backgroundAlpha,backgroundAlpha,
-										  kRadius_PopupCandidateList,true,true,false,false);
+										  kRadius_PopupCandidateList,false,false,false,false);//#1316 候補ウインドウの上側はroundedにしない
 					NVMC_FrameRoundedRect(rect,
 										  //kColor_Gray20Percent
 										  //kColor_Gray50Percent,
 										  letterColor,
-										  0.5,kRadius_PopupCandidateList,true,true,false,false,
-										  true,true,true,false,kLineWidth_PopupCandidateList);
+										  0.3,kRadius_PopupCandidateList,false,false,false,false,
+										  true,true,true,false,kLineWidth_PopupCandidateList);//#1316 アルファ0.5→0.3
 					break;
 				}
 				//
@@ -680,7 +680,7 @@ void	AView_SubWindowBackground::EVTDO_DoDraw()
 					//描画
 					NVMC_PaintRoundedRect(rect,
 										  //kColor_White,kColor_Gray95Percent,
-										  boxBaseColor1,boxBaseColor2,
+										  boxBaseColor2,boxBaseColor2,//#1316 グラデなし
 										  kGradientType_Vertical,backgroundAlpha,backgroundAlpha,	
 										  kRadius_PopupKeyToolList,true,true,true,true);
 					NVMC_FrameRoundedRect(rect,
