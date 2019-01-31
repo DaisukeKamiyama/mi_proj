@@ -899,6 +899,9 @@ void AWindow_MultiFileFind::NVIDO_Create( const ADocumentID inDocumentID )
 		SPI_MultiFileReplace_SetProgressText(GetEmptyText());
 		SPI_MultiFileReplace_Progress(0);
 	}
+	
+	//#1373
+	NVI_RegisterHelpAnchor(90001,"find.htm#option");
 }
 
 void	AWindow_MultiFileFind::NVIDO_UpdateProperty()
@@ -1137,6 +1140,12 @@ void	AWindow_MultiFileFind::NVMDO_UpdateControlStatus()
 	NVI_SetControlEnable(kText_FileFilter,!NVI_GetControlBool(kRadio_Target_AllFiles));
 	NVI_SetControlEnable(kPopup_RecentlyUsedFileFilter,!NVI_GetControlBool(kRadio_Target_AllFiles));
 	NVI_SetControlEnable(kPopup_FileFilterPreset,!NVI_GetControlBool(kRadio_Target_AllFiles));//#617
+	
+	//検索中止ボタン #1376
+	if( mReplaceWindowMode == false )
+	{
+		NVI_SetControlEnable(kButton_FindAbort,(GetApp().SPI_IsMultiFileFindWorking()==true));
+	}
 	
 	//==================マルチファイル置換用==================
 	
