@@ -39,6 +39,7 @@ CTextDrawData
 CTextDrawData::CTextDrawData( const ABool inDisplayEachCanonicalDecompChar ) : /*#1034 mTextLayout(NULL), mATSUStyle(NULL),*/ 
 		mCTLineRef(NULL),mCTTypesetterRef(NULL)//#1034
 ,mFontFallbackEnabled(true), /*#1034 mReuseATSUStyle(false),*/ mDisplayEachCanonicalDecompChar(inDisplayEachCanonicalDecompChar)
+,selectionFrameAlpha(0.0), selectionBackgroundColor(kColor_White)//#1316
 {
 	//B0386 改行コード位置に変な色が表示されることがある問題修正
 	selectionStart = 0;
@@ -111,11 +112,17 @@ void	CTextDrawData::Init()
 	attrPos.DeleteAll();
 	attrColor.DeleteAll();
 	attrStyle.DeleteAll();
+	additionalAttrPos.DeleteAll();//#1316
+	additionalAttrLength.DeleteAll();//#1316
+	additionalAttrColor.DeleteAll();//#1316
+	additionalAttrStyle.DeleteAll();//#1316
 	drawSelection = false;
 	selectionStart = kIndex_Invalid;
 	selectionEnd = kIndex_Invalid;
 	selectionColor = kColor_Blue;
 	selectionAlpha = 0.8;
+	selectionFrameAlpha = 0.0;//#1316
+	selectionBackgroundColor = kColor_White;//#1316
 	misspellStartArray.DeleteAll();
 	misspellEndArray.DeleteAll();
 	startSpaceToIndentUTF16DrawTextArray_OriginalTextIndex.DeleteAll();//#117
@@ -705,5 +712,26 @@ void	CTextDrawData::AddText( const AText& inUTF8Text, const AText& inUTF16Text, 
 	//CTTypesetter解放 #1034
 	ClearCTTypesetterRef();
 	
+}
+
+//#1316
+/**
+Attributeを後から追加する
+（ダークモード対応時に追加して一時的に使ったが、最終的には使用していない。）
+*/
+void	CTextDrawData::AddAttribute( const AIndex inStart, const AIndex inEnd, const AColor& inColor )
+{
+	AIndex	spos = OriginalTextArray_UnicodeOffset.Get(inStart);
+	AIndex	epos = OriginalTextArray_UnicodeOffset.Get(inEnd);
+	additionalAttrPos.Add(spos);
+	additionalAttrLength.Add(epos-spos);
+	additionalAttrColor.Add(inColor);
+	additionalAttrStyle.Add(kTextStyle_Normal);
+	
+	//CTLine解放 #1034
+	ClearCTLineRef();
+	
+	//CTTypesetter解放 #1034
+	ClearCTTypesetterRef();
 }
 
