@@ -270,7 +270,7 @@ class CUserPane: public AObjectArrayItem
 	//#1034
 	void					DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& inClipRect, const AJustification inJustification,
 										  const CTLineRef inCTLineRef, const ABool inDrawSelection, 
-										  const AIndex inSelectionStart, const AIndex inSelectionEnd, const AColor inSelectionColor, const AFloatNumber inSelectionAlpha );
+										  const AIndex inSelectionStart, const AIndex inSelectionEnd, const AColor inSelectionColor, const AFloatNumber inSelectionAlpha, const AFloatNumber inSelectionFrameAlpha = 0.0, const AColor inBackgroundColor = kColor_White );//#1316
 	CTLineRef				GetCTLineFromTextDrawData( CTextDrawData& inTextDrawData );
 	CTLineRef				CreateDefaultCTLine( const AText& inText ) ;
 
