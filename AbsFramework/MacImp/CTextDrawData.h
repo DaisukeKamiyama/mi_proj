@@ -82,6 +82,7 @@ class CTextDrawData
 										 const ABool inDisplayYenFor5C = false );//#940
 	void	MakeTextDrawDataWithoutStyle( const AText& inText );//R0240
 	void	AddText( const AText& inUTF8Text, const AText& inUTF16Text, const AColor& inColor );//#532
+	void	AddAttribute( const AIndex inStart, const AIndex inEnd, const AColor& inColor );//#1316
 	
 	//Ç±Ç±ÇÃpublicÇÕç°å„çƒåüì¢ÇµÇ‹Ç∑
   public:
@@ -94,6 +95,10 @@ class CTextDrawData
 	AArray<AIndex>	attrPos;
 	AArray<AColor>	attrColor;
 	AArray<ATextStyle>	attrStyle;
+	AArray<AIndex>	additionalAttrPos;//#1316
+	AArray<AIndex>	additionalAttrLength;//#1316
+	AArray<AColor>	additionalAttrColor;//#1316
+	AArray<ATextStyle>	additionalAttrStyle;//#1316
 	AArray<AIndex>	controlCodeStartUTF8Index;//#473
 	AArray<AIndex>	controlCodeEndUTF8Index;//#473
 	AArray<AIndex>	hintTextStartUTF8Index;
@@ -103,6 +108,8 @@ class CTextDrawData
 	AIndex	selectionEnd;
 	AColor	selectionColor;
 	AFloatNumber	selectionAlpha;
+	AFloatNumber	selectionFrameAlpha;//#1316
+	AColor	selectionBackgroundColor;//#1316
 	//R0199
 	AArray<AIndex>	misspellStartArray;
 	AArray<AIndex>	misspellEndArray;
