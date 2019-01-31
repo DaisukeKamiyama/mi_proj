@@ -157,11 +157,11 @@ class AApp : public AApplication
 	
 	//skin
   public:
-	void					SPI_UpdateSkinMenu();
-	void					SPI_GetUserSkinFolder( AFileAcc& outFolder );
+	//#1316 void					SPI_UpdateSkinMenu();
+	//#1316 void					SPI_GetUserSkinFolder( AFileAcc& outFolder );
 	void					SPI_LoadImageFiles( const ABool inRemoveOld );
   private:
-	void					LoadImageFile( const ABool inUseCustom ,const AFileAcc& inCustomFolder, 
+	void					LoadImageFile( /*#1316 const ABool inUseCustom ,const AFileAcc& inCustomFolder, */
 										  const AConstCharPtr inFilename, const AImageID inImageID, const ABool inRemoveOld );
 	void					LoadColors( const ABool inUseCustom ,const AFileAcc& inCustomFolder );
 	
