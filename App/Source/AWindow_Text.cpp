@@ -10917,7 +10917,7 @@ AWindow_IdInfo&	AWindow_Text::GetPopupIdInfoWindow()
 void	AWindow_Text::SPI_ShowCandidatePopupWindow( const ABool inShow, const ABool inAbbrevInputMode )
 {
 	//ポップアップ位置設定取得
-	ABool	showBelowInputText = GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupCandidateBelowInputText);
+	ABool	showBelowInputText = false;//#1375 GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupCandidateBelowInputText);
 	ABool	showNearInputText = GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupCandidateNearInputText);
 	//
 	if( inShow == true && (showBelowInputText==true||showNearInputText==true) &&// mProhibitPopup == false )
@@ -11048,7 +11048,7 @@ ATextWindowPopupLayoutPattern	AWindow_Text::CalcTextWindowPopupLayout( ATextWind
 	}
 	
 	//
-	if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupCandidateNearInputText) == true )
+	//#1375 if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupCandidateNearInputText) == true )
 	{
 		//------------------テキスト入力位置の”近く”にポップアップ------------------
 		
@@ -11082,6 +11082,7 @@ ATextWindowPopupLayoutPattern	AWindow_Text::CalcTextWindowPopupLayout( ATextWind
 			candidateWindowDisplayedBelowSelection = false;
 		}
 	}
+	/*#1375
 	else
 	{
 		//------------------テキスト入力位置のすぐ下（または上）にポップアップ------------------
@@ -11101,7 +11102,7 @@ ATextWindowPopupLayoutPattern	AWindow_Text::CalcTextWindowPopupLayout( ATextWind
 		
 		//上か下かを判定
 		//（現在の選択範囲下の表示可能領域の高さ＞候補ウインドウの高さ＋オフセットなら下に表示）
-		if( viewGlobalRect.bottom - textViewCurrentWordGlobalRect.bottom > kCandidateWindowYOffset + /*candidateWindowHeight*/kPopupCandidateWindowHeight )
+		if( viewGlobalRect.bottom - textViewCurrentWordGlobalRect.bottom > kCandidateWindowYOffset + kPopupCandidateWindowHeight )
 		{
 			//下に表示可能なら下に表示する
 			
@@ -11121,6 +11122,7 @@ ATextWindowPopupLayoutPattern	AWindow_Text::CalcTextWindowPopupLayout( ATextWind
 			candidateWindowDisplayedBelowSelection = false;
 		}
 	}
+	*/
 	
 	//==================キーワード情報ウインドウ配置==================
 	
