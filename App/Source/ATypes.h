@@ -975,7 +975,7 @@ const ATextArrayMenuID	kTextArrayMenuID_TextMarker = 9;//#750
 const ATextArrayMenuID	kTextArrayMenuID_ColorScheme = 10;//#889
 const ATextArrayMenuID	kTextArrayMenuID_AllMode = 11;//#914
 const ATextArrayMenuID	kTextArrayMenuID_Pref = 12;
-const ATextArrayMenuID	kTextArrayMenuID_Skin = 13;
+//#1316 const ATextArrayMenuID	kTextArrayMenuID_Skin = 13;
 const ATextArrayMenuID	kTextArrayMenuID_AccessPlugIn = 14;//#193
 const ATextArrayMenuID	kTextArrayMenuID_AppColorScheme = 15;//#1316
 
