@@ -82,7 +82,8 @@ class CTextDrawData
 										 const ABool inDisplayYenFor5C = false );//#940
 	void	MakeTextDrawDataWithoutStyle( const AText& inText );//R0240
 	void	AddText( const AText& inUTF8Text, const AText& inUTF16Text, const AColor& inColor );//#532
-	void	AddAttribute( const AIndex inStart, const AIndex inEnd, const AColor& inColor );//#1316
+	void	AddAttributeWithUTF8Offset( const AIndex inStart, const AIndex inEnd, const AColor& inColor );//#1316
+	void	AddAttributeWithUnicodeOffset( const AIndex inStart, const AIndex inEnd, const AColor& inColor );//#1316
 	
 	//Ç±Ç±ÇÃpublicÇÕç°å„çƒåüì¢ÇµÇ‹Ç∑
   public:
