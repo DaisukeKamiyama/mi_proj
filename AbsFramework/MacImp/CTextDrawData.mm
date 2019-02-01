@@ -717,14 +717,30 @@ void	CTextDrawData::AddText( const AText& inUTF8Text, const AText& inUTF16Text, 
 //#1316
 /**
 Attributeを後から追加する
-（ダークモード対応時に追加して一時的に使ったが、最終的には使用していない。）
 */
-void	CTextDrawData::AddAttribute( const AIndex inStart, const AIndex inEnd, const AColor& inColor )
+void	CTextDrawData::AddAttributeWithUTF8Offset( const AIndex inStart, const AIndex inEnd, const AColor& inColor )
 {
 	AIndex	spos = OriginalTextArray_UnicodeOffset.Get(inStart);
 	AIndex	epos = OriginalTextArray_UnicodeOffset.Get(inEnd);
 	additionalAttrPos.Add(spos);
 	additionalAttrLength.Add(epos-spos);
+	additionalAttrColor.Add(inColor);
+	additionalAttrStyle.Add(kTextStyle_Normal);
+	
+	//CTLine解放 #1034
+	ClearCTLineRef();
+	
+	//CTTypesetter解放 #1034
+	ClearCTTypesetterRef();
+}
+
+/**
+Attributeを後から追加する
+*/
+void	CTextDrawData::AddAttributeWithUnicodeOffset( const AIndex inStart, const AIndex inEnd, const AColor& inColor )
+{
+	additionalAttrPos.Add(inStart);
+	additionalAttrLength.Add(inEnd-inStart);
 	additionalAttrColor.Add(inColor);
 	additionalAttrStyle.Add(kTextStyle_Normal);
 	
