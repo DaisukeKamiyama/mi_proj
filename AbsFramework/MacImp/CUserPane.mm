@@ -992,7 +992,6 @@ CTLineRef	CUserPane::GetCTLineFromTextDrawData( CTextDrawData& inTextDrawData )
 		
 		//#1316
 		// ==================== テキスト属性(RunStyle)設定　追加分 ====================
-		//（ダークモード対応時に追加して一時的に使ったが、最終的には使用していない。additionalAttrPosは常に空。テスト済みなので、将来的に使うことはできるのでそのまま残しておく。）
 		//inTextDrawDataに記載された属性を設定
 		for( AIndex i = 0; i < inTextDrawData.additionalAttrPos.GetItemCount(); i++ )
 		{
