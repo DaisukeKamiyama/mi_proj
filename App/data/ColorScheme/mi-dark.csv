@@ -11,10 +11,10 @@ class,D3AD04
 macro,989898
 other1,D3AD04
 other2,0060FF
-highlight1,FDE900
-highlight2,E6E6FA
-highlight3,FFFF00
-highlight4,FFCD96
-highlight5,FFD700
+highlight1,C5A600,(検索一致文字列ハイライト)
+highlight2,478A54,(前回の一致文字列ハイライト)
+highlight3,53A7E2,(現在選択中の単語のハイライト)
+highlight4,FFCD96,(テキストハイライト)
+highlight5,F7C95E,(検索結果等から選択したとき)
 diff-opacity,40
-selection-opacity,40
+selection-opacity,50
