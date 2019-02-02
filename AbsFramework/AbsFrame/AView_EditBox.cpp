@@ -524,7 +524,7 @@ void	AView_EditBox::EVTDO_DoDraw()
 			}
 			else
 			{
-				selectionColor = kColor_Gray20Percent;
+				selectionColor = kColor_Gray30Percent;
 			}
 		}
 		textDrawData.selectionColor = selectionColor;
