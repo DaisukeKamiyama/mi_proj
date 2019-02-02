@@ -517,7 +517,15 @@ void	AView_EditBox::EVTDO_DoDraw()
 		}
 		else
 		{
-			selectionColor = kColor_Gray90Percent;
+			//#1316
+            if( AApplication::GetApplication().NVI_IsDarkMode() == false )
+			{
+				selectionColor = kColor_Gray90Percent;
+			}
+			else
+			{
+				selectionColor = kColor_Gray20Percent;
+			}
 		}
 		textDrawData.selectionColor = selectionColor;
 		//‘I‘ð•\Ž¦
