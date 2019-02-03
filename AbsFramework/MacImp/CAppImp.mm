@@ -58,6 +58,7 @@ const char**				CAppImp::sArgv = NULL;
 コンストラクタ
 */
 CAppImp::CAppImp():AObjectArrayItem(NULL)
+, mAppearanceType(kAppearanceType_System)//#1316
 {
 #if SUPPORT_CARBON
 	sMouseTrackingMode = false;//B0000 080810
@@ -1395,7 +1396,48 @@ ABool	CAppImp::IsDarkMode() const
 	}
 	else
 	{
-		return false;
+		//macOS 10.13以下の場合は、アピアランスタイプが「常にダークモード」設定の場合のみダークとして返す
+		if( mAppearanceType == kAppearanceType_Dark )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+
+//#1316
+/**
+アピアランスタイプ設定
+*/
+void	CAppImp::SetAppearanceType( const AAppearanceType inAppearanceType )
+{
+	//アピアランスタイプを記憶
+	mAppearanceType = inAppearanceType;
+	//macOS 10.14以上の場合は、APIを使ってアピアランスを設定（ウインドウ枠等の色が変わる）
+	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_14 )
+	{
+		switch(mAppearanceType)
+		{
+		  case kAppearanceType_System:
+		  default:
+			{
+				NSApp.appearance = nil;
+				break;
+			}
+		  case kAppearanceType_Light:
+			{
+				NSApp.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+				break;
+			}
+		  case kAppearanceType_Dark:
+			{
+				NSApp.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
+				break;
+			}
+		}
 	}
 }
 
