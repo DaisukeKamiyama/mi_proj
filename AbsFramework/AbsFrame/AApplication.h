@@ -178,6 +178,7 @@ private:
 	ALanguage				NVI_GetLanguage() const;//#305
 	void					NVI_GetLanguageName( AText& outText ) const;
 	ABool					NVI_IsDarkMode() const;//#1316
+	void					NVI_SetAppearanceType( const AAppearanceType inAppearanceType );//#1316
 	
 	//メインスレッド制御
   public:
