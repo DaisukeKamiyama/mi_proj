@@ -72,6 +72,16 @@ class CDocImpFactory : public AAbstractFactoryForObjectArray<CDocImp>
 	AObjectArrayItem* mParent;
 };
 
+//#1316
+/**
+アピアランスタイプ（ダークモード）
+*/
+enum AAppearanceType
+{
+	kAppearanceType_System = 0,
+	kAppearanceType_Light = 1,
+	kAppearanceType_Dark = 2
+};
 
 #pragma mark ===========================
 #pragma mark [クラス]CAppImp
@@ -172,10 +182,12 @@ class CAppImp: public AObjectArrayItem
 	void					GetBuildNumber( AText& outText ) const;//#1096
 	ALanguage				GetLanguage() const;//#305
 	ABool					IsDarkMode() const;//#1316
+	void					SetAppearanceType( const AAppearanceType inAppearanceType );//#1316
   private:
 	ALanguage						mLanguage;//#305
 	AText							mApplicationVersionText;//#645
 	AText                           mApplicationBuildNumberText;//#1096
+	AAppearanceType					mAppearanceType;//#1316
 	
 	//context menuのターゲットウインドウ／コントロールを設定
   public:
