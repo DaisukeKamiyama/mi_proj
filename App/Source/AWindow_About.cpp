@@ -87,14 +87,6 @@ ABool	AWindow_About::EVTDO_Clicked( const AControlID inID, const AModifierKeys i
 			ALaunchWrapper::OpenURLWithDefaultBrowser(url);
 			break;
 		}
-		//#232
-		//pinvoke‚³‚ñƒŠƒ“ƒN
-	  case 1001:
-		{
-			ALaunchWrapper::OpenURL("http://p.yusukekamiyamane.com/");
-			result = true;
-			break;
-		}
 	}
 	return result;
 }
