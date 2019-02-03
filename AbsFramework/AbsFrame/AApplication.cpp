@@ -665,6 +665,14 @@ ABool	AApplication::NVI_IsDarkMode() const
 	return GetImpConst().IsDarkMode();
 }
 
+//#1316
+/**
+アピアランスタイプ設定
+*/
+void	AApplication::NVI_SetAppearanceType( const AAppearanceType inAppearanceType )
+{
+	GetImp().SetAppearanceType(inAppearanceType);
+}
 
 #pragma mark ===========================
 
