@@ -129,6 +129,26 @@ ABool	AWindow_Previewer::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemI
 			SPI_SetLetterSize(percent);
 			break;
 		}
+		//サブウインドウを折りたたむ #1380
+	  case kMenuItemID_CollapseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_ExpandCollapseSubWindow(GetObjectID());
+			}
+			break;
+		}
+		//サブウインドウを閉じる #1380
+	  case kMenuItemID_CloseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_CloseOverlaySubWindow(GetObjectID());
+			}
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
@@ -298,6 +318,29 @@ void	AWindow_Previewer::NVIDO_UpdateProperty()
 	text.SetLocalizedText("PreviewWindow_LetterSizeButton");
 	text.ReplaceParamText('0',GetApp().NVI_GetAppPrefDB().GetData_Number(AAppPrefDB::kPreviewerMultiplier));
 	NVI_GetButtonViewByControlID(kControlID_LetterSize).NVI_SetText(text);
+	//#1380
+	//ウインドウタイプに応じてコンテキストメニュー設定
+	switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+	{
+	  case kSubWindowLocationType_RightSideBar:
+		{
+			//NVI_GetViewByControlID(kControlID_WebView).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			break;
+		}
+	  case kSubWindowLocationType_LeftSideBar:
+		{
+			//NVI_GetViewByControlID(kControlID_WebView).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			break;
+		}
+	  default:
+		{
+			//NVI_GetViewByControlID(kControlID_WebView).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			break;
+		}
+	}
 	//描画更新
 	NVI_RefreshWindow();
 }
