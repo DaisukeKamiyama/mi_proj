@@ -153,7 +153,7 @@ class AView : public AObjectArrayItem
 							ABool& outUpdateMenu ) = 0;
 	virtual ABool			EVTDO_DoKeyDown( /*#688 const AUChar inChar*/ const AText& inText, const AModifierKeys inModifierKeys ) { return false; }//#1080
 	virtual ABool			EVTDO_DoMouseDown( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount ) = 0;
-	virtual ABool			EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount ) { return false;}
+	virtual ABool			EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount );//#1380 { return false;}
 	virtual ABool			EVTDO_DoMouseMoved( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys ) { return false; }
 	virtual ACursorType		EVTDO_GetCursorType( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys ) { return mDefaultCursor; }//#725kCursorType_Arrow; }
 	virtual void			EVTDO_DoMouseTracking( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys ) { }
@@ -173,6 +173,13 @@ class AView : public AObjectArrayItem
 	virtual void			EVTDO_PreProcess_SetShowControl( const ABool inVisible ) {}//#138
 	virtual void			EVTDO_DoMouseLeft( const ALocalPoint& inLocalPoint ) {}//win 080712
 	virtual ABool			EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outText1, AText& outText2, ALocalRect& outRect, AHelpTagSide& outTagSide ) { return false; }//R0240 #643
+	
+	//#1380
+	//コンテキストメニュー
+  public:
+	void					NVI_SetEnableContextMenu( const AMenuItemID inMenuItemID ) { mContextMenuItemID = inMenuItemID; }
+  private:
+	AMenuItemID							mContextMenuItemID;
 	
 	//<インターフェイス>
 	
