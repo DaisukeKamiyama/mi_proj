@@ -57,6 +57,7 @@ AView::AView( const AWindowID inWindowID, const AControlID inID, const AImagePoi
 ,mBackgroundTransparency(1.0), mBackgroundActiveColor(kColor_White), mBackgroundDeactiveColor(kColor_White)//#725
 ,mEnableHelpTag(true)
 ,mRefreshing(false)//#1034
+,mContextMenuItemID(0)//#1380
 {
 }
 
@@ -287,6 +288,30 @@ void	AView::EVT_DoMouseWheel( const AFloatNumber inDeltaX, const AFloatNumber in
 	}
 	//
 	EVTDO_DoMouseWheel(inDeltaX,inDeltaY,inModifierKeys,inLocalPoint);
+}
+
+//#1380
+/**
+右クリックメニュークリック時のデフォルト処理
+*/
+ABool	AView::EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount )
+{
+	if( mContextMenuItemID > 0 )
+	{
+		AImagePoint	clickImagePoint = {0};
+		NVM_GetImagePointFromLocalPoint(inLocalPoint,clickImagePoint);
+		if( NVM_IsImagePointInViewRect(clickImagePoint) == true )
+		{
+			AGlobalPoint	globalPoint = {0};
+			NVM_GetWindow().NVI_GetGlobalPointFromControlLocalPoint(NVI_GetControlID(),inLocalPoint,globalPoint);
+			NVMC_ShowContextMenu(mContextMenuItemID,globalPoint);
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 #pragma mark ===========================
