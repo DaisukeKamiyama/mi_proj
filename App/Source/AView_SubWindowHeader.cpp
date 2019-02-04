@@ -86,7 +86,7 @@ void	AView_SubWindowHeader::EVTDO_DoDraw()
 	NVMC_SetDefaultTextProperty(headerfontname,9.0,kColor_Black,kTextStyle_Normal,true);
 	
 	//îwåiêFï`âÊ
-	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");//#1316 GetApp().SPI_GetSubWindowHeaderBackgroundColor();
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F2F2F2");//#1316 GetApp().SPI_GetSubWindowHeaderBackgroundColor();
 	if( GetApp().NVI_IsDarkMode() == true )
 	{
 		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
