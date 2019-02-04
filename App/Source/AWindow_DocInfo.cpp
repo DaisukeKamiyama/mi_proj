@@ -126,6 +126,26 @@ ABool	AWindow_DocInfo::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID,
 			result = true;
 			break;
 		}
+		//サブウインドウを折りたたむ #1380
+	  case kMenuItemID_CollapseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_ExpandCollapseSubWindow(GetObjectID());
+			}
+			break;
+		}
+		//サブウインドウを閉じる #1380
+	  case kMenuItemID_CloseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_CloseOverlaySubWindow(GetObjectID());
+			}
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
@@ -278,6 +298,29 @@ void	AWindow_DocInfo::NVIDO_Hide()
 void	AWindow_DocInfo::NVIDO_UpdateProperty()
 {
 	if( NVI_IsWindowCreated() == false )   return;
+	//#1380
+	//ウインドウタイプに応じてコンテキストメニュー設定
+	switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+	{
+	  case kSubWindowLocationType_RightSideBar:
+		{
+			NVI_GetViewByControlID(kControlID_DocInfo).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			break;
+		}
+	  case kSubWindowLocationType_LeftSideBar:
+		{
+			NVI_GetViewByControlID(kControlID_DocInfo).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			break;
+		}
+	  default:
+		{
+			NVI_GetViewByControlID(kControlID_DocInfo).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			break;
+		}
+	}
 	NVI_RefreshWindow();
 }
 
