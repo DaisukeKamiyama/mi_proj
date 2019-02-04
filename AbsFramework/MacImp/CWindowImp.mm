@@ -4565,7 +4565,16 @@ void	CWindowImp::GetGlobalRectFromControlLocalRect( const AControlID inID, const
 		
 		//LocalRectからWindowRectへ変換
 		AWindowRect	wrect = {0};
-		GetWindowRectFromControlLocalRect(inID,inLocalRect,wrect);
+		if( GetUserPaneConst(inID).GetVerticalMode() == false )
+		{
+			GetWindowRectFromControlLocalRect(inID,inLocalRect,wrect);
+		}
+		else
+		{
+			//縦書きモード時の座標変換 #1387
+			ALocalRect	localRect = ConvertVerticalCoordinateFromAppToImp(inID,inLocalRect);
+			GetWindowRectFromControlLocalRect(inID,localRect,wrect);
+		}
 		//ウインドウの左上座標を足す
 		AGlobalRect	windowbounds = {0};
 		GetWindowBounds(windowbounds);
