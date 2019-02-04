@@ -175,6 +175,26 @@ ABool	AWindow_IdInfo::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, 
 			result = true;
 			break;
 		}
+		//サブウインドウを折りたたむ #1380
+	  case kMenuItemID_CollapseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_ExpandCollapseSubWindow(GetObjectID());
+			}
+			break;
+		}
+		//サブウインドウを閉じる #1380
+	  case kMenuItemID_CloseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_CloseOverlaySubWindow(GetObjectID());
+			}
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
@@ -481,9 +501,9 @@ void	AWindow_IdInfo::NVIDO_CreateTab( const AIndex inTabIndex, AControlID& outIn
 	//#291 サイズbinding設定（区切り線変更時のちらつき防止）
 	NVI_SetControlBindings(mInfoViewControlID,true,true,true,true,false,false);
 	//#442
-	GetIdInfoView().SPI_SetContextMenuItemID(kContextMenuID_IdInfo);//#442
+	//#1380 GetIdInfoView().SPI_SetContextMenuItemID(kContextMenuID_GeneralSubWindow);//#442 #1380
 	//#507
-	NVI_EnableHelpTagCallback(mInfoViewControlID,false);
+	//#1370 NVI_EnableHelpTagCallback(mInfoViewControlID,false);
 	
 	//SubWindow用セパレータ生成
 	{
@@ -598,6 +618,29 @@ void	AWindow_IdInfo::NVIDO_UpdateProperty()
 																				 GetApp().SPI_GetSubWindowBackgroundColor(true),
 																				 GetApp().SPI_GetSubWindowBackgroundColor(false));
 																				 */
+	//#1380
+	//ウインドウタイプに応じてコンテキストメニュー設定
+	switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+	{
+	  case kSubWindowLocationType_RightSideBar:
+		{
+			NVI_GetViewByControlID(mInfoViewControlID).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			break;
+		}
+	  case kSubWindowLocationType_LeftSideBar:
+		{
+			NVI_GetViewByControlID(mInfoViewControlID).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			break;
+		}
+	  default:
+		{
+			NVI_GetViewByControlID(mInfoViewControlID).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			break;
+		}
+	}
 	//view bounds更新
 	UpdateViewBounds();
 	//
@@ -829,7 +872,7 @@ void	AWindow_IdInfo::UpdateViewBounds()
 	}
 	
 	//Vスクロールバー配置
-	if( vscrollbarWidth > 0 && NVI_IsControlEnable(mVScrollBarControlID) == true )
+	if( vscrollbarWidth > 0 )//#1370 && NVI_IsControlEnable(mVScrollBarControlID) == true )
 	{
 		AWindowPoint	pt = {listViewPoint.x + listViewWidth - vscrollbarWidth,listViewPoint.y};
 		NVI_SetControlPosition(mVScrollBarControlID,pt);
