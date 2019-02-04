@@ -395,7 +395,7 @@ void	AView_TabSelector::EVTDO_DoDraw()
 	AColor	secondTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
 	AColor	secondTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
 	//3番目以降タブ
-	AColor	thirdTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("E0E0E0");
+	AColor	thirdTabPaintColor = AColorWrapper::GetColorByHTMLFormatColor("E8E8E8");
 	AColor	thirdTabLetterColor = AColorWrapper::GetColorByHTMLFormatColor("333333");
 	AColor	thirdTabPaintColor_Hover = AColorWrapper::GetColorByHTMLFormatColor("EDEDED");
 	//タブ領域境界線
