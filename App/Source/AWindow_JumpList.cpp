@@ -150,6 +150,26 @@ ABool	AWindow_JumpList::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID
 			GetListView(NVI_GetCurrentTabIndex()).SPI_ExpandAll();
 			break;
 		}
+		//サブウインドウを折りたたむ #1380
+	  case kMenuItemID_CollapseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_ExpandCollapseSubWindow(GetObjectID());
+			}
+			break;
+		}
+		//サブウインドウを閉じる #1380
+	  case kMenuItemID_CloseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_CloseOverlaySubWindow(GetObjectID());
+			}
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
@@ -487,7 +507,7 @@ void	AWindow_JumpList::NVIDO_CreateTab( const AIndex inTabIndex, AControlID& out
 	//#328 HelpTag
 	NVI_EnableHelpTagCallback(listViewControlID);
 	//#442
-	NVI_GetListView(listViewControlID).SPI_SetEnableContextMenu(true,kContextMenuID_JumpList);//#442
+	//#1380 NVI_GetListView(listViewControlID).SPI_SetEnableContextMenu(true,kContextMenuID_JumpList);//#442
 	NVI_GetListView(listViewControlID).SPI_SetTextDrawProperty(fontname,fontsize,GetApp().SPI_GetSubWindowLetterColor());//#725
 	//#725
 	//NVI_EmbedControl(kControlID_PaneFrame,listViewControlID);
@@ -618,6 +638,46 @@ void	AWindow_JumpList::NVIDO_UpdateProperty()
 		{
 			GetListView(tabIndex).SPI_SetTransparency(1.0);
 			NVI_GetEditBoxView(kControlID_Filter).SPI_SetTransparency(1.0);
+		}
+		//#1380
+		//ウインドウタイプに応じてコンテキストメニュー設定
+		switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+		{
+		  case kSubWindowLocationType_RightSideBar:
+			{
+				GetListView(tabIndex).SPI_SetEnableContextMenu(true,kContextMenuID_JumpList_RightSideBar);
+				break;
+			}
+		  case kSubWindowLocationType_LeftSideBar:
+			{
+				GetListView(tabIndex).SPI_SetEnableContextMenu(true,kContextMenuID_JumpList_LeftSideBar);
+				break;
+			}
+		  default:
+			{
+				GetListView(tabIndex).SPI_SetEnableContextMenu(true,kContextMenuID_JumpList);
+				break;
+			}
+		}
+	}
+	//#1380
+	//ウインドウタイプに応じてコンテキストメニュー設定
+	switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+	{
+	  case kSubWindowLocationType_RightSideBar:
+		{
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+			break;
+		}
+	  case kSubWindowLocationType_LeftSideBar:
+		{
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+			break;
+		}
+	  default:
+		{
+			NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+			break;
 		}
 	}
 	/*#1316
