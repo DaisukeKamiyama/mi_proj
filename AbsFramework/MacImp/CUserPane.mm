@@ -1998,16 +1998,28 @@ void	CUserPane::FrameRect( const ALocalRect& inRect, const AColor& inColor, cons
 	{
 		ALocalRect	leftEdge = inRect;
 		leftEdge.right = leftEdge.left+inLineWidth;
-		leftEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
-		leftEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		if( inDrawTopLine == true )
+		{
+			leftEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		}
+		if( inDrawBottomLine == true )
+		{
+			leftEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		}
 		PaintRect(leftEdge,inColor,inAlpha);
 	}
 	if( inDrawRightLine == true )
 	{
 		ALocalRect	rightEdge = inRect;
 		rightEdge.left = rightEdge.right-inLineWidth;
-		rightEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
-		rightEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		if( inDrawTopLine == true )
+		{
+			rightEdge.top += inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		}
+		if( inDrawBottomLine == true )
+		{
+			rightEdge.bottom -= inLineWidth;//#1316 透明色で描くと四隅が濃くなる問題対策
+		}
 		PaintRect(rightEdge,inColor,inAlpha);
 	}
 	if( inDrawTopLine == true )
