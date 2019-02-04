@@ -370,7 +370,7 @@ void	AView_EditBox::EVTDO_DoDraw()
 			}
 			if( GetTextDocumentConst().SPI_GetTextLength() == 0 )
 			{
-				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+				backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F2F2F2");
 				if( AApplication::GetApplication().NVI_IsDarkMode() == true )
 				{
 					backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
