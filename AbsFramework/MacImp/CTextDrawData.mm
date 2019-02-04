@@ -734,13 +734,24 @@ void	CTextDrawData::AddAttributeWithUTF8Offset( const AIndex inStart, const AInd
 	ClearCTTypesetterRef();
 }
 
+//#1316
 /**
 Attribute‚ðŒã‚©‚ç’Ç‰Á‚·‚é
 */
 void	CTextDrawData::AddAttributeWithUnicodeOffset( const AIndex inStart, const AIndex inEnd, const AColor& inColor )
 {
-	additionalAttrPos.Add(inStart);
-	additionalAttrLength.Add(inEnd-inStart);
+	AIndex	start = inStart;
+	if( start == kIndex_Invalid )
+	{
+		start = 0;
+	}
+	AIndex	end = inEnd;
+	if( end == kIndex_Invalid )
+	{
+		end = UTF16DrawText.GetItemCount()/sizeof(UniChar);
+	}
+	additionalAttrPos.Add(start);
+	additionalAttrLength.Add(end-start);
 	additionalAttrColor.Add(inColor);
 	additionalAttrStyle.Add(kTextStyle_Normal);
 	
