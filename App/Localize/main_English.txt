@@ -650,3 +650,11 @@ Change Title
 Change Title
 Macro bar item title will be changed.
 Macro bar item title will be changed.
+User ID Registration
+User ID Registration
+User ID : 
+User ID : 
+Thank you very much for registration!
+Thank you very much for registration!
+Register
+Register
