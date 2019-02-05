@@ -650,3 +650,11 @@ Change Title
 タイトル変更
 Macro bar item title will be changed.
 ツールバー（マクロ）項目のタイトルを変更します。
+User ID Registration
+ユーザー ID 登録
+User ID : 
+ユーザー ID：
+Thank you very much for registration!
+ご登録どうもありがとうございました！
+Register
+登録
