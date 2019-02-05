@@ -750,3 +750,15 @@ Change Title...
 タイトル変更...
 Read Me First
 はじめにお読みください
+Subwindow will be added at the bottom. You can move it by dragging title bar.
+サブウインドウは一番下に追加されます。追加後、タイトルをドラッグすることで位置を移動できます。
+Collapse This Subwindow
+このサブウインドウを折りたたむ
+Close This Subwindow
+このサブウインドウを閉じる
+Create New Subwindow
+新規サブウインドウを追加
+Register User ID...
+ユーザー ID 登録...
+New Find Result Window
+検索結果
