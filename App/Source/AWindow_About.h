@@ -39,7 +39,7 @@ class AWindow_About : public AWindow
 	
   private:
 	ABool					EVTDO_Clicked( const AControlID inID, const AModifierKeys inModifierKeys );
-	
+	void					NVMDO_UpdateControlStatus();//#1384
 	
 	//<インターフェイス>
 	
@@ -51,6 +51,7 @@ class AWindow_About : public AWindow
 	//コントロールID
 	static const AControlID	kVersion = 1;
 	static const AControlID	kButton_WebSite = 10;
+	static const AControlID	kUserID = 30;//#1384
 	
 	
 	//Object Type
