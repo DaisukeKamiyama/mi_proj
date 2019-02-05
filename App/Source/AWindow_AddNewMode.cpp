@@ -286,7 +286,7 @@ void	AWindow_AddNewMode::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_AddToLastRegisteredRadioGroup(kRadioNew);
 	NVI_AddToLastRegisteredRadioGroup(kRadioCopyMode);//R0000
 	NVI_AddToLastRegisteredRadioGroup(kRadioImport);
-	NVI_AddToLastRegisteredRadioGroup(kRadioGetFromWeb);//#427
+	//#1374 NVI_AddToLastRegisteredRadioGroup(kRadioGetFromWeb);//#427
 	//#844 NVI_AddToLastRegisteredRadioGroup(kRadioCopyDefaultMode);//#463
 	//#688 NVI_CreateEditBoxView(kURLForGetFromWeb);//#427
 	NVI_RegisterToFocusGroup(kFileSelectButton,true);//#353
