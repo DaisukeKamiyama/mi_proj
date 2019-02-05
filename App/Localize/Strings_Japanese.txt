@@ -1156,8 +1156,8 @@ EditProgress_Title_BatchReplace = "一括置換処理実行中";
 EditProgress_Message_BatchReplace = "一括置換処理を実行中です。";
 EditProgress_Title_CalcLineInfo = "行計算処理中";
 EditProgress_Message_CalcLineInfo = "行計算処理中です。";
-EditProgress_Title_InitMode = "モードデータインストール中";
-EditProgress_Message_InitMode = "モードデータインストール中です。（この処理は初回起動時だけ実行されます。おそれいりますが約1〜2分ほどお待ちください。）";
+EditProgress_Title_InitMode = "mi 初回起動中です";
+EditProgress_Message_InitMode = "インストールありがとうございます！\r初回起動時の処理を実行中です。少しだけお待ちください。";
 
 UnsavedDataTitle = "前回未保存のデータ ( ^1 時点の \"^0\")";
 
@@ -1360,7 +1360,7 @@ MultiFileReplace_FileListTitle_TextEncoding = "エンコーディング";
 LastOverwrittenColors = "最後に上書きされた色データ";
 ModeColors = "モード設定で設定した色";
 
-ModeUpdate_SourceIsSameNameMode = "同じモード名のモードから更新";
+ModeUpdate_SourceIsSameNameMode = "同じモード名のモードを参照";
 
 DefaultSyntaxPartNotDirected = "自動";
 
@@ -1405,3 +1405,9 @@ EditProgress_Message_CopyV2AppPrefFolder = "mi バージョン 2 のデータを
 DefaultSkinName = "標準";
 
 TabSetFileDefaultName = "タブセット.mitabset";
+
+UserIDVaild = "有効なユーザー ID です";
+UserIDInvaild = "無効なユーザー ID です";
+Version = "バージョン";
+About_UserID = "ユーザー ID ： ^0";
+About_UserIDNotRegistered = "(未登録)";
