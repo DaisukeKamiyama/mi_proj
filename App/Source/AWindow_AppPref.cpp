@@ -108,6 +108,7 @@ const AControlID	kRadio_OpenDocumentWithWindow		 = 7008;
 const AControlID	kRadio_SelectLineByTripleClick		 = 7009;
 const AControlID	kRadio_SelectLineStartByClickLineNumber	 = 7010;
 //#1316 const AControlID	kFontControl_NormalFont				 = 7011;//#1316
+const static APrefID	kRadio_SelectInsideBraceByDoubleClick = 7012;//#1357
 
 //======================== 「サブウインドウ」 タブ ========================
 //
@@ -358,6 +359,7 @@ ABool	AWindow_AppPref::EVTDO_Clicked( const AControlID inID, const AModifierKeys
 			result = true;
 			break;
 		}
+            /*#1384
 	  case kButton_Registration:
 		{
 			AText	text;
@@ -390,6 +392,7 @@ ABool	AWindow_AppPref::EVTDO_Clicked( const AControlID inID, const AModifierKeys
 			result = true;
 			break;
 		}
+             */
 		//B0266
 	  case kButton_DeleteAntiAliasDefaulltData:
 		{
@@ -800,6 +803,11 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	
 	//======================== 「一般」 タブ ========================
 	
+	//タブ／ウインドウラジオグループ
+	NVI_RegisterRadioGroup();
+	NVI_AddToLastRegisteredRadioGroup(AAppPrefDB::kCreateTabInsteadOfCreateWindow);
+	NVI_AddToLastRegisteredRadioGroup(kRadio_OpenDocumentWithWindow);
+	
 	//キャレット＆現在行ラジオグループ
 	NVI_RegisterRadioGroup();
 	NVI_AddToLastRegisteredRadioGroup(kRadio_NormalCaret);
@@ -818,11 +826,6 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	//#1031
 	NVM_RegisterDBData(AAppPrefDB::kFixCaretLocalPoint,				false);
 	
-	//タブ／ウインドウラジオグループ
-	NVI_RegisterRadioGroup();
-	NVI_AddToLastRegisteredRadioGroup(AAppPrefDB::kCreateTabInsteadOfCreateWindow);
-	NVI_AddToLastRegisteredRadioGroup(kRadio_OpenDocumentWithWindow);
-	
 	//タブ／ウインドウ
 	NVM_RegisterDBData(AAppPrefDB::kCreateTabInsteadOfCreateWindow,	true);
 	
@@ -833,6 +836,12 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	
 	//行番号クリック時の行選択動作選択
 	NVM_RegisterDBData(AAppPrefDB::kSelectLineByClickLineNumber,	false);
+	
+	//括弧ダブルクリック #1357
+	NVI_RegisterRadioGroup();
+	NVI_AddToLastRegisteredRadioGroup(kRadio_SelectInsideBraceByDoubleClick);
+	NVI_AddToLastRegisteredRadioGroup(AAppPrefDB::kSelectBraceItselfByDoubleClick);
+	NVM_RegisterDBData(AAppPrefDB::kSelectBraceItselfByDoubleClick,	false);
 	
 	//トリプルクリックラジオグループ
 	NVI_RegisterRadioGroup();
@@ -869,6 +878,9 @@ void AWindow_AppPref::NVIDO_Create( const ADocumentID inDocumentID )
 	NVM_RegisterDBData(AAppPrefDB::kLightModeColorSchemeName,		true);
 	NVI_RegisterTextArrayMenu(AAppPrefDB::kDarkModeColorSchemeName,kTextArrayMenuID_AppColorScheme);
 	NVM_RegisterDBData(AAppPrefDB::kDarkModeColorSchemeName,		true);
+	
+	//アピアランスタイプ #1316
+	NVM_RegisterDBData(AAppPrefDB::kAppearanceType,					true);
 	
 	//テキストフォント
 	{
@@ -1960,7 +1972,9 @@ void	AWindow_AppPref::NVMDO_NotifyDataChanged( const AControlID inControlID, con
 		//#1316
 	  case AAppPrefDB::kLightModeColorSchemeName:
 	  case AAppPrefDB::kDarkModeColorSchemeName:
+	  case AAppPrefDB::kAppearanceType:
 		{
+		  GetApp().NVI_SetAppearanceType((AAppearanceType)(GetApp().NVI_GetAppPrefDB().GetData_Number(AAppPrefDB::kAppearanceType)));
 			GetApp().GetAppPref().UpdateColorSchemeDB();
 			for( AIndex i = 0; i < GetApp().SPI_GetModeCount(); i++ )
 			{
