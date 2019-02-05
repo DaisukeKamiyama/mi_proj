@@ -675,6 +675,15 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Text(kLightModeColorSchemeName,					"LightModeColorSchemeName",			"");
 	CreateData_Text(kDarkModeColorSchemeName,					"DarkModeColorSchemeName",			"mi-dark");
 	
+	//アピアランスタイプ #1316
+	CreateData_Number(kAppearanceType,							"AppearanceType",					0,				0,2);
+	
+	//ユーザーID #1384
+	CreateData_Text(kUserIDRegistration,						"UserIDRegistration",				"");
+	
+	//括弧ダブルクリック選択範囲オプション #1357
+	CreateData_Bool(kSelectBraceItselfByDoubleClick,			"SelectBraceItselfByDoubleClick",	false);
+	
 	//コールグラフ
 	CreateTableStart();
 	CreateData_TextArray(kCallGrafHistory_FilePath,				"CallGrafHistory_FilePath",			"");
@@ -1332,6 +1341,9 @@ void	AAppPrefDB::Setup()
 	
 	//SparkleレベルによりfeedURL設定
 	AAppPrefDB::SPI_UpdateSparkleUpdateLevel();
+	
+	//#1316
+	GetApp().NVI_SetAppearanceType((AAppearanceType)(GetData_Number(AAppPrefDB::kAppearanceType)));
 	
 	//#1316
 	UpdateColorSchemeDB();
