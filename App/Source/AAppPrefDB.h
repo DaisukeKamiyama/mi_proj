@@ -142,7 +142,7 @@ class AAppPrefDB : public ADataBase
 	const static APrefID	kLockWhileEdit						= 143;
 	const static APrefID	kUseShellScript						= 144;
 	const static APrefID	kStdOutModeName						= 145;
-	const static APrefID	kUserID								= 147;
+	//#1384 const static APrefID	kUserID								= 147;
 	const static APrefID	kKinsokuLetters						= 148;
 	const static APrefID	kDisableHorizontalWheelScroll			= 149;
 	const static APrefID	kCmdNModeName						= 150;
@@ -311,6 +311,12 @@ class AAppPrefDB : public ADataBase
 	//環境設定カラースキーム #1316
 	const static APrefID	kLightModeColorSchemeName			= 476;
 	const static APrefID	kDarkModeColorSchemeName			= 477;
+	//アピアランスタイプ #1316
+	const static APrefID	kAppearanceType						= 478;
+	//ユーザーID #1384
+	const static APrefID	kUserIDRegistration					= 479;
+	//括弧ダブルクリック選択範囲オプション #1357
+	const static APrefID	kSelectBraceItselfByDoubleClick		= 480;
 	
 	//AWindow_AppPrefでは設定項目が無いもの（ウインドウ位置等）
 	//番号は1001番以降それぞれ重複しない番号をとる。（この番号は他の箇所には影響しない）
