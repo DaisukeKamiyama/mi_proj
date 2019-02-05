@@ -122,6 +122,7 @@ class AWindow_FileList : public AWindow
 	void					SPI_GetCurrentPath( AText& outText ) const;//#361
 	void					SPI_SetCurrentPath( const AText& inText );//#361
   private:
+	void					UpdateContextMenu();//#1380
 	void					SaveCollapseData();//#892
 	AView_List&				GetListView();
 	const AView_List&		GetListViewConst() const;//R0186
