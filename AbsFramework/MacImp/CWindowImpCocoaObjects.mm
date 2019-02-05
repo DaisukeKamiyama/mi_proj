@@ -181,7 +181,7 @@ void	CWindowImpCocoaObjects::CreateWindow( const AWindowClass inWindowClass, NSW
 			//組み合わせには制限がある。
 			//例：resize boxはNSTitledWindowMask | NSUtilityWindowMaskでしか使えない。
 			//https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ApplicationKit/Classes/NSPanel_Class/Reference/Reference.html
-			NSUInteger	stylemask = NSTexturedBackgroundWindowMask;
+			NSUInteger	stylemask = 0;//#1316 NSTexturedBackgroundWindowMaskはobsoleteなので削除。 NSTexturedBackgroundWindowMask;
 			if( inHasTitlebar == true )
 			{
 				stylemask |= NSTitledWindowMask;
