@@ -600,6 +600,7 @@ class AWindow_Text : public AWindow
 							const ASubWindowType inSubWindowType );
 	ABool					SPI_DragSubWindow( const AWindowID inSubWindowID, const AGlobalPoint inMouseGlobalPoint );
 	void					SPI_EndDragSubWindow( const AWindowID inSubWindowID );
+	void					SPI_CloseOverlaySubWindow( const AWindowID inSubWindowID );//#1380
 	void					SPI_UpdateOverlayWindowLocationProperty();
 	void					SPI_ExpandCollapseSubWindow( const AWindowID inSubWindowID );
 	ABool					SPI_IsCollapsedSubWindow( const AWindowID inSubWindowID );
