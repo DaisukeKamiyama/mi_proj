@@ -1598,11 +1598,13 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			nil];
 			break;
 		}
+		//apppref
 	  case 1:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
 			@"999009",
+			@"999010",
 			@"999001",
 			@"999002",
 			@"999003",
@@ -1614,20 +1616,21 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			nil];
 			break;
 		}
+		//modepref
 	  case 2:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
-			@"999011",
-			@"999002",
 			@"999001",
+			@"999002",
+			@"999011",
 			@"999003",
 			@"999004",
 			@"999005",
-			@"999007",
 			@"999006",
 			@"999008",
 			@"999009",
+			@"999007",
 			@"999010",
 			nil];
 			break;
@@ -1675,11 +1678,13 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			nil];
 			break;
 		}
+		//apppref
 	  case 1:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
 			@"999009",
+			@"999010",
 			@"999001",
 			@"999002",
 			@"999003",
@@ -1691,20 +1696,21 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			nil];
 			break;
 		}
+		//modepref
 	  case 2:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
-			@"999011",
-			@"999002",
 			@"999001",
+			@"999002",
+			@"999011",
 			@"999003",
 			@"999004",
 			@"999005",
-			@"999007",
 			@"999006",
 			@"999008",
 			@"999009",
+			@"999007",
 			@"999010",
 			nil];
 			break;
@@ -1720,11 +1726,13 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 {
 	switch( mToolbarType )
 	{
+		//apppref
 	  case 1:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
 			@"999009",
+			@"999010",
 			@"999001",
 			@"999002",
 			@"999003",
@@ -1736,20 +1744,21 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			nil];
 			break;
 		}
+		//modepref
 	  case 2:
 		{
 			return [NSArray arrayWithObjects: 
 			@"999000",
-			@"999011",
-			@"999002",
 			@"999001",
+			@"999002",
+			@"999011",
 			@"999003",
 			@"999004",
 			@"999005",
-			@"999007",
 			@"999006",
 			@"999008",
 			@"999009",
+			@"999007",
 			@"999010",
 			nil];
 			break;
@@ -2471,6 +2480,13 @@ tag:(NSInteger)tag labelText:(const char*)labelText
 				return [self createToolbarItem_ImageButton:itemIdentifier tag:999009 
 					image:[NSImage imageNamed:@"iconModeView"]
 				labelText:"AppPref_Display" toggleMode:NO];
+			}
+			//#1373
+			if( [itemIdentifier compare:@"999010"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_ImageButton:itemIdentifier tag:999010 
+					image:[NSImage imageNamed:@"iconEnvOperation"]
+				labelText:"AppPref_Operation" toggleMode:NO];
 			}
 			break;
 		}
