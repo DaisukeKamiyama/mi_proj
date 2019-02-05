@@ -122,9 +122,10 @@ void	AWindow_About::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_RegisterToFocusGroup(kButton_WebSite,true);//#353
 	NVI_RegisterToFocusGroup(1001,true);//#353
 	
-	NVM_UpdateControlStatus();
+	NVM_UpdateControlStatus();//#1384
 }
 
+//#1384
 /**
 コントロール更新
 */
