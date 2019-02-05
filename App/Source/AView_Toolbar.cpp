@@ -203,7 +203,7 @@ void	AView_Toolbar::EVTDO_DoDraw()
 	*/
 	
 	//ツールバーマクロ欄背景色描画（Mojaveのツールバー色に合わせる）#1347
-	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("C8C8C8");
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("CDCDCD");
 	if( NVI_GetWindow().NVI_IsWindowActive() == false )
 	{
 		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("F6F6F6");
@@ -211,7 +211,7 @@ void	AView_Toolbar::EVTDO_DoDraw()
 	//ダークモード #1316
 	if( GetApp().NVI_IsDarkMode() == true )
 	{
-		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("363636");
+		backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("373737");
 		if( NVI_GetWindow().NVI_IsWindowActive() == false )
 		{
 			backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("2C2C2C");
