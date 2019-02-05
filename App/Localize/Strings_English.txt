@@ -1360,7 +1360,7 @@ MultiFileReplace_FileListTitle_TextEncoding = "エンコーディング";
 LastOverwrittenColors = "最後に上書きされた色データ";
 ModeColors = "モード設定で設定した色";
 
-ModeUpdate_SourceIsSameNameMode = "同じモード名のモードから更新";
+ModeUpdate_SourceIsSameNameMode = "同じモード名のモードを参照";
 
 DefaultSyntaxPartNotDirected = "自動";
 
@@ -1405,3 +1405,9 @@ EditProgress_Message_CopyV2AppPrefFolder = "mi バージョン 2 のデータを
 DefaultSkinName = "標準";
 
 TabSetFileDefaultName = "TabSet.mitabset";
+
+UserIDVaild = "有効なユーザー ID です";
+UserIDInvaild = "無効なユーザー ID です";
+Version = "Version";
+About_UserID = "User ID: ^0";
+About_UserIDNotRegistered = "(not registered)";
