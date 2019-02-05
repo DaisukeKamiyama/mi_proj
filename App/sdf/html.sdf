@@ -1932,7 +1932,7 @@ category[class]
 
 category[name]
 {
-	CategoryAttribute_ColorSlot(4)
+	#nameは標準文字色 #1388 CategoryAttribute_ColorSlot(4)
 }
 
 category[html]
