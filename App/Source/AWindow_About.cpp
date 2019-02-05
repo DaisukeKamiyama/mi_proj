@@ -112,11 +112,39 @@ void	AWindow_About::NVIDO_Create( const ADocumentID inDocumentID )
 	version.AddCstring(" (");
 	version.AddText(build);
 	version.AddCstring(")");
+	AText	text;
+	text.SetLocalizedText("Version");
+	text.AddCstring(" ");
+	text.AddText(version);
 	//
-	NVI_SetControlText(AWindow_About::kVersion,version);
+	NVI_SetControlText(AWindow_About::kVersion,text);
 	
 	NVI_RegisterToFocusGroup(kButton_WebSite,true);//#353
 	NVI_RegisterToFocusGroup(1001,true);//#353
+	
+	NVM_UpdateControlStatus();
+}
+
+/**
+コントロール更新
+*/
+void	AWindow_About::NVMDO_UpdateControlStatus()
+{
+	AText	useridText;
+	useridText.SetLocalizedText("About_UserID");
+	AText	userid;
+	GetApp().NVI_GetAppPrefDB().GetData_Text(AAppPrefDB::kUserIDRegistration, userid);
+	if( AWindow_UserIDRegistration::CheckUserID(userid) == true )
+	{
+		useridText.ReplaceParamText('0',userid);
+	}
+	else
+	{
+		AText	notRegistered;
+		notRegistered.SetLocalizedText("About_UserIDNotRegistered");
+		useridText.ReplaceParamText('0',notRegistered);
+	}
+	NVI_SetControlText(AWindow_About::kUserID,useridText);
 }
 
 
