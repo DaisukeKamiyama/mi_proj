@@ -4285,7 +4285,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_CreateButtonView(kControlID_RightSideBar_PrefButton,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_RightSideBar_PrefButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
 	NVI_GetButtonViewByControlID(kControlID_RightSideBar_PrefButton).SPI_SetIcon(kImageID_iconPnOption,10,5,10);//#725
-	NVI_GetButtonViewByControlID(kControlID_RightSideBar_PrefButton).SPI_SetMenu(kContextMenuID_RightSideBarPref,kMenuItemID_Invalid);//#725
+	//#1380 NVI_GetButtonViewByControlID(kControlID_RightSideBar_PrefButton).SPI_SetMenu(kContextMenuID_RightSideBarPref,kMenuItemID_Invalid);//#725
 	//右サイドバー表示非表示ボタン
 	NVI_CreateButtonView(kControlID_RightSideBar_ShowHideButton,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_RightSideBar_ShowHideButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHover);
@@ -4301,7 +4301,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	NVI_CreateButtonView(kControlID_LeftSideBar_PrefButton,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_LeftSideBar_PrefButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHoverWithFixedWidth);
 	NVI_GetButtonViewByControlID(kControlID_LeftSideBar_PrefButton).SPI_SetIcon(kImageID_iconPnOption,10,5,10);//#725
-	NVI_GetButtonViewByControlID(kControlID_LeftSideBar_PrefButton).SPI_SetMenu(kContextMenuID_LeftSideBarPref,kMenuItemID_Invalid);//#725
+	//#1380 NVI_GetButtonViewByControlID(kControlID_LeftSideBar_PrefButton).SPI_SetMenu(kContextMenuID_LeftSideBarPref,kMenuItemID_Invalid);//#725
 	//右サイドバー表示非表示ボタン
 	NVI_CreateButtonView(kControlID_LeftSideBar_ShowHideButton,pt,10,10,kControlID_Invalid);
 	NVI_GetButtonViewByControlID(kControlID_LeftSideBar_ShowHideButton).SPI_SetButtonViewType(kButtonViewType_TextWithOvalHover);
@@ -8869,6 +8869,56 @@ void	AWindow_Text::SPI_EndDragSubWindow( const AWindowID inSubWindowID )
 	SetDataSideBar();
 }
 
+//#1380
+/**
+サイドバーサブウインドウを閉じる
+*/
+void	AWindow_Text::SPI_CloseOverlaySubWindow( const AWindowID inSubWindowID )
+{
+	{
+		//右サイドバー項目から検索
+		AIndex	currentIndex = mRightSideBarArray_OverlayWindowID.Find(inSubWindowID);
+		if( currentIndex != kIndex_Invalid )
+		{
+			//右サイドバーデータから削除
+			mRightSideBarArray_Type.Delete1(currentIndex);
+			mRightSideBarArray_Height.Delete1(currentIndex);
+			mRightSideBarArray_OverlayWindowID.Delete1(currentIndex);
+			mRightSideBarArray_Dragging.Delete1(currentIndex);
+			mRightSideBarArray_Collapsed.Delete1(currentIndex);
+			//各サイドバーのindexを更新する。
+			SPI_UpdateOverlayWindowLocationProperty();
+			//view bounds更新
+			SPI_UpdateViewBounds();
+			//サブウインドウ削除
+			GetApp().SPI_DeleteSubWindow(inSubWindowID);
+		}
+		
+	}
+	{
+		//左サイドバー項目から検索
+		AIndex	currentIndex = mLeftSideBarArray_OverlayWindowID.Find(inSubWindowID);
+		if( currentIndex != kIndex_Invalid )
+		{
+			//左サイドバーデータから削除
+			mLeftSideBarArray_Type.Delete1(currentIndex);
+			mLeftSideBarArray_Height.Delete1(currentIndex);
+			mLeftSideBarArray_OverlayWindowID.Delete1(currentIndex);
+			mLeftSideBarArray_Dragging.Delete1(currentIndex);
+			mLeftSideBarArray_Collapsed.Delete1(currentIndex);
+			//各サイドバーのindexを更新する。
+			SPI_UpdateOverlayWindowLocationProperty();
+			//view bounds更新
+			SPI_UpdateViewBounds();
+			//サブウインドウ削除
+			GetApp().SPI_DeleteSubWindow(inSubWindowID);
+		}
+		
+	}
+	//サイドバーデータ設定
+	SetDataSideBar();
+}
+
 /**
 サイドバーデータ更新（indexを順に並べる）
 */
@@ -10879,7 +10929,8 @@ void	AWindow_Text::SPI_ShowIdInfoPopupWindow( const ABool inShow )
 	
 	if( inShow == true && GetPopupIdInfoWindow().SPI_GetIdInfoView().SPI_GetIdInfoItemCount() > 0 && //mProhibitPopup == false &&
 	   GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kProhibitPopup) == false &&
-	   GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupIdInfo) == true )
+		GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kPopupIdInfo) == true &&
+		GetApp().SPI_FindIdInfoWindow(GetObjectID()) == kObjectID_Invalid )//#1370 キーワード情報サブウインドウがすでにあればポップアップしない
 	{
 		//レイアウト計算
 		ATextWindowPopupLayoutData	layout = {0};
