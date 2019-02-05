@@ -750,3 +750,15 @@ Change Title...
 Change Title...
 Read Me First
 Read Me First
+Subwindow will be added at the bottom. You can move it by dragging title bar.
+Subwindow will be added at the bottom. You can move it by dragging title bar.
+Collapse This Subwindow
+Collapse This Subwindow
+Close This Subwindow
+Close This Subwindow
+Create New Subwindow
+Create New Subwindow
+Register User ID...
+Register User ID...
+New Find Result Window
+New Find Result Window
