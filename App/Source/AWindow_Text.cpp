@@ -108,10 +108,10 @@ const AControlID	kVirtualControlID_DeleteMacrosAfterThis	= 204;
 //ヘッダファイルで定義 const AControlID	kVirtualControlID_CompareFileChoosen 	= 210;
 
 //左右サイドバー背景
-const AControlID	kControlID_RightSideBarBackground		= 301;
-const AControlID	kControlID_LeftSideBarBackground		= 302;
+//#1316 const AControlID	kControlID_RightSideBarBackground		= 301;
+//#1316 const AControlID	kControlID_LeftSideBarBackground		= 302;
 //ウインドウ全体背景
-const AControlID	kControlID_WindowBackground				= 303;
+//#1316 const AControlID	kControlID_WindowBackground				= 303;
 
 //フッター
 const AControlID	kControlID_Footer = 351;
@@ -3474,6 +3474,24 @@ ABool	AWindow_Text::EVTDO_DoGetHelpTag( const AControlID inID, const ALocalPoint
 			result = true;
 			break;
 		}
+		//「表示」ボタンのヘルプタグ #0
+	  case kSubPaneSyncButtonControlID:
+		{
+			AText	text;
+			text.SetLocalizedText("HelpTag_DisplayToSubPaneText");
+			outText1.SetText(text);
+			result = true;
+			break;
+		}
+		//「入換」ボタンのヘルプタグ #0
+	  case kSubPaneSwapButtonControlID:
+		{
+			AText	text;
+			text.SetLocalizedText("HelpTag_SwapSubPaneText");
+			outText1.SetText(text);
+			result = true;
+			break;
+		}
 	  default:
 		{
 			//処理なし
@@ -4133,6 +4151,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 	ARect	windowbounds = {0};
 	NVI_GetWindowBounds(windowbounds);
 	
+	/*#1316 NSTexturedBackgroundWindowMaskを外したことにより背景描画しなくても良い色になったため削除
 	//背景色描画用view生成
 	if( true )
 	{
@@ -4166,6 +4185,7 @@ void	AWindow_Text::NVIDO_Create( const ADocumentID inDocumentID )
 		NVI_SetShowControl(kControlID_LeftSideBarBackground,false);
 		NVI_SetControlBindings(kControlID_LeftSideBarBackground,true,true,false,true,true,false);
 	}
+	*/
 	
 	//（正しいサイズ、位置は、SPI_UpdateViewBounds()で設定される。）
 	AWindowPoint	pt = {-10000,-10000};//#1090
@@ -4681,6 +4701,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 	ATextWindowLayoutData	layout = {0};
 	CalculateLayout(inTabIndex,layout);
 	
+	/*#1316
 	//=============================================
 	//ウインドウ背景viewの配置
 	//=============================================
@@ -4711,6 +4732,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 		NVI_SetControlSizeIfCurrentTab(inTabIndex,kControlID_WindowBackground,windowWidth,windowHeight
 									   - (layout.h_MacroBar + layout.h_TabSelector + layout.h_Footer));
 	}
+	*/
 	
 	//=============================================
 	//　　マクロバー配置
@@ -6313,6 +6335,7 @@ void	AWindow_Text::UpdateLayout_RightSideBar( const AIndex inTabIndex, const ATe
 	{
 		//========== 右サイドバーを表示する場合 ==========
 		
+		/*#1316 
 		//サイドバー背景
 		NVI_SetControlPosition(kControlID_RightSideBarBackground,inLayout.pt_RightSideBar);
 		NVI_SetControlSize(kControlID_RightSideBarBackground,inLayout.w_RightSideBar,inLayout.h_RightSideBar_WithBottomMargin);
@@ -6328,6 +6351,7 @@ void	AWindow_Text::UpdateLayout_RightSideBar( const AIndex inTabIndex, const ATe
 			eraserect.bottom	= inLayout.pt_RightSideBar.y + inLayout.h_RightSideBar;
 			NVI_PaintRect(eraserect,kColor_White);
 		}
+		*/
 		
 		//右サイドバー分割線
 		if( mRightSideBarVSeparatorWindowID != kObjectID_Invalid )//#319
@@ -6401,8 +6425,10 @@ void	AWindow_Text::UpdateLayout_RightSideBar( const AIndex inTabIndex, const ATe
 	{
 		//========== 右サイドバーを表示しない場合 ==========
 		
+		/*#1316
 		//サイドバー背景
 		NVI_SetShowControl(kControlID_RightSideBarBackground,false);
+		*/
 		
 		//右サイドバー分割線非表示
 		if( mRightSideBarVSeparatorWindowID != kObjectID_Invalid )
@@ -6425,6 +6451,7 @@ ABool	AWindow_Text::UpdateLayout_LeftSideBar( const AIndex inTabIndex, const ATe
 	{
 		//========== 左サイドバーを表示する場合 ==========
 		
+		/*#1316
 		//サイドバー背景
 		NVI_SetControlPosition(kControlID_LeftSideBarBackground,inLayout.pt_LeftSideBar);
 		NVI_SetControlSize(kControlID_LeftSideBarBackground,inLayout.w_LeftSideBar,inLayout.h_LeftSideBarWithMargin);
@@ -6440,6 +6467,7 @@ ABool	AWindow_Text::UpdateLayout_LeftSideBar( const AIndex inTabIndex, const ATe
 			eraserect.bottom	= inLayout.pt_LeftSideBar.y + inLayout.h_LeftSideBar;
 			NVI_PaintRect(eraserect,kColor_White);
 		}
+		*/
 		
 		//左サイドバー分割線
 		if( mLeftSideBarVSeparatorWindowID != kObjectID_Invalid )
@@ -6521,8 +6549,10 @@ ABool	AWindow_Text::UpdateLayout_LeftSideBar( const AIndex inTabIndex, const ATe
 	{
 		//========== 左サイドバーを表示しない場合 ==========
 		
+		/*#1316
 		//サイドバー背景
 		NVI_SetShowControl(kControlID_LeftSideBarBackground,false);
+		*/
 		
 		//サブペインカラム分割線非表示
 		if( mLeftSideBarVSeparatorWindowID != kObjectID_Invalid )
@@ -6668,6 +6698,7 @@ void	AWindow_Text::UpdateVisibleSubWindows()
 */
 void	AWindow_Text::UpdateViewBindings( const ATextWindowViewBindings inBindings )
 {
+	/*#1316
 	//ウインドウ背景ビュー
 	if( true )
 	{
@@ -6679,6 +6710,7 @@ void	AWindow_Text::UpdateViewBindings( const ATextWindowViewBindings inBindings 
 		//全体に背景描画の場合
 		NVI_SetControlBindings(kControlID_WindowBackground,true,true,true,true,false,false);
 	}
+	*/
 	//各タブごとのループ
 	for( AIndex tabIndex = 0; tabIndex < NVI_GetTabCount(); tabIndex++ )
 	{
@@ -6965,12 +6997,13 @@ void	AWindow_Text::NVIDO_UpdateProperty()
 	NVI_GetButtonViewByControlID(kSubPaneDiffButtonControlID).SPI_SetDropShadowColor(GetApp().SPI_GetSubTextColumnButtonDropShadowColor());
 	*/
 	
+	/*#1316 
 	//サイドバー背景色更新
 	AColor	color = GetApp().SPI_GetSubWindowBackgroundColor(true);
 	AColor	separatorColor = GetApp().SPI_GetSideBarFrameColor();
 	NVI_SetPlainViewColor(kControlID_RightSideBarBackground,color,color,false,true,false,true,separatorColor);
 	NVI_SetPlainViewColor(kControlID_LeftSideBarBackground,color,color,true,false,true,false,separatorColor);
-	
+	*/
 }
 
 ABool	AWindow_Text::SPI_IsDocumentVisible( const ADocumentID inDocumentID ) const
@@ -9567,12 +9600,14 @@ void	AWindow_Text::ShowHideLeftSideBar( const ABool inShow, const ABool inAnimat
 			//サイドバーアニメーション用bindings設定
 			UpdateViewBindings(kTextWindowViewBindings_ShowHideLeftSidebar);
 			
+			/*#1316
 			//サイドバー背景表示
 			ATextWindowLayoutData	layout = {0};
 			CalculateLayout(NVI_GetCurrentTabIndex(),layout);
 			NVI_SetControlPosition(kControlID_LeftSideBarBackground,layout.pt_LeftSideBar);
 			NVI_SetControlSize(kControlID_LeftSideBarBackground,layout.w_LeftSideBar,layout.h_LeftSideBarWithMargin);
 			NVI_SetShowControl(kControlID_LeftSideBarBackground,true);
+			*/
 			
 			{
 				//window bounds更新（アニメーション）
@@ -10469,12 +10504,14 @@ void	AWindow_Text::ShowHideRightSideBar( const ABool inShow, const ABool inAnima
 			//右サイドバーアニメーション用bindings設定
 			UpdateViewBindings(kTextWindowViewBindings_ShowRightSidebar);
 			
+			/*#1316
 			//サイドバー背景表示
 			ATextWindowLayoutData	layout = {0};
 			CalculateLayout(NVI_GetCurrentTabIndex(),layout);
 			NVI_SetControlPosition(kControlID_RightSideBarBackground,layout.pt_RightSideBar);
 			NVI_SetControlSize(kControlID_RightSideBarBackground,layout.w_RightSideBar,layout.h_RightSideBar_WithBottomMargin);
 			NVI_SetShowControl(kControlID_RightSideBarBackground,true);
+			*/
 			
 			//window bounds設定
 			ARect	bounds = {0};
