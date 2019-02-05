@@ -207,6 +207,26 @@ ABool	AWindow_FileList::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID
 			GetApp().SPI_DeleteRecentlyOpenedFileNotFound();
 			break;
 		}
+		//サブウインドウを折りたたむ #1380
+	  case kMenuItemID_CollapseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_ExpandCollapseSubWindow(GetObjectID());
+			}
+			break;
+		}
+		//サブウインドウを閉じる #1380
+	  case kMenuItemID_CloseThisSubwindow:
+		{
+			AWindowID	textWindowID = NVI_GetOverlayParentWindowID();
+			if( textWindowID != kObjectID_Invalid )
+			{
+				GetApp().SPI_GetTextWindowByID(textWindowID).SPI_CloseOverlaySubWindow(GetObjectID());
+			}
+			break;
+		}
 		//その他のmenu item IDの場合、このクラスで処理せず、次のコマンド対象で処理する
 	  default:
 		{
@@ -1205,6 +1225,8 @@ void	AWindow_FileList::NVIDO_UpdateProperty()
 	UpdateViewBounds();
 	//ウインドウrefresh
 	NVI_RefreshWindow();
+	//右クリックメニュー更新 #1380
+	UpdateContextMenu();
 }
 
 //#798
@@ -1329,7 +1351,8 @@ void	AWindow_FileList::SPI_UpdateTable()
 			GetListView().SPI_SetTable_ImageIconID(imageIconIDArray);
 			GetListView().SPI_SetTable_Color(colorarray);
 			//最近開いたファイル用のコンテキストメニュー設定
-			GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_RecentOpen);//R0186
+			//#1380 GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_RecentOpen);//R0186
+			UpdateContextMenu();//#1380
 			sel = mSelectionIndex_Recent;
 			break;
 		}
@@ -1406,7 +1429,8 @@ void	AWindow_FileList::SPI_UpdateTable()
 				GetListView().SPI_SetTable_TextStyle(stylearray);//#458
 			}
 			
-			GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_FileList);//R0186 #442
+			//#1380 GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_GeneralSubWindow);//R0186 #442 #1380
+			UpdateContextMenu();//#1380
 			sel = mSelectionIndex_SameFolder;
 			break;
 		}
@@ -1697,7 +1721,8 @@ void	AWindow_FileList::SPI_UpdateTable()
 				}
 			}
 			//コンテキストメニュー設定
-			GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_FileList);//R0186 #442
+			//#1380 GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_GeneralSubWindow);//R0186 #442 #1380
+			UpdateContextMenu();//#1380
 			//選択項目設定
 			sel = mSelectionIndex_SameProject;
 			mCurrentSameProjectIndex = GetApp().SPI_GetCurrentSameProjectIndex();
@@ -2056,6 +2081,67 @@ void	AWindow_FileList::SPI_SetCurrentPath( const AText& inText )
 	  default:
 		{
 			//処理なし
+			break;
+		}
+	}
+}
+
+//#1380
+/**
+右クリックメニュー更新
+*/
+void	AWindow_FileList::UpdateContextMenu()
+{
+	switch(mMode)
+	{
+	  case kFileListMode_RecentlyOpened:
+		{
+			switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+			{
+			  case kSubWindowLocationType_RightSideBar:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_RecentOpen_RightSideBar);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+					break;
+				}
+			  case kSubWindowLocationType_LeftSideBar:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_RecentOpen_LeftSideBar);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+					break;
+				}
+			  default:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_RecentOpen);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+					break;
+				}
+			}
+			break;
+		}
+	  default:
+		{
+			switch(GetApp().SPI_GetSubWindowLocationType(GetObjectID()))
+			{
+			  case kSubWindowLocationType_RightSideBar:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_GeneralSubWindow_RightSideBar);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_RightSideBar);
+					break;
+				}
+			  case kSubWindowLocationType_LeftSideBar:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_GeneralSubWindow_LeftSideBar);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow_LeftSideBar);
+					break;
+				}
+			  default:
+				{
+					GetListView().SPI_SetEnableContextMenu(true,kContextMenuID_GeneralSubWindow);
+					NVI_GetViewByControlID(kControlID_TitleBar).NVI_SetEnableContextMenu(kContextMenuID_GeneralSubWindow);
+					break;
+				}
+			}
 			break;
 		}
 	}
