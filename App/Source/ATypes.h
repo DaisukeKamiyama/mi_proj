@@ -136,6 +136,7 @@ const AMenuItemID	kMenuItemID_SetProjectFolder 			= 1149;//'SPrj';
 const AMenuItemID	kMenuItemID_CorrectSpell				= 'CSpl';//R0199
 const AMenuItemID	kMenuItemID_WrapMode_LetterWrap 		= 1150;//#1113
 const AMenuItemID	kMenuItemID_WrapMode_LetterWrapByLetterCount = 1151;//#1113
+const AMenuItemID	kMenuItemID_RegisterUserID				= 1152;//#1384
 
 const AMenuItemID	kMenuItemID_OpenModePrefFolder 			= 'OpMF';
 const AMenuItemID	kMenuItemID_Open 						= 1202;//'open';
@@ -376,6 +377,7 @@ const AMenuItemID	kMenuItemID_AddCallGrefInFloating					= 5611;
 const AMenuItemID	kMenuItemID_AddPreviewInFloating					= 5612;
 const AMenuItemID	kMenuItemID_AddWordsListInFloating					= 5613;
 const AMenuItemID	kMenuItemID_AddKeyRecordInFloating					= 5614;
+const AMenuItemID	kMenuItemID_AddFindResultInFloating					= 5615;
 //#688
 const AMenuItemID	kMenuItemID_ShowHideToolbar							= 5701;
 const AMenuItemID	kMenuItemID_CustomizeToolbar						= 5702;
@@ -436,6 +438,10 @@ const AMenuItemID	kMenuItemID_SortTabs								= 7400;//#1062
 //Speech #851
 const AMenuItemID	kMenuItemID_StartSpeaking							= 7401;
 const AMenuItemID	kMenuItemID_StopSpeaking							= 7402;
+
+//サイドバー右クリック
+const AMenuItemID	kMenuItemID_CollapseThisSubwindow					= 7501;//#1380
+const AMenuItemID	kMenuItemID_CloseThisSubwindow						= 7502;//#1380
 
 const AMenuItemID	kMenuItemID_CM_MultiFileFind			= 8001;//'C_MF';
 const AMenuItemID	kMenuItemID_CM_FindNext					= 8002;//'C_FN';
@@ -745,19 +751,26 @@ const AContextMenuID	kContextMenuID_WrapMode				= 108;//#232
 const AContextMenuID	kContextMenuID_Mode					= 109;//#232
 const AContextMenuID	kContextMenuID_ToolButton			= 110;//#232
 const AContextMenuID	kContextMenuID_IdInfoHistory		= 111;//#238
-const AContextMenuID	kContextMenuID_FileList				= 112;//#442
+//#1380 const AContextMenuID	kContextMenuID_FileList				= 112;//#442
 const AContextMenuID	kContextMenuID_JumpList				= 113;//#442
-const AContextMenuID	kContextMenuID_IdInfo				= 114;//#442
+//#1380 const AContextMenuID	kContextMenuID_IdInfo				= 114;//#442
 const AContextMenuID	kContextMenuID_IndexView			= 115;//#465
 const AContextMenuID	kContextMenuID_JumpListHistory		= 116;//#454
 const AContextMenuID	kContextMenuID_ToolBar				= 117;//#619
-const AContextMenuID	kContextMenuID_RightSideBarPref		= 118;//#725
-const AContextMenuID	kContextMenuID_LeftSideBarPref		= 119;//#725
+//#1380 const AContextMenuID	kContextMenuID_RightSideBarPref		= 118;//#725
+//#1380 const AContextMenuID	kContextMenuID_LeftSideBarPref		= 119;//#725
 const AContextMenuID	kContextMenuID_SameProjectHeader	= 120;//#725
 const AContextMenuID	kContextMenuID_Percent				= 121;//#734
 const AContextMenuID	kContextMenuID_SubWindows			= 122;//#725
 //#0 未使用のためコメントアウト const AContextMenuID	kContextMenuID_Diff					= 123;//#112
 const AContextMenuID	kContextMenuID_CandidateSearchMode	= 124;//#717
+const AContextMenuID	kContextMenuID_JumpList_LeftSideBar	= 125;//#1380
+const AContextMenuID	kContextMenuID_JumpList_RightSideBar= 126;//#1380
+const AContextMenuID	kContextMenuID_GeneralSubWindow = 127;//#1380
+const AContextMenuID	kContextMenuID_GeneralSubWindow_LeftSideBar = 128;//#1380
+const AContextMenuID	kContextMenuID_GeneralSubWindow_RightSideBar = 129;//#1380
+const AContextMenuID	kContextMenuID_RecentOpen_LeftSideBar = 130;//#1380
+const AContextMenuID	kContextMenuID_RecentOpen_RightSideBar = 131;//#1380
 
 //#725
 const AControlID	kControlID_Toolbar_TextEncoding					= 995001;
@@ -832,6 +845,7 @@ const AInternalEventType	kInternalEvent_DocumentFileScreenCompleted				= 133;
 const AInternalEventType	kInternalEvent_DocumentFileScreenError					= 134;//#962
 const AInternalEventType	kInternalEvent_AppActivated								= 135;//#974
 const AInternalEventType	kInternalEvent_AppleEventOpenDoc						= 136;//#1006
+const AInternalEventType	kInternalEvent_ShowReadMe								= 137;//#1374
 
 //#688 キーバインド動作をABaseTypes.hへ移動
 
@@ -905,6 +919,7 @@ const AWindowType	kWindowType_WordsList				= 157;//#723
 const AWindowType	kWindowType_Notification			= 158;//#725
 const AWindowType	kWindowType_FindResult				= 159;//#725
 const AWindowType	kWindowType_ChangeToolButton		= 160;//#1344
+const AWindowType	kWindowType_UserIDRegistration		= 161;//#1384
 
 //ビュータイプ
 const AViewType		kViewType_Text 						= 5101;
