@@ -11,10 +11,10 @@ class,b58900,yellow
 macro,657b83,base00
 other1,cb4b16,orange
 other2,d33682,magenta
-highlight1,FDE900,(検索一致文字列ハイライト)
-highlight2,E6E6FA,(前回の一致文字列ハイライト)
-highlight3,FFFF00,(現在選択中の単語のハイライト)
+highlight1,C5A600,(検索一致文字列ハイライト)
+highlight2,478A54,(前回の一致文字列ハイライト)
+highlight3,888888,(現在選択中の単語のハイライト)
 highlight4,FFCD96,(テキストハイライト)
-highlight5,FFD700,(検索結果等から選択したとき)
-diff-opacity,50
-selection-opacity,15
+highlight5,C5A600,(検索結果等から選択したとき)
+diff-opacity,40
+selection-opacity,40
