@@ -117,6 +117,7 @@ AView_Text::AView_Text( /*#199 AObjectArrayItem* inParent, AWindow& inWindow*/
 ,mCandidateRequestTimer(0)
 ,mLastCaretLocalPoint(kLocalPoint_00)//#1031
 ,mACharWidth(9)//#1186
+,mZenkakuAWidth(18)//#1385
 {
 	NVMC_SetOffscreenMode(true);//win
 	//#92 ‰Šú‰»‚ÍNVIDO_Init()‚ÖˆÚ“®
