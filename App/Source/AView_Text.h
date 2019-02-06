@@ -94,6 +94,7 @@ class AView_Text : public AView
 	//çÇë¨âªÇÃÇΩÇﬂ
 	AText					mZenkakuSpaceText;
 	ANumber					mZenkakuSpaceWidth;
+	AFloatNumber			mZenkakuAWidth;//#1385
 	AText					mLineEndDisplayText;
 	AText					mLineEndDisplayText_UTF16;
 	ANumber					mACharWidth;//#1186
