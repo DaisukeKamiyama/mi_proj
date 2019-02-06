@@ -17,9 +17,9 @@ Popup near Insertion Point
 Popup immediately under Insertion Point
 入力位置の直下にポップアップ
 Keyword Information :
-キーワード情報：
+キーワード情報ウインドウ：
 Popup Keyword Information
-キーワード情報をポップアップする
+キーワードをクリックした時などにキーワード情報ウインドウをポップアップする
 Hide Keyword Information after several seconds
 ポップアップしたキーワード情報を数秒後に閉じる
 Caret & Current Line
@@ -317,11 +317,11 @@ Reopen Files opened when quit
 History Memory :
 履歴の記憶：
 Do Not Remember any History
-履歴を記憶しない
+各種履歴（最近開いたファイル、最近検索した文字列など）を記憶しない
 Wheel Scroll Speed :
 ホイールスクロール速度：
 When % key is pressed :
-コマンドキーを押したとき：
+⌘キーを押したとき：
 Horizontal Wheel Scroll :
 水平方向のホイールスクロール：
 Disable Horizontal Scroll
@@ -397,7 +397,7 @@ Tab
 Window
 ウインドウ
 Line Selection
-行選択操作
+行選択
 Setup operation of line selection.
 行選択の操作方法を設定します。
 Click at Line Number :
@@ -421,7 +421,7 @@ Show Horizontal Scrollbar
 Show Status Bar
 ステータスバーを表示する
 Select Mode when clicking command+N.
-コマンド+N を押した時などに開くモードを選択します。
+⌘+N を押した時などに開くモードを選択します。
 Setup display settings for all sub windows.
 全てのサブウインドウ共通の表示設定を行います。
 Popup Window Position :
@@ -429,9 +429,9 @@ Popup Window Position :
 Setup completion candidate window.
 補完候補ウインドウの設定を行います。
 Completion Key for Popup :
-補完入力キー：
+補完候補選択キー：
 Input completion by arrow key after Popup displayed
-ポップアップ表示後は上下キーで補完入力する
+自動ポップアップで補完候補が表示された後は、上下キーで補完候補を選択する
 Setup keyword information window.
 キーワード情報ウインドウの設定を行います。
 Keyword Info Window
@@ -505,7 +505,7 @@ Specify files which should be exclude from some features.
 Files which have these suffixes are handled as non-text file.
 これらのファイルは、マルチファイル検索の「テキストファイルのみ」をON時、検索対象外になります。また、「選択部分を開く」機能使用時、macOSで開きます。
 Candidate Window
-候補ウインドウ
+補完候補ウインドウ
 Key for Next Completion :
 次補完候補入力キー：
 Key for Previous Completion :
@@ -541,9 +541,9 @@ Update Menu
 Only FTP is supported currently.
 現状、FTP のみをサポートしています
 Enable Smooth Wheel Scroll
-なめらかスクロールを有効にする
+スクロールはドット単位で行う（OFFの場合は行単位）
 Smooth Wheel Scroll :
-なめらかスクロール：
+ドット単位のスクロール：
 Git Path :
 git のパス：
 Use default port number
@@ -563,9 +563,9 @@ Unicodeのコピー／保存 :
 Convert to Canonical Composition automatically
 コピー／保存時 Canonical Composition 形式へ自動変換
 Software Update
-ソフトウエアの自動更新
+アプリケーションの自動更新
 Setup automatic update of mi application.
-mi アプリケーションの自動更新を設定します
+バージョンごとの自動更新可否を設定します。
 Update Versions :
 自動更新対象バージョン：
 Release version only
@@ -577,7 +577,7 @@ Release version, Beta version and Alpha version
 No Update
 自動更新しない
 Completion key is set in Keybind tab in Mode Preferences.
-補完入力キーはモード設定の「キーバインド」タブで設定します。
+手動で補完候補を表示するキーは、モード設定の「キーバインド」タブで設定できます。（デフォルト：shift+スペース）
 Window Title :
 ウインドウタイトル：
 Display full path
@@ -589,7 +589,7 @@ Show Arrow cursor always
 Text Area
 テキストエリア
 Left-Right Margin :
-センタリング：
+テキストエリアのセンタリング：
 Display margin before/after line
 左右に余白を表示して、テキストエリアを画面中央に表示する
 Text Width :
@@ -637,10 +637,46 @@ Find Result
 Popup Window :
 検索・置換結果：
 Show find result popup window
-検索・置換結果をウインドウ右上にポップアップ表示する
+検索・置換結果をポップアップ表示する
 Tab Width :
 タブの表示幅：
 Show Right Sidebar
 右サイドバーを表示する
 Show Left Sidebar
 左サイドバーを表示する
+Color set for light mode :
+ライトモード用の色セット：
+Color set for dark mode :
+ダークモード用の色セット：
+Font can be set for each mode. Select [mi -> Mode Preferences... -> (mode name)] to set font for each mode. 
+フォントは各モードごとに設定することも可能です。モードごとのフォントを設定するには、メニューから [mi→モード毎の設定...→(モード名)]を選択します。
+Normal Font :
+標準のフォント：
+Popup Display
+ポップアップ表示有無
+Select whether show popup window or not.
+ポップアップウインドウを表示するかどうかを選択します。
+Popup Completion Candidate window
+補完候補ウインドウをポップアップ表示する
+Popup Keyword Information window
+キーワード情報ウインドウをポップアップ表示する
+You can set popup enable or disable at General tab.
+ポップアップ表示の有無は「一般」タブにて設定できます。
+Colors set in Mode Preferences are used always regardless of Color Scheme for light/dark mode.
+印刷色については、ライト／ダークモード用色セットの設定に関わらず、常にモード設定の「色」タブで設定した色が使用されます。
+Appearance Type :
+ライト／ダークモードの切り替え：
+System apperance
+システム環境設定に従う
+Always light mode
+常にライトモード
+Always dark mode
+常にダークモード
+Brace Selection
+括弧選択
+Double-click braces :
+括弧ダブルクリック時：
+Select inside braces
+括弧内を選択（括弧含まず）
+Select including braces
+括弧内を選択（括弧を含む）
