@@ -188,6 +188,8 @@ Keyword
 Keyword
 Register keywords to colorize keyword and input keyword completion.
 Register keywords to colorize keyword and input keyword completion.
+Keyword is set for a category of keyword.
+Keyword is set for a category of keyword.
 Import...
 Import...
 Export...
@@ -218,6 +220,8 @@ Define keywords using Regular Expression
 Define keywords using Regular Expression
 * Word which matches Regular Expression written at 1st line in Keywords List will be colored.
 * Word which matches Regular Expression written at 1st line in Keywords List will be colored.
+This keyword category is read-only because embedded in application.
+This keyword category is read-only because embedded in application.
 Text Color : 
 Text Color : 
 Text Style : 
@@ -590,7 +594,7 @@ Mode is decided by its suffix basically. If file does not match any suffixes, it
 Mode is decided by its suffix basically. If file does not match any suffixes, it belongs to "Normal" mode.
 Several settings can be set to same as "Normal" mode to reduce items to be set. 
 Several settings can be set to same as "Normal" mode to reduce items to be set. 
-Mode Validity
+Mode Validity :
 Mode Validity
 If disabled, this mode is not assigned to any file.
 If disabled, this mode is not assigned to any file.
@@ -600,10 +604,18 @@ Font
 Font
 Set Colors for this mode. 
 Set Colors for this mode. 
-Export Color Scheme :
-Export Color Scheme :
+If you set Color Scheme for light/dark mode in Preferences dialog, it is prior to this color settings.
+If you set Color Scheme for light/dark mode in Preferences dialog, it is prior to this color settings.
+Export :
+Export :
+Export to Color Scheme file...
+Export to Color Scheme file...
+Copy from Color Scheme :
+Copy from Color Scheme :
 Apply to colors
-Apply Color Scheme
+Apply to colors
+You can set all colors from Color Scheme in the menu.
+You can set all colors from Color Scheme in the menu.
 Diff Display Opacity : 
 Diff Display Opacity : 
 Set text data properties such as default text encoding.
@@ -634,6 +646,8 @@ Setup Tool menu.
 Setup Tool menu.
 You can setup tool files and their hierarchy using Finder.
 You can setup tool files and their hierarchy using Finder.
+This tool is read-only because embedded in application. You can edit after copy this.
+This tool is read-only because embedded in application. You can edit after copy this.
 Update Mode data from Application when Application is updated.
 Update Mode data when Application is updated.
 Update Mode data from Web when the button is clicked.
@@ -660,8 +674,8 @@ Literal :
 Literal : 
 Escape Characters : 
 Escape Characters : 
-Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
-Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
+Actual color is set in "Colors" tab.
+Actual color is set in "Colors" tab.
 Column Number : 
 Column Number : 
 Optional Columns : 
@@ -684,8 +698,8 @@ Enable Corresponding Text defined in Syntax Definition
 Enable Corresponding Text defined in Syntax Definition
 Set Enable
 Set Enable
-You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder. (Highlight colors and opacities can be set only by csv files.)
-You can add Color Scheme item by placing csv or epf file in ColorScheme folder. (Highlight colors/opacities can be set only by csv.)
+You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder.
+You can add Color Scheme item by placing csv or epf file in ColorScheme folder.
 Selection Opacity : 
 Selection Opacity : 
 Open ColorScheme folder
@@ -768,3 +782,7 @@ Character Wrap with Characters Count...
 Character Wrap with Characters Count...
 Control Code Color :
 Control Code Color :
+Other Options
+Other Options
+Ruler and Line Number
+Ruler and Line Number
