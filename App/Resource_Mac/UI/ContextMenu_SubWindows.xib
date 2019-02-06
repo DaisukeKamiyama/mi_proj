@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
@@ -47,6 +47,9 @@
                 <menuItem title="New Key Record Window" image="iconSwKeyRecordT.Template" tag="5614" id="57">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem title="New Find Result Window" image="iconSwFindResultT.Template" tag="5615" id="LOs-dy-yg3">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
             </items>
         </menu>
     </objects>
@@ -55,6 +58,7 @@
         <image name="iconSwBox_RecentlyOpenedT.Template" width="16" height="16"/>
         <image name="iconSwBox_RemoteT.Template" width="16" height="16"/>
         <image name="iconSwBox_SameFolderT.Template" width="16" height="16"/>
+        <image name="iconSwFindResultT.Template" width="16" height="16"/>
         <image name="iconSwKeyRecordT.Template" width="16" height="16"/>
         <image name="iconSwKeyWordT.Template" width="16" height="16"/>
         <image name="iconSwListT.Template" width="16" height="16"/>

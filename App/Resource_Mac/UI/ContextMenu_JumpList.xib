@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
@@ -20,8 +20,8 @@
                 <menuItem title="Expand All" tag="5202" id="35">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="37"/>
-                <menuItem title="Setup Sub Windows..." tag="1234" id="36">
+                <menuItem isSeparatorItem="YES" id="Oc7-w0-XbK"/>
+                <menuItem title="Setup Sub Windows..." tag="1234" id="wR9-OZ-6mY">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>

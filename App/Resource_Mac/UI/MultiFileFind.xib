@@ -50,6 +50,14 @@ DQ
 </string>
                         </buttonCell>
                     </button>
+                    <button verticalHuggingPriority="750" tag="1015" id="IKO-90-hMh">
+                        <rect key="frame" x="83" y="766" width="110" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Abort" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TFH-dn-sS5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                    </button>
                     <customView id="384" customClass="CocoaCollapsableView">
                         <rect key="frame" x="0.0" y="204" width="330" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -159,6 +167,14 @@ DQ
                                 <buttonCell key="cell" type="bevel" title="Find Options" bezelStyle="regularSquare" alignment="left" controlSize="small" inset="2" id="481">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="90001" id="8qm-h4-Db6">
+                                <rect key="frame" x="297" y="214" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6F-G2-UNE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                         </subviews>

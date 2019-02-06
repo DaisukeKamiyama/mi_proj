@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu autoenablesItems="NO" id="3">
             <items>
-                <menuItem title="Setup Sub Windows..." tag="1234" id="32">
+                <menuItem title="Setup Sub Windows..." tag="1234" id="33">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
