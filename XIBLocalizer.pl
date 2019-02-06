@@ -72,6 +72,8 @@ if( @ARGV == 3 )
 	my @replace1 = ();
 	my @find2 = ();
 	my @replace2 = ();
+	my @find3 = ();
+	my @replace3 = ();
 	my $cnt = 0;
 	foreach my $line (@dicText)
 	{
@@ -81,12 +83,14 @@ if( @ARGV == 3 )
 			push(@keyArray,$line);
 			push(@find1,"title=\"".(quotemeta $line)."\"");
 			push(@find2,"<string key=\"title\">".(quotemeta $line)."</string>");
+			push(@find3,"content=\"".(quotemeta $line)."\"");
 		}
 		else
 		{
 			push(@valueArray,$line);
 			push(@replace1,"title=\"".$line."\"");
 			push(@replace2,"<string key=\"title\">".$line."</string>");
+			push(@replace3,"content=\"".$line."\"");
 		}
 		$cnt++;
 	}
@@ -109,6 +113,14 @@ if( @ARGV == 3 )
 			for( $i = 0; $i < $cnt/2; $i++ )
 			{
 				$line =~ s/$find2[$i]/$replace2[$i]/;
+			}
+		}
+		if( $line =~ /content=".+"/ )
+		{
+			my $i;
+			for( $i = 0; $i < $cnt/2; $i++ )
+			{
+				$line =~ s/$find3[$i]/$replace3[$i]/;
 			}
 		}
 		print DSTFILE $line;
