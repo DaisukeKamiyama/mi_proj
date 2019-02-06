@@ -45,7 +45,7 @@ AView_IdInfo::AView_IdInfo( /* #199 AObjectArrayItem* inParent, AWindow& inWindo
 	: AView(/*#199 inParent,inWindow*/inWindowID,inID), mCurrentModeIndex(kIndex_Invalid), mArgIndex(kIndex_Invalid), mCurrentHoverCursorIndex(kIndex_Invalid)
 	,mFixDisplay(false)//#238
 //#725	,mTransparency(1.0)//#291
-	,mContextMenuItemID(kIndex_Invalid)//#442
+//#1380	,mContextMenuItemID(kIndex_Invalid)//#442
 ,mCurrentSelectionIndex(kIndex_Invalid)//#853
 ,mMouseTrackStartLocalPoint(kLocalPoint_00), mMouseDownResultIsDrag(false)
 ,mHideCounter(0),mAlpha(1.0), mDisableAutoHide(false)
@@ -169,10 +169,10 @@ void	AView_IdInfo::EVTDO_DoDraw()
 	
 	//描画色設定
 	AColor	letterColor = kColor_Black;
-	AColor	dropShadowColor = kColor_White;
+	//#1316 AColor	dropShadowColor = kColor_White;
 	AColor	boxBaseColor1 = kColor_White, boxBaseColor2 = kColor_White, boxBaseColor3 = kColor_White;
-	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,dropShadowColor,boxBaseColor1,boxBaseColor2,boxBaseColor3);
-	NVMC_SetDropShadowColor(dropShadowColor);
+	GetApp().SPI_GetSubWindowBoxColor(NVM_GetWindow().GetObjectID(),letterColor,/*#1316 dropShadowColor,*/boxBaseColor1,boxBaseColor2,boxBaseColor3);
+    //#1316 NVMC_SetDropShadowColor(dropShadowColor);
 	
 	//=========================各項目毎ループ=========================
 	for( AIndex i = 0; i < mInfoTextArray.GetItemCount(); i++ )
@@ -190,15 +190,18 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		AText	keywordText;
 		mKeywordTextArray.Get(i,keywordText);
 		
-		//最後の項目以外は、隙間を背景色（α:0.2）で描画
-		if( i != mInfoTextArray.GetItemCount() -1 )
+		if( IsBoxTypeDisplay() == true )//#1370
 		{
-			ALocalRect	gapLocalRect = {0};
-			gapLocalRect.left		= itemLocalRect.left + 5;
-			gapLocalRect.top		= itemLocalRect.bottom;
-			gapLocalRect.right		= itemLocalRect.right - 5;
-			gapLocalRect.bottom		= itemLocalRect.bottom + kItemBoxTopMargin + kItemBoxBottomMargin;
-			NVMC_PaintRect(gapLocalRect,/*kColor_White*/boxBaseColor2,0.2);
+			//最後の項目以外は、隙間を背景色（α:0.2）で描画
+			if( i != mInfoTextArray.GetItemCount() -1 )
+			{
+				ALocalRect	gapLocalRect = {0};
+				gapLocalRect.left		= itemLocalRect.left + 5;
+				gapLocalRect.top		= itemLocalRect.bottom;
+				gapLocalRect.right		= itemLocalRect.right - 5;
+				gapLocalRect.bottom		= itemLocalRect.bottom + kItemBoxTopMargin + kItemBoxBottomMargin;
+				NVMC_PaintRect(gapLocalRect,/*kColor_White*/boxBaseColor2,0.2);
+			}
 		}
 		/*test
 		if( mCurrentHoverCursorIndex == i )
@@ -237,16 +240,40 @@ void	AView_IdInfo::EVTDO_DoDraw()
 			}
 		}
 		*/
-		//ボックス描画#643
-		NVMC_PaintRoundedRect(itemLocalRect,
-							  //kColor_White,kColor_Gray95Percent
-							  boxBaseColor1,boxBaseColor3,
-							  kGradientType_Vertical,backgroundAlpha*mAlpha,backgroundAlpha*mAlpha,
-							  kRoundedRectRad,true,true,true,true);
-		NVMC_FrameRoundedRect(itemLocalRect,
-							  //kColor_Gray20Percent
-							  kColor_Gray50Percent,
-							  mAlpha,kRoundedRectRad,true,true,true,true);//,true,true,true,true,1.0);
+		
+		if( IsBoxTypeDisplay() == true )//#1370
+		{
+			//ボックス描画#643
+			NVMC_PaintRoundedRect(itemLocalRect,
+								  //kColor_White,kColor_Gray95Percent
+								  boxBaseColor1,boxBaseColor3,
+								  kGradientType_Vertical,backgroundAlpha*mAlpha,backgroundAlpha*mAlpha,
+								  kRoundedRectRad,true,true,true,true);
+			NVMC_FrameRoundedRect(itemLocalRect,
+								  //kColor_Gray20Percent
+								  kColor_Gray50Percent,
+								  mAlpha,kRoundedRectRad,true,true,true,true);//,true,true,true,true,1.0);
+		}
+		else
+		{
+			//リストタイプ描画 #1370
+			
+			//背景描画
+			NVMC_PaintRect(itemLocalRect,boxBaseColor2);
+			
+			//境界線描画
+			ALocalRect	separatorRect = itemLocalRect;
+			separatorRect.top = separatorRect.bottom - 1;
+			separatorRect.left += 5;
+			separatorRect.right -= 5;
+			AColor	color = AColorWrapper::GetColorByHTMLFormatColor("808080");;
+			if( GetApp().NVI_IsDarkMode() == true )
+			{
+				color = AColorWrapper::GetColorByHTMLFormatColor("AAAAAA");
+			}
+			NVMC_PaintRect(separatorRect,color,0.3);
+		}
+		
 		//ホバー描画
 		if( mCurrentHoverCursorIndex == i )
 		{
@@ -258,7 +285,16 @@ void	AView_IdInfo::EVTDO_DoDraw()
 			*/
 			//ホバー色でrounded rectで囲む
 			AColor	hoverColor = GetApp().SPI_GetSubWindowRoundedRectBoxHoverColor();
-			NVMC_FrameRoundedRect(itemLocalRect,hoverColor,0.3,kRoundedRectRad,true,true,true,true,true,true,true,true,1.0);
+			//#1370 NVMC_FrameRoundedRect(itemLocalRect,hoverColor,0.3,kRoundedRectRad,true,true,true,true,true,true,true,true,1.0);
+			ALocalRect	hoverRect = itemLocalRect;
+			if( IsBoxTypeDisplay() == false )
+			{
+				hoverRect.left += 1;
+				hoverRect.top += 1;
+				hoverRect.right -= 1;
+				hoverRect.bottom -= 1;
+			}
+			NVMC_FrameRoundedRect(hoverRect,AColorWrapper::GetControlAccentColor(),0.7,kRoundedRectRad,true,true,true,true,true,true,true,true,1.0);
 		}
 		//選択描画
 		if( mCurrentSelectionIndex == i )
@@ -284,26 +320,26 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		}
 		
 		//ヘッダ色取得
-		AColor	headercolor;
+		AColor	keywordColor;
 		AText	filename;
 		switch(mScopeTypeArray.Get(i))
 		{
 		  case kScopeType_Local:
 			{
 				filename.SetLocalizedText("Scope_Local");
-				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryLocalColor(categoryIndex,headercolor);
+				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryLocalColor(categoryIndex,keywordColor);
 				break;
 			}
 		  case kScopeType_Global:
 			{
 				mFilePathArray.GetTextConst(i).GetFilename(filename);
-				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryImportColor(categoryIndex,headercolor);
+				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryImportColor(categoryIndex,keywordColor);
 				break;
 			}
 		  case kScopeType_Import:
 			{
 				mFilePathArray.GetTextConst(i).GetFilename(filename);
-				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryImportColor(categoryIndex,headercolor);
+				GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryImportColor(categoryIndex,keywordColor);
 				break;
 			}
 		  default://#147
@@ -314,12 +350,12 @@ void	AView_IdInfo::EVTDO_DoDraw()
 				if( colorSlotIndex != kIndex_Invalid )
 				{
 					ATextStyle	style = kTextStyle_Normal;
-					GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetColorSlotData(colorSlotIndex,headercolor,style);
+					GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetColorSlotData(colorSlotIndex,keywordColor,style,GetApp().NVI_IsDarkMode());//#1316
 				}
 				//カラースロット指定がなければカテゴリー色を取得
 				else
 				{
-					GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryColor(categoryIndex,headercolor);
+					GetApp().SPI_GetModePrefDB(mCurrentModeIndex).GetCategoryColor(categoryIndex,keywordColor);
 				}
 				break;
 			}
@@ -330,10 +366,12 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		ALocalRect	headerLocalRect = {0};
 		NVM_GetLocalRectFromImageRect(headerImageRect,headerLocalRect);
 		//ヘッダrect描画
-		AColor	headercolor_start = AColorWrapper::ChangeHSV(headercolor,0,0.8,1.0);//#643
-		AColor	headercolor_end = AColorWrapper::ChangeHSV(headercolor,0,1.2,1.0);//#643
-		NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.15*mAlpha,0.15*mAlpha,
-							  kRoundedRectRad,true,true,true,true);
+		if( IsBoxTypeDisplay() == true )//#1370
+		{
+			AColor	headercolor_start = AColorWrapper::ChangeHSV(keywordColor,0,0.8,1.0);//#643
+			AColor	headercolor_end = AColorWrapper::ChangeHSV(keywordColor,0,1.2,1.0);//#643
+			NVMC_PaintRoundedRect(headerLocalRect,headercolor_start,headercolor_end,kGradientType_Vertical,0.10*mAlpha,0.10*mAlpha,kRoundedRectRad,false,false,false,false);//true,true,true,true);
+		}
 		
 		//=========================カテゴリ名・項目番号テキスト描画=========================
 		
@@ -449,11 +487,13 @@ void	AView_IdInfo::EVTDO_DoDraw()
 		//=========================InfoText部分（本体部分）描画=========================
 		
 		//カテゴリ色を暗くして彩度を上げた色を取得（ポップアップウインドウではない場合のみ）
+		/*#1316
 		AColor	keywordColor = headercolor;
 		if( GetApp().SPI_GetSubWindowLocationType(NVM_GetWindow().GetObjectID()) != kSubWindowLocationType_Popup )
 		{
 			keywordColor = AColorWrapper::ChangeHSV(headercolor,0,3.0,0.7);
 		}
+		*/
 		
 		//InfoTextフォント設定
 		NVMC_SetDefaultTextProperty(fontname,fontsize-0.5,/*kColor_Black*/letterColor,kTextStyle_Normal,true,mAlpha);
@@ -622,10 +662,38 @@ void	AView_IdInfo::EVTDO_DoDraw()
 */
 void	AView_IdInfo::GetItemBoxImageRect( const AIndex inIndex, AImageRect& outImageRect ) const
 {
-	outImageRect.left		= kItemBoxLeftMargin;
-	outImageRect.top		= mDrawData_Y.Get(inIndex) + kItemBoxTopMargin;
-	outImageRect.right		= NVI_GetViewWidth() - kItemBoxRightMargin;
-	outImageRect.bottom		= outImageRect.top + mDrawData_Height.Get(inIndex);
+	if( IsBoxTypeDisplay() == true )//#1370
+	{
+		//ポップアップの場合はボックスタイプの表示
+		outImageRect.left		= kItemBoxLeftMargin;
+		outImageRect.top		= mDrawData_Y.Get(inIndex) + kItemBoxTopMargin;
+		outImageRect.right		= NVI_GetViewWidth() - kItemBoxRightMargin;
+		outImageRect.bottom		= outImageRect.top + mDrawData_Height.Get(inIndex);
+	}
+	else
+	{
+		//ポップアップ以外の場合はリストタイプの表示 #1370
+		outImageRect.left		= 0;
+		outImageRect.top		= mDrawData_Y.Get(inIndex);
+		outImageRect.right		= NVI_GetViewWidth();
+		outImageRect.bottom		= outImageRect.top + mDrawData_Height.Get(inIndex);
+	}
+}
+
+//#1370
+/**
+ボックスタイプの表示にするかどうかを取得
+*/
+ABool	AView_IdInfo::IsBoxTypeDisplay() const
+{
+	if( GetApp().SPI_GetSubWindowLocationType(NVM_GetWindowConst().GetObjectID()) == kSubWindowLocationType_Popup )
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //DrawData計算
@@ -653,6 +721,12 @@ void	AView_IdInfo::CalcDrawData()
 	AFontWrapper::GetDialogDefaultFontName(labelfontname);
 	//
 	ANumber	viewwidth = NVI_GetViewWidth();
+	ANumber	boxWidth = viewwidth;//#1370
+	//#1370
+	if( IsBoxTypeDisplay() == true )
+	{
+		boxWidth -= kItemBoxLeftMargin + kItemBoxRightMargin;
+	}
 	
 	//=========================項目毎ループ=========================
 	ANumber	y = 0;
@@ -676,7 +750,7 @@ void	AView_IdInfo::CalcDrawData()
 		mInfoTextArray.Get(i,infoText);
 		//InfoText行折り返し計算
 		CWindowImp::CalcLineBreaks(infoText,fontname,fontsize-0.5,true,
-								   viewwidth-kItemBoxLeftMargin-kItemBoxRightMargin -kInfoTextLeftMargin2 - kInfoTextRightMargin,
+								   boxWidth -kInfoTextLeftMargin2 - kInfoTextRightMargin,
 								   false,//#1113
 								   mDrawData_InfoTextLineStart.GetObject(i),mDrawData_InfoTextLineLength.GetObject(i));
 		//フォント高さ取得
@@ -699,7 +773,7 @@ void	AView_IdInfo::CalcDrawData()
 			NVMC_GetMetricsForDefaultTextProperty(commenttextfontheight,commenttextfontascent);
 			//行折り返し計算
 			CWindowImp::CalcLineBreaks(commentText,fontname,fontsize-0.5,true,
-									   viewwidth-kItemBoxLeftMargin-kItemBoxRightMargin -kCommentTextLeftMargin - kCommentTextRightMargin,
+									   boxWidth -kCommentTextLeftMargin - kCommentTextRightMargin,
 									   false,//#1113
 									   mDrawData_CommentTextLineStart.GetObject(i),mDrawData_CommentTextLineLength.GetObject(i));
 			//comment text全体の高さ計算
@@ -715,7 +789,11 @@ void	AView_IdInfo::CalcDrawData()
 		mDrawData_Height.Add(mDrawData_HeaderHeight.Get(i) + mDrawData_InfoTextHeight.Get(i) + mDrawData_CommentTextHeight.Get(i) + 2);
 		//次の項目のy位置を計算
 		y += mDrawData_Height.Get(i);
-		y += kItemBoxTopMargin + kItemBoxBottomMargin;//#643
+		//#1370
+		if( IsBoxTypeDisplay() == true )
+		{
+			y += kItemBoxTopMargin + kItemBoxBottomMargin;//#643
+		}
 	}
 	//ImageSize設定
 	NVM_SetImageSize(viewwidth,y);
@@ -1019,6 +1097,7 @@ void	AView_IdInfo::ClearHoverCursor()
 /**
 マウスボタン押下時のコールバック(AView用)
 */
+/*#1380
 ABool	AView_IdInfo::EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount )
 {
 	AGlobalPoint	globalPoint;
@@ -1028,6 +1107,7 @@ ABool	AView_IdInfo::EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const 
 	NVMC_ShowContextMenu(mContextMenuItemID,globalPoint);//#688
 	return true;
 }
+*/
 
 //#507
 /**
@@ -1035,6 +1115,7 @@ ABool	AView_IdInfo::EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const 
 */
 ABool	AView_IdInfo::EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outText1, AText& outText2, ALocalRect& outRect, AHelpTagSide& outTagSide ) 
 {
+	/*#1370
 	//#688 NVM_GetWindowConst().NVI_HideHelpTag();//#643
 	outTagSide = kHelpTagSide_Right;//#643
 	
@@ -1105,6 +1186,7 @@ ABool	AView_IdInfo::EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outTe
 			return true;
 		}
 	}
+	*/
 	return false;
 }
 
@@ -1611,7 +1693,8 @@ void	AView_IdInfo::ResetHideCounter( const ANumber inCounter )
 		mHideCounter = kNumber_MaxNumber;
 	}
 	//環境設定で自動hide enable、かつ、自動hide disable状態でなければタイマー設定
-	else if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kHideIdInfoPopupByIdle) == true && mDisableAutoHide == false )
+	else if( /*#1375 設定削除（常に自動hide） GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kHideIdInfoPopupByIdle) == true &&*/
+	mDisableAutoHide == false )
 	{
 		mHideCounter = inCounter;
 	}
