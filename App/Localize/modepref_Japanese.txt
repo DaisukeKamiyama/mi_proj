@@ -13,7 +13,7 @@ Set Font&Colors for this mode.
 Font & Colors
 フォントと色
 Suffix for This Mode
-このモードの拡張子
+このモードの対象
 File Suffixes :
 ファイル拡張子：
 Information
@@ -21,7 +21,7 @@ Information
 Mode Explanation :
 モードの説明：
 Use same settings as Normal mode
-標準モードと同じ設定を使用する
+標準モードと同じ設定を使用する（チェックボックス OFF で、このモード個別の設定が可能）
 Color is set by Color Scheme
 （色はカラースキームにより設定されています）
 Colors are set by Color Scheme
@@ -77,7 +77,7 @@ Display Each Line Number
 Line Number Type :
 行番号表示タイプ：
 Text Data Properties
-テキストデータのプロパティ
+ドキュメントプロパティのデフォルト
 Input Settings
 入力設定
 Spell Check
@@ -187,7 +187,9 @@ Swedish
 Keyword
 キーワード
 Register keywords to colorize keyword and input keyword completion.
-登録したキーワードは、色付け、補完入力、キーワード情報表示などに使用されます。
+色付け、補完入力などに使用するキーワードを設定します。
+Keyword is set for a category of keyword.
+キーワードの種類（カテゴリー）毎に設定します。
 Import...
 インポート...
 Export...
@@ -218,6 +220,8 @@ Define keywords using Regular Expression
 正規表現を使ってキーワードを定義する
 * Word which matches Regular Expression written at 1st line in Keywords List will be colored.
 * キーワードリストの 1 行目に入力した正規表現に一致する単語を色付けします
+This keyword category is read-only because embedded in application.
+このキーワードカテゴリーはアプリ内に組み込まれており、読み込み専用です。
 Text Color : 
 文字色：
 Text Style : 
@@ -247,7 +251,7 @@ Header Color :
 Colorize Header
 見出し行に色をつける
 Header definition : 
-見出しの定義：
+見出しの定義方法：
 Define Header line with Regular Expression
 正規表現を使って見出し行を定義する
 Define Header with simpler setting
@@ -499,21 +503,21 @@ Valid Syntax Part :
 Keywords are valid only in the selected syntax part.
 選択した文法パート内でのみキーワードが有効になります。
 0. Reserved Word : 
-0. 予約語：
+色タイプ 0 [予約語など]：
 1. Method / Function : 
-1. メソッド／関数：
+色タイプ 1 [メソッド／関数など]：
 2. Property / Member : 
-2. プロパティ／メンバ：
+色タイプ 2 [プロパティ／メンバなど]：
 3. Variable : 
-3. 変数：
+色タイプ 3 [変数など]：
 4. Class / Type : 
-4. クラス／タイプ：
+色タイプ 4 [クラス／タイプなど]：
 5. Macro : 
-5. マクロ：
+色タイプ 5 [マクロなど]：
 6. Other 1 : 
-6. その他 1：
+色タイプ 6 [その他 1]：
 7. Other 2 : 
-7. その他 2：
+色タイプ 7 [その他 2]：
 Find Highlight :
 検索一致文字列ハイライト：
 Previous Find Highlight :
@@ -525,21 +529,21 @@ Text Marker :
 First Select Highlight :
 検索結果等から選択したとき：
 0. Reserved Word color
-0. 予約語の色
+色タイプ 0 [予約語など]
 1. Method / Function color
-1. メソッド／関数の色
+色タイプ 1 [メソッド／関数など]
 2. Property / Member color
-2. プロパティ／メンバの色
+色タイプ 2 [プロパティ／メンバなど]
 3. Variable color
-3. 変数の色
+色タイプ 3 [変数など]
 4. Class / Type color
-4. クラス／タイプの色
+色タイプ 4 [クラス／タイプなど]
 5. Macro color
-5. マクロの色
+色タイプ 5 [マクロなど]
 6. Other 1 color
-6. その他 1 の色
+色タイプ 6 [その他 1]
 7. Other 2 color
-7. その他 2 の色
+色タイプ 7 [その他 2]
 Current Revision : 
 現在のリビジョン：
 Open Page
@@ -569,7 +573,7 @@ Parent Keyword :
 Local File or Remote File at a web server can used for the CSV file. Input url "http://..." to use Remote File at a web server.
 ローカルファイル、または、Web サーバー上のファイルを、CSV ファイルとして設定可能です。Web サーバー上のファイルを使うには "http://〜"を入力してください。
 Open Tool File
-ツールファイルを開く
+ツールファイルを開いて編集
 Menu Display : 
 メニュー表示：
 Enable this tool
@@ -587,23 +591,31 @@ Set Font for this mode.
 Setup for each type file types (= Mode).
 ファイルの種類（＝モード）ごとに設定を行います。
 Mode is decided by its suffix basically. If file does not match any suffixes, it belongs to "Normal" mode.
-モードは拡張子等によって決定されます。もし各モードのどの拡張子にも一致しないときは、「標準」モードになります。
+ドキュメントがどのモードに属するかはファイル名の拡張子によって決まります。もし各モードのどの拡張子にも一致しないときは、「標準」モードになります。
 Several settings can be set to same as "Normal" mode to reduce items to be set. 
 いくつかの設定は、「標準モードと同じ」とすることができます。（「標準」モードで共通の設定を行い、差分だけ各モードで設定することができます。）
-Mode Validity
+Mode Validity :
 モードの有効／無効：
 If disabled, this mode is not assigned to any file.
 無効の場合、このモードはどのファイルにも適用されません。（設定は可能）
 About Mode
-モードについて
+モードとは
 Font
 フォント
 Set Colors for this mode. 
-色を設定します。カラースキームから一括設定することも可能です。
-Export Color Scheme :
-現在の色をエクスポート：
+キーワードやコメントなどの色を設定します。
+If you set Color Scheme for light/dark mode in Preferences dialog, it is prior to this color settings.
+アプリケーションの環境設定でライト／ダークモード用色セットを設定した場合は、そちらが優先されます。
+Export :
+エクスポート：
+Export to Color Scheme file...
+色セットをファイルへエクスポートする
+Copy from Color Scheme :
+色セットを適用：
 Apply to colors
-カラースキームを適用
+↑選択した色セットを適用
+You can set all colors from Color Scheme in the menu.
+ボタンを押すと、メニューで選択した色セットの色を適用します。
 Diff Display Opacity : 
 差分表示色の濃さ：
 Set text data properties such as default text encoding.
@@ -631,9 +643,11 @@ Setup line folding settings such as default folding.
 Setup Key Bind.
 キーバインドを設定します。
 Setup Tool menu.
-ツールメニューを設定します。
+よく使う文字列や操作を登録することができます。メニューの [ツール] から起動できます。
 You can setup tool files and their hierarchy using Finder.
 Finder を使ってツールファイルや階層構造を設定することができます。
+This tool is read-only because embedded in application. You can edit after copy this.
+このツールはアプリ内に組み込まれており、読み込み専用です。コピー後編集することができます。
 Update Mode data from Application when Application is updated.
 アプリケーション更新時に、キーワードとツールをアプリケーションから更新する。
 Update Mode data from Web when the button is clicked.
@@ -641,7 +655,7 @@ Update Mode data from Web when the button is clicked.
 Update Mode from Web
 Web からモードデータを更新
 Update Source :
-更新元：
+組み込みキーワード、ツールの参照先：
 Keyword data and Tool will be updated if available.
 更新元データから、キーワードとツールを更新することができます。
 Start text is Reg exp
@@ -660,8 +674,8 @@ Literal :
 リテラル：
 Escape Characters : 
 エスケープ文字：
-Actual color is set in "Colors" tab. If color type is set in CSV file, it is prior to this.
-実際の色は「色」タブで設定します。なお、CSV ファイルで色タイプ設定済みの場合はそちらが優先されます。
+Actual color is set in "Colors" tab.
+実際の色は「色」タブで設定します。
 Column Number : 
 列番号：
 Optional Columns : 
@@ -684,8 +698,8 @@ Enable Corresponding Text defined in Syntax Definition
 文法定義で定義された対応文字列を有効にする
 Set Enable
 有効にする
-You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder. (Highlight colors and opacities can be set only by csv files.)
-ColorScheme フォルダに csv ファイル、または、epf ファイルを置くことでカラースキームメニュー項目を追加できます。
+You can add Color Scheme menu item by place csv file or epf file into ColorScheme folder.
+ColorScheme フォルダに色セットファイル(csv/epf)を置くことでメニュー項目を追加できます。
 Selection Opacity : 
 選択色の濃さ：
 Open ColorScheme folder
@@ -753,7 +767,7 @@ Enable or disable plugin.
 Plugin
 プラグイン
 Display Name : 
-表示名：
+各言語の表示名：
 Vertical Draw :
 縦書き：
 Draw Vertical (Available with Mac OS X 10.7 or later)
@@ -768,3 +782,7 @@ Character Wrap with Characters Count...
 文字数指定折り返し（文字ごと）...
 Control Code Color :
 制御コード文字色：
+Other Options
+その他のオプション
+Ruler and Line Number
+ルーラーと行番号
