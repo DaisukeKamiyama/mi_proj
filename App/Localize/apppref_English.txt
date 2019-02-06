@@ -644,3 +644,39 @@ Show Right Sidebar
 Show Right Sidebar
 Show Left Sidebar
 Show Left Sidebar
+Color set for light mode :
+Color set for light mode :
+Color set for dark mode :
+Color set for dark mode :
+Font can be set for each mode. Select [mi -> Mode Preferences... -> (mode name)] to set font for each mode. 
+Font can be set for each mode. Select [mi -> Mode Preferences... -> (mode name)] to set font for each mode. 
+Normal Font :
+Normal Font :
+Popup Display
+Popup Display
+Select whether show popup window or not.
+Select whether show popup window or not.
+Popup Completion Candidate window
+Popup Completion Candidate window
+Popup Keyword Information window
+Popup Keyword Information window
+You can set popup enable or disable at General tab.
+You can set popup enable or disable at General tab.
+Colors set in Mode Preferences are used always regardless of Color Scheme for light/dark mode.
+Colors set in Mode Preferences are used always regardless of Color Scheme for light/dark mode.
+Appearance Type :
+Appearance Type :
+System apperance
+System apperance
+Always light mode
+Always light mode
+Always dark mode
+Always dark mode
+Brace Selection
+Brace Selection
+Double-click braces :
+Double-click braces :
+Select inside braces
+Select inside braces
+Select including braces
+Select including braces
