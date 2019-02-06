@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment version="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CocoaContextualMenuController">
+            <connections>
+                <outlet property="contextualMenu" destination="3" id="7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <menu autoenablesItems="NO" id="3">
+            <items>
+                <menuItem title="Remove This Item from Recent History" tag="8015" id="31">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Remove All Not Found Items from Recent History" tag="8016" id="psn-TF-zQ9">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="22"/>
+                <menuItem title="Create New Subwindow" id="7nF-al-dO4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Create New Subwindow" id="Gjy-sA-hbP">
+                        <items>
+                            <menuItem title="Subwindow will be added at the bottom. You can move it by dragging title bar." enabled="NO" id="NBt-fJ-0IA">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Subwindow will be added at the bottom. You can move it by dragging title bar.">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" metaFont="system" size="10"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Recently Open File List" image="iconSwBox_RecentlyOpenedT.Template" tag="5001" id="1A4-Ma-Tab">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Same Folder File List" image="iconSwBox_SameFolderT.Template" tag="5002" id="RON-hh-yfY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Same Project File List" image="iconSwBox_ProjectFolderT.Template" tag="5003" id="qUS-wU-gOk">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Remote File List" image="iconSwBox_RemoteT.Template" tag="5004" id="nTi-2i-VB0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Header List" image="iconSwListT.Template" tag="5005" id="0KY-K8-2ax">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Text Count Window" image="iconSwTextCountT.Template" tag="5006" id="dgk-QH-qMY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Text Marker Window" image="iconSwMarkerPenT.Template" tag="5007" id="kro-vn-O8m">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Keyword Info List" image="iconSwKeyWordT.Template" tag="5010" id="632-n6-UTs">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Preview" image="iconSwPreviewT.Template" tag="5012" id="ZWI-tf-sPK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Add Key Record Window" image="iconSwKeyRecordT.Template" tag="5014" id="uW4-po-pFP">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Collapse This Subwindow" tag="7501" id="jgu-2e-is0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Close This Subwindow" tag="7502" id="PNd-W7-0dc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Setup Sub Windows..." tag="1234" id="33">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+        </menu>
+    </objects>
+    <resources>
+        <image name="iconSwBox_ProjectFolderT.Template" width="16" height="16"/>
+        <image name="iconSwBox_RecentlyOpenedT.Template" width="16" height="16"/>
+        <image name="iconSwBox_RemoteT.Template" width="16" height="16"/>
+        <image name="iconSwBox_SameFolderT.Template" width="16" height="16"/>
+        <image name="iconSwKeyRecordT.Template" width="16" height="16"/>
+        <image name="iconSwKeyWordT.Template" width="16" height="16"/>
+        <image name="iconSwListT.Template" width="16" height="16"/>
+        <image name="iconSwMarkerPenT.Template" width="16" height="16"/>
+        <image name="iconSwPreviewT.Template" width="16" height="16"/>
+        <image name="iconSwTextCountT.Template" width="16" height="16"/>
+    </resources>
+</document>
