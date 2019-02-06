@@ -55,7 +55,7 @@ class AView_IdInfo : public AView
 	ABool					EVTDO_DoMouseMoved( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys );
 	void					EVTDO_DoMouseLeft( const ALocalPoint& inLocalPoint );
 	void					ClearHoverCursor();
-	ABool					EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount );//#442
+	//#1380 ABool					EVTDO_DoContextMenu( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount );//#442
 	ABool					EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outText1, AText& outText2, ALocalRect& outRect, AHelpTagSide& outTagSide ) ;//#507
 	ACursorType				EVTDO_GetCursorType( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys );//#725
 	
@@ -88,8 +88,10 @@ class AView_IdInfo : public AView
 	void					SPI_UpdateDisplayComment();
 	void					SPI_UpdateDrawProperty();
 	//#853 const AText&			SPI_GetCurrentIdText() const { return mIdText; }
+	/*#1380
 	void					SPI_SetContextMenuItemID( const AMenuItemID inMenuItemID ) 
 	{ mContextMenuItemID = inMenuItemID; }
+	*/
 	void					SPI_SetSelect( const AIndex inIndex );
 	AIndex					SPI_GetSelectedIndex() const { return mCurrentSelectionIndex; }
 	void					SPI_SelectNext();
@@ -105,6 +107,7 @@ class AView_IdInfo : public AView
 	void					AdjustScroll();
 	void					CalcDrawData();
 	void					GetItemBoxImageRect( const AIndex inIndex, AImageRect& outImageRect ) const;//#643
+	ABool					IsBoxTypeDisplay() const;//#1316
 	ATextArray							mKeywordTextArray;//#853
 	ATextArray							mTypeTextArray;
 	ATextArray							mInfoTextArray;
@@ -169,9 +172,11 @@ class AView_IdInfo : public AView
 	AObjectArray< AArray<AIndex> >		mDrawData_CommentTextLineStart;
 	AObjectArray< AArray<AItemCount> >	mDrawData_CommentTextLineLength;
 	
+	/*#1380
 	//コンテキストメニュー
   private:
 	AMenuItemID							mContextMenuItemID;//#442
+	*/
 	
 	//情報取得
   private:
