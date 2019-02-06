@@ -3505,7 +3505,7 @@ void	AView_Text::EVTDO_DoDraw()
 	if( drawMasume == true )
 	{
 		//#1316
-		AColor	masumeColor = kColor_Gray80Percent;
+		AColor	masumeColor = kColor_Gray85Percent;//#1316 80%→85%
 		if( AApplication::GetApplication().NVI_IsDarkMode() == true )
 		{
 			masumeColor = kColor_Gray30Percent;
@@ -3535,8 +3535,8 @@ void	AView_Text::EVTDO_DoDraw()
 			NVM_GetLocalRectFromImageRect(lineImageRect,lineLocalRect);
 			if( NVMC_IsRectInDrawUpdateRegion(lineLocalRect) == false )   continue;
 			
-			AIndex	start 	= imageFrameRect.left  / mZenkakuSpaceWidth;
-			AIndex	end 	= imageFrameRect.right / mZenkakuSpaceWidth;
+			AIndex	start 	= imageFrameRect.left  / mZenkakuAWidth;//#1385 mZenkakuSpaceWidth;
+			AIndex	end 	= imageFrameRect.right / mZenkakuAWidth;//#1385 mZenkakuSpaceWidth;
 			if( wrapMode == kWrapMode_WordWrapByLetterCount || wrapMode == kWrapMode_LetterWrapByLetterCount )//#1113
 			{
 				end = wrapLetterCount/2;
@@ -3545,9 +3545,9 @@ void	AView_Text::EVTDO_DoDraw()
 			AImagePoint	imagespt, imageept;
 			for( AIndex i = start; i <= end; i++ )
 			{
-				imagespt.x = mZenkakuSpaceWidth * i;
+				imagespt.x = (ANumber)(mZenkakuAWidth * i);//#1385 mZenkakuSpaceWidth * i;
 				imagespt.y = lineImageRect.top;//win 080618
-				imageept.x = mZenkakuSpaceWidth * i;
+				imageept.x = (ANumber)(mZenkakuAWidth * i);//#1385 mZenkakuSpaceWidth * i;
 				imageept.y = imagespt.y + mLineHeight -1;//win 080618
 				NVM_GetLocalPointFromImagePoint(imagespt,spt);
 				NVM_GetLocalPointFromImagePoint(imageept,ept);
@@ -3556,7 +3556,7 @@ void	AView_Text::EVTDO_DoDraw()
 			//
 			imagespt.x = lineImageRect.left;
 			imagespt.y = lineImageRect.top;//win 080618
-			imageept.x = mZenkakuSpaceWidth * end;
+			imageept.x = (ANumber)(mZenkakuAWidth * end);//#1385 mZenkakuSpaceWidth * end;
 			imageept.y = lineImageRect.top;//win 080618
 			NVM_GetLocalPointFromImagePoint(imagespt,spt);
 			NVM_GetLocalPointFromImagePoint(imageept,ept);
@@ -3737,6 +3737,10 @@ void	AView_Text::EVTDO_DoDraw()
 		AAnalyzeDrawData	analyzeDrawData;//RC1
 		document.SPI_GetTextDrawDataWithStyle(lineIndex,textDrawData,selection,caretPoint,selectPoint,analyzeDrawData,GetObjectID());//RC1
 		
+		//背景色取得
+		AColor	backgroundColor = kColor_White;//#1316
+		modePrefDB.GetModeData_Color(AModePrefDB::kBackgroundColor,backgroundColor);//#1316
+		
 		//
 		ATextIndex	lineStart = document.SPI_GetLineStart(lineIndex);
 		ATextIndex	lineEnd = lineStart + document.SPI_GetLineLengthWithoutLineEnd(lineIndex);
@@ -3892,10 +3896,17 @@ void	AView_Text::EVTDO_DoDraw()
 		ABool	diffPartStartLine = false;
 		ABool	diffPartEndLine = false;
 		ANumber	diffPartFrameLineAlphaMultiply = 3;
-		AFloatNumber	diffLetterChangedLetterMultiply = 1.0;//下のnot changedからの増加分
-		AFloatNumber	diffLetterChangedLinesMultiply = 0.3;//下のnot changedからの増加分
-		AFloatNumber	diffLetterNotChangedLetterMultiply = 0.4;
-		if( windowIsDiffMode == true )
+		AFloatNumber	diffLetterChangedLetterMultiply = 0.5;//変更文字乗数 下のnot changedからの増加分 #1316 1.0→0.5
+		AFloatNumber	diffLetterChangedLinesMultiply = 0.0;//変更行乗数 下のnot changedからの増加分 #1316 0.3→0.0
+		AFloatNumber	diffLetterNotChangedLetterMultiply = 0.4;//変更なし文字乗数 #1316 
+		if( GetApp().NVI_IsDarkMode() == false )
+		{
+			//ライトモード時はダークモード時よりも濃いめ。
+			diffLetterChangedLetterMultiply += 0.2;
+			diffLetterChangedLinesMultiply += 0.3;
+		}
+		
+		//#1316 比較モードでない場合も上下線は表示する if( windowIsDiffMode == true )
 		{
 			//開始線表示判定
 			if( lineIndex-1 >= 0 )
@@ -3934,6 +3945,19 @@ void	AView_Text::EVTDO_DoDraw()
 				}
 			}
 			*/
+			//#1316
+			//比較モードでない場合、上下線は少し薄く表示する
+			if( windowIsDiffMode == false )
+			{
+				if( GetApp().NVI_IsDarkMode() == false )
+				{
+					diffPartFrameLineAlphaMultiply *= 0.5;
+				}
+				else
+				{
+					diffPartFrameLineAlphaMultiply *= 0.7;
+				}
+			}
 		}
 		//
 		if( difftype != kDiffType_None )
@@ -3955,9 +3979,9 @@ void	AView_Text::EVTDO_DoDraw()
 				{
 					AColor	color2 = AColorWrapper::ChangeHSV(diffcolor_added,0,1.6,1.0);
 					//NVMC_PaintRectWithHorizontalGradient(lineLocalRect,diffcolor_added,color2,0.08,0.08);
-					NVMC_PaintRect(lineLocalRect,diffcolor_added,diffAlpha);
+					NVMC_PaintRect(lineLocalRect,diffcolor_added,diffAlpha*0.5);//#1316 追加行の色は少し薄くする α1.0→0.5
 					//枠線描画
-					if( windowIsDiffMode == true )
+					//#1316 if( windowIsDiffMode == true )
 					{
 						if( diffPartStartLine == true )
 						{
@@ -3983,7 +4007,7 @@ void	AView_Text::EVTDO_DoDraw()
 						aboverect.bottom = aboverect.top + 3;
 						NVMC_PaintRect(aboverect,diffcolor_deleted,diffAlpha);
 						//枠線描画
-						if( windowIsDiffMode == true )
+						//#1316 if( windowIsDiffMode == true )
 						{
 							if( diffPartStartLine == true )
 							{
@@ -4034,7 +4058,7 @@ void	AView_Text::EVTDO_DoDraw()
 						//ウインドウが左右比較中の場合は、文字毎の差分部分を四角で囲む
 						if( windowIsDiffMode == true )
 						{
-							NVMC_FrameRect(localRect,diffcolor_changed,diffAlpha*diffPartFrameLineAlphaMultiply);
+							NVMC_FrameRect(localRect,diffcolor_changed,diffAlpha*diffPartFrameLineAlphaMultiply*10);//#1316 文字毎比較の範囲は目立たせたいので、他の枠線の10倍のalphaにする。（他の枠線を目立たせると見づらくなるので、文字毎枠線だけにする。）
 						}
 						//
 						if( localRect.left == localRect.right )
@@ -4056,7 +4080,7 @@ void	AView_Text::EVTDO_DoDraw()
 						NVMC_PaintRect(lineLocalRect,diffcolor_changed,diffAlpha*diffLetterChangedLinesMultiply);
 					}
 					//枠線描画
-					if( windowIsDiffMode == true )
+					//#1316 if( windowIsDiffMode == true )
 					{
 						if( diffPartStartLine == true )
 						{
@@ -4195,13 +4219,83 @@ void	AView_Text::EVTDO_DoDraw()
 			}
 		}
 		
-		//==================検索ハイライト（前回一致）==================
+        //段落開始位置・終了位置取得
+        AIndex    paragraphStartLineIndex = GetTextDocumentConst().SPI_GetCurrentParagraphStartLineIndex(lineIndex);
+        //AIndex    paragraphEndLineIndex = GetTextDocumentConst().SPI_GetNextParagraphStartLineIndex(lineIndex);
+        ATextIndex    paraStart = GetTextDocumentConst().SPI_GetLineStart(paragraphStartLineIndex);
+        ATextIndex    paraEnd = GetTextDocumentConst().SPI_GetNextLineEndCharIndex(paraStart);//折り返し計算対象行の場合、1行にたくさんの文字があるので、改行コードまでに限定する
+        
+		//#1316 処理位置を検索ハイライトの後から前へ移動。
+		//#750
+		//==================現在単語ハイライト==================
+		{
+			AColor	color = kColor_Yellow;
+			GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kCurrentWordHighlightColor,color);//#844
+			//GetApp().GetAppPref().GetData_Color(AAppPrefDB::kFindHighlightColor,color);
+			//B0358 段落全体で検索するように修正
+			//段落内で検索するが、前行の最初から次行の最後までを最大範囲とする
+			AIndex	start = paraStart;
+			AIndex	end = paraEnd;
+			if( start < prevLineStart )
+			{
+				//前行の最初から検索する
+				start = prevLineStart;
+			}
+			if( end > nextLineEnd )
+			{
+				//次行の最後までを検索する
+				end = nextLineEnd;
+			}
+			for( ATextIndex pos = start; pos < end; )
+			{
+				//#695 段落が長すぎる場合に処理時間かかりすぎるのを防止
+				//if( pos > paraStart + kLimit_TextHighlightFindRange )   break;
+				//
+				ATextIndex	spos, epos;
+				if( GetTextDocument().SPI_FindForCurrentWordHighlight(pos,end,spos,epos) == false )   break;
+				if( epos > spos )
+				{
+					pos = epos;
+					if( spos < lineStart )   spos = lineStart;
+					if( epos > lineEnd )   epos = lineEnd;
+					if( epos < lineStart )   epos = lineStart;//不要だと思うが念のため
+					if( spos > lineEnd )   spos = lineEnd;//不要だと思うが念のため
+					if( spos < epos )
+					{
+						AImageRect	imageRect = lineImageRect;
+						imageRect.left		= NVMC_GetImageXByTextPosition(textDrawData,spos-lineStart);
+						imageRect.right		= NVMC_GetImageXByTextPosition(textDrawData,epos-lineStart);
+						imageRect.top;
+						imageRect.bottom	= lineImageRect.top + GetLineHeightWithoutMargin(lineIndex);
+						ALocalRect	localRect;
+						NVM_GetLocalRectFromImageRect(imageRect,localRect);
+						//ダークモードかどうかの判定 #1316
+						if( GetApp().NVI_IsDarkMode() == false )
+						{
+							NVMC_PaintRect(localRect,color,selectionOpacity/2.0);
+						}
+						else
+						{
+							//ダークモードの場合は、塗りつぶしを薄くする #1316
+							NVMC_PaintRect(localRect,color,selectionOpacity*0.5);
+							NVMC_FrameRect(localRect,color,0.05);
+						}
+						//フレーム外になったらループ終了（高速化のため）
+						if( imageRect.left > imageFrameRect.right )
+						{
+							break;
+						}
+					}
+				}
+				else
+				{
+					//spos==eposの場合（正規表現検索ではありうる）
+					pos += GetTextDocument().SPI_GetNextCharTextIndex(pos);
+				}
+			}
+		}
 		
-		//段落開始位置・終了位置取得
-		AIndex	paragraphStartLineIndex = GetTextDocumentConst().SPI_GetCurrentParagraphStartLineIndex(lineIndex);
-		//AIndex	paragraphEndLineIndex = GetTextDocumentConst().SPI_GetNextParagraphStartLineIndex(lineIndex);
-		ATextIndex	paraStart = GetTextDocumentConst().SPI_GetLineStart(paragraphStartLineIndex);
-		ATextIndex	paraEnd = GetTextDocumentConst().SPI_GetNextLineEndCharIndex(paraStart);//折り返し計算対象行の場合、1行にたくさんの文字があるので、改行コードまでに限定する
+		//==================検索ハイライト（前回一致）==================
 		
 		//検索ハイライト2 R0244
 		if( GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kDisplayFindHighlight2) == true )
@@ -4236,7 +4330,18 @@ void	AView_Text::EVTDO_DoDraw()
 						NVM_GetLocalRectFromImageRect(imageRect,localRect);
 						/*R0244 AColor	color;
 						GetApp().GetAppPref().GetData_Color(AAppPrefDB::kFindHighlightColor,color);*/
-						NVMC_PaintRect(localRect,color,selectionOpacity);
+						//ダークモードかどうかの判定 #1316
+						if( GetApp().NVI_IsDarkMode() == false )
+						{
+							NVMC_PaintRect(localRect,color,selectionOpacity);
+						}
+						else
+						{
+							//ダークモードの場合は、塗りつぶしを薄くする #1316
+							NVMC_PaintRect(localRect,backgroundColor,1.0);//他の塗りつぶしをキャンセルするためまず背景色で塗る
+							NVMC_PaintRect(localRect,color,selectionOpacity*0.5);
+							NVMC_FrameRect(localRect,color,0.05);
+						}
 						//フレーム外になったらループ終了（高速化のため）
 						if( imageRect.left > imageFrameRect.right )
 						{
@@ -4284,7 +4389,18 @@ void	AView_Text::EVTDO_DoDraw()
 						NVM_GetLocalRectFromImageRect(imageRect,localRect);
 						/*R0244 AColor	color;
 						GetApp().GetAppPref().GetData_Color(AAppPrefDB::kFindHighlightColor,color);*/
-						NVMC_PaintRect(localRect,color,selectionOpacity);
+						//ダークモードかどうかの判定 #1316
+						if( GetApp().NVI_IsDarkMode() == false )
+						{
+							NVMC_PaintRect(localRect,color,selectionOpacity);
+						}
+						else
+						{
+							//ダークモードの場合は、塗りつぶしを薄くする #1316
+							NVMC_PaintRect(localRect,backgroundColor,1.0);//他の塗りつぶしをキャンセルするためまず背景色で塗る
+							NVMC_PaintRect(localRect,color,selectionOpacity*0.5);
+							NVMC_FrameRect(localRect,color,0.05);
+						}
 						//フレーム外になったらループ終了（高速化のため）
 						if( imageRect.left > imageFrameRect.right )
 						{
@@ -4316,64 +4432,6 @@ void	AView_Text::EVTDO_DoDraw()
 				AColor	color = kColor_Yellow;
 				GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kCurrentWordHighlightColor,color);//#844
 				NVMC_PaintRect(localRect,color,selectionOpacity/2.0);
-			}
-		}
-		//#750
-		//==================現在単語ハイライト==================
-		{
-			AColor	color = kColor_Yellow;
-			GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kCurrentWordHighlightColor,color);//#844
-			//GetApp().GetAppPref().GetData_Color(AAppPrefDB::kFindHighlightColor,color);
-			//B0358 段落全体で検索するように修正
-			//段落内で検索するが、前行の最初から次行の最後までを最大範囲とする
-			AIndex	start = paraStart;
-			AIndex	end = paraEnd;
-			if( start < prevLineStart )
-			{
-				//前行の最初から検索する
-				start = prevLineStart;
-			}
-			if( end > nextLineEnd )
-			{
-				//次行の最後までを検索する
-				end = nextLineEnd;
-			}
-			for( ATextIndex pos = start; pos < end; )
-			{
-				//#695 段落が長すぎる場合に処理時間かかりすぎるのを防止
-				//if( pos > paraStart + kLimit_TextHighlightFindRange )   break;
-				//
-				ATextIndex	spos, epos;
-				if( GetTextDocument().SPI_FindForCurrentWordHighlight(pos,end,spos,epos) == false )   break;
-				if( epos > spos )
-				{
-					pos = epos;
-					if( spos < lineStart )   spos = lineStart;
-					if( epos > lineEnd )   epos = lineEnd;
-					if( epos < lineStart )   epos = lineStart;//不要だと思うが念のため
-					if( spos > lineEnd )   spos = lineEnd;//不要だと思うが念のため
-					if( spos < epos )
-					{
-						AImageRect	imageRect = lineImageRect;
-						imageRect.left		= NVMC_GetImageXByTextPosition(textDrawData,spos-lineStart);
-						imageRect.right		= NVMC_GetImageXByTextPosition(textDrawData,epos-lineStart);
-						imageRect.top;
-						imageRect.bottom	= lineImageRect.top + GetLineHeightWithoutMargin(lineIndex);
-						ALocalRect	localRect;
-						NVM_GetLocalRectFromImageRect(imageRect,localRect);
-						NVMC_PaintRect(localRect,color,selectionOpacity/2.0);
-						//フレーム外になったらループ終了（高速化のため）
-						if( imageRect.left > imageFrameRect.right )
-						{
-							break;
-						}
-					}
-				}
-				else
-				{
-					//spos==eposの場合（正規表現検索ではありうる）
-					pos += GetTextDocument().SPI_GetNextCharTextIndex(pos);
-				}
 			}
 		}
 		//#750
@@ -4468,13 +4526,25 @@ void	AView_Text::EVTDO_DoDraw()
 		//==================テキスト描画==================
 		textDrawData.selectionColor = AColorWrapper::ChangeHSV(selectionColor,0,1,1);
 		textDrawData.selectionAlpha = selectionOpacity;
+		textDrawData.selectionBackgroundColor = backgroundColor;//#1316
 		//#262
+		//検索直後選択範囲表示
 		if( /*#844 GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kEnableSelectionColorForFind) == true &&*/
 					mSelectionByFind == true )
 		{
 			//#844 GetApp().NVI_GetAppPrefDB().GetData_Color(AAppPrefDB::kSelectionColorForFind,textDrawData.selectionColor);
 			modePrefDB.GetModeData_Color(AModePrefDB::kFirstSelectionColor,textDrawData.selectionColor);
+			//ダークモードの場合はα=1.0にして文字色反転させる #1316
+			if( GetApp().NVI_IsDarkMode() == true )
+			{
+				if( textDrawData.drawSelection == true )
+				{
+					textDrawData.selectionAlpha = 1.0;
+					textDrawData.AddAttributeWithUnicodeOffset(textDrawData.selectionStart,textDrawData.selectionEnd,backgroundColor);
+				}
+			}
 		}
+		//テキスト描画実行
 		/*B0000 高速化 ANumber	textWidth = */NVMC_DrawText(lineLocalRect,textDrawData);
 		
 		//==================特殊文字表示==================
@@ -5796,7 +5866,7 @@ void	AView_Text::TextInput( const AUndoTag inUndoActionTag, const AText& inText 
 				mBraceCheckSavedCaretTextPoint = GetCaretTextPoint();
 				ATextPoint	ept = pt;
 				ept.x++;
-				SetSelect(pt,ept);
+				SetSelect(pt,ept,(GetApp().NVI_IsDarkMode()==true));//#1316 ダークモードの場合は反転ハイライトを使う
 				//#396 AdjustScroll_Center(pt);
 				AdjustScroll(pt);//#396
 				mBraceCheckStartTickCount = kBraceCheckTimerCount;//win 080713 20;
@@ -8843,6 +8913,18 @@ ABool	AView_Text::DoubleClickBrace( ATextPoint& ioStart, ATextPoint& ioEnd )//#6
 	else return false;
 	ept = spt;
 	GetTextDocumentConst().SPI_GetBraceSelection(spt,ept);
+	//#1357
+	//括弧も含む設定ONなら、括弧も含める
+	if( GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kSelectBraceItselfByDoubleClick) == true )
+	{
+		ATextIndex	spos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(spt);
+		ATextIndex	epos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(ept);
+		spos = GetTextDocumentConst().SPI_GetPrevCharTextIndex(spos);
+		epos = GetTextDocumentConst().SPI_GetNextCharTextIndex(epos);
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(spos,spt,false);
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(epos,ept,false);
+	}
+	//
 	ioStart = spt;
 	ioEnd = ept;
 	return true;
@@ -11059,6 +11141,10 @@ void	AView_Text::SPI_UpdateTextDrawProperty()
 	//aの文字幅を記憶 #1186
 	AText	achar("a");
 	mACharWidth = static_cast<ANumber>(NVMC_GetDrawTextWidth(achar));
+	//「あ」の文字幅を記憶 #1385 マス目表示には全角スペースだとOsakaフォント等で不正確になるので「あ」を使う。
+	AText	zenkakuachar;
+	zenkakuachar.AddFromUCS4Char(0x3042);
+	mZenkakuAWidth = NVMC_GetDrawTextWidth(zenkakuachar);
 }
 
 //#699
@@ -17291,11 +17377,25 @@ void	AView_Text::UpdateNotificationPopupWindowBounds( const ABool inAlwaysUpdate
 	const ANumber	kNotificationWindowTopMargin = 3;
 	
 	ARect	windowRect = {0};
-	windowRect.right	= viewGlobalRect.right - kNotificationWindowRightMargin;
-	windowRect.left		= windowRect.right - 320;
-	windowRect.top		= viewGlobalRect.top + kNotificationWindowTopMargin;
-	windowRect.bottom	= windowRect.top +
-						SPI_GetPopupNotificationWindow().SPI_GetNotificationView().SPI_GetWindowHeight();
+	if( NVI_GetVerticalMode() == false )
+	{
+		windowRect.right	= viewGlobalRect.right - kNotificationWindowRightMargin;
+		windowRect.left		= windowRect.right - 320;
+		windowRect.top		= viewGlobalRect.top + kNotificationWindowTopMargin;
+		windowRect.bottom	= windowRect.top +
+							SPI_GetPopupNotificationWindow().SPI_GetNotificationView().SPI_GetWindowHeight();
+	}
+	else
+	{
+		//縦書きモード時は行番号エリアの右上に表示する #1387
+		GetLineNumberView().NVI_GetGlobalViewRect(viewGlobalRect);
+		
+		windowRect.right	= viewGlobalRect.right - kNotificationWindowRightMargin;
+		windowRect.left		= windowRect.right - 320;
+		windowRect.top		= viewGlobalRect.top + kNotificationWindowTopMargin;
+		windowRect.bottom	= windowRect.top +
+							SPI_GetPopupNotificationWindow().SPI_GetNotificationView().SPI_GetWindowHeight();
+	}
 	
 	SPI_GetPopupNotificationWindow().NVI_SetWindowBounds(windowRect);
 }
