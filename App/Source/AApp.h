@@ -800,6 +800,7 @@ private:
 		//
 		MACRO_RETURN_WINDOW_DYNAMIC_CAST(AWindow_AppPref,kWindowType_AppPref,mAppPrefWindowID);
 	}
+	ABool					SPI_IsAppPrefWindowCreated() const { return (mAppPrefWindowID!=kObjectID_Invalid); }//#1373
   private:
 	AWindowID							mAppPrefWindowID;
 	
