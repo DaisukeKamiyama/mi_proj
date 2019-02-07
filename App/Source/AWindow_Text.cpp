@@ -1308,6 +1308,7 @@ void	AWindow_Text::EVTDO_WindowActivated()
 	{
 		GetToolbarView(NVI_GetCurrentTabIndex()).NVI_Refresh();
 		GetTabSelector().NVI_Refresh();
+		GetRulerView(NVI_GetCurrentTabIndex()).NVI_Refresh();//#1316
 	}
 	
 	//==================サイドバーの表示を更新==================
@@ -1347,6 +1348,7 @@ void	AWindow_Text::EVTDO_WindowDeactivated()
 	{
 		GetToolbarView(NVI_GetCurrentTabIndex()).NVI_Refresh();
 		GetTabSelector().NVI_Refresh();
+		GetRulerView(NVI_GetCurrentTabIndex()).NVI_Refresh();//#1316
 	}
 	
 	//==================サイドバーの表示を更新==================
