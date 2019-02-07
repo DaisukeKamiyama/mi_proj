@@ -3420,14 +3420,16 @@ void	AView_Text::EVTDO_DoDraw()
 	*/
 	//選択色取得
 	AColor	selectionColor;
-	if( NVI_IsFocusActive() == true )
+	//#1316 if( NVI_IsFocusActive() == true )
 	{
 		AColorWrapper::GetHighlightColor(selectionColor);
 	}
+	/*#1316
 	else
 	{
 		selectionColor = kColor_Gray90Percent;
 	}
+	*/
 	//選択色不透明度取得
 	AFloatNumber	selectionOpacity = GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Number(AModePrefDB::kSelectionOpacity);
 	selectionOpacity /= 100.0;
@@ -4193,8 +4195,10 @@ void	AView_Text::EVTDO_DoDraw()
 		//==================ヒント表示==================
 		AHashNumberArray	hintTextStartUTF8IndexHashArray;
 		AItemCount	hintTextCount = textDrawData.hintTextStartUTF8Index.GetItemCount();
+		/*#1316 高速化。行ごとに取得する必要がないので。
 		AColor	selectionColor = kColor_Black;
 		AColorWrapper::GetHighlightColor(selectionColor);
+		*/
 		for( AIndex i = 0; i < hintTextCount; i++ )
 		{
 			//
