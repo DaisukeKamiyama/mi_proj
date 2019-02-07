@@ -87,6 +87,7 @@ AApp
 #include "AThread_JavaScriptExecuter.h"
 #include "AWindow_AddNewMode.h"
 #include "AView_Text.h"
+#include "AWindow_UserIDRegistration.h"//#1384
 
 /**
 編集プログレスタイプ
@@ -993,6 +994,23 @@ private:
   private:
 	AWindowID							mAboutWindowID;
 	
+	//#1384
+	//ユーザーID登録
+  public:
+	AWindow_UserIDRegistration&			SPI_GetUserIDRegistrationWindow()
+	{
+		if( mUserIDRegistrationWindowID == kObjectID_Invalid )
+		{
+			AWindowDefaultFactory<AWindow_UserIDRegistration>	windowFactory;
+			mUserIDRegistrationWindowID = NVI_CreateWindow(windowFactory);
+			SPI_GetUserIDRegistrationWindow().NVI_Create(kObjectID_Invalid);
+		}
+		//
+		MACRO_RETURN_WINDOW_DYNAMIC_CAST(AWindow_UserIDRegistration,kWindowType_UserIDRegistration,mUserIDRegistrationWindowID);
+	}
+  private:
+	AWindowID							mUserIDRegistrationWindowID;
+	
 	//<所有クラス(AWindow_MultiFileFind)>
   public:
 	AWindow_MultiFileFind&	SPI_GetMultiFileFindWindow() //#199
@@ -1396,8 +1414,8 @@ private:
 	ABool					SPI_HighlightIdInfoArgIndex( const AWindowID inTextWindowID ,const AText& inKeyword, const AIndex inArgIndex );
 	void					SPI_SearchInKeywordList();//#798
 	void					SPI_HideFloatingIdInfoWindow();//#1336
+	AWindowID				SPI_FindIdInfoWindow( const AWindowID inTextWindowID ) const;//#798
   private:
-	AWindowID				FindIdInfoWindow( const AWindowID inTextWindowID ) const;//#798
 	//AWindowID							mPopupIdInfoWindowID;
 	//
   public:
@@ -1531,7 +1549,7 @@ private:
 							const ABool inShowProgressWindowNow = false );
 	void					SPI_EndEditProgressModalSession();
 	ABool					SPI_CheckContinueingEditProgressModalSession( const AEditProgressType inType, const AItemCount inCount,
-							const ABool inUpdateProgress, const AItemCount inCurrentProgress, const AItemCount inTotalProgress );
+																		  const ABool inUpdateProgress, const AItemCount inCurrentProgress, const AItemCount inTotalProgress, const ABool inForceShowDialog = false );//#1374
 	ABool					SPI_InEditProgressModalSession() const;
   private:
 	void					ShowProgressWindowAndStartModalSessionInActual();
