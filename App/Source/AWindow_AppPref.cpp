@@ -562,8 +562,11 @@ ABool	AWindow_AppPref::EVTDO_ValueChanged( const AControlID inID )
 			//フォント設定を各ドキュメントに反映
 			GetApp().SPI_TextFontSetInModeIsUpdatedAll(kStandardModeIndex);
 			//モード設定の方のコントロールを更新
-			GetApp().SPI_GetModePrefWindow(kStandardModeIndex).
-					NVI_SetControlFont(AWindow_ModePref::kFontControl_DefaultFont,fontname,fontsize);
+			if( GetApp().SPI_IsModePrefWindowCreated(kStandardModeIndex) == true )
+			{
+				GetApp().SPI_GetModePrefWindow(kStandardModeIndex).
+						NVI_SetControlFont(AWindow_ModePref::kFontControl_DefaultFont,fontname,fontsize);
+			}
 			break;
 		}
 		/*#844
