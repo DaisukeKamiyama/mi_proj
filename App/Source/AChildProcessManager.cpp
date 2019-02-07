@@ -177,6 +177,47 @@ AObjectID	AChildProcessManager::ExecuteChildProcess( const AText& inProcessPath,
 	{
 		return kObjectID_Invalid;
 	}
+	
+	//#1386 子プロセス側でexec前に書き込み操作をするのはパフォーマンス上良くないはずなので、できる限り処理をこちらに持ってくる。（#1386はこれが原因かどうかはわからないが、fork()でブロックしていた）
+	//exec実行用のデータ作成
+	char*	commandPtr = NULL;
+	char*	argPtrArray[256];
+	for( long i = 0; i < 256; i++ )
+	{
+		argPtrArray[i] = NULL;
+	}
+	long 	argPtrArrayCount = 0;
+	char*	directoryPathPtr = NULL;
+	{
+		//コマンド文字列作成
+		AStCreateCstringFromAText	commandcstr(inProcessPath);
+		size_t	bytelen = inProcessPath.GetItemCount() + 1;
+		commandPtr = (char*)::malloc(bytelen);
+		if( commandPtr == NULL ) { _ACError("",NULL); return kObjectID_Invalid; }
+		::memcpy(commandPtr, commandcstr.GetPtr(), bytelen);
+		//引数配列作成
+		for( ; argPtrArrayCount < inArgArray.GetItemCount() && argPtrArrayCount < 255; argPtrArrayCount++ )
+		{
+			AText	argtext;
+			inArgArray.Get(argPtrArrayCount,argtext);
+			AStCreateCstringFromAText	argcstr(argtext);
+			size_t	bytelen = argtext.GetItemCount() + 1;
+			argPtrArray[argPtrArrayCount] = (char*)::malloc(bytelen);
+			if( argPtrArray[argPtrArrayCount] == NULL ) { _ACError("",NULL); return kObjectID_Invalid; }
+			::memcpy(argPtrArray[argPtrArrayCount], argcstr.GetPtr(), bytelen);
+		}
+		argPtrArray[argPtrArrayCount] = NULL;
+		//chdirパス文字列作成
+		if( inChildDirectoryPath.GetItemCount() > 0 )
+		{
+			AStCreateCstringFromAText	dirpathcstr(inChildDirectoryPath);
+			size_t	bytelen = inChildDirectoryPath.GetItemCount() + 1;
+			directoryPathPtr = (char*)::malloc(bytelen);
+			if( directoryPathPtr == NULL ) { _ACError("",NULL); return kObjectID_Invalid; }
+			::memcpy(directoryPathPtr, dirpathcstr.GetPtr(), bytelen);
+		}
+	}
+	
 	//
 	pid = fork();
 	if( pid > 0 ) //親プロセス
@@ -192,6 +233,17 @@ AObjectID	AChildProcessManager::ExecuteChildProcess( const AText& inProcessPath,
 		
 		//B0314
 		outChildPID = pid;
+		
+		//exec実行用のデータリリース
+		for( long i = 0; i < argPtrArrayCount; i++ )
+		{
+			::free(argPtrArray[i]);
+		}
+		::free(commandPtr);
+		if( directoryPathPtr != NULL )
+		{
+			::free(directoryPathPtr);
+		}
 		
 		return objectID;
 	}
@@ -217,6 +269,7 @@ AObjectID	AChildProcessManager::ExecuteChildProcess( const AText& inProcessPath,
 			}
 			close(pfd_stderr[1]);
 		}
+		/*#1386
 		//
 		if( inChildDirectoryPath.GetItemCount() > 0 )//#1159
 		{
@@ -236,6 +289,13 @@ AObjectID	AChildProcessManager::ExecuteChildProcess( const AText& inProcessPath,
 		argptr[argcount] = NULL;
 		AStCreateCstringFromAText	command(inProcessPath);
 		execv(command.GetPtr(),argptr);
+		*/
+		//
+		if( directoryPathPtr != NULL )
+		{
+			chdir(directoryPathPtr);
+		}
+		execv(commandPtr, argPtrArray);
 		_exit(0);
 	}
 	else
