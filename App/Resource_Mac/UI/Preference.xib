@@ -3383,7 +3383,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="qYd-Lw-Cpi">
-                                            <rect key="frame" x="182" y="613" width="439" height="20"/>
+                                            <rect key="frame" x="182" y="602" width="448" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="* To hide/show Toolbar, select [View -&gt; Hide (Show) Toolbar] menu." id="mF5-vb-adK">
                                                 <font key="font" metaFont="smallSystem"/>

@@ -4398,7 +4398,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="l61-Np-85h">
-                                            <rect key="frame" x="195" y="764" width="526" height="21"/>
+                                            <rect key="frame" x="195" y="755" width="526" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="If you set Color Scheme for light/dark mode in Preferences dialog, it is prior to this color settings." id="QN7-7o-ec7">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -4439,7 +4439,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </popUpButtonCell>
                                         </popUpButton>
                                         <button tag="421" id="3285" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="196" y="742" width="461" height="24"/>
+                                            <rect key="frame" x="196" y="742" width="518" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use same settings as Normal mode" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3286">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
