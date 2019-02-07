@@ -383,7 +383,7 @@ void	AView_TabSelector::EVTDO_DoDraw()
 	
 	//アクティブ時色
 	//背景
-	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("D8D8D8");
+	AColor	backgroundColor = AColorWrapper::GetColorByHTMLFormatColor("E0E0E0");
 	//枠線
 	AColor	tabFrameColor = AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
 	//1番目タブ
