@@ -111,6 +111,10 @@ void	AView_Ruler::EVTDO_DoDraw()
 	//色 #1316
 	AColor	backgroundStartColor = AColorWrapper::GetColorByHTMLFormatColor("D9D9D9");
 	AColor	backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+	if( NVI_GetWindow().NVI_IsWindowActive() == false )
+	{
+		backgroundStartColor = backgroundEndColor = AColorWrapper::GetColorByHTMLFormatColor("F7F7F7");
+	}
 	AColor	borderColor = AColorWrapper::GetColorByHTMLFormatColor("CCCCCC");
 	AColor	caretColor = AColorWrapper::GetColorByHTMLFormatColor("000000");
 	//ダークモード
