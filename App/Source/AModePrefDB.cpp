@@ -8163,7 +8163,7 @@ void	AModePrefDB::GetColorSlotData( const AIndex inSlotIndex, AColor& outColor, 
 		}
 	  default:
 		{
-			//処理なし
+			GetModeData_Color(kLetterColor,outColor,inDarkMode);//#1388 CategoryAttribute_ColorSlot未指定の場合は標準文字色にする。
 			break;
 		}
 	}
@@ -9902,7 +9902,7 @@ void	AModePrefDB::GetAutoUpdateFolder( AFileAcc& outFolder ) const
 {
 	//Webから更新以外（＝アプリ内のdefaultを使用）かどうかを判定
 	//#1275 Webから更新以外（＝アプリ内のdefaultを使用）の場合は、autoupdateにコピーせず、アプリ内のdefaultをautoupdateフォルダとみなす。
-	if( GetData_Bool(AModePrefDB::kEnableModeUpdateFromWeb) == false )
+	//#1374 if( GetData_Bool(AModePrefDB::kEnableModeUpdateFromWeb) == false )
 	{
 		//アプリ内のdefaultを使用する場合
 		
@@ -9920,6 +9920,7 @@ void	AModePrefDB::GetAutoUpdateFolder( AFileAcc& outFolder ) const
 		//コピー元フォルダ取得
 		outFolder.SpecifyChild(appModeRootFolder,modename);
 	}
+	/*#1374
 	else
 	{
 		//Webから更新の場合
@@ -9927,6 +9928,7 @@ void	AModePrefDB::GetAutoUpdateFolder( AFileAcc& outFolder ) const
 		GetModeFolder(modefolder);
 		outFolder.SpecifyChild(modefolder,"autoupdate");
 	}
+	*/
 }
 
 //#427
