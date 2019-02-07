@@ -131,6 +131,7 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 ,mPrependOpenUntitledFileEvent(false)//#1056
 ,mJavaScriptModalAlertWindowID(kObjectID_Invalid)//#1217
 ,mJavaScriptModalCancelAlertWindowID(kObjectID_Invalid)//#1217
+,mUserIDRegistrationWindowID(kObjectID_Invalid)//#1384
 {
 	/*#1316
 	//色初期化
@@ -1430,9 +1431,16 @@ void	AApp::Startup_Phase_Data()
 		//#688 NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_IndexWindow",kContextMenuID_IndexWindow);
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_Tab",kContextMenuID_Tab);
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_RecentOpen",kContextMenuID_RecentOpen);//R0186
-		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_FileList",kContextMenuID_FileList);//#442
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_RecentOpen_LeftSideBar",kContextMenuID_RecentOpen_LeftSideBar);//#1380
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_RecentOpen_RightSideBar",kContextMenuID_RecentOpen_RightSideBar);//#1380
+		//#1380 NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_FileList",kContextMenuID_FileList);//#442
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_GeneralSubWindow",kContextMenuID_GeneralSubWindow);//#1380
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_GeneralSubWindow_LeftSideBar",kContextMenuID_GeneralSubWindow_LeftSideBar);//#1380
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_GeneralSubWindow_RightSideBar",kContextMenuID_GeneralSubWindow_RightSideBar);//#1380
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_JumpList",kContextMenuID_JumpList);//#442
-		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_IdInfo",kContextMenuID_IdInfo);//#442
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_JumpList_LeftSideBar",kContextMenuID_JumpList_LeftSideBar);//#1380
+		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_JumpList_RightSideBar",kContextMenuID_JumpList_RightSideBar);//#1380
+		//#1380 NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_IdInfo",kContextMenuID_IdInfo);//#442
 		NVI_GetMenuManager().RegisterContextMenu(kContextMenuID_TextEncoding);//#232
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_ReturnCode",kContextMenuID_ReturnCode);//#232
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_WrapMode",kContextMenuID_WrapMode);//#232
@@ -1442,8 +1450,8 @@ void	AApp::Startup_Phase_Data()
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_IndexView",kContextMenuID_IndexView);//#465
 		NVI_GetMenuManager().RegisterContextMenu(kContextMenuID_JumpListHistory);//#454
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_Toolbar",kContextMenuID_ToolBar);//#619
-		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_RightSideBarPref",kContextMenuID_RightSideBarPref);
-		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_LeftSideBarPref",kContextMenuID_LeftSideBarPref);
+		//#1367 NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_RightSideBarPref",kContextMenuID_RightSideBarPref);
+		//#1367 NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_LeftSideBarPref",kContextMenuID_LeftSideBarPref);
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_SameProjectHeader",kContextMenuID_SameProjectHeader);
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_CandidateSearchMode",kContextMenuID_CandidateSearchMode);
 		NVI_GetMenuManager().RegisterContextMenu("menu/ContextMenu_Percent",kContextMenuID_Percent);
@@ -1951,6 +1959,13 @@ void	AApp::Quit_Phase_UI()
 		SPI_GetAboutWindow().NVI_Close();//#693
 		NVI_DeleteWindow(mAboutWindowID);
 	}
+	//#1384
+	if( mUserIDRegistrationWindowID != kObjectID_Invalid )
+	{
+		SPI_GetUserIDRegistrationWindow().NVI_Close();
+		NVI_DeleteWindow(mUserIDRegistrationWindowID);
+	}
+	//
 	if( mEnabledDefinesWindowID != kObjectID_Invalid )//#693
 	{
 		SPI_GetEnabledDefinesWindow().NVI_Close();//#693
@@ -3028,6 +3043,8 @@ void	AApp::InitModePref()
 	}
 	
 	//==================アプリ内モードデフォルトフォルダにあって、こちらにないモードをコピーする==================
+	//#1374 data/ModePreferences.miのみコピーする。それ以外はアプリ内を参照するようにしたので、コピー不要。
+	
 	//デフォルトフォルダ取得
 	AFileAcc	defaultFolder;
 	SPI_GetModeDefaultFolder(defaultFolder);
@@ -3055,10 +3072,22 @@ void	AApp::InitModePref()
 		if( dstModeFolder.Exist() == false )
 		{
 			//セッションプログレス更新
-			SPI_CheckContinueingEditProgressModalSession(kEditProgressType_InitMode,0,true,i/2,defaultFolderArray.GetItemCount());
+			SPI_CheckContinueingEditProgressModalSession(kEditProgressType_InitMode,0,true,i/2,defaultFolderArray.GetItemCount(),true);//#1374
 			
+			/*#1374 ModePreferences.miファイルだけコピーするように変更。
 			//デフォルトフォルダのモードを同じ名前でコピーする
 			srcModeFolder.CopyFolderTo(dstModeFolder,true,true);
+			*/
+			
+			//ModePreferences.miファイルのみ、デフォルトフォルダ（アプリ内フォルダ）から、ユーザーmodeフォルダへコピーする
+			AFileAcc	dstFolder;
+			dstFolder.SpecifyChild(dstModeFolder,"data");
+			dstFolder.CreateFolderRecursive();
+			AFileAcc	srcFile, dstFile;
+			srcFile.SpecifyChild(srcModeFolder,"data/ModePreferences.mi");
+			dstFile.SpecifyChild(dstModeFolder,"data/ModePreferences.mi");
+			srcFile.CopyFileTo(dstFile,true);
+			
 			//新規に生成したモード名のリストに追加
 			mNewlyCreatedModeNameArray.Add(srcModeName);
 		}
@@ -3129,7 +3158,9 @@ void	AApp::InitModePref()
 	//標準モードを生成したとき（＝最初の起動時）は、はじめにお読みくださいを表示する #1351 #1333
 	if( normalModeCreatedNewly == true )
 	{
-		SPI_ShowReadMeFirst();
+		//#1374 SPI_ShowReadMeFirst();
+		AObjectIDArray	objectIDArray;
+		ABase::PostToMainInternalEventQueue(kInternalEvent_ShowReadMe,GetObjectID(),0,GetEmptyText(),objectIDArray);
 	}
 }
 
@@ -4541,25 +4572,37 @@ void	AApp::EVTDO_DoInternalEvent( ABool& outUpdateMenu )
 						//モードをdefaultから新規生成したときはダイアログを表示する
 						if( mNewlyCreatedModeNameArray.GetItemCount() > 0 )
 						{
-							AText	message1, message2;
-							message1.SetLocalizedText("ModeAddedMessage");
-							for( AIndex i = 0; i < mNewlyCreatedModeNameArray.GetItemCount(); i++ )
+							//標準モードを新規生成したとき（＝新規インストール時）はダイアログ表示しない（これが最初に表示されても初見では意味がわからない） #1374
+							AText	normalModeName("Normal");
+							if( mNewlyCreatedModeNameArray.Find(normalModeName) == kIndex_Invalid )
 							{
-								AText	modeName;
-								mNewlyCreatedModeNameArray.Get(i,modeName);
-								//モードの表示名を取得
-								AIndex	modeIndex = SPI_FindModeIndexByModeRawName(modeName);
-								AText	modeDisplayName;
-								SPI_GetModePrefDB(modeIndex,false).GetModeDisplayName(modeDisplayName);
-								//モード表示名をメッセージに追加
-								message2.AddText(modeDisplayName);
-								if( i < mNewlyCreatedModeNameArray.GetItemCount()-1 )
+								//
+								AText	message1, message2;
+								message1.SetLocalizedText("ModeAddedMessage");
+								for( AIndex i = 0; i < mNewlyCreatedModeNameArray.GetItemCount(); i++ )
 								{
-									message2.AddCstring(", ");
+									AText	modeName;
+									mNewlyCreatedModeNameArray.Get(i,modeName);
+									//モードの表示名を取得
+									AIndex	modeIndex = SPI_FindModeIndexByModeRawName(modeName);
+									AText	modeDisplayName;
+									SPI_GetModePrefDB(modeIndex,false).GetModeDisplayName(modeDisplayName);
+									//モード表示名をメッセージに追加
+									message2.AddText(modeDisplayName);
+									if( i < mNewlyCreatedModeNameArray.GetItemCount()-1 )
+									{
+										message2.AddCstring(", ");
+									}
 								}
+								NVI_ShowModalAlertWindow(message1,message2);
 							}
-							NVI_ShowModalAlertWindow(message1,message2);
 						}
+						break;
+					}
+					//#1374
+				  case kInternalEvent_ShowReadMe:
+					{
+						SPI_ShowReadMeFirst();
 						break;
 					}
 					//#926
@@ -4783,6 +4826,14 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			result = true;
 			break;
 		}
+		//ユーザーID登録 #1384
+	  case kMenuItemID_RegisterUserID:
+		{
+			SPI_GetUserIDRegistrationWindow().NVI_CreateAndShow();
+			result = true;
+			break;
+		}
+		//
 	  case kMenuItemID_ModePref:
 		{
 			AModeIndex modeIndex = SPI_FindModeIndexByModeRawName(inDynamicMenuActionText);//#868
@@ -5454,6 +5505,12 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			SPI_StartRecord();
 			break;
 		}
+		//検索結果サブウインドウ追加 #1382
+	  case kMenuItemID_AddFindResultInFloating:
+		{
+			GetApp().SPI_GetOrCreateFindResultWindowDocument();
+			break;
+		}
 		//#844
 		//新規モード追加ウインドウを表示
 	  case kMenuItemID_AddNewMode:
@@ -5668,6 +5725,7 @@ void	AApp::EVTDO_UpdateMenu()
 	//NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_SwitchWindow,(mWindowMenuDocumentIDArray.GetItemCount()>=2));
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_SameFolder,true);
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_About,true);
+	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_RegisterUserID,true);//#1384
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ModePref,true);
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_MutiFileFind,true);
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_MultiFileReplace,true);
@@ -5939,7 +5997,7 @@ void	AApp::EVTDO_UpdateMenu()
 	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_OpenDocumentUsingTab,
 											   NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kCreateTabInsteadOfCreateWindow));
 	//#725 各フローティングサブウインドウ
-	for( AMenuItemID i = kMenuItemID_AddRecentlyOpenFileListInFloating; i <= kMenuItemID_AddKeyRecordInFloating; i++ )
+	for( AMenuItemID i = kMenuItemID_AddRecentlyOpenFileListInFloating; i <= /*#1382 kMenuItemID_AddKeyRecordInFloating*/kMenuItemID_AddFindResultInFloating; i++ )
 	{
 		GetApp().NVI_GetMenuManager().SetEnableMenuItem(i,true);
 	}
@@ -11044,14 +11102,19 @@ AModeIndex	AApp::SPI_FindModeIDByTextFilePath( const AText& inFilePath ) const//
 //#427
 /**
 
-mi起動時、および、モード追加時にコールされる。
-下記の場合、inConvertToAutoUpdate=trueとなる。（＝モードをdefault等から追加した場合、その中のデータは、自動更新対象データとして追加する）
-・miを最初に起動したとき（ルートmodeフォルダを新規生成したとき）
-・miを最初に起動したとき（デフォルトmodeからコピーして新規生成したとき）
-・Webから取得
-inConvertToAutoUpdate=trueのときは、下記処理を行う。
-・modeフォルダの内容をmode/autoupdateにコピー
-・キーワードとツールを自動更新フォルダへ移動
+下記の箇所からコールされる。
+1. AApp::InitModePref()の、標準モード作成箇所。
+標準モードを新規作成したとき（＝mi新規インストール時）はinConvertToAutoUpdate=trueとなる。
+2. AApp::InitModePref()の、標準以外のモード作成箇所。
+モードを新規作成したとき（＝mi新規インストール時、および、組み込みモード追加時）はinConvertToAutoUpdate=trueとなる。
+3. AApp::SPI_AddNewMode()新規モード（inConvertToAutoUpdateはfalse）
+4. SPI_AddNewModeImportFromFolder()
+インポートの場合はinConvertToAutoUpdateはfalse。
+Webから取得の場合はinConvertToAutoUpdateはtrue。
+
+つまり、組み込みモードインストール時のみinConvertToAutoUpdate=true、モード新規作成（インポート含む）はinConvertToAutoUpdate=falseとなる。
+
+inConvertToAutoUpdate=trueのときは、下記処理を行う。#1374
 ・ユーザー編集項目のキーワード・見出しを削除
 */
 AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAutoUpdate, const ABool inRemoveMultiLanguageModeName )
@@ -11059,8 +11122,6 @@ AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAu
 	//モードファイル取得
 	AText	filename;
 	inModeFolder.GetFilename(filename);
-	
-	//#1374
 	
 	//==================自動更新モードデータへの変換を行う①（キーワードとツールを自動更新フォルダへ移動）==================
 	
@@ -11077,6 +11138,8 @@ AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAu
 		convertToAutoUpdate = false;
 	}
 	
+	/*#1374
+	組み込みモードインストール時、ユーザーデータへコピーするのはdata/ModePreferences.miのみにしたので、autoupdateフォルダへ移す作業は不要となった。
 	//自動更新モードデータを構成
 	if( convertToAutoUpdate == true )
 	{
@@ -11117,6 +11180,7 @@ AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAu
 		userKeywordFolder.SpecifyChild(inModeFolder,"keyword");
 		userKeywordFolder.DeleteFileOrFolderRecursive();
 	}
+	*/
 	
 	//#954
 	//==================ユーザーtool, keywordフォルダ生成==================
@@ -11165,7 +11229,7 @@ AModeIndex	AApp::AddMode( const AFileAcc inModeFolder, const ABool inConvertToAu
 		mModeDisplayNameArray.Add(modeDisplayName);
 	}
 	
-	//==================自動更新モードデータへの変換を行う①（キーワードとツールを自動更新フォルダへ移動）==================
+	//==================自動更新モードデータへの変換を行う②（ユーザーデータから組み込みキーワードを削除）==================
 	//#427 
 	if( convertToAutoUpdate == true )
 	{
@@ -12187,7 +12251,7 @@ AColor	AApp::SPI_GetSubWindowBackgroundColor( const ABool inActive ) const
 	//
 	if( GetApp().NVI_IsDarkMode() == false )
 	{
-		return AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+		return AColorWrapper::GetColorByHTMLFormatColor("F2F2F2");
 	}
 	else
 	{
@@ -12206,7 +12270,7 @@ void	AApp::SPI_GetSubWindowBoxColor( const AWindowID inSubWindowID,
 	//ポップアップウインドウ以外の場合は、文字色：黒、ボックス：白
 	outLetterColor = AColorWrapper::GetColorByHTMLFormatColor("303030");//#1316 mSkinColor_SubWindowBoxLetterColor;
 	//#1316 outDropShadowColor = mSkinColor_SubWindowBoxLetterDropShadowColor;
-	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");//#1316 mSkinColor_SubWindowBoxBackgroundColor;
+	AColor	boxBaseColor = AColorWrapper::GetColorByHTMLFormatColor("F2F2F2");//#1316 mSkinColor_SubWindowBoxBackgroundColor;
 	//
 	if( GetApp().NVI_IsDarkMode() == true )
 	{
@@ -12281,7 +12345,7 @@ AColor	AApp::SPI_GetSideBarFrameColor() const
 	//#1316 return AColorWrapper::GetColorByHTMLFormatColor("b4b4b4");//"686b6e");
 	if( GetApp().NVI_IsDarkMode() == false )
 	{
-		return AColorWrapper::GetColorByHTMLFormatColor("B4B4B4");
+		return AColorWrapper::GetColorByHTMLFormatColor("C0C0C0");
 	}
 	else
 	{
@@ -12308,7 +12372,7 @@ AColor	AApp::SPI_GetSubWindowHeaderBackgroundColor() const
 	//#1316 return mSkinColor_SubWindowHeaderBackgroundColor;
 	if( GetApp().NVI_IsDarkMode() == false )
 	{
-		return AColorWrapper::GetColorByHTMLFormatColor("EEEEEE");
+		return AColorWrapper::GetColorByHTMLFormatColor("F2F2F2");
 	}
 	else
 	{
@@ -14225,7 +14289,7 @@ void AApp::SPI_HideFloatingIdInfoWindow()
 /**
 キーワード検索ウインドウを検索
 */
-AWindowID	AApp::FindIdInfoWindow( const AWindowID inTextWindowID ) const
+AWindowID	AApp::SPI_FindIdInfoWindow( const AWindowID inTextWindowID ) const
 {
 	//各ファイルリストウインドウ毎ループ
 	for( AIndex index = 0; index < mSubWindowArray_WindowID.GetItemCount(); index++ )
@@ -14260,7 +14324,7 @@ void	AApp::SPI_SearchInKeywordList()
 	AWindowID	frontTextWindowID = NVI_GetMostFrontWindowID(kWindowType_Text);
 	if( frontTextWindowID != kObjectID_Invalid )
 	{
-		AWindowID	winID = FindIdInfoWindow(frontTextWindowID);
+		AWindowID	winID = SPI_FindIdInfoWindow(frontTextWindowID);
 		if( winID != kObjectID_Invalid )
 		{
 			SPI_GetIdInfoWindow(winID).SPI_SwitchFocusToSearchBox();
@@ -14269,7 +14333,7 @@ void	AApp::SPI_SearchInKeywordList()
 	}
 	//２．テキストウインドウ指定がないもの（＝フローティングウインドウ）から検索
 	{
-		AWindowID	winID = FindIdInfoWindow(kObjectID_Invalid);
+		AWindowID	winID = SPI_FindIdInfoWindow(kObjectID_Invalid);
 		if( winID != kObjectID_Invalid )
 		{
 			SPI_GetIdInfoWindow(winID).SPI_SwitchFocusToSearchBox();
@@ -15095,14 +15159,14 @@ void	AApp::SPI_EndEditProgressModalSession()
 モーダルセッション継続判定
 */
 ABool	AApp::SPI_CheckContinueingEditProgressModalSession( const AEditProgressType inType, const AItemCount inCount,
-		const ABool inUpdateProgress, const AItemCount inCurrentProgress, const AItemCount inTotalProgress )
+															const ABool inUpdateProgress, const AItemCount inCurrentProgress, const AItemCount inTotalProgress, const ABool inForceShowDialog  )//#1374
 {
 	//現在時刻取得
 	ADateTime	currentDateTime = ADateTimeWrapper::GetCurrentTime();
 	//OSモーダルセッション未開始の場合、開始から5秒経っていなければ、無条件で継続と判定し、ここで終了
 	if( mEditProgressModalSessionStartedInActual == false )
 	{
-		if( ADateTimeWrapper::GetDateTimeDiff(currentDateTime,mEditProgressStartDateTime) <= 5 )
+		if( ADateTimeWrapper::GetDateTimeDiff(currentDateTime,mEditProgressStartDateTime) <= 5 && inForceShowDialog == false )//#1374
 		{
 			return true;
 		}
