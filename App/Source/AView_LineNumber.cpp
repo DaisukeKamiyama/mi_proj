@@ -594,7 +594,13 @@ void	AView_LineNumber::EVTDO_DoDraw()
 					NVMC_FrameRoundedRect(r,kColor_Gray50Percent,1.0,3,true,true,true,true);
 				}
 				*/
-				NVMC_PaintRoundedRect(rect,color,color,kGradientType_None,0.8,0.8,3,true,true,true,true);//#1275 kGradientType_HorizontalÅ®kGradientType_None
+				//#1316
+				AFloatNumber	alpha = 0.8;
+				if( GetApp().NVI_IsDarkMode() == true )
+				{
+					alpha = 0.2;
+				}
+				NVMC_PaintRoundedRect(rect,color,color,kGradientType_None,alpha,alpha,3,true,true,true,true);//#1275 kGradientType_HorizontalÅ®kGradientType_None
 				NVMC_FrameRoundedRect(rect,kColor_Gray50Percent,1.0,3,true,true,true,true);
 			}
 		}
