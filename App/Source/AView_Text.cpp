@@ -3573,6 +3573,19 @@ void	AView_Text::EVTDO_DoDraw()
 		}
 	}
 	
+	//文法パートタグと、文法チェックワーニングの配色 #1316
+	AColor	warningTagBackgroundStart = kColor_White;
+	AColor	warningTagBackgroundEnd = kColor_Gray95Percent;
+	AColor	warningTagFrame = kColor_Gray30Percent;
+	AColor	warningTagLetterColor = kColor_Gray30Percent;
+	if( GetApp().NVI_IsDarkMode() == true )
+	{
+		warningTagBackgroundStart = AColorWrapper::GetColorByHTMLFormatColor("2C2C2C");
+		warningTagBackgroundEnd = AColorWrapper::GetColorByHTMLFormatColor("282828");
+		warningTagFrame = AColorWrapper::GetColorByHTMLFormatColor("909090");
+		warningTagLetterColor = AColorWrapper::GetColorByHTMLFormatColor("A0A0A0");
+	}
+	
 	//各行描画
 	for( AIndex lineIndex = startLineIndex; lineIndex < lineCount/*#450endLineIndex*/; lineIndex++ )//#450
 	{
@@ -3637,24 +3650,24 @@ void	AView_Text::EVTDO_DoDraw()
 						AColor	separatorColor = AColorWrapper::GetColorByHTMLFormatColor("f4edbb");
 						if( GetApp().NVI_IsDarkMode() == true )
 						{
-							separatorColor = AColorWrapper::GetColorByHTMLFormatColor("505050");
+							separatorColor = AColorWrapper::GetColorByHTMLFormatColor("303030");
 						}
 						//文法パート区切り描画
 						ALocalRect	separatorRect = lineLocalRect;
 						separatorRect.bottom = separatorRect.top+2;
-						NVMC_PaintRectWithVerticalGradient(separatorRect,separatorColor,separatorColor,0.8,0.0);
+						NVMC_PaintRectWithVerticalGradient(separatorRect,separatorColor,separatorColor,0.7,0.0);//#1316 α=0.8→0.7
 						//文法パート名取得
 						AText	syntaxName;
 						syntaxDefinition.GetSyntaxPartName(syntaxPartIndex,syntaxName);
-						NVMC_SetDefaultTextProperty(fontname,6.0,kColor_Gray10Percent,kTextStyle_Normal,true);
+						NVMC_SetDefaultTextProperty(fontname,6.0,warningTagLetterColor,kTextStyle_Normal,true);//#1316
 						//文法パート名フレーム描画
 						ANumber	w = NVMC_GetDrawTextWidth(syntaxName);
 						ALocalRect	textFrameRect = lineLocalRect;
 						textFrameRect.left		= textFrameRect.right - w - 8;
 						textFrameRect.bottom	= textFrameRect.top + 10;
-						NVMC_PaintRoundedRect(textFrameRect,kColor_White,kColor_Gray95Percent,kGradientType_Vertical,0.7,0.7,
+						NVMC_PaintRoundedRect(textFrameRect,warningTagBackgroundStart,warningTagBackgroundEnd,kGradientType_Vertical,0.7,0.7,//#1316
 											  3,false,false,true,false);
-						NVMC_FrameRoundedRect(textFrameRect,kColor_Gray10Percent,1.0,5,false,false,true,false);
+						NVMC_FrameRoundedRect(textFrameRect,warningTagFrame,1.0,5,false,false,true,false);//#1316
 						//文法パート名描画
 						ALocalRect	textDrawRect = textFrameRect;
 						textDrawRect.left		+= 3;
@@ -3828,10 +3841,10 @@ void	AView_Text::EVTDO_DoDraw()
 							maxWidthForWarning = (lineLocalRect.right - lineLocalRect.left)/5;
 						}
 						//フォント設定
-						AFloatNumber	fs = 9.0;
+						AFloatNumber	fs = 9.5;//#0 9.0→9.5
 						if( fs > normalfontsize )   fs = normalfontsize;
 						AText	f("Helvetica");
-						NVMC_SetDefaultTextProperty(f,fs,kColor_Gray50Percent,kTextStyle_Normal,true);
+						NVMC_SetDefaultTextProperty(f,fs,warningTagLetterColor,kTextStyle_Normal,true);//#1316
 						//テキスト表示幅取得
 						ANumber	w = NVMC_GetDrawTextWidth(warningTitle);
 						//テキスト表示幅がワーニング表示領域を超える場合は...表示にする
@@ -3850,14 +3863,14 @@ void	AView_Text::EVTDO_DoDraw()
 						textFrameRect.left = textFrameRect.right - w - 16;
 						textFrameRect.right -= 2;
 						textFrameRect.top++;
-						if( textFrameRect.bottom - textFrameRect.top > 14 )
+						if( textFrameRect.bottom - textFrameRect.top > 16 )//#0 14→16
 						{
-							textFrameRect.bottom	= textFrameRect.top + 14;
+							textFrameRect.bottom	= textFrameRect.top + 16;//#0 14→16
 						}
 						//枠描画
-						NVMC_PaintRoundedRect(textFrameRect,kColor_White,kColor_Gray95Percent,kGradientType_Vertical,0.7,0.7,
+						NVMC_PaintRoundedRect(textFrameRect,warningTagBackgroundStart,warningTagBackgroundEnd,kGradientType_Vertical,0.7,0.7,//#1316
 											  3,true,true,true,true);
-						NVMC_FrameRoundedRect(textFrameRect,kColor_Gray10Percent,1.0,5,true,true,true,true);
+						NVMC_FrameRoundedRect(textFrameRect,warningTagFrame,1.0,5,true,true,true,true);//#1316
 						//テキスト描画
 						ALocalRect	textDrawRect = textFrameRect;
 						textDrawRect.left		+= 6;
