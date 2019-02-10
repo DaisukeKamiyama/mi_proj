@@ -574,7 +574,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Bool(kShowFloatingJumpList,						"ShowFloatingJumpList",				false);
 	
 	//キーワード情報ポップアップ
-	CreateData_Bool(kPopupIdInfo,								"PopupIdInfo",						true);
+	CreateData_Bool(kPopupIdInfo,								"PopupIdInfo",						false);//#1354 true);
 	CreateData_Bool(kHideIdInfoPopupByIdle,						"HideIdInfoPopupByIdle",			true);
 	
 	//#844
