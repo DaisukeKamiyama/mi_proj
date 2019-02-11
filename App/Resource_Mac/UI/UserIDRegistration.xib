@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,14 +15,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="User ID Registration" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="97" customClass="CocoaWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="145" y="58" width="572" height="180"/>
+            <rect key="contentRect" x="145" y="58" width="572" height="110"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
             <view key="contentView" id="98">
-                <rect key="frame" x="0.0" y="0.0" width="572" height="180"/>
+                <rect key="frame" x="0.0" y="0.0" width="572" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" tag="5103" id="157">
-                        <rect key="frame" x="120" y="48" width="333" height="21"/>
+                        <rect key="frame" x="120" y="-22" width="333" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Thank you very much for registration!" id="158">
                             <font key="font" metaFont="systemBold" size="14"/>
@@ -31,7 +31,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="155">
-                        <rect key="frame" x="37" y="118" width="103" height="14"/>
+                        <rect key="frame" x="37" y="48" width="103" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="User ID : " id="156">
                             <font key="font" metaFont="smallSystem"/>
@@ -40,7 +40,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="5104" id="AVn-eZ-tny">
-                        <rect key="frame" x="156" y="88" width="268" height="14"/>
+                        <rect key="frame" x="156" y="18" width="268" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Input ID is valid." id="EnJ-z8-qdN">
                             <font key="font" metaFont="smallSystem"/>
@@ -49,7 +49,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="161">
-                        <rect key="frame" x="86" y="-252" width="103" height="14"/>
+                        <rect key="frame" x="86" y="-322" width="103" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="URL :" id="164">
                             <font key="font" metaFont="smallSystem"/>
@@ -58,7 +58,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="5110" id="162" customClass="CocoaTextField">
-                        <rect key="frame" x="194" y="-254" width="279" height="19"/>
+                        <rect key="frame" x="194" y="-324" width="279" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="163">
                             <font key="font" metaFont="smallSystem"/>
@@ -67,7 +67,7 @@
                         </textFieldCell>
                     </textField>
                     <button tag="5109" id="159">
-                        <rect key="frame" x="134" y="-232" width="340" height="25"/>
+                        <rect key="frame" x="134" y="-302" width="340" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Get From Web" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="160">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -75,7 +75,7 @@
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="190">
-                        <rect key="frame" x="23" y="149" width="117" height="14"/>
+                        <rect key="frame" x="23" y="79" width="117" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="User ID Registration" id="193">
                             <font key="font" metaFont="smallSystemBold"/>
@@ -84,7 +84,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="5101" id="200" customClass="CocoaTextField">
-                        <rect key="frame" x="158" y="110" width="264" height="27"/>
+                        <rect key="frame" x="158" y="40" width="264" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="201">
                             <font key="font" metaFont="system"/>
@@ -93,7 +93,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" tag="5102" id="41">
-                        <rect key="frame" x="435" y="106" width="107" height="32"/>
+                        <rect key="frame" x="435" y="36" width="107" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Register" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="42">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -104,7 +104,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="5001" id="171">
-                        <rect key="frame" x="233" y="13" width="107" height="32"/>
+                        <rect key="frame" x="233" y="-57" width="107" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="172">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -118,7 +118,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="191">
-                        <rect key="frame" x="156" y="142" width="362" height="21"/>
+                        <rect key="frame" x="156" y="72" width="362" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="192">
                             <font key="font" metaFont="smallSystem"/>
