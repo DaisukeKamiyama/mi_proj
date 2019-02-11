@@ -13,7 +13,7 @@
 	<key>Custom Icon Path</key>
 	<string></string>
 	<key>Disk Image Name</key>
-	<string>mi3.0.2b2.dmg</string>
+	<string>mi3.0.3b1.dmg</string>
 	<key>Encode Format</key>
 	<string>None</string>
 	<key>Encryption Type</key>
@@ -58,13 +58,13 @@
 	<key>Lock Frame</key>
 	<string>FALSE</string>
 	<key>Project File Path</key>
-	<string>/Users/mi/mi/mi_proj/Build_Mac/</string>
+	<string>/Users/mi_release/mi_proj/Build_Mac/</string>
 	<key>Remove SVN Files</key>
 	<string>FALSE</string>
 	<key>Show Toolbar</key>
 	<string>FALSE</string>
 	<key>Volume Name</key>
-	<string>mi3.0.2</string>
+	<string>mi3.0.3</string>
 	<key>Window Frame</key>
 	<string>{{82, 23}, {600, 486}}</string>
 </dict>
