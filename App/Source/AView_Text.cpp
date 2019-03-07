@@ -3911,7 +3911,7 @@ void	AView_Text::EVTDO_DoDraw()
 		//diffパート枠線表示有無取得
 		ABool	diffPartStartLine = false;
 		ABool	diffPartEndLine = false;
-		ANumber	diffPartFrameLineAlphaMultiply = 3;
+		AFloatNumber	diffPartFrameLineAlphaMultiply = 3.0;//#1394 ANumber→AFloatNumber
 		AFloatNumber	diffLetterChangedLetterMultiply = 0.5;//変更文字乗数 下のnot changedからの増加分 #1316 1.0→0.5
 		AFloatNumber	diffLetterChangedLinesMultiply = 0.0;//変更行乗数 下のnot changedからの増加分 #1316 0.3→0.0
 		AFloatNumber	diffLetterNotChangedLetterMultiply = 0.4;//変更なし文字乗数 #1316 
@@ -3967,11 +3967,13 @@ void	AView_Text::EVTDO_DoDraw()
 			{
 				if( GetApp().NVI_IsDarkMode() == false )
 				{
-					diffPartFrameLineAlphaMultiply *= 0.5;
+					//#1394 diffPartFrameLineAlphaMultiply *= 0.5;
+					diffPartFrameLineAlphaMultiply = 1.0;//#1394 1→1.0で変更なし
 				}
 				else
 				{
-					diffPartFrameLineAlphaMultiply *= 0.7;
+					//#1394 diffPartFrameLineAlphaMultiply *= 0.7;
+					diffPartFrameLineAlphaMultiply = 1.5;//#1394 2→1.5
 				}
 			}
 		}
