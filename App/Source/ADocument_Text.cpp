@@ -2067,6 +2067,12 @@ void	ADocument_Text::EVTDO_PrintPage( const AIndex inPageIndex )
 			NVM_GetPrintImp().DrawLine(spt,ept,kColor_Black,1.0,0.0,0.25);
 		}
 	}
+	//#1393
+	else
+	{
+		//縦書きモード解除
+		NVM_GetPrintImp().SetVerticalMode(false);
+	}
 	
 	//テスト
 	/*ALocalPoint	spt, ept;
