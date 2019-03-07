@@ -944,6 +944,26 @@ const AColorSchemeDB&	AAppPrefDB::GetColorSchemeDB( const ABool inDarkMode ) con
 	}
 }
 
+//#1395
+/**
+環境設定カラースキームを印刷モードに設定する／設定解除する
+*/
+void	AAppPrefDB::SetPrintColorSchemeMode( const ABool inPrintColorSchemeMode )
+{
+	//印刷モード設定
+	mPrintColorSchemeMode = inPrintColorSchemeMode;
+	//モード設定に保存されている色データを更新する
+	for( AIndex i = 0; i < GetApp().SPI_GetModeCount(); i++ )
+	{
+		if( GetApp().SPI_GetModePrefDB(i,false).IsLoaded() == true )
+		{
+			GetApp().SPI_GetModePrefDB(i).UpdateUserKeywordCategoryColor();
+			GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionStateColorArray();
+			GetApp().SPI_GetModePrefDB(i).UpdateSyntaxDefinitionCategoryColor();
+		}
+	}
+}
+
 /*#844
 void	AAppPrefDB::SetDefaultTextEncodingMenu( AConstCharPtr inString )
 {
