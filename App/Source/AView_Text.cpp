@@ -7438,6 +7438,38 @@ ABool	AView_Text::KeyBindAction( const AKeyBindKey inKeyBindKey, const AModifier
 			SwapLetter();
 			break;
 		}
+		//#1397
+	  case keyAction_findnext:
+		{
+            SPI_FindNext();
+			break;
+		}
+	  case keyAction_findprev:
+		{
+			SPI_FindPrev();
+			break;
+		}
+		//#1399
+	  case keyAction_caretprevparagraphstart:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretup,false);
+			break;
+		}
+	  case keyAction_caretnextparagraphend:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretdown,false);
+			break;
+		}
+	  case keyAction_selectprevparagraphstart:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretup,true);
+			break;
+		}
+	  case keyAction_selectnextparagraphend:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretdown,true);
+			break;
+		}
 		//
 	  default:
 		{
@@ -8070,6 +8102,111 @@ void	AView_Text::ArrowKeyEdge( const AKeyBindAction inAction, const ABool inSele
 			textpoint.x = GetTextDocumentConst().SPI_GetLineLengthWithoutLineEnd(textpoint.y);
 			if( inSelect == true )
 			{
+				SetSelectTextPoint(textpoint);
+			}
+			else
+			{
+				SetCaretTextPoint(textpoint);
+			}
+			break;
+		}
+	  default:
+		{
+			//処理なし
+			break;
+		}
+	}
+	
+	//スクロール位置補正
+	textpoint = GetCaretTextPoint();
+	if( inSelect == true )   textpoint = GetSelectTextPoint();
+	AdjustScroll(textpoint);
+}
+
+//#1399
+/**
+前段落頭、次段落末へ移動／選択
+*/
+void	AView_Text::ArrowKeyNextPrevEdge( const AKeyBindAction inAction, const ABool inSelect )
+{
+	//補完入力状態解除 #717
+	ClearAbbrevInputMode(true,false);
+	
+	//#558
+	//縦書きモードなら矢印キーを変換する
+	AKeyBindAction	action = inAction;
+	if( NVI_GetVerticalMode() == true )
+	{
+		action = ConvertArrowKeyForVerticalMode(inAction);
+	}
+	
+	ATextPoint	start, end;
+	SPI_GetSelect(start,end);
+	ATextPoint	textpoint;
+	switch(action)
+	{
+		//上
+	  case keyAction_caretup:
+		{
+			//選択中の場合はselect pointから移動する（ただし、キャレット移動の場合はstartから移動する）
+			if( IsCaretMode() == false && inSelect == true )
+			{
+				GetSelectTextPoint(textpoint);
+			}
+			else
+			{
+				textpoint = start;
+			}
+			//現在左端の場合は、前の行の左端へ移動する
+			if( textpoint.x == 0 && textpoint.y > 0 )
+			{
+				textpoint.y--;
+			}
+			//現在段落の最初へ移動する
+			textpoint.y = GetTextDocumentConst().SPI_GetCurrentParagraphStartLineIndex(textpoint.y);
+			textpoint.x = 0;
+			//キャレット設定／セレクト設定
+			if( inSelect == true )
+			{
+				SetSelectTextPoint(textpoint);
+			}
+			else
+			{
+				SetCaretTextPoint(textpoint);
+			}
+			break;
+		}
+		//下
+	  case keyAction_caretdown:
+		{
+			//選択中の場合はselect pointから移動する（ただし、キャレット移動の場合はendから移動する）
+			if( IsCaretMode() == false && inSelect == true )
+			{
+				GetSelectTextPoint(textpoint);
+			}
+			else
+			{
+				textpoint = end;
+			}
+			//現在右端の場合は、次の行へ移動する
+			if( textpoint.x == GetTextDocumentConst().SPI_GetLineLengthWithoutLineEnd(textpoint.y) &&
+				textpoint.y+1 < GetTextDocumentConst().SPI_GetLineCount() )
+			{
+				textpoint.y++;
+			}
+			//次の段落の１つ前の行の右端（つまり現在段落の最後）へ移動する
+			textpoint.y = GetTextDocumentConst().SPI_GetNextParagraphStartLineIndex(textpoint.y)-1;
+			textpoint.x = GetTextDocumentConst().SPI_GetLineLengthWithoutLineEnd(textpoint.y);
+			//キャレット設定／セレクト設定
+			if( inSelect == true )
+			{
+				//次の行の最初へ移動する（キャレット移動と動作が異なっており統一性がないが、OSの標準動作がこうなっているので合わせる。）
+				if( textpoint.y + 1 < GetTextDocumentConst().SPI_GetLineCount() )
+				{
+					textpoint.x = 0;
+					textpoint.y++;
+				}
+				//
 				SetSelectTextPoint(textpoint);
 			}
 			else
@@ -11776,6 +11913,13 @@ void	AView_Text::SPI_FindNext()
 }
 ABool	AView_Text::SPI_FindNext( const AFindParameter& inParam )
 {
+	//#1397
+	//検索文字列が空のときは何もせずリターン
+	if( inParam.findText.GetItemCount() == 0 )
+	{
+		return false;
+	}
+	
 	//キー記録
 	GetApp().SPI_RecordFindNext(inParam);
 	
@@ -11874,6 +12018,13 @@ ABool	AView_Text::SPI_FindFromFirst()
 }
 ABool	AView_Text::SPI_FindFromFirst( const AFindParameter& inParam )
 {
+	//#1397
+	//検索文字列が空のときは何もせずリターン
+	if( inParam.findText.GetItemCount() == 0 )
+	{
+		return false;
+	}
+	
 	//キー記録
 	GetApp().SPI_RecordFindFromFirst(inParam);
 	
@@ -11905,6 +12056,13 @@ void	AView_Text::SPI_FindPrev()
 }
 ABool	AView_Text::SPI_FindPrevious( const AFindParameter& inParam )
 {
+	//#1397
+	//検索文字列が空のときは何もせずリターン
+	if( inParam.findText.GetItemCount() == 0 )
+	{
+		return false;
+	}
+	
 	//行折り返し計算中は検索不可とする #1117
 	ADocumentInitState	docState = SPI_GetTextDocument().SPI_GetDocumentInitState();
 	if( docState != kDocumentInitState_SyntaxRecognizing && docState != kDocumentInitState_Completed )
