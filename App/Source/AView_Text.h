@@ -112,6 +112,9 @@ class AView_Text : public AView
 	void					SPI_FindNext();//win
 	void					SPI_FindPrev();//win
 	void					SPI_UndoRedo( const ABool inUndo ) { UndoRedo(inUndo); }//#1389
+	void					SPI_Copy() { Copy(false); }//#1400
+	void					SPI_Cut() { Cut(false); }//#1400
+	void					SPI_Paste() { Paste(); }//#1400
   private:
 	AView_LineNumber&		GetLineNumberView();//#450
 	AViewID					mLineNumberViewID;//#450
