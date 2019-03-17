@@ -2387,7 +2387,7 @@ void	CUserPane::DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& in
 キャレット用XOR線描画（APICB_DoDraw()外の描画用）
 */
 void	CUserPane::DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalPoint& inEndPoint, const ABool inClipToFrame, 
-									 const ABool inFlush, const ABool inDash, const ANumber inPenSize )
+									 const ABool inFlush, const ABool inDash, const ANumber inPenSize, const AFloatNumber inAlpha )//#1398
 {
 	//コントロール非表示時は何もしない
 	if( IsControlVisible() == false )
@@ -2446,7 +2446,7 @@ void	CUserPane::DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalP
 		::CGContextBeginPath(contextRef);
 		::CGContextMoveToPoint(contextRef,inStartPoint.x,-inStartPoint.y-1);
 		::CGContextAddLineToPoint(contextRef,inEndPoint.x,-inEndPoint.y-1);
-		::CGContextSetRGBStrokeColor(contextRef,1.0,1.0,1.0,1.0);
+		::CGContextSetRGBStrokeColor(contextRef,1.0,1.0,1.0,inAlpha);//#1398
 		::CGContextSetLineWidth(contextRef,inPenSize);
 		::CGContextSetShouldAntialias(contextRef,false);
 		::CGContextSetBlendMode(contextRef,kCGBlendModeExclusion);//kCGBlendModeDifference);//kCGBlendModeExclusion);
