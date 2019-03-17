@@ -806,7 +806,14 @@ const AControlID	kControlID_Toolbar_KeyRecordPlay				= 995031;
 const AControlID	kControlID_Toolbar_ProhibitPopup				= 995032;
 const AControlID	kControlID_Toolbar_MultiFileFindExecute			= 995033;
 const AControlID	kControlID_Toolbar_ShowHideFloatingWindows		= 995034;
-const AControlID	kControlID_Toolbar_ButtonEnd					= 995034;
+const AControlID	kControlID_Toolbar_Save							= 995035;//#1389
+const AControlID	kControlID_Toolbar_Undo							= 995036;//#1389
+const AControlID	kControlID_Toolbar_Redo							= 995037;//#1389
+const AControlID	kControlID_Toolbar_FindDialog					= 995038;//#1389
+const AControlID	kControlID_Toolbar_Copy							= 995039;//#1400
+const AControlID	kControlID_Toolbar_Cut							= 995040;//#1400
+const AControlID	kControlID_Toolbar_Paste						= 995041;//#1400
+const AControlID	kControlID_Toolbar_ButtonEnd					= 995041;
 
 //ABaseTypes.h‚ÖˆÚ“®const UInt32	kCommandID_UpdateCommandStatus			= 'UdCS';
 
@@ -1546,6 +1553,10 @@ enum AToolCommandID
 	tc_HINT,
 	tc_FIND_EXTRACT,
 	tc_BROWSE_PANDOC,//#1286
+	tc_MOVECARET_PREVSTARTOFPARAGRAPH,//#1399
+	tc_MOVECARET_NEXTENDOFPARAGRAPH,//#1399
+	tc_SELECT_PREVSTARTOFPARAGRAPH,//#1399
+	tc_SELECT_NEXTENDOFPARAGRAPH,//#1399
 	tc_COUNT_OF_TOOLCOMMAND
 };
 
