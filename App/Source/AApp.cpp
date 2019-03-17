@@ -657,8 +657,8 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	RegisterToolCommand("WINDOWTOTAB",tc_WINDOWTOTAB);//#389
 	RegisterToolCommand("SELECT-CORRESPONDENCE",tc_SELECT_CORRESPONDENCE);//#359
 	RegisterToolCommand("ADDITIONAL-COPY-TEXT",tc_ADDITIONAL_COPY_TEXT);//#425
-	RegisterToolCommand("FIND-NEXT",tc_FIND_NEXT);//win
-	RegisterToolCommand("FIND-PREV",tc_FIND_PREV);//win
+	RegisterToolCommand("FIND-NEXT",tc_FIND_NEXT, keyAction_findnext);//win #1397
+	RegisterToolCommand("FIND-PREV",tc_FIND_PREV, keyAction_findprev);//win #1397
 	RegisterToolCommand("SETFINDTEXT-SELECTED",tc_SETFINDTEXT_SELECTED);//win
 	RegisterToolCommand("SHOW-PRINTDIALOG",tc_SHOW_PRINTDIALOG);//win
 	RegisterToolCommand("SHOW-FINDDIALOG",tc_SHOW_FINDDIALOG);//win
@@ -696,6 +696,10 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 	RegisterToolCommand("HINT",tc_HINT);
 	RegisterToolCommand("FIND-EXTRACT",tc_FIND_EXTRACT);
 	RegisterToolCommand("BROWSE_PANDOC",tc_BROWSE_PANDOC);//#1286
+	RegisterToolCommand("MOVECARET-PREVSTARTOFPARAGRAPH",tc_MOVECARET_PREVSTARTOFPARAGRAPH,keyAction_caretprevparagraphstart);//#1399
+	RegisterToolCommand("MOVECARET-NEXTENDOFPARAGRAPH",tc_MOVECARET_NEXTENDOFPARAGRAPH,keyAction_caretnextparagraphend);//#1399
+	RegisterToolCommand("SELECT-PREVSTARTOFPARAGRAPH",tc_SELECT_PREVSTARTOFPARAGRAPH,keyAction_selectprevparagraphstart);//#1399
+	RegisterToolCommand("SELECT-NEXTENDOFPARAGRAPH",tc_SELECT_NEXTENDOFPARAGRAPH,keyAction_selectnextparagraphend);//#1399
 	//#724 LoadToolbarIcon();
 	_AInfo("AApp::AApp() done.",this);
 }
