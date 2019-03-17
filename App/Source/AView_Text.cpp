@@ -15028,7 +15028,7 @@ void	AView_Text::XorCrossCaretV()
 			spt.y--;
 		}
 		//ƒLƒƒƒŒƒbƒg•`‰æ
-		NVMC_DrawXorCaretLine(spt,ept,true,false,true,1);//#688 #1034 í‚Éflush‚µ‚È‚¢
+		NVMC_DrawXorCaretLine(spt,ept,true,false,false,1,0.3);//#688 #1034 í‚Éflush‚µ‚È‚¢ #1398
 	}
 }
 
