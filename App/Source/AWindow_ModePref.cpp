@@ -399,6 +399,10 @@ AWindow_ModePref::AWindow_ModePref():AWindow(/*#175NULL*/), /*B0406 mKeywordText
 	mKeybindMenuOrder.Add((AKeyBindAction)4);//タブ
 	mKeybindMenuOrder.Add((AKeyBindAction)6);//スペース
 	mKeybindMenuOrder.Add((AKeyBindAction)-1);//#249
+	//検索
+	mKeybindMenuOrder.Add((AKeyBindAction)122);//次を検索 #1397
+	mKeybindMenuOrder.Add((AKeyBindAction)123);//前を検索 #1397
+	mKeybindMenuOrder.Add((AKeyBindAction)-1);
 	//省略入力
 	mKeybindMenuOrder.Add((AKeyBindAction)7);//省略入力（次）
 	mKeybindMenuOrder.Add((AKeyBindAction)8);//省略入力（前）
@@ -437,6 +441,8 @@ AWindow_ModePref::AWindow_ModePref():AWindow(/*#175NULL*/), /*B0406 mKeywordText
 	mKeybindMenuOrder.Add((AKeyBindAction)35);//キャレット移動（次ページ）
 	mKeybindMenuOrder.Add((AKeyBindAction)16);//キャレット移動（ドキュメントの最初）
 	mKeybindMenuOrder.Add((AKeyBindAction)17);//キャレット移動（ドキュメントの最後）
+	mKeybindMenuOrder.Add((AKeyBindAction)124);//キャレット移動（前の段落頭）#1399
+	mKeybindMenuOrder.Add((AKeyBindAction)125);//キャレット移動（次の段落末）#1399
 	mKeybindMenuOrder.Add((AKeyBindAction)67);//R0006
 	mKeybindMenuOrder.Add((AKeyBindAction)68);//R0006
 	mKeybindMenuOrder.Add((AKeyBindAction)-1);
@@ -462,6 +468,8 @@ AWindow_ModePref::AWindow_ModePref():AWindow(/*#175NULL*/), /*B0406 mKeywordText
 	mKeybindMenuOrder.Add((AKeyBindAction)102);//選択（段落全体）
 	mKeybindMenuOrder.Add((AKeyBindAction)103);//選択（マーク位置まで）
 	mKeybindMenuOrder.Add((AKeyBindAction)104);//選択（単語全体）
+	mKeybindMenuOrder.Add((AKeyBindAction)126);//選択（前の段落末まで）#1399
+	mKeybindMenuOrder.Add((AKeyBindAction)127);//選択（次の段落頭まで）#1399
 	mKeybindMenuOrder.Add((AKeyBindAction)-1);
 	//マーク
 	mKeybindMenuOrder.Add((AKeyBindAction)105);//マーク設定
