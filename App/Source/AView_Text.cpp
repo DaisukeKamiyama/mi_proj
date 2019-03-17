@@ -8331,6 +8331,7 @@ void	AView_Text::Cut( const ABool inAdditional )//R0213
 	if( GetTextDocument().NVI_IsReadOnly() == true )   return;
 	AText	text;
 	GetSelectedText(text);
+	if( text.GetItemCount() == 0 )   return;//#1400
 	if( inAdditional == true )//R0213
 	{
 		AText	scrapText;
