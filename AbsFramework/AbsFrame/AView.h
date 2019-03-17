@@ -540,8 +540,8 @@ class AView : public AObjectArrayItem
 	void					NVMC_DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& inEndPoint )
 	{ mViewImp.DrawLine(inStartPoint,inEndPoint); }
 	void					NVMC_DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalPoint& inEndPoint, const ABool inClipToFrame, 
-												   const ABool inFlush, const ABool inDash = false, const ANumber inPenSize = 1 )//#1034
-	{ mViewImp.DrawXorCaretLine(inStartPoint,inEndPoint,inClipToFrame,inFlush,inDash,inPenSize); }
+												   const ABool inFlush, const ABool inDash = false, const ANumber inPenSize = 1, const AFloatNumber inAlpha = 1.0 )//#1034 #1398
+	{ mViewImp.DrawXorCaretLine(inStartPoint,inEndPoint,inClipToFrame,inFlush,inDash,inPenSize, inAlpha); }//#1398
 	void					NVMC_DrawXorCaretRect( const ALocalRect& inLocalRect, const ABool inClipToFrame, const ABool inFlush )//#1034
 	{ mViewImp.DrawXorCaretRect(inLocalRect,inClipToFrame,inFlush); }
 	void					NVMC_TransferOffscreen()
