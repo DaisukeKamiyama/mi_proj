@@ -121,6 +121,10 @@
 		0D901FE821F1EFB4008C41B7 /* barSwCloseButton_p.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D901FE221F1EFB4008C41B7 /* barSwCloseButton_p.png */; };
 		0D901FE921F1EFB4008C41B7 /* barSwCloseButton_1_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D901FE321F1EFB4008C41B7 /* barSwCloseButton_1_dark.png */; };
 		0D9C52A422083A16000D0A83 /* iconSwFindResultT.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C52A322083A15000D0A83 /* iconSwFindResultT.Template.pdf */; };
+		0DADE741223BB24F00D40F45 /* iconTbSave.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DADE740223BB24E00D40F45 /* iconTbSave.Template.pdf */; };
+		0DADE743223BC85A00D40F45 /* iconTbRedo.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DADE742223BC85900D40F45 /* iconTbRedo.Template.pdf */; };
+		0DADE745223BC86000D40F45 /* iconTbUndo.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DADE744223BC86000D40F45 /* iconTbUndo.Template.pdf */; };
+		0DADE747223BCEB200D40F45 /* iconTbFind.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DADE746223BCEB200D40F45 /* iconTbFind.Template.pdf */; };
 		0DC0E04021F2B894004D0B02 /* iconPnRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC0E03E21F2B894004D0B02 /* iconPnRight@2x.png */; };
 		0DC0E04121F2B894004D0B02 /* iconPnRight_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC0E03F21F2B894004D0B02 /* iconPnRight_dark@2x.png */; };
 		0DC0E04421F2B8A0004D0B02 /* iconPnRight_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC0E04221F2B8A0004D0B02 /* iconPnRight_dark.png */; };
@@ -187,6 +191,9 @@
 		0DC0E0CA21F4BDCF004D0B02 /* iconSwlParentPath_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC0E0C821F4BDCF004D0B02 /* iconSwlParentPath_dark@2x.png */; };
 		0DC0E0CB21F4BDCF004D0B02 /* iconSwlParentPath@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC0E0C921F4BDCF004D0B02 /* iconSwlParentPath@2x.png */; };
 		0DCDD7AE2195343A00E47C17 /* TextCount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDD7AC2195343A00E47C17 /* TextCount.xib */; };
+		0DE5417B223E6A0400AB32C8 /* iconTbCut.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE5417A223E6A0400AB32C8 /* iconTbCut.Template.pdf */; };
+		0DE5417D223E70A500AB32C8 /* iconTbCopy.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE5417C223E70A500AB32C8 /* iconTbCopy.Template.pdf */; };
+		0DE5417F223E76AB00AB32C8 /* iconTbPaste.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE5417E223E76AB00AB32C8 /* iconTbPaste.Template.pdf */; };
 		0DEE95752201579A005DFD17 /* iconCancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE95742201579A005DFD17 /* iconCancel.png */; };
 		0DEE9577220157A4005DFD17 /* iconCancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE9576220157A4005DFD17 /* iconCancel@2x.png */; };
 		0DEE957E2204190B005DFD17 /* ContextMenu_JumpList_RightSideBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE957C2204190B005DFD17 /* ContextMenu_JumpList_RightSideBar.xib */; };
@@ -785,6 +792,10 @@
 		0D901FE221F1EFB4008C41B7 /* barSwCloseButton_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barSwCloseButton_p.png; path = 1x/barSwCloseButton_p.png; sourceTree = "<group>"; };
 		0D901FE321F1EFB4008C41B7 /* barSwCloseButton_1_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barSwCloseButton_1_dark.png; path = 1x/barSwCloseButton_1_dark.png; sourceTree = "<group>"; };
 		0D9C52A322083A15000D0A83 /* iconSwFindResultT.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconSwFindResultT.Template.pdf; path = PDF/iconSwFindResultT.Template.pdf; sourceTree = "<group>"; };
+		0DADE740223BB24E00D40F45 /* iconTbSave.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbSave.Template.pdf; path = ../PDF/iconTbSave.Template.pdf; sourceTree = "<group>"; };
+		0DADE742223BC85900D40F45 /* iconTbRedo.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbRedo.Template.pdf; path = ../PDF/iconTbRedo.Template.pdf; sourceTree = "<group>"; };
+		0DADE744223BC86000D40F45 /* iconTbUndo.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbUndo.Template.pdf; path = ../PDF/iconTbUndo.Template.pdf; sourceTree = "<group>"; };
+		0DADE746223BCEB200D40F45 /* iconTbFind.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbFind.Template.pdf; path = ../PDF/iconTbFind.Template.pdf; sourceTree = "<group>"; };
 		0DC0E03E21F2B894004D0B02 /* iconPnRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconPnRight@2x.png"; path = "2x/iconPnRight@2x.png"; sourceTree = "<group>"; };
 		0DC0E03F21F2B894004D0B02 /* iconPnRight_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconPnRight_dark@2x.png"; path = "2x/iconPnRight_dark@2x.png"; sourceTree = "<group>"; };
 		0DC0E04221F2B8A0004D0B02 /* iconPnRight_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconPnRight_dark.png; path = 1x/iconPnRight_dark.png; sourceTree = "<group>"; };
@@ -853,6 +864,9 @@
 		0DCDD7AA21942F5100E47C17 /* TextCount.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextCount.xib; path = ../App/Resource_Mac/UI/TextCount.xib; sourceTree = "<group>"; };
 		0DCDD7AD2195343A00E47C17 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/TextCount.xib; sourceTree = "<group>"; };
 		0DCDD7AF2195344300E47C17 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TextCount.xib; sourceTree = "<group>"; };
+		0DE5417A223E6A0400AB32C8 /* iconTbCut.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbCut.Template.pdf; path = ../PDF/iconTbCut.Template.pdf; sourceTree = "<group>"; };
+		0DE5417C223E70A500AB32C8 /* iconTbCopy.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbCopy.Template.pdf; path = ../PDF/iconTbCopy.Template.pdf; sourceTree = "<group>"; };
+		0DE5417E223E76AB00AB32C8 /* iconTbPaste.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconTbPaste.Template.pdf; path = ../PDF/iconTbPaste.Template.pdf; sourceTree = "<group>"; };
 		0DEE95742201579A005DFD17 /* iconCancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconCancel.png; path = 1x/iconCancel.png; sourceTree = "<group>"; };
 		0DEE9576220157A4005DFD17 /* iconCancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconCancel@2x.png"; path = "2x/iconCancel@2x.png"; sourceTree = "<group>"; };
 		0DEE95782203E306005DFD17 /* ContextMenu_JumpList_LeftSideBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContextMenu_JumpList_LeftSideBar.xib; path = ../App/Resource_Mac/UI/ContextMenu_JumpList_LeftSideBar.xib; sourceTree = "<group>"; };
@@ -1919,6 +1933,13 @@
 		0D8BDC9621F0B0FD008262BA /* mainToolbar */ = {
 			isa = PBXGroup;
 			children = (
+				0DE5417E223E76AB00AB32C8 /* iconTbPaste.Template.pdf */,
+				0DE5417A223E6A0400AB32C8 /* iconTbCut.Template.pdf */,
+				0DE5417C223E70A500AB32C8 /* iconTbCopy.Template.pdf */,
+				0DADE742223BC85900D40F45 /* iconTbRedo.Template.pdf */,
+				0DADE744223BC86000D40F45 /* iconTbUndo.Template.pdf */,
+				0DADE740223BB24E00D40F45 /* iconTbSave.Template.pdf */,
+				0DADE746223BCEB200D40F45 /* iconTbFind.Template.pdf */,
 				7EAA9A2A194DB46300D46B64 /* iconTbCircleCursorButton.Template.pdf */,
 				7EAA9A2B194DB46300D46B64 /* iconTbDiscUp.Template.pdf */,
 				7EAA9A2C194DB46300D46B64 /* iconTbDocument.Template.pdf */,
@@ -3318,6 +3339,7 @@
 				7ED82276194DBA920037D7AE /* ContextMenu_JumpList.xib in Resources */,
 				7EAA9B90194DB46400D46B64 /* iconTbSidebarLeft.Template.pdf in Resources */,
 				7EAA9B2A194DB46400D46B64 /* iconModeView@2x.png in Resources */,
+				0DE5417B223E6A0400AB32C8 /* iconTbCut.Template.pdf in Resources */,
 				0DC0E07B21F37219004D0B02 /* iconSwKeyWord_dark.png in Resources */,
 				0DC0E0C221F4BD94004D0B02 /* iconSwSearchList_dark.png in Resources */,
 				0D2FAC3721F21493002F2A44 /* iconSwBox_ProjectFolderT.Template.pdf in Resources */,
@@ -3382,6 +3404,7 @@
 				0D8BDD0721F1ED62008262BA /* iconSwTriangles1_dark.png in Resources */,
 				7EAA9AE9194DB46300D46B64 /* btnFldngArrowDown_h@2x.png in Resources */,
 				0D2FABF321F1F9EF002F2A44 /* iconSwDocument_dark@2x.png in Resources */,
+				0DE5417D223E70A500AB32C8 /* iconTbCopy.Template.pdf in Resources */,
 				7EAA9B1F194DB46400D46B64 /* iconModeKeybind.png in Resources */,
 				0D901FAF21F1EE92008C41B7 /* barSwCursorRight_d.png in Resources */,
 				7EAA9B85194DB46400D46B64 /* iconTbKeyPlay.Template.pdf in Resources */,
@@ -3450,8 +3473,10 @@
 				0DC0E0B921F4BA3F004D0B02 /* iconSwSearch_dark.png in Resources */,
 				7EAA9B0E194DB46300D46B64 /* iconEnvRemoteConnection@2x.png in Resources */,
 				0D901FD921F1EFAA008C41B7 /* barSwCloseButton_1@2x.png in Resources */,
+				0DADE741223BB24F00D40F45 /* iconTbSave.Template.pdf in Resources */,
 				7EAA9AF5194DB46300D46B64 /* btnNaviRight@2x.png in Resources */,
 				7EAA9B0C194DB46300D46B64 /* iconEnvOperation@2x.png in Resources */,
+				0DADE745223BC86000D40F45 /* iconTbUndo.Template.pdf in Resources */,
 				0D901F8A21F1EE67008C41B7 /* barSwCursorDown_h.png in Resources */,
 				7ED8230D194DBAD00037D7AE /* TextEncodingCorrect.xib in Resources */,
 				7EFFB41A1A592D3B0070975E /* SheetSaveCancelDiscard.xib in Resources */,
@@ -3459,12 +3484,14 @@
 				0D901FC121F1EECA008C41B7 /* icon_CheckBoxOn_dark@2x.png in Resources */,
 				0DC0E04021F2B894004D0B02 /* iconPnRight@2x.png in Resources */,
 				7EAA9B27194DB46400D46B64 /* iconModeTool.png in Resources */,
+				0DADE743223BC85A00D40F45 /* iconTbRedo.Template.pdf in Resources */,
 				0DC0E06921F33710004D0B02 /* iconSwTextCount.png in Resources */,
 				0D2FAC4721F21C2A002F2A44 /* iconSwBox_Remote@2x.png in Resources */,
 				7EAA9B13194DB46400D46B64 /* iconModeCodeFolding.png in Resources */,
 				7ED8233B194DBB050037D7AE /* Localizable.strings in Resources */,
 				7EAA9AE8194DB46300D46B64 /* btnFldngArrowDown_h.png in Resources */,
 				7EAA9B8F194DB46400D46B64 /* iconTbSeparateVertical.Template.pdf in Resources */,
+				0DADE747223BCEB200D40F45 /* iconTbFind.Template.pdf in Resources */,
 				0D901FB121F1EE92008C41B7 /* barSwCursorRight_dark.png in Resources */,
 				7ED82300194DBAD00037D7AE /* OpenCustom.xib in Resources */,
 				0DC0E0CA21F4BDCF004D0B02 /* iconSwlParentPath_dark@2x.png in Resources */,
@@ -3503,6 +3530,7 @@
 				0D2FAC6221F225AC002F2A44 /* iconSwlDocument@2x.png in Resources */,
 				0D2FAC2D21F2033A002F2A44 /* iconSwBox_RecentlyOpened.png in Resources */,
 				7ED82282194DBA920037D7AE /* ContextMenu_ToolButton.xib in Resources */,
+				0DE5417F223E76AB00AB32C8 /* iconTbPaste.Template.pdf in Resources */,
 				7ED8227F194DBA920037D7AE /* ContextMenu_TextNotSelected.xib in Resources */,
 				0D901FDB21F1EFAA008C41B7 /* barSwCloseButton_h@2x.png in Resources */,
 				0DC0E07721F3643F004D0B02 /* iconSwKeyWord@2x.png in Resources */,
@@ -4734,7 +4762,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 721;
+				CURRENT_PROJECT_VERSION = 731;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
@@ -4795,7 +4823,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 721;
+				CURRENT_PROJECT_VERSION = 731;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
