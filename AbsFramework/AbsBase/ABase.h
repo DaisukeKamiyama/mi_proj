@@ -491,6 +491,14 @@ const AKeyBindAction keyAction_shiftleft = 119;
 const AKeyBindAction keyAction_shiftright = 120;
 //#1154
 const AKeyBindAction keyAction_swapLetter = 121;
+//#1397
+const AKeyBindAction keyAction_findnext = 122;
+const AKeyBindAction keyAction_findprev = 123;
+//#1399
+const AKeyBindAction keyAction_caretprevparagraphstart = 124;
+const AKeyBindAction keyAction_caretnextparagraphend = 125;
+const AKeyBindAction keyAction_selectprevparagraphstart = 126;
+const AKeyBindAction keyAction_selectnextparagraphend = 127;
 
 //#688 const AItemCount keyActionItemCount = 85;
 
