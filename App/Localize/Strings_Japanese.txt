@@ -524,6 +524,12 @@ Keybind_action118 = "マクロ 9";
 Keybind_action119 = "左シフト";
 Keybind_action120 = "右シフト";
 Keybind_action121 = "左右の文字を入れ替え";
+Keybind_action122 = "次を検索";
+Keybind_action123 = "前を検索";
+Keybind_action124 = "キャレット移動（前の段落頭）";
+Keybind_action125 = "キャレット移動（次の段落末）";
+Keybind_action126 = "選択（前の段落頭まで）";
+Keybind_action127 = "選択（次の段落末まで）";
 KeyBindAction_Default = "デフォルトの動作";
 KeyBindAction_OSDefault = "OS のデフォルトの動作";
 
