@@ -1307,6 +1307,12 @@ TB_Pref = "設定";
 TB_ProhibitPopup = "ポップアップ禁止";
 TB_ShowHideFloating = "フローティング非表示";
 TB_SearchField = "検索";
+TB_Save = "保存";
+TB_UndoRedo = "アンドゥ／リドゥ";
+TB_FindDialog = "検索ダイアログ";
+TB_Copy = "コピー";
+TB_Cut = "カット";
+TB_Paste = "ペースト";
 
 WordsListLock = "表示ロック";
 
