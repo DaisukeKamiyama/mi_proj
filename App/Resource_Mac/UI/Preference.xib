@@ -1875,7 +1875,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField hidden="YES" verticalHuggingPriority="750" tag="997006" id="364">
-                                            <rect key="frame" x="17" y="110" width="108" height="14"/>
+                                            <rect key="frame" x="15" y="167" width="108" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="365">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2187,7 +2187,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" tag="424" id="705" customClass="CocoaTextField">
-                                            <rect key="frame" x="185" y="232" width="57" height="22"/>
+                                            <rect key="frame" x="430" y="258" width="57" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="706">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" hasThousandSeparators="NO" thousandSeparator="," id="707">
@@ -2203,7 +2203,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" tag="425" id="708" customClass="CocoaTextField">
-                                            <rect key="frame" x="185" y="206" width="57" height="22"/>
+                                            <rect key="frame" x="185" y="232" width="57" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="709">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" hasThousandSeparators="NO" thousandSeparator="," id="710">
@@ -2219,7 +2219,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" tag="426" id="711" customClass="CocoaTextField">
-                                            <rect key="frame" x="185" y="180" width="57" height="22"/>
+                                            <rect key="frame" x="430" y="232" width="57" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="712">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" hasThousandSeparators="NO" thousandSeparator="," id="713">
@@ -2244,7 +2244,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="448">
-                                            <rect key="frame" x="5" y="236" width="175" height="14"/>
+                                            <rect key="frame" x="250" y="262" width="175" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Right Margin :" id="453">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2253,7 +2253,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="450">
-                                            <rect key="frame" x="268" y="236" width="104" height="14"/>
+                                            <rect key="frame" x="513" y="262" width="104" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="mm" id="451">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2262,7 +2262,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="454">
-                                            <rect key="frame" x="5" y="210" width="175" height="14"/>
+                                            <rect key="frame" x="5" y="236" width="175" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Top Margin :" id="459">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2271,7 +2271,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="456">
-                                            <rect key="frame" x="268" y="210" width="104" height="14"/>
+                                            <rect key="frame" x="268" y="236" width="104" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="mm" id="457">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2279,17 +2279,8 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="460">
-                                            <rect key="frame" x="5" y="184" width="175" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bottom Margin :" id="465">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField verticalHuggingPriority="750" id="462">
-                                            <rect key="frame" x="268" y="184" width="104" height="14"/>
+                                            <rect key="frame" x="513" y="236" width="104" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="mm" id="463">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2343,17 +2334,17 @@ DQ
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="1469"/>
                                         </stepper>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980424" id="1470">
-                                            <rect key="frame" x="247" y="229" width="19" height="27"/>
+                                            <rect key="frame" x="492" y="255" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="1471"/>
                                         </stepper>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980425" id="1472">
-                                            <rect key="frame" x="247" y="203" width="19" height="27"/>
+                                            <rect key="frame" x="247" y="229" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="1473"/>
                                         </stepper>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980426" id="1474">
-                                            <rect key="frame" x="247" y="177" width="19" height="27"/>
+                                            <rect key="frame" x="492" y="229" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="1475"/>
                                         </stepper>
@@ -2394,7 +2385,7 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="PBq-Qz-vRk">
-                                            <rect key="frame" x="183" y="122" width="430" height="35"/>
+                                            <rect key="frame" x="181" y="179" width="430" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Colors set in Mode Preferences are used always regardless of Color Scheme for light/dark mode." id="JPF-xw-IHl">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2403,9 +2394,18 @@ DQ
                                             </textFieldCell>
                                         </textField>
                                         <box verticalHuggingPriority="750" boxType="separator" id="gkL-La-Sb5">
-                                            <rect key="frame" x="12" y="163" width="595" height="5"/>
+                                            <rect key="frame" x="10" y="220" width="595" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
+                                        <textField verticalHuggingPriority="750" id="460">
+                                            <rect key="frame" x="250" y="236" width="175" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bottom Margin :" id="465">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
