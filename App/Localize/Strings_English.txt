@@ -524,6 +524,12 @@ Keybind_action118 = "Macro 9";
 Keybind_action119 = "Shift Left";
 Keybind_action120 = "Shift Right";
 Keybind_action121 = "Swap Left and Right letter";
+Keybind_action122 = "Find Next";
+Keybind_action123 = "Find Previous";
+Keybind_action124 = "Move Caret ( Previous Beginning of Paragraph )";
+Keybind_action125 = "Move Caret ( Next End of Paragraph )";
+Keybind_action126 = "Select ( Previous Beginning of Paragraph )";
+Keybind_action127 = "Select ( Next End of Paragraph )";
 KeyBindAction_Default = "Default Action";
 KeyBindAction_OSDefault = "OS's Default Action";
 
