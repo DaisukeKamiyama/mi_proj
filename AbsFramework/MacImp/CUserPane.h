@@ -254,7 +254,7 @@ class CUserPane: public AObjectArrayItem
 	void					RestoreDrawLineMode();//B0000
 	void					DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& inEndPoint );//B0000
 	void					DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalPoint& inEndPoint, const ABool inClipToFrame, 
-											  const ABool inFlush, const ABool inDash, const ANumber inPenSize = 1 );//#1034
+											  const ABool inFlush, const ABool inDash, const ANumber inPenSize = 1, const AFloatNumber inAlpha = 1.0 );//#1034 #1398
 	void					DrawXorCaretRect( const ALocalRect& inLocalRect, const ABool inClipToFrame, const ABool inFlush );//#1034
 	void					TransferOffscreen() {}//win
 	void					RedrawImmediately();//B0000
