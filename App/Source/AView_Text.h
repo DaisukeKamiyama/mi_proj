@@ -111,6 +111,7 @@ class AView_Text : public AView
 	AView_LineNumber&		SPI_GetLineNumberView() { return GetLineNumberView(); }//#450
 	void					SPI_FindNext();//win
 	void					SPI_FindPrev();//win
+	void					SPI_UndoRedo( const ABool inUndo ) { UndoRedo(inUndo); }//#1389
   private:
 	AView_LineNumber&		GetLineNumberView();//#450
 	AViewID					mLineNumberViewID;//#450
@@ -168,6 +169,7 @@ class AView_Text : public AView
 	AKeyBindAction			ConvertArrowKeyForVerticalMode( const AKeyBindAction inAction );//#558
 	void					ArrowKeySelect( const AKeyBindAction inAction );
 	void					ArrowKeyEdge( const AKeyBindAction inAction, const ABool inSelect, const ABool inParagraphEdge );
+	void					ArrowKeyNextPrevEdge( const AKeyBindAction inAction, const ABool inSelect );//#1399
 	void					ArrowKeyWord( const AKeyBindAction inAction, const ABool inSelect, const ABool inLineStop );
 	void					GetSelectedText( AText& outText ) const;
 	void					DoMouseDownSingleClick( const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys,
