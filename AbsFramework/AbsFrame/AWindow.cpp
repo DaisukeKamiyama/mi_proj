@@ -211,6 +211,15 @@ ABool	AWindow::EVT_Clicked( const AControlID inID, const AModifierKeys inModifie
 	AIndex	helpAnchorIndex = mHelpAnchorArray_ControlID.Find(inID);
 	if( helpAnchorIndex != kIndex_Invalid )
 	{
+		//URL取得
+		const AText& anchorUrlText = mHelpAnchorArray_Anchor.GetTextConst(helpAnchorIndex);
+		//URLが://を含んでいたらそのままのURLでブラウザで表示
+		if( anchorUrlText.Contains("://") == true )
+		{
+			ALaunchWrapper::OpenURLWithDefaultBrowser(anchorUrlText);
+			return true;
+		}
+		//
 		AFileAcc	helpFolder;
 		AFileWrapper::GetHelpFolder("ja",helpFolder);
 		AText	url;
@@ -221,7 +230,7 @@ ABool	AWindow::EVT_Clicked( const AControlID inID, const AModifierKeys inModifie
 			{
 				url.Add('/');
 			}
-			url.AddText(mHelpAnchorArray_Anchor.GetTextConst(helpAnchorIndex));
+			url.AddText(anchorUrlText);
 			ALaunchWrapper::OpenURLWithDefaultBrowser(url);
 		}
 		return true;
