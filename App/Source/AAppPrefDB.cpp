@@ -500,7 +500,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_FloatNumber(kPrintOption_FileNameFontSize,		"PrintForm_FileFontSize",			12.0,			3.0,256.0);
 	CreateData_Text(kPrintOption_LineNumberFontName,			"PrintForm_LineFontNameUni",		"default");
 	CreateData_FloatNumber(kPrintOption_LineNumberFontSize,		"PrintForm_LineNumberFontSize",		12.0,			3.0,256.0);
-	CreateData_Number(kPrintOption_LineMargin,					"PrintForm_LineMargin",				0,				0,64);
+	CreateData_Number(kPrintOption_LineMargin,					"PrintForm_LineMargin",				0,				-64,64);//#1396
 	CreateData_Bool(kPrintOption_UsePrintFont,					"PrintForm_UsePrintFont",			false);
 	CreateData_Bool(kPrintOption_PrintPageNumber,				"PrintForm_PrintPageNumber",		true);
 	CreateData_Bool(kPrintOption_PrintFileName,					"PrintForm_PrintFileName",			true);
@@ -2088,8 +2088,8 @@ void	AAppPrefDB::Create_DefaultKeyBindTable()
 	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Enter,		keyAction_return);
 	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_BS,			keyAction_deleteprev);
 	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_DEL,		keyAction_deletenext);
-	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Up,			keyAction_selectup);
-	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Down,		keyAction_selectdown);
+	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Up,			keyAction_selectprevparagraphstart);//#1399
+	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Down,		keyAction_selectnextparagraphend);//#1399
 	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Left,		keyAction_selectprevword);//B0356
 	mKeyBindDefault.GetObject(kKBDTMMask_OptionKey+kKBDTMMask_ShiftKey).	Set(kKeyBindKey_Right,		keyAction_selectnextword);//B0356
 	//Command+Shift(MacOSXêÍóp)
