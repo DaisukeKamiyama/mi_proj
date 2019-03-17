@@ -1595,6 +1595,12 @@ segmented controlのenable/disable状態を取得
 			@"TB_Marker",
 			@"TB_SearchField",
 			@"TB_Commit",
+				@"TB_Save",//#1389
+				@"TB_UndoRedo",//#1389
+				@"TB_FindDialog",//#1389
+				@"TB_Copy",//#1400
+				@"TB_Cut",//#1400
+				@"TB_Paste",//#1400
 			nil];
 			break;
 		}
@@ -2297,8 +2303,8 @@ tag:(NSInteger)tag labelText:(const char*)labelText
 			if( [itemIdentifier compare:@"TB_SubWindow"] == NSOrderedSame )
 			{
 				return [self createToolbarItem_PopupButton:itemIdentifier width:42 tag:995027
-				image:[NSImage imageNamed:@"iconTbSubwindows"] labelText:"TB_SubWindow"];
-				//★pdfだとアイコンが表示されないので当面pngにしておく（pdf: iconTbSubwindows.Template）
+				image:[NSImage imageNamed:@"iconTbSubwindows.Template"] labelText:"TB_SubWindow"];
+				//pdfだとアイコンが表示されないので当面pngにしておく（pdf: iconTbSubwindows.Template）→解決したのでpdfにする。
 			}
 			if( [itemIdentifier compare:@"TB_Pref"] == NSOrderedSame )
 			{
@@ -2406,6 +2412,45 @@ tag:(NSInteger)tag labelText:(const char*)labelText
 				return [self createToolbarItem_Button:itemIdentifier tag:995034 
 				image:[NSImage imageNamed:@"iconTbProhibitPopup.Template"]
 				labelText:"TB_ShowHideFloating" toggleMode:YES];
+			}
+			//#1389
+			if( [itemIdentifier compare:@"TB_Save"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_Button:itemIdentifier tag:995035 
+					image:[NSImage imageNamed:@"iconTbSave.Template"]
+				labelText:"TB_Save" toggleMode:NO];
+			}
+			if( [itemIdentifier compare:@"TB_UndoRedo"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_2Buttons:itemIdentifier 
+					tag1:995036 image1:[NSImage imageNamed:@"iconTbUndo.Template"]
+					tag2:995037 image2:[NSImage imageNamed:@"iconTbRedo.Template"]
+				labelText:"TB_UndoRedo"];
+			}
+			if( [itemIdentifier compare:@"TB_FindDialog"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_Button:itemIdentifier tag:995038 
+					image:[NSImage imageNamed:@"iconTbFind.Template"]
+				labelText:"TB_FindDialog" toggleMode:NO];
+			}
+			//#1400
+			if( [itemIdentifier compare:@"TB_Copy"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_Button:itemIdentifier tag:995039 
+					image:[NSImage imageNamed:@"iconTbCopy.Template"]
+				labelText:"TB_Copy" toggleMode:NO];
+			}
+			if( [itemIdentifier compare:@"TB_Cut"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_Button:itemIdentifier tag:995040 
+					image:[NSImage imageNamed:@"iconTbCut.Template"]
+				labelText:"TB_Cut" toggleMode:NO];
+			}
+			if( [itemIdentifier compare:@"TB_Paste"] == NSOrderedSame )
+			{
+				return [self createToolbarItem_Button:itemIdentifier tag:995041 
+					image:[NSImage imageNamed:@"iconTbPaste.Template"]
+				labelText:"TB_Paste" toggleMode:NO];
 			}
 			break;
 		}
