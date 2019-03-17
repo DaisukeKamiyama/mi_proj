@@ -1017,6 +1017,59 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 			GetApp().SPI_UpdateToolbarItemValueAll();
 			break;
 		}
+		//ツールバー項目　保存 #1389
+	  case kControlID_Toolbar_Save:
+		{
+			SPI_GetCurrentFocusTextDocument().SPI_Save(false);
+			break;
+		}
+		//ツールバー項目　アンドゥ #1389
+	  case kControlID_Toolbar_Undo:
+		{
+			SPI_GetCurrentFocusTextView().SPI_UndoRedo(true);
+			break;
+		}
+		//ツールバー項目　リドゥ #1389
+	  case kControlID_Toolbar_Redo:
+		{
+			SPI_GetCurrentFocusTextView().SPI_UndoRedo(false);
+			break;
+		}
+		//ツールバー項目　検索ダイアログ #1389
+	  case kControlID_Toolbar_FindDialog:
+		{
+			GetApp().SPI_GetFindWindow().NVI_CreateAndShow();
+			GetApp().SPI_GetFindWindow().NVI_SwitchFocusToFirst();
+			break;
+		}
+		//ツールバー項目　コピー #1400
+	  case kControlID_Toolbar_Copy:
+		{
+			//キー記録中なら記録
+			GetApp().SPI_RecordKeybindAction(keyAction_Copy,GetEmptyText());
+			//
+			SPI_GetCurrentFocusTextView().SPI_Copy();
+			break;
+		}
+		//ツールバー項目　カット #1400
+	  case kControlID_Toolbar_Cut:
+		{
+			//キー記録中なら記録
+			GetApp().SPI_RecordKeybindAction(keyAction_Cut,GetEmptyText());
+			//
+			SPI_GetCurrentFocusTextView().SPI_Cut();
+			break;
+		}
+		//ツールバー項目　ペースト #1400
+	  case kControlID_Toolbar_Paste:
+		{
+			//キー記録中なら記録
+			GetApp().SPI_RecordKeybindAction(keyAction_Paste,GetEmptyText());
+			//
+			SPI_GetCurrentFocusTextView().SPI_Paste();
+			break;
+		}
+		
 		//行番号ボタン
 	  case kControlID_LineNumberButton:
 		{
