@@ -59,6 +59,8 @@ state(idle)
 	{")", {DecIndentFromNext}}
 	{"{", {IncIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#func
 	{"func",{SetVarStart(info), SetVarNextToken(funcname), ChangeState(func)}}
 	{"init",{SetVarStart(info), SetVarCurrentToken(funcname), ChangeState(func)}}
@@ -91,6 +93,8 @@ state(func)
 	{"{", {SetVarEnd(info), AddGlobalId([func], funcname, funcname, info,"","","","",5), BlockStart(funcblock), IncIndentFromNext, ChangeState(func_idle)}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent, ChangeState(idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
@@ -111,6 +115,8 @@ state(func_idle)
 	{")", {DecIndentFromNext}}
 	{"{", {IncIndentFromNext}}
 	{"}", {DecIndentFromCurrent, ChangeStateIfBlockEnd(funcblock,idle)}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#var/let
 	{"var", {SetVarNextToken(varname),AddLocalId([localvar], varname, varname, "", "")}}
 	{"let", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
@@ -137,6 +143,8 @@ state(class)
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
@@ -155,6 +163,8 @@ state(protocol)
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
@@ -173,6 +183,8 @@ state(enum)
 	{"(", {IncIndentFromNext}}
 	{")", {DecIndentFromNext}}
 	{"}", {DecIndentFromCurrent}}
+	{"[", {IncIndentFromNext}}
+	{"]", {DecIndentFromNext}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
