@@ -46,9 +46,13 @@
 　FIND-PREV : 前を検索
 　MOVECARET-PREVSTARTOFPARAGRAPH : キャレット移動（前の段落頭）
 　MOVECARET-NEXTENDOFPARAGRAPH : キャレット移動（次の段落末）
-　SELECT-PREVSTARTOFPARAGRAPH : 選択（次の段落末まで）
-　SELECT-NEXTENDOFPARAGRAPH : 選択（前の段落頭まで）
+　SELECT-PREVSTARTOFPARAGRAPH : 選択（前の段落頭まで）
+　SELECT-NEXTENDOFPARAGRAPH : 選択（次の段落末まで）
 ・ヘルプのツールコマンドTRANSLITERATE-SELECTED()の説明に引数の一覧を追加(#1391)
+・アプリケーションの環境設定の印刷オプションで設定した、行番号のフォントサイズが反映されない問題を修正(#1401)
+・テキスト情報サブウインドウで「全体」の英単語カウントが正しくないことがある問題を修正(#1403)
+・テキスト情報サブウインドウでの英単語カウント方法をより一般的な方法に修正(#1402)
+　スペース文字（スペース、タブ、改行）で区切られた部分を1単語とみなすようにしています。
 </pre>
 			
 			<h2>バージョン3.0.3b1</h2>
