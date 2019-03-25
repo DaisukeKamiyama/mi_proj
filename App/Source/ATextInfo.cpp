@@ -3079,7 +3079,7 @@ void	ATextInfo::CalcWordCount( const AText& inText, const AIndex inLineIndex )
 	AItemCount	wordCount = 0;
 	AItemCount	paragraphCount = 0;
 	//テキスト範囲内単語数・文字数取得
-	GetWordCount(inText,lineStart,len,charCount,wordCount,paragraphCount);
+	GetWordCount(inText,lineStart,len,charCount,wordCount,paragraphCount, true);//#1403
 	//結果を行情報に設定
 	mLineInfo.SetLineInfoP_CharCount(inLineIndex,charCount);
 	mLineInfo.SetLineInfoP_WordCount(inLineIndex,wordCount);
@@ -3090,7 +3090,7 @@ void	ATextInfo::CalcWordCount( const AText& inText, const AIndex inLineIndex )
 テキスト範囲内単語数・文字数計算
 */
 void	ATextInfo::GetWordCount( const AText& inText, const AIndex inStartIndex, const AItemCount inLength,
-		AItemCount& outCharCount, AItemCount& outWordCount, AItemCount& outParagraphCount ) const
+		AItemCount& outCharCount, AItemCount& outWordCount, AItemCount& outParagraphCount, const ABool inAdjustForLineInfo ) const//#1403
 {
 	AUnicodeData&	unicodeData = GetApp().NVI_GetUnicodeData();
 	AStTextPtr	textptr(inText,0,inText.GetItemCount());
@@ -3128,7 +3128,10 @@ void	ATextInfo::GetWordCount( const AText& inText, const AIndex inStartIndex, co
 			charExistAfterLineEndChar = true;
 		}
 		//単語判定
-		ABool	isAlphabet = unicodeData.IsAlphabet(ch);
+		//#1402 ABool	isAlphabet = unicodeData.IsAlphabetOrNumber(ch);
+		//#1402 It's等が1単語にならない対策として途中のアポストロフィ、ハイフン、ピリオドでアルファベットモードOFFにしないような対策も検討したが、Word等では、単純に、基本的にスペース文字か否かで単語判定をしているようなので、そちらに合わせる。（たとえば、" test[1] "も1語扱い、" ( "も1語扱いとなっており、違和感もあるが、web検索した限り、Wordの単語数カウント機能はネイティブでも広く使われているようなので、そちらに合わせる。）Wordでは日本語全角の扱いは異なる（一文字一単語）ようだが、日本語での単語数カウントは普通しないし、一文字一単語もおかしいので、スペース以外の連続を一単語とする。記号の扱い等、定められた標準はないようで、微妙にツールによって異なっている。
+		ABool	isSpace = (ch == 0x0020 || ch == 0x0009 || ch == 0x000A || ch == 0x000D);
+		ABool	isAlphabet = (isSpace == false);
 		//今回：アルファベット、その前：アルファベット以外
 		if( isAlphabet == true && alphabetMode == false )
 		{
@@ -3145,6 +3148,24 @@ void	ATextInfo::GetWordCount( const AText& inText, const AIndex inStartIndex, co
 		}
 		//次の文字
 		pos += bc;
+	}
+	//#1403
+	//LineInfoに格納する場合（テキスト情報の「全体」用）は、単語途中で折り返し発生している場合の調整を行う
+	if( inAdjustForLineInfo == true )
+	{
+		if( epos < inText.GetItemCount() )
+		{
+			//行の最後の文字がアルファベット、かつ、次の文字もアルファベットの場合は、1単語としてカウントされるべきなので、
+			//この行のカウントは-1しておく。
+			AUCS4Char	ch = 0;
+			inText.Convert1CharToUCS4(epos, ch);
+			ABool	isSpace = (ch == 0x0020 || ch == 0x0009 || ch == 0x000A || ch == 0x000D);
+			ABool	isAlphabet = (isSpace == false);
+			if( isAlphabet == true && alphabetMode == true )
+			{
+				outWordCount--;
+			}
+		}
 	}
 	//改行コード後の後に文字が存在している状態で終了なら、段落数をもう１つ追加
 	if( charExistAfterLineEndChar == true )
