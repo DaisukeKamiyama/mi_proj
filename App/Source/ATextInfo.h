@@ -376,7 +376,7 @@ class ATextInfo : public AObjectArrayItem
 	void					CalcWordCount( const AText& inText, const AIndex inLineIndex );//#142
 public:
 	void					GetWordCount( const AText& inText, const AIndex inStartIndex, const AItemCount inLength,
-							AItemCount& outCharCount, AItemCount& outWordCount, AItemCount& outParagraphCount ) const;//#142
+							AItemCount& outCharCount, AItemCount& outWordCount, AItemCount& outParagraphCount, const ABool inAdjustForLineInfo = false ) const;//#142 #1403
 	//•¶–@”FŽ¯
   public:
 	void					RecognizeSyntaxAll( const AText& inText, const AText& inFileURL, 
