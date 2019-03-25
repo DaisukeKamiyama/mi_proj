@@ -2166,6 +2166,7 @@ void	ADocument_Text::GetPrintFont_LineNumber( /*win AFont& outFont*/AText& outFo
 	GetPrintFont_Text(outFontName,outFontSize);//win
 	//win outFont = mDocPrefDB.GetData_Font(AAppPrefDB::kPrintOption_LineNumberFont_compat);
 	GetApp().NVI_GetAppPrefDB().GetData_Text(AAppPrefDB::kPrintOption_LineNumberFontName,outFontName);//win
+	outFontSize = GetApp().NVI_GetAppPrefDB().GetData_FloatNumber(AAppPrefDB::kPrintOption_LineNumberFontSize);//#1401
 }
 
 //各行行番号印刷エリアのRectを取得
