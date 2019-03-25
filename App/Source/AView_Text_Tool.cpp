@@ -1453,6 +1453,10 @@ ABool	AView_Text::InsertToolText_Command( const AText& inText, ATextIndex& ioPos
 	  case tc_MOVECARET_COLUMN:
 	  case tc_MOVECARET_STARTOFPARAGRAPH:
 	  case tc_MOVECARET_ENDOFPARAGRAPH:
+	  case tc_MOVECARET_PREVSTARTOFPARAGRAPH:
+	  case tc_MOVECARET_NEXTENDOFPARAGRAPH:
+	  case tc_SELECT_PREVSTARTOFPARAGRAPH:
+	  case tc_SELECT_NEXTENDOFPARAGRAPH:
 		{
 			InsertToolText_Command_MOVECARET(inText,ioPos,inDepth,inToolCommandID,outText);
 			break;
@@ -2554,6 +2558,27 @@ void	AView_Text::InsertToolText_Command_MOVECARET( const AText& inText, ATextInd
 			{
 				ArrowKeyEdge(keyAction_caretright,false,false);
 			}
+			break;
+		}
+		//#1399
+	  case tc_MOVECARET_PREVSTARTOFPARAGRAPH:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretup,false);
+			break;
+		}
+	  case tc_MOVECARET_NEXTENDOFPARAGRAPH:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretdown,false);
+			break;
+		}
+	  case tc_SELECT_PREVSTARTOFPARAGRAPH:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretup,true);
+			break;
+		}
+	  case tc_SELECT_NEXTENDOFPARAGRAPH:
+		{
+			ArrowKeyNextPrevEdge(keyAction_caretdown,true);
 			break;
 		}
 	  default:
