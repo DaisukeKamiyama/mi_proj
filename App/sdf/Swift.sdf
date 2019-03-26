@@ -151,6 +151,8 @@ state(class)
 	{"'",{PushState(singlequotation)}}
 	{"\"",{PushState(doublequotation)}}
 	{"\\",{EscapeNextChar}}
+	#func
+	{"func",{SetVarStart(info), SetVarNextToken(funcname), ChangeState(func)}}
 }
 
 # protocol
