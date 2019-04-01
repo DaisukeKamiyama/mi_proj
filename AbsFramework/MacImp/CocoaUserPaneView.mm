@@ -939,25 +939,21 @@ AView_xxxへkeyBindKey, modifierを渡すために定義する。keyBindAction�
 
 /**
 選択範囲を前の段落へ移動
-（CocoaUserPaneViewで使用することはないが、このキーバインドがOSで設定されている場合に、
-AView_xxxへkeyBindKey, modifierを渡すために定義する。keyBindActionは、keyAction_NOPで渡す。）
 */
 - (void)moveParagraphBackwardAndModifySelection:(id)sender
 {
 	OS_CALLBACKBLOCK_START(false);
-	GENERAL_KEYACTION(keyAction_NOP);
+	GENERAL_KEYACTION(keyAction_selectprevparagraphstart);//#1405
 	OS_CALLBACKBLOCK_END;
 }
 
 /**
 選択範囲を次の段落へ移動
-（CocoaUserPaneViewで使用することはないが、このキーバインドがOSで設定されている場合に、
-AView_xxxへkeyBindKey, modifierを渡すために定義する。keyBindActionは、keyAction_NOPで渡す。）
 */
 - (void)moveParagraphForwardAndModifySelection:(id)sender
 {
 	OS_CALLBACKBLOCK_START(false);
-	GENERAL_KEYACTION(keyAction_NOP);
+	GENERAL_KEYACTION(keyAction_selectnextparagraphend);//#1405
 	OS_CALLBACKBLOCK_END;
 }
 
