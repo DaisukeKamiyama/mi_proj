@@ -1970,9 +1970,17 @@ ABool	AFileAcc::Rename( const AText& inNewName )
 #if IMPLEMENTATION_FOR_MACOSX
 void	AFileAcc::DeleteFile()
 {
+	/*#1404 不具合の原因は不明だがFSDeleteObject()はdeprecatedなので新APIに差し替え
 	FSRef	ref;
 	if( GetFSRef(ref) == false )   return;
 	::FSDeleteObject(&ref);
+	*/
+	//パス取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	//削除
+	[[NSFileManager defaultManager] removeItemAtPath:pathstr.GetNSString() error:nil];
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
@@ -1990,9 +1998,26 @@ void	AFileAcc::DeleteFile()
 #if IMPLEMENTATION_FOR_MACOSX
 void	AFileAcc::DeleteFolder()
 {
+	/*#1404 不具合の原因は不明だがFSDeleteObject()はdeprecatedなので新APIに差し替え
 	FSRef	ref;
 	if( GetFSRef(ref) == false )   return;
 	::FSDeleteObject(&ref);
+	*/
+	//パス取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	//フォルダが空でない場合は何もせずリターン（removeItemAtPathは常にrecursive削除なので、FSDeleteObject()の動作に合わせるため）
+	NSArray*	contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pathstr.GetNSString() error:nil];
+	if( contents != nil )
+	{
+		if( [contents count] > 0 )
+		{
+			return;
+		}
+	}
+	//削除
+	[[NSFileManager defaultManager] removeItemAtPath:pathstr.GetNSString() error:nil];
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
