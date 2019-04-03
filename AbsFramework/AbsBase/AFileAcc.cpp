@@ -1975,12 +1975,7 @@ void	AFileAcc::DeleteFile()
 	if( GetFSRef(ref) == false )   return;
 	::FSDeleteObject(&ref);
 	*/
-	//パス取得
-	AText	path;
-	GetNormalizedPath(path);
-	AStCreateNSStringFromAText	pathstr(path);
-	//削除
-	[[NSFileManager defaultManager] removeItemAtPath:pathstr.GetNSString() error:nil];
+	DeleteFileOrFolder();
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
@@ -2003,11 +1998,22 @@ void	AFileAcc::DeleteFolder()
 	if( GetFSRef(ref) == false )   return;
 	::FSDeleteObject(&ref);
 	*/
+	DeleteFileOrFolder();
+}
+
+//#1404
+/**
+ファイル・フォルダ削除
+*/
+void	AFileAcc::DeleteFileOrFolder()
+{
 	//パス取得
 	AText	path;
 	GetNormalizedPath(path);
 	AStCreateNSStringFromAText	pathstr(path);
-	//フォルダが空でない場合は何もせずリターン（removeItemAtPathは常にrecursive削除なので、FSDeleteObject()の動作に合わせるため）
+	if( [pathstr.GetNSString() length] == 0 ) { _ACError("",this); return; }//pathstrの文字長が0の場合は、何もせずリターン（念の為）
+	
+	//フォルダが空でない場合は何もせずリターン（removeItemAtPathは常にrecursive削除なので、従来のFSDeleteObject()の動作に合わせる。これにより、万一コール元に（ファイル削除のつもりで違うフォルダを指定してしまっている、などの）不具合があっても内容のあるフォルダを削除することはない。）
 	NSArray*	contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pathstr.GetNSString() error:nil];
 	if( contents != nil )
 	{
