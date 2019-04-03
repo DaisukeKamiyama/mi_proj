@@ -122,6 +122,7 @@ class AFileAcc : public AObjectArrayItem
 	ABool	Rename( const AText& inNewName );
 	void	DeleteFile();
 	void	DeleteFolder();//#427
+	void	DeleteFileOrFolder();//#1404
 	void	DeleteFileOrFolderRecursive();//#427
 	ABool	CopyFileTo( AFileAcc& inDst, const ABool inInhibitOverwrite ) const;//#427
 	void	CopyFolderTo( AFileAcc& inDst, const ABool inInhibitOverwrite, const ABool inOnlyWhenNoDstFolder ) const;//#427
