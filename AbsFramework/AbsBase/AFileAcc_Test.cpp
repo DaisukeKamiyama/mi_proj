@@ -107,14 +107,8 @@ ABool	AFileAcc::UnitTest()
 	file5_2.ReadTo(file5_2text);
 	if( file5_2text.Compare(filename3new) == false )   result = false;
     if( folder5.IsFolder() == false )   result = false;
-    if( file5_2.IsFolder() == true )   result = false;
-	{
-		//★#1168 MBP MacOSX10.10だと、次のチェックでファイルが消えていないことになるので、removeFileAtPathにとりあえず置き換え。file5_2.DeleteFile();
-		AText	file5_2_path;
-		file5_2.GetPath(file5_2_path);
-		AStCreateNSStringFromAText	pathstr(file5_2_path);
-		[[NSFileManager defaultManager] removeFileAtPath:pathstr.GetNSString() handler:nil];
-	}
+	if( file5_2.IsFolder() == true )   result = false;
+	file5_2.DeleteFile();
 	//
     if( file5_2.Exist() )   result = false;
 	//#1034 file1.WriteResourceFork(filename3new);
@@ -137,8 +131,42 @@ ABool	AFileAcc::UnitTest()
 	}
 	if( found == false )   result = false;
 	
+	//
+	AFileAcc	testfolder2;
+	testfolder2.SpecifyUniqChildFile(tmp,"FileAccUnitTest2");
+	testfolder.CopyFolderTo(testfolder2, true, true);
+	
+	//#1404 ファイル削除テスト
+	folder4.DeleteFolder();
+	folder4.DeleteFile();
+	if( folder4.Exist() == false )   result = false;//ファイル削除されていたらエラー（子ファイルがあるので削除できない）
+	file4_1.DeleteFile();
+	if( file4_1.Exist() == true )   result = false;
+	folder4.DeleteFolder();
+	if( folder4.Exist() == true )   result = false;
+	//
+	folder5.DeleteFolder();
+	folder5.DeleteFile();
+	if( folder5.Exist() == false )   result = false;//ファイル削除されていたらエラー（子ファイルがあるので削除できない）
+	file5_1.DeleteFolder();
+	if( file5_1.Exist() == true )   result = false;
+	file5_2.DeleteFile();
+	if( file5_2.Exist() == true )   result = false;
+	folder5.DeleteFile();
+	if( folder5.Exist() == true )   result = false;
+	//
+	file1.DeleteFile();
+	if( file1.Exist() == true )   result = false;
+	file2.DeleteFile();
+	if( file2.Exist() == true )   result = false;
+	file3.DeleteFile();
+	if( file3.Exist() == true )   result = false;
+	
 	//テストフォルダ削除
 	testfolder.DeleteFileOrFolderRecursive();
+	if( testfolder.Exist() == true )   result = false;
+	testfolder2.DeleteFileOrFolderRecursive();
+	if( testfolder2.Exist() == true )   result = false;
 	
 	return result;
 }
