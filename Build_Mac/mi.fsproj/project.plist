@@ -13,7 +13,7 @@
 	<key>Custom Icon Path</key>
 	<string></string>
 	<key>Disk Image Name</key>
-	<string>mi3.0.3b3.dmg</string>
+	<string>mi3.0.3.dmg</string>
 	<key>Encode Format</key>
 	<string>None</string>
 	<key>Encryption Type</key>
@@ -66,6 +66,6 @@
 	<key>Volume Name</key>
 	<string>mi3.0.3</string>
 	<key>Window Frame</key>
-	<string>{{82, 23}, {600, 486}}</string>
+	<string>{{81, 23}, {600, 486}}</string>
 </dict>
 </plist>
