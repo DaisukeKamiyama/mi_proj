@@ -15028,7 +15028,16 @@ void	AView_Text::XorCrossCaretV()
 			spt.y--;
 		}
 		//キャレット描画
-		NVMC_DrawXorCaretLine(spt,ept,true,false,false,1,0.3);//#688 #1034 常にflushしない #1398
+		if( AEnvWrapper::GetOSVersion() <= kOSVersion_MacOSX_10_13 )//#1409 macOS 10.13以前はalpha指定しないようにする
+		{
+			//macOS 10.13以前の場合：alpha指定なし、点線 #1409
+			NVMC_DrawXorCaretLine(spt,ept,true,false,true,1);//#688 #1034 常にflushしない
+		}
+		else
+		{
+			//macOS 10.14以降の場合：alpha指定あり
+			NVMC_DrawXorCaretLine(spt,ept,true,false,false,1,0.3);//#688 #1034 常にflushしない #1398
+		}
 	}
 }
 
