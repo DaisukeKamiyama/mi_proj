@@ -2866,6 +2866,7 @@ void	AWindow_Text::EVTDO_UpdateMenu()
 	*/
 	//#725
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_DisplaySubTextPane,true);
+	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_DisplaySubTextPane,(mSubTextColumnDisplayed==true));//#1417
 	//#688
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ShowHideToolbar,true);
 	if( NVI_IsToolBarShown() == false )
