@@ -6211,12 +6211,19 @@ void	AView_Text::ShiftRightLeft( const ABool inRight, const ABool inInputSpaces,
 			{
 				continue;
 			}
-			//
-			indentCount += GetTextDocumentConst().SPI_GetIndentWidth();
+			//#1407 indentCount += GetTextDocumentConst().SPI_GetIndentWidth();
+			//インデントを＋１ #1407 インデント位置に吸着するようにする
+			indentCount /= GetTextDocumentConst().SPI_GetIndentWidth();
+			indentCount += 1;
+			indentCount *= GetTextDocumentConst().SPI_GetIndentWidth();
 		}
 		else
 		{
-			indentCount -= GetTextDocumentConst().SPI_GetIndentWidth();
+			//#1407 indentCount -= GetTextDocumentConst().SPI_GetIndentWidth();
+			//インデントを－１ #1407 インデント位置に吸着するようにする
+            indentCount /= GetTextDocumentConst().SPI_GetIndentWidth();
+            indentCount -= 1;
+            indentCount *= GetTextDocumentConst().SPI_GetIndentWidth();
 		}
 		AItemCount	insertedCount = GetTextDocument().SPI_Indent(lineIndex,indentCount,inInputSpaces,true);//#249
 		/*#649
