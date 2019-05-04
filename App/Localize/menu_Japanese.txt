@@ -551,7 +551,7 @@ Select current Folding Range
 Split View Vertically
 ビューを縦分割する
 Split View Horizontally
-左側にサブテキスト画面を表示する
+画面を横分割（サブテキストを表示）
 Go to Parent Header
 親見出しへ移動
 Go to Next Header at same level
