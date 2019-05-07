@@ -118,6 +118,7 @@ AView_Text::AView_Text( /*#199 AObjectArrayItem* inParent, AWindow& inWindow*/
 ,mLastCaretLocalPoint(kLocalPoint_00)//#1031
 ,mACharWidth(9)//#1186
 ,mZenkakuAWidth(18)//#1385
+,mBraceHighlighted(false),mBraceHighlightStartTextPoint1(kTextPoint_00),mBraceHighlightEndTextPoint1(kTextPoint_00),mBraceHighlightStartTextPoint2(kTextPoint_00),mBraceHighlightEndTextPoint2(kTextPoint_00)//#1406
 {
 	NVMC_SetOffscreenMode(true);//win
 	//#92 初期化はNVIDO_Init()へ移動
@@ -4452,6 +4453,39 @@ void	AView_Text::EVTDO_DoDraw()
 				AColor	color = kColor_Yellow;
 				GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kCurrentWordHighlightColor,color);//#844
 				NVMC_PaintRect(localRect,color,selectionOpacity/2.0);
+			}
+		}
+		//#1406
+		//==================括弧ハイライト==================
+		if( mBraceHighlighted == true )
+		{
+			//開始括弧ハイライト
+			if( mBraceHighlightStartTextPoint1.y == lineIndex && mBraceHighlightEndTextPoint1.y == lineIndex )
+			{
+				//ハイライト描画
+				AImageRect	imageRect = lineImageRect;
+				imageRect.left		= NVMC_GetImageXByTextPosition(textDrawData,mBraceHighlightStartTextPoint1.x);
+				imageRect.right		= NVMC_GetImageXByTextPosition(textDrawData,mBraceHighlightEndTextPoint1.x);
+				imageRect.bottom	= lineImageRect.top + GetLineHeightWithoutMargin(lineIndex);
+				ALocalRect	localRect = {0};
+				NVM_GetLocalRectFromImageRect(imageRect,localRect);
+				AColor	color = kColor_Yellow;
+				GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kFirstSelectionColor,color);
+				NVMC_PaintRect(localRect,color,selectionOpacity);
+			}
+			//終了括弧ハイライト
+			if( mBraceHighlightStartTextPoint2.y == lineIndex && mBraceHighlightEndTextPoint2.y == lineIndex )
+			{
+				//ハイライト描画
+				AImageRect	imageRect = lineImageRect;
+				imageRect.left		= NVMC_GetImageXByTextPosition(textDrawData,mBraceHighlightStartTextPoint2.x);
+				imageRect.right		= NVMC_GetImageXByTextPosition(textDrawData,mBraceHighlightEndTextPoint2.x);
+				imageRect.bottom	= lineImageRect.top + GetLineHeightWithoutMargin(lineIndex);
+				ALocalRect	localRect = {0};
+				NVM_GetLocalRectFromImageRect(imageRect,localRect);
+				AColor	color = kColor_Yellow;
+				GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Color(AModePrefDB::kFirstSelectionColor,color);
+				NVMC_PaintRect(localRect,color,selectionOpacity);
 			}
 		}
 		//#750
@@ -9093,6 +9127,67 @@ ABool	AView_Text::DoubleClickBrace( ATextPoint& ioStart, ATextPoint& ioEnd )//#6
 	ioStart = spt;
 	ioEnd = ept;
 	return true;
+}
+
+//#1406
+/**
+括弧ハイライト
+*/
+void	AView_Text::HighlightBrace()
+{
+	//キャレット位置の前の文字を取得
+	ATextIndex	caretPos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(mCaretTextPoint);
+	ATextIndex	prevPos = GetTextDocumentConst().SPI_GetPrevCharTextIndex(caretPos);
+	ATextPoint	spt = {0}, ept = {0};
+	AUChar	ch = GetTextDocumentConst().SPI_GetTextChar(prevPos);
+	//括弧開始文字ならspt, eptをキャレット位置に設定
+	if( ch == '{' || ch == '(' || ch == '[' )
+	{
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(caretPos, spt);
+		ept = spt;
+	}
+	//括弧終了文字ならspt, eptをキャレットの前の位置に設定
+	else if( ch == '}' || ch == ')' || ch == ']' )
+	{
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(prevPos, spt);
+		ept = spt;
+	}
+	//それ以外の文字なら終了（括弧ハイライト中ならハイライトを消す）
+	else
+	{
+		if( mBraceHighlighted == true )
+		{
+			mBraceHighlighted = false;
+			SPI_RefreshTextView();
+		}
+		return;
+	}
+	//括弧範囲取得
+	if( GetTextDocumentConst().SPI_GetBraceSelection(spt, ept) == true )
+	{
+		//開始括弧ハイライト範囲設定
+		mBraceHighlightEndTextPoint1 = spt;
+		ATextIndex	pos1 = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(spt);
+		pos1 = GetTextDocumentConst().SPI_GetPrevCharTextIndex(pos1);
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(pos1, mBraceHighlightStartTextPoint1);
+		//終了括弧ハイライト範囲設定
+		mBraceHighlightStartTextPoint2 = ept;
+		ATextIndex	pos2 = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(ept);
+		pos2 = GetTextDocumentConst().SPI_GetNextCharTextIndex(pos2);
+		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(pos2, mBraceHighlightEndTextPoint2);
+		//ハイライト表示
+		mBraceHighlighted = true;
+		SPI_RefreshTextView();
+	}
+	else
+	{
+		//括弧範囲が取得できないとき（バランスがとれていないとき）は終了（括弧ハイライト中ならハイライトを消す）
+		if( mBraceHighlighted == true )
+		{
+			mBraceHighlighted = false;
+			SPI_RefreshTextView();
+		}
+	}
 }
 
 
@@ -14655,6 +14750,9 @@ void	AView_Text::SetCaretTextPoint( const ATextPoint& inTextPoint )
 	//#1031
 	//キャレットのローカル位置を記憶
 	SetLastCaretLocalPoint();
+	
+	//括弧ハイライト #1406
+	HighlightBrace();
 }
 
 //#1031
