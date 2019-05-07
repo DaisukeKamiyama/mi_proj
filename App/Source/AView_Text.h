@@ -329,6 +329,13 @@ class AView_Text : public AView
 	ABool					mIdInfoCurrentArgHighlighted;
 	ATextPoint				mIdInfoCurrentArgStartTextPoint;
 	ATextPoint				mIdInfoCurrentArgEndTextPoint;
+	//括弧ハイライト #1406
+	void					HighlightBrace();
+	ABool					mBraceHighlighted;
+	ATextPoint				mBraceHighlightStartTextPoint1;
+	ATextPoint				mBraceHighlightEndTextPoint1;
+	ATextPoint				mBraceHighlightStartTextPoint2;
+	ATextPoint				mBraceHighlightEndTextPoint2;
 	//#81
 	ANumber					mAutoSaveUnsavedCheckTickCount;
 	AIndex					mCurrentCaretStateColorSlotIndex;
