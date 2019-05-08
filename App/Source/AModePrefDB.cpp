@@ -468,6 +468,9 @@ AModePrefDB::AModePrefDB( AObjectArrayItem* inParent )
 	//縦書きモード #558
 	CreateData_Bool(kVerticalMode,							"VerticalMode",						false);
 	
+	//括弧ハイライト #1406
+	CreateData_Bool(kHighlightBrace,						"HighlightBrace",					false);
+	
 	//プラグイン #994
 	CreateTableStart();
 	CreateData_TextArray(kPluginData_Id,					"PluginData_Id",					"");
