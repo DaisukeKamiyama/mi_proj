@@ -9135,6 +9135,13 @@ ABool	AView_Text::DoubleClickBrace( ATextPoint& ioStart, ATextPoint& ioEnd )//#6
 */
 void	AView_Text::HighlightBrace()
 {
+	//モード設定OFFならハイライトを消して終了
+	if( GetApp().SPI_GetModePrefDB(GetTextDocumentConst().SPI_GetModeIndex()).GetData_Bool(AModePrefDB::kHighlightBrace) == false )
+	{
+		mBraceHighlighted = false;
+		return;
+	}
+	
 	//キャレット位置の前の文字を取得
 	ATextIndex	caretPos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(mCaretTextPoint);
 	ATextIndex	prevPos = GetTextDocumentConst().SPI_GetPrevCharTextIndex(caretPos);
