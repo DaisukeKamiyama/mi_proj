@@ -786,3 +786,7 @@ Other Options
 その他のオプション
 Ruler and Line Number
 ルーラーと行番号
+Brace Highlight :
+括弧ハイライト：
+Highlight braces
+括弧をハイライトする
