@@ -786,3 +786,7 @@ Other Options
 Other Options
 Ruler and Line Number
 Ruler and Line Number
+Brace Highlight :
+Brace Highlight :
+Highlight braces
+Highlight braces
