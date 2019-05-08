@@ -948,6 +948,9 @@ class AModePrefDB : public ADataBase
 	//制御コード色 #1142
 	const static APrefID	kControlCodeColor						= 438;
 	
+	//括弧ハイライト #1406
+	const static APrefID	kHighlightBrace							= 439;
+	
 	//#349 const static APrefID	kUseSyntaxDefinitionFile		= 2001;
 	const static APrefID	kUseBuiltinSyntaxDefinitionFile	= 2002;
 	const static APrefID	kBuiltinSyntaxDefinitionName	= 2003;
