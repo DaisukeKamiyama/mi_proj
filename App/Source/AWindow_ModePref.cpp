@@ -3283,6 +3283,9 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	//縦書きモード #558
 	NVM_RegisterDBData(AModePrefDB::kVerticalMode,						true);
 	
+	//括弧ハイライト #1406
+	NVM_RegisterDBData(AModePrefDB::kHighlightBrace,					false);
+	
 	//------------------背景表示------------------
 	
 	//テキスト表示を「標準」モードと同じにする設定
