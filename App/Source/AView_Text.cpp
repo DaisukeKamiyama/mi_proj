@@ -9138,7 +9138,7 @@ void	AView_Text::HighlightBrace()
 	//モード設定OFFならハイライトを消して終了
 	if( GetApp().SPI_GetModePrefDB(GetTextDocumentConst().SPI_GetModeIndex()).GetData_Bool(AModePrefDB::kHighlightBrace) == false )
 	{
-		mBraceHighlighted = false;
+		ClearHighlightBrace();
 		return;
 	}
 	
@@ -9159,14 +9159,10 @@ void	AView_Text::HighlightBrace()
 		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(prevPos, spt);
 		ept = spt;
 	}
-	//それ以外の文字なら終了（括弧ハイライト中ならハイライトを消す）
+	//それ以外の文字ならハイライト消去して終了
 	else
 	{
-		if( mBraceHighlighted == true )
-		{
-			mBraceHighlighted = false;
-			SPI_RefreshTextView();
-		}
+		ClearHighlightBrace();
 		return;
 	}
 	//括弧範囲取得
@@ -9188,12 +9184,21 @@ void	AView_Text::HighlightBrace()
 	}
 	else
 	{
-		//括弧範囲が取得できないとき（バランスがとれていないとき）は終了（括弧ハイライト中ならハイライトを消す）
-		if( mBraceHighlighted == true )
-		{
-			mBraceHighlighted = false;
-			SPI_RefreshTextView();
-		}
+		//括弧範囲が取得できないとき（バランスがとれていないとき）はハイライト消去して終了
+		ClearHighlightBrace();
+	}
+}
+
+//#1406
+/**
+括弧ハイライトを消す
+*/
+void	AView_Text::ClearHighlightBrace()
+{
+	if( mBraceHighlighted == true )
+	{
+		mBraceHighlighted = false;
+		SPI_RefreshTextView();
 	}
 }
 
@@ -15454,6 +15459,9 @@ void	AView_Text::SetSelectTextPoint( const ATextPoint& inTextPoint, const ABool 
 	
 	//ジャンプリスト更新のため、選択更新をウインドウへ通知
 	NVM_GetWindow().OWICB_SelectionChanged(NVI_GetControlID());
+	
+	//括弧ハイライト消去 #1406
+	ClearHighlightBrace();
 }
 
 //
