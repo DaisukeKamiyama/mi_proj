@@ -974,6 +974,22 @@ void	AModePrefDB::LoadDB()//#852
 	if( preffile.Exist() == true )
 	{
 		//==================バージョン3用設定ファイルから読み込み==================
+		
+		//#1419
+		// ------------ モードdefaultデータから読み込み ------------
+		//miアップグレード後に、ユーザーデータに存在しないデータを、モードdefaultデータから読み込むようにするため。
+		
+		//「コピー元モード名」設定を取得するために一旦ユーザーデータを読み込む（GetAutoUpdateFolder()で「コピー元モード名」設定データが必要）
+		LoadFromPrefTextFile(preffile);
+		
+		//「コピー元モード」からデータをロードする
+		AFileAcc	defaultFolder;
+		GetAutoUpdateFolder(defaultFolder);
+		AFileAcc	defaultPrefFile;
+		defaultPrefFile.SpecifyChild(defaultFolder,"data/ModePreferences.mi");
+		LoadFromPrefTextFile(defaultPrefFile);
+		
+		// ------------ ユーザーデータから読み込み ------------
 		LoadFromPrefTextFile(preffile);
 	}
 	else if( v2prefFile.Exist() == true )
