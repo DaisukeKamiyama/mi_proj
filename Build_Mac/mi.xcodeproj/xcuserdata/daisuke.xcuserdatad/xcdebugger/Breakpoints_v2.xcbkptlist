@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.121428"
+            timestampString = "579182263.069073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1304"
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.121881"
+            timestampString = "579182263.070508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1294"
             endingLineNumber = "1294"
-            landmarkName = "AApp::NVIDO_Quit"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.1221811"
+            timestampString = "579182263.070933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1300"
@@ -973,7 +973,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "752"
             endingLineNumber = "752"
-            landmarkName = "AChildProcessManager::DoPipeDeleted_SCM( const AObjectID inPipeObjectID, const AText&amp; inText )"
+            landmarkName = "AChildProcessManager::DisplayTexCompileResult( const AFileAcc&amp; inDocFile, const ABool inPreview )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1005,7 +1005,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "738"
             endingLineNumber = "738"
-            landmarkName = "AChildProcessManager::DoPipeDeleted_SCM( const AObjectID inPipeObjectID, const AText&amp; inText )"
+            landmarkName = "AChildProcessManager::DisplayTexCompileResult( const AFileAcc&amp; inDocFile, const ABool inPreview )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1021,7 +1021,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "773"
             endingLineNumber = "773"
-            landmarkName = "AChildProcessManager::ExecuteGeneralSyncCommand( const AText&amp; inProcessPath, const ATextArray&amp; inArgArray, const AText&amp; inChildDirectoryPath, AText&amp; outText, const ANumber inTimerSecond )"
+            landmarkName = "AChildProcessManager::ExecuteSCMCommand( const AText&amp; inProcessPath, const ATextArray&amp; inArgArray, const AText&amp; inChildDirectoryPath, const ASCMCommandType inCommandType, const AFileAcc&amp; inFolderOrFile, const ADocumentID inRequestorDocumentID )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1286,7 +1286,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../AbsFramework/AbsBase/ABaseFunction.cpp"
-            timestampString = "537099884.119274"
+            timestampString = "579200935.843189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
@@ -1298,11 +1298,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../AbsFramework/AbsBase/ABaseFunction.cpp"
-            timestampString = "537099884.11973"
+            timestampString = "579200935.843361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "192"
@@ -1314,11 +1314,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../AbsFramework/AbsBase/ABaseFunction.cpp"
-            timestampString = "537099884.120005"
+            timestampString = "579200935.843429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
@@ -1446,13 +1446,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../AbsFramework/AbsBase/AFileAcc.cpp"
-            timestampString = "480090622.808397"
+            timestampString = "579237272.731218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2700"
             endingLineNumber = "2700"
-            landmarkName = "AFileAcc::IsAppleScriptFile()"
-            landmarkType = "5">
+            landmarkName = "AFileAcc::GetCreatorType( OSType&amp; outCreator, OSType&amp; outType )"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1478,12 +1478,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.123716"
+            timestampString = "579182263.072276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9442"
             endingLineNumber = "9442"
-            landmarkName = "AApp::SPNVI_CreateDiffTargetDocument( const AText&amp; inTitle, const AText&amp; inDocumentText, const AModeIndex inModeIndex, const AText&amp; inTextEncodingName, const AIndex inInitialSelectStart, const AIndex inInitialSelectEnd, const ABool inSelect, const ABool inSelectableTab, const AWindowID inCreateTabInWindowID )"
+            landmarkName = "AApp::SPNVI_CreateDocumentFromRemoteFile( const AObjectID inRemoteConnectionObjectID, const AText&amp; inRemoteFileURL, const AText&amp; inDocumentText )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1734,7 +1734,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.124444"
+            timestampString = "579182263.0727921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16715"
@@ -1750,12 +1750,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.124897"
+            timestampString = "579182263.0731781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16227"
             endingLineNumber = "16227"
-            landmarkName = "AApp::SPI_GetLuaConsoleDocumentID()"
+            landmarkName = "AApp::SPI_GetTempFolder( AFileAcc&amp; outTempFolder )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2091,7 +2091,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "AChildProcessPipe::NVIDO_ThreadMain()"
+            landmarkName = "AChildProcessPipe::AChildProcessPipe( const HANDLE inHProcess, const HANDLE inHThread, const HANDLE inHReadPipe )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2198,12 +2198,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.125739"
+            timestampString = "579182263.073934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9202"
             endingLineNumber = "9202"
-            landmarkName = "AApp::SPI_FindRemoteConnectionByRemoteURL( const AText&amp; inRemoteURL )"
+            landmarkName = "AApp::GetToolCommandFindOptionFromFindParameter( const AFindParameter&amp; inParameter, const ABool inMultiFileFind, AText&amp; outText )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2214,13 +2214,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../App/Source/AApp.cpp"
-            timestampString = "537098548.126096"
+            timestampString = "579182263.074262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9279"
             endingLineNumber = "9279"
-            landmarkName = "AApp::SPI_RequestOpenFileToRemoteConnection( const AText&amp; inRemoteFileURL, const ABool inAllowNoFile )"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
