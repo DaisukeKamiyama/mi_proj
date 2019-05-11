@@ -551,7 +551,6 @@
 		7EC91D861AF1081100BE0D26 /* AMacLegacyPref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EC67D81194D9E9500EC50CC /* AMacLegacyPref.cpp */; };
 		7ECD41D51997939C0051B7EC /* EastAsianWidth.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7ECD41D21997939C0051B7EC /* EastAsianWidth.txt */; };
 		7ECD41D61997939C0051B7EC /* UnicodeData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7ECD41D31997939C0051B7EC /* UnicodeData.txt */; };
-		7ECD41D71997939C0051B7EC /* UnicodeTermsOfUse.html in Resources */ = {isa = PBXBuildFile; fileRef = 7ECD41D41997939C0051B7EC /* UnicodeTermsOfUse.html */; };
 		7ED0568F194D9DE200634F42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED0568E194D9DE200634F42 /* Cocoa.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7ED47CDA1ADA14540085C2F3 /* IndexWindowDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ED47CD91ADA14540085C2F3 /* IndexWindowDocument.mm */; };
 		7ED821F9194DB7E50037D7AE /* mi.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 7ED821F8194DB7E50037D7AE /* mi.sdef */; };
@@ -1536,7 +1535,6 @@
 		7EC67E3C194D9E9500EC50CC /* TextDocument.mm */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.cpp.objcpp; name = TextDocument.mm; path = ../App/Source/TextDocument.mm; sourceTree = "<group>"; };
 		7ECD41D21997939C0051B7EC /* EastAsianWidth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EastAsianWidth.txt; sourceTree = "<group>"; };
 		7ECD41D31997939C0051B7EC /* UnicodeData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UnicodeData.txt; sourceTree = "<group>"; };
-		7ECD41D41997939C0051B7EC /* UnicodeTermsOfUse.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UnicodeTermsOfUse.html; sourceTree = "<group>"; };
 		7ED0568B194D9DE200634F42 /* mi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED0568E194D9DE200634F42 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7ED47CD91ADA14540085C2F3 /* IndexWindowDocument.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IndexWindowDocument.mm; path = ../App/Source/IndexWindowDocument.mm; sourceTree = "<group>"; };
@@ -3065,7 +3063,6 @@
 			children = (
 				7ECD41D21997939C0051B7EC /* EastAsianWidth.txt */,
 				7ECD41D31997939C0051B7EC /* UnicodeData.txt */,
-				7ECD41D41997939C0051B7EC /* UnicodeTermsOfUse.html */,
 			);
 			name = data;
 			path = ../AbsFramework/data;
@@ -3598,7 +3595,6 @@
 				7EAA9AEA194DB46300D46B64 /* btnFldngArrowEnd.png in Resources */,
 				0D5F343221FAF17E00BA34CA /* iconEditColumnT.Template.pdf in Resources */,
 				7EAA9B22194DB46400D46B64 /* iconModeMode@2x.png in Resources */,
-				7ECD41D71997939C0051B7EC /* UnicodeTermsOfUse.html in Resources */,
 				7EAA9AF3194DB46300D46B64 /* btnNaviLeft@2x.png in Resources */,
 				7EAA9AF0194DB46300D46B64 /* btnFldngArrowRight_h.png in Resources */,
 				0DC0E04521F2B8A0004D0B02 /* iconPnRight.png in Resources */,

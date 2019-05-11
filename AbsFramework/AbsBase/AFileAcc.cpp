@@ -1567,45 +1567,56 @@ void	AFileAcc::GetChildren( AObjectArray<AFileAcc>& outChilds ) const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::ReadTo( AText &outText/*#1034, ABool inResourceFork*/ ) const
 {
-	ABool	result = false;
+	__block	ABool	result = false;//#1422
 	outText.DeleteAll();
 	
-	//
-	NSFileHandle* fh = nil;
-	@try 
-	{
-		//パス取得
-		AText	path;
-		GetNormalizedPath(path);
-		AStCreateNSStringFromAText	pathstr(path);
-		//ファイルハンドラ取得
-		fh = [NSFileHandle fileHandleForReadingAtPath:pathstr.GetNSString()];
-		if( fh != nil )
+	//File Coordinator生成 #1422
+	NSFileCoordinator*	fileCoordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+	//File Coordinatorにてファイル読み込み #1422
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString() isDirectory:NO];
+	NSError *anError = nil;
+	[fileCoordinator coordinateReadingItemAtURL:url options:0 error:&anError byAccessor:^(NSURL *newURL)
 		{
-			//NSDataに読み込み
-			NSData* data = [fh readDataToEndOfFile];
-			if( data != nil )
+			//
+			NSFileHandle* fh = nil;
+			@try 
 			{
-				//outTextへ格納
-				AByteCount	len = [data length];
-				if( len > 0 )
+				//パス取得
+				NSString*	newPath = newURL.path;//#1422 File Coordinatorで取得したpathへ書き込むようにする。
+				//ファイルハンドラ取得
+				fh = [NSFileHandle fileHandleForReadingAtPath:newPath];//#1422
+				if( fh != nil )
 				{
-					outText.Reserve(0,len);
-					outText.SetFromTextPtr((const AConstUCharPtr)[data bytes],len);
-					result = true;
+					//NSDataに読み込み
+					NSData* data = [fh readDataToEndOfFile];
+					if( data != nil )
+					{
+						//outTextへ格納
+						AByteCount	len = [data length];
+						if( len > 0 )
+						{
+							outText.Reserve(0,len);
+							outText.SetFromTextPtr((const AConstUCharPtr)[data bytes],len);
+							result = true;
+						}
+					}
 				}
 			}
-		}
-	}
-	@catch(NSException *theException)
-	{
-		_ACError("AFileAcc::ReadTo() @catch",this);
-	}
-	//ファイルハンドラクローズ
-	if( fh != nil )
-	{
-		[fh closeFile];
-	}
+			@catch(NSException *theException)
+			{
+				_ACError("AFileAcc::ReadTo() @catch",this);
+			}
+			//ファイルハンドラクローズ
+			if( fh != nil )
+			{
+				[fh closeFile];
+			}
+	}];
+	//File Coordinator解放 #1422
+	[fileCoordinator release];
 	return result;
 	
 	/*#1034
@@ -1690,45 +1701,56 @@ ABool	AFileAcc::ReadTo( AText &outText, ABool inResourceFork ) const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::WriteFile( const AText& inText, AFileError& outError ) const
 {
-	ABool	result = false;
+	__block ABool	result = false;//#1422
 	outError = kFileError_General;
 	
-	//
-	NSFileHandle* fh;
-	@try 
-	{
-		//パス取得
-		AText	path;
-		GetNormalizedPath(path);
-		AStCreateNSStringFromAText	pathstr(path);
-		//ファイルハンドラ取得
-		fh = [NSFileHandle fileHandleForWritingAtPath:pathstr.GetNSString()];
-		if( fh != nil )
+	//File Coordinator生成 #1422
+	NSFileCoordinator*	fileCoordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+	//File Coordinatorにてファイル書き込み #1422
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString() isDirectory:NO];
+	NSError *anError = nil;
+	[fileCoordinator coordinateWritingItemAtURL:url options:NSFileCoordinatorWritingForReplacing error:&anError byAccessor:^(NSURL *newURL)
 		{
-			//NSData作成
-			AStTextPtr	textptr(inText,0,inText.GetItemCount());
-			NSData*	data = [NSData dataWithBytes:textptr.GetPtr() length:textptr.GetByteCount()];
-			if( data != nil )
+			//
+			NSFileHandle* fh;
+			@try 
 			{
-				//ファイルに書き込み
-				[fh writeData:data];
-				//サイズ設定
-				[fh truncateFileAtOffset:textptr.GetByteCount()];
-				//結果OK
-				result = true;
+				//パス取得
+				NSString*	newPath = newURL.path;//#1422 File Coordinatorで取得したpathへ書き込むようにする。
+				//ファイルハンドラ取得
+				fh = [NSFileHandle fileHandleForWritingAtPath:newPath];//#1422
+				if( fh != nil )
+				{
+					//NSData作成
+					AStTextPtr	textptr(inText,0,inText.GetItemCount());
+					NSData*	data = [NSData dataWithBytes:textptr.GetPtr() length:textptr.GetByteCount()];
+					if( data != nil )
+					{
+						//ファイルに書き込み
+						[fh writeData:data];
+						//サイズ設定
+						[fh truncateFileAtOffset:textptr.GetByteCount()];
+						//結果OK
+						result = true;
+					}
+				}
 			}
-		}
-	}
-	@catch(NSException *theException)
-	{
-		//_AError("AFileAcc::WriteFile() @catch",this);
-		outError = kFileError_DiskFull;
-	}
-	//ファイルハンドラクローズ
-	if( fh != nil )
-	{
-		[fh closeFile];
-	}
+			@catch(NSException *theException)
+			{
+				//_AError("AFileAcc::WriteFile() @catch",this);
+				outError = kFileError_DiskFull;
+			}
+			//ファイルハンドラクローズ
+			if( fh != nil )
+			{
+				[fh closeFile];
+			}
+	}];
+	//File Coordinator解放 #1422
+	[fileCoordinator release];
 	return result;
 	
 	
