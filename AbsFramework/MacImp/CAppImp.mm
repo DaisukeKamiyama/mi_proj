@@ -1512,6 +1512,7 @@ CDocImp&	CAppImp::GetDocImpByID( const AObjectID inDocImpID )
 コンストラクタ
 */
 CDocImp::CDocImp( AObjectArrayItem*	inParent ):AObjectArrayItem(inParent), mNSDocument(nil)
+,mFilePresenter(nil)//#1422
 {
 }
 
@@ -1520,6 +1521,12 @@ CDocImp::CDocImp( AObjectArrayItem*	inParent ):AObjectArrayItem(inParent), mNSDo
 */
 CDocImp::~CDocImp()
 {
+	//File Presenterがあれば解放する #1422
+	if( mFilePresenter != nil )
+	{
+		[mFilePresenter release];
+	}
+	//
 	if( mNSDocument != nil )
 	{
 		[mNSDocument close];
@@ -1535,4 +1542,103 @@ void	CDocImp::SetDocumentID( const ADocumentID inDocumentID )
 	[mNSDocument setDocumentID:inDocumentID];
 }
 
+//#1422
+/**
+ファイル設定時処理
+*/
+void	CDocImp::FileSpecified( const AFileAcc& inFileAcc )
+{
+	//既存のFile Presenterがあれば解放する
+	if( mFilePresenter != nil )
+	{
+		[mFilePresenter release];
+	}
+	//File Presenter生成
+	AText	path;
+	inFileAcc.GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString() isDirectory:NO];
+	mFilePresenter = [[CDocumentFilePresenter alloc] initWithURL:url];
+}
 
+//#1422
+/**
+File Presenter
+*/
+@implementation CDocumentFilePresenter
+
+/**
+コンストラクタ
+*/
+- (id) initWithURL:(NSURL*)url
+{
+	//継承処理実行
+	self = [super init];
+	if( self )
+	{
+		//オペレーションキュー生成
+		self->mQueue = [NSOperationQueue new];
+		//対象ファイルURL記憶
+		self->mFileURL = [url retain];
+		
+		//NSFileCoordinatorに登録
+		[NSFileCoordinator addFilePresenter:self];
+	}
+	return self;
+}
+
+/**
+デストラクタ
+*/
+- (void)dealloc
+{
+	//NSFileCoordinatorから登録解除
+	[NSFileCoordinator removeFilePresenter:self];
+	
+	//オペレーションキュー解放
+	[self->mQueue release];
+	//対象ファイルURL解放
+	[self->mFileURL release];
+	
+	//継承処理実行
+	[super dealloc];
+}
+
+/**
+対象ファイルURLを返す
+*/
+- (NSURL*) presentedItemURL
+{
+	return self->mFileURL;
+}
+
+/**
+キューを返す
+*/
+- (NSOperationQueue*) presentedItemOperationQueue
+{
+	return self->mQueue;
+}
+
+/**
+ファイル変更通知受信時処理
+*/
+- (void)presentedItemDidChange
+{
+	//NSLog(@"presentedItemDidChange");
+	//NSLog(self->mFileURL.path);
+	
+	//内部イベントをポスト
+	AText	path;
+	ACocoa::SetTextFromNSString(self->mFileURL.path, path);
+	ABase::PostToMainInternalEventQueue(kInternalEvent_FileChangedNotification,kObjectID_Invalid,0,path,GetEmptyObjectIDArray());
+}
+
+/*
+- (void)presentedItemDidGainVersion:(NSFileVersion *)version
+{
+	NSLog(@"%d", version.conflict);
+}
+*/
+
+@end
