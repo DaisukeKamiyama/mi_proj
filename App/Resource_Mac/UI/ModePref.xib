@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -303,7 +303,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="5gd-DX-1pf">
-                                            <rect key="frame" x="22" y="235" width="168" height="14"/>
+                                            <rect key="frame" x="23" y="266" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Vertical Draw :" id="3iI-Hk-bdr">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -312,7 +312,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button tag="437" id="5YT-1n-FNB" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="192" y="230" width="384" height="24"/>
+                                            <rect key="frame" x="193" y="261" width="384" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Draw Vertical (Available with Mac OS X 10.7 or later)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="469-3Z-1qw">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -343,7 +343,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="3924">
-                                            <rect key="frame" x="195" y="291" width="443" height="21"/>
+                                            <rect key="frame" x="195" y="235" width="443" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file." id="3925">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -352,7 +352,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="3917">
-                                            <rect key="frame" x="22" y="298" width="169" height="14"/>
+                                            <rect key="frame" x="22" y="242" width="169" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="¥/Backslash Display :" id="3918">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -361,11 +361,11 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView id="cco-9Z-UGr">
-                                            <rect key="frame" x="187" y="253" width="433" height="40"/>
+                                            <rect key="frame" x="187" y="216" width="433" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button tag="170" id="3916" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="9" y="18" width="384" height="24"/>
+                                                    <rect key="frame" x="9" y="-1" width="116" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="&quot;¥&quot;" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3919">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -376,7 +376,7 @@
                                                     </connections>
                                                 </button>
                                                 <button tag="7105" id="3921" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="9" y="-2" width="383" height="25"/>
+                                                    <rect key="frame" x="158" y="-2" width="116" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="&quot;\&quot;" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3922">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -386,7 +386,7 @@
                                             </subviews>
                                         </customView>
                                         <textField hidden="YES" verticalHuggingPriority="750" tag="997001" id="1378">
-                                            <rect key="frame" x="42" y="169" width="108" height="14"/>
+                                            <rect key="frame" x="42" y="136" width="108" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1379">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -504,7 +504,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <box verticalHuggingPriority="750" boxType="separator" id="2897">
-                                            <rect key="frame" x="20" y="222" width="662" height="5"/>
+                                            <rect key="frame" x="20" y="205" width="662" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <button verticalHuggingPriority="750" tag="132" id="1676">
@@ -589,7 +589,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" tag="7103" id="1882">
-                                            <rect key="frame" x="193" y="191" width="231" height="28"/>
+                                            <rect key="frame" x="193" y="174" width="231" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Open Normal Mode Preferences" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1883">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -722,6 +722,23 @@
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button tag="439" id="nUe-7T-ucd" customClass="CocoaTabSelectButton">
+                                            <rect key="frame" x="194" y="287" width="330" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Highlight braces" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="EkX-JG-OUG">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </buttonCell>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" id="WGN-Ou-baI">
+                                            <rect key="frame" x="0.0" y="292" width="191" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Brace Highlight :" id="0yW-5I-Jym">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
