@@ -116,6 +116,13 @@ void	ADocument::NVI_SpecifyFile( const AFileAcc& inFileAcc )
 	}
 	*/
 	AApplication::GetApplication().NVI_UpdateTitleBar();
+	
+	//#1422
+	//ファイル設定時処理（File Presenter登録）
+	if( mDocImpID != kObjectID_Invalid )
+	{
+		AApplication::GetApplication().GetImp().GetDocImpByID(mDocImpID).FileSpecified(inFileAcc);
+	}
 }
 
 /**
