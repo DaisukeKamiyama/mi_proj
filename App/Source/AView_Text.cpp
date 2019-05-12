@@ -9138,67 +9138,74 @@ void	AView_Text::HighlightBrace()
 	//モード設定OFFならハイライトを消して終了
 	if( GetApp().SPI_GetModePrefDB(GetTextDocumentConst().SPI_GetModeIndex()).GetData_Bool(AModePrefDB::kHighlightBrace) == false )
 	{
-		ClearHighlightBrace();
+		SetHighlightBraceVisible(false);
 		return;
 	}
 	
-	//キャレット位置の前の文字を取得
-	ATextIndex	caretPos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(mCaretTextPoint);
-	ATextIndex	prevPos = GetTextDocumentConst().SPI_GetPrevCharTextIndex(caretPos);
 	ATextPoint	spt = {0}, ept = {0};
-	AUChar	ch = GetTextDocumentConst().SPI_GetTextChar(prevPos);
+	
+	//キャレット位置の前の文字（＝括弧文字位置）を取得
+	ATextIndex	caretPos = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(mCaretTextPoint);
+	ATextIndex	kakkoPos = GetTextDocumentConst().SPI_GetPrevCharTextIndex(caretPos);
+	if( kakkoPos < 0 || kakkoPos >= GetTextDocumentConst().SPI_GetTextLength() )
+	{
+		SetHighlightBraceVisible(false);
+		return;
+	}
+	AUChar	ch = GetTextDocumentConst().SPI_GetTextChar(kakkoPos);
 	//括弧開始文字ならspt, eptをキャレット位置に設定
 	if( ch == '{' || ch == '(' || ch == '[' )
 	{
-		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(caretPos, spt);
-		ept = spt;
+		spt = ept = GetTextDocumentConst().SPI_GetTextPointFromTextIndex(caretPos);
 	}
-	//括弧終了文字ならspt, eptをキャレットの前の位置に設定
+	//括弧終了文字ならspt, eptを括弧文字位置に設定
 	else if( ch == '}' || ch == ')' || ch == ']' )
 	{
-		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(prevPos, spt);
-		ept = spt;
+		spt = ept = GetTextDocumentConst().SPI_GetTextPointFromTextIndex(kakkoPos);
 	}
 	//それ以外の文字ならハイライト消去して終了
 	else
 	{
-		ClearHighlightBrace();
+		SetHighlightBraceVisible(false);
 		return;
 	}
+	//括弧文字位置がコードでなければハイライト消去して終了
+	ATextPoint	kakkoPoint = GetTextDocumentConst().SPI_GetTextPointFromTextIndex(kakkoPos);
+	if( GetTextDocumentConst().SPI_IsCodeChar(kakkoPoint) == false )
+	{
+		SetHighlightBraceVisible(false);
+		return;
+	}
+	
 	//括弧範囲取得
 	if( GetTextDocumentConst().SPI_GetBraceSelection(spt, ept) == true )
 	{
 		//開始括弧ハイライト範囲設定
+		mBraceHighlightStartTextPoint1 = GetTextDocumentConst().SPI_GetPrevCharTextPoint(spt);
 		mBraceHighlightEndTextPoint1 = spt;
-		ATextIndex	pos1 = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(spt);
-		pos1 = GetTextDocumentConst().SPI_GetPrevCharTextIndex(pos1);
-		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(pos1, mBraceHighlightStartTextPoint1);
 		//終了括弧ハイライト範囲設定
 		mBraceHighlightStartTextPoint2 = ept;
-		ATextIndex	pos2 = GetTextDocumentConst().SPI_GetTextIndexFromTextPoint(ept);
-		pos2 = GetTextDocumentConst().SPI_GetNextCharTextIndex(pos2);
-		GetTextDocumentConst().SPI_GetTextPointFromTextIndex(pos2, mBraceHighlightEndTextPoint2);
+		mBraceHighlightEndTextPoint2 = GetTextDocumentConst().SPI_GetNextCharTextPoint(ept);
 		//ハイライト表示
-		mBraceHighlighted = true;
-		SPI_RefreshTextView();
+		SetHighlightBraceVisible(true);
+		return;
 	}
-	else
-	{
-		//括弧範囲が取得できないとき（バランスがとれていないとき）はハイライト消去して終了
-		ClearHighlightBrace();
-	}
+	//括弧範囲が取得できないとき、バランスがとれていないとき等はハイライト消去して終了
+	SetHighlightBraceVisible(false);
 }
 
 //#1406
 /**
-括弧ハイライトを消す
+括弧ハイライトを表示・消去する
 */
-void	AView_Text::ClearHighlightBrace()
+void	AView_Text::SetHighlightBraceVisible( const ABool inVisible )
 {
-	if( mBraceHighlighted == true )
+	if( mBraceHighlighted != inVisible )
 	{
-		mBraceHighlighted = false;
-		SPI_RefreshTextView();
+		mBraceHighlighted = inVisible;
+		//ハイライトする（していた）行を再描画
+		SPI_RefreshLines(mBraceHighlightStartTextPoint1.y, mBraceHighlightEndTextPoint1.y);
+		SPI_RefreshLines(mBraceHighlightStartTextPoint2.y, mBraceHighlightEndTextPoint2.y);
 	}
 }
 
@@ -15461,7 +15468,7 @@ void	AView_Text::SetSelectTextPoint( const ATextPoint& inTextPoint, const ABool 
 	NVM_GetWindow().OWICB_SelectionChanged(NVI_GetControlID());
 	
 	//括弧ハイライト消去 #1406
-	ClearHighlightBrace();
+	SetHighlightBraceVisible(false);
 }
 
 //
