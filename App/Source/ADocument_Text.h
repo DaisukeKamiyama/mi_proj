@@ -582,7 +582,21 @@ class ADocument_Text : public ADocument
 	void					SPI_GetCheckerPluginWarnings( const ANumber inParagraphNumber, 
 													  ANumberArray& outColIndexArray, 
 													  ATextArray& outTitleTextArray, ATextArray& outDetailTextArray,
-													  AColorArray& outColorArray, ABoolArray& outDisplayInTextViewArray ) const;//#992
+														  AColorArray& outColorArray, ABoolArray& outDisplayInTextViewArray ) const;//#992
+	//#1406
+    ATextPoint				SPI_GetPrevCharTextPoint( const ATextPoint& inTextPoint ) const
+    {
+		ATextIndex	pos = SPI_GetTextIndexFromTextPoint(inTextPoint);
+		ATextIndex	prevPos = SPI_GetPrevCharTextIndex(pos);
+		return SPI_GetTextPointFromTextIndex(prevPos);
+	}
+	//#1406
+	ATextPoint				SPI_GetNextCharTextPoint( const ATextPoint& inTextPoint ) const
+	{
+		ATextIndex	pos = SPI_GetTextIndexFromTextPoint(inTextPoint);
+		ATextIndex	nextPos = SPI_GetNextCharTextIndex(pos);
+		return SPI_GetTextPointFromTextIndex(nextPos);
+	}
   private:
 	ABool					GetKeywordToken( AIndex& ioPos, const AIndex inEndPos, AText& outToken, AIndex& outTokenStartPos,
 							const AIndex inSyntaxPartIndex ) const;
@@ -603,6 +617,13 @@ class ADocument_Text : public ADocument
   public:
 	AIndex					SPI_GetTextIndexFromTextPoint( const ATextPoint& inPoint ) const;
 	void					SPI_GetTextPointFromTextIndex( const AIndex inTextPosition, ATextPoint& outPoint, const ABool inPreferNextLine = false ) const;
+	//#1406
+	ATextPoint				SPI_GetTextPointFromTextIndex( const AIndex inTextPosition ) const
+	{
+		ATextPoint	textPoint = {0};
+		SPI_GetTextPointFromTextIndex(inTextPosition,textPoint);
+		return textPoint;
+	}
 	
 	//ÉhÉLÉÖÉÅÉìÉgèÓïÒê›íËÅ^éÊìæ
   public:
