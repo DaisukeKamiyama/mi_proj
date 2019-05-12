@@ -4730,6 +4730,19 @@ void	AApp::EVTDO_DoInternalEvent( ABool& outUpdateMenu )
 						}
 						break;
 					}
+					//#1422
+					//File Presenterファイル変更通知受信時
+				  case kInternalEvent_FileChangedNotification:
+					{
+						AFileAcc	file;
+						file.Specify(text);
+						ADocumentID	docID = GetApp().NVI_GetDocumentIDByFile(kDocumentType_Text,file);
+						if( docID != kObjectID_Invalid )
+						{
+							SPI_GetTextDocumentByID(docID).SPI_CheckEditByOtherApp();
+						}
+						break;
+					}
 				  default:
 					{
 						//処理なし

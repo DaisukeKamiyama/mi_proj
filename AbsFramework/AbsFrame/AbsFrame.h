@@ -95,6 +95,7 @@ const AViewType		kViewType_TextPanel			= 5010;//#725
 InternalEvent
 */
 const AInternalEventType	kInternalEvent_Curl				= 50;//#427
+const AInternalEventType	kInternalEvent_FileChangedNotification	= 51;//#1422
 
 //#232
 typedef ADataID		ATextArrayMenuID;

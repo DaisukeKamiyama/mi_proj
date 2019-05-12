@@ -31,6 +31,9 @@ CAppImp.h
 //#1034
 typedef NSOpenPanel* AFileOpenDialogRef;
 
+//#1422
+@class CDocumentFilePresenter;
+
 //#1078
 #pragma mark ===========================
 #pragma mark [ƒNƒ‰ƒX]CDocImp
@@ -49,8 +52,10 @@ class CDocImp: public AObjectArrayItem
 	void					SetNSDocument( NSDocument* inNSDocument ) { mNSDocument = inNSDocument; }
 	NSDocument*				GetNSDocument() { return mNSDocument; }//#1034
 	void					SetDocumentID( const ADocumentID inDocumentID );//#1034
+	void					FileSpecified( const AFileAcc& inFileAcc );//#1422
   private:
 	NSDocument*							mNSDocument;
+	CDocumentFilePresenter*				mFilePresenter;//#1422
 };
 
 #pragma mark ===========================
@@ -250,4 +255,17 @@ class CAppImp: public AObjectArrayItem
   private:
 	AObjectArrayIDIndexed<CDocImp>		mDocImpArray;
 };
+
+//#1422
+/**
+File Presenter
+*/
+@interface CDocumentFilePresenter : NSObject <NSFilePresenter>
+{
+	NSOperationQueue* mQueue;
+	NSURL* mFileURL;
+}
+
+- (id) initWithURL:(NSURL*)url;
+@end
 
