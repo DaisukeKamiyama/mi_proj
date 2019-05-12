@@ -331,6 +331,7 @@ class AView_Text : public AView
 	ATextPoint				mIdInfoCurrentArgEndTextPoint;
 	//括弧ハイライト #1406
 	void					HighlightBrace();
+	void					SetHighlightBraceVisible( const ABool inVisible );//#1406
 	ABool					mBraceHighlighted;
 	ATextPoint				mBraceHighlightStartTextPoint1;
 	ATextPoint				mBraceHighlightEndTextPoint1;
