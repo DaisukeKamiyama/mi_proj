@@ -790,3 +790,5 @@ Brace Highlight :
 Brace Highlight :
 Highlight braces
 Highlight braces
+Block Start/End Reg. Exp. are used for folding and indent feature.
+Block Start/End Reg. Exp. are used for folding and indent feature.
