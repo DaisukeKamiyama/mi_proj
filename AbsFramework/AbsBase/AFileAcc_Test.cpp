@@ -146,6 +146,33 @@ ABool	AFileAcc::UnitTest()
 	datetimeDiff = ADateTimeWrapper::GetDateTimeDiff(ADateTimeWrapper::GetCurrentTime(), datetime);
 	if( datetimeDiff > 300 )   result = false;
 	
+	//#1425 GetFileAttribute()/SetFileAttribute() 旧API置き換え
+	AFileAttribute	attribute, attr1, attr2, attr3, attr4;
+	if( file4_1.GetFileAttribute(attr1) == false )   result = false;
+	if( attr1.creator != 0 )   result = false;
+	if( attr1.type != 0 )   result = false;
+	//
+	attribute.creator = 'MMKE';
+	attribute.type = 'TEXT';
+	if( file4_1.SetFileAttribute(attribute) == false )   result = false;
+	if( file4_1.GetFileAttribute(attr2) == false )   result = false;
+	if( attr2.creator != 'MMKE' )   result = false;
+	if( attr2.type != 'TEXT' )   result = false;
+	//
+	attribute.creator = 'MMKF';
+	attribute.type = 'TEXS';
+	if( file4_1.SetFileAttribute(attribute) == false )   result = false;
+	if( file4_1.GetFileAttribute(attr3) == false )   result = false;
+	if( attr3.creator != 'MMKF' )   result = false;
+	if( attr3.type != 'TEXS' )   result = false;
+	//
+	attribute.creator = 0;
+	attribute.type = 0;
+	if( file4_1.SetFileAttribute(attribute) == false )   result = false;
+	if( file4_1.GetFileAttribute(attr4) == false )   result = false;
+	if( attr4.creator != 0 )   result = false;
+	if( attr4.type != 0 )   result = false;
+	
 	//#1404 ファイル削除テスト
 	folder4.DeleteFolder();
 	folder4.DeleteFile();
