@@ -2504,11 +2504,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             </box>
                                                             <box verticalHuggingPriority="750" boxType="separator" id="3282">
-                                                                <rect key="frame" x="42" y="149" width="535" height="5"/>
+                                                                <rect key="frame" x="42" y="119" width="535" height="5"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             </box>
                                                             <textField verticalHuggingPriority="750" id="3268">
-                                                                <rect key="frame" x="-76" y="94" width="249" height="14"/>
+                                                                <rect key="frame" x="-76" y="72" width="249" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Characters in Keyword :" id="3281">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2517,7 +2517,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="3269">
-                                                                <rect key="frame" x="-39" y="63" width="212" height="14"/>
+                                                                <rect key="frame" x="-39" y="41" width="212" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Characters for the first :" id="3280">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2526,7 +2526,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" tag="196" id="3270" customClass="CocoaTextField">
-                                                                <rect key="frame" x="179" y="90" width="397" height="22"/>
+                                                                <rect key="frame" x="179" y="68" width="397" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3279">
                                                                     <font key="font" metaFont="system"/>
@@ -2535,7 +2535,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" tag="197" id="3271" customClass="CocoaTextField">
-                                                                <rect key="frame" x="178" y="59" width="398" height="22"/>
+                                                                <rect key="frame" x="178" y="37" width="398" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3278">
                                                                     <font key="font" metaFont="system"/>
@@ -2544,7 +2544,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="3272">
-                                                                <rect key="frame" x="-39" y="31" width="212" height="14"/>
+                                                                <rect key="frame" x="-39" y="9" width="212" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Characters for the Last :" id="3277">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2553,7 +2553,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" tag="198" id="3273" customClass="CocoaTextField">
-                                                                <rect key="frame" x="178" y="27" width="398" height="22"/>
+                                                                <rect key="frame" x="178" y="5" width="398" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3276">
                                                                     <font key="font" metaFont="system"/>
@@ -2562,7 +2562,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="3274">
-                                                                <rect key="frame" x="16" y="121" width="149" height="14"/>
+                                                                <rect key="frame" x="16" y="99" width="149" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Keyword Characters" id="3275">
                                                                     <font key="font" metaFont="smallSystemBold"/>
@@ -2571,9 +2571,18 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="3861">
-                                                                <rect key="frame" x="176" y="116" width="518" height="19"/>
+                                                                <rect key="frame" x="176" y="94" width="518" height="19"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Keywords are colorized only when whole word is matched according to the following definition. " id="3862">
+                                                                    <font key="font" metaFont="smallSystem"/>
+                                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <textField verticalHuggingPriority="750" id="H7y-ls-DVQ">
+                                                                <rect key="frame" x="178" y="121" width="491" height="37"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Block Start/End Reg. Exp. are used for folding and indent feature." id="xbx-vu-xcA">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
