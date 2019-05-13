@@ -1363,18 +1363,41 @@ AItemCount	AFileAcc::GetFileSize() const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::GetLastModifiedDataTime( ADateTime& outDateTime ) const
 {
+	//#1425
+	//パス取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	//attribute取得
+	NSError *anError = nil;
+	NSDictionary*	dic = [[NSFileManager defaultManager] attributesOfItemAtPath:pathstr.GetNSString() error:&anError];
+	if( dic != nil )
+	{
+		//ファイル変更日時取得
+		NSDate*	modificationDate = [dic fileModificationDate];
+		if( modificationDate != nil )
+		{
+			//ADateTime(CFAbsoluteTime)へ変換
+			outDateTime = ::CFDateGetAbsoluteTime((CFDateRef)modificationDate);
+			return true;
+		}
+	}
+	return false;
+	
+	/*#1425
 	FSCatalogInfo	catinfo;
 	FSRef	fsref;
 	if( GetFSRef(fsref) == false )   return false;
 	OSErr	err = ::FSGetCatalogInfo(&fsref,kFSCatInfoContentMod,&catinfo,NULL,NULL,NULL);
 	if( err != noErr )   return false;//#653
-	/*#380
+	*#380
 	LocalDateTime	local;
 	::ConvertUTCToLocalDateTime(&(catinfo.contentModDate),&local);
 	outDateTime = local.lowSeconds;
-	*/
+	*
 	::UCConvertUTCDateTimeToCFAbsoluteTime(&(catinfo.contentModDate),&outDateTime);//#380
 	return true;
+	*/
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
