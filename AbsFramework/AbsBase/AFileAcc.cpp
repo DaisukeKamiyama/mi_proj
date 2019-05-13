@@ -693,6 +693,22 @@ URL取得
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::GetURL( AText& outURL ) const
 {
+	//#1425
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString()];
+	if( url != nil )
+	{
+		outURL.SetFromNSString(url.path);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
+	/*#1425
 	FSRef	ref;
 	if( GetFSRef(ref) == false )   return false;
 	
@@ -710,6 +726,7 @@ ABool	AFileAcc::GetURL( AText& outURL ) const
 		//#1012 これがあるとSIGABRT発生するのでコメントアウト::CFRelease(url);
 	}
 	return result;
+	*/
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
