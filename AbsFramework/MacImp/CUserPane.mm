@@ -2395,6 +2395,13 @@ void	CUserPane::DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalP
 		return;
 	}
 	
+	//#1409 macOS 10.13以前ではα指定すると描画残りするので、α指定は10.14以降のみ有効とする。
+	AFloatNumber	alpha = 1.0;
+	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_14 )
+	{
+		alpha = inAlpha;
+	}
+	
 	//#1012 10.3は対応しない if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_4 )//CGContextSetBlendModeは10.4以降対応。Retina対応のためにはQDは使用出来ない。
 	{
 		//GraphicsContext取得
@@ -2446,7 +2453,7 @@ void	CUserPane::DrawXorCaretLine( const ALocalPoint& inStartPoint, const ALocalP
 		::CGContextBeginPath(contextRef);
 		::CGContextMoveToPoint(contextRef,inStartPoint.x,-inStartPoint.y-1);
 		::CGContextAddLineToPoint(contextRef,inEndPoint.x,-inEndPoint.y-1);
-		::CGContextSetRGBStrokeColor(contextRef,1.0,1.0,1.0,inAlpha);//#1398
+		::CGContextSetRGBStrokeColor(contextRef,1.0,1.0,1.0,alpha);//#1398 #1409
 		::CGContextSetLineWidth(contextRef,inPenSize);
 		::CGContextSetShouldAntialias(contextRef,false);
 		::CGContextSetBlendMode(contextRef,kCGBlendModeExclusion);//kCGBlendModeDifference);//kCGBlendModeExclusion);
