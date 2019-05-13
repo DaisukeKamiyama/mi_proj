@@ -463,7 +463,7 @@ No Indent (Indent manually always)
 Same Indent level as the previous line
 前行と同じだけインデントする
 Indent defined by Syntax definition
-文法定義の定義に従ってインデントする
+文法定義に従ってインデントする
 Indent according to pre-defined Syntax selected in "Syntax" tab
 「文法」タブで選択した文法に定義されたインデント量でインデントします。
 Indent defined by Regular Expression Indent Rule
@@ -790,3 +790,5 @@ Brace Highlight :
 括弧ハイライト：
 Highlight braces
 括弧をハイライトする
+Block Start/End Reg. Exp. are used for folding and indent feature.
+折りたたみ開始／終了正規表現を設定すると、囲まれた部分を折りたたみできます。また、インデントを「文法定義に従ってインデントする」に設定した場合、自動インデントできます。
