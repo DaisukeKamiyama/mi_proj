@@ -136,6 +136,16 @@ ABool	AFileAcc::UnitTest()
 	testfolder2.SpecifyUniqChildFile(tmp,"FileAccUnitTest2");
 	testfolder.CopyFolderTo(testfolder2, true, true);
 	
+	//#1425 GetLastModifiedDataTime() 旧API置き換え
+	ADateTime	datetime;
+	ANumber	datetimeDiff = 0;
+	if( file4_1.GetLastModifiedDataTime(datetime) == false )   result = false;
+	datetimeDiff = ADateTimeWrapper::GetDateTimeDiff(ADateTimeWrapper::GetCurrentTime(), datetime);
+	if( datetimeDiff > 300 )   result = false;
+	if( folder4.GetLastModifiedDataTime(datetime) == false )   result = false;
+	datetimeDiff = ADateTimeWrapper::GetDateTimeDiff(ADateTimeWrapper::GetCurrentTime(), datetime);
+	if( datetimeDiff > 300 )   result = false;
+	
 	//#1404 ファイル削除テスト
 	folder4.DeleteFolder();
 	folder4.DeleteFile();
