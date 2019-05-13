@@ -15974,8 +15974,25 @@ AIndentType	ADocument_Text::SPI_GetIndentType() const
 	//※文法が手動設定のときは、文法定義インデント対象外
 	//　（ブロック開始、終了に従ってインデントしたかったが、そうすると、ブロック開始、終了以外の部分のインデントが固定されてしまうので、
 	//　　複文等の定義もできないと実用的ではない。従来、手動文法設定でインデントを文法定義に従うように設定していたユーザーの混乱をさけるため、現状通りにする）
-	if( (GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseBuiltinSyntaxDefinitionFile) == true ||
-		 GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseUserDefinedSDF) == true ) && 
+	//#1415
+	//現状(3.0.3)：文法手動設定でブロック開始・終了設定しても、この設定に従ってインデントできない。
+	//→この設定に従ってインデントするためにはここの制限を解除する必要がある。そのため、文法手動設定であっても、ブロック開始・終了設定した場合は、文法定義インデントにする。（文法手動設定で、ブロック開始・終了設定しているユーザーは多くはないし、動作で理由がわかる可能性が高い。（インデント設定を変更すれば従来通りの動作へ変更可能）
+	//従来、手動文法設定に設定していたユーザーが、手動インデントできなくなり、自動インデント（しかも常にインデント0固定）になってしまうのを避けるため、文法手動設定かつブロック開始・終了設定していない場合は、従来通り文法インデント対象外とする。（このケースにおいては、文法インデント対象にしても、デメリットしかない。）
+	ABool	inhibitSDFIndent = false;
+	if( GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseBuiltinSyntaxDefinitionFile) == false &&
+		GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseUserDefinedSDF) == false )
+	{
+		AText	incIndentRegExp, decIndentRegExp;
+		GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Text(AModePrefDB::kIncIndentRegExp, incIndentRegExp);
+		GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Text(AModePrefDB::kDecIndentRegExp, decIndentRegExp);
+		if( incIndentRegExp.GetItemCount() == 0 || decIndentRegExp.GetItemCount() == 0 )
+		{
+			inhibitSDFIndent = true;
+		}
+	}
+	if( /*#1415 (GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseBuiltinSyntaxDefinitionFile) == true ||
+		 GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseUserDefinedSDF) == true ) && */
+				inhibitSDFIndent == false &&//#1415
 				GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kUseSyntaxDefinitionIndent) == true )
 	{
 		return kIndentType_SDFIndent;
