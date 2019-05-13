@@ -1266,6 +1266,24 @@ ABool	AFileAcc::IsExecutable() const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::GetFileAttribute( AFileAttribute& outFileAttribute ) const
 {
+	//#1425
+	//パス取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	//attribute取得
+	NSError *anError = nil;
+	NSDictionary*	dic = [[NSFileManager defaultManager] attributesOfItemAtPath:pathstr.GetNSString() error:&anError];
+	if( dic != nil )
+	{
+		//creator/type取得（creator/type未設定なら0が取得される）
+		outFileAttribute.creator = [dic fileHFSCreatorCode];
+		outFileAttribute.type = [dic fileHFSTypeCode];
+		return true;
+	}
+	return false;
+	
+	/*#1425
 	outFileAttribute.creator = 0;
 	outFileAttribute.type = 0;
 	//クリエータ／タイプ
@@ -1276,6 +1294,7 @@ ABool	AFileAcc::GetFileAttribute( AFileAttribute& outFileAttribute ) const
 	outFileAttribute.creator = ((FileInfo*)(&(catinfo.finderInfo[0])))->fileCreator;
 	outFileAttribute.type = ((FileInfo*)(&(catinfo.finderInfo[0])))->fileType;
 	return true;
+	*/
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
@@ -1291,6 +1310,29 @@ ABool	AFileAcc::GetFileAttribute( AFileAttribute& outFileAttribute ) const
 //win
 ABool	AFileAcc::SetFileAttribute( const AFileAttribute& inFileAttribute ) const
 {
+	//#1425
+	//パス取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	//creator/typeのNSDictionary作成
+	NSDictionary*	dic = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSNumber numberWithUnsignedLong:inFileAttribute.creator], NSFileHFSCreatorCode,
+		[NSNumber numberWithUnsignedLong:inFileAttribute.type], NSFileHFSTypeCode,
+		nil
+	];
+	//attribute設定
+	NSError *anError = nil;
+	if( [[NSFileManager defaultManager] setAttributes:dic ofItemAtPath:pathstr.GetNSString() error:&anError] == YES )
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
+	/*#1425
 	//クリエータ／タイプ書き込み
 	FSCatalogInfo	catinfo;
 	FSRef	fsref;
@@ -1300,6 +1342,7 @@ ABool	AFileAcc::SetFileAttribute( const AFileAttribute& inFileAttribute ) const
 	((FileInfo*)(&(catinfo.finderInfo[0])))->fileType = inFileAttribute.type;
 	::FSSetCatalogInfo(&fsref,kFSCatInfoFinderInfo,&catinfo);
 	return true;
+	*/
 }
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
