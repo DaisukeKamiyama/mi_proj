@@ -121,8 +121,10 @@ enum AFileScreenError
 	kFileScreenError_NoError = 0,
 	kFileScreenError_FileNotExist,
 	kFileScreenError_FileIsFolder,
+	/*#1427
 	kFileScreenError_FileSizeOver,
 	kFileScreenError_TotalFileSizeOver,
+	*/
 	kFileScreenError_DocumentDuplicatedAfterLinkResolved,
 };
 
