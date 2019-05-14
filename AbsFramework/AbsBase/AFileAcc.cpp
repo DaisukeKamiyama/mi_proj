@@ -2209,13 +2209,19 @@ ABool	AFileAcc::CopyFileTo( AFileAcc& inDst, const ABool inInhibitOverwrite ) co
 	}
 	if( AEnvWrapper::GetOSVersion() >= kOSVersion_MacOSX_10_4 )
 	{
+		/*#1425
 		//R0000 MacOSX10.4以降はやっとAPIでcopyができる
 		FSRef	srcFSRef;
 		if( GetFSRef(srcFSRef) == false )   return false;//#427
+		*/
+		//コピー先親フォルダ取得
 		AFileAcc	dstParent;
 		dstParent.SpecifyParent(inDst);
+		/*#1425
 		FSRef	dstParentFSRef;
 		if( dstParent.GetFSRef(dstParentFSRef) == false )   return false;//#427
+		*/
+		//コピー先ファイル名取得
 		AText	dstfilename;
 		inDst.GetFilename(dstfilename);
 		
@@ -2234,8 +2240,27 @@ ABool	AFileAcc::CopyFileTo( AFileAcc& inDst, const ABool inInhibitOverwrite ) co
 		}
 		//------------------コピー実行------------------
 		{
+			//#1425
+			//コピー元パス取得
+			AText	srcPath;
+			GetNormalizedPath(srcPath);
+			AStCreateNSStringFromAText	srcPathstr(srcPath);
+			//コピー先パス取得
+			AText	dstPath;
+			inDst.GetNormalizedPath(dstPath);
+			AStCreateNSStringFromAText	dstPathstr(dstPath);
+			
+			//ファイルコピー
+			NSError *anError = nil;
+			if( [[NSFileManager defaultManager] copyItemAtPath:srcPathstr.GetNSString() toPath:dstPathstr.GetNSString() error:&anError] == NO )
+			{
+				//処理なし（コピー先ファイル有無でコピー成功を判断しているため）
+			}
+			
+			/*#1425
 			AStCreateCFStringFromAText	destName(dstfilename);
 			::FSCopyObjectSync(&srcFSRef,&dstParentFSRef,destName.GetRef(),NULL,kFSFileOperationDefaultOptions);
+			*/
 		}
 		//------------------リネームファイルを作成した場合は、コピー成功時：リネームファイルを削除、コピー失敗時：リネームファイルを元の名前に戻す------------------
 		if( renamedDstFile.IsSpecified() == true )
@@ -2428,14 +2453,52 @@ void	AFileAcc::CopyFileOrFolderTo( AFileAcc& inDst, const ABool inInhibitOverwri
 #if IMPLEMENTATION_FOR_MACOSX
 void	AFileAcc::ResolveAnyLink( const AFileAcc& inFileMayLink )
 {
+	//#1425
+	//まずinFileMayLinkを自身にコピー
+	CopyFrom(inFileMayLink);
+	//エイリアス解決
+	ResolveAlias();
+	
+	/*#1425
 	FSRef	fsref;
 	if( inFileMayLink.GetFSRef(fsref) == false )   return;
 	Boolean isFolder,isAlias;
 	::FSResolveAliasFile(&fsref,true,&isFolder,&isAlias);
 	SpecifyByFSRef(fsref);
+	*/
 }
-void	AFileAcc::ResolveAlias()
+ABool	AFileAcc::ResolveAlias()
 {
+	//URL取得
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString()];
+	//URLからbookmarkを生成（URLがエイリアスファイルでなければ、bookmarkはNULLとなる）
+	CFErrorRef	error = nil;
+	CFDataRef	bookmark = ::CFURLCreateBookmarkDataFromFile(NULL, (CFURLRef)url, &error);
+	if( bookmark != NULL )
+	{
+		//bookmarkからエイリアス解決済みURLを生成
+		ABool	isStale = false;
+		NSURL*	resolvedURL = (NSURL*)::CFURLCreateByResolvingBookmarkData(NULL, bookmark, kCFBookmarkResolutionWithoutUIMask, NULL, NULL, &isStale, &error);
+		if( resolvedURL != nil )
+		{
+			//bookmarkから生成したURLはファイル参照URLになっているので、普通のファイルパスURLへ変換する。
+			NSURL*	filePathURL = resolvedURL.filePathURL;
+			if( filePathURL != nil )
+			{
+				//自身に解決済みパスを設定
+				AText	resolvedPath;
+				resolvedPath.SetFromNSString(filePathURL.path);
+				Specify(resolvedPath);
+				return true;
+			}
+		}
+	}
+	return false;
+	
+	/*#1425
 	//エイリアス解決
 	FSRef	fsref;
 	if( GetFSRef(fsref) == true )
@@ -2444,6 +2507,7 @@ void	AFileAcc::ResolveAlias()
 		::FSResolveAliasFile(&fsref,true,&isFolder,&isAlias);
 		SpecifyByFSRef(fsref);
 	}
+	*/
 }
 //#0
 /**
@@ -2783,9 +2847,10 @@ ABool	AFileAcc::WriteResourceFork( const AText& inText ) const
 }
 */
 
+/*#1425
 void	AFileAcc::SetCreatorType( OSType inCreator, OSType inType )
 {
-	/*#1034
+	*#1034
 	FSSpec	fsspec;
 	GetFSSpec(fsspec);
 	FInfo	fi;
@@ -2793,7 +2858,7 @@ void	AFileAcc::SetCreatorType( OSType inCreator, OSType inType )
 	fi.fdCreator = inCreator;
 	fi.fdType = inType;
 	::FSpSetFInfo(&fsspec,&fi);
-	*/
+	*
 	FSRef	fsref;
 	GetFSRef(fsref);
 	FSCatalogInfo catInfo;
@@ -2803,9 +2868,18 @@ void	AFileAcc::SetCreatorType( OSType inCreator, OSType inType )
 	info->fileType = inType;
 	::FSSetCatalogInfo(&fsref, kFSCatInfoFinderInfo, &catInfo);
 }
+*/
 
 void	AFileAcc::GetCreatorType( OSType& outCreator, OSType& outType ) const
 {
+	//#1425
+	AFileAttribute	attribute = {0};
+	if( GetFileAttribute(attribute) == true )
+	{
+		outCreator = attribute.creator;
+		outType = attribute.type;
+	}
+	/*#1425
 	//クリエータ／タイプ読み込み
 	FSCatalogInfo	catinfo;
 	FSRef	fsref;
@@ -2813,6 +2887,7 @@ void	AFileAcc::GetCreatorType( OSType& outCreator, OSType& outType ) const
 	::FSGetCatalogInfo(&fsref,kFSCatInfoFinderInfo,&catinfo,NULL,NULL,NULL);
 	outCreator = ((FileInfo*)(&(catinfo.finderInfo[0])))->fileCreator;
 	outType = ((FileInfo*)(&(catinfo.finderInfo[0])))->fileType;
+	*/
 }
 
 void	AFileAcc::SpecifyByFSRef( const FSRef& inFSRef )
