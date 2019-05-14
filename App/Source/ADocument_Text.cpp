@@ -1261,6 +1261,7 @@ void	ADocument_Text::SPI_ShowScreenErrorAndClose()
 			GetApp().NVI_ShowModalAlertWindow(message1,message2);
 			break;
 		}
+		/*#1427
 		//ファイルサイズが100MBを超えるファイルの場合は、モーダルエラー表示して、ファイルを開かない
 	  case kFileScreenError_FileSizeOver:
 		{
@@ -1281,6 +1282,7 @@ void	ADocument_Text::SPI_ShowScreenErrorAndClose()
 			GetApp().NVI_ShowModalAlertWindow(message1,message2);
 			break;
 		}
+		*/
 		//エイリアス解決後、すでに同じファイルのドキュメントが存在していた場合は、そのドキュメントを選択
 	  case kFileScreenError_DocumentDuplicatedAfterLinkResolved:
 		{
