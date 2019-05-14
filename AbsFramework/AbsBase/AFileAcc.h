@@ -131,7 +131,7 @@ class AFileAcc : public AObjectArrayItem
 	//リンク／エイリアス
   public:
 	void	ResolveAnyLink( const AFileAcc& inFileMayLink );
-	void	ResolveAlias();
+	ABool	ResolveAlias();//#1425
 	ABool	IsLink();//#0
 #if IMPLEMENTATION_FOR_WINDOWS
 	ABool	CreateShellLink( const AFileAcc& inLinkFile ) const;
@@ -150,7 +150,7 @@ class AFileAcc : public AObjectArrayItem
 	//#1034 ABool	WriteResouceFile( const AText &inText, const ResType inResType, const short inResNum ) const;
 	ABool	GetFSRef( FSRef& outFSRef ) const;
 	ABool	GetFSSpec( FSSpec& outFSSpec ) const;
-	void	SetCreatorType( OSType inCreator, OSType inType );
+	//#1425 void	SetCreatorType( OSType inCreator, OSType inType );
 	void	GetCreatorType( OSType& outCreator, OSType& outType ) const;
 	void	SpecifyByFSRef( const FSRef& inFSRef );
 #ifndef __LP64__
