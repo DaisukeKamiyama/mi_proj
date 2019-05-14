@@ -3770,7 +3770,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p ../help/ja/sdfsample\nmkdir -p ../help/ja/colorschemesample\nmkdir -p ../help/ja/csvsample\ncp ../App/sdf/* ../help/ja/sdfsample/\ncp ../App/data/ColorScheme/* ../help/ja/colorschemesample\ncp ../default/HTML5/keyword/* ../help/ja/csvsample\n";
+			shellScript = "cd ${SRCROOT}\n/bin/sh copyToHelp.sh\n";
 		};
 		7ED821F2194DB6590037D7AE /* モードdefaultデータ構成 */ = {
 			isa = PBXShellScriptBuildPhase;
