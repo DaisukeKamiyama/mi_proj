@@ -232,9 +232,10 @@ void	AFileWrapper::GetPluginsFolder( AFileAcc& outFolder )
 
 #pragma mark ---情報取得
 
-/**
+/*#1425
+**
 ファイルのTypeを取得
-*/
+*
 OSType	AFileWrapper::GetType( const AFileAcc& inFile )
 {
 	OSStatus	err = noErr;
@@ -247,6 +248,7 @@ OSType	AFileWrapper::GetType( const AFileAcc& inFile )
 	FileInfo	fi = *(reinterpret_cast<FileInfo*>(info.finderInfo));
 	return fi.fileType;
 }
+*/
 
 /**
 イメージファイルの情報を取得
