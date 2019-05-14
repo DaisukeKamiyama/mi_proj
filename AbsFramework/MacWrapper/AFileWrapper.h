@@ -47,7 +47,7 @@ class AFileWrapper
 	static void	GetPluginsFolder( AFileAcc& outFolder );//#361
 	
 	//èÓïÒéÊìæ
-	static OSType	GetType( const AFileAcc& inFile );
+	//#1425 static OSType	GetType( const AFileAcc& inFile );
 	static ABool	GetLocalizedResourceFile( const AConstCharPtr inName, AFileAcc& outFile );//B0408
 	static void	GetResourceFile( const AConstCharPtr inName, AFileAcc& outFile );//#166
 	static void		GetHelpFolder( const AConstCharPtr inLang, AFileAcc& outHelpFolder );//#539
