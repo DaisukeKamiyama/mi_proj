@@ -2037,6 +2037,29 @@ ABool	AFileAcc::CreateFolderRecursive()
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::Rename( const AText& inNewName )
 {
+	//#1425
+	//パス取得
+	AText	oldPath;
+	GetNormalizedPath(oldPath);
+	AStCreateNSStringFromAText	oldPathstr(oldPath);
+	//親フォルダ取得
+	AFileAcc	parent;
+	if( parent.SpecifyParent(*this) == false )   return false;
+	//名称変更後パス取得
+	AFileAcc	newFile;
+	newFile.SpecifyChild(parent, inNewName);
+	AText	newPath;
+	newFile.GetNormalizedPath(newPath);
+	AStCreateNSStringFromAText	newPathstr(newPath);
+	
+	//ファイル名変更
+	NSError *anError = nil;
+  if( [[NSFileManager defaultManager] moveItemAtPath:oldPathstr.GetNSString() toPath:newPathstr.GetNSString() error:&anError] == NO )
+	{
+		return false;
+	}
+	
+	/*#1425
 	FSRef	ref;
 	if( GetFSRef(ref) == false )   return false;
 	
@@ -2048,6 +2071,7 @@ ABool	AFileAcc::Rename( const AText& inNewName )
 		AStUniTextPtr	textptr(filenameUTF16,0,filenameUTF16.GetItemCount());
 		if( ::FSRenameUnicode(&ref,filenameUTF16.GetItemCount(),textptr.GetPtr(),kTextEncodingUnknown,NULL) != noErr )   return false;
 	}
+	*/
 	
 	//B0417 SpecifyChild(parent,inNewName);
 	SpecifyChildFile(parent,inNewName);
