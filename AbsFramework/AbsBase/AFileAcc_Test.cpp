@@ -108,6 +108,14 @@ ABool	AFileAcc::UnitTest()
 	if( file5_2text.Compare(filename3new) == false )   result = false;
     if( folder5.IsFolder() == false )   result = false;
 	if( file5_2.IsFolder() == true )   result = false;
+	//#1425 CopyFileTo()のテスト追加（上書きコピーテスト）
+	file4_1.CopyFileTo(file5_2,true);//上書き禁止
+	file5_2.ReadTo(file5_2text);
+	if( file5_2text.Compare(filename3new) == false )   result = false;
+	file4_1.CopyFileTo(file5_2,false);//上書き許可
+	file5_2.ReadTo(file5_2text);
+	if( file5_2text.Compare(GetEmptyText()) == false )   result = false;
+	//
 	file5_2.DeleteFile();
 	//
     if( file5_2.Exist() )   result = false;
@@ -165,6 +173,11 @@ ABool	AFileAcc::UnitTest()
 	if( file4_1.GetFileAttribute(attr3) == false )   result = false;
 	if( attr3.creator != 'MMKF' )   result = false;
 	if( attr3.type != 'TEXS' )   result = false;
+	//
+	OSType	creator, type;
+	file4_1.GetCreatorType(creator, type);
+	if( creator != 'MMKF' )   result = false;
+	if( type != 'TEXS' )   result = false;
 	//
 	attribute.creator = 0;
 	attribute.type = 0;
