@@ -558,3 +558,4 @@
 "DefaultPrintOption_PageNumberFont" = "4"
 "DefaultPrintOption_FileNameFont" = "4"
 "DefaultPrintOption_LineNumberFont" = "16384"
+"HighlightBrace" = "true"
