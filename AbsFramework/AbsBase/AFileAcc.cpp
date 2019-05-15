@@ -3042,13 +3042,21 @@ ABool	AFileAcc::GetBundleFolderAttribute( AFileAttribute& outFileAttribute ) con
 	
 	if( IsBundleFolder() == false )   return false;
 	
+	//#1425
+	//URLéÊìæ
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	CFURLRef	urlref = (CFURLRef)[NSURL fileURLWithPath:pathstr.GetNSString()];
+	/*#1425
 	FSRef	fsref;
 	if( GetFSRef(fsref) == false )   return false;
 	
 	CFURLRef	urlref = ::CFURLCreateFromFSRef(kCFAllocatorDefault,&fsref);
+	*/
 	if( urlref == NULL )   return false;
 	CFBundleRef	bundleref = ::CFBundleCreate(kCFAllocatorDefault,urlref);
-	::CFRelease(urlref);
+	//#1425 fileURLWithPathÇ≈ê∂ê¨ÇµÇΩÇÃÇ≈autoreleaseÇ≥ÇÍÇÈ ::CFRelease(urlref);
 	if( bundleref == NULL )   return false;
 	::CFBundleGetPackageInfo(bundleref,&outFileAttribute.type,&outFileAttribute.creator);
 	::CFRelease(bundleref);
