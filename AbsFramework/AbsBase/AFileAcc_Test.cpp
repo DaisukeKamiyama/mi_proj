@@ -218,6 +218,21 @@ ABool	AFileAcc::UnitTest()
 	testfolder2.DeleteFileOrFolderRecursive();
 	if( testfolder2.Exist() == true )   result = false;
 	
+	//#1425
+	//バンドル関連
+	AFileAcc	appBundle;
+	AText	appPath("/Applications/mi.app");
+	appBundle.Specify(appPath);
+	if( appBundle.GetBundleFolderAttribute(attribute) == true )
+	{
+		if( attribute.type != 'APPL' )   result = false;
+		if( attribute.creator != 'MMKE' )   result = false;
+	}
+	else
+	{
+		result = false;
+	}
+	
 	return result;
 }
 #endif
