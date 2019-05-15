@@ -10081,7 +10081,9 @@ ADocumentType	AApp::GetDocumentTypeForFile( const AFileAcc& inFile )
 		return kDocumentType_TabSet;
 	}
 	//miremoteならリモートファイルエイリアス #1073
-	if( suffix.Compare(".miremote") == true || AFileWrapper::GetType(inFile) == 'ftpa' )
+	AFileAttribute	attribute = {0};//#1425
+	inFile.GetFileAttribute(attribute);//#1425
+	if( suffix.Compare(".miremote") == true || /*#1425 AFileWrapper::GetType(inFile)*/attribute.type == 'ftpa' )
 	{
 		return kDocumentType_FTPAlias;
 	}
@@ -15508,6 +15510,9 @@ void	AApp::SPI_FindProjectFolder( const AFileAcc& inFile, AFileAcc& outProjectFo
 	}
 	else
 	{
+		//#1284
+		//ここにgitフォルダ対応予定
+		
 		//★
 		//svnのルートフォルダをプロジェクトフォルダにしたい→でも、勝手にプロジェクトフォルダにすると、大規模なばあいにメモリが増えすぎる問題もある
 	}
