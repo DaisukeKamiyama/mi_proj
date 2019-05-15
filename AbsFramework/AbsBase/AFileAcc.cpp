@@ -2516,6 +2516,14 @@ ABool	AFileAcc::ResolveAlias()
 ABool	AFileAcc::IsLink()
 {
 	//エイリアスかどうかを取得
+	//#1425
+	AFileAcc	file;
+	file.CopyFrom(*this);
+	if( file.ResolveAlias() == true )
+	{
+		return true;
+	}
+	/*#1425
 	FSRef	fsref;
 	if( GetFSRef(fsref) == true )
 	{
@@ -2523,6 +2531,7 @@ ABool	AFileAcc::IsLink()
 		::FSResolveAliasFile(&fsref,true,&isFolder,&isAlias);
 		if( isAlias == true )   return true;
 	}
+	*/
 	//シンボリックリンクかどうかを取得
 	AText	path;
 	GetPath(path);
