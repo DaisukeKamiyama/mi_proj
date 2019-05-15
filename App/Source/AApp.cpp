@@ -11072,7 +11072,13 @@ AModeIndex	AApp::SPI_FindModeIDByTextFilePath( const AText& inFilePath ) const//
 	//拡張子が一致するモードがない場合は、標準モードを返す
 	if( modeIndexArray.GetItemCount() == 0 )
 	{
-		return kStandardModeIndex;
+		//#1428 return kStandardModeIndex;
+		//デフォルトのモードを返すようにする #1428
+		AText	name;
+		NVI_GetAppPrefDBConst().GetData_Text(AAppPrefDB::kCmdNModeName,name);
+		AModeIndex	modeIndex = SPI_FindModeIndexByModeRawName(name);
+		if( modeIndex == kIndex_Invalid )   modeIndex = kStandardModeIndex;
+		return modeIndex;
 	}
 	//拡張子が一致するモードが１つのみの場合は、そのモードで確定。
 	if( modeIndexArray.GetItemCount() == 1 )
