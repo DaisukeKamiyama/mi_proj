@@ -785,6 +785,7 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 			AText	tecname;
 			NVI_GetControlText(kControlID_Toolbar_TextEncoding,tecname);
 			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetTextEncoding(tecname);
+			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//ツールバー項目　改行コード選択時処理
@@ -792,6 +793,7 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 		{
 			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).
 					SPI_SetReturnCode((AReturnCode)NVI_GetControlNumber(kControlID_Toolbar_ReturnCode));
+			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//ツールバー項目　折り返し選択時処理
@@ -814,6 +816,7 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 					break;
 				}
 			}
+			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//ツールバー項目　モード選択処理
@@ -822,6 +825,7 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 			AText	modename;
 			NVI_GetControlText(kControlID_Toolbar_Mode,modename);
 			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetModeByRawName(modename);
+			GetApp().SPI_GetTextDocumentByID(NVI_GetCurrentDocumentID()).SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//ツールバー項目　新規ドキュメント選択時処理
@@ -1614,49 +1618,58 @@ ABool	AWindow_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, co
 				break;
 			}
 			SPI_GetCurrentTabTextDocument().SPI_SetTextEncoding(inDynamicMenuActionText);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//改行コード
 	  case kMenuItemID_ReturnCode_CR:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_CR);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 	  case kMenuItemID_ReturnCode_CRLF:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_CRLF);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 	  case kMenuItemID_ReturnCode_LF:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_LF);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//行送り
 	  case kMenuItemID_WrapMode_NoWrap:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetWrapMode(kWrapMode_NoWrap,0);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 	  case kMenuItemID_WrapMode_WordWrap:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetWrapMode(kWrapMode_WordWrap,0);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 	  case kMenuItemID_WrapMode_WordWrapByLetterCount:
 		{
 			SPI_ShowWrapLetterCountWindow(kWrapMode_WordWrapByLetterCount);//#1113
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//#1113
 	  case kMenuItemID_WrapMode_LetterWrap:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetWrapMode(kWrapMode_LetterWrap,0);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 	  case kMenuItemID_WrapMode_LetterWrapByLetterCount:
 		{
 			SPI_ShowWrapLetterCountWindow(kWrapMode_LetterWrapByLetterCount);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//フォント #868
@@ -1714,6 +1727,7 @@ ABool	AWindow_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, co
 	  case kMenuItemID_SetMode:
 		{
 			SPI_GetCurrentTabTextDocument().SPI_SetModeByRawName(inDynamicMenuActionText);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
 		//ページ設定
