@@ -107,6 +107,7 @@ ADocument_Text::ADocument_Text( AObjectArrayItem* inParent, const AObjectID inDo
 ,mTemporaryFontSize(0)//#966
 ,mPrintRect(kLocalRect_0000),mPrintPaperWidth(0),mPrintPaperHeight(0)//#558
 ,mIsReadMeFile(false)//#1351
+,mDocPrefUnfixed(true)//#1429
 {
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("ADocument_Text::ADocument_Text() started.",this);
 	
@@ -1690,8 +1691,14 @@ AModeIndex	ADocument_Text::LoadDocPref()
 	
 	//doc prefをロード
 	//#902 APrintPagePrefData	printpref;
-	AModeIndex	modeIndex = mDocPrefDB.LoadPref(docpathtext);//#902 ,true,printpref);
+	ABool	loadedFromFile = false;//#1429
+	AModeIndex	modeIndex = mDocPrefDB.LoadPref(docpathtext, loadedFromFile);//#902 ,true,printpref); #1429
 	//#902 NVM_GetPrintImp().SetPrintPagePrefData(printpref);
+	//DocPrefをファイルからロードしたのであれば、DocPref未確定フラグをOFFにする。#1429
+	if( loadedFromFile == true )
+	{
+		mDocPrefUnfixed = false;
+	}
 	return modeIndex;
 }
 
@@ -1727,7 +1734,7 @@ void	ADocument_Text::SaveDocPref()
 */
 void	ADocument_Text::SPI_SaveDocPrefIfLoaded()
 {
-	if( mLoaded == true )
+	if( mLoaded == true && mDocPrefUnfixed == false )//#1429 DocPref未確定フラグONの間は、ドキュメントを閉じるときにDocPrefの自動保存は行わない。（自動判定されただけのデータは保存しない）
 	{
 		//ウインドウ取得
 		AWindowID	firstWindowID = SPI_GetFirstWindowID();
@@ -3221,6 +3228,9 @@ ABool	ADocument_Text::SPI_Save( const ABool inSaveAs )
 		_ACError("",NULL);
 		return false;
 	}
+	
+	//DocPref未確定フラグをOFFにする #1429
+	mDocPrefUnfixed = false;
 	
 	//#81
 	//==================自動バックアップ実行==================
@@ -8929,10 +8939,15 @@ void	ADocument_Text::SPI_SetMode( const AModeIndex inModeIndex )
 	if( modeIndex == kIndex_Invalid )   modeIndex = kStandardModeIndex;
 	SetModeIndex(modeIndex);//#890
 	
+	//モード設定に従ってDocPrefを再初期化する。#1429
+	GetDocPrefDB().InitPref(mModeIndex, true);
+	
+	/*#1429 上のDocPref再初期化で設定するのでコメントアウト
 	//モード名をdoc prefに設定
 	AText	text;
 	GetApp().SPI_GetModePrefDB(mModeIndex).GetModeRawName(text);
 	GetDocPrefDB().SetData_Text(ADocPrefDB::kModeName,text);
+	*/
 	
 	//text infoにモード設定
 	mTextInfo.SetMode(mModeIndex);
