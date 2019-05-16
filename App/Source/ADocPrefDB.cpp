@@ -177,8 +177,9 @@ AModeIndex	ADocPrefDB::LoadPref( const AText& inTextFilePath )
 	return LoadPref(inTextFilePath,false,dummy);
 }
 */
-AModeIndex	ADocPrefDB::LoadPref( const AText& inTextFilePath )//#902 , const ABool inLoadPrintPref, APrintPagePrefData& outPrintPref )
+AModeIndex	ADocPrefDB::LoadPref( const AText& inTextFilePath, ABool& outLoadedFromFile )//#902 , const ABool inLoadPrintPref, APrintPagePrefData& outPrintPref ) #1429
 {
+	outLoadedFromFile = false;//#1429
 	AModeIndex	modeIndex = kIndex_Invalid;
 	
 	//指定ファイルに対応するdoc prefパスを取得
@@ -211,6 +212,8 @@ AModeIndex	ADocPrefDB::LoadPref( const AText& inTextFilePath )//#902 , const ABo
 		LoadFromPrefTextFile(docPrefFile);
 		//テキストエンコーディング確定済みフラグをON
 		mIsTextEncodingFixed = true;
+		//返り値のロード済みフラグをON
+		outLoadedFromFile = true;
 		
 		//読み込んだデータからmodeを取得
 		AText	modename;
