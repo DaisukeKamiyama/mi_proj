@@ -8382,7 +8382,8 @@ void	AApp::SPI_LoadTextFromFile( const ALoadTextPurposeType inLoadTextPurposeTyp
 	AText	textfilepath;//#898
 	file.GetPath(textfilepath);//#898
 	//doc pref DBから読み込み、モードindex取得
-	outModeIndex = docPrefDB.LoadPref(textfilepath);//#898
+	ABool	loadedFromFile = false;//#1429
+	outModeIndex = docPrefDB.LoadPref(textfilepath, loadedFromFile);//#898 #1429
 	
 	//==================UTF8CRへ変換==================
 	//doc prefを使ってUTF8/CRへ変換
@@ -8638,7 +8639,8 @@ void	AApp::SPI_WriteTextFile( const AText& inText, const AFileAcc& inFile )
 	ADocPrefDB	docPrefDB;
 	AText	textfilepath;//#898
 	inFile.GetPath(textfilepath);//#898
-	docPrefDB.LoadPref(textfilepath);
+	ABool	loadedFromFile = false;//#1429
+	docPrefDB.LoadPref(textfilepath, loadedFromFile);//#1429
 	AText	tecname("UTF-8");
 	//#1040 docPrefDB.SetData_Text(ADocPrefDB::kTextEncodingName,tecname);
 	docPrefDB.SetTextEncoding(tecname);//#1040
@@ -8830,7 +8832,8 @@ AModeIndex	AApp::SPI_GetModeIndexFromFile( const AFileAcc& inFile ) const
 	ADocPrefDB	docPrefDB;
 	AText	textfilepath;
 	inFile.GetPath(textfilepath);
-	return docPrefDB.LoadPref(textfilepath);
+	ABool	loadedFromFile = false;//#1429
+	return docPrefDB.LoadPref(textfilepath, loadedFromFile);//#1429
 }
 
 #pragma mark ===========================
@@ -11072,13 +11075,7 @@ AModeIndex	AApp::SPI_FindModeIDByTextFilePath( const AText& inFilePath ) const//
 	//拡張子が一致するモードがない場合は、標準モードを返す
 	if( modeIndexArray.GetItemCount() == 0 )
 	{
-		//#1428 return kStandardModeIndex;
-		//デフォルトのモードを返すようにする #1428
-		AText	name;
-		NVI_GetAppPrefDBConst().GetData_Text(AAppPrefDB::kCmdNModeName,name);
-		AModeIndex	modeIndex = SPI_FindModeIndexByModeRawName(name);
-		if( modeIndex == kIndex_Invalid )   modeIndex = kStandardModeIndex;
-		return modeIndex;
+		return kStandardModeIndex;
 	}
 	//拡張子が一致するモードが１つのみの場合は、そのモードで確定。
 	if( modeIndexArray.GetItemCount() == 1 )
@@ -11341,7 +11338,7 @@ void	AApp::SPI_FindModeIndexFromSuffix( const AText& inFilePath, AArray<AIndex>&
 	outModeIndexArray.DeleteAll();
 	//suffix開始位置を取得
 	AIndex	suffixspos = inFilePath.GetSuffixStartPos();
-	if( suffixspos == inFilePath.GetItemCount() )   return;
+	//#1428 拡張子なしが一致するようにする if( suffixspos == inFilePath.GetItemCount() )   return;
 	//排他制御
 	AStMutexLocker	locker(mModeSuffixArrayMutex);
 	//拡張子ハッシュからinFilePathの拡張子に対応する項目のindexを検索
