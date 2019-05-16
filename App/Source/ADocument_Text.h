@@ -337,10 +337,13 @@ class ADocument_Text : public ADocument
 	//doc pref
   public:
 	void					SPI_SaveDocPrefIfLoaded();
+	void					SPI_SetDocPrefFixed() { mDocPrefUnfixed = false; }//#1429
   private:
 	void					InitDocPref( const AModeIndex inModeIndex );
 	AModeIndex				LoadDocPref();
 	void					SaveDocPref();
+	//DocPref未確定フラグ（DocPrefが自動判定されただけのデータである間はONにして、DocPrefが保存されてしまうのを防止する。#1429
+	ABool								mDocPrefUnfixed;
 	
 	//#379
   public:
