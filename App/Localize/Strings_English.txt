@@ -1286,33 +1286,33 @@ TextMarker_DeleteButton3 = "削除";
 
 Notification_FolderLabel = "\"^0\"配下のファイルです";
 
-TB_Document = "新規";
-TB_SubWindow = "サブウインドウ";
-TB_Marker = "テキストハイライト";
-TB_TextEncoding = "テキストエンコーディング";
-TB_ReturnCode = "改行コード";
-TB_WrapMode = "行折り返し";
-TB_Mode = "モード";
-TB_Diff = "比較";
-TB_MultiFileFind = "マルチファイル検索";
-TB_MultiFileFindExecute = "選択テキストをマルチファイル検索";
-TB_Find = "前／次を検索";
-TB_Nav = "前／次へ移動";
-TB_Commit = "コミット";
-TB_LayoutLeft = "左サイドバー";
-TB_LayoutRight = "右サイドバー";
-TB_Split = "横／縦分割";
-TB_KeyRecord = "キー記録開始／停止／再生／ツールバー追加";
-TB_Pref = "設定";
-TB_ProhibitPopup = "ポップアップ禁止";
-TB_ShowHideFloating = "フローティング非表示";
-TB_SearchField = "検索";
-TB_Save = "保存";
-TB_UndoRedo = "アンドゥ／リドゥ";
-TB_FindDialog = "検索ダイアログ";
-TB_Copy = "コピー";
-TB_Cut = "カット";
-TB_Paste = "ペースト";
+TB_Document = "New";
+TB_SubWindow = "Sub Window";
+TB_Marker = "Text Highlight";
+TB_TextEncoding = "Text Encoding";
+TB_ReturnCode = "Return Code";
+TB_WrapMode = "Wrap Mode";
+TB_Mode = "Mode";
+TB_Diff = "Diff";
+TB_MultiFileFind = "Multi-File Find";
+TB_MultiFileFindExecute = "Multi-File Find (Selected Text)";
+TB_Find = "Find Previous/Next";
+TB_Nav = "Move to Previous/Next";
+TB_Commit = "Commit";
+TB_LayoutLeft = "Left Side Bar";
+TB_LayoutRight = "Right Side Bar";
+TB_Split = "Split Horizontally/Vertically";
+TB_KeyRecord = "Key Record Start/Stop/Play/Add to Toolbar";
+TB_Pref = "Preferences";
+TB_ProhibitPopup = "Prohibit Popup";
+TB_ShowHideFloating = "Hide Floating";
+TB_SearchField = "Find";
+TB_Save = "Save";
+TB_UndoRedo = "Undo/Redo";
+TB_FindDialog = "Find Dialog";
+TB_Copy = "Copy";
+TB_Cut = "Cut";
+TB_Paste = "Paste";
 
 WordsListLock = "表示ロック";
 
@@ -1354,8 +1354,6 @@ RemoteFileNewFile = "（新規ファイル）";
 RemoteFileParentFolder = " （親フォルダへ移動）";
 
 CantOpen_Title = "ファイルを開けませんでした";
-CantOpen_FileSize = "ファイル \"^0\" を開けませんでした。申し訳ありませんが、100MBを超えるファイルはこのアプリケーションでは開けません。";
-CantOpen_TotalFileSize = "ファイル \"^0\" を開けませんでした。他のドキュメントのトータルサイズが大きいためファイルを開くことができません。他のドキュメントを閉じてから、再度開いてみて下さい。";
 CantOpen_FileNotExist = "ファイル \"^0\" を開けませんでした。ファイルが見つかりません。リムーバブルドライブが接続されていない、ネットワークが切断された、ファイルが削除されたなどの可能性があります。";
 CantOpen_FileIsFolder = "ファイル \"^0\" を開けませんでした。指定されたファイルはフォルダです。";
 
@@ -1423,3 +1421,5 @@ UserIDInvaild = "無効なユーザー ID です";
 Version = "Version";
 About_UserID = "User ID: ^0";
 About_UserIDNotRegistered = "(not registered)";
+
+ModePrefNoSuffix = "(No Suffixes)";
