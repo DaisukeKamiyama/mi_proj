@@ -1354,8 +1354,6 @@ RemoteFileNewFile = "（新規ファイル）";
 RemoteFileParentFolder = " （親フォルダへ移動）";
 
 CantOpen_Title = "ファイルを開けませんでした";
-CantOpen_FileSize = "ファイル \"^0\" を開けませんでした。申し訳ありませんが、100MBを超えるファイルはこのアプリケーションでは開けません。";
-CantOpen_TotalFileSize = "ファイル \"^0\" を開けませんでした。他のドキュメントのトータルサイズが大きいためファイルを開くことができません。他のドキュメントを閉じてから、再度開いてみて下さい。";
 CantOpen_FileNotExist = "ファイル \"^0\" を開けませんでした。ファイルが見つかりません。リムーバブルドライブが接続されていない、ネットワークが切断された、ファイルが削除されたなどの可能性があります。";
 CantOpen_FileIsFolder = "ファイル \"^0\" を開けませんでした。指定されたファイルはフォルダです。";
 
@@ -1423,3 +1421,5 @@ UserIDInvaild = "無効なユーザー ID です";
 Version = "バージョン";
 About_UserID = "ユーザー ID ： ^0";
 About_UserIDNotRegistered = "(未登録)";
+
+ModePrefNoSuffix = "（拡張子なし）";
