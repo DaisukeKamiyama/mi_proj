@@ -249,6 +249,9 @@ class AView_List : public AView
 	
   public:
 	void					SPI_SetInhibit0Length( const ABool inInhibit0Length );//#205
+	void					SPI_SetInhibit0Length( const ABool inInhibit0Length, const AText& in0LengthText );//#1428
+  private:
+	AText								m0LengthText;//#1428
 	
 	//ï\é¶çsêßå‰
   private:
