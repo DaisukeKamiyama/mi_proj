@@ -715,6 +715,14 @@ void	AView_List::EVTDO_DoDraw()
 						//#1089 style |= kTextStyle_Bold;
 					}
 					*/
+					//#1428
+					//設定データの文字列長が0のときは代替テキストを表示する
+					if( text.GetItemCount() == 0 )
+					{
+						text.SetText(m0LengthText);
+						color = AColorWrapper::GetColorByHTMLFormatColor("808080");
+						style = kTextStyle_Italic;
+					}
 					//テキストプロパティ設定
 					NVMC_SetDefaultTextProperty(mFontName,mFontSize,color,style,true);
 					//ellipsisテキスト取得
@@ -3093,7 +3101,12 @@ void	AView_List::NVIDO_ScrollPostProcess( const ANumber inDeltaX, const ANumber 
 */
 void	AView_List::SPI_SetInhibit0Length( const ABool inInhibit0Length )
 {
+	SPI_SetInhibit0Length(inInhibit0Length, GetEmptyText());
+}
+void	AView_List::SPI_SetInhibit0Length( const ABool inInhibit0Length, const AText& in0LengthText )//#1428
+{
 	mInhibit0Length = inInhibit0Length;
+	m0LengthText.SetText(in0LengthText);//#1428
 }
 
 #pragma mark ===========================
