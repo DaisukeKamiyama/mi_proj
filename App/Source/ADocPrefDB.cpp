@@ -128,7 +128,7 @@ ADocPrefDB::ADocPrefDB() : ADataBase(NULL), mIsTextEncodingFixed(false)
 /**
 モードに従ってデータ初期化
 */
-void	ADocPrefDB::InitPref( const AModeIndex inModeIndex )
+void	ADocPrefDB::InitPref( const AModeIndex inModeIndex, const ABool inReInit )//#1429
 {
 	//モード名
 	{
@@ -147,6 +147,7 @@ void	ADocPrefDB::InitPref( const AModeIndex inModeIndex )
 		SetData_FloatNumber(kTextFontSize,GetApp().SPI_GetModePrefDB(inModeIndex).GetModeData_FloatNumber(AModePrefDB::kDefaultFontSize));
 	}
 	//テキストエンコーディング
+	if( inReInit == false )//#1429
 	{
 		AText	text;
 		GetApp().SPI_GetModePrefDB(inModeIndex).GetModeData_Text(AModePrefDB::kDefaultTextEncoding,text);
@@ -162,6 +163,7 @@ void	ADocPrefDB::InitPref( const AModeIndex inModeIndex )
 		SetData_Number(kWrapMode_LetterCount,GetApp().SPI_GetModePrefDB(inModeIndex).GetModeData_Number(AModePrefDB::kDefaultWrapMode_LetterCount));
 	}
 	//改行コード
+	if( inReInit == false )//#1429
 	{
 		SetData_Number(kReturnCode,GetApp().SPI_GetModePrefDB(inModeIndex).GetModeData_Number(AModePrefDB::kDefaultReturnCode));
 	}
