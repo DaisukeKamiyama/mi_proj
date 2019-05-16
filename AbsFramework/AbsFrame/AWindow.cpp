@@ -5722,6 +5722,10 @@ void	AWindow::NVI_EndSetTable( const AControlID inTableControlID )
 */
 void	AWindow::NVM_SetInhibit0LengthForTable( const AControlID inTableControlID, const ABool inInhibit0Length )
 {
+	NVM_SetInhibit0LengthForTable(inTableControlID, inInhibit0Length, GetEmptyText());
+}
+void	AWindow::NVM_SetInhibit0LengthForTable( const AControlID inTableControlID, const ABool inInhibit0Length, const AText& in0LengthText )//#1428
+{
 	//TableViewTypeÇ…ÇÊÇ¡ÇƒèàóùêÿÇËë÷Ç¶
 	switch(GetTableViewType(inTableControlID))
 	{
@@ -5732,7 +5736,7 @@ void	AWindow::NVM_SetInhibit0LengthForTable( const AControlID inTableControlID, 
 		}
 	  case kTableViewType_ListView:
 		{
-			NVI_GetListView(inTableControlID).SPI_SetInhibit0Length(inInhibit0Length);
+			NVI_GetListView(inTableControlID).SPI_SetInhibit0Length(inInhibit0Length, in0LengthText);//#1428
 			break;
 		}
 	  default:
