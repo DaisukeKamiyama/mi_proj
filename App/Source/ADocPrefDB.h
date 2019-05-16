@@ -34,7 +34,7 @@ class ADocPrefDB : public ADataBase
 	ADocPrefDB();
 	
 	void	InitPref( const AModeIndex inModeIndex );
-	AModeIndex	LoadPref( const AText& inTextFilePath );
+	AModeIndex	LoadPref( const AText& inTextFilePath, ABool& outLoadedFromFile );//#1429
 	//#902 AModeIndex	LoadPref( const AText& inTextFilePath, const ABool inLoadPrintPref, APrintPagePrefData& outPrintPref );
 	void	SavePref( const AText& inTextFilePath );
 	//#902 void	SavePref( const AText& inTextFilePath, const ABool inSavePrintPref, APrintPagePrefData& inPrintPref );
