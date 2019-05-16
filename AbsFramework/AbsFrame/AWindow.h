@@ -844,6 +844,7 @@ class AWindow : public AObjectArrayItem
 	//#1012 void					NVI_SetTableColumn_Icon( const AControlID inTableControlID, const ADataID inColumnID, const ANumberArray& inArray );
 	void					NVI_EndSetTable( const AControlID inTableControlID );
 	void					NVM_SetInhibit0LengthForTable( const AControlID inTableControlID, const ABool inInhibit0Length );//#205
+	void					NVM_SetInhibit0LengthForTable( const AControlID inTableControlID, const ABool inInhibit0Length, const AText& in0LengthText );//#1428
 	
 	//DB連動テーブルView表示データの取得 #205
   public:
