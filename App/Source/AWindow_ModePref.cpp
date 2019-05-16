@@ -3137,7 +3137,11 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 				kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,kControlID_Invalid,
 				kControlID_Invalid,true,true,true,true,false);
 	NVM_RegisterDBTableColumn(	kTable_Suffix,kColumn_Suffix_Suffix,					AModePrefDB::kSuffix,
-								kButton_EditSuffixTable,			0,"ModePref_Suffix_ListViewTitle0",true);
+							  kButton_EditSuffixTable,			0,"ModePref_Suffix_ListViewTitle0",true);
+	//拡張子なしを許可 #1428
+	AText	noSuffix;
+	noSuffix.SetLocalizedText("ModePrefNoSuffix");
+	NVM_SetInhibit0LengthForTable(kTable_Suffix,false,noSuffix);
 	
 	//フォントを「標準」モードと同じにする設定
 	NVM_RegisterDBData(AModePrefDB::kSameAsNormalMode_Font,				true);
