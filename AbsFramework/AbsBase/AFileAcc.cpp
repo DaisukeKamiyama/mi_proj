@@ -3075,6 +3075,24 @@ NSURL*	AFileAcc::GetNSURL() const
 	return [NSURL fileURLWithPath:pathstr.GetNSString()];
 }
 
+//#1425
+/**
+NSURLでSpecify
+*/
+void	AFileAcc::SpecifyByNSURL( NSURL* inNSURL )
+{
+	//pathプロパティがnilでないことのチェック
+	if( inNSURL.path == nil )
+	{
+		_ACError("", this);
+		return;
+	}
+	//パス設定
+	AText	path;
+	path.SetFromNSString(inNSURL.path);
+	Specify(path);
+}
+
 #endif
 
 #pragma mark ===========================
