@@ -185,10 +185,13 @@ ABool	AFileWrapper::GetLocalizedResourceFile( const AConstCharPtr inName, AFileA
 	CFBundleRef	appBundle = ::CFBundleGetMainBundle();
 	CFURLRef	url = ::CFBundleCopyResourceURL(appBundle,str.GetRef(),NULL,NULL);
 	if( url == NULL )   return false;
+	/*#1425
 	FSRef	fsref;
 	err = ::CFURLGetFSRef(url,&fsref);
 	//if( err != noErr )   _ACErrorNum("CFURLGetFSRef() returned error: ",err,NULL);
 	outFile.SpecifyByFSRef(fsref);
+	*/
+	outFile.SpecifyByNSURL((NSURL*)url);
 	::CFRelease(url);
 	return true;
 }
