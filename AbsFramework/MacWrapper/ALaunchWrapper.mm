@@ -211,10 +211,11 @@ void	ALaunchWrapper::OpenURL( AConstCharPtr inText )
 	OpenURL(text);
 }
 
+/*#1425
 //R0212
-/**
+**
 URL‚ðŠJ‚­
-*/
+*
 void	ALaunchWrapper::OpenURL( const AFileAcc& inFile )
 {
 	FSRef	fsref;
@@ -223,6 +224,7 @@ void	ALaunchWrapper::OpenURL( const AFileAcc& inFile )
 	if( urlref == NULL )   return;
 	::LSOpenCFURLRef(urlref,NULL);
 }
+*/
 
 //#214
 /**
