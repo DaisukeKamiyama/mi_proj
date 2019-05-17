@@ -263,6 +263,10 @@ Finder‚ÅŠJ‚­
 */
 void	ALaunchWrapper::Reveal( const AFileAcc& inFile )
 {
+	//#1425
+	NSArray*	array = [NSArray arrayWithObjects:inFile.GetNSURL(), nil];
+	[[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:array];
+	/*#1425
 	ProcessSerialNumber	psn;
 	AAppAcc	appAcc('FNDR','MACS');
 	if( FindAProcess(appAcc,psn) == false ) 
@@ -298,6 +302,7 @@ void	ALaunchWrapper::Reveal( const AFileAcc& inFile )
 	::AEDisposeDesc(&desc);
 	//B0197
 	::SetFrontProcess(&psn);
+	*/
 }
 
 /**
