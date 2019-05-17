@@ -161,6 +161,7 @@ class AFileAcc : public AObjectArrayItem
 	ABool	GetTextEncodingByXattr( AText& outTextEncodingName ) const;
 	void	SetTextEncodingByXattr( const AText& inTextEncodingName );
 	ABool	GetBundleFolderAttribute( AFileAttribute& outFileAttribute ) const;//R0137
+	NSURL*	GetNSURL() const;//#1425
   private:
 	static AThreadMutex					sResourceForkMutex;//#92
 #endif
