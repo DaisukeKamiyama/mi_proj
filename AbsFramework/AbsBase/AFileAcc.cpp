@@ -3063,6 +3063,18 @@ ABool	AFileAcc::GetBundleFolderAttribute( AFileAttribute& outFileAttribute ) con
 	return true;
 }
 
+//#1425
+/**
+NSURLŽæ“¾
+*/
+NSURL*	AFileAcc::GetNSURL() const
+{
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	return [NSURL fileURLWithPath:pathstr.GetNSString()];
+}
+
 #endif
 
 #pragma mark ===========================
