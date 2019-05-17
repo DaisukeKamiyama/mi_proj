@@ -73,7 +73,7 @@ class ALaunchWrapper
   public:
 	static void		OpenURL( const AText& inText );
 	static void		OpenURL( AConstCharPtr inText );
-	static void		OpenURL( const AFileAcc& inFile );//R0212
+	//#1425 static void		OpenURL( const AFileAcc& inFile );//R0212
 	static void		OpenURLWithSpecifiedApp( const AAppAcc& inApp, const AText& inText );//#214
 	static void		OpenURLWithDefaultBrowser( const AText& inURL );//#539
 	static void		Reveal( const AFileAcc& inFile );
