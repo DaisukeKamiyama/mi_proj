@@ -186,6 +186,21 @@ ABool	AFileAcc::UnitTest()
 	if( attr4.creator != 0 )   result = false;
 	if( attr4.type != 0 )   result = false;
 	
+	//シンボリックリンクテスト
+	AFileAcc	file4_symlink;
+	file4_symlink.SpecifyChild(folder4, "symlink");
+	[[NSFileManager defaultManager] createSymbolicLinkAtURL:file4_symlink.GetNSURL() withDestinationURL:file4_1.GetNSURL() error:nil];
+	//
+	if( file4_symlink.IsLink() == false )   result = false;
+	/*createSymbolicLinkAtURLではエイリアスにはならない。
+	AFileAcc	resolved;
+	resolved.ResolveAnyLink(file4_symlink);
+	AText	p1, p2;
+	file4_1.GetPath(p1);
+	resolved.GetPath(p2);
+	if( p1.Compare(p2) == false )   result = false;
+	*/
+	
 	//#1404 ファイル削除テスト
 	folder4.DeleteFolder();
 	folder4.DeleteFile();
