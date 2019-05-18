@@ -494,9 +494,13 @@ inFileをOSに開かせる（inFileのダブルクリックに相当）
 */
 ABool	ALaunchWrapper::Open( const AFileAcc& inFile )
 {
+	CFURLRef	urlref = (CFURLRef)(inFile.GetNSURL());
+	return (::LSOpenCFURLRef(urlref, NULL)==noErr);
+	/*#1425
 	FSRef	fsref;
 	if( inFile.GetFSRef(fsref) == false )   return false;
 	return (::LSOpenFSRef(&fsref,NULL)==noErr);
+	*/
 }
 
 //
@@ -1044,6 +1048,9 @@ void	ALaunchWrapper::ChangeDirectory( const AText& inDir )
 */
 void	ALaunchWrapper::MoveToTrash( const AFileAcc& inFile )
 {
+	NSArray*	array = [NSArray arrayWithObjects:inFile.GetNSURL(), nil];
+	[[NSWorkspace sharedWorkspace] recycleURLs:array completionHandler:nil];
+	/*#1425
 	OSStatus	err = noErr;
 	
 	AFileAcc	trashfolder;
@@ -1069,6 +1076,7 @@ void	ALaunchWrapper::MoveToTrash( const AFileAcc& inFile )
 		if( err != noErr )   _ACErrorNum("FSMoveObject() returned error: ",err,NULL);
 	}
 	ALaunchWrapper::NotifyFileChanged(trashfolder);
+	*/
 }
 
 //#1034 AFileWrapperから移動
