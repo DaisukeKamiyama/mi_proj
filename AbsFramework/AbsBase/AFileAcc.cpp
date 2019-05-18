@@ -3093,6 +3093,17 @@ void	AFileAcc::SpecifyByNSURL( NSURL* inNSURL )
 	Specify(path);
 }
 
+//#1425
+/**
+NSString‚ÅSpecify
+*/
+void	AFileAcc::SpecifyByNSString( NSString* inPath )
+{
+	AText	path;
+	path.SetFromNSString(inPath);
+	Specify(path);
+}
+
 #endif
 
 #pragma mark ===========================
