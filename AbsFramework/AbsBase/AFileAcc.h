@@ -163,6 +163,7 @@ class AFileAcc : public AObjectArrayItem
 	ABool	GetBundleFolderAttribute( AFileAttribute& outFileAttribute ) const;//R0137
 	NSURL*	GetNSURL() const;//#1425
 	void	SpecifyByNSURL( NSURL* inNSURL );//#1425
+	void	SpecifyByNSString( NSString* inPath );//#1425
   private:
 	static AThreadMutex					sResourceForkMutex;//#92
 #endif
