@@ -36,7 +36,7 @@ class AFileWrapper
 	//特殊フォルダ・ファイル取得
 	static void	GetCurrentDirectory( AFileAcc& outFolder );//#263
 	static void	GetDesktopFolder( AFileAcc& outFolder );
-	static void	GetTrashFolder( AFileAcc& outFolder );
+	//#1425 static void	GetTrashFolder( AFileAcc& outFolder );
 	static void	GetDocumentsFolder( AFileAcc& outFolder );
 	static void	GetUserFolder( AFileAcc& outFolder );//#1231
 	static void	GetAppPrefFolder( AFileAcc& outFileAcc );
