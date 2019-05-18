@@ -49,17 +49,22 @@ void	AFileWrapper::GetCurrentDirectory( AFileAcc& outFolder )
 */
 void	AFileWrapper::GetDesktopFolder( AFileAcc& outFolder )
 {
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES);
+	outFolder.SpecifyByNSString([paths objectAtIndex:0]);
+	/*#1425
 	OSStatus	err = noErr;
 	
 	FSRef	ref;
 	err =::FSFindFolder(kUserDomain,kDesktopFolderType,true,&ref);
 	if( err != noErr )   _ACErrorNum("FSFindFolder() returned error: ",err,NULL);
 	outFolder.SpecifyByFSRef(ref);
+	*/
 }
 
-/**
+/*#1425
+**
 ゴミ箱フォルダ取得
-*/
+*
 void	AFileWrapper::GetTrashFolder( AFileAcc& outFolder )
 {
 	OSStatus	err = noErr;
@@ -69,18 +74,23 @@ void	AFileWrapper::GetTrashFolder( AFileAcc& outFolder )
 	if( err != noErr )   _ACErrorNum("FSFindFolder() returned error: ",err,NULL);
 	outFolder.SpecifyByFSRef(ref);
 }
+*/
 
 /**
 ドキュメントフォルダ取得
 */
 void	AFileWrapper::GetDocumentsFolder( AFileAcc& outFolder )
 {
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	outFolder.SpecifyByNSString([paths objectAtIndex:0]);
+	/*#1425
 	OSStatus	err = noErr;
 	
 	FSRef	ref;
 	err = ::FSFindFolder(kUserDomain,kDocumentsFolderType,true,&ref);
 	if( err != noErr )   _ACErrorNum("FSFindFolder() returned error: ",err,NULL);
 	outFolder.SpecifyByFSRef(ref);
+	*/
 }
 
 //#1231
@@ -89,12 +99,15 @@ void	AFileWrapper::GetDocumentsFolder( AFileAcc& outFolder )
 */
 void	AFileWrapper::GetUserFolder( AFileAcc& outFolder )
 {
+	outFolder.SpecifyByNSString(NSHomeDirectory());
+	/*#1425
 	OSStatus	err = noErr;
 	
 	FSRef	ref;
 	err = ::FSFindFolder(kUserDomain,kCurrentUserFolderType,true,&ref);
 	if( err != noErr )   _ACErrorNum("FSFindFolder() returned error: ",err,NULL);
 	outFolder.SpecifyByFSRef(ref);
+	*/
 }
 
 //アプリケーション設定フォルダ
@@ -108,6 +121,7 @@ const AFileAcc&	AFileWrapper::GetAppPrefFolder()
 	//gAppPrefFolder未取得なら、取得する
 	if( gAppPrefFolder.IsSpecified() == false )
 	{
+		/*#1425
 		OSStatus	err = noErr;
 		
 		FSRef	ref;
@@ -123,6 +137,10 @@ const AFileAcc&	AFileWrapper::GetAppPrefFolder()
 		{
 			prefroot.CreateFolder();
 		}
+		*/
+		AFileAcc	prefroot;
+		NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+		prefroot.SpecifyByNSString([paths objectAtIndex:0]);
 		//
 		AText	filename;
 		filename.SetLocalizedText("AppPrefFolderName");
@@ -166,10 +184,13 @@ void	AFileWrapper::GetTempFolder( AFileAcc& outTempFolder )
 */
 void	AFileWrapper::GetAppFile( AFileAcc& outFileAcc )
 {
+	outFileAcc.SpecifyByNSURL(NSBundle.mainBundle.bundleURL);
+	/*#1425
 	FSRef	fsRef;
 	ProcessSerialNumber psn = {0, kCurrentProcess};
 	::GetProcessBundleLocation(&psn, &fsRef);
 	outFileAcc.SpecifyByFSRef(fsRef);
+	*/
 }
 
 //B0408
