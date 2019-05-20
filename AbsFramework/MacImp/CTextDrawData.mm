@@ -236,9 +236,11 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText, const ANu
 {
 	AArray<AIndex>	hintTextPosArray;
 	ATextArray	hintTextArray;
+	AArray<AIndex>	tabPositions;//#1421
 	MakeTextDrawDataWithoutStyle(inText,inTabWidth,inLetterCountLimit,inGetUTF16Text,inCountAs2Letters,
 								 inDisplayControlCode,inStartIndex,inLength,
 								 hintTextPosArray, hintTextArray,
+								 tabPositions,//#1421
 								 inStartSpaceToIndent,inStartSpaceCount,inStartIndentWidth,false
 								 );
 }
@@ -252,6 +254,7 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 													const AItemCount inLength,
 													const AArray<AIndex>& inHintTextPosArray,
 													const ATextArray& inHintTextArray,
+													 const AArray<AIndex>& inTabPositions,//#1421
 													const ABool inStartSpaceToIndent, 
 													const AItemCount inStartSpaceCount, 
 													const AItemCount inStartIndentWidth,
@@ -288,6 +291,8 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 	AUCS4Char	nextUCS4Char = 0;//#863
 	AItemCount	nextbc = 1;//#863
 	ABool	nextUCS4CharLoaded = false;//#863
+	AIndex	tabPositionsIndex = 0;//#1421
+	AIndex	tabPosition = 0;//#1421
 	for( ; originalTextIndex < lineInfo_LengthWithoutCR; originalTextIndex = nextOriginalTextIndex )
 	{
 		if( inLetterCountLimit > 0 )
@@ -366,25 +371,56 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 			UTF16DrawText.AddUTF16Char(kUChar_Space);
 			uniOffset++;
 			
-			//
-			tabletters++;//B0154
-			while( (tabletters%inTabWidth) != 0 )//B0154
+			//Flexibleタブ位置指定有無の判定 #1421
+			if( inTabPositions.GetItemCount() == 0 )
 			{
-				//Unicode一文字追加
-				//タブ部分の前半／後半で、対応する元のテキストの位置を変える。
-				if( (tabletters%inTabWidth) > inTabWidth/2 )
-				{
-					UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex+1);
-				}
-				else
-				{
-					UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
-				}
-				UTF16DrawText.AddUTF16Char(kUChar_Space);
-				uniOffset++;
+				//通常タブの場合
 				
 				//
 				tabletters++;//B0154
+				while( (tabletters%inTabWidth) != 0 )//B0154
+				{
+					//Unicode一文字追加
+					//タブ部分の前半／後半で、対応する元のテキストの位置を変える。
+					if( (tabletters%inTabWidth) > inTabWidth/2 )
+					{
+						UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex+1);
+					}
+					else
+					{
+						UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
+					}
+					UTF16DrawText.AddUTF16Char(kUChar_Space);
+					uniOffset++;
+					
+					//
+					tabletters++;//B0154
+				}
+			}
+			else
+			{
+				//Flexibleタブ位置指定有りの場合 #1421
+				
+				//タブ用文字カウント数インクリメント（すでに最初のスペース位置文字は上で追加済み）
+				tabletters++;
+				//指定タブ位置を取得（指定以降は通常タブ幅）
+				if( tabPositionsIndex < inTabPositions.GetItemCount() )
+				{
+					tabPosition += inTabPositions.Get(tabPositionsIndex);
+				}
+				else
+				{
+					tabPosition += inTabWidth;
+				}
+				tabPositionsIndex++;
+				//タブ位置までスペース文字追加
+				while( tabletters < tabPosition )
+				{
+					UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
+					UTF16DrawText.AddUTF16Char(kUChar_Space);
+					uniOffset++;
+					tabletters++;
+				}
 			}
 		}
 		//==================ヒントテキスト==================
