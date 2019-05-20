@@ -1650,6 +1650,48 @@ void	AFileAcc::GetChildren( AObjectArray<AFileAcc>& outChilds ) const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::ReadTo( AText &outText/*#1034, ABool inResourceFork*/ ) const
 {
+	ABool	result = false;
+	outText.DeleteAll();
+	
+	//
+	NSFileHandle* fh = nil;
+	@try 
+	{
+		//パス取得
+		AText	path;
+		GetNormalizedPath(path);
+		AStCreateNSStringFromAText	pathstr(path);
+		//ファイルハンドラ取得
+		fh = [NSFileHandle fileHandleForReadingAtPath:pathstr.GetNSString()];
+		if( fh != nil )
+		{
+			//NSDataに読み込み
+			NSData* data = [fh readDataToEndOfFile];
+			if( data != nil )
+			{
+				//outTextへ格納
+				AByteCount	len = [data length];
+				if( len > 0 )
+				{
+					outText.Reserve(0,len);
+					outText.SetFromTextPtr((const AConstUCharPtr)[data bytes],len);
+					result = true;
+				}
+			}
+		}
+	}
+	@catch(NSException *theException)
+	{
+		_ACError("AFileAcc::ReadTo() @catch",this);
+	}
+	//ファイルハンドラクローズ
+	if( fh != nil )
+	{
+		[fh closeFile];
+	}
+	return result;
+	
+	/*#1422 FileCoordinator一旦見送り 20190520
 	__block	ABool	result = false;//#1422
 	outText.DeleteAll();
 	
@@ -1701,7 +1743,7 @@ ABool	AFileAcc::ReadTo( AText &outText/*#1034, ABool inResourceFork*/ ) const
 	//File Coordinator解放 #1422
 	[fileCoordinator release];
 	return result;
-	
+	*/
 	/*#1034
 	SInt16	forkref = 0;
 	try
@@ -1784,6 +1826,49 @@ ABool	AFileAcc::ReadTo( AText &outText, ABool inResourceFork ) const
 #if IMPLEMENTATION_FOR_MACOSX
 ABool	AFileAcc::WriteFile( const AText& inText, AFileError& outError ) const
 {
+	ABool	result = false;
+	outError = kFileError_General;
+	
+	//
+	NSFileHandle* fh;
+	@try 
+	{
+		//パス取得
+		AText	path;
+		GetNormalizedPath(path);
+		AStCreateNSStringFromAText	pathstr(path);
+		//ファイルハンドラ取得
+		fh = [NSFileHandle fileHandleForWritingAtPath:pathstr.GetNSString()];
+		if( fh != nil )
+		{
+			//NSData作成
+			AStTextPtr	textptr(inText,0,inText.GetItemCount());
+			NSData*	data = [NSData dataWithBytes:textptr.GetPtr() length:textptr.GetByteCount()];
+			if( data != nil )
+			{
+				//ファイルに書き込み
+				[fh writeData:data];
+				//サイズ設定
+				[fh truncateFileAtOffset:textptr.GetByteCount()];
+				//結果OK
+				result = true;
+			}
+		}
+	}
+	@catch(NSException *theException)
+	{
+		//_AError("AFileAcc::WriteFile() @catch",this);
+		outError = kFileError_DiskFull;
+	}
+	//ファイルハンドラクローズ
+	if( fh != nil )
+	{
+		[fh closeFile];
+	}
+	return result;
+	
+	
+	/*#1422 FileCoordinator一旦見送り
 	__block ABool	result = false;//#1422
 	outError = kFileError_General;
 	
@@ -1835,7 +1920,7 @@ ABool	AFileAcc::WriteFile( const AText& inText, AFileError& outError ) const
 	//File Coordinator解放 #1422
 	[fileCoordinator release];
 	return result;
-	
+	*/
 	
 	/*#1304
 	SInt16	forkref = 0;
