@@ -51,7 +51,7 @@ class AThread_WrapCalculator : public AThread
 			const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 			const AItemCount inTabWidth, const AItemCount inIndentWidth, 
 			const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, 
-			const ANumber inViewWidth, const ABool inCountAs2Letters );
+			const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions );//#1421
 	
 	//スレッド終了後処理
   public:
@@ -73,6 +73,7 @@ class AThread_WrapCalculator : public AThread
 	AItemCount					mWrapLetterCount;
 	ANumber						mViewWidth;
 	ABool						mCountAs2Letters;
+	AArray<AIndex>				mTabPositions;//#1421
 	
 };
 
