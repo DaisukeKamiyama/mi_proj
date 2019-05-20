@@ -200,6 +200,7 @@ ABool	AFileAcc::UnitTest()
 	resolved.GetPath(p2);
 	if( p1.Compare(p2) == false )   result = false;
 	*/
+	file4_symlink.DeleteFile();
 	
 	//#1404 ファイル削除テスト
 	folder4.DeleteFolder();
