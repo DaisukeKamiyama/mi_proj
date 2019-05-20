@@ -2119,7 +2119,8 @@ void	ATextInfo::GetTextDrawDataWithoutStyle( const AText& inText, const ANumber 
 											   const AIndex inLineIndex, CTextDrawData& outTextDrawData, 
 											   const ABool inGetUTF16Text, const ABool inCountAs2Letters,
 											   const AIndex inToLineEndCode, const ABool inForDraw,
-											   const ABool inDisplayYenFor5C ) const //B0000 行折り返し計算高速化 #695 #940
+											   const ABool inDisplayYenFor5C,
+												const AArray<AIndex>& inTabPositions ) const //B0000 行折り返し計算高速化 #695 #940 #1421
 {
 	//行情報取得
 	AIndex	lineInfo_Start = GetLineStart(inLineIndex);
@@ -2158,6 +2159,7 @@ void	ATextInfo::GetTextDrawDataWithoutStyle( const AText& inText, const ANumber 
 												 GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kDisplayControlCode),
 												 lineInfo_Start,lineInfo_LengthWithoutCR,
 												 hintTextPosArray,hintTextArray,
+												 inTabPositions,//#1421
 												 GetApp().SPI_GetModePrefDB(mModeIndex).GetData_Bool(AModePrefDB::kStartSpaceToIndent),
 												 inIndentWidth,inTabWidth,//#117
 												 inDisplayYenFor5C);//#940
@@ -2214,7 +2216,7 @@ AItemCount	ATextInfo::CalcLineInfoAll( const AText& inText,
 									   const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 									   const AItemCount inTabWidth, const AItemCount inIndentWidth, 
 									   const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, //#117
-									   const ANumber inViewWidth, const ABool inCountAs2Letters )
+									   const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions )//#1421
 {
 	//行情報全削除
 	DeleteLineInfoAll(/*#695 outDeletedIdentifiers*/);
@@ -2267,7 +2269,7 @@ AItemCount	ATextInfo::CalcLineInfoAll( const AText& inText,
 		AddLineInfo();
 		//行計算
 		CalcLineInfo(inText,lineIndex,inFontName,inFontSize,inAntiAliasing,inTabWidth,inIndentWidth,inWrapMode,inWrapLetterCount,inViewWidth,inCountAs2Letters,
-					textDrawData,textDrawDataStartOffset);//B0000 行折り返し計算高速化
+			 textDrawData,textDrawDataStartOffset, inTabPositions);//B0000 行折り返し計算高速化 #1421
 		//テキスト全ての行計算が完了したらbreak
 		if( GetLineStart(lineIndex) + GetLineLengthWithLineEnd(lineIndex) >= inText.GetItemCount() )   break;
 		//行数制限がある場合（最初の200行や、行計算スレッドからの実行）、行数判定#699
@@ -2307,7 +2309,8 @@ void	ATextInfo::CalcLineInfo( const AText& inText, const AIndex inLineIndex,
 		/*win const AFont inFont*/const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 		const AItemCount inTabWidth, const AItemCount inIndentWidth, const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, const ANumber inViewWidth, //#117
 		const ABool inCountAs2Letters, 
-		CTextDrawData& ioTextDrawData, AIndex& ioTextDrawDataStartOffset )//B0000 行折り返し計算高速化
+		CTextDrawData& ioTextDrawData, AIndex& ioTextDrawDataStartOffset,
+								 const AArray<AIndex>& inTabPositions )//B0000 行折り返し計算高速化 #1421
 {
 	//lineStartを前の行の情報から算出
 	AIndex	lineStart = 0;
@@ -2362,7 +2365,7 @@ void	ATextInfo::CalcLineInfo( const AText& inText, const AIndex inLineIndex,
 				AIndex	parastartlineindex = GetCurrentParagraphStartLineIndex(inLineIndex);
 				//AIndex	svLen = mLineInfo.GetLineInfo_Length(startlineindex);
 				//mLineInfo.SetLineInfo_Length(startlineindex,inText.GetItemCount()-mLineInfo.GetLineInfo_Start(startlineindex));
-				GetTextDrawDataWithoutStyle(inText,inTabWidth,inIndentWidth,0,parastartlineindex,ioTextDrawData,true,inCountAs2Letters,true,false,false);
+				GetTextDrawDataWithoutStyle(inText,inTabWidth,inIndentWidth,0,parastartlineindex,ioTextDrawData,true,inCountAs2Letters,true,false,false,inTabPositions);//#1421
 				ioTextDrawDataStartOffset = ioTextDrawData.OriginalTextArray_UnicodeOffset.Get(
 							mLineInfo.GetLineInfo_Start(inLineIndex) - mLineInfo.GetLineInfo_Start(parastartlineindex));
 				//mLineInfo.SetLineInfo_Length(startlineindex,svLen);
@@ -2438,7 +2441,7 @@ void	ATextInfo::CalcLineInfo( const AText& inText, const AIndex inLineIndex,
 	  case kWrapMode_LetterWrapByLetterCount://#1113
 		{
 			CTextDrawData	textDrawData(false);
-			GetTextDrawDataWithoutStyle(inText,inTabWidth,inIndentWidth,inWrapLetterCount,inLineIndex,textDrawData,false,inCountAs2Letters,false,false,false);
+			GetTextDrawDataWithoutStyle(inText,inTabWidth,inIndentWidth,inWrapLetterCount,inLineIndex,textDrawData,false,inCountAs2Letters,false,false,false, inTabPositions);//#1421
 			AItemCount	length = textDrawData.UTF16DrawTextArray_OriginalTextIndex.Get(textDrawData.UTF16DrawTextArray_OriginalTextIndex.GetItemCount()-1);
 			if( lineStart + length < inText.GetItemCount() )
 			{
