@@ -1548,6 +1548,7 @@ void	CDocImp::SetDocumentID( const ADocumentID inDocumentID )
 */
 void	CDocImp::FileSpecified( const AFileAcc& inFileAcc )
 {
+	/*#1422 ˆê’UŒ©‘—‚è 20190520
 	//Šù‘¶‚ÌFile Presenter‚ª‚ ‚ê‚Î‰ð•ú‚·‚é
 	if( mFilePresenter != nil )
 	{
@@ -1559,6 +1560,7 @@ void	CDocImp::FileSpecified( const AFileAcc& inFileAcc )
 	AStCreateNSStringFromAText	pathstr(path);
 	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString() isDirectory:NO];
 	mFilePresenter = [[CDocumentFilePresenter alloc] initWithURL:url];
+	*/
 }
 
 //#1422
