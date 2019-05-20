@@ -42,8 +42,8 @@ class ACSVFile
 	
 	//データ取得
   public:
-	void			GetColumn( const AIndex inColumnIndex, ATextArray& outColumnData );
-	void			GetColumn( const AIndex inColumnIndex, ANumberArray& outColumnData );
+	ABool			GetColumn( const AIndex inColumnIndex, ATextArray& outColumnData );//#1421
+	ABool			GetColumn( const AIndex inColumnIndex, ANumberArray& outColumnData );//#1421
 	
 	//データ
   private:
