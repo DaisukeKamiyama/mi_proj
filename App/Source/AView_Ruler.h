@@ -67,6 +67,8 @@ class AView_Ruler : public AView
 	AViewType				NVIDO_GetViewType() const {return kViewType_Ruler;}
 	
 	AFloatNumber						mLetterWidth;
+	AFloatNumber						mSpaceWidth;//#1421
+	AArray<AIndex>						mFlexibleTabPositions;//#1421
 	ANumber								mLeftMargin;
 	ANumber								mCaretImageX;
 	ANumber								mSelectImageX;
