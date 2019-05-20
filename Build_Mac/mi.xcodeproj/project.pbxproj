@@ -64,6 +64,10 @@
 		0D5F342C21F9D1CB00BA34CA /* iconSwlParentPathT.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F342B21F9D1CB00BA34CA /* iconSwlParentPathT.Template.pdf */; };
 		0D5F342F21F9E12800BA34CA /* iconAddFolderT.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F342E21F9E12700BA34CA /* iconAddFolderT.Template.pdf */; };
 		0D5F343221FAF17E00BA34CA /* iconEditColumnT.Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F343121FAF17E00BA34CA /* iconEditColumnT.Template.pdf */; };
+		0D7F08632291485100EE0642 /* iconTabPosition_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F08612291485100EE0642 /* iconTabPosition_dark.png */; };
+		0D7F08642291485100EE0642 /* iconTabPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F08622291485100EE0642 /* iconTabPosition.png */; };
+		0D7F08672291488B00EE0642 /* iconTabPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F08652291488A00EE0642 /* iconTabPosition@2x.png */; };
+		0D7F08682291488B00EE0642 /* iconTabPosition_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F08662291488A00EE0642 /* iconTabPosition_dark@2x.png */; };
 		0D81095721EC984300EADC9E /* wordstarlike.txt in Copy Keybind Sample */ = {isa = PBXBuildFile; fileRef = 0D81095521EC981400EADC9E /* wordstarlike.txt */; };
 		0D868DA821A55885007E59DD /* ChangeToolButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D868DA621A55884007E59DD /* ChangeToolButton.xib */; };
 		0D868DAF21A5B677007E59DD /* AWindow_ChangeToolButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D868DAE21A5B677007E59DD /* AWindow_ChangeToolButton.cpp */; };
@@ -731,6 +735,10 @@
 		0D5F342B21F9D1CB00BA34CA /* iconSwlParentPathT.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconSwlParentPathT.Template.pdf; path = PDF/iconSwlParentPathT.Template.pdf; sourceTree = "<group>"; };
 		0D5F342E21F9E12700BA34CA /* iconAddFolderT.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconAddFolderT.Template.pdf; path = PDF/iconAddFolderT.Template.pdf; sourceTree = "<group>"; };
 		0D5F343121FAF17E00BA34CA /* iconEditColumnT.Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = iconEditColumnT.Template.pdf; path = PDF/iconEditColumnT.Template.pdf; sourceTree = "<group>"; };
+		0D7F08612291485100EE0642 /* iconTabPosition_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconTabPosition_dark.png; path = 1x/iconTabPosition_dark.png; sourceTree = "<group>"; };
+		0D7F08622291485100EE0642 /* iconTabPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconTabPosition.png; path = 1x/iconTabPosition.png; sourceTree = "<group>"; };
+		0D7F08652291488A00EE0642 /* iconTabPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconTabPosition@2x.png"; path = "2x/iconTabPosition@2x.png"; sourceTree = "<group>"; };
+		0D7F08662291488A00EE0642 /* iconTabPosition_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconTabPosition_dark@2x.png"; path = "2x/iconTabPosition_dark@2x.png"; sourceTree = "<group>"; };
 		0D81095521EC981400EADC9E /* wordstarlike.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wordstarlike.txt; path = ../sample/wordstarlike.txt; sourceTree = "<group>"; };
 		0D868DA421A54A8E007E59DD /* ChangeToolButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChangeToolButton.xib; path = ../App/Resource_Mac/UI/ChangeToolButton.xib; sourceTree = "<group>"; };
 		0D868DA721A55884007E59DD /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ChangeToolButton.xib; sourceTree = "<group>"; };
@@ -1905,6 +1913,17 @@
 			name = editColumn;
 			sourceTree = "<group>";
 		};
+		0D7F08602291484000EE0642 /* tabPosition */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F08612291485100EE0642 /* iconTabPosition_dark.png */,
+				0D7F08622291485100EE0642 /* iconTabPosition.png */,
+				0D7F08662291488A00EE0642 /* iconTabPosition_dark@2x.png */,
+				0D7F08652291488A00EE0642 /* iconTabPosition@2x.png */,
+			);
+			name = tabPosition;
+			sourceTree = "<group>";
+		};
 		0D8BDC8C21F0A6A8008262BA /* lineNumberView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2011,6 +2030,7 @@
 		0D8BDCE421F1EC27008262BA /* general */ = {
 			isa = PBXGroup;
 			children = (
+				0D7F08602291484000EE0642 /* tabPosition */,
 				0DEE957322015778005DFD17 /* cancel */,
 				0D5F343021FAF16B00BA34CA /* editColumn */,
 				0D5F342D21F9E11000BA34CA /* addFolder */,
@@ -3461,6 +3481,7 @@
 				7EAA9AE6194DB46300D46B64 /* btnFldngArrowDown.png in Resources */,
 				0DC0E0AA21F466CD004D0B02 /* iconSwKeyRecord@2x.png in Resources */,
 				0DC0E06421F33706004D0B02 /* iconSwTextCount_dark@2x.png in Resources */,
+				0D7F08672291488B00EE0642 /* iconTabPosition@2x.png in Resources */,
 				0D2FAC5D21F225A1002F2A44 /* iconSwlDocument.png in Resources */,
 				0D901FCE21F1EF3F008C41B7 /* iconSwCompare_dark.png in Resources */,
 				7EAA9B0D194DB46300D46B64 /* iconEnvRemoteConnection.png in Resources */,
@@ -3475,6 +3496,7 @@
 				7EAA9B0C194DB46300D46B64 /* iconEnvOperation@2x.png in Resources */,
 				0DADE745223BC86000D40F45 /* iconTbUndo.Template.pdf in Resources */,
 				0D901F8A21F1EE67008C41B7 /* barSwCursorDown_h.png in Resources */,
+				0D7F08682291488B00EE0642 /* iconTabPosition_dark@2x.png in Resources */,
 				7ED8230D194DBAD00037D7AE /* TextEncodingCorrect.xib in Resources */,
 				7EFFB41A1A592D3B0070975E /* SheetSaveCancelDiscard.xib in Resources */,
 				7EAA9B87194DB46400D46B64 /* iconTbKeyStop.Template.pdf in Resources */,
@@ -3485,6 +3507,7 @@
 				0DC0E06921F33710004D0B02 /* iconSwTextCount.png in Resources */,
 				0D2FAC4721F21C2A002F2A44 /* iconSwBox_Remote@2x.png in Resources */,
 				7EAA9B13194DB46400D46B64 /* iconModeCodeFolding.png in Resources */,
+				0D7F08642291485100EE0642 /* iconTabPosition.png in Resources */,
 				7ED8233B194DBB050037D7AE /* Localizable.strings in Resources */,
 				7EAA9AE8194DB46300D46B64 /* btnFldngArrowDown_h.png in Resources */,
 				7EAA9B8F194DB46400D46B64 /* iconTbSeparateVertical.Template.pdf in Resources */,
@@ -3610,6 +3633,7 @@
 				7ED8233F194DBB260037D7AE /* MainMenu.xib in Resources */,
 				0D2FABF021F1F9E2002F2A44 /* iconSwDocument_dark.png in Resources */,
 				0D901F9821F1EE73008C41B7 /* barSwCursorDown@2x.png in Resources */,
+				0D7F08632291485100EE0642 /* iconTabPosition_dark.png in Resources */,
 				0D901FDD21F1EFAA008C41B7 /* barSwCloseButton_p@2x.png in Resources */,
 				0D901FA421F1EE86008C41B7 /* barSwCursorRight_d_dark@2x.png in Resources */,
 				0D901FE921F1EFB4008C41B7 /* barSwCloseButton_1_dark.png in Resources */,

@@ -2707,17 +2707,8 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                     <rect key="frame" x="0.0" y="0.0" width="792" height="826"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997006" id="1386">
-                                            <rect key="frame" x="17" y="173" width="108" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1387">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField verticalHuggingPriority="750" id="2172">
-                                            <rect key="frame" x="25" y="516" width="168" height="14"/>
+                                            <rect key="frame" x="25" y="464" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Indent Calculation Method :" id="2180">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2726,7 +2717,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="2195">
-                                            <rect key="frame" x="24" y="582" width="168" height="14"/>
+                                            <rect key="frame" x="24" y="530" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Characters for Auto Indent :" id="2196">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2735,7 +2726,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="2601">
-                                            <rect key="frame" x="403" y="721" width="91" height="14"/>
+                                            <rect key="frame" x="403" y="728" width="91" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="characters" id="2602">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2744,7 +2735,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="2199">
-                                            <rect key="frame" x="24" y="662" width="168" height="14"/>
+                                            <rect key="frame" x="24" y="610" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Empty Line Indent :" id="2200">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2753,7 +2744,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <button tag="356" id="2173" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="194" y="657" width="384" height="24"/>
+                                            <rect key="frame" x="194" y="605" width="384" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Set to no indent if line is empty" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2179">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2761,6 +2752,17 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </buttonCell>
                                             <connections>
                                                 <outlet property="tabViewItem" destination="1484" id="2182"/>
+                                            </connections>
+                                        </button>
+                                        <button tag="440" id="cEz-wl-Uyk" customClass="CocoaTabSelectButton">
+                                            <rect key="frame" x="194" y="669" width="384" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Set tab width for each tab level" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="jYr-1n-G04">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <outlet property="tabViewItem" destination="1484" id="h2M-Ah-O6U"/>
                                             </connections>
                                         </button>
                                         <button tag="425" id="3310" customClass="CocoaTabSelectButton">
@@ -2775,7 +2777,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="2201">
-                                            <rect key="frame" x="24" y="637" width="168" height="14"/>
+                                            <rect key="frame" x="24" y="585" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Indent for Pasted Text :" id="2204">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2784,7 +2786,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <button tag="357" id="2202" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="194" y="632" width="384" height="24"/>
+                                            <rect key="frame" x="194" y="580" width="384" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Indent automatically for pasted text" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2203">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2795,7 +2797,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="3894">
-                                            <rect key="frame" x="25" y="611" width="168" height="14"/>
+                                            <rect key="frame" x="25" y="559" width="168" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Shift Left by backspace :" id="3897">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -2804,7 +2806,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <button tag="434" id="3895" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="194" y="606" width="384" height="24"/>
+                                            <rect key="frame" x="194" y="554" width="384" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Shift left by backspace at line start" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3896">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2815,11 +2817,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <box verticalHuggingPriority="750" boxType="separator" id="2176">
-                                            <rect key="frame" x="20" y="567" width="675" height="5"/>
+                                            <rect key="frame" x="20" y="515" width="675" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" tag="306" id="2197" customClass="CocoaTextField">
-                                            <rect key="frame" x="197" y="578" width="206" height="22"/>
+                                            <rect key="frame" x="197" y="526" width="206" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="2198">
                                                 <font key="font" metaFont="system"/>
@@ -2827,8 +2829,17 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField verticalHuggingPriority="750" tag="441" id="egM-7D-wCu" customClass="CocoaTextField">
+                                            <rect key="frame" x="197" y="648" width="410" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="bYn-KA-DpQ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <textField verticalHuggingPriority="750" tag="305" id="2599" customClass="CocoaTextField">
-                                            <rect key="frame" x="325" y="718" width="55" height="22"/>
+                                            <rect key="frame" x="325" y="725" width="55" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="2600">
                                                 <font key="font" metaFont="system"/>
@@ -2837,22 +2848,22 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <tabView drawsBackground="NO" controlSize="small" type="noTabsNoBorder" id="2209">
-                                            <rect key="frame" x="41" y="181" width="654" height="220"/>
+                                            <rect key="frame" x="41" y="178" width="654" height="171"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <tabViewItems>
                                                 <tabViewItem label="0" identifier="1" id="2210">
                                                     <view key="view" id="2231">
-                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="220"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="171"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
                                                 </tabViewItem>
                                                 <tabViewItem label="1" identifier="2" id="2211">
                                                     <view key="view" id="2212">
-                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="220"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="171"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" id="2286">
-                                                                <rect key="frame" x="-12" y="163" width="164" height="14"/>
+                                                                <rect key="frame" x="-12" y="133" width="164" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="On the way of sentence : " id="2287">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2861,7 +2872,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="2282">
-                                                                <rect key="frame" x="350" y="82" width="176" height="14"/>
+                                                                <rect key="frame" x="350" y="52" width="176" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="characters rightward" id="2283">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2870,7 +2881,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="2284">
-                                                                <rect key="frame" x="242" y="53" width="175" height="14"/>
+                                                                <rect key="frame" x="242" y="23" width="175" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="characters rightward" id="2285">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2879,7 +2890,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" tag="301" id="2271" customClass="CocoaTextField">
-                                                                <rect key="frame" x="269" y="78" width="55" height="22"/>
+                                                                <rect key="frame" x="269" y="48" width="55" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="2272">
                                                                     <font key="font" metaFont="system"/>
@@ -2888,7 +2899,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="2273">
-                                                                <rect key="frame" x="-102" y="53" width="254" height="14"/>
+                                                                <rect key="frame" x="-102" y="23" width="254" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Indent Level for Label : " id="2276">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2897,7 +2908,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" id="3330">
-                                                                <rect key="frame" x="137" y="82" width="127" height="14"/>
+                                                                <rect key="frame" x="137" y="52" width="127" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Other than above : " id="3331">
                                                                     <font key="font" metaFont="smallSystem"/>
@@ -2906,7 +2917,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField verticalHuggingPriority="750" tag="302" id="2274" customClass="CocoaTextField">
-                                                                <rect key="frame" x="157" y="49" width="55" height="22"/>
+                                                                <rect key="frame" x="157" y="19" width="55" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="2275">
                                                                     <font key="font" metaFont="system"/>
@@ -2915,7 +2926,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button tag="303" id="2278" customClass="CocoaTabSelectButton">
-                                                                <rect key="frame" x="154" y="106" width="399" height="24"/>
+                                                                <rect key="frame" x="154" y="76" width="399" height="24"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Indent to the 2nd level tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2279">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2926,7 +2937,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </connections>
                                                             </button>
                                                             <button tag="423" id="3303" customClass="CocoaTabSelectButton">
-                                                                <rect key="frame" x="154" y="158" width="399" height="24"/>
+                                                                <rect key="frame" x="154" y="128" width="399" height="24"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Indent to the Parenthesis Start Position" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3304">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2937,7 +2948,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </connections>
                                                             </button>
                                                             <button tag="424" id="3306" customClass="CocoaTabSelectButton">
-                                                                <rect key="frame" x="154" y="132" width="399" height="24"/>
+                                                                <rect key="frame" x="154" y="102" width="399" height="24"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="Justify Single Colon" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3307">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2948,7 +2959,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </connections>
                                                             </button>
                                                             <textField verticalHuggingPriority="750" id="3301">
-                                                                <rect key="frame" x="-13" y="189" width="159" height="14"/>
+                                                                <rect key="frame" x="-13" y="155" width="159" height="14"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Specific Indent" id="3302">
                                                                     <font key="font" metaFont="smallSystemBold"/>
@@ -2957,12 +2968,12 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980301" id="3725">
-                                                                <rect key="frame" x="329" y="75" width="19" height="27"/>
+                                                                <rect key="frame" x="329" y="45" width="19" height="27"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="3726"/>
                                                             </stepper>
                                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980302" id="3727">
-                                                                <rect key="frame" x="217" y="46" width="19" height="27"/>
+                                                                <rect key="frame" x="217" y="16" width="19" height="27"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="3728"/>
                                                             </stepper>
@@ -2971,11 +2982,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                 </tabViewItem>
                                                 <tabViewItem label="2" identifier="Item 2" id="2246">
                                                     <view key="view" id="2247">
-                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="220"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="654" height="171"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" tag="222" id="2293">
-                                                                <rect key="frame" x="23" y="85" width="611" height="129"/>
+                                                                <rect key="frame" x="23" y="61" width="611" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2294">
                                                                     <font key="font" metaFont="system"/>
@@ -2984,7 +2995,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button verticalHuggingPriority="750" tag="223" id="2295">
-                                                                <rect key="frame" x="23" y="55" width="35" height="23"/>
+                                                                <rect key="frame" x="23" y="36" width="35" height="23"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2300">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2992,7 +3003,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="224" id="2296">
-                                                                <rect key="frame" x="58" y="55" width="35" height="23"/>
+                                                                <rect key="frame" x="58" y="36" width="35" height="23"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2299">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3000,7 +3011,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="513" id="2661">
-                                                                <rect key="frame" x="518" y="55" width="35" height="23"/>
+                                                                <rect key="frame" x="518" y="36" width="35" height="23"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="iconEditColumnT.Template" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2662">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3008,7 +3019,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="514" id="2663">
-                                                                <rect key="frame" x="576" y="55" width="35" height="23"/>
+                                                                <rect key="frame" x="576" y="36" width="35" height="23"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="iconEditColumnT.Template" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2664">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3016,7 +3027,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="528" id="2665">
-                                                                <rect key="frame" x="18" y="24" width="150" height="28"/>
+                                                                <rect key="frame" x="18" y="5" width="150" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="push" title="Export..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2668">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3024,7 +3035,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="527" id="2666">
-                                                                <rect key="frame" x="166" y="24" width="150" height="28"/>
+                                                                <rect key="frame" x="166" y="5" width="150" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="push" title="Import..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2667">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3032,7 +3043,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                                 </buttonCell>
                                                             </button>
                                                             <button verticalHuggingPriority="750" tag="512" id="2297">
-                                                                <rect key="frame" x="459" y="55" width="35" height="23"/>
+                                                                <rect key="frame" x="459" y="36" width="35" height="23"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="iconEditColumnT.Template" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2298">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3045,7 +3056,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </tabViewItems>
                                         </tabView>
                                         <textField verticalHuggingPriority="750" id="2992">
-                                            <rect key="frame" x="29" y="542" width="159" height="14"/>
+                                            <rect key="frame" x="29" y="490" width="159" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Indent Calculation Method" id="2993">
                                                 <font key="font" metaFont="smallSystemBold"/>
@@ -3054,7 +3065,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="3314">
-                                            <rect key="frame" x="67" y="692" width="125" height="14"/>
+                                            <rect key="frame" x="67" y="702" width="125" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Tab Display Width :" id="3319">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3062,8 +3073,17 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField verticalHuggingPriority="750" id="yiZ-ii-Ghq">
+                                            <rect key="frame" x="67" y="674" width="125" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Flexible Tab Width :" id="c3K-vI-mBl">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <textField verticalHuggingPriority="750" tag="108" id="3315" customClass="CocoaTextField">
-                                            <rect key="frame" x="197" y="688" width="55" height="22"/>
+                                            <rect key="frame" x="197" y="698" width="55" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3318">
                                                 <font key="font" metaFont="system"/>
@@ -3072,7 +3092,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="3316">
-                                            <rect key="frame" x="278" y="692" width="104" height="14"/>
+                                            <rect key="frame" x="278" y="702" width="104" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="characters" id="3317">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3081,21 +3101,21 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980305" id="3721">
-                                            <rect key="frame" x="382" y="715" width="19" height="27"/>
+                                            <rect key="frame" x="382" y="722" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="3722"/>
                                         </stepper>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="980108" id="3723">
-                                            <rect key="frame" x="257" y="685" width="19" height="27"/>
+                                            <rect key="frame" x="257" y="695" width="19" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <stepperCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="1" id="3724"/>
                                         </stepper>
                                         <customView id="TjE-5M-1vM">
-                                            <rect key="frame" x="184" y="388" width="511" height="146"/>
+                                            <rect key="frame" x="184" y="352" width="511" height="130"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button tag="422" id="2265" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="11" y="124" width="384" height="24"/>
+                                                    <rect key="frame" x="11" y="108" width="384" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="No Indent (Indent manually always)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2266">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3106,7 +3126,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <button tag="304" id="2187" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="11" y="77" width="395" height="24"/>
+                                                    <rect key="frame" x="11" y="61" width="395" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Indent defined by Syntax definition" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2190">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3117,7 +3137,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <button tag="312" id="2206" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="11" y="30" width="395" height="24"/>
+                                                    <rect key="frame" x="11" y="21" width="395" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Indent defined by Regular Expression Indent Rule" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2207">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3128,7 +3148,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <button tag="7701" id="2188" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="11" y="101" width="395" height="25"/>
+                                                    <rect key="frame" x="11" y="85" width="395" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Same Indent level as the previous line" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2189">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3139,7 +3159,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" tag="599" id="2288">
-                                                    <rect key="frame" x="27" y="55" width="401" height="21"/>
+                                                    <rect key="frame" x="27" y="39" width="401" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Indent according to pre-defined Syntax selected in &quot;Syntax&quot; tab" id="2289">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -3148,7 +3168,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" tag="599" id="2291">
-                                                    <rect key="frame" x="27" y="9" width="382" height="21"/>
+                                                    <rect key="frame" x="27" y="0.0" width="382" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Define Indent Level according to the table." id="2292">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -3159,11 +3179,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </subviews>
                                         </customView>
                                         <customView id="uMc-HL-uS7">
-                                            <rect key="frame" x="186" y="714" width="359" height="48"/>
+                                            <rect key="frame" x="186" y="725" width="359" height="43"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button tag="7702" id="3291" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="10" y="26" width="384" height="24"/>
+                                                    <rect key="frame" x="10" y="21" width="384" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Tab Character" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3292">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3171,7 +3191,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </buttonCell>
                                                 </button>
                                                 <button tag="155" id="3288" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="10" y="3" width="122" height="24"/>
+                                                    <rect key="frame" x="10" y="-2" width="122" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Space Characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3289">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3194,6 +3214,24 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Indent Options" id="2991">
                                                 <font key="font" metaFont="smallSystemBold"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" id="ki8-RH-hT3">
+                                            <rect key="frame" x="196" y="625" width="401" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Set each tab width separated with comma. (e.g. 32, 16, 16, 8)" id="yhg-gK-fvq">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997006" id="1386">
+                                            <rect key="frame" x="18" y="156" width="108" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1387">
+                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
