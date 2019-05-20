@@ -197,6 +197,13 @@ class AModePrefDB : public ADataBase
 	void						GetPluginOptions( const AText& inPluginID, AText& outOptions ) const;
 	void						LoadPlugins();
 	
+	//Flexibleタブ #1421
+  public:
+	AArray<AIndex>&				GetFlexibleTabPositions() { return mFlexibleTabPositions; }
+	void						UpdateFlexibleTabPositions();
+  private:
+	AArray<AIndex>							mFlexibleTabPositions;
+	
 	//キーワード構成文字
 	//SDFを使う場合は常にSDFに定義されたアルファベット定義を使う。
 	//SDFを使わない場合はモード設定で設定したアルファベット定義を使う
@@ -950,6 +957,10 @@ class AModePrefDB : public ADataBase
 	
 	//括弧ハイライト #1406
 	const static APrefID	kHighlightBrace							= 439;
+	
+	//
+	const static APrefID	kEnableFlexibleTabPositions				= 440;
+	const static APrefID	kFlexibleTabPositions					= 441;
 	
 	//#349 const static APrefID	kUseSyntaxDefinitionFile		= 2001;
 	const static APrefID	kUseBuiltinSyntaxDefinitionFile	= 2002;
