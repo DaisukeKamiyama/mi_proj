@@ -61,8 +61,9 @@ ABool	TextInfoTest()
 	text.SetCstring("/*\rtest\r*/\r\rvoid	test()//4\r{//5\r	abc();//6\r}//7\r\rvoid	xyz()//9\r{//10\r	abc();//11\r	if( aaaaaaaaaaaaaaaaaaaaa//12,13\r		)//14\r	{//15\r		bbbbbbbbbbbbbbbbbbbbbb();//16,17\r	}//18\r}//19\r");
 	ATextInfoForDocument	textInfo(NULL);
 	AText	fontname("Monaco");
+	AArray<AIndex>	tabPositions;
 	/*AItemCount	completedTextLen = */textInfo.CalcLineInfoAll(text,true,kIndex_Invalid,fontname,
-				9.0,true,4,4,kWrapMode_WordWrapByLetterCount,30,800,true);
+				9.0,true,4,4,kWrapMode_WordWrapByLetterCount,30,800,true,tabPositions);
 	if( textInfo.GetLineCount() != 21 )   _ACThrow("",NULL);
 	if( textInfo.GetParagraphIndexByLineIndex(0) != 0 )   _ACThrow("",NULL);
 	if( textInfo.GetParagraphIndexByLineIndex(1) != 1 )   _ACThrow("",NULL);
