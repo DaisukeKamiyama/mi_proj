@@ -931,6 +931,9 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	
 	//#1368
 	LoadImageFile("swSwitchFunction.png",kImageID_swSwitchFunction,inRemoveOld);
+	
+	//#1421
+	LoadImageFile("iconTabPosition.png",kImageID_iconTabPosition,inRemoveOld);
 }
 
 /**
