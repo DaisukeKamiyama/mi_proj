@@ -80,7 +80,7 @@ void	AThread_WrapCalculator::NVIDO_ThreadMain()
 			//第二引数がfalseなのでEOF空行は追加されない。）
 			AItemCount	completedTextLen = mTextInfo.CalcLineInfoAll(mText,false,kWrapCalculatorThreadPauseLineCount,
 						mFontName,mFontSize,mAntiAliasing,mTabWidth,mIndentWidth,mWrapMode,mWrapLetterCount,
-						mViewWidth,mCountAs2Letters);
+						mViewWidth,mCountAs2Letters,mTabPositions);//#1421
 			//Wrap計算終了分のテキストは削除。次回mTextの最初から計算する。
 			mText.Delete(0,completedTextLen);
 			//スレッドをpause状態にする
@@ -136,7 +136,7 @@ void	AThread_WrapCalculator::SPI_SetWrapParameters(
 		const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 		const AItemCount inTabWidth, const AItemCount inIndentWidth, 
 		const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, 
-		const ANumber inViewWidth, const ABool inCountAs2Letters )
+		const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions )//#1421
 {
 	mFontName = inFontName;
 	mFontSize = inFontSize;
@@ -147,6 +147,7 @@ void	AThread_WrapCalculator::SPI_SetWrapParameters(
 	mWrapLetterCount = inWrapLetterCount;
 	mViewWidth = inViewWidth;
 	mCountAs2Letters = inCountAs2Letters;
+	mTabPositions.SetFromObject(inTabPositions);//#1421
 }
 
 #pragma mark ===========================
