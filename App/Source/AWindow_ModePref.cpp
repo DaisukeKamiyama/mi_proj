@@ -3509,6 +3509,10 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	//タブ表示幅
 	NVM_RegisterDBData(AModePrefDB::kDefaultTabWidth,					true);
 	
+	//Flexibleタブ #1421
+	NVM_RegisterDBData(AModePrefDB::kEnableFlexibleTabPositions,		true);
+	NVM_RegisterDBData(AModePrefDB::kFlexibleTabPositions,				true);
+	
 	//
 	NVM_RegisterDBData(AModePrefDB::kShiftleftByBackspace,				false);
 	
@@ -5339,6 +5343,15 @@ void	AWindow_ModePref::NVMDO_NotifyDataChanged( const AControlID inControlID, co
 			mToolMenuObjectIDArray.DeleteAll();
 			mToolMenuPathArray.DeleteAll();
 			mToolMenuDisplayPathArray.DeleteAll();
+			break;
+		}
+		//Flexibleタブ #1421
+	  case AModePrefDB::kEnableFlexibleTabPositions:
+	  case AModePrefDB::kFlexibleTabPositions:
+		{
+			GetApp().SPI_GetModePrefDB(mModeIndex).UpdateFlexibleTabPositions();
+			GetApp().SPI_RecalcWordWrapAll(mModeIndex);
+			GetApp().NVI_RefreshAllWindow();
 			break;
 		}
 	  default:
