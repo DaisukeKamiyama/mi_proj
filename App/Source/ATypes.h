@@ -1152,6 +1152,9 @@ const AImageID	kImageID_testblack				= 1205;
 //ファイルリストサブウインドウ機能切り替えボタン
 const AImageID	kImageID_swSwitchFunction			= 1301;//#1368
 
+//Flexibleタブ位置 #1421
+const AImageID	kImageID_iconTabPosition			= 1401;
+
 //ABase.h に移動const AIconID	kIconID_NoIcon					= 101;
 const AIconID	kIconID_Mi_Batsu				= 101;
 const AIconID	kIconID_Mi_FileList_RecentlyOpened = 102;
