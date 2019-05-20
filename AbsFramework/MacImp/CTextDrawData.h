@@ -78,6 +78,7 @@ class CTextDrawData
 										 const AIndex inStartIndex, const AItemCount inLength,
 										 const AArray<AIndex>& inHintTextPosArray,
 										 const ATextArray& inHintTextArray,
+										  const AArray<AIndex>& inTabPositions,//#1421
 										 const ABool inStartSpaceToIndent = false, const AItemCount inStartSpaceCount = 0, const AItemCount inStartIndentWidth = 0,
 										 const ABool inDisplayYenFor5C = false );//#940
 	void	MakeTextDrawDataWithoutStyle( const AText& inText );//R0240
