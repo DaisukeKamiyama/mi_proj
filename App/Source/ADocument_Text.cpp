@@ -1354,7 +1354,7 @@ void	ADocument_Text::SPI_TransitInitState_ViewActivated()
 	AItemCount	completedTextLen = mTextInfo.CalcLineInfoAll(mText,true,limitLineCount,
 				fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 				SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),viewWidth,
-				GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters));
+				GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters), SPI_GetFlexibleTabPositions());//#1421
 	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("Document wrap 200 lines calculated.",this);
 	
 	//全テキスト計算済みかどうかを判定
@@ -1784,7 +1784,7 @@ void	ADocument_Text::EVTDO_StartPrintMode( const ALocalRect& inRect, const ANumb
 	//行折り返し計算
 	mTextInfoForPrint.CalcLineInfoAll(mText,true,kIndex_Invalid,fontname,fontsize,true,//win #699
 			SPI_GetTabWidth(),SPI_GetIndentWidth(),wrapMode,SPI_GetWrapLetterCount(),width,
-			GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters));
+			GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters), SPI_GetFlexibleTabPositions());//#1421
 	SPI_InitLineImageInfo();//#450
 	
 	ABool	importChanged;
@@ -2399,7 +2399,7 @@ AItemCount	ADocument_Text::SPI_InsertText( const ATextPoint& inInsertPoint, ATex
 				mTextInfo.CalcLineInfo(mText,insertPoint.y-1,/*win SPI_GetFont()*/fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 							SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),GetTextViewWidth(),//#117
 							GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),
-							textDrawData,textDrawDataStartOffset);//B0000 行折り返し計算高速化
+							textDrawData,textDrawDataStartOffset,SPI_GetFlexibleTabPositions());//B0000 行折り返し計算高速化 #1421
 				if( oldLen != SPI_GetLineLengthWithLineEnd(insertPoint.y-1) )
 				{
 					updateStartLineIndex = insertPoint.y-1;
@@ -2690,7 +2690,7 @@ AItemCount	ADocument_Text::SPI_DeleteText( const ATextIndex inStart, const AText
 			mTextInfo.CalcLineInfo(mText,spt.y-1,/*win SPI_GetFont()*/fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 					SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),GetTextViewWidth(),
 					GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),
-					textDrawData,textDrawDataStartOffset);//B0000 行折り返し計算高速化
+					textDrawData,textDrawDataStartOffset,SPI_GetFlexibleTabPositions());//B0000 行折り返し計算高速化 #1421
 			if( oldLen != SPI_GetLineLengthWithLineEnd(spt.y-1) )
 			{
 				updateStartLineIndex = spt.y-1;
@@ -2954,7 +2954,7 @@ AItemCount	ADocument_Text::AdjustLineInfo( const AIndex inStartLineIndex, const 
 		mTextInfo.CalcLineInfo(mText,lineIndex,/*win SPI_GetFont()*/fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 				SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),GetTextViewWidth(),
 				GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),
-				textDrawData,textDrawDataStartOffset);//B0000 行折り返し計算高速化
+				textDrawData,textDrawDataStartOffset,SPI_GetFlexibleTabPositions());//B0000 行折り返し計算高速化 #1421
 		//計算した行の行情報から、次の行のLineStartを計算する
 		AIndex	nextLineStart = SPI_GetLineStart(lineIndex)+SPI_GetLineLengthWithLineEnd(lineIndex);
 		if( nextLineStart >= endTextIndex )   break;
@@ -3011,7 +3011,7 @@ AItemCount	ADocument_Text::AdjustLineInfo( const AIndex inStartLineIndex, const 
 			mTextInfo.CalcLineInfo(mText,lineIndex,/*win SPI_GetFont()*/fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 					SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),GetTextViewWidth(),
 					GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),
-						textDrawData,textDrawDataStartOffset);//B0000 行折り返し計算高速化
+						textDrawData,textDrawDataStartOffset,SPI_GetFlexibleTabPositions());//B0000 行折り返し計算高速化 #1421
 		}
 		if( lineIndex > inEndLineIndex )
 		{
@@ -4799,7 +4799,8 @@ void	ADocument_Text::GetTextDrawDataWithoutStyle( const AText& inText, const ATe
 	//
 	inTextInfo.GetTextDrawDataWithoutStyle(/*#695 mText*/inText,SPI_GetTabWidth(),SPI_GetIndentWidth(),0,inLineIndex,outTextDrawData,true,//#117
 										   GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),false,true,
-										   (SPI_IsJISTextEncoding() == true && GetApp().SPI_GetModePrefDB(SPI_GetModeIndex()).GetData_Bool(AModePrefDB::kConvert5CToA5WhenOpenJIS) == true ));
+										   (SPI_IsJISTextEncoding() == true && GetApp().SPI_GetModePrefDB(SPI_GetModeIndex()).GetData_Bool(AModePrefDB::kConvert5CToA5WhenOpenJIS) == true ),
+										   SPI_GetFlexibleTabPositions());//#1421
 }
 
 //テキスト描画用データ取得
@@ -7828,7 +7829,7 @@ void	ADocument_Text::SPI_GetTextCount( ATextCountData& ioTextCount, const AArray
 	AText	fontname;//win
 	SPI_GetFontName(fontname);//win
 	textInfo.CalcLineInfoAll(mText,true,kIndex_Invalid,/*win SPI_GetFont()*/fontname,SPI_GetFontSize(),true,SPI_GetTabWidth(),SPI_GetIndentWidth(),kWrapMode_WordWrapByLetterCount,//#699
-				ioTextCount.conditionLetterCount,0,/*#695 deletedIdentifier,*/ioTextCount.countAs2Letters);
+				ioTextCount.conditionLetterCount,0,/*#695 deletedIdentifier,*/ioTextCount.countAs2Letters,SPI_GetFlexibleTabPositions());//#1421
 	SPI_InitLineImageInfo();//#450
 	//
 	ioTextCount.lineCountWithCondition = textInfo.GetLineCount();
@@ -8185,6 +8186,15 @@ ABool	ADocument_Text::NVIDO_IsReadOnly() const
 	}
 	//上記以外は書き込み可
 	return false;
+}
+
+//#1421
+/**
+Flexibleタブ位置取得
+*/
+const AArray<AIndex>&	ADocument_Text::SPI_GetFlexibleTabPositions() const
+{
+	return GetApp().SPI_GetModePrefDB(SPI_GetModeIndex()).GetFlexibleTabPositions();
 }
 
 //R0242
@@ -13203,7 +13213,8 @@ void	ADocument_Text::StartWrapCalculator( const AIndex inLineIndex )
 		ANumber	viewWidth = AView_Text::GetTextViewByViewID(mViewIDArray.Get(0)).SPI_GetTextViewWidth();
 		GetWrapCalculatorThread().SPI_SetWrapParameters(fontname,SPI_GetFontSize(),SPI_IsAntiAlias(),
 					SPI_GetTabWidth(),SPI_GetIndentWidth(),SPI_GetWrapMode(),SPI_GetWrapLetterCount(),
-					viewWidth,GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters));
+					viewWidth,GetApp().GetAppPref().GetData_Bool(AAppPrefDB::kCountAs2Letters),
+					SPI_GetFlexibleTabPositions());//#1421
 		//スレッド起動（起動後、スレッドはpauseされた状態になる。ContinueWrapCalculator()でpause解除。）
 		GetWrapCalculatorThread().NVI_Run(true);//最初はpause状態
 		//スレッドunpause
