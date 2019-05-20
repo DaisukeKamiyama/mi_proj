@@ -257,28 +257,29 @@ ACSVFile::~ACSVFile()
 /**
 指定indexのカラムを取得
 */
-void	ACSVFile::GetColumn( const AIndex inColumnIndex, ATextArray& outColumnData )
+ABool	ACSVFile::GetColumn( const AIndex inColumnIndex, ATextArray& outColumnData )//#1421
 {
 	//カラム存在しない場合は空を返す
 	if( inColumnIndex >= mDataArray.GetItemCount() )
 	{
 		outColumnData.DeleteAll();
-		return;
+		return false;//#1421
 	}
 	//指定カラムデータ取得
 	outColumnData.SetFromTextArray(mDataArray.GetObjectConst(inColumnIndex));
+	return true;//#1421
 }
 
 /**
 指定indexのカラムを取得
 */
-void	ACSVFile::GetColumn( const AIndex inColumnIndex, ANumberArray& outColumnData )
+ABool	ACSVFile::GetColumn( const AIndex inColumnIndex, ANumberArray& outColumnData )//#1421
 {
 	//カラム存在しない場合は空を返す
 	if( inColumnIndex >= mDataArray.GetItemCount() )
 	{
 		outColumnData.DeleteAll();
-		return;
+		return false;//#1421
 	}
 	//指定カラムデータ取得
 	outColumnData.DeleteAll();
@@ -288,6 +289,7 @@ void	ACSVFile::GetColumn( const AIndex inColumnIndex, ANumberArray& outColumnDat
 		ANumber	num = textArray.GetTextConst(i).GetNumber();
 		outColumnData.Add(num);
 	}
+	return true;//#1421
 }
 
 
