@@ -45,6 +45,7 @@ const AFloatNumber	kFontSize = 7.2;
 AView_Ruler::AView_Ruler( /*#199 AObjectArrayItem* inParent, AWindow& inWindow*/const AWindowID inWindowID, const AControlID inID )
  : AView(/*#199 inParent,inWindow*/inWindowID,inID), mCaretImageX(0), mSelectImageX(0), mRulerScaleCount(5), mCaretDrawn(false)
 ,mLetterWidth(10)//#0 Ç±ÇÍÇÃèâä˙âªÇ‡ÇÍÇ≈EVTDO_DoDraw()ÇÃendÇ™îÒèÌÇ…ëÂÇ´Ç»ílÇ…Ç»ÇÈÇ±Ç∆Ç™Ç†Ç¡ÇΩ
+,mSpaceWidth(10)//#1421
 {
 	NVMC_SetOffscreenMode(true);//win
 	
@@ -204,6 +205,20 @@ void	AView_Ruler::EVTDO_DoDraw()
 		NVMC_DrawLine(spt,ept,caretColor,1.0,0,2.0);
 	}
 	
+	//FlexibleÉ^Éu #1421
+	ANumber	tabPositionImageWidth = NVMC_GetImageWidth(kImageID_iconTabPosition);
+	AIndex	tabPosition = 0;
+	for( AIndex i = 0; i < mFlexibleTabPositions.GetItemCount(); i++ )
+	{
+		AImagePoint	ipt = {0};
+		ipt.x = static_cast<ANumber>(mLeftMargin + tabPosition*mSpaceWidth) - tabPositionImageWidth/2;
+		ipt.y = 0;
+		tabPosition += mFlexibleTabPositions.Get(i);
+		ALocalPoint	lpt = {0};
+		NVM_GetLocalPointFromImagePoint(ipt,lpt);
+		NVMC_DrawImage(kImageID_iconTabPosition, lpt);
+	}
+	
 	/*
 	//#725
 	//ALocalPoint	spt, ept;
@@ -318,6 +333,11 @@ void	AView_Ruler::SPI_UpdateProperty( const ADocumentID inTextDocumentID, const 
 	GetApp().SPI_GetModePrefDB(GetApp().SPI_GetTextDocumentByID(inTextDocumentID).SPI_GetModeIndex()).
 			GetModeData_Text(AModePrefDB::kRulerBaseLetter,rulerBaseText);
 	mLetterWidth = NVMC_GetDrawTextWidth(rulerBaseText);
+	//#1421
+	AText	spaceText(" ");
+	mSpaceWidth = NVMC_GetDrawTextWidth(spaceText);
+	mFlexibleTabPositions.SetFromObject(GetApp().SPI_GetTextDocumentByID(inTextDocumentID).SPI_GetFlexibleTabPositions());
+	//
 	mLeftMargin = inLeftMargin;
 	mRulerScaleCount = inRulerScaleCount;
 	NVI_Refresh();
