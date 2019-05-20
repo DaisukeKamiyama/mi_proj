@@ -471,6 +471,10 @@ AModePrefDB::AModePrefDB( AObjectArrayItem* inParent )
 	//括弧ハイライト #1406
 	CreateData_Bool(kHighlightBrace,						"HighlightBrace",					false);
 	
+	//Flexibleタブ #1421
+	CreateData_Bool(kEnableFlexibleTabPositions,			"EnableFlexibleTabPositions",		false);
+	CreateData_Text(kFlexibleTabPositions,					"FlexibleTabPositions",				"8,8,8,8,8,8,8,8,8,8");
+	
 	//プラグイン #994
 	CreateTableStart();
 	CreateData_TextArray(kPluginData_Id,					"PluginData_Id",					"");
@@ -1261,6 +1265,9 @@ void	AModePrefDB::LoadDB()//#852
 		GetData_Text(kDefaultFontNameOld,fontname);
 		SetData_Text(kDefaultFontName,fontname);
 	}
+	
+	//Flexibleタブ位置設定parse #1421
+	UpdateFlexibleTabPositions();
 	
 	//==================
 	//modepref.mi/keywords.txt読み込み完了フラグON
@@ -3525,6 +3532,48 @@ void	AModePrefDB::LoadPlugins()
 				GetApp().SPI_LoadPlugin(mModeID,pluginText,pluginsFolder);
 			}
 		}
+	}
+}
+
+//#1421
+/**
+Flexibleタブ位置設定parse
+*/
+void	AModePrefDB::UpdateFlexibleTabPositions()
+{
+	//タブ位置配列初期化
+	mFlexibleTabPositions.DeleteAll();
+	//FlexibleタブEnableでなければ終了
+	if( GetData_Bool(kEnableFlexibleTabPositions) == false )
+	{
+		return;
+	}
+	//テキスト取得
+	AText	tabPositionsText;
+	GetData_Text(kFlexibleTabPositions, tabPositionsText);
+	//CSVオブジェクト生成
+	ACSVFile	csv(tabPositionsText,ATextEncodingWrapper::GetUTF8TextEncoding(),1);
+	for( AIndex i = 0; i < 256; i++ )
+	{
+		//列取得
+		ATextArray	textArray;
+		if( csv.GetColumn(i,textArray) == false )
+		{
+			//列がなくなったら終了
+			break;
+		}
+		//最初の行の数値を取得
+		ANumber	number = 0;
+		if( textArray.GetItemCount() > 0 )
+		{
+			AText	t;
+			textArray.Get(0,t);
+			AIndex	p = 0;
+			t.SkipTabSpace(p,t.GetItemCount());
+			t.ParseIntegerNumber(p, number, false);
+		}
+		//配列に追加
+		mFlexibleTabPositions.Add(number);
 	}
 }
 
