@@ -529,7 +529,7 @@ key down時処理（raw keyイベント）
 	{
 		return;
 	}
-	
+    
 	OS_CALLBACKBLOCK_END;
 	
 	//キー処理フラグをoff
@@ -840,6 +840,18 @@ AView_xxxへkeyBindKey, modifierを渡すために定義する。keyBindAction�
 	OS_CALLBACKBLOCK_START(false);
 	//#1015 mKeyHandled = false;//暫定（他のキーと違い、keyDown経由では来ない。最終的には、CocoaAppのsendEvent:内でsendEvent:実行直前で、mKeyHandled相当のデータを初期化し、mKeyHandledの代わりにそちらを参照したほうがいいかもしれない）
 	GENERAL_KEYACTION(keyAction_tab);
+	OS_CALLBACKBLOCK_END;
+}
+
+//#1431
+/**
+前のkey view
+（control+shift+tab）
+*/
+- (void)selectPreviousKeyView:(id)sender
+{
+	OS_CALLBACKBLOCK_START(false);
+	GENERAL_KEYACTION(keyAction_NOP);
 	OS_CALLBACKBLOCK_END;
 }
 
