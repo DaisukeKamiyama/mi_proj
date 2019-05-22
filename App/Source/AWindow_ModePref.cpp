@@ -3511,7 +3511,7 @@ void AWindow_ModePref::NVIDO_Create( const ADocumentID inDocumentID )
 	
 	//Flexibleƒ^ƒu #1421
 	NVM_RegisterDBData(AModePrefDB::kEnableFlexibleTabPositions,		true);
-	NVM_RegisterDBData(AModePrefDB::kFlexibleTabPositions,				true);
+	NVM_RegisterDBData(AModePrefDB::kFlexibleTabPositions,				true,AModePrefDB::kEnableFlexibleTabPositions);
 	
 	//
 	NVM_RegisterDBData(AModePrefDB::kShiftleftByBackspace,				false);
