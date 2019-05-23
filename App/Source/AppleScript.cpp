@@ -4708,38 +4708,6 @@ mi.sdefは3.0.0b5でも使用していた。
 
 ・Info.plistにNSAppleScriptEnabledを入れるとまともに動作しなくなる（set character code to xでエラー）。理由不明。
 
-DTS回答 2014/10/16
-====================
-Follow-up: 612462051
-
-ATTN: Daisuke Kamiyama
-The way you're getting the file yields a Finder object specifier; commands on an object specifier go to the owning application regardless of what "tell" block they're in, so that "open"command is going to Finder.  Turning "testfile" into a raw alias will fix it, either by adding "as alias" to the end of the Finder "get" command, or by using "path to" instead of Finder.
-
-tell application "Finder"
-set testfile to (file "test.txt" in desktop) as alias	― <== this will fix your issue
-end tell
-
-― OR THIS ―
-set testfile to path to desktop & “test.txt” ― <== this will fix your issue also
-
-tell application “mi”
-open testfile as "UTF-8"
-get character code of document 1
-get character code of document 1
-end tell
-
-Note: While researching this issue I noticed that most applications (Omni-ware, BBEdit, TextEdit, etc.) typically use the “set theNewDoc to make document with properties: {path:thePath,…}” syntax instead of “open theFile”. The advantage being that it returns an AppleScript object that you can reference directly instead of relying on undefinded behavior by doing the open followed by “front document” (It’s possible that a newly opened document may not be the frontmost document… that behaviour is not in the AppleScript specification.)
-
---
-I hope you find this information of use. Please feel free to contact me by replying to this eMail (using the follow-up
-number above) or call me at (408) 974-0668 if you want to discuss this further. I can also be reached via iChat or IM at: geodts@mac.com.
---
-George Warner
-Schizophrenic Optimization Scientists
-Apple DTS.
-====================
-
-
 ＜確実に特定のバージョンでテストする方法＞
 ・対象ドキュメントにて、開くアプリを指定する。
 「常にこのアプリケーションで開く」チェックボックスはONにする。
