@@ -5427,6 +5427,179 @@ ABool	AView_Text::EVTDO_DoKeyDown( /*#688 const AUChar inChar*/ const AText& inT
 	text.Add(inChar);
 	*/
 	if( KeyTool(inText) == true )   return true;
+	//#1416
+	//Control+Qは、emacsでいうところのquoted-insert動作に割り当てられていると思われる。
+	//（System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dictには記述がないが、macOSのデフォルト動作として組み込まれているものと思われる。）
+	//quoted-insertは次に入力した文字をそのまま（Control+Aなら0x01のまま）入力するという動作だが、miでは、制御コードの入力はAView_Text::TextInput()で抑制している(関連：#1080)ので、quoted-insertは動作しない。
+	//そのため、#1416の対策として、Control+Qのみ、ここで捕まえて処理し、CocoaUserPaneView.mm/keydownで、interpretKeyEventsを動作させないようにする。
+	//他のキーをここで捕まえると、OSのキーバインド内容を取得できないので、「OSのキーバインドからの差分を設定する」設定をONにした場合の動作ができない。そのため、他のキーは従来通り、interpretKeyEventsを実行し、それぞれdeleteBackward等経由でEVTDO_DoTextInput()をコールするようにする。
+	//Control+半角数字、Fキーもここで処理することにする(#1252)
+	if( inText.GetItemCount() > 0 )
+	{
+		//入力文字(UCS4)取得
+		AUCS4Char ch = 0;
+		inText.Convert1CharToUCS4(0, ch);
+		if( inModifierKeys == kModifierKeysMask_Control )
+		{
+			//キー取得
+			AKeyBindKey	key = kKeyBindKey_Invalid;
+			switch(ch)
+			{
+			  case 0x11://Control+Q
+				{
+					key = kKeyBindKey_Q;
+					break;
+				}
+			  case '0':
+				{
+					key = kKeyBindKey_0;
+					break;
+				}
+			  case '1':
+				{
+					key = kKeyBindKey_1;
+					break;
+				}
+			  case '2':
+				{
+					key = kKeyBindKey_2;
+					break;
+				}
+			  case '3':
+				{
+					key = kKeyBindKey_3;
+					break;
+				}
+			  case '4':
+				{
+					key = kKeyBindKey_4;
+					break;
+				}
+			  case '5':
+				{
+					key = kKeyBindKey_5;
+					break;
+				}
+			  case '6':
+				{
+					key = kKeyBindKey_6;
+					break;
+				}
+			  case '7':
+				{
+					key = kKeyBindKey_7;
+					break;
+				}
+			  case '8':
+				{
+					key = kKeyBindKey_8;
+					break;
+				}
+			  case '9':
+				{
+					key = kKeyBindKey_9;
+					break;
+				}
+			  case '/':
+				{
+					key = kKeyBindKey_Slash;
+					break;
+				}
+			  case 0x7F:
+				{
+					key = kKeyBindKey_BS;
+					break;
+				}
+			  case NSF1FunctionKey:
+				{
+					key = kKeyBindKey_F1;
+					break;
+				}
+			  case NSF2FunctionKey:
+				{
+					key = kKeyBindKey_F2;
+					break;
+				}
+			  case NSF3FunctionKey:
+				{
+					key = kKeyBindKey_F3;
+					break;
+				}
+			  case NSF4FunctionKey:
+				{
+					key = kKeyBindKey_F4;
+					break;
+				}
+			  case NSF5FunctionKey:
+				{
+					key = kKeyBindKey_F5;
+					break;
+				}
+			  case NSF6FunctionKey:
+				{
+					key = kKeyBindKey_F6;
+					break;
+				}
+			  case NSF7FunctionKey:
+				{
+					key = kKeyBindKey_F7;
+					break;
+				}
+			  case NSF8FunctionKey:
+				{
+					key = kKeyBindKey_F8;
+					break;
+				}
+			  case NSF9FunctionKey:
+				{
+					key = kKeyBindKey_F9;
+					break;
+				}
+			  case NSF10FunctionKey:
+				{
+					key = kKeyBindKey_F10;
+					break;
+				}
+			  case NSF11FunctionKey:
+				{
+					key = kKeyBindKey_F11;
+					break;
+				}
+			  case NSF12FunctionKey:
+				{
+					key = kKeyBindKey_F12;
+					break;
+				}
+			  case NSF13FunctionKey:
+				{
+					key = kKeyBindKey_F13;
+					break;
+				}
+			  case NSF14FunctionKey:
+				{
+					key = kKeyBindKey_F14;
+					break;
+				}
+			  case NSF15FunctionKey:
+				{
+					key = kKeyBindKey_F15;
+					break;
+				}
+			}
+			if( key != kKeyBindKey_Invalid )
+			{
+				//キー入力処理（キーバインド）
+				ABool	updateMenu = false;
+				ABool	result = EVTDO_DoTextInput(inText,key,kModifierKeysMask_Control,keyAction_NOP,updateMenu);
+				if( updateMenu == true )
+				{
+					AApplication::GetApplication().NVI_UpdateMenu();
+				}
+				return result;
+			}
+		}
+	}
+	//
 	return false;
 }
 
