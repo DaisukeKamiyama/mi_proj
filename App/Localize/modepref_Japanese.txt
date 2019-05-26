@@ -789,7 +789,7 @@ Ruler and Line Number
 Brace Highlight :
 括弧ハイライト：
 Highlight braces
-括弧をハイライトする
+対応する括弧をハイライトする
 Block Start/End Reg. Exp. are used for folding and indent feature.
 折りたたみ開始／終了正規表現を設定すると、囲まれた部分を折りたたみできます。また、インデントを「文法定義に従ってインデントする」に設定した場合に、自動インデントできます。
 Flexible Tab Width :
