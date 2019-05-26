@@ -88,6 +88,42 @@
 			<key>NSDocumentClass</key>
 			<string>TextDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mivm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>document</string>
+			<key>CFBundleTypeName</key>
+			<string>mi テキスト書類（縦書き原稿用紙）</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>TextDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mihm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>document</string>
+			<key>CFBundleTypeName</key>
+			<string>mi テキスト書類（横書き原稿用紙）</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>TextDocument</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>mi</string>
