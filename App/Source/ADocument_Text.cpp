@@ -13071,9 +13071,12 @@ void	ADocument_Text::SPI_ReloadEditByOtherApp( const ABool inReload )
 			AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_SetSelect(sptArray.Get(i),eptArray.Get(i));
 			AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_AdjustScroll_Center();
 			//notification表示
-			AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_GetPopupNotificationWindow().
-					SPI_GetNotificationView().SPI_SetNotification_ReloadEditByOtherApp(fileName);
-			AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_ShowNotificationPopupWindow(true);
+			if( i == 0 )//#1426 最初のviewのみnotification表示する
+			{
+				AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_GetPopupNotificationWindow().
+						SPI_GetNotificationView().SPI_SetNotification_ReloadEditByOtherApp(fileName);
+				AView_Text::GetTextViewByViewID(mViewIDArray.Get(i)).SPI_ShowNotificationPopupWindow(true);
+			}
 		}
 		//元々dirtyだった場合でも、ファイルから読み込んだので、not dirtyにするのが妥当。
 		NVI_SetDirty(false);
