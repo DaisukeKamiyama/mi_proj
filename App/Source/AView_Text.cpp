@@ -5433,7 +5433,7 @@ ABool	AView_Text::EVTDO_DoKeyDown( /*#688 const AUChar inChar*/ const AText& inT
 	//quoted-insertは次に入力した文字をそのまま（Control+Aなら0x01のまま）入力するという動作だが、miでは、制御コードの入力はAView_Text::TextInput()で抑制している(関連：#1080)ので、quoted-insertは動作しない。
 	//そのため、#1416の対策として、Control+Qのみ、ここで捕まえて処理し、CocoaUserPaneView.mm/keydownで、interpretKeyEventsを動作させないようにする。
 	//他のキーをここで捕まえると、OSのキーバインド内容を取得できないので、「OSのキーバインドからの差分を設定する」設定をONにした場合の動作ができない。そのため、他のキーは従来通り、interpretKeyEventsを実行し、それぞれdeleteBackward等経由でEVTDO_DoTextInput()をコールするようにする。
-	//Control+半角数字、Fキーもここで処理することにする(#1252)
+	//Control+半角数字、Fキー、スラッシュ、BSキーもここで処理することにする(#1252)
 	if( inText.GetItemCount() > 0 )
 	{
 		//入力文字(UCS4)取得
