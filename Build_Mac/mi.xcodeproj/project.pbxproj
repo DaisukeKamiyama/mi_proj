@@ -3808,7 +3808,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf ../default/HTML/tool/*\nrsync -a --exclude \".svn\" ../default/HTML5/tool/* ../default/HTML/tool/\nrsync -a --exclude \".svn\" ../default/HTML5/plugins/* ../default/HTML/plugins/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/*.csv ../default/HTML/keyword/\n\nrm -rf ../default/JavaScript/tool/*\nrsync -a --exclude \".svn\" ../default/HTML5/tool/JavaScript/* ../default/JavaScript/tool/\nrsync -a --exclude \".svn\" ../default/HTML5/plugins/* ../default/JavaScript/plugins/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/JavaScript.csv ../default/JavaScript/keyword/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/DOM.csv ../default/JavaScript/keyword/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/jQuery.csv ../default/JavaScript/keyword/\n\nrm -rf ../default/PHP/tool/*\nrsync -a --exclude \".svn\" ../default/HTML5/tool/PHP/* ../default/PHP/tool/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/PHP.csv ../default/PHP/keyword/\n\nrm -rf ../default/CSS/tool/*\nrsync -a --exclude \".svn\" ../default/HTML5/tool/CSS/* ../default/CSS/tool/\nrsync -a --exclude \".svn\" ../default/HTML5/keyword/CSS.csv ../default/CSS/keyword/\n";
+			shellScript = "cd ${SRCROOT}\n/bin/sh buildModeDefault.sh\n";
 		};
 		7ED821F3194DB6C50037D7AE /* Localizable.stringsのローカライズ */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4782,7 +4782,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 800;
+				CURRENT_PROJECT_VERSION = 805;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
@@ -4843,7 +4843,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 800;
+				CURRENT_PROJECT_VERSION = 805;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
