@@ -671,10 +671,7 @@
 "Suffix" = 
 {
 	".html",
-	".htm",
-	".js",
-	".php",
-	".css"
+	".htm"
 }
 "KeyBind_Key" = 
 {
