@@ -1854,16 +1854,20 @@ state(css)
 	StateAttribute_Stable
 	#StateAttribute_NoSpellCheck
 	#
+	{"@media", {ChangeState(css_conditionalrules)}}
+	{"@supports", {ChangeState(css_conditionalrules)}}
+	{"@document", {ChangeState(css_conditionalrules)}}
+	#
 	{"{",{IncIndentFromNext,ChangeState(css_prop)}}
+	{"}",{DecIndentFromCurrent}}
 	#コメント
 	{"/*",{PushState(css_comment)}}
+	#リテラル
+	{"\"",{PushState(css_literal)}}
 	#style終了
 	{"</style>",{DecIndentFromCurrent,ChangeState(idle)}}
 	{"</STYLE>",{DecIndentFromCurrent,ChangeState(idle)}}
-	#文法エラー
-	{"}",{SyntaxError("} before {")}}
 }
-#★クラスのrecompletion
 
 #CSSプロパティ（{の後）
 state(css_prop)
@@ -1874,11 +1878,14 @@ state(css_prop)
 	#
 	{":",{IncIndentFromNext,ChangeState(css_value)}}
 	#
+	{"{",{IncIndentFromNext}}
 	{"}",{DecIndentFromCurrent,ChangeState(css)}}
 	#コメント
 	{"/*",{PushState(css_comment)}}
+	#リテラル
+	{"\"",{PushState(css_literal)}}
 }
-
+	
 #CSS値（:の後）
 state(css_value)
 {
@@ -1889,14 +1896,27 @@ state(css_value)
 	#
 	{";",{DecIndentFromNext,ChangeState(css_prop)}}
 	#
-	{"}",{DecIndentFromCurrent, DecIndentFromCurrent,ChangeState(css)}}
+	{"{",{IncIndentFromNext}}
+	{"}",{DecIndentFromCurrent,ChangeState(css)}}
 	#コメント
 	{"/*",{PushState(css_comment)}}
 	#リテラル
 	{"\"",{PushState(css_literal)}}
-	#文法エラー
-	{"{",{SyntaxError("{ without value")}}
-	{":",{SyntaxError(": without value")}}
+}
+
+#条件付きグループ規則
+state(css_conditionalrules)
+{
+	StateAttribute_SyntaxPart("CSS")
+	StateAttribute_Stable
+	#StateAttribute_NoSpellCheck
+	#
+	{"{",{IncIndentFromNext,ChangeState(css)}}
+	{"}",{DecIndentFromCurrent}}
+	#コメント
+	{"/*",{PushState(css_comment)}}
+	#リテラル
+	{"\"",{PushState(css_literal)}}
 }
 
 #CSSコメント
