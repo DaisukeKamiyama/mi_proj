@@ -43,9 +43,26 @@
 			<h1><a name="plugin">プラグインをJavaScriptで記述する</a></h1>
 			<p>
 				miのプラグインを、JavaScriptで記述することが出来ます。<br>
-				拡張子.jsのファイルをモード設定フォルダの"plugins"フォルダに格納することで、mi起動時に自動的に実行されます。<br>
+				拡張子.jsのファイルを<a href="gaiyo.htm#preffile_mac">モード設定フォルダの"plugins"フォルダ</a>に格納することで、mi起動時に自動的に実行されます。<br>
 				このプラグインファイルに、イベントリスナーを登録するコードを記述することで、ファイルオープン時や保存時に
 				特定のJavaScriptコードを実行することが出来ます。
+			</p>
+			<p>
+				プラグインの有効／無効は、モード設定の詳細タブで設定できます。
+			</p>
+			
+			<h3>サンプル</h3>
+			<p>
+				下記をクリックするとプラグインのサンプルを表示します。<br>
+				<a href="javascriptsample/syntaxchecker_jshint_sjis.js">syntaxchecker_jshint.js</a>
+			</p>
+			<p>
+				JavaScriptの文法エラーチェックツール(JSHINT)の結果を表示するプラグインです。<br>
+				文法エラーチェックツール(JSHINT)をロードし、ファイルオープン／保存時にチェック実行するイベントリスナーを登録しています。<br>
+			</p>
+			<p>
+				※このプラグインはデフォルトのJavaScriptモードに添付されており、下記のパスに格納されています。<br>
+				<code>/Applications/mi.app/Contents/Resources/default/JavaScript/plugins/</code>
 			</p>
 			
 			<h1><a name="api">mi テキストエディタ API</a></h1>
