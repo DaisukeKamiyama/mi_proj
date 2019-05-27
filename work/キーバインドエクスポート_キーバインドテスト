@@ -76,7 +76,7 @@
 ***control+option+shift+X:control+option+shift+X
 ***control+option+shift+Y:control+option+shift+Y
 ***control+option+shift+Z:control+option+shift+Z
-***control+shift+A:control+shift+A
+***control+shift+A:control+shift+A（★NG）
 ***control+shift+B:control+shift+B
 ***control+shift+C:control+shift+C
 ***control+shift+D:control+shift+D
@@ -85,9 +85,9 @@
 ***control+shift+G:control+shift+G
 ***control+shift+H:control+shift+H
 ***control+shift+I:control+shift+I
-***control+shift+J:control+shift+J
-***control+shift+K:control+shift+K
-***control+shift+L:control+shift+L
+***control+shift+J:control+shift+J（★NG）
+***control+shift+K:control+shift+K（★NG）
+***control+shift+L:control+shift+L（★NG）
 ***control+shift+M:control+shift+M
 ***control+shift+N:control+shift+N
 ***control+shift+O:control+shift+O
@@ -103,30 +103,29 @@
 ***control+shift+Y:control+shift+Y
 ***control+shift+Z:control+shift+Z
 ***return:<<<RETURN>>>
-***control+return:control+return(★NG control+Mになる)
+***control+return:control+return
 ***option+return:option+return
 ***shift+return:shift+return
 ***tab:tab
 ***control+tab:control+tab
 ***option+tab:option+tab
-***shift+tab:shift+tab（★連続入力できない？）
-***space:space（★NG）
-***control+space:control+space（★テスト不可）
+***shift+tab:shift+tab
+***space:space
+***control+space:control+space
 ***option+space:option+space（★NG）
-***shift+space:shift+space（★連続入力できない？）
-***command+space:command+space（★キーバインド不可にすべき）
+***shift+space:shift+space
 ***escape:esc
 ***control+escape:control+esc
 ***option+escape:option+esc
 ***shift+escape:shift+esc
 ***command+escape:command+esc
 ***enter:enter
-***control+enter:control+enter(★NG control+Cになる)
+***control+enter:control+enter
 ***option+enter:option+enter
-***shift+enter:shift+enter（★NG 予測変換？）
+***shift+enter:shift+enter
 ***command+enter:command+enter
 ***BS:BS
-***control+BS:control+BS(★NG)
+***control+BS:control+BS
 ***option+BS:option+BS
 ***shift+BS:shift+BS
 ***command+BS:command+BS
@@ -146,12 +145,12 @@
 ***shift+arrowdown:shift+down
 ***command+arrowdown:command+down
 ***arrowleft:<<<MOVECARET-LEFT>>>
-***control+arrowleft:control+left(★NG)
+***control+arrowleft:control+left
 ***option+arrowleft:option+left
 ***shift+arrowleft:shift+left
 ***command+arrowleft:command+left
 ***arrowright:<<<MOVECARET-RIGHT>>>
-***control+arrowright:control+right(★NG)
+***control+arrowright:control+right
 ***option+arrowright:option+right
 ***shift+arrowright:shift+right
 ***command+arrowright:command+right
@@ -165,19 +164,19 @@
 ***F8:F8
 ***F9:F9
 ***F10:F10
-***F11:F11（★テスト不可）
+***F11:F11
 ***F12:F12
 ***F13:F13
 ***F14:F14
 ***F15:F15
-***control+F1:control+F1（★NG）
+***control+F1:control+F1
 ***control+F2:control+F2
 ***control+F3:control+F3
 ***control+F4:control+F4
 ***control+F5:control+F5
 ***control+F6:control+F6
-***control+F7:control+F7（★NG）
-***control+F8:control+F8（★NG）
+***control+F7:control+F7
+***control+F8:control+F8
 ***control+F9:control+F9
 ***control+F10:control+F10
 ***control+F11:control+F11
@@ -206,7 +205,7 @@
 ***control+shift+F4:control+shift+F4
 ***control+shift+F5:control+shift+F5
 ***control+shift+F6:control+shift+F6
-***control+shift+F7:control+shift+F7（★NG）
+***control+shift+F7:control+shift+F7
 ***control+shift+F8:control+shift+F8
 ***control+shift+F9:control+shift+F9
 ***control+shift+F10:control+shift+F10
@@ -240,14 +239,14 @@
 ***control+]:control+]
 ***control+,:control+,
 ***control+.:control+.
-***control+/:control+/（★NG）
+***control+/:control+/
 ***control+home:control+home
 ***control+end:control+end
 ***control+pageup:control+pageup
 ***control+pagedown:control+pagedown
-***control+option+return:control+option+return(★NG control+option+Mになる)
-***control+1:control+1（★NG）
-***control+2:control+2（★NG）
+***control+option+return:control+option+return
+***control+1:control+1
+***control+2:control+2
 ***control+3:control+3
 ***control+4:control+4
 ***control+5:control+5
@@ -257,31 +256,31 @@
 ***control+9:control+9
 ***control+0:control+0
 ***control+option+tab:control+option+tab
-***control+option+space:control+option+space（★テスト不可　Finder検索？になる）
+***control+option+space:control+option+space
 ***control+option+escape:control+option+esc
-***control+option+enter:control+option+enter（★NG control+option+Cになる）
-***control+option+BS:control+option+BS（★08が入力され、予測変換が動作する）
+***control+option+enter:control+option+enter
+***control+option+BS:control+option+BS（★NG）
 ***control+option+DEL:control+option+delete
 ***control+option+arrowup:control+option+up
 ***control+option+arrowdown:control+option+down
 ***control+option+arrowleft:control+option+left
 ***control+option+arrowright:control+option+right
-***control+option+colon:control+option+:（★NG 'が入力される）
-***control+option+;:control+option+;（★NG 全角；）
+***control+option+colon:control+option+:
+***control+option+;:control+option+;
 ***control+option+-:control+option+-
-***control+option+^:control+option+^（★NG　全角＝）
-***control+option+\:control+option+¥（★NG 全角｜）
-***control+option+@:control+option+@（★NG 18）
+***control+option+^:control+option+^
+***control+option+\:control+option+¥
+***control+option+@:control+option+@
 ***control+option+[:control+option+[
 ***control+option+]:control+option+]
-***control+option+,:control+option+,（★NG 、）
-***control+option+.:control+option+.（★NG。）
-***control+option+/:control+option+/（★NG・）
+***control+option+,:control+option+,
+***control+option+.:control+option+.
+***control+option+/:control+option+/
 ***control+option+home:control+option+home
 ***control+option+end:control+option+end
 ***control+option+pageup:control+option+pageup
 ***control+option+pagedown:control+option+pagedown
-***control+option+1:control+option+1（★NG　全角１）以降２、３・・・同じ
+***control+option+1:control+option+1
 ***control+option+2:control+option+2
 ***control+option+3:control+option+3
 ***control+option+4:control+option+4
@@ -316,11 +315,11 @@
 ***control+shift+-:control+shift+-
 ***control+shift+^:control+shift+^（★NG）
 ***control+shift+\:control+shift+¥（★NG）
-***control+shift+@:control+shift+@（★NG control+shift+[になる）
-***control+shift+[:control+shift+[（★NG control+shift+]になる）
-***control+shift+]:control+shift+]（★NG control+shift+F2になる）
-***control+shift+,:control+shift+,
-***control+shift+.:control+shift+.（★NG ,になる）
+***control+shift+@:control+shift+@
+***control+shift+[:control+shift+[
+***control+shift+]:control+shift+]
+***control+shift+,:control+shift+,（★NG ,になる）
+***control+shift+.:control+shift+.（★NG .になる）
 ***control+shift+/:control+shift+/（★NG /になる）
 ***control+option+shift+colon:control+option+shift+:（★NG '）
 ***control+option+shift+;:control+option+shift+;（★NG ；）
@@ -337,13 +336,13 @@
 ***end:end
 ***pageup:pageup
 ***pagedown:pagedown
-***control+shift+return:control+shift+return（★NG control+shift+Mになる）
-***control+shift+tab:control+shift+tab（★NG）
+***control+shift+return:control+shift+return
+***control+shift+tab:control+shift+tab
 ***control+shift+space:control+shift+space
 ***control+shift+escape:control+shift+esc
-***control+shift+enter:control+shift+enter（★NG control+shift+Cになる）
-***control+shift+BS:control+shift+BS
-***control+shift+DEL:control+shift+delete
+***control+shift+enter:control+shift+enter（★NG 03になる）
+***control+shift+BS:control+shift+BS（★NG）
+***control+shift+DEL:control+shift+delete（★NG）
 ***control+shift+arrowup:control+shift+up
 ***control+shift+arrowdown:control+shift+down
 ***control+shift+arrowleft:control+shift+left
@@ -377,7 +376,7 @@
 ***shift+F8:shift+F8
 ***shift+F9:shift+F9
 ***shift+F10:shift+F10
-***shift+F11:shift+F11（★テスト不可）
+***shift+F11:shift+F11
 ***shift+F12:shift+F12
 ***shift+F13:shift+F13
 ***shift+F14:shift+F14
@@ -390,7 +389,6 @@
 ***command+end:command+end
 ***command+pageup:command+pageup
 ***command+pagedown:command+pagedown
-***command+shift+space:command+shift+space（★キーバインド不可）
 ***command+shift+escape:command+shift+esc
 ***command+shift+enter:command+shift+enter
 ***command+shift+BS:command+shift+BS
@@ -416,8 +414,8 @@
 ***option+F11:option+F11
 ***option+F12:option+F12
 ***option+F13:option+F13
-***option+F14:option+F14（★テスト不可　輝度変更）
-***option+F15:option+F15（★テスト不可　輝度変更）
+***option+F14:option+F14
+***option+F15:option+F15
 ***option+home:option+home
 ***option+end:option+end
 ***option+pageup:option+pageup
@@ -435,25 +433,23 @@
 ***option+shift+F11:option+shift+F11
 ***option+shift+F12:option+shift+F12
 ***option+shift+F13:option+shift+F13
-***option+shift+F14:option+shift+F14（★テスト不可　輝度変更）
-***option+shift+F15:option+shift+F15（★テスト不可　輝度変更）
+***option+shift+F14:option+shift+F14
+***option+shift+F15:option+shift+F15
 ***option+shift+home:option+shift+home
 ***option+shift+end:option+shift+end
 ***option+shift+pageup:option+shift+pageup
 ***option+shift+pagedown:option+shift+pagedown
 ***option+shift+return:option+shift+return
-***option+shift+tab:option+shift+tab（★NG）
-***option+shift+space:option+shift+space（★NG）
+***option+shift+tab:option+shift+tab
+***option+shift+space:option+shift+space
 ***option+shift+escape:option+shift+esc
-***option+shift+enter:option+shift+enter（★NG）
+***option+shift+enter:option+shift+enter
 ***option+shift+BS:option+shift+BS
 ***option+shift+DEL:option+shift+delete
 ***option+shift+arrowup:option+shift+up
 ***option+shift+arrowdown:option+shift+down
 ***option+shift+arrowleft:option+shift+left
 ***option+shift+arrowright:option+shift+right
-***command+option+shift+space:option+command+shift+space（★NG）
-***command+option+shift+escape:option+command+shift+esc（★キーバインド不可にすべき）
 ***command+option+shift+enter:option+command+shift+enter（★NG）
 ***command+option+shift+BS:option+command+shift+BS（★NG）
 ***command+option+shift+DEL:option+command+shift+delete
@@ -465,7 +461,6 @@
 ***command+option+shift+end:option+command+shift+end
 ***command+option+shift+pageup:option+command+shift+pageup
 ***command+option+shift+pagedown:option+command+shift+pagedown
-***command+control+space:control+command+space（★キーバインド不可にすべき）
 ***command+control+escape:control+command+esc
 ***command+control+enter:control+command+enter（★NG control+option+Cになる）
 ***command+control+BS:control+command+BS（★NG）
@@ -478,7 +473,6 @@
 ***command+control+end:control+command+end
 ***command+control+pageup:control+command+pageup
 ***command+control+pagedown:control+command+pagedown
-***command+control+shift+space:control+command+shift+space（★NG）
 ***command+control+shift+escape:control+command+shift+esc
 ***command+control+shift+enter:control+command+shift+enter（★NG）
 ***command+control+shift+BS:control+command+shift+BS（★NG）
@@ -491,8 +485,6 @@
 ***command+control+shift+end:control+command+shift+end
 ***command+control+shift+pageup:control+command+shift+pageup
 ***command+control+shift+pagedown:control+command+shift+pagedown
-***command+control+option+space:control+option+command+space（★NG 何も入力されない）
-***command+control+option+escape:control+option+command+esc
 ***command+control+option+enter:control+option+command+enter（★NG何もなし）
 ***command+control+option+BS:control+option+command+BS（★NG何もなし）
 ***command+control+option+DEL:control+option+command+delete
@@ -504,8 +496,6 @@
 ***command+control+option+end:control+option+command+end
 ***command+control+option+pageup:control+option+command+pageup
 ***command+control+option+pagedown:control+option+command+pagedown
-***command+control+option+shift+space:control+option+command+shift+space（★NG 何もなし）
-***command+control+option+shift+escape:control+option+command+shift+esc
 ***command+control+option+shift+enter:control+option+command+shift+enter（★NG 何もなし）
 ***command+control+option+shift+BS:control+option+command+shift+BS（★NG 何もなし）
 ***command+control+option+shift+DEL:control+option+command+shift+delete（★NG 何もなし）
@@ -517,8 +507,6 @@
 ***command+control+option+shift+end:control+option+command+shift+end
 ***command+control+option+shift+pageup:control+option+command+shift+pageup
 ***command+control+option+shift+pagedown:control+option+command+shift+pagedown
-***command+option+space:option+command+space（★キーバインド不可にすべき）
-***command+option+escape:option+command+esc（★キーバインド不可にすべき）
 ***command+option+enter:option+command+enter（★NG）
 ***command+option+BS:option+command+BS（★NG）
 ***command+option+DEL:option+command+delete
