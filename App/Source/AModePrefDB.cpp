@@ -9637,7 +9637,7 @@ void	AModePrefDB::ExportKeyBindToText( AText& outText ) const
 			text.AddCstring(">>>");
 			outText.AddText(text);
 		}
-		outText.Add(kUChar_CR);
+		outText.Add(kUChar_LF);//#1436
 	}
 	outText.AddCstring("***");//B0000 ***をつけておけば、最後の改行コードがキーバインドの挿入文字列として認識されることはない
 }
