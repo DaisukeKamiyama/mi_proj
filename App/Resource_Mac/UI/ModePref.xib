@@ -3530,15 +3530,6 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                     <rect key="frame" x="0.0" y="0.0" width="792" height="826"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997008" id="1390">
-                                            <rect key="frame" x="5" y="240" width="108" height="14"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1391">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField verticalHuggingPriority="750" id="2404">
                                             <rect key="frame" x="71" y="770" width="114" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -3549,7 +3540,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" tag="239" id="2407">
-                                            <rect key="frame" x="32" y="453" width="660" height="223"/>
+                                            <rect key="frame" x="32" y="459" width="660" height="223"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2431">
                                                 <font key="font" metaFont="system"/>
@@ -3558,7 +3549,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <button tag="235" id="2408" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="34" y="681" width="131" height="24"/>
+                                            <rect key="frame" x="34" y="687" width="131" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Control Key" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2430">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3569,7 +3560,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <button tag="236" id="2409" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="168" y="681" width="131" height="24"/>
+                                            <rect key="frame" x="168" y="687" width="131" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Option Key" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="2429">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3580,7 +3571,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <button tag="237" id="2410" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="302" y="681" width="131" height="24"/>
+                                            <rect key="frame" x="302" y="687" width="131" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Command Key" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="2428">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3591,7 +3582,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </connections>
                                         </button>
                                         <button tag="238" id="2411" customClass="CocoaTabSelectButton">
-                                            <rect key="frame" x="436" y="681" width="131" height="24"/>
+                                            <rect key="frame" x="436" y="687" width="131" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Shift Key" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="2427">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3611,11 +3602,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <customView id="PbD-tN-AC4">
-                                            <rect key="frame" x="191" y="711" width="501" height="73"/>
+                                            <rect key="frame" x="191" y="716" width="501" height="68"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button tag="7801" id="2405" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="6" y="55" width="437" height="18"/>
+                                                    <rect key="frame" x="6" y="50" width="437" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Set Difference from Application's Default Key Bind" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2433">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3626,7 +3617,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <button tag="426" id="2406" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="6" y="33" width="437" height="18"/>
+                                                    <rect key="frame" x="6" y="28" width="437" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Set Difference from Normal mode Key Bind" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2432">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3637,7 +3628,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                     </connections>
                                                 </button>
                                                 <button tag="427" id="3332" customClass="CocoaTabSelectButton">
-                                                    <rect key="frame" x="6" y="11" width="437" height="18"/>
+                                                    <rect key="frame" x="6" y="6" width="437" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Set Difference from OS Key Bind" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3333">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3650,7 +3641,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </subviews>
                                         </customView>
                                         <textField verticalHuggingPriority="750" id="YNl-XA-Eoq">
-                                            <rect key="frame" x="46" y="421" width="86" height="14"/>
+                                            <rect key="frame" x="46" y="427" width="86" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Action :" id="ndc-q5-d24">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3659,7 +3650,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="inb-a3-U54">
-                                            <rect key="frame" x="46" y="397" width="86" height="14"/>
+                                            <rect key="frame" x="46" y="403" width="86" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Insert Text :" id="bEh-Xu-kOt">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3668,7 +3659,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" tag="240" id="wrS-YG-Nvt">
-                                            <rect key="frame" x="142" y="416" width="367" height="22"/>
+                                            <rect key="frame" x="142" y="422" width="367" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="g6Y-hI-1Zj" id="UDG-wz-O2x">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -3683,7 +3674,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </popUpButtonCell>
                                         </popUpButton>
                                         <button verticalHuggingPriority="750" tag="506" id="SCp-78-KHg">
-                                            <rect key="frame" x="51" y="324" width="90" height="28"/>
+                                            <rect key="frame" x="51" y="330" width="90" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kOE-d0-joY">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3691,7 +3682,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </buttonCell>
                                         </button>
                                         <textField verticalHuggingPriority="750" tag="241" id="yiv-o7-mcp" customClass="CocoaTextField">
-                                            <rect key="frame" x="144" y="329" width="548" height="82"/>
+                                            <rect key="frame" x="144" y="335" width="548" height="82"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zct-10-y3w">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -3700,7 +3691,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" tag="263" id="2669">
-                                            <rect key="frame" x="27" y="277" width="150" height="28"/>
+                                            <rect key="frame" x="27" y="294" width="150" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Export..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2672">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3708,13 +3699,31 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </buttonCell>
                                         </button>
                                         <button verticalHuggingPriority="750" tag="262" id="2670">
-                                            <rect key="frame" x="175" y="277" width="150" height="28"/>
+                                            <rect key="frame" x="175" y="294" width="150" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Import..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2671">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                         </button>
+                                        <textField verticalHuggingPriority="750" id="FJ4-D3-ybA">
+                                            <rect key="frame" x="30" y="246" width="664" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="* Shortcut settings which are set in System Preferences - Keyboard - Shortcuts are prior to this setting." id="kuO-fO-NX8">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField hidden="YES" verticalHuggingPriority="750" tag="997008" id="1390">
+                                            <rect key="frame" x="6" y="224" width="108" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bottom Marker" id="1391">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
