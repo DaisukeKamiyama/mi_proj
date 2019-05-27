@@ -798,3 +798,5 @@ Set tab width for each tab level
 Set tab width for each tab level
 Set each tab width separated with comma. (e.g. 32, 16, 16, 8)
 Set each tab width separated with comma. (e.g. 32, 16, 16, 8, 8, 8, 8)
+* Shortcut settings which are set in System Preferences - Keyboard - Shortcuts are prior to this setting.
+* Shortcut settings which are set in [System Preferences - Keyboard - Shortcuts] are prior to this setting.
