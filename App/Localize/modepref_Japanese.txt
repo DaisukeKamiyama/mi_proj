@@ -798,3 +798,5 @@ Set tab width for each tab level
 個別のタブレベルごとにタブ表示幅を指定する
 Set each tab width separated with comma. (e.g. 32, 16, 16, 8)
 タブ表示幅をカンマで区切って設定します。（例：32, 16, 16, 8, 8, 8, 8）
+* Shortcut settings which are set in System Preferences - Keyboard - Shortcuts are prior to this setting.
+※[システム環境設定→キーボード→ショートカット] にショートカットが設定されているキーについては、そちらの設定の方が優先されます。
