@@ -8192,7 +8192,7 @@ ABool	ADocument_Text::NVIDO_IsReadOnly() const
 /**
 Flexibleƒ^ƒuˆÊ’uŽæ“¾
 */
-const AArray<AIndex>&	ADocument_Text::SPI_GetFlexibleTabPositions() const
+const AArray<ANumber>&	ADocument_Text::SPI_GetFlexibleTabPositions() const
 {
 	return GetApp().SPI_GetModePrefDB(SPI_GetModeIndex()).GetFlexibleTabPositions();
 }
