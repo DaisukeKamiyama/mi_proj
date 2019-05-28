@@ -130,6 +130,7 @@ void	CTextDrawData::Init()
 	controlCodeEndUTF8Index.DeleteAll();//#473
 	hintTextStartUTF8Index.DeleteAll();
 	hintTextEndUTF8Index.DeleteAll();
+	defaultTabWidth = 4;//#1421
 }
 
 #pragma mark ===========================
@@ -236,7 +237,7 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText, const ANu
 {
 	AArray<AIndex>	hintTextPosArray;
 	ATextArray	hintTextArray;
-	AArray<AIndex>	tabPositions;//#1421
+	AArray<ANumber>	tabPositions;//#1421
 	MakeTextDrawDataWithoutStyle(inText,inTabWidth,inLetterCountLimit,inGetUTF16Text,inCountAs2Letters,
 								 inDisplayControlCode,inStartIndex,inLength,
 								 hintTextPosArray, hintTextArray,
@@ -254,7 +255,7 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 													const AItemCount inLength,
 													const AArray<AIndex>& inHintTextPosArray,
 													const ATextArray& inHintTextArray,
-													 const AArray<AIndex>& inTabPositions,//#1421
+													 const AArray<ANumber>& inTabPositions,//#1421
 													const ABool inStartSpaceToIndent, 
 													const AItemCount inStartSpaceCount, 
 													const AItemCount inStartIndentWidth,
@@ -263,6 +264,10 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 {
 	//B0000 行折り返し計算高速化
 	Init();
+	
+	//Flexibleタブ用データ設定 #1421
+	defaultTabWidth = inTabWidth;
+	tabPositions.SetFromObject(inTabPositions);
 	
 	//unicode data取得
 	AUnicodeData&	unicodeData = AApplication::GetApplication().NVI_GetUnicodeData();
@@ -366,15 +371,15 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 				OriginalTextArray_TabLetters.Add(tabletters);
 			}
 			
-			//------------------Unicode一文字（スペース）追加------------------
-			UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
-			UTF16DrawText.AddUTF16Char(kUChar_Space);
-			uniOffset++;
-			
 			//Flexibleタブ位置指定有無の判定 #1421
 			if( inTabPositions.GetItemCount() == 0 )
 			{
-				//通常タブの場合
+				//Flexibleタブ位置指定無しの場合（通常ルート）
+				
+				//------------------Unicode一文字（スペース）追加------------------
+				UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
+				UTF16DrawText.AddUTF16Char(kUChar_Space);
+				uniOffset++;
 				
 				//
 				tabletters++;//B0154
@@ -401,26 +406,10 @@ void	CTextDrawData::MakeTextDrawDataWithoutStyle( const AText& inText,
 			{
 				//Flexibleタブ位置指定有りの場合 #1421
 				
-				//タブ用文字カウント数インクリメント（すでに最初のスペース位置文字は上で追加済み）
-				tabletters++;
-				//指定タブ位置を取得（指定以降は通常タブ幅）
-				if( tabPositionsIndex < inTabPositions.GetItemCount() )
-				{
-					tabPosition += inTabPositions.Get(tabPositionsIndex);
-				}
-				else
-				{
-					tabPosition += inTabWidth;
-				}
-				tabPositionsIndex++;
-				//タブ位置までスペース文字追加
-				while( tabletters < tabPosition )
-				{
-					UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
-					UTF16DrawText.AddUTF16Char(kUChar_Space);
-					uniOffset++;
-					tabletters++;
-				}
+				//Unicode一文字（タブ）追加（タブをそのまま追加する）
+				UTF16DrawTextArray_OriginalTextIndex.Add(originalTextIndex);
+				UTF16DrawText.AddUTF16Char(kUChar_Tab);
+				uniOffset++;
 			}
 		}
 		//==================ヒントテキスト==================
