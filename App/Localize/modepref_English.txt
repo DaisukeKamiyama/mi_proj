@@ -793,7 +793,7 @@ Highlight braces
 Block Start/End Reg. Exp. are used for folding and indent feature.
 Block Start/End Reg. Exp. are used for folding and indent feature.
 Flexible Tab Width :
-Flexible Tab Width :
+Tab Stop :
 Set tab width for each tab level
 Set tab width for each tab level
 Set each tab width separated with comma. (e.g. 32, 16, 16, 8)
