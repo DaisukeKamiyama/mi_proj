@@ -499,7 +499,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	CreateData_Text(kPrintOption_FileNameFontName,				"PrintForm_FileFontNameUni",		"default");
 	CreateData_FloatNumber(kPrintOption_FileNameFontSize,		"PrintForm_FileFontSize",			12.0,			3.0,256.0);
 	CreateData_Text(kPrintOption_LineNumberFontName,			"PrintForm_LineFontNameUni",		"default");
-	CreateData_FloatNumber(kPrintOption_LineNumberFontSize,		"PrintForm_LineNumberFontSize",		12.0,			3.0,256.0);
+	CreateData_FloatNumber(kPrintOption_LineNumberFontSize,		"PrintForm_LineNumberFontSize",		9.0,			3.0,256.0);//#1439 12.0Å®9.0
 	CreateData_Number(kPrintOption_LineMargin,					"PrintForm_LineMargin",				0,				-64,64);//#1396
 	CreateData_Bool(kPrintOption_UsePrintFont,					"PrintForm_UsePrintFont",			false);
 	CreateData_Bool(kPrintOption_PrintPageNumber,				"PrintForm_PrintPageNumber",		true);
