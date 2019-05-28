@@ -199,10 +199,10 @@ class AModePrefDB : public ADataBase
 	
 	//Flexibleタブ #1421
   public:
-	AArray<AIndex>&				GetFlexibleTabPositions() { return mFlexibleTabPositions; }
+	AArray<ANumber>&			GetFlexibleTabPositions() { return mFlexibleTabPositions; }
 	void						UpdateFlexibleTabPositions();
   private:
-	AArray<AIndex>							mFlexibleTabPositions;
+	AArray<ANumber>							mFlexibleTabPositions;
 	
 	//キーワード構成文字
 	//SDFを使う場合は常にSDFに定義されたアルファベット定義を使う。
