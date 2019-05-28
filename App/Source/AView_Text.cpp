@@ -8928,6 +8928,16 @@ void	AView_Text::IndentTab( const ABool inInputSpacesForIndent, const ABool inIn
 		}
 	}
 	*/
+	
+	//#1421
+	//Flexibleタブの場合は常にタブにする
+	if( GetApp().SPI_GetModePrefDB(GetTextDocumentConst().SPI_GetModeIndex()).
+		GetData_Bool(AModePrefDB::kEnableFlexibleTabPositions) == true )
+	{
+		InputTab(inInputSpacesForTab);
+		return;
+	}
+	
 	if( IsCaretMode() == false )
 	{
 		//【選択中の場合】タブ
