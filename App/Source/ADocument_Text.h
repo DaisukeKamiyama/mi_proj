@@ -692,7 +692,7 @@ class ADocument_Text : public ADocument
 	ABool					SPI_UpdateIndentCharacterTypeModePref();//#912
 	void					SPI_SetTemporaryFontSize( const AFloatNumber inFontSize );//#966
 	ABool					SPI_GetVerticalMode() const;//#558
-	const AArray<AIndex>&	SPI_GetFlexibleTabPositions() const;//#1421
+	const AArray<ANumber>&	SPI_GetFlexibleTabPositions() const;//#1421
   private:
 	void					SetModeIndex( const AModeIndex inModeIndex ) { AStMutexLocker	locker(mModeIndexMutex); mModeIndex = inModeIndex; }
 	ADocumentType			NVIDO_GetDocumentType() const {return kDocumentType_Text;}
