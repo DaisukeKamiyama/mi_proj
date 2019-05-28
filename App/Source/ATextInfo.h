@@ -332,7 +332,7 @@ class ATextInfo : public AObjectArrayItem
 														const AIndex inLineIndex, CTextDrawData& outTextDrawData, 
 														const ABool inGetUTF16Text, const ABool inCountAs2Letters,
 														const AIndex inToLineEndCode, const ABool inForDraw,
-														const ABool inDisplayYenFor5C, const AArray<AIndex>& inTabPositions ) const;//B0000 行折り返し計算高速化 #940 #1421
+														const ABool inDisplayYenFor5C, const AArray<ANumber>& inTabPositions ) const;//B0000 行折り返し計算高速化 #940 #1421
 	
 	//行情報計算
   public:
@@ -342,14 +342,14 @@ class ATextInfo : public AObjectArrayItem
 							const ABool inAddEmptyEOFLineIfNeeded, const AItemCount inLimitLineCount,//#699
 							/*win const AFont inFont*/const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 							const AItemCount inTabWidth, const AItemCount inIndentWidth,const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, const ANumber inViewWidth, 
-											 const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions );//#1421
+											 const ABool inCountAs2Letters, const AArray<ANumber>& inTabPositions );//#1421
 	void					CalcLineInfo( const AText& inText, const AIndex inLineIndex, 
 							/*win const AFont inFont*/const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 							const AItemCount inTabWidth, const AItemCount inIndentWidth, //#117
 							const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, const ANumber inViewWidth,
 							const ABool inCountAs2Letters,
 										  CTextDrawData& ioTextDrawData, AIndex& ioTextDrawDataStartOffset,
-										  const AArray<AIndex>& inTabPositions );//B0000 行折り返し計算高速化 #1421
+										  const AArray<ANumber>& inTabPositions );//B0000 行折り返し計算高速化 #1421
 	void					CalcLineInfoAllWithoutView( const AText& inText, const ABool& inAbort );//win
 	void					CalcLineInfoWithoutView( const AText& inText, const AIndex inLineIndex );//win
 	void					ShiftLineStarts( const AIndex inStartLineIndex, const AItemCount inAddedTextLength );
