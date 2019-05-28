@@ -1423,3 +1423,5 @@ About_UserID = "User ID: ^0";
 About_UserIDNotRegistered = "(not registered)";
 
 ModePrefNoSuffix = "(No Suffixes)";
+
+RulerTabPosition = "^0番目のタブ（各タブ位置はモード設定の「インデント」で設定可能）";
