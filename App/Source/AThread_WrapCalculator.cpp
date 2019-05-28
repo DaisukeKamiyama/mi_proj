@@ -136,7 +136,7 @@ void	AThread_WrapCalculator::SPI_SetWrapParameters(
 		const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 		const AItemCount inTabWidth, const AItemCount inIndentWidth, 
 		const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, 
-		const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions )//#1421
+		const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<ANumber>& inTabPositions )//#1421
 {
 	mFontName = inFontName;
 	mFontSize = inFontSize;
