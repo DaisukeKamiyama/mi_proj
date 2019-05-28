@@ -792,6 +792,40 @@ CTLineRef	CPrintImp::GetCTLineFromTextDrawData( CTextDrawData& inTextDrawData )
 		{
 			AddVerticalAttribute(attrString,str.GetNSString());
 		}
+		
+		//#1421
+		//Flexibleタブ
+		if( inTextDrawData.tabPositions.GetItemCount() > 0 )
+		{
+			//半角スペース幅取得
+			AText	spaceText(" ");
+			AFloatNumber	spaceWidth = GetDrawTextWidth(spaceText);
+			//ParagraphStyleオブジェクト生成
+			NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+			[paragraphStyle autorelease];
+			//デフォルトタブ幅設定
+			paragraphStyle.defaultTabInterval = inTextDrawData.defaultTabWidth * spaceWidth;
+			//タブストップ配列オブジェクト生成
+			NSMutableArray *tabStops = [[NSMutableArray alloc] init];
+			[tabStops autorelease];
+			//タブ位置ごとループ
+			AFloatNumber	tabLocation = 0.0;
+			for( ANumber i = 0; i < inTextDrawData.tabPositions.GetItemCount(); i++ )
+			{
+				//タブ位置取得
+				tabLocation += inTextDrawData.tabPositions.Get(i) * spaceWidth;
+				//TextTabオブジェクト生成
+				NSTextTab*	textTab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabLocation options:[NSDictionary dictionary]];
+				[textTab autorelease];
+				//タブストップ配列にTextTabオブジェクトを追加
+				[tabStops addObject:textTab];
+			};
+			//タブストップ設定
+			paragraphStyle.tabStops = tabStops;
+			//attrStringにParagraphStyleを設定
+			[attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attrString length])];
+		}
+		
 		//NSMutableAttributedStringの編集終了
 		[attrString endEditing];
 		
