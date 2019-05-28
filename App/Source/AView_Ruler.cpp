@@ -210,10 +210,10 @@ void	AView_Ruler::EVTDO_DoDraw()
 	AIndex	tabPosition = 0;
 	for( AIndex i = 0; i < mFlexibleTabPositions.GetItemCount(); i++ )
 	{
+		tabPosition += mFlexibleTabPositions.Get(i);
 		AImagePoint	ipt = {0};
 		ipt.x = static_cast<ANumber>(mLeftMargin + tabPosition*mSpaceWidth) - tabPositionImageWidth/2;
 		ipt.y = 0;
-		tabPosition += mFlexibleTabPositions.Get(i);
 		ALocalPoint	lpt = {0};
 		NVM_GetLocalPointFromImagePoint(ipt,lpt);
 		NVMC_DrawImage(kImageID_iconTabPosition, lpt);
@@ -306,6 +306,37 @@ void	AView_Ruler::EVTDO_DrawPostProcess()
 	}
 #endif
 	*/
+}
+
+//#1241
+/**
+ƒwƒ‹ƒvƒ^ƒO
+*/
+ABool	AView_Ruler::EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outText1, AText& outText2, ALocalRect& outRect, AHelpTagSide& outTagSide ) 
+{
+	ANumber	tabPositionImageWidth = NVMC_GetImageWidth(kImageID_iconTabPosition);
+	AIndex	tabPosition = 0;
+	for( AIndex i = 0; i < mFlexibleTabPositions.GetItemCount(); i++ )
+	{
+		tabPosition += mFlexibleTabPositions.Get(i);
+		AImagePoint	ipt = {0};
+		ipt.x = static_cast<ANumber>(mLeftMargin + tabPosition*mSpaceWidth);
+		ipt.y = 0;
+		ALocalPoint	lpt = {0};
+		NVM_GetLocalPointFromImagePoint(ipt,lpt);
+		if( inPoint.x > lpt.x - tabPositionImageWidth/2 && inPoint.x < lpt.x + tabPositionImageWidth/2 )
+		{
+			outText1.SetLocalizedText("RulerTabPosition");
+			outText1.ReplaceParamText('0', i+1);
+			outText2.SetText(GetEmptyText());
+			//
+			NVM_GetLocalViewRect(outRect);
+			outRect.left = lpt.x - tabPositionImageWidth/2;
+			outRect.right = lpt.x + tabPositionImageWidth/2;
+			return true;
+		}
+	}
+	return false;
 }
 
 #pragma mark ===========================
