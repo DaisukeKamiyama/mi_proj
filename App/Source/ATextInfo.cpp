@@ -2120,7 +2120,7 @@ void	ATextInfo::GetTextDrawDataWithoutStyle( const AText& inText, const ANumber 
 											   const ABool inGetUTF16Text, const ABool inCountAs2Letters,
 											   const AIndex inToLineEndCode, const ABool inForDraw,
 											   const ABool inDisplayYenFor5C,
-												const AArray<AIndex>& inTabPositions ) const //B0000 行折り返し計算高速化 #695 #940 #1421
+												const AArray<ANumber>& inTabPositions ) const //B0000 行折り返し計算高速化 #695 #940 #1421
 {
 	//行情報取得
 	AIndex	lineInfo_Start = GetLineStart(inLineIndex);
@@ -2216,7 +2216,7 @@ AItemCount	ATextInfo::CalcLineInfoAll( const AText& inText,
 									   const AText& inFontName, const AFloatNumber inFontSize, const ABool inAntiAliasing,
 									   const AItemCount inTabWidth, const AItemCount inIndentWidth, 
 									   const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, //#117
-									   const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<AIndex>& inTabPositions )//#1421
+									   const ANumber inViewWidth, const ABool inCountAs2Letters, const AArray<ANumber>& inTabPositions )//#1421
 {
 	//行情報全削除
 	DeleteLineInfoAll(/*#695 outDeletedIdentifiers*/);
@@ -2310,7 +2310,7 @@ void	ATextInfo::CalcLineInfo( const AText& inText, const AIndex inLineIndex,
 		const AItemCount inTabWidth, const AItemCount inIndentWidth, const AWrapMode inWrapMode, const AItemCount inWrapLetterCount, const ANumber inViewWidth, //#117
 		const ABool inCountAs2Letters, 
 		CTextDrawData& ioTextDrawData, AIndex& ioTextDrawDataStartOffset,
-								 const AArray<AIndex>& inTabPositions )//B0000 行折り返し計算高速化 #1421
+								 const AArray<ANumber>& inTabPositions )//B0000 行折り返し計算高速化 #1421
 {
 	//lineStartを前の行の情報から算出
 	AIndex	lineStart = 0;
