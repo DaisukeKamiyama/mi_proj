@@ -52,6 +52,7 @@ class AView_Ruler : public AView
 	void					EVTDO_DoDragReceive( const ADragRef inDragRef, const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys );//win
 	void					EVTDO_DrawPreProcess();
 	void					EVTDO_DrawPostProcess();
+	ABool					EVTDO_DoGetHelpTag( const ALocalPoint& inPoint, AText& outText1, AText& outText2, ALocalRect& outRect, AHelpTagSide& outTagSide ) ;//#1241
 
 	//<インターフェイス>
   public:
