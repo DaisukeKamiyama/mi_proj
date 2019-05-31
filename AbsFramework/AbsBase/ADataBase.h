@@ -73,7 +73,7 @@ class ADataBase : public AObjectArrayItem
   public:
 #if IMPLEMENTATION_FOR_MACOSX
 	//リソースファイルから読み込む方式
-	void	LoadFromPrefFile( const AFileAcc& inFileAcc, const ResType& inResType = NULL );
+	ABool	LoadFromPrefFile( const AFileAcc& inFileAcc, const ResType& inResType = NULL );//#1442
 	void	WriteToPrefFile( const AFileAcc& inFileAcc/*#1034, const ResType& inResType = NULL*/ );
 #endif
 	//テキストファイル（独自フォーマットのテキスト）から読み込む方式
