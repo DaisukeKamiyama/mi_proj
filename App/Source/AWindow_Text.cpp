@@ -1551,6 +1551,8 @@ void	AWindow_Text::EVTDO_WindowBoundsChanged( const AGlobalRect& inPrevBounds, c
 	}
 	//フローティングジャンプリストの位置更新
 	UpdateFloatingJumpListDisplay();
+	//ウインドウbounds保存 #1441
+	SaveWindowBounds();
 }
 
 //
@@ -6988,6 +6990,16 @@ void	AWindow_Text::NVIDO_Show()
 
 //Hide()時等にウインドウのデータを保存する
 void	AWindow_Text::NVIDO_Hide()
+{
+	//ウインドウbounds保存 #1441
+	SaveWindowBounds();
+}
+
+//#1441
+/**
+ウインドウbounds保存
+*/
+void	AWindow_Text::SaveWindowBounds()
 {
 	ARect	bounds;
 	//#1238 kSingleWindowBoundsにはサイドバーなしのサイズを保存するようにする。 NVI_GetWindowBounds(bounds);
