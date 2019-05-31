@@ -521,6 +521,7 @@ class AWindow_Text : public AWindow
 	void					UpdateVSeparatorHelpTag();//#602
 	AItemCount							mSuppressUpdateViewBoundsCounter;//#675
 	AHashArray<AControlID>				mToolbarExistArray;
+	void					SaveWindowBounds();//#1441
 	
 	//É^Éuêßå‰
   public:
