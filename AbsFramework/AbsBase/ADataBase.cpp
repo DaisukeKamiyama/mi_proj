@@ -446,14 +446,14 @@ File上にデータが存在しない場合、各mXXXArray_Dataの値はコール前の値（初期値やMacL
 
 LoadFromPrefFile()はWindows版と互換性無し。
 */
-void	ADataBase::LoadFromPrefFile( const AFileAcc& inFileAcc, const ResType& inResType )
+ABool	ADataBase::LoadFromPrefFile( const AFileAcc& inFileAcc, const ResType& inResType )//#1442
 {
 	if( mPrefFileImp.Load(inFileAcc,inResType) == false )
 	{
 		//B0000 ここに来る前に旧形式データを読み込み、かつ、新形式データが存在しなかった場合、この関数の最後のCorrectTable()が実行されない
 		//テーブルの数の補正
 		CorrectTable();
-		return;
+		return false;//#1442
 	}
 	
 	for( AIndex indexinall = 0; indexinall < mAll_ID.GetItemCount(); indexinall++ )
@@ -582,6 +582,7 @@ void	ADataBase::LoadFromPrefFile( const AFileAcc& inFileAcc, const ResType& inRe
 	
 	//テーブルの数の補正
 	CorrectTable();
+	return true;//#1442
 }
 
 /**
