@@ -1158,6 +1158,7 @@ void	AAppPrefDB::Setup()
 	AFileWrapper::GetAppPrefFolder(preffolder);
 	AFileAcc	preffile;
 	preffile.SpecifyChild(preffolder,"AppPreferences.mi");
+	ABool	loadedFromVersion2 = false;//#1442
 	if( preffile.Exist() == true )
 	{
 		//==================バージョン3用設定ファイルが存在する場合==================
@@ -1172,7 +1173,7 @@ void	AAppPrefDB::Setup()
 		AFileAcc	v2preffile;
 		v2preffile.SpecifyChild(preffolder,"MimikakiEdit Preferences");
 #if IMPLEMENTATION_FOR_MACOSX
-		LoadFromPrefFile(v2preffile);
+		loadedFromVersion2 = LoadFromPrefFile(v2preffile);//#1442
 #else
 		LoadFromPrefTextFile(v2preffile);
 #endif
@@ -1271,6 +1272,11 @@ void	AAppPrefDB::Setup()
 	{
 		SetData_Bool(kRightSideBarDisplayed,GetData_Bool(kInfoPaneDisplayed));
 		SetData_Number(kRightSideBarWidth,GetData_Number(kInfoPaneWidth));
+	}
+	//上記以外で、kRightSideBarDisplayedにデータがロードされておらず、かつ、v2データファイルからロードした場合（＝v2の情報ペイン対応前のデータ）はは右サイドバー非表示にする #1442
+	else if( IsStillDefault(kRightSideBarDisplayed) == true && loadedFromVersion2 == true )
+	{
+		SetData_Bool(kRightSideBarDisplayed, false);
 	}
 	
 	//左サイドバー項目数が0ならデフォルトデータを設定する。
