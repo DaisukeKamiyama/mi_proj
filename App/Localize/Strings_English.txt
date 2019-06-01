@@ -1376,12 +1376,6 @@ DefaultSyntaxPartNotDirected = "自動";
 
 TextView_FileLoading = "（ファイルをロード中です。）";
 
-AbbrevKeyType1 = "シフト＋スペースキー";
-AbbrevKeyType2 = "シフト＋タブキー";
-AbbrevKeyType3 = "タブキー";
-AbbrevKeyType4 = "エスケープキー";
-AbbrevKeyType5 = "シフト＋エスケープキー";
-
 AppPref_General = "General";
 AppPref_SubWindows = "Sub Windows";
 AppPref_Text = "Text";
