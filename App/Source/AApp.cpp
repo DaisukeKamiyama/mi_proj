@@ -240,10 +240,12 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 		{
 			//------------------バージョン2.1.11/2.1.12のフォルダが存在する場合------------------
 			
+			/*#1440 起動処理中にモーダル表示すると、次にウインドウを開いても表示されないことがあるので、モーダル表示はやめる（すでに数秒で終わる処理内容なので）
 			//モーダルセッション開始
 			AStEditProgressModalSession	modalSession(kEditProgressType_CopyV2AppPrefFolder,false,true,true);
 			//プログレスIntermediate表示
 			SPI_CheckContinueingEditProgressModalSession(kEditProgressType_CopyV2AppPrefFolder,0,true,-1,1);
+			*/
 			
 			//旧フォルダから新フォルダへコピー
 			appPrefFolderV2.CopyFolderTo(appPrefFolder,true,true);
@@ -264,10 +266,12 @@ AApp::AApp() : mUntitledDocumentNumber(0), mAppElapsedTick(0), mCurrentToolMenuM
 			oldAppPrefFolder.SpecifyChild(prefroot,"mi");
 			if( oldAppPrefFolder.Exist() == true )
 			{
+				/*#1440 起動処理中にモーダル表示すると、次にウインドウを開いても表示されないことがあるので、モーダル表示はやめる（すでに数秒で終わる処理内容なので）
 				//モーダルセッション
 				AStEditProgressModalSession	modalSession(kEditProgressType_CopyV2AppPrefFolder,false,true,true);
 				//プログレスIntermediate表示
 				SPI_CheckContinueingEditProgressModalSession(kEditProgressType_CopyV2AppPrefFolder,0,true,-1,1);
+				*/
 				
 				//旧フォルダから新フォルダへコピー
 				oldAppPrefFolder.CopyFolderTo(appPrefFolder,true,true);
@@ -3009,8 +3013,10 @@ ModePref初期化
 */
 void	AApp::InitModePref()
 {
+	/*#1440 起動処理中にモーダル表示すると、次にウインドウを開いても表示されないことがあるので、モーダル表示はやめる（すでに数秒で終わる処理内容なので）
 	//モーダルセッション
 	AStEditProgressModalSession	modalSession(kEditProgressType_InitMode,false,false,true);
+	*/
 	
 	//==================ルートのモードフォルダ（"mode"）取得（未生成なら生成）==================
 	//modeフォルダ作成／特定
@@ -3078,8 +3084,10 @@ void	AApp::InitModePref()
 		//同じ名前のモードフォルダがなければ、デフォルトフォルダのモードをコピーする
 		if( dstModeFolder.Exist() == false )
 		{
+			/*#1440 起動処理中にモーダル表示すると、次にウインドウを開いても表示されないことがあるので、モーダル表示はやめる（すでに数秒で終わる処理内容なので）
 			//セッションプログレス更新
 			SPI_CheckContinueingEditProgressModalSession(kEditProgressType_InitMode,0,true,i/2,defaultFolderArray.GetItemCount(),true);//#1374
+			*/
 			
 			/*#1374 ModePreferences.miファイルだけコピーするように変更。
 			//デフォルトフォルダのモードを同じ名前でコピーする
@@ -3120,11 +3128,13 @@ void	AApp::InitModePref()
 	//modeFolderArrayから、標準モード以外のAModePrefDBを作成
 	for( AIndex i = 0; i < modeFolderArray.GetItemCount(); i++ )
 	{
+		/*#1440 起動処理中にモーダル表示すると、次にウインドウを開いても表示されないことがあるので、モーダル表示はやめる（すでに数秒で終わる処理内容なので）
 		//セッションプログレス更新
 		if( mNewlyCreatedModeNameArray.GetItemCount() > 0 )
 		{
 			SPI_CheckContinueingEditProgressModalSession(kEditProgressType_InitMode,0,true,modeFolderArray.GetItemCount()/2+i/2,modeFolderArray.GetItemCount());
 		}
+		*/
 		
 		//ファイル／フォルダ取得
 		AFileAcc	modeFolder;
