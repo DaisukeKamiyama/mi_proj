@@ -1264,10 +1264,10 @@ FileListHeader_ProjectFilter_AllFiles = "すべてのモードのファイルを
 FileListHeader_ProjectFilter_SameMode = "同じモード (^0) のファイルのみを表示";
 FileListHeader_ProjectFilter_DiffFiles = "差分のあるファイルのみを表示";
 
-Notification_ReplaceResult_OK_Title = "置換結果";
-Notification_ReplaceResult_OK = "^0 個の文字列を置換しました";
-Notification_ReplaceResult_Aborted_Title = "置換結果（中断）";
-Notification_ReplaceResult_Aborted = "置換を中断しました（ ^0 個を置換済）";
+Notification_ReplaceResult_OK_Title = "Replace Result";
+Notification_ReplaceResult_OK = "^0 items are replaced.";
+Notification_ReplaceResult_Aborted_Title = "Replace Result (Aborted)";
+Notification_ReplaceResult_Aborted = "Aborted replacing. (^0 items are replaced.)";
 
 Notification_UnsavedFile_Title = "前回の異常終了時に未保存のデータがありました";
 Notification_UnsavedFile = "未保存データを左側、現在のファイルを右側に表示しています";
@@ -1416,8 +1416,8 @@ DefaultSkinName = "標準";
 
 TabSetFileDefaultName = "TabSet.mitabset";
 
-UserIDVaild = "有効なユーザー ID です";
-UserIDInvaild = "無効なユーザー ID です";
+UserIDVaild = "Valid User ID";
+UserIDInvaild = "Invalid User ID";
 Version = "Version";
 About_UserID = "User ID: ^0";
 About_UserIDNotRegistered = "(not registered)";
