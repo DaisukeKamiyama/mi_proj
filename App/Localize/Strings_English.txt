@@ -1339,16 +1339,16 @@ Letter_Edit = "✏";
 Letter_ParentKeyword = "◇";
 Letter_ParentKeyword_Matched = "◆";
 
-FindList_Aborted = "この検索は途中で中止されました";
-FindList_ResultCount = "以上、^0個の項目が見つかりました（ファイル：^1個）";
+FindList_Aborted = "This search is aborted on the way.";
+FindList_ResultCount = "^0 Items are Found in ^1 Files.";
 
 WordsListHelpTag = "【ファイル】^1\r【親キーワード】^2\r【見出し】^3\r【テキスト】\r^4";
 
-KeyRecordStart = "記録開始";
-KeyRecordStop = "停止";
-KeyRecordPlay = "再生";
-KeyRecordAddMacro = "ツールバー追加";
-SubWindowTitle_KeyRecord = "キー記録";
+KeyRecordStart = "Record";
+KeyRecordStop = "Stop";
+KeyRecordPlay = "Play";
+KeyRecordAddMacro = "Add to Toolbar";
+SubWindowTitle_KeyRecord = "Key Record/Play";
 
 RemoteFileNewFile = "（新規ファイル）";
 RemoteFileParentFolder = " （親フォルダへ移動）";
@@ -1409,8 +1409,8 @@ ModePref_Advanced = "Advanced";
 
 TextMarker_Setup = "Setup...";
 
-EditProgress_Title_CopyV2AppPrefFolder = "mi バージョン 2 のデータを引き継ぎ中です";
-EditProgress_Message_CopyV2AppPrefFolder = "mi バージョン 2 のデータをコピーして引き継ぎ中です。（mi バージョン 3 は、バージョン 2 用の設定データには変更を加えません。）";
+EditProgress_Title_CopyV2AppPrefFolder = "Converting from mi version 2 data";
+EditProgress_Message_CopyV2AppPrefFolder = "mi copies and converts from mi version 2 preferences data. (mi version 3 does not change version 2 data.)";
 
 DefaultSkinName = "標準";
 
