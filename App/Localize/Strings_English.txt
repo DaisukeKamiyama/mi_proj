@@ -1406,8 +1406,6 @@ TextMarker_Setup = "Setup...";
 EditProgress_Title_CopyV2AppPrefFolder = "Converting from mi version 2 data";
 EditProgress_Message_CopyV2AppPrefFolder = "mi copies and converts from mi version 2 preferences data. (mi version 3 does not change version 2 data.)";
 
-DefaultSkinName = "標準";
-
 TabSetFileDefaultName = "TabSet.mitabset";
 
 UserIDVaild = "Valid User ID";
