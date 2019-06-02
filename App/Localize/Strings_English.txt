@@ -1191,7 +1191,7 @@ MacroDefaultName_Find = "Find";
 MacroDefaultName_Replace = "Replace";
 MacroDefaultName_KeyRecord = "KeyRecord";
 
-FileList_Remote_SelectServer = "サーバーを選択";
+FileList_Remote_SelectServer = "Select server";
 
 TextMarkerSelectGroup = "グループ選択";
 TextMarkerTitleDefault = "デフォルトテキストハイライト";
@@ -1350,8 +1350,8 @@ KeyRecordPlay = "Play";
 KeyRecordAddMacro = "Add to Toolbar";
 SubWindowTitle_KeyRecord = "Key Record/Play";
 
-RemoteFileNewFile = "（新規ファイル）";
-RemoteFileParentFolder = " （親フォルダへ移動）";
+RemoteFileNewFile = "(New file)";
+RemoteFileParentFolder = " (Move to parent foler)";
 
 CantOpen_Title = "ファイルを開けませんでした";
 CantOpen_FileNotExist = "ファイル \"^0\" を開けませんでした。ファイルが見つかりません。リムーバブルドライブが接続されていない、ネットワークが切断された、ファイルが削除されたなどの可能性があります。";
