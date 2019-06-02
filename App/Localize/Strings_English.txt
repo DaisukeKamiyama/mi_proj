@@ -1322,16 +1322,16 @@ SearchBoxMenu_Clear = "Clear Search Histories";
 ShowToolBar = "Show Tool Bar";
 HideToolBar = "Hide Tool Bar";
 
-CandidateList_AndSoOn = "他";
-CandidateList_Count = "^0項目　";
-CandidateList_Key_BeforeAbbrevMode = "^1キーで補完入力";
-CandidateList_Key_BeforeAbbrevMode_ArrowKeyAvailable = "^1キーまたは↑↓キーで補完入力";
-CandidateList_Key_AfterAbbrevMode = "↑↓:候補選択　return:確定　esc:キャンセル";
-CandidateList_ParentKeywordMatched = "  (親キーワード一致)";
-CandidateList_FoundInHistory = "（最近補完した項目）";
-CandidateList_MaxItems = "（項目数が多いため以降省略）";
-CandidateList_SearchMode_Normal = "前方一致";
-CandidateList_SearchMode_Partial = "部分一致";
+CandidateList_AndSoOn = "";
+CandidateList_Count = "^0 items ";
+CandidateList_Key_BeforeAbbrevMode = "completion by ^1 key";
+CandidateList_Key_BeforeAbbrevMode_ArrowKeyAvailable = "completion by ^1 key or ↑↓ key";
+CandidateList_Key_AfterAbbrevMode = "↑↓:Select  return:Fix  esc:Cancel";
+CandidateList_ParentKeywordMatched = "  (Parent keyword matched)";
+CandidateList_FoundInHistory = "(Recently completed)";
+CandidateList_MaxItems = "(omitted)";
+CandidateList_SearchMode_Normal = "Normal Search";
+CandidateList_SearchMode_Partial = "Partial Search";
 
 ValidSyntaxPartAll = "All Syntax Parts";
 
