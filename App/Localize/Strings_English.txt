@@ -1316,8 +1316,8 @@ TB_Paste = "Paste";
 
 WordsListLock = "表示ロック";
 
-SearchBoxMenu_Recent = "検索履歴";
-SearchBoxMenu_Clear = "検索履歴を消去";
+SearchBoxMenu_Recent = "Search Histories";
+SearchBoxMenu_Clear = "Clear Search Histories";
 
 ShowToolBar = "Show Tool Bar";
 HideToolBar = "Hide Tool Bar";
