@@ -1406,8 +1406,6 @@ TextMarker_Setup = "設定...";
 EditProgress_Title_CopyV2AppPrefFolder = "mi バージョン 2 のデータを引き継ぎ中です";
 EditProgress_Message_CopyV2AppPrefFolder = "mi バージョン 2 のデータをコピーして引き継ぎ中です。（mi バージョン 3 は、バージョン 2 用の設定データには変更を加えません。）";
 
-DefaultSkinName = "標準";
-
 TabSetFileDefaultName = "タブセット.mitabset";
 
 UserIDVaild = "有効なユーザー ID です";
