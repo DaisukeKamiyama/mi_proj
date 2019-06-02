@@ -1374,8 +1374,6 @@ ModeUpdate_SourceIsSameNameMode = "同じモード名のモードを参照";
 
 DefaultSyntaxPartNotDirected = "自動";
 
-TextView_FileLoading = "（ファイルをロード中です。）";
-
 AppPref_General = "一般";
 AppPref_SubWindows = "サブウインドウ";
 AppPref_Text = "テキスト";
