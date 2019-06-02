@@ -1203,14 +1203,14 @@ TextMarkerEmptyText = "ハイライトするテキストを\r改行で区切っ�
 
 PopupClose = "×";
 
-Notification_FindResult_NotFoundBoth_Title = "一致する文字列は見つかりませんでした";
-Notification_FindResult_NotFoundBoth = "前方にも後方にも一致する文字列はありませんでした";
-Notification_FindResult_NotFoundNext_Title = "後方には一致する文字列は見つかりませんでした";
-Notification_FindResult_NotFoundNext = "前方には一致する文字列が存在します";
-Notification_FindResult_NotFoundPrev_Title = "前方には一致する文字列は見つかりませんでした";
-Notification_FindResult_NotFoundPrev = "後方には一致する文字列が存在します";
-Notification_FindResult_LineCalc_Title = "行折り返し計算中のため検索できませんでした";
-Notification_FindResult_LineCalc = "行折り返し計算完了後に再度検索をお願いします";
+Notification_FindResult_NotFoundBoth_Title = "Not found";
+Notification_FindResult_NotFoundBoth = "There is no matched string either forward or backward.";
+Notification_FindResult_NotFoundNext_Title = "Not found forward";
+Notification_FindResult_NotFoundNext = "There is matched string backward.";
+Notification_FindResult_NotFoundPrev_Title = "Not found backward";
+Notification_FindResult_NotFoundPrev = "There is matched string forward.";
+Notification_FindResult_LineCalc_Title = "Can't find because wrap calculation is not completed.";
+Notification_FindResult_LineCalc = "Operate again after wrap calculation is completed.";
 Notification_IndentCharacterChanged_Tab = "インデント文字：タブ";
 Notification_IndentCharacterChanged_Space = "インデント文字：スペース ^0 文字";
 Notification_IndentCharacterChanged_Title = "モード設定のインデントのオプションを自動更新しました";
