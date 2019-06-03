@@ -1353,9 +1353,9 @@ SubWindowTitle_KeyRecord = "Key Record/Play";
 RemoteFileNewFile = "(New file)";
 RemoteFileParentFolder = " (Move to parent foler)";
 
-CantOpen_Title = "ファイルを開けませんでした";
-CantOpen_FileNotExist = "ファイル \"^0\" を開けませんでした。ファイルが見つかりません。リムーバブルドライブが接続されていない、ネットワークが切断された、ファイルが削除されたなどの可能性があります。";
-CantOpen_FileIsFolder = "ファイル \"^0\" を開けませんでした。指定されたファイルはフォルダです。";
+CantOpen_Title = "Can't open the file";
+CantOpen_FileNotExist = "Can't open the file \"^0\". The file is not found. Removable drive may be not connected, or Network may be not connected, or The file may be deleted.";
+CantOpen_FileIsFolder = "Can't open the file \"^0\". The file is folder.";
 
 NormalModeName_Japanese = "標準";
 
