@@ -1367,8 +1367,8 @@ Toolbar_ModePref = "Mode Preferences";
 MultiFileReplace_FileListTitle_File = "ファイル";
 MultiFileReplace_FileListTitle_TextEncoding = "エンコーディング";
 
-LastOverwrittenColors = "最後に上書きされた色データ";
-ModeColors = "モード設定で設定した色";
+LastOverwrittenColors = "Colors which are overwritten last time";
+ModeColors = "Colors which are set in Mode Preferences";
 
 ModeUpdate_SourceIsSameNameMode = "同じモード名のモードを参照";
 
