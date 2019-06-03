@@ -1364,8 +1364,8 @@ ModeAddedMessage = "Following modes are newly added.";
 Toolbar_AppPref = "Application Preferences";
 Toolbar_ModePref = "Mode Preferences";
 
-MultiFileReplace_FileListTitle_File = "ファイル";
-MultiFileReplace_FileListTitle_TextEncoding = "エンコーディング";
+MultiFileReplace_FileListTitle_File = "File";
+MultiFileReplace_FileListTitle_TextEncoding = "Text Encoding";
 
 LastOverwrittenColors = "Colors which are overwritten last time";
 ModeColors = "Colors which are set in Mode Preferences";
