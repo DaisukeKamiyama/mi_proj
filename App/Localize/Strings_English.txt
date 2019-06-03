@@ -1219,9 +1219,9 @@ Notification_ReloadEditByOtherApp = "Current content of the file ^0 is loaded.";
 Notification_Correspond = "Corresponding Text is input.";
 Notification_TextEncodingFallback_Title = "Couldn't convert to the current Text Encoding correctly.";
 Notification_TextEncodingFallback = "You can reload by menu [Document > Reload with another Text Encoding].";
-Notification_FIFOCopy = "FIFO クリップボードにコピーしました";
-Notification_FIFOPaste = "FIFO クリップボードからペーストしました";
-Notification_CurrentPaste = "次のペーストテキスト： ^0";
+Notification_FIFOCopy = "Copied to FIFO clipboard.";
+Notification_FIFOPaste = "Pasted from FIFO clipboard.";
+Notification_CurrentPaste = "Next paste text: ^0";
 Notification_ReturnCodeMixedError_Title = "このファイルには複数の改行コードが混ざっています";
 Notification_ReturnCodeMixedError = "保存すると改行コードを統一して保存します。";
 
