@@ -8567,7 +8567,7 @@ void	AView_Text::DequeueFIFOClipboard( AText& outText )
 	infotext.SetLocalizedText("Notification_CurrentPaste");
 	infotext.ReplaceParamText('0',firsttext);
 	AText	notificationTitle;
-	notificationTitle.SetLocalizedText("Notification_FIFOCopy");
+	notificationTitle.SetLocalizedText("Notification_FIFOPaste");
 	if( mTextWindowID != kObjectID_Invalid )
 	{
 		SPI_GetPopupNotificationWindow().SPI_GetNotificationView().
