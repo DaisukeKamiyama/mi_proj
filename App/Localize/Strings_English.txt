@@ -1222,8 +1222,8 @@ Notification_TextEncodingFallback = "You can reload by menu [Document > Reload w
 Notification_FIFOCopy = "Copied to FIFO clipboard.";
 Notification_FIFOPaste = "Pasted from FIFO clipboard.";
 Notification_CurrentPaste = "Next paste text: ^0";
-Notification_ReturnCodeMixedError_Title = "このファイルには複数の改行コードが混ざっています";
-Notification_ReturnCodeMixedError = "保存すると改行コードを統一して保存します。";
+Notification_ReturnCodeMixedError_Title = "This file includes 2 or more types of Line Break code.";
+Notification_ReturnCodeMixedError = "If you save this file, Line Break code will be unified.";
 
 WordsListHeader = "\"^0\"の検索結果（単語全体が一致する箇所のみ）";
 WordsListHeader2 = "検索パス：^0  モード：^1";
