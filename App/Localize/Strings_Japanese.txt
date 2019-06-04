@@ -1231,8 +1231,6 @@ WordsListSummary_NoResult = "テキスト内で選択した単語の\r使用箇�
 WordsListSummary_ImportFileProgress = "※インデックス作成中のため上記の他にも単語使用箇所がある可能性があります。";
 WordsListSummary_TooManyItems = "※項目数が多いため以降の項目は省略しました。";
 
-ModeLabel = "モード：^0";
-
 ChooseFileMessage_CompareFile = "比較元ファイルを選択して下さい";
 ChooseFileMessage_ModePrefBackgroundImageFile = "背景画像ファイルを選択して下さい";
 ChooseFileMessage_SelectUserSDF = "ユーザー定義の文法定義ファイルを選択して下さい";
