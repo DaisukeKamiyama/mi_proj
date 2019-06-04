@@ -1184,7 +1184,7 @@ ControlKey = "control";
 
 PositionButtonTitle = "見出し：";
 
-Progress_ImportFile = "プロジェクト内のインデックスを作成中";
+Progress_ImportFile = "Indexing project files";
 
 MacroDefaultName = "Macro";
 MacroDefaultName_Find = "Find";
