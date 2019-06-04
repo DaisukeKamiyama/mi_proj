@@ -1252,7 +1252,7 @@ ChooseFolderMessage_SelectProjectFolder = "プロジェクトフォルダを選�
 ChooseFolderMessage_SelectModeFolder = "モードフォルダ（モードと同じ名前のフォルダ）を選択して下さい";
 SaveCancelDiscard_Message1 = "Do you want to save the changes you made in the document \"^0\"?";
 SaveCancelDiscard_Message2 = "Your changes will be lost if you don't save them.";
-ChooseFileMessage_SelectPrivateKeyFile = "秘密鍵ファイルを選択して下さい";
+ChooseFileMessage_SelectPrivateKeyFile = "Select private key file.";
 
 FileListHeader_ProjectFilter_AllFiles = "All Files";
 FileListHeader_ProjectFilter_SameMode = "Same Mode (^0) Files Only";
