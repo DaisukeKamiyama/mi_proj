@@ -1193,11 +1193,11 @@ MacroDefaultName_KeyRecord = "KeyRecord";
 
 FileList_Remote_SelectServer = "Select server";
 
-TextMarkerNewGroup = "新規テキストハイライト";
-TextMarkerEdit = "名称変更";
-TextMarkerAdd = "追加";
-TextMarkerRemove = "削除";
-TextMarkerEmptyText = "ハイライトするテキストを\r改行で区切って入力して下さい\r";
+TextMarkerNewGroup = "New Text Highlight";
+TextMarkerEdit = "Edit Title";
+TextMarkerAdd = "Add";
+TextMarkerRemove = "Delete";
+TextMarkerEmptyText = "Input strings separated by return.";
 
 PopupClose = "×";
 
