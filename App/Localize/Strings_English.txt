@@ -58,8 +58,8 @@ FusenList_Show = "Show Sticky List Window";
 FusenList_Hide = "Hide Sticky List Window";
 
 /* Jump List */
-JumpList_Show = "Show Header List";
-JumpList_Hide = "Hide Header List";
+JumpList_Show = "Show Heading List";
+JumpList_Hide = "Hide Heading List";
 
 /* ID Info Window */
 IdInfo_Show = "Show Identifier Info Window";
@@ -211,7 +211,7 @@ ModePref_DeleteCategory1 = "Delete Keyword Category";
 ModePref_DeleteCategory2 = "Do you want to delete keyword category \"^0\" and all keywords included in the category? This operation cannot be undo.";
 ModePref_DeleteCategory3 = "Delete";
 
-ModePref_DeleteJumpSetup1 = "Delete Header Menu / List Setting Item";
+ModePref_DeleteJumpSetup1 = "Delete Heading Menu / List Setting Item";
 ModePref_DeleteJumpSetup2 = "Do you really want to delete item \"^0\"? This operation cannot be undo.";
 ModePref_DeleteJumpSetup3 = "Delete";
 
@@ -481,8 +481,8 @@ Keybind_action75 = "Indent <always use Space>";
 Keybind_action76 = "Line Break ( Indent at Current Line and New Line <always use Space> )";
 Keybind_action77 = "Line Break ( Indent at Only New Line )";
 Keybind_action78 = "Line Break ( Indent at Only New Line <always use Space> )";
-Keybind_action79 = "Next Header";
-Keybind_action80 = "Previous Header";
+Keybind_action79 = "Next Heading";
+Keybind_action80 = "Previous Heading";
 Keybind_action81 = "Switch to Next Tab";
 Keybind_action82 = "Switch to Previous Tab";
 Keybind_action83 = "Show Paragraph dialog";
@@ -759,7 +759,7 @@ modepref_ModePref3 = "Open";
 modepref_ModePref4 = "Save";
 modepref_ModePref5 = "Syntax";
 modepref_ModePref6 = "Keyword";
-modepref_ModePref7 = "Header";
+modepref_ModePref7 = "Heading";
 modepref_ModePref8 = "Support";
 modepref_ModePref9 = "Indent";
 modepref_ModePref10 = "Key Bind";
@@ -952,7 +952,7 @@ SystemResource_GDIObject1 = "Cannot open window/tab";
 SystemResource_GDIObject2 = "Cannot open window or tab because of shortage of GDI objects. Please close other windows or tabs.";
 
 /* JumpList */
-JumpList = "Header List";
+JumpList = "Heading List";
 
 /* IdInfo */
 IdInfo = "Identifier Info";
@@ -1002,7 +1002,7 @@ TextEncodingError_ShiftJIS_No2ndByte = "There is only the 1st byte of Shift_JIS,
 StandardToolButton_SplitView = "Split View";
 
 ModePref_ModeUpdate1 = "Mode Update";
-ModePref_ModeUpdate2 = "Do you want to update mode data? Only Tool/Toolbar/Keyword/Header made by mode creator will be updated. \rAll items created by version 2.1.12 or before are retained as \"Items made by user\". If you do not need these items, delete or disable these.";
+ModePref_ModeUpdate2 = "Do you want to update mode data? Only Tool/Toolbar/Keyword/Heading made by mode creator will be updated. \rAll items created by version 2.1.12 or before are retained as \"Items made by user\". If you do not need these items, delete or disable these.";
 ModePref_ModeUpdate3 = "Update";
 
 ModePref_AutoUpdateError1 = "Automatic Update Failed";
@@ -1059,13 +1059,13 @@ HelpTag_SideBarShowHideInfoPaneButton = "Show / Hide Info Pane Column";
 HelpTag_SideBarShowHideSubPaneButton = "Show / Hide Sub Pane Column";
 HelpTag_SideBarInfoPaneVSeparatorButton = "Change Width of Info Pane Column";
 HelpTag_LineButton = "Current Line / Paragraph\rMove Line / Paragraph by click\rLine / Paragraph can be switched by mode preferences";
-HelpTag_JumpButton = "Current Position (Header)";
+HelpTag_JumpButton = "Current Position (Heading)";
 HelpTag_FileListSameFolder = "Files in the same folder\rFolder: ^0";
 HelpTag_FileListSameProject = "Files which are in the same Project Folder and same mode\rProject Folder: ^0";
 HelpTag_FileListSameProject_NotDefined = "Files which are in the same Project Folder and same mode\rProject Folder: Not set\rProject Folder can be set by menu [File -> Setup Project Folder]";
 HelpTag_IdInfo = "Identifier Info\rDisplay information of identifier or explanation of keyword.\rIf you click displayed identifier item, move to the definition.";
 HelpTag_IdInfoFixDisplay = "Fix displayed content or cancel the fix.";
-HelpTag_JumpList = "Header List displays headers defined in Header tab setting in mode preference and syntax recognition.\rIf you click a list item, the header will be selected.\rMenu of this button displays recently selected headers.";
+HelpTag_JumpList = "Heading List displays headings defined in Heading tab setting in mode preference and syntax recognition.\rIf you click a list item, the heading will be selected.\rMenu of this button displays recently selected headings.";
 HelpTag_SplitView = "Split view vertically";
 HelpTag_CloseSplitView = "Close split view";
 HelpTag_SideBarShowHideLeftSideBarButton = "Show / Hide Left Side Bar";
@@ -1104,8 +1104,8 @@ SubWindowTitle_TextMarker = "Text Marker";
 SubWindowTitle_ClipboardHistory = "Clipboard History";
 SubWindowTitle_DocInfo = "Text Information";
 SubWindowTitle_ToolList = "Tool";
-SubWindowTitle_JumpList = "Header List";
-SubWindowTitle_JumpList_SubText = "Header List (Sub Text)";
+SubWindowTitle_JumpList = "Heading List";
+SubWindowTitle_JumpList_SubText = "Heading List (Sub Text)";
 SubWindowTitle_FindResult = "Find Result";
 
 SearchKeyword = "Search Keyword (Partial Match)";
@@ -1132,7 +1132,7 @@ DocInfo_Selected3 = " words   ";
 DocInfo_Selected4 = " paragraphs";
 DocInfo_CurrentChar = "Current letter: ";
 DocInfo_CurrentCharReturnCode = "Current letter: Line break";
-DocInfo_HeaderPath = "Header Path: ";
+DocInfo_HeaderPath = "Heading Path: ";
 DocInfo_HeaderPathTriangle = "▸";
 DocInfo_HeaderPathParagraph = "Paragraph: ";
 DocInfo_SelectedTextColor = "Color of selected text: ";
@@ -1167,12 +1167,12 @@ EditProgress_Message_InitMode = "Now installing mode data.";
 
 UnsavedDataTitle = "前回未保存のデータ ( ^1 時点の \"^0\")";
 
-Minute = "^1 分";
-Hour = "^1 時間 ";
-Day = "^1 日 ";
-Month = "^1 ヶ月 ";
-Year = "^1 年 ";
-Before = "前";
+Minute = "^1 minutes ";
+Hour = "^1 hours ";
+Day = "^1 days ";
+Month = "^1 months ";
+Year = "^1 years ";
+Before = "before";
 
 MacroBarTitle = "Macro: ";
 AddMacro = "Add Macro";
@@ -1391,7 +1391,7 @@ ModePref_Colors = "Colors";
 ModePref_Edit = "Edit";
 ModePref_Display = "Display";
 ModePref_Keyword = "Keyword";
-ModePref_Header = "Header";
+ModePref_Header = "Heading";
 ModePref_Syntax = "Syntax";
 ModePref_Features = "Other Features";
 ModePref_Indent = "Indent";
