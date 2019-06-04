@@ -359,13 +359,13 @@ If no Suffix matches :
 Corresponding Text Input
 Corresponding Text Input
 Key Bind :
-Key Bind :
+Key Binding :
 Set Difference from Application's Default Key Bind
-Set Difference from Application's Default Key Bind
+Set Difference from Application's Default Key Binding
 Set Difference from Normal mode Key Bind
-Set Difference from Normal mode Key Bind
+Set Difference from Normal mode Key Binding
 Set Difference from OS Key Bind
-Set Difference from OS Key Bind
+Set Difference from OS Key Binding
 Control Key
 Control Key
 Option Key
@@ -641,7 +641,7 @@ Setup corresponding text for [Find -> Insert Corresponding Text].
 Setup line folding settings such as default folding.
 Setup line folding settings such as default folding.
 Setup Key Bind.
-Setup Key Bind.
+Setup Key Binding.
 Setup Tool menu.
 Setup Tool menu.
 You can setup tool files and their hierarchy using Finder.
@@ -749,7 +749,7 @@ Shift left by backspace at line start
 Syntax
 Syntax
 Key Bind
-Key Bind
+Key Binding
 Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file.
 Select which character is displayed for ascii code 0x5C when SJIS/JIS/EUC file.
 Keyword column is mandatory, others are optional.
