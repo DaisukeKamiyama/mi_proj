@@ -1272,13 +1272,13 @@ MultiFileReplace_Aborted = "置換を途中で中断しました";
 MultiFileReplace_FailSave = "一部ファイルの置換に失敗しました";
 MultiFileReplace_FailSaveMessage = "下記のファイルの保存に失敗しました。（そのファイルのエンコーディングでは使用出来ない文字への置換などが考えられます。）\r";
 
-PreviewWindow_LetterSizeButton = "文字サイズ： ^0 %";
+PreviewWindow_LetterSizeButton = "Font Size: ^0 %";
 
 TextMarker_DeleteButton1 = "Deleting Text Highlight";
 TextMarker_DeleteButton2 = "Do you really want to delete this text highlight data? You cannot undo this operation.";
 TextMarker_DeleteButton3 = "Delete";
 
-Notification_FolderLabel = "\"^0\"配下のファイルです";
+Notification_FolderLabel = "File in \"^0\"";
 
 TB_Document = "New";
 TB_SubWindow = "Sub Window";
