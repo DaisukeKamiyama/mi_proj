@@ -1182,8 +1182,6 @@ OptionKey = "option";
 ShiftKey = "shift";
 ControlKey = "control";
 
-PositionButtonTitle = "見出し：";
-
 Progress_ImportFile = "Indexing project files";
 
 MacroDefaultName = "Macro";
