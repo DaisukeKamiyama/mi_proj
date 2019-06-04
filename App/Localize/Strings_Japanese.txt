@@ -1197,7 +1197,7 @@ TextMarkerNewGroup = "新規テキストハイライト";
 TextMarkerEdit = "名称変更";
 TextMarkerAdd = "追加";
 TextMarkerRemove = "削除";
-TextMarkerEmptyText = "ハイライトするテキストを\r改行で区切って入力して下さい\r";
+TextMarkerEmptyText = "ハイライトする文字列を改行で区切って入力して下さい\r";
 
 PopupClose = "×";
 
