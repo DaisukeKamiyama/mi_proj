@@ -1254,9 +1254,9 @@ SaveCancelDiscard_Message1 = "Do you want to save the changes you made in the do
 SaveCancelDiscard_Message2 = "Your changes will be lost if you don't save them.";
 ChooseFileMessage_SelectPrivateKeyFile = "秘密鍵ファイルを選択して下さい";
 
-FileListHeader_ProjectFilter_AllFiles = "すべてのモードのファイルを表示";
-FileListHeader_ProjectFilter_SameMode = "同じモード (^0) のファイルのみを表示";
-FileListHeader_ProjectFilter_DiffFiles = "差分のあるファイルのみを表示";
+FileListHeader_ProjectFilter_AllFiles = "All Files";
+FileListHeader_ProjectFilter_SameMode = "Same Mode (^0) Files Only";
+FileListHeader_ProjectFilter_DiffFiles = "All Files which have differences";
 
 Notification_ReplaceResult_OK_Title = "Replace Result";
 Notification_ReplaceResult_OK = "^0 items are replaced.";
