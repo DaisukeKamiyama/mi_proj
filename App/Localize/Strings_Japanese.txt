@@ -1182,8 +1182,6 @@ OptionKey = "option";
 ShiftKey = "shift";
 ControlKey = "control";
 
-PositionButtonTitle = "見出し：";
-
 Progress_ImportFile = "外部ファイルのデータを読込中";
 
 MacroDefaultName = "ツールバー";
