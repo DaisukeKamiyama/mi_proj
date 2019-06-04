@@ -1274,9 +1274,9 @@ MultiFileReplace_FailSaveMessage = "下記のファイルの保存に失敗し�
 
 PreviewWindow_LetterSizeButton = "文字サイズ： ^0 %";
 
-TextMarker_DeleteButton1 = "テキストハイライトの削除";
-TextMarker_DeleteButton2 = "本当にこのテキストハイライトデータを削除しても宜しいですか？この操作は取り消せません。";
-TextMarker_DeleteButton3 = "削除";
+TextMarker_DeleteButton1 = "Deleting Text Highlight";
+TextMarker_DeleteButton2 = "Do you really want to delete this text highlight data? You cannot undo this operation.";
+TextMarker_DeleteButton3 = "Delete";
 
 Notification_FolderLabel = "\"^0\"配下のファイルです";
 
