@@ -1193,8 +1193,6 @@ MacroDefaultName_KeyRecord = "KeyRecord";
 
 FileList_Remote_SelectServer = "Select server";
 
-TextMarkerSelectGroup = "グループ選択";
-TextMarkerTitleDefault = "デフォルトテキストハイライト";
 TextMarkerNewGroup = "新規テキストハイライト";
 TextMarkerEdit = "名称変更";
 TextMarkerAdd = "追加";
