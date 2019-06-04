@@ -1267,10 +1267,10 @@ Notification_UnsavedFile_Title = "前回の異常終了時に未保存のデー�
 Notification_UnsavedFile = "未保存データを左側、現在のファイルを右側に表示しています";
 
 /* MultiFileReplace Result */
-MultiFileReplace_Result = "^0 個の文字列を置換しました";
-MultiFileReplace_Aborted = "置換を途中で中断しました";
-MultiFileReplace_FailSave = "一部ファイルの置換に失敗しました";
-MultiFileReplace_FailSaveMessage = "下記のファイルの保存に失敗しました。（そのファイルのエンコーディングでは使用出来ない文字への置換などが考えられます。）\r";
+MultiFileReplace_Result = "Replaced ^0 strings successfully.";
+MultiFileReplace_Aborted = "Aborted replacing on the way.";
+MultiFileReplace_FailSave = "Failed to replace one or more files.";
+MultiFileReplace_FailSaveMessage = "Failed to save the following files.";
 
 PreviewWindow_LetterSizeButton = "Font Size: ^0 %";
 
