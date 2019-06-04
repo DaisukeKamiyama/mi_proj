@@ -1165,8 +1165,6 @@ EditProgress_Message_CalcLineInfo = "行計算処理中です。";
 EditProgress_Title_InitMode = "mi 初回起動中です";
 EditProgress_Message_InitMode = "インストールありがとうございます！\r初回起動時の処理を実行中です。少しだけお待ちください。";
 
-UnsavedDataTitle = "前回未保存のデータ ( ^1 時点の \"^0\")";
-
 Minute = "^1 分";
 Hour = "^1 時間 ";
 Day = "^1 日 ";
