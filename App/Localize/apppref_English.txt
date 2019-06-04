@@ -145,7 +145,7 @@ Fuzzy Search
 Find Sub Folders Recursively
 Find Sub Folders Recursively
 Display Header Title in Result
-Display Header Title in Result
+Display Heading Title in Result
 Visible File Only
 Visible File Only
 Text File Only
