@@ -89,7 +89,7 @@ Input Backslash when press ¥ key
 When press ⌘ + ¥ key, ¥ is Input.
 When press ⌘ + ¥ key, ¥ is Input.
 Prior to Syntax/Header Color
-Prior to Syntax/Header Color
+Prior to Syntax/Heading Color
 Bold
 Bold
 Italic
@@ -97,7 +97,7 @@ Italic
 Underline
 Underline
 If checked, keyword color is prior to syntax/header color such as comment color.
-If checked, keyword color is prior to syntax/header color such as comment color.
+If checked, keyword color is prior to syntax/heading color such as comment color.
 Font :
 Font :
 Text Display
@@ -247,29 +247,29 @@ Explanation Column Number :
 Parent Keyword Column Number :
 Parent Keyword Column Number :
 Header Color : 
-Header Color : 
+Heading Color : 
 Colorize Header
-Colorize Header
+Colorize Heading
 Header definition : 
-Header definition : 
+Heading definition : 
 Define Header line with Regular Expression
-Define Header line with Regular Expression
+Define Heading line with Regular Expression
 Define Header with simpler setting
-Define Header with simpler setting
+Define Heading with simpler setting
 Update Document
 Update Document
 Headers
-Headers
+Headings
 Register headers to display in Header list and menu.
-Register headers to display in Header list and menu.
+Register headings to display in Heading list and menu.
 Regular Exp. : 
 Regular Exp. : 
 Line which matches this Regular Exp. will be recognized as Header.
-Line which matches this Reg. Exp. will be recognized as Header. Tab and space at line start should be included in Reg. Exp.
+Line which matches this Reg. Exp. will be recognized as Heading. Tab and space at line start should be included in Reg. Exp.
 Header List : 
-Header List : 
+Heading List : 
 Add to Header List and Header Menu
-Add to Header List and Header Menu
+Add to Heading List and Heading Menu
 List Item Text : 
 List Item Text : 
 Keyword : 
@@ -285,9 +285,9 @@ Outline Level :
 Line Start Text : 
 Line Start Text : 
 Line which starts by the following text will be recognized as Header.
-Line which starts by the following text will be recognized as Header.
+Line which starts by the following text will be recognized as Heading.
 Header List : 
-Header List : 
+Heading List : 
 Syntax Display
 Syntax Display
 Colorize syntax according to selected syntax definition.
@@ -305,7 +305,7 @@ Comment :
 Literal : 
 Literal : 
 Header : 
-Header : 
+Heading : 
 Function : 
 Function : 
 Variable : 
@@ -335,7 +335,7 @@ Deactivated Color :
 * 2 or more Folder Paths can be input by separating with return.
 * 2 or more Folder Paths can be input by separating with return.
 System Headers : 
-System Headers : 
+System Headings : 
 Folding
 Folding
 Folding :
