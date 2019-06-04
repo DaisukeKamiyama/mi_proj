@@ -762,7 +762,7 @@ modepref_ModePref6 = "Keyword";
 modepref_ModePref7 = "Heading";
 modepref_ModePref8 = "Support";
 modepref_ModePref9 = "Indent";
-modepref_ModePref10 = "Key Bind";
+modepref_ModePref10 = "Key Binding";
 modepref_ModePref11 = "Tool";
 modepref_ModePref12 = "Manage";
 
@@ -1231,10 +1231,10 @@ WordsListSummary_NoResult = "テキスト内で選択した単語の\r使用箇�
 WordsListSummary_ImportFileProgress = "※インデックス作成中のため上記の他にも単語使用箇所がある可能性があります。";
 WordsListSummary_TooManyItems = "※項目数が多いため以降の項目は省略しました。";
 
-ChooseFileMessage_CompareFile = "比較元ファイルを選択して下さい";
-ChooseFileMessage_ModePrefBackgroundImageFile = "背景画像ファイルを選択して下さい";
-ChooseFileMessage_SelectUserSDF = "ユーザー定義の文法定義ファイルを選択して下さい";
-ChooseFileMessage_ImportKeybind = "キーバインドインポートファイルを選択して下さい";
+ChooseFileMessage_CompareFile = "Select compare source file.";
+ChooseFileMessage_ModePrefBackgroundImageFile = "Select background image file.";
+ChooseFileMessage_SelectUserSDF = "Select user-defined Syntax Definition script file.";
+ChooseFileMessage_ImportKeybind = "Select key binding import file.";
 ChooseFileMessage_ImportDragDrop = "ドラッグ＆ドロップ文字列インポートファイルを選択して下さい";
 ChooseFileMessage_CorrespondDragDrop = "対応文字列インポートファイルを選択して下さい";
 ChooseFileMessage_RegExpIndentDragDrop = "正規表現インデントインポートファイルを選択して下さい";
@@ -1389,7 +1389,7 @@ ModePref_Header = "Heading";
 ModePref_Syntax = "Syntax";
 ModePref_Features = "Other Features";
 ModePref_Indent = "Indent";
-ModePref_KeyBind = "Key Bind";
+ModePref_KeyBind = "Key Binding";
 ModePref_Tool = "Tool";
 ModePref_Advanced = "Advanced";
 
