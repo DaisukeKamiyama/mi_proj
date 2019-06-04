@@ -1235,7 +1235,7 @@ void	AWindow_MultiFileFind::NVMDO_UpdateControlStatus()
 			//NVI_SetControlEnable(kPopup_FileFilterPreset,true);
 			//NVI_SetControlEnable(kPopup_RecentlyUsedFileFilter,true);
 			//NVI_SetControlEnable(kText_FileFilter,true);
-			//NVI_SetControlEnable(kCheckBox_IgnoreCase,true);
+			NVI_SetControlEnable(kCheckBox_IgnoreCase,true);//#0
 			//NVI_SetControlEnable(kCheckBox_WholeWord,true);
 			//NVI_SetControlEnable(kCheckBox_Aimai,true);
 			//NVI_SetControlEnable(kCheckBox_BackslashYen,true);
