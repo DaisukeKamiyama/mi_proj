@@ -295,13 +295,13 @@ Go Back
 Go Next
 Go Next
 Go to Previous Header
-Go to Previous Header
+Go to Previous Heading
 Go to Next Header
-Go to Next Header
+Go to Next Heading
 Export Headers to Text
-Export Headers to Text
+Export Headings to Text
 Jump
-Header
+Heading
 Tool
 Tool
 Switch Window
@@ -317,7 +317,7 @@ Move Current Window to Tab
 Change Current Tab to Window
 Open Current Tab in New Window
 Show Jump List
-Show Header List
+Show Heading List
 Show File List
 Show File List
 Show Identifier Information Window
@@ -369,7 +369,7 @@ Commit...
 &Changes
 &Compare
 &Jump
-&Header
+&Heading
 &Tool
 &Tool
 &Window
@@ -503,7 +503,7 @@ Mode Preference...
 View
 View
 Header
-Header
+Heading
 Customize Toolbar
 Customize Toolbar
 Select Compare Target
@@ -539,9 +539,9 @@ Collapse All At Current Level
 Expand All at current level
 Expand All At Current Level
 Collapse All Headers
-Collapse All Headers
+Collapse All Headings
 Collapse All Headers with no Changes
-Collapse All Unchanged Headers
+Collapse All Unchanged Headings
 Expand All
 Expand All
 Set Collapsed/Expanded state to Default
@@ -553,11 +553,11 @@ Split View Vertically
 Split View Horizontally
 Split View Horizontally
 Go to Parent Header
-Go to Parent Header
+Go to Parent Heading
 Go to Next Header at same level
-Go to Next Header at same level
+Go to Next Heading at same level
 Go to Previous Header at same level
-Go to Previous Header at same level
+Go to Previous Heading at same level
 Create Tab to Open Document
 Create Tab to Open Document
 Multi-File Replace...
@@ -565,7 +565,7 @@ Multi-File Replace...
 FIFO Clipboard Mode
 FIFO Clipboard Mode
 Search Header
-Search Header
+Search Heading
 Search Same Project File
 Search Same Project File
 Search Same Folder File
@@ -589,7 +589,7 @@ Same Project File List
 New Remote File List
 Remote File
 New Header List
-Header List
+Heading List
 New Text Count Window
 Text Information
 New Text Marker Window
@@ -617,7 +617,7 @@ Same Project File
 Add Remote File List
 Remote File
 Add Header List
-Header List
+Heading List
 Add Text Count Window
 Text Information
 Add Text Marker Window
