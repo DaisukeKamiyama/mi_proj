@@ -1165,8 +1165,6 @@ EditProgress_Message_CalcLineInfo = "Now executing line calculation process.";
 EditProgress_Title_InitMode = "Installing Mode Data";
 EditProgress_Message_InitMode = "Now installing mode data.";
 
-UnsavedDataTitle = "前回未保存のデータ ( ^1 時点の \"^0\")";
-
 Minute = "^1 minutes ";
 Hour = "^1 hours ";
 Day = "^1 days ";
@@ -1263,8 +1261,8 @@ Notification_ReplaceResult_OK = "^0 items are replaced.";
 Notification_ReplaceResult_Aborted_Title = "Replace Result (Aborted)";
 Notification_ReplaceResult_Aborted = "Aborted replacing. (^0 items are replaced.)";
 
-Notification_UnsavedFile_Title = "前回の異常終了時に未保存のデータがありました";
-Notification_UnsavedFile = "未保存データを左側、現在のファイルを右側に表示しています";
+Notification_UnsavedFile_Title = "There are unsaved data because of abnormal termination.";
+Notification_UnsavedFile = "Unsaved data is left side. Current file is right side.";
 
 /* MultiFileReplace Result */
 MultiFileReplace_Result = "Replaced ^0 strings successfully.";
