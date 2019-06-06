@@ -124,7 +124,7 @@ state(func_idle)
 	{"for", {SetVarNextToken(varname),AddLocalId([locallet], varname, varname, "", "")}}
 	#case文ラベル
 	{"case", {IndentLabel}}
-	{"default", {IndentLabel}}
+	{"default:", {IndentLabel}}
 	#コメント／リテラル／エスケープ
 	{"/*",{SetVarStartOrContinue(lastcomment),PushState(comment)}}
 	{"//",{SetVarStartOrContinue(lastcomment),PushState(linecomment)}}
