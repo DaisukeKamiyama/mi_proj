@@ -620,6 +620,7 @@ void	AWindow_MultiFileFind::EVTDO_FolderChoosen( const AControlID inControlID, c
 		{
 			NVI_SetControlText(kText_Folder_Path,path);
 			NVI_SetControlBool(kRadio_Folder_Select,true);
+			//#1443 test inFolder.CreateSecurityScopedBookmark();
 			break;
 		}
 	  case kButton_SelectBackupFolder:
