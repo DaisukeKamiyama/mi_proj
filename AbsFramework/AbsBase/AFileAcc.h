@@ -164,6 +164,7 @@ class AFileAcc : public AObjectArrayItem
 	NSURL*	GetNSURL() const;//#1425
 	void	SpecifyByNSURL( NSURL* inNSURL );//#1425
 	void	SpecifyByNSString( NSString* inPath );//#1425
+	//void	CreateSecurityScopedBookmark() const;//#1443 test
   private:
 	static AThreadMutex					sResourceForkMutex;//#92
 #endif
