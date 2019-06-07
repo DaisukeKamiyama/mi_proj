@@ -3189,6 +3189,25 @@ void	AFileAcc::SpecifyByNSString( NSString* inPath )
 	Specify(path);
 }
 
+//#1443 test
+/*
+void	AFileAcc::CreateSecurityScopedBookmark() const
+{
+	AText	path;
+	GetNormalizedPath(path);
+	AStCreateNSStringFromAText	pathstr(path);
+	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString()];
+	NSData*	bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope
+		includingResourceValuesForKeys:nil
+		relativeToURL:nil
+	error:nil];
+	//
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:bookmarkData forKey:@"securityScopedBookmark"];
+	[defaults synchronize];
+}
+*/
+
 #endif
 
 #pragma mark ===========================
