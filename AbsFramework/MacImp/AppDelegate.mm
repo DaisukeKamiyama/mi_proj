@@ -172,6 +172,26 @@ AppDelegate
 		BOOL	result = [[NSFileManager defaultManager] fileExistsAtPath:str.GetNSString() isDirectory:&isDir];
 		*/
 		
+		//#1443 test
+		/*
+		//
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+		[dic setObject:@"" forKey:@"securityScopedBookmark"];
+		[defaults registerDefaults:dic];
+		//
+		BOOL	stale = NO;
+		NSData*	bookmarkData = [defaults dataForKey:@"securityScopedBookmark"];
+		NSURL*	bookmarkURL = [NSURL URLByResolvingBookmarkData:bookmarkData
+			options: NSURLBookmarkResolutionWithSecurityScope
+			relativeToURL: nil
+			bookmarkDataIsStale: &stale
+		error:nil];
+		BOOL	result = [bookmarkURL startAccessingSecurityScopedResource];
+		//★stopAccessingSecurityScopedResourceを呼ぶタイミング
+		//https://stackoverflow.com/questions/25627628/sandboxed-mac-app-exhausting-security-scoped-url-resources
+		*/
+		
 		//アプリケーションを実行状態にする
 		AApplication::GetApplication().NVI_Run();
 	}
