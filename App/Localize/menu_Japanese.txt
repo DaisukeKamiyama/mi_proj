@@ -283,9 +283,9 @@ Document
 Show Cross-Caret
 クロスキャレットを表示
 Split View
-ビューを分割する
+画面を縦分割する
 Close View
-ビューを閉じる
+縦分割画面を閉じる
 Re-recognize Syntax
 文法再認識
 Display
@@ -549,9 +549,9 @@ Set Collapsed/Expanded state to Default
 Select current Folding Range
 現在の折りたたみ範囲を選択する
 Split View Vertically
-ビューを縦分割する
+画面を縦分割する
 Split View Horizontally
-画面を横分割（サブテキストを表示）
+画面を横分割する（サブテキストを表示）
 Go to Parent Header
 親見出しへ移動
 Go to Next Header at same level
