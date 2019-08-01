@@ -110,7 +110,7 @@ void	AChildProcessPipe::NVIDO_ThreadMain()
 	}
 	//B0314
 	GetApp().NVI_WakeTrigger();
-	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("AChildProcessPipe::NVIDO_ThreadMain ended.",this);
+	if( AApplication::NVI_GetEnableDebugTraceMode() == true )   _AInfo("AChildProcessPipe::NVIDO_ThreadMain ended.",NULL);//#0 this→NULL wake後このオブジェクトは解放されるので、thisが無効になることがある。
 #endif
 #if IMPLEMENTATION_FOR_WINDOWS
 	//パイプから結果読み出し
