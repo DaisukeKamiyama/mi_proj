@@ -15433,6 +15433,8 @@ AItemCount	ADocument_Text::SPI_CalcIndentCount( const AIndex inLineIndex, const 
 			AItemCount& outNextParagraphIndent,
 			const AIndentTriggerType inIndentTriggerType )//#650
 {
+	//結果初期化 #1455
+	outNextParagraphIndent = inPrevParagraphIndent;
 	//指定段落の開始行を取得
 	AIndex	currentParagraphStartLineIndex = mTextInfo.GetCurrentParagraphStartLineIndex(inLineIndex);
 	//指定段落のインデント量取得
