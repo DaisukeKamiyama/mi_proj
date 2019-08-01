@@ -151,6 +151,10 @@ state(var)
 state(array)
 {
 	StateAttribute_SyntaxPart("Perl")
+	#インデント
+	{"{", {IncIndentFromNext, PopStateFromNextChar}}
+	{"}", {DecIndentFromCurrent, PopStateFromNextChar}}
+	#
 	{default,{PopStateFromNextChar}}
 }
 state(hash)
