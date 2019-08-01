@@ -6204,7 +6204,7 @@ void	AView_Text::DoIndent( /*#650 const ABool inUseCurrentParagraphIndentForRegE
 			//段落開始行以外ではインデント処理を行わない
 			if( GetTextDocumentConst().SPI_GetCurrentParagraphStartLineIndex(lineIndex) != lineIndex )   continue;
 			//
-			AItemCount	nextIndentCount;
+			AItemCount	nextIndentCount = 0;//#1455
 			AItemCount	indentCount = GetTextDocument().SPI_CalcIndentCount(lineIndex,prevIndentCount,nextIndentCount,
 																			//#650 inUseCurrentParagraphIndentForRegExp);//B0363
 																			inIndentTriggerType);//#650
@@ -8974,7 +8974,7 @@ void	AView_Text::Indent( const ABool inInputSpacesForIndent )
 	CTextDrawData	textdrawdata(GetApp().NVI_GetAppPrefDB().GetData_Bool(AAppPrefDB::kDisplayEachCanonicalDecompChar));
 	GetTextDocumentConst().SPI_GetTextDrawDataWithoutStyle(GetCaretTextPoint().y,textdrawdata);
 	AItemCount	tabletters = textdrawdata.OriginalTextArray_TabLetters.Get(GetCaretTextPoint().x);
-	AItemCount	tmp;
+	AItemCount	tmp = 0;//#1455
 	if( tabletters < GetTextDocument().SPI_CalcIndentCount(GetCaretTextPoint().y,kIndex_Invalid,tmp,/*#650false*/kIndentTriggerType_IndentKey) &&
 				GetApp().SPI_GetAutoIndentMode() == true )//#638
 	{
