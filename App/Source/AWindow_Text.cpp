@@ -5112,6 +5112,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 					NVI_SetControlPosition(kControlID_RightSideBar_ShowHideButton,pt);
 					NVI_SetControlSize(kControlID_RightSideBar_ShowHideButton,kWidth_RightSideBar_ShowHideButton,layout.h_Footer-2);
 					NVI_SetShowControl(kControlID_RightSideBar_ShowHideButton,true);
+					NVI_GetButtonViewByControlID(kControlID_RightSideBar_ShowHideButton).SPI_SetIcon(kImageID_iconPnClose,8,3);//#1465
 				}
 				//右サイドバー環境設定ボタン
 				{
@@ -5139,6 +5140,7 @@ void	AWindow_Text::UpdateViewBounds( const AIndex inTabIndex, const ARect& windo
 					NVI_SetControlPosition(kControlID_RightSideBar_ShowHideButton,pt);
 					NVI_SetControlSize(kControlID_RightSideBar_ShowHideButton,kWidth_RightSideBar_ShowHideButton,layout.h_Footer-2);
 					NVI_SetShowControl(kControlID_RightSideBar_ShowHideButton,true);
+					NVI_GetButtonViewByControlID(kControlID_RightSideBar_ShowHideButton).SPI_SetIcon(kImageID_iconPnRight,8,3);//#1465
 				}
 				//右サイドバー環境設定ボタン
 				{
