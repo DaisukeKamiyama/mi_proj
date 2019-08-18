@@ -2731,9 +2731,9 @@
 				7EE5A7FD200E47E7006E8271 /* AccessPlugin */,
 				7EAA9913194DB46200D46B64 /* UIImages */,
 				7EAA9BC0194DB4CA00D46B64 /* data */,
-				7EAA9BC2194DB4E800D46B64 /* ローカライズ前マスターxib */,
+				7EAA9BC2194DB4E800D46B64 /* ローカライズ前マスターxib */,
 				7ED82247194DBA630037D7AE /* メニュー */,
-				7ED82298194DBAA80037D7AE /* ウインドウ */,
+				7ED82298194DBAA80037D7AE /* ウインドウ */,
 				7EAA990B194DB27700D46B64 /* aedt.r */,
 				7ED821F8194DB7E50037D7AE /* mi.sdef */,
 				7ED82211194DB8110037D7AE /* sdf */,
@@ -2764,7 +2764,7 @@
 			path = ../App/UIImages;
 			sourceTree = "<group>";
 		};
-		7EAA9BC2194DB4E800D46B64 /* ローカライズ前マスターxib */ = {
+		7EAA9BC2194DB4E800D46B64 /* ローカライズ前マスターxib */ = {
 			isa = PBXGroup;
 			children = (
 				7EAA9BC3194DB51000D46B64 /* 未使用 */,
@@ -3195,7 +3195,7 @@
 			name = "メニュー";
 			sourceTree = "<group>";
 		};
-		7ED82298194DBAA80037D7AE /* ウインドウ */ = {
+		7ED82298194DBAA80037D7AE /* ウインドウ */ = {
 			isa = PBXGroup;
 			children = (
 				7ED82299194DBABD0037D7AE /* About.xib */,
@@ -3249,12 +3249,12 @@
 			buildPhases = (
 				B264768B8AD4A07D36DFBD16 /* [CP] Check Pods Manifest.lock */,
 				7EAA9C2E194DB57F00D46B64 /* XIBLocalizerの実行権限付与 */,
-				7ED821F0194DB5E60037D7AE /* SDFバリエーション作成 */,
-				7ED821F2194DB6590037D7AE /* モードdefaultデータ構成 */,
-				7ED821F1194DB61B0037D7AE /* SDF等をヘルプにコピー(sdfsample, colorschemesample) */,
-				7ED821F3194DB6C50037D7AE /* Localizable.stringsのローカライズ */,
-				7ED821F4194DB6F40037D7AE /* AbsFramework xibのローカライズ */,
-				7ED821F5194DB72D0037D7AE /* App xibのローカライズ */,
+				7ED821F0194DB5E60037D7AE /* SDFバリエーション作成 */,
+				7ED821F2194DB6590037D7AE /* モードdefaultデータ構成 */,
+				7ED821F1194DB61B0037D7AE /* SDF等をヘルプにコピー(sdfsample, colorschemesample) */,
+				7ED821F3194DB6C50037D7AE /* Localizable.stringsのローカライズ */,
+				7ED821F4194DB6F40037D7AE /* AbsFramework xibのローカライズ */,
+				7ED821F5194DB72D0037D7AE /* App xibのローカライズ */,
 				7ED05689194D9DE200634F42 /* Resources */,
 				7ED821F7194DB7940037D7AE /* Copy TestPatterns */,
 				7ED82242194DB9A90037D7AE /* Copy Keybind Sample */,
@@ -3725,21 +3725,19 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-mi/Pods-mi-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-mi/Pods-mi-frameworks.sh",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mi/Pods-mi-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mi/Pods-mi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7EAA9C2E194DB57F00D46B64 /* XIBLocalizerの実行権限付与 */ = {
@@ -3756,7 +3754,7 @@
 			shellPath = /bin/sh;
 			shellScript = "chmod 755 ../XIBLocalizer.pl\n";
 		};
-		7ED821F0194DB5E60037D7AE /* SDFバリエーション作成 */ = {
+		7ED821F0194DB5E60037D7AE /* SDFバリエーション作成 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3770,7 +3768,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/perl ./makeHTMLSDFVariation1.pl\n";
 		};
-		7ED821F1194DB61B0037D7AE /* SDF等をヘルプにコピー(sdfsample, colorschemesample) */ = {
+		7ED821F1194DB61B0037D7AE /* SDF等をヘルプにコピー(sdfsample, colorschemesample) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3784,7 +3782,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${SRCROOT}\n/bin/sh copyToHelp.sh\n";
 		};
-		7ED821F2194DB6590037D7AE /* モードdefaultデータ構成 */ = {
+		7ED821F2194DB6590037D7AE /* モードdefaultデータ構成 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3798,7 +3796,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${SRCROOT}\n/bin/sh buildModeDefault.sh\n";
 		};
-		7ED821F3194DB6C50037D7AE /* Localizable.stringsのローカライズ */ = {
+		7ED821F3194DB6C50037D7AE /* Localizable.stringsのローカライズ */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3812,7 +3810,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cp ../App/Localize/Strings_Japanese.txt ./Japanese.lproj/Localizable.strings\ncp ../App/Localize/Strings_English.txt  ./English.lproj/Localizable.strings\n";
 		};
-		7ED821F4194DB6F40037D7AE /* AbsFramework xibのローカライズ */ = {
+		7ED821F4194DB6F40037D7AE /* AbsFramework xibのローカライズ */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
@@ -3826,7 +3824,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${SRCROOT}\n/bin/sh localizeAbsFrameworkXib.sh\n";
 		};
-		7ED821F5194DB72D0037D7AE /* App xibのローカライズ */ = {
+		7ED821F5194DB72D0037D7AE /* App xibのローカライズ */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
