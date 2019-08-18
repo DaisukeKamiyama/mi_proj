@@ -749,7 +749,7 @@ Stop Speaking
 Change Title...
 タイトル変更...
 Read Me First
-はじめにお読みください
+はじめに
 Subwindow will be added at the bottom. You can move it by dragging title bar.
 サブウインドウは一番下に追加されます。追加後、タイトルをドラッグすることで位置を移動できます。
 Collapse This Subwindow
