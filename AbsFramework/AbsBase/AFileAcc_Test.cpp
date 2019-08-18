@@ -249,6 +249,22 @@ ABool	AFileAcc::UnitTest()
 		result = false;
 	}
 	
+	//#1467 AppleScriptテストのmitestフォルダをボリュームルートから書類フォルダに移動するのに伴い、フォルダ・ファイルもここで生成しておくことにする。
+	{
+		AFileAcc	docfolder;
+		FSRef	ref;
+		::FSFindFolder(kUserDomain,kDocumentsFolderType,true,&ref);
+		docfolder.SpecifyByFSRef(ref);
+		AFileAcc	mitestFolder;
+		mitestFolder.SpecifyChild(docfolder,"mitest");
+		mitestFolder.CreateFolder();
+		AFileAcc	file1;
+		file1.SpecifyChild(mitestFolder, "AppleScript_AutoTest001_file.txt");
+		file1.CreateFile();
+		AFileAcc	file2;
+		file2.SpecifyChild(mitestFolder, "AppleScript_AutoTest002_file.txt");
+		file2.CreateFile();
+	}
 	return result;
 }
 #endif
