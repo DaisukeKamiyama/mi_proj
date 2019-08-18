@@ -1077,6 +1077,7 @@ const AImageID	kImageID_iconPnLeft				= 237;
 const AImageID	kImageID_iconPnRight			= 238;
 const AImageID	kImageID_iconPnOption			= 239;
 const AImageID	kImageID_iconPnHandle			= 240;
+const AImageID	kImageID_iconPnClose			= 241;//#1465
 
 /*#1316
 //
