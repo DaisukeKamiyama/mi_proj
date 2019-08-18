@@ -100,25 +100,26 @@ ABool	WrapperComponentUnitTest()
 		{
 			AAppAcc	appAcc(NULL,NULL);
 			AText	text;
-			text.SetCstring("mi(a7)");
+			//#1467 mi(a7)→Utilities/Activity Monitor Catalinaでmi(a7)がアプリ認識されないので、（同様にフォルダ下のアプリである）Activity Monitorへ変更
+			text.SetCstring("Activity Monitor");
 			appAcc.SetFromToolCommandText(text);
 			AFileAcc	file;
-			file.Specify("/Applications/mi(a7)/mi(a7).app");
+			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
-			text.SetCstring("mi(a7)/mi(a7).app");
+			text.SetCstring("Utilities/Activity Monitor.app");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/mi(a7)/mi(a7).app");
+			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
-			text.SetCstring("mi(a7)/mi(a7)");
+			text.SetCstring("Utilities/Activity Monitor");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/mi(a7)/mi(a7).app");
+			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
-			text.SetCstring("mi(a7)/mi(a7)");
+			text.SetCstring("Utilities/Activity Monitor");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/mi(a7)/mi(a7).app");
+			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
 			text.SetCstring("Safari");
