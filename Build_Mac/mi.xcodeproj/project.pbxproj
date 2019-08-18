@@ -256,7 +256,6 @@
 		7E6E0DE21F47B37600D10F83 /* AWindow_ModalCancelAlert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E0DE01F47B37600D10F83 /* AWindow_ModalCancelAlert.cpp */; };
 		7E6E0DEE1F47B59500D10F83 /* AWindow_JavaScriptModalAlert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E0DEA1F47B59500D10F83 /* AWindow_JavaScriptModalAlert.cpp */; };
 		7E6E0DF01F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E0DEC1F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.cpp */; };
-		7E96F0C81AF546F00021A8AB /* mi_modeprefconverter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E96F0C51AF546530021A8AB /* mi_modeprefconverter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7EAA9608194DA21A00D46B64 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA9605194DA21A00D46B64 /* main.mm */; };
 		7EAA963E194DA50C00D46B64 /* AArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA960A194DA50C00D46B64 /* AArray.cpp */; };
 		7EAA963F194DA50C00D46B64 /* ABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA960C194DA50C00D46B64 /* ABase.cpp */; };
@@ -638,7 +637,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				7E96F0C81AF546F00021A8AB /* mi_modeprefconverter in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,7 +961,6 @@
 		7E6E0DEB1F47B59500D10F83 /* AWindow_JavaScriptModalAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWindow_JavaScriptModalAlert.h; path = ../App/Source/AWindow_JavaScriptModalAlert.h; sourceTree = "<group>"; };
 		7E6E0DEC1F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = AWindow_JavaScriptModalCancelAlert.cpp; path = ../App/Source/AWindow_JavaScriptModalCancelAlert.cpp; sourceTree = "<group>"; };
 		7E6E0DED1F47B59500D10F83 /* AWindow_JavaScriptModalCancelAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWindow_JavaScriptModalCancelAlert.h; path = ../App/Source/AWindow_JavaScriptModalCancelAlert.h; sourceTree = "<group>"; };
-		7E96F0C51AF546530021A8AB /* mi_modeprefconverter */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mi_modeprefconverter; sourceTree = "<group>"; };
 		7EAA9605194DA21A00D46B64 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../AbsFramework/Main_Mac/main.mm; sourceTree = "<group>"; };
 		7EAA9606194DA21A00D46B64 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../AbsFramework/Main_Mac/Prefix.pch; sourceTree = "<group>"; };
 		7EAA9607194DA21A00D46B64 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../AbsFramework/Main_Mac/stdafx.h; sourceTree = "<group>"; };
@@ -2404,14 +2401,6 @@
 			path = ../App/Resource_Mac/Icons;
 			sourceTree = "<group>";
 		};
-		7E96F0C41AF546420021A8AB /* modeprefconverter */ = {
-			isa = PBXGroup;
-			children = (
-				7E96F0C51AF546530021A8AB /* mi_modeprefconverter */,
-			);
-			name = modeprefconverter;
-			sourceTree = "<group>";
-		};
 		7EAA9603194DA1F400D46B64 /* AbsFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -3092,7 +3081,6 @@
 			isa = PBXGroup;
 			children = (
 				0DFFAC0B20B976B50020CABF /* Lua */,
-				7E96F0C41AF546420021A8AB /* modeprefconverter */,
 				7E31C1EC1A3BDD2400DD3084 /* mi.entitlements */,
 				7E459FDA1956DA50005AA144 /* Info.plist */,
 				7ED82243194DB9D20037D7AE /* sample */,
@@ -4782,7 +4770,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 821;
+				CURRENT_PROJECT_VERSION = 823;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
@@ -4843,7 +4831,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 821;
+				CURRENT_PROJECT_VERSION = 823;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 672B5SY5R8;
