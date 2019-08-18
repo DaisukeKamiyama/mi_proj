@@ -1063,6 +1063,7 @@ void	AModePrefDB::LoadDB()//#852
 		}
 #endif
 		*/
+		/*#1355 Xcode10以降で32bitビルドができなくなった＆Catalinaで32bit起動できなくなったので、リソースフォーク形式のモードデータのコンバートは対応しない。
 		//#1034
 		//旧形式データをversion3形式にconvertする
 		//（modeprefconverterを実行）
@@ -1086,6 +1087,7 @@ void	AModePrefDB::LoadDB()//#852
 		GetApp().SPI_GetChildProcessManager().ExecuteGeneralSyncCommand(command,argArray,modefolderPath,resulttext);
 		//ロード
 		LoadFromPrefTextFile(preffile);
+		*/
 	}
 	
 	//B0000
