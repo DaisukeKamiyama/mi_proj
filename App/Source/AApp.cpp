@@ -872,6 +872,7 @@ void	AApp::SPI_LoadImageFiles( const ABool inRemoveOld )
 	LoadImageFile("iconPnRight.png",kImageID_iconPnRight,inRemoveOld);
 	LoadImageFile("iconPnOption.png",kImageID_iconPnOption,inRemoveOld);
 	LoadImageFile("iconPnHandle.png",kImageID_iconPnHandle,inRemoveOld);
+	LoadImageFile("iconPnClose.png",kImageID_iconPnClose,inRemoveOld);//#1465
 	
 	//フラグマーク等
 	LoadImageFile("iconSwlFlag.png",kImageID_iconSwlFlag,inRemoveOld);
