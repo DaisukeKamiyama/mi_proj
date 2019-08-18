@@ -1657,6 +1657,7 @@ segmented control‚Ìenable/disableó‘Ô‚ğæ“¾
 			return [NSArray arrayWithObjects: 
 			@"TB_Document",
 			@"TB_SubWindow",
+				@"TB_Save",//#1462
 			@"TB_TextEncoding",
 			@"TB_ReturnCode",
 			//@"TB_WrapMode",
