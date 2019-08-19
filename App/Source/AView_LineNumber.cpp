@@ -1321,7 +1321,7 @@ void	AView_LineNumber::SPI_GetDiffDrawData( AArray<ADiffType>& outDiffType, AArr
 					ALocalRect	startLineLocalRect = {0,0,0,0};
 					NVM_GetLocalRectFromImageRect(startLineImageRect,startLineLocalRect);
 					//開始行のworkingドキュメント側LocalPoint取得
-					ALocalPoint	startRightPoint = {startLineLocalRect.right,startLineLocalRect.top-1};
+					ALocalPoint	startRightPoint = {startLineLocalRect.right,startLineLocalRect.top/*#1453 -1*/};
 					//開始行のdiffドキュメント側LocalPoint取得
 					ALocalPoint	startLeftPoint = {0,0};
 					AIndex	diffStartParaIndex = GetTextDocument().SPI_GetDiffTargetParagraphIndexFromThisDocumentParagraphIndex(
@@ -1333,7 +1333,7 @@ void	AView_LineNumber::SPI_GetDiffDrawData( AArray<ADiffType>& outDiffType, AArr
 					GetApp().SPI_GetTextWindowByID(textWindowID).NVI_GetControlLocalPointFromWindowPoint(
 							NVI_GetControlID(),diffstartwpt,startLeftPoint);
 					startLeftPoint.x = 0;
-					startLeftPoint.y--;
+					//#1453 startLeftPoint.y--;
 					
 					//diffIndexのパートの終了行の情報取得
 					AIndex	endLineIndex = GetTextDocument().SPI_GetDiffEndLineIndexByDiffIndex(diffIndex);
