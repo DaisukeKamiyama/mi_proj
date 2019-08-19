@@ -460,6 +460,11 @@ void	AWindow_Text::NVIDO_DoDeleted()
 	DeleteInfoPaneArray();//#291
 	DeleteSubPaneArray();//#212
 	*/
+	//サブテキストを閉じるボタン #1444
+	if( mCloseSubTextButtonWindowID != kObjectID_Invalid )
+	{
+		GetApp().NVI_DeleteWindow(mCloseSubTextButtonWindowID);
+	}
 	
 #if IMPLEMENTATION_FOR_WINDOWS
 	//Windowsの場合、最後の１つのTextWindowを削除したときにアプリを終了するための内部イベントを送信
@@ -6092,7 +6097,7 @@ ABool	AWindow_Text::UpdateLayout_SubTextColumn( /*#1364 const AIndex inTabIndex,
 		AWindowPoint	pt = {0};
 		pt.x = layout.pt_SubTextPaneColumn.x;
 		pt.y = layout.pt_SubTextPaneColumn.y + kSubPaneModeButtonHeight;
-		GetApp().NVI_GetWindowByID(mCloseSubTextButtonWindowID).NVI_Show();
+		GetApp().NVI_GetWindowByID(mCloseSubTextButtonWindowID).NVI_Show(false);
 		NVI_GetButtonWindow(mCloseSubTextButtonWindowID).NVI_SetOffsetOfOverlayWindowAndSize(GetObjectID(),pt,16,16);
 	}
 	else
