@@ -2303,7 +2303,7 @@ void	CUserPane::DrawLine( const ALocalPoint& inStartPoint, const ALocalPoint& in
         [path setLineDash:lengths count:2 phase:0.0];
 	}
 	::CGContextSetRGBStrokeColor(mContextRef,red,green,blue,inAlpha);
-	::CGContextSetShouldAntialias(mContextRef,false);
+	::CGContextSetShouldAntialias(mContextRef,true);//#1453 false→true 斜め線はアンチエイリアスありのほうが綺麗
 	[path stroke];
 	::CGContextRestoreGState(mContextRef);
 }
