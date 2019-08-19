@@ -97,6 +97,9 @@ const ANumber	kWidth_LeftSideBar_ShowHideButton = 32;//#725
 //フォントパネルでの変更時のvirtual control ID
 const AControlID	kFontPanelVirtualControlID = 127;//#688
 
+//サブテキストを閉じるボタン
+const AControlID	kControlID_CloseSubText			= 128;//#1444
+
 //virtual contorl ID
 const AControlID	kVirtualControlID_AskSaveChangesReply 	= 200;
 const AControlID	kVirtualControlID_SaveWindowReply 		= 201;
@@ -256,6 +259,7 @@ AWindow_Text::AWindow_Text(/*#175 AObjectArrayItem* inParent */)
 ,mPopupIdInfoWindowID(kObjectID_Invalid)//#853
 ,mPopupCandidateWindowID(kObjectID_Invalid)//#717
 ,mPopupKeyToolListWindowID(kObjectID_Invalid)//#725
+,mCloseSubTextButtonWindowID(kObjectID_Invalid)//#1444
 //drop,mIsMainSubDiffMode(false),mMainSubDiff_SubTextControlID(kControlID_Invalid),mMainSubDiff_MainTextControlID(kControlID_Invalid)//#737
 //drop,mMainSubDiff_DiffRangeMainStartParagraphIndex(kIndex_Invalid),mMainSubDiff_DiffRangeMainEndParagraphIndex(kIndex_Invalid)//#737
 //drop,mMainSubDiff_DiffRangeSubStartParagraphIndex(kIndex_Invalid),mMainSubDiff_DiffRangeSubEndParagraphIndex(kIndex_Invalid)//#737
@@ -1288,6 +1292,12 @@ ABool	AWindow_Text::EVTDO_Clicked( const AControlID inID, const AModifierKeys in
 	  case kControlID_LeftSideBar_ShowHideButton:
 		{
 			ShowHideLeftSideBar(!mLeftSideBarDisplayed);
+			break;
+		}
+		//サブテキストを閉じるボタン #1444
+	  case kControlID_CloseSubText:
+		{
+			ShowHideSubTextColumn(!mSubTextColumnDisplayed);
 			break;
 		}
 	  default:
@@ -4567,6 +4577,18 @@ NVI_GetButtonViewByControlID(kSubPaneSyncButtonControlID).SPI_SetIcon(kImageID_i
 		GetApp().NVI_GetWindowByID(mSubTextShadowWindowID).NVI_Hide();
 	}
 	
+	//#1444
+	//==================サブテキストを閉じるボタン==================
+	
+	//サブテキストを閉じるボタン
+	AWindowDefaultFactory<AWindow_ButtonOverlay>	closeViewButtonWindowFactory;
+	mCloseSubTextButtonWindowID = GetApp().NVI_CreateWindow(closeViewButtonWindowFactory);
+	NVI_GetButtonWindow(mCloseSubTextButtonWindowID).NVI_ChangeToOverlay(GetObjectID(),false);
+	NVI_GetButtonWindow(mCloseSubTextButtonWindowID).NVI_Create(kObjectID_Invalid);
+	NVI_GetButtonWindow(mCloseSubTextButtonWindowID).SPI_SetTargetWindowID(GetObjectID(),kControlID_CloseSubText);
+	NVI_GetButtonWindow(mCloseSubTextButtonWindowID).SPI_SetButtonViewType(kButtonViewType_NoFrame);
+	NVI_GetButtonWindow(mCloseSubTextButtonWindowID).SPI_SetIcon(kImageID_btnEditorClose,0,0,19,19,kImageID_btnEditorClose_h);
+	
 	//==================ツールバー==================
 	//#724
 	//toolbar項目存在テーブル更新
@@ -6065,6 +6087,13 @@ ABool	AWindow_Text::UpdateLayout_SubTextColumn( /*#1364 const AIndex inTabIndex,
 						pt, kWidth_SubTextShadow, layout.h_SubTextPaneColumn - kSubPaneModeButtonHeight);
 			GetApp().NVI_GetWindowByID(mSubTextShadowWindowID).NVI_Show(false);
 		}
+		
+		//サブテキストを閉じるボタン #1444
+		AWindowPoint	pt = {0};
+		pt.x = layout.pt_SubTextPaneColumn.x;
+		pt.y = layout.pt_SubTextPaneColumn.y + kSubPaneModeButtonHeight;
+		GetApp().NVI_GetWindowByID(mCloseSubTextButtonWindowID).NVI_Show();
+		NVI_GetButtonWindow(mCloseSubTextButtonWindowID).NVI_SetOffsetOfOverlayWindowAndSize(GetObjectID(),pt,16,16);
 	}
 	else
 	{
@@ -6072,6 +6101,8 @@ ABool	AWindow_Text::UpdateLayout_SubTextColumn( /*#1364 const AIndex inTabIndex,
 		NVI_GetVSeparatorWindow(mSubTextColumnVSeparatorWindowID).NVI_Hide();
 		//サブテキストシャドウ非表示
 		GetApp().NVI_GetWindowByID(mSubTextShadowWindowID).NVI_Hide();
+		//サブテキストを閉じるボタン #1444
+		GetApp().NVI_GetWindowByID(mCloseSubTextButtonWindowID).NVI_Hide();
 	}
 	return subTextPaneDisplayed;
 }
