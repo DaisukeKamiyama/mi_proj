@@ -130,13 +130,13 @@ void	AView_DiffInfo::EVTDO_DoDraw()
 	AFloatNumber	diffAlpha = GetApp().SPI_GetModePrefDB(modeIndex).GetModeData_Number(AModePrefDB::kDiffColorOpacity);
 	diffAlpha /= 300;//0.0～0.33にする
 	//濃さ設定が大きいほど彩度を下げて、明度を上げる
-	AFloatNumber	diffSChange = 1.0 - diffAlpha*2.0;
-	AFloatNumber	diffVChange = 1.0 + diffAlpha*3.0;
+	AFloatNumber	diffSChange = 1.0 - diffAlpha*1.5;//#1453 2.0→1.5
+	AFloatNumber	diffVChange = 1.0 + diffAlpha*2.0;//#1453 3.0→2.0
 	diffcolor_added = AColorWrapper::ChangeHSV(diffcolor_added,0.0,diffSChange,diffVChange);
 	diffcolor_deleted = AColorWrapper::ChangeHSV(diffcolor_deleted,0.0,diffSChange,diffVChange);
 	diffcolor_changed = AColorWrapper::ChangeHSV(diffcolor_changed,0.0,diffSChange,diffVChange);
 	//フレーム（行全体、差分文字）のα倍率
-	ANumber	diffPartFrameLineAlphaMultiply = 6;
+	ANumber	diffPartFrameLineAlphaMultiply = 3.0;//#1453 6→3.0
 	//Diff表示描画
 	for( AIndex i = 0; i < diffTypeArray.GetItemCount(); i++ )
 	{
@@ -158,7 +158,7 @@ void	AView_DiffInfo::EVTDO_DoDraw()
 					path.Add(startRightPoint);
 					path.Add(endRightPoint);
 					path.Add(endLeftPoint);
-					NVMC_PaintPoly(path,diffcolor_added,diffAlpha);
+					NVMC_PaintPoly(path,diffcolor_added,diffAlpha*0.5);//#1453 倍率なし→0.5
 					//上下の線を描画
 					if( IsPointInRect(startLeftPoint,frameRect) == true ||
 					   IsPointInRect(startRightPoint,frameRect) == true )
@@ -175,7 +175,7 @@ void	AView_DiffInfo::EVTDO_DoDraw()
 			  case kDiffType_Deleted:
 				{
 					endRightPoint.x = startRightPoint.x;
-					endRightPoint.y = startRightPoint.y +3;
+					endRightPoint.y = startRightPoint.y +2;//#1453 +3→+2
 					path.Add(startLeftPoint);
 					path.Add(startRightPoint);
 					path.Add(endRightPoint);
@@ -200,7 +200,7 @@ void	AView_DiffInfo::EVTDO_DoDraw()
 					path.Add(startRightPoint);
 					path.Add(endRightPoint);
 					path.Add(endLeftPoint);
-					NVMC_PaintPoly(path,diffcolor_changed,diffAlpha);
+					NVMC_PaintPoly(path,diffcolor_changed,diffAlpha*0.4);//#1453 倍率なし→0.4
 					//上下の線を描画
 					if( IsPointInRect(startLeftPoint,frameRect) == true ||
 					   IsPointInRect(startRightPoint,frameRect) == true )
