@@ -240,6 +240,10 @@
 		0DFFAC6120B977530020CABF /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DFFAC6020B977520020CABF /* lapi.c */; };
 		3F040CAD464DDF6A7376FB91 /* Pods_mi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F021A0FDD1968A531EFACF6D /* Pods_mi.framework */; };
 		7E19351C19A9CE45007AE9B9 /* CWindowImp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA971A194DA58B00D46B64 /* CWindowImp.mm */; };
+		7E1B9AD82309AFFB001218C5 /* iconPnRightClose_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1B9AD72309AFFB001218C5 /* iconPnRightClose_dark.png */; };
+		7E1B9ADA2309B000001218C5 /* iconPnRightClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1B9AD92309B000001218C5 /* iconPnRightClose.png */; };
+		7E1B9ADC2309B009001218C5 /* iconPnClose_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1B9ADB2309B009001218C5 /* iconPnClose_dark@2x.png */; };
+		7E1B9ADE2309B00D001218C5 /* iconPnClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1B9ADD2309B00D001218C5 /* iconPnClose@2x.png */; };
 		7E1BEA46200B05A200B91D57 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BEA45200B05A200B91D57 /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7E1BEA4C200B086F00B91D57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BEA4B200B086F00B91D57 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7E1BEA4E200B092500B91D57 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1BEA4D200B092400B91D57 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -930,6 +934,10 @@
 		0DFFAC6020B977520020CABF /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = ../../lua/src/lapi.c; sourceTree = "<group>"; };
 		1944BDC559AC1EA643A83DA0 /* Pods-mi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mi.release.xcconfig"; path = "Pods/Target Support Files/Pods-mi/Pods-mi.release.xcconfig"; sourceTree = "<group>"; };
 		7E12B4771B4901A600747793 /* application.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = application.icns; path = ../Icons_10_6/application.icns; sourceTree = "<group>"; };
+		7E1B9AD72309AFFB001218C5 /* iconPnRightClose_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconPnRightClose_dark.png; path = 1x/iconPnRightClose_dark.png; sourceTree = "<group>"; };
+		7E1B9AD92309B000001218C5 /* iconPnRightClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconPnRightClose.png; path = 1x/iconPnRightClose.png; sourceTree = "<group>"; };
+		7E1B9ADB2309B009001218C5 /* iconPnClose_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconPnClose_dark@2x.png"; path = "2x/iconPnClose_dark@2x.png"; sourceTree = "<group>"; };
+		7E1B9ADD2309B00D001218C5 /* iconPnClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconPnClose@2x.png"; path = "2x/iconPnClose@2x.png"; sourceTree = "<group>"; };
 		7E1BEA45200B05A200B91D57 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		7E1BEA4B200B086F00B91D57 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E1BEA4D200B092400B91D57 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -1750,6 +1758,7 @@
 		0D2FABFF21F1FAD6002F2A44 /* statusBar */ = {
 			isa = PBXGroup;
 			children = (
+				7E1B9AD62309AFE4001218C5 /* iconPnClose */,
 				0DC0E05821F319CC004D0B02 /* iconPnHandle */,
 				0DC0E04621F2C04A004D0B02 /* iconPnOption */,
 				0DC0E03D21F2B881004D0B02 /* rightSidebar */,
@@ -2385,6 +2394,17 @@
 				1944BDC559AC1EA643A83DA0 /* Pods-mi.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7E1B9AD62309AFE4001218C5 /* iconPnClose */ = {
+			isa = PBXGroup;
+			children = (
+				7E1B9AD72309AFFB001218C5 /* iconPnRightClose_dark.png */,
+				7E1B9AD92309B000001218C5 /* iconPnRightClose.png */,
+				7E1B9ADB2309B009001218C5 /* iconPnClose_dark@2x.png */,
+				7E1B9ADD2309B00D001218C5 /* iconPnClose@2x.png */,
+			);
+			name = iconPnClose;
 			sourceTree = "<group>";
 		};
 		7E459FDC1956E169005AA144 /* Icons */ = {
@@ -3519,6 +3539,7 @@
 				7ED822FE194DBAD00037D7AE /* MultiFileReplace.xib in Resources */,
 				0DC0E09F21F455AA004D0B02 /* iconSwPreview_dark@2x.png in Resources */,
 				7EAA9B0B194DB46300D46B64 /* iconEnvOperation.png in Resources */,
+				7E1B9ADA2309B000001218C5 /* iconPnRightClose.png in Resources */,
 				0DC0E09321F43592004D0B02 /* iconSwCancel_p.png in Resources */,
 				0DC0E09621F43592004D0B02 /* iconSwCancel_h.png in Resources */,
 				0DC0E07221F33C35004D0B02 /* iconSwMarkerPen_dark.png in Resources */,
@@ -3587,12 +3608,14 @@
 				7EAA9B75194DB46400D46B64 /* iconSwTree@2x.png in Resources */,
 				7EAA9B73194DB46400D46B64 /* iconSwTool@2x.png in Resources */,
 				7EAA9B81194DB46400D46B64 /* iconTbDiscUp.Template.pdf in Resources */,
+				7E1B9AD82309AFFB001218C5 /* iconPnRightClose_dark.png in Resources */,
 				0DEE958F2204579E005DFD17 /* ContextMenu_RecentOpen_LeftSideBar.xib in Resources */,
 				0DC0E08921F43583004D0B02 /* iconSwCancel_h_dark@2x.png in Resources */,
 				0DEE958A2204578F005DFD17 /* ContextMenu_JumpList_LeftSideBar.xib in Resources */,
 				7EAA9B09194DB46300D46B64 /* iconEnvMagnifier.png in Resources */,
 				0D901FBA21F1EEBF008C41B7 /* icon_CheckBoxOff_dark.png in Resources */,
 				0DEE9598220457AA005DFD17 /* ContextMenu_GeneralSubWindow_LeftSideBar.xib in Resources */,
+				7E1B9ADC2309B009001218C5 /* iconPnClose_dark@2x.png in Resources */,
 				0D8BDD0621F1ED62008262BA /* iconSwTriangles1.png in Resources */,
 				7EAA9B0A194DB46300D46B64 /* iconEnvMagnifier@2x.png in Resources */,
 				0DEE9597220457AA005DFD17 /* ContextMenu_GeneralSubWindow.xib in Resources */,
@@ -3616,6 +3639,7 @@
 				0D901FCF21F1EF3F008C41B7 /* iconSwCompare.png in Resources */,
 				7EAA9AE7194DB46300D46B64 /* btnFldngArrowDown@2x.png in Resources */,
 				0D2FAC3E21F217EE002F2A44 /* iconSwBox_SameFolder_dark@2x.png in Resources */,
+				7E1B9ADE2309B00D001218C5 /* iconPnClose@2x.png in Resources */,
 				0D2FAC3C21F217E5002F2A44 /* iconSwBox_SameFolder@2x.png in Resources */,
 				0DC0E04A21F2C05B004D0B02 /* iconPnOption.png in Resources */,
 				7ED8233F194DBB260037D7AE /* MainMenu.xib in Resources */,
