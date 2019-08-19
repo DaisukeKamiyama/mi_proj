@@ -625,6 +625,8 @@ class AWindow_Text : public AWindow
 	ADocumentID				SPI_GetCurrentSubTextPaneDocumentID() const
 	{ return mSubTextCurrentDocumentID; }
 	ABool					SPI_IsSubTextColumnDisplayed() const { return mSubTextColumnDisplayed; }
+  private:
+	AWindowID							mCloseSubTextButtonWindowID;//#1444
 	
 	//左サイドバー #212
   public:
