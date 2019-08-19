@@ -11446,6 +11446,9 @@ void	AView_Text::SPI_RefreshLine( const AIndex inLineIndex )
 	}
 }
 
+//イメージサイズ下部余白 #1451
+const ANumber kImageBottomMargin = 500;
+
 //
 void	AView_Text::SPI_UpdateImageSize()
 {
@@ -11454,6 +11457,9 @@ void	AView_Text::SPI_UpdateImageSize()
 	
 	ANumber	width = 20000;//★ 10000→20000 #1069
 	ANumber	height = mLineImageInfo_ImageY.Get(mLineImageInfo_ImageY.GetItemCount()-1);//#450 GetTextDocument().SPI_GetLineCount() * GetLineHeightWithMargin();
+	//イメージサイズ下部余白 #1451
+	height += kImageBottomMargin;
+	//
 	if( (GetTextDocument().SPI_GetWrapMode() != kWrapMode_NoWrap) && 
 		(GetTextDocument().SPI_GetWrapMode() != kWrapMode_WordWrapByLetterCount) &&
 		(GetTextDocument().SPI_GetWrapMode() != kWrapMode_LetterWrapByLetterCount) ) //#1113
