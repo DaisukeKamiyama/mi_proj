@@ -105,32 +105,50 @@ ABool	WrapperComponentUnitTest()
 			appAcc.SetFromToolCommandText(text);
 			AFileAcc	file;
 			file.Specify("/Applications/Utilities/Activity Monitor.app");
-			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
+			if( appAcc.GetFile().Compare(file) == false )
+			{
+				file.Specify("/System/Applications/Utilities/Activity Monitor.app");
+				if( appAcc.GetFile().Compare(file) == false )
+				{
+					_ACThrow("",NULL);
+				}
+			}
 			
 			text.SetCstring("Utilities/Activity Monitor.app");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
 			text.SetCstring("Utilities/Activity Monitor");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
 			text.SetCstring("Utilities/Activity Monitor");
 			appAcc.SetFromToolCommandText(text);
-			file.Specify("/Applications/Utilities/Activity Monitor.app");
 			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
 			
 			text.SetCstring("Safari");
 			appAcc.SetFromToolCommandText(text);
 			file.Specify("/Applications/Safari.app");
-			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
+			if( appAcc.GetFile().Compare(file) == false )
+			{
+				file.Specify("/System/Applications/Safari.app");
+				if( appAcc.GetFile().Compare(file) == false )
+				{
+					_ACThrow("",NULL);
+				}
+			}
 			
 			text.SetCstring("TextEdit.app");
 			appAcc.SetFromToolCommandText(text);
 			file.Specify("/Applications/TextEdit.app");
-			if( appAcc.GetFile().Compare(file) == false )   _ACThrow("",NULL);
+			if( appAcc.GetFile().Compare(file) == false )
+			{
+				file.Specify("/System/Applications/TextEdit.app");
+				if( appAcc.GetFile().Compare(file) == false )
+				{
+					_ACThrow("",NULL);
+				}
+			}
 			
 			file.GetPath(text,kFilePathType_1);
 			appAcc.SetFromToolCommandText(text);
