@@ -76,6 +76,7 @@ const static AControlID		kRadio_Target_RegExp = 313;
 const static AControlID		kPopup_FileFilterPreset = 314;//#617
 //
 const static AControlID		kButton_OpenCloseReplaceScreen = 401;
+const static AControlID		kButton_CloseReplaceScreen = 402;//#1471
 //
 const AControlID		kTriangle_FindOptions			= 501;
 const AControlID		kTriangleText_FindOptions		= 502;
@@ -374,6 +375,7 @@ ABool	AWindow_MultiFileFind::EVTDO_Clicked( const AControlID inID, const AModifi
 		}
 		//マルチファイル置換画面open/close
 	  case kButton_OpenCloseReplaceScreen:
+	  case kButton_CloseReplaceScreen://#1471
 		{
 			SPI_OpenCloseReplaceScreen(!mReplaceWindowMode);
 			result = true;
@@ -1260,6 +1262,8 @@ void	AWindow_MultiFileFind::NVMDO_UpdateControlStatus()
 		NVI_SetControlEnable(kButton_SelectBackupFolder,NVI_GetControlBool(kCheck_BackupFolder));
 		NVI_SetControlEnable(kButton_DefaultBackupFolder,NVI_GetControlBool(kCheck_BackupFolder));
 		
+		//マルチファイル置換画面を閉じるボタン更新 #1471
+		NVI_SetControlEnable(kButton_CloseReplaceScreen,(GetApp().SPI_IsMultiFileFindWorking()==false));
 	}
 	
 }
