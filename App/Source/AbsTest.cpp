@@ -5562,6 +5562,16 @@ ABool	AbsTest( const ABool inWrapTest )
 			AText	text;
 			MakeAllUnicodeCharText(text);//UTF-8で取得
 			text.Delete(10,1);//LFはCRに変換されてしまうので消しておく
+			//U+0085/U+2028/U+2029もCRに変換されるので消しておく #1472
+			AText	u0085;
+			u0085.AddFromUCS4Char(0x0085);
+			text.ReplaceText(u0085,GetEmptyText());
+			AText	u2028;
+			u2028.AddFromUCS4Char(0x2028);
+			text.ReplaceText(u2028,GetEmptyText());
+			AText	u2029;
+			u2029.AddFromUCS4Char(0x2029);
+			text.ReplaceText(u2029,GetEmptyText());
 			{
 				//UTF-8で元ファイル保存（このファイルはテストには使用していない）
 				AFileAcc	file0;
