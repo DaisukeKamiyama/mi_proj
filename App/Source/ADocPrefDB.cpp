@@ -58,7 +58,7 @@ ADocPrefDB::ADocPrefDB() : ADataBase(NULL), mIsTextEncodingFixed(false)
 	CreateData_Number(kCaretPointY,								"CaretPoint Y",						0,				0,kNumber_MaxNumber);
 	CreateData_Number(kSelectPointX,							"SelectPoint X",					0,				0,kNumber_MaxNumber);
 	CreateData_Number(kSelectPointY,							"SelectPoint Y",					0,				0,kNumber_MaxNumber);
-	CreateData_Number(kReturnCode,								"ReturnCode",						0,				0,2);
+	CreateData_Number(kReturnCode,								"ReturnCode",						0,				0,5);//#1472 ç≈ëÂíl2Å®5
 	//#844 CreateData_Number(kOldWrapMode,								"WrapMode",							0,				0,2);//EWrapMode
 	//#844 CreateData_Bool(kOldWrapModeLCWrap,							"WrapWithLetterCount",				false);
 	CreateData_Number(kWrapMode,								"DocWrapMode",						0,				0,4);//AWrapMode #1113
