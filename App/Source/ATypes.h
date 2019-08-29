@@ -177,6 +177,9 @@ const AMenuItemID	kMenuItemID_SetupPane					= 1234;//'StPa';//#566
 const AMenuItemID	kMenuItemID_CopyFilePath				= 1235;//'CpPt';//#564
 const AMenuItemID	kMenuItemID_OpenLuaConsole				= 1236;//'OpLu';//#567
 const AMenuItemID	kMenuItemID_SaveTabSet					= 1237;//#1050
+const AMenuItemID	kMenuItemID_ReturnCode_U0085 			= 1238;//#1472
+const AMenuItemID	kMenuItemID_ReturnCode_U2028 			= 1239;//#1472
+const AMenuItemID	kMenuItemID_ReturnCode_U2029 			= 1240;//#1472
 //テキスト編集
 const AMenuItemID	kMenuItemID_Save 						= 2001;//'Save';
 const AMenuItemID	kMenuItemID_SaveAs						= 2002;//'SvAs';
