@@ -1657,6 +1657,25 @@ ABool	AWindow_Text::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, co
 			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();//#1429
 			break;
 		}
+		//#1472
+	  case kMenuItemID_ReturnCode_U0085:
+		{
+			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_U0085);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();
+			break;
+		}
+	  case kMenuItemID_ReturnCode_U2028:
+		{
+			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_U2028);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();
+			break;
+		}
+	  case kMenuItemID_ReturnCode_U2029:
+		{
+			SPI_GetCurrentTabTextDocument().SPI_SetReturnCode(returnCode_U2029);
+			SPI_GetCurrentTabTextDocument().SPI_SetDocPrefFixed();
+			break;
+		}
 		//çsëóÇË
 	  case kMenuItemID_WrapMode_NoWrap:
 		{
@@ -2702,10 +2721,16 @@ void	AWindow_Text::EVTDO_UpdateMenu()
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_CR,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_CRLF,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_LF,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));
+	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_U0085,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));//#1472
+	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_U2028,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));//#1472
+	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_U2029,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));//#1472
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReturnCode_RootMenu,(SPI_GetCurrentTabTextDocument().NVI_IsReadOnly()==false));
 	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_CR,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_CR));
 	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_CRLF,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_CRLF));
 	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_LF,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_LF));
+	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_U0085,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_U0085));//#1472
+	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_U2028,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_U2028));//#1472
+	GetApp().NVI_GetMenuManager().SetCheckMark(kMenuItemID_ReturnCode_U2029,(SPI_GetCurrentTabTextDocument().SPI_GetReturnCode()==returnCode_U2029));//#1472
 	//çsëóÇË
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_WrapMode_NoWrap,true);
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_WrapMode_WordWrap,true);
