@@ -73,6 +73,9 @@ Transliterate_ChangeCaseUpper = "小文字→大文字";
 ReturnCodeMenu_CR = "CR (Legacy Mac)";
 ReturnCodeMenu_CRLF = "CR+LF (Windows)";
 ReturnCodeMenu_LF = "LF (Mac/UNIX)";
+ReturnCodeMenu_U0085 = "NEL (U+0085)";
+ReturnCodeMenu_U2028 = "LS (U+2028)";
+ReturnCodeMenu_U2029 = "PS (U+2029)";
 
 /* Wrap mode menu */
 WrapModeMenu_NoWrap = "折り返しなし";
