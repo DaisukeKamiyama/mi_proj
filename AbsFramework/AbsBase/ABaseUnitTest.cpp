@@ -1127,6 +1127,118 @@ ABool	ABaseFunction::BaseComponentUnitTest()
 				if( a.Compare("\r\r\r\r\r") == false )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
 				
 			}
+			//#1472
+			{
+				AText	sjisall;
+				MakeAllSJISCharText(sjisall);
+				if( sjisall.ConvertToUTF8(ATextEncodingWrapper::GetSJISTextEncoding()) == false )   _ACThrow("",NULL);
+				//全タイプ改行コードを含むテキストをCRへ変換
+				AText	mixedText;
+				mixedText.Add('1');
+				mixedText.AddFromUCS4Char(0x0084);
+				mixedText.AddFromUCS4Char(0x0085);
+				mixedText.AddFromUCS4Char(0x0086);
+				mixedText.Add('2');
+				mixedText.AddFromUCS4Char(0x2027);
+				mixedText.AddFromUCS4Char(0x2028);
+				mixedText.AddFromUCS4Char(0x202A);
+				mixedText.Add('3');
+				mixedText.AddFromUCS4Char(0x2027);
+				mixedText.AddFromUCS4Char(0x2029);
+				mixedText.AddFromUCS4Char(0x202A);
+				mixedText.Add('3');
+				mixedText.AddFromUCS4Char(10);
+				mixedText.Add('4');
+				mixedText.AddFromUCS4Char(13);
+				mixedText.Add('5');
+				mixedText.AddFromUCS4Char(13);
+				mixedText.AddFromUCS4Char(10);
+				mixedText.Add('6');
+				mixedText.AddText(sjisall);
+				AText	text;
+                text.SetText(mixedText);
+				ABool	notMixed = true;
+				text.ConvertReturnCodeToCR(returnCode_LF, notMixed);
+				//CRへ正しく変換されたことを確認
+				AText	crText;
+				crText.Add('1');
+				crText.AddFromUCS4Char(0x0084);
+				crText.AddFromUCS4Char(13);
+				crText.AddFromUCS4Char(0x0086);
+				crText.Add('2');
+				crText.AddFromUCS4Char(0x2027);
+				crText.AddFromUCS4Char(13);
+				crText.AddFromUCS4Char(0x202A);
+				crText.Add('3');
+				crText.AddFromUCS4Char(0x2027);
+				crText.AddFromUCS4Char(13);
+				crText.AddFromUCS4Char(0x202A);
+				crText.Add('3');
+				crText.AddFromUCS4Char(13);
+				crText.Add('4');
+				crText.AddFromUCS4Char(13);
+				crText.Add('5');
+				crText.AddFromUCS4Char(13);
+				crText.Add('6');
+				crText.AddText(sjisall);
+				if( text.Compare(crText) == false )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( notMixed == true )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				//LFに変換してCRに戻す
+				crText.ConvertReturnCodeFromCR(returnCode_LF, text);
+				if( text.ConvertReturnCodeToCR(returnCode_LF, notMixed) != returnCode_LF )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//CRに変換してCRに戻す
+				crText.ConvertReturnCodeFromCR(returnCode_CR, text);
+				if( text.ConvertReturnCodeToCR(returnCode_CR, notMixed) != returnCode_CR )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//CRLFに変換してCRに戻す
+				crText.ConvertReturnCodeFromCR(returnCode_CRLF, text);
+				if( text.ConvertReturnCodeToCR(returnCode_CRLF, notMixed) != returnCode_CRLF )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//U+0085に変換してCRに戻す
+				crText.ConvertReturnCodeFromCR(returnCode_U0085, text);
+				if( text.ConvertReturnCodeToCR(returnCode_U0085, notMixed) != returnCode_U0085 )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//U+2028に変換してCRに戻す
+				crText.ConvertReturnCodeFromCR(returnCode_U2028, text);
+				if( text.ConvertReturnCodeToCR(returnCode_U2028, notMixed) != returnCode_U2028 )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//U+2029に変換
+				crText.ConvertReturnCodeFromCR(returnCode_U2029, text);
+				//U+2029へ正しく変換されたことを確認
+				AText	u2029Text;
+				u2029Text.Add('1');
+				u2029Text.AddFromUCS4Char(0x0084);
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.AddFromUCS4Char(0x0086);
+				u2029Text.Add('2');
+				u2029Text.AddFromUCS4Char(0x2027);
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.AddFromUCS4Char(0x202A);
+				u2029Text.Add('3');
+				u2029Text.AddFromUCS4Char(0x2027);
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.AddFromUCS4Char(0x202A);
+				u2029Text.Add('3');
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.Add('4');
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.Add('5');
+				u2029Text.AddFromUCS4Char(0x2029);
+				u2029Text.Add('6');
+				u2029Text.AddText(sjisall);
+				if( text.Compare(u2029Text) == false )   _ACThrow("ConvertReturnCodeFromCR() error",NULL);
+				//CRに戻す
+				if( text.ConvertReturnCodeToCR(returnCode_U2029, notMixed) != returnCode_U2029 )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( crText.Compare(text) == false )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+				if( notMixed == false )   _ACThrow("ConvertReturnCodeToCR() error",NULL);
+			}
 			//InsertFromUTF16TextPtr()
 			{
 				AUTF16Char	ch[16];
