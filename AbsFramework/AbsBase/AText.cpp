@@ -2515,6 +2515,7 @@ AReturnCode	AText::ConvertReturnCodeToCR( const AReturnCode inDefaultReturnCode,
 		}
 	}*/
 	AItemCount	crCount = 0, crlfCount = 0, lfCount = 0;//#995
+	AItemCount	u0085Count = 0, u2028Count = 0, u2029Count = 0;//#1472
 	AReturnCode	resultReturnCode = inDefaultReturnCode;//returnCode_CR;//#307
 	AItemCount	count = GetItemCount();
 	AText	buffer;
@@ -2557,6 +2558,42 @@ AReturnCode	AText::ConvertReturnCodeToCR( const AReturnCode inDefaultReturnCode,
 				resultReturnCode = returnCode_LF;//#307
 				lfCount++;//#995
 			}
+			//#1472
+			//U+2028 (UTF-8: 0xE2 0x80 0xA8) LINE SEPARATOR
+			//U+2029 (UTF-8: 0xE2 0x80 0xA9) PARAGRAPH SEPARATOR
+			//http://unicode.org/versions/Unicode5.2.0/ch05.pdf
+			else if( ch == 0xE2 )
+			{
+				if( pos+1 < count )
+				{
+					if( srctextp[pos] == 0x80 && srctextp[pos+1] == 0xA8 )
+					{
+						pos += 2;
+						ch = kUChar_CR;
+						u2028Count++;
+					}
+					else if( srctextp[pos] == 0x80 && srctextp[pos+1] == 0xA9 )
+					{
+						pos += 2;
+						ch = kUChar_CR;
+						u2029Count++;
+					}
+				}
+			}
+			//#1472
+			//U+0085 (UTF-8: 0xC2 0x85) NEXT LINE
+			else if( ch == 0xC2 )
+			{
+				if( pos < count )
+				{
+					if( srctextp[pos] == 0x85 )
+					{
+						pos++;
+						ch = kUChar_CR;
+						u0085Count++;
+					}
+				}
+			}
 			dsttextp[dstpos] = ch;
 			dstpos++;
 		}
@@ -2564,13 +2601,15 @@ AReturnCode	AText::ConvertReturnCodeToCR( const AReturnCode inDefaultReturnCode,
 	buffer.DeleteAfter(dstpos);
 	//#695 高速化 SetText(buffer);
 	SwapContent(buffer);//#695
+	//#1472
+	AItemCount	totalCount = crCount + crlfCount + lfCount + u0085Count + u2028Count + u2029Count;
 	//#995
 	//決定した改行コードと違う改行コードカウンタが1以上ならエラー（outNotMixedをfalseにする）
 	switch(resultReturnCode)
 	{
 	  case returnCode_CR:
 		{
-			if( crlfCount > 0 || lfCount > 0 )
+			if( crCount != totalCount )//#1472
 			{
 				outNotMixed = false;
 			}
@@ -2578,7 +2617,7 @@ AReturnCode	AText::ConvertReturnCodeToCR( const AReturnCode inDefaultReturnCode,
 		}
 	  case returnCode_CRLF:
 		{
-			if( crCount > 0 || lfCount > 0 )
+			if( crlfCount != totalCount )//#1472
 			{
 				outNotMixed = false;
 			}
@@ -2586,12 +2625,29 @@ AReturnCode	AText::ConvertReturnCodeToCR( const AReturnCode inDefaultReturnCode,
 		}
 	  case returnCode_LF:
 		{
-			if( crCount > 0 || crlfCount > 0 )
+			if( lfCount != totalCount )//#1472
 			{
 				outNotMixed = false;
 			}
 			break;
 		}
+	}
+	//#1472
+	//U+0085/U+2028/U+2029については、すべての改行コードがそれになっている場合のみ、resultReturnCodeに設定する。
+	//U+0085
+	if( u0085Count > 0 && u0085Count == totalCount )
+	{
+		resultReturnCode = returnCode_U0085;
+	}
+	//U+2028
+	if( u2028Count > 0 && u2028Count == totalCount )
+	{
+		resultReturnCode = returnCode_U2028;
+	}
+	//U+2029
+	if( u2029Count > 0 && u2029Count == totalCount )
+	{
+		resultReturnCode = returnCode_U2029;
 	}
 	return resultReturnCode;//#307
 }
@@ -2631,6 +2687,29 @@ void	AText::ConvertReturnCodeFromCR( const AReturnCode inDstReturnCode, AText& o
 					{
 						outText.Add(kUChar_CR);
 						outText.Add(kUChar_LF);
+						break;
+					}
+					//#1472
+				  case returnCode_U0085:
+					{
+						outText.Add(0xC2);
+						outText.Add(0x85);
+						break;
+					}
+					//#1472
+				  case returnCode_U2028:
+					{
+						outText.Add(0xE2);
+						outText.Add(0x80);
+						outText.Add(0xA8);
+						break;
+					}
+					//#1472
+				  case returnCode_U2029:
+					{
+						outText.Add(0xE2);
+						outText.Add(0x80);
+						outText.Add(0xA9);
 						break;
 					}
 				}
