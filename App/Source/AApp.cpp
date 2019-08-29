@@ -1524,6 +1524,13 @@ void	AApp::Startup_Phase_Data()
 			textArray.Add(text);
 			text.SetLocalizedText("ReturnCodeMenu_LF");
 			textArray.Add(text);
+			//#1472
+			text.SetLocalizedText("ReturnCodeMenu_U0085");
+			textArray.Add(text);
+			text.SetLocalizedText("ReturnCodeMenu_U2028");
+			textArray.Add(text);
+			text.SetLocalizedText("ReturnCodeMenu_U2029");
+			textArray.Add(text);
 			NVI_GetTextArrayMenuManager().UpdateTextArrayMenu(kTextArrayMenuID_ReturnCode,textArray);//#232
 		}
 		{
