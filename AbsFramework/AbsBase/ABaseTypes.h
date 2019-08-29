@@ -527,7 +527,11 @@ enum AReturnCode
 {
 	returnCode_CR = 0,
 	returnCode_CRLF,
-	returnCode_LF
+	returnCode_LF,
+	//#1472
+	returnCode_U0085,
+	returnCode_U2028,
+	returnCode_U2029
 };
 
 //#189 const ANumber	kLaunguage_Japanese = 0;
