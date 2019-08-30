@@ -800,3 +800,5 @@ Set each tab width separated with comma. (e.g. 32, 16, 16, 8)
 タブ表示幅をカンマで区切って設定します。（例：32, 16, 16, 8, 8, 8, 8）
 * Shortcut settings which are set in System Preferences - Keyboard - Shortcuts are prior to this setting.
 ※[システム環境設定→キーボード→ショートカット] にショートカットが設定されているキーについては、そちらの設定の方が優先されます。
+Warning for dark mode
+⚠️現在のmacOSの外観モード（ダークモード／ライトモード）では、環境設定で設定した色セットのほうが使用されます。この画面で設定した色のほうを有効にするには、環境設定（⌘+カンマ）の[一般]タブにて、ダークモード／ライトモード用の色セットを「モード設定で設定した色」に設定してください。
