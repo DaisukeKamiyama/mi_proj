@@ -800,3 +800,5 @@ Set each tab width separated with comma. (e.g. 32, 16, 16, 8)
 Set each tab width separated with comma. (e.g. 32, 16, 16, 8, 8, 8, 8)
 * Shortcut settings which are set in System Preferences - Keyboard - Shortcuts are prior to this setting.
 * Shortcut settings which are set in [System Preferences - Keyboard - Shortcuts] are prior to this setting.
+Warning for dark mode
+⚠️ For the current appearance mode, the colors which are set in Preference dialog are used. To use the colors which are set in this dialog, set "Color set for light/dark mode" in Preference dialog to "Colors which are set in Mode Preferences".
