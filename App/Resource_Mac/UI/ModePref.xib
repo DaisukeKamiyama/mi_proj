@@ -5131,7 +5131,7 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="8106" id="xuf-ny-IFe">
-                                            <rect key="frame" x="538" y="485" width="163" height="220"/>
+                                            <rect key="frame" x="543" y="501" width="164" height="203"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="border" title="Warning for dark mode" drawsBackground="YES" id="exy-D8-ASX">
                                                 <font key="font" metaFont="system" size="12"/>
