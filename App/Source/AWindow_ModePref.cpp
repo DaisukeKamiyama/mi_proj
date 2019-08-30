@@ -303,6 +303,7 @@ const AControlID	kButton_ApplyColorScheme					= 8102;
 const AControlID	kButton_ExportColorScheme					= 8103;
 const AControlID	kButton_RevealColorSchemeFolder				= 8104;
 const AControlID	kButton_UpdateColorSchemeMenu				= 8105;
+const AControlID	kTextField_AppPrefColorWarning				= 8106;//#1460
 
 //State ListView
 const APrefID		kColumn_StateName				= 0;
@@ -3897,6 +3898,8 @@ void	AWindow_ModePref::NVMDO_UpdateControlStatus()
 		NVI_SetControlEnable(AModePrefDB::kDiffColorOpacity,(!sameAsNormal)&&(!useColorScheme));
 		//選択色不透明度
 		NVI_SetControlEnable(AModePrefDB::kSelectionOpacity,(!sameAsNormal)&&(!useColorScheme));
+		//環境設定の色セットが優先される旨のワーニング #1460
+		NVI_SetShowControl(kTextField_AppPrefColorWarning, (GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode())==true));
 	}
 	
 	//======================== 「表示」 タブ ========================
