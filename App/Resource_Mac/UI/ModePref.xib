@@ -5130,11 +5130,11 @@ AaMBqAG1AbkBxgHSAeQB5wHsAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAe4
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="8106" id="eLK-Yc-xus">
-                                            <rect key="frame" x="537" y="516" width="166" height="182"/>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" tag="8106" id="xuf-ny-IFe">
+                                            <rect key="frame" x="538" y="485" width="163" height="220"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="border" title="Warning for dark mode" drawsBackground="YES" id="n9P-ML-hR5">
-                                                <font key="font" metaFont="cellTitle"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="border" title="Warning for dark mode" drawsBackground="YES" id="exy-D8-ASX">
+                                                <font key="font" metaFont="system" size="12"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
