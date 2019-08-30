@@ -2977,15 +2977,19 @@ ABool	AModePrefDB::IsSameAsNormal( const ADataID inID ) const
 */
 ABool	AModePrefDB::GetModeData_Bool( ADataID inID ) const
 {
-	//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
-	if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
+	//NVI_IsDarkMode()はサブスレッドから呼ぶべきではないので、必要なデータの場合のみ判定を行う。#1470
+	if( inID == kDarkenImportLightenLocal )
 	{
-		const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
-		switch(inID)
+		//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
+		if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
 		{
-		  case kDarkenImportLightenLocal:
+			const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
+			switch(inID)
 			{
-				return true;
+			  case kDarkenImportLightenLocal:
+				{
+					return true;
+				}
 			}
 		}
 	}
@@ -3021,19 +3025,23 @@ void	AModePrefDB::GetModeData_Text( ADataID inID, AText& outText ) const
 */
 ANumber	AModePrefDB::GetModeData_Number( ADataID inID ) const
 {
-	//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
-	if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
+	//NVI_IsDarkMode()はサブスレッドから呼ぶべきではないので、必要なデータの場合のみ判定を行う。#1470
+	if( inID == kSelectionOpacity || inID == kDiffColorOpacity )
 	{
-		const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
-		switch(inID)
+		//環境設定カラースキームを使用する場合は、AppPrefからデータを取得する #1316
+		if( GetApp().GetAppPref().UseAppPrefColorScheme(GetApp().NVI_IsDarkMode()) == true )
 		{
-		  case kSelectionOpacity:
+			const AColorSchemeDB& colorSchemeDB = GetApp().GetAppPref().GetColorSchemeDB(GetApp().NVI_IsDarkMode());
+			switch(inID)
 			{
-				return colorSchemeDB.GetData_Number(AColorSchemeDB::kSelectionOpacity);
-			}
-		  case kDiffColorOpacity:
-			{
-				return colorSchemeDB.GetData_Number(AColorSchemeDB::kDiffOpacity);
+			  case kSelectionOpacity:
+				{
+					return colorSchemeDB.GetData_Number(AColorSchemeDB::kSelectionOpacity);
+				}
+			  case kDiffColorOpacity:
+				{
+					return colorSchemeDB.GetData_Number(AColorSchemeDB::kDiffOpacity);
+				}
 			}
 		}
 	}
