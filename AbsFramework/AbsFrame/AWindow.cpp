@@ -667,10 +667,17 @@ ABool	AWindow::EVT_DoMouseDown( const AControlID inID, const ALocalPoint& inLoca
 	return NVI_GetViewByControlID(inID).EVT_DoMouseDown(inLocalPoint,inModifierKeys,inClickCount);
 }
 
+//#1448
+//コンテクストメニューを開いたウインドウ、コントロールを記憶
+AWindowID	AWindow::sCurrentContextMenu_WindowID = kObjectID_Invalid;
+AControlID	AWindow::sCurrentContextMenu_ControlID = kControlID_Invalid;
+
 //マウスボタン押下（コンテクストメニュー）時のコールバック(AView用)
 ABool	AWindow::EVT_DoContextMenu( const AControlID inID, const ALocalPoint& inLocalPoint, const AModifierKeys inModifierKeys, const ANumber inClickCount )
 {
 	if( IsView(inID) == false )   return false;
+	sCurrentContextMenu_WindowID = GetObjectID();//#1448
+	sCurrentContextMenu_ControlID = inID;//#1448
 	return NVI_GetViewByControlID(inID).EVT_DoContextMenu(inLocalPoint,inModifierKeys,inClickCount);
 }
 
