@@ -204,6 +204,13 @@ class AWindow : public AObjectArrayItem
 	ANumber								mCurrentWindowWidth;//#688
 	ANumber								mCurrentWindowHeight;//#688
 	
+	//#1448
+	//コンテクストメニューを開いたウインドウ、コントロールを記憶
+  public:
+  private:
+	static AWindowID					sCurrentContextMenu_WindowID;
+	static AControlID					sCurrentContextMenu_ControlID;
+	
 	//Redirect #390
   public:
 	static void				STATIC_NVI_SetTextInputRedirect( const AWindowID inWindowID, const AControlID inControlID );
