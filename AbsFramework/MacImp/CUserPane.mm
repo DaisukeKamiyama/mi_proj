@@ -1388,11 +1388,13 @@ void	CUserPane::DrawTextCore( const ALocalRect& inDrawRect, const ALocalRect& in
 	//Text描画
 	::CGContextSetTextMatrix(mContextRef, CGAffineTransformIdentity);
 	AFloatNumber	texty = y+lineAscent;//#1316 ANumber→AFloatNumber
+	/*#1463 縦書き時、文字が左よりに表示される問題の修正
 	if( mVerticalMode == true )
 	{
 		//縦書きの場合ちょい下（左）になるようにする（とりあえず試行錯誤による調整・・・） #558
 		texty = y+lineAscent + (lineHeight-lineAscent)/4;
 	}
+	*/
 	::CGContextSetTextPosition(mContextRef,x,-(texty));
 	::CTLineDraw(inCTLineRef,mContextRef);
 	
