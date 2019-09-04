@@ -483,7 +483,7 @@ AAppPrefDB::AAppPrefDB() : ADataBase(NULL)
 	
 	//#823
 	//現在単語ハイライト
-	CreateData_Bool(kDisplayCurrentWordHighlight,				"DisplayCurrentWordHighlight",		true);
+	CreateData_Bool(kDisplayCurrentWordHighlight,				"DisplayCurrentWordHighlight",		false);//#1475 true);
 	
 	//#844
 	//アンチエイリアス
