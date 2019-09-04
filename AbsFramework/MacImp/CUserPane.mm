@@ -4112,6 +4112,9 @@ void	CUserPane::APICB_CocoaDrawRect( const ALocalRect& inDirtyRect )
 	mCocoaDrawDirtyRect = inDirtyRect;
 	mContextRef = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 	
+	//context状態保存 #1469
+	::CGContextSaveGState(mContextRef);
+	
 	//上記で取得したContextの座標系は、HIViewの左上が原点、y軸のプラスは下方向となっている。
 	//しかし、Quartzでは、y軸のプラスが上方向であることが前提となっており、
 	//このままだと、Textやピクチャの描画が上下逆さまになってしまう。
@@ -4131,6 +4134,9 @@ void	CUserPane::APICB_CocoaDrawRect( const ALocalRect& inDirtyRect )
 	
 	//AWindow::EVT_DoDraw()実行
 	GetAWin().EVT_DoDraw(GetControlID());
+	
+	//context状態復元 #1469
+	::CGContextRestoreGState(mContextRef);
 	
 	//Context初期化
 	mCocoaDrawDirtyRect = kLocalRect_0000;
