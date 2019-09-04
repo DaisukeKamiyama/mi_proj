@@ -112,27 +112,39 @@ ABool	AAppAcc::SetFromToolCommandText( const AText& inText )
 		applicationsFolder.SpecifyParent(file);
 	}
 	*/
-	AText	appPath("/Applications");
-	applicationsFolder.Specify(appPath);
-	
+	//
 	AFileAcc	appFile;
-	appFile.SpecifyChild(applicationsFolder,inText);
-	if( appFile.Exist() == true /*&& appFile.IsFolder()==falseアプリケーションはフォルダ・・・B0387*//*B0326*/ )
+	// /Applications内と、/System/Applilcaitons内の両方を試すためのループ #1467
+	for( int i = 0; i < 2; i++ )
 	{
-		mFile.CopyFrom(appFile);
-		mAppAccType = kAppAccType_File;
-		return true;
-	}
-	//B0387 フルパス指定
-	appFile.SpecifyWithAnyFilePathType(inText);
-	if( appFile.Exist() == true )
-	{
-		mFile.CopyFrom(appFile);
-		mAppAccType = kAppAccType_File;
-		return true;
-	}
-	//B0326 LSを使用して検索
-	/*{
+		if( i == 0 )
+		{
+			AText	appPath("/Applications");
+			applicationsFolder.Specify(appPath);
+		}
+		else
+		{
+			AText	appPath("/System/Applications");
+			applicationsFolder.Specify(appPath);
+		}
+		
+		appFile.SpecifyChild(applicationsFolder,inText);
+		if( appFile.Exist() == true /*&& appFile.IsFolder()==falseアプリケーションはフォルダ・・・B0387*//*B0326*/ )
+		{
+			mFile.CopyFrom(appFile);
+			mAppAccType = kAppAccType_File;
+			return true;
+		}
+		//B0387 フルパス指定
+		appFile.SpecifyWithAnyFilePathType(inText);
+		if( appFile.Exist() == true )
+		{
+			mFile.CopyFrom(appFile);
+			mAppAccType = kAppAccType_File;
+			return true;
+		}
+		//B0326 LSを使用して検索
+		/*{
 		FSRef	appfsref;
 		AStCreateCFStringFromAText	str(inText);
 		if( ::LSFindApplicationForInfo(kLSUnknownCreator,NULL,str.GetRef(),&appfsref,NULL) == noErr )
@@ -141,29 +153,29 @@ ABool	AAppAcc::SetFromToolCommandText( const AText& inText )
 			mAppAccType = kAppAccType_File;
 			return true;
 		}
-	}*/
-	
-	//.appをつけてみる
-	AText	text;
-	text.SetText(inText);
-	text.AddCstring(".app");
-	appFile.SpecifyChild(applicationsFolder,text);
-	if( appFile.Exist() == true /*&& appFile.IsFolder()==falseアプリケーションはフォルダ・・・B0387*//*B0326*/ )
-	{
-		mFile.CopyFrom(appFile);
-		mAppAccType = kAppAccType_File;
-		return true;
-	}
-	//B0387 フルパス指定
-	appFile.SpecifyWithAnyFilePathType(text);
-	if( appFile.Exist() == true )
-	{
-		mFile.CopyFrom(appFile);
-		mAppAccType = kAppAccType_File;
-		return true;
-	}
-	//B0326 LSを使用して検索
-	/*{
+		}*/
+		
+		//.appをつけてみる
+		AText	text;
+		text.SetText(inText);
+		text.AddCstring(".app");
+		appFile.SpecifyChild(applicationsFolder,text);
+		if( appFile.Exist() == true /*&& appFile.IsFolder()==falseアプリケーションはフォルダ・・・B0387*//*B0326*/ )
+		{
+			mFile.CopyFrom(appFile);
+			mAppAccType = kAppAccType_File;
+			return true;
+		}
+		//B0387 フルパス指定
+		appFile.SpecifyWithAnyFilePathType(text);
+		if( appFile.Exist() == true )
+		{
+			mFile.CopyFrom(appFile);
+			mAppAccType = kAppAccType_File;
+			return true;
+		}
+		//B0326 LSを使用して検索
+		/*{
 		FSRef	appfsref;
 		AStCreateCFStringFromAText	str(text);
 		if( ::LSFindApplicationForInfo(kLSUnknownCreator,NULL,str.GetRef(),&appfsref,NULL) == noErr )
@@ -172,14 +184,15 @@ ABool	AAppAcc::SetFromToolCommandText( const AText& inText )
 			mAppAccType = kAppAccType_File;
 			return true;
 		}
-	}*/
-	
-	if( inText.GetItemCount() == 4 )
-	{
-		mProcessType = 'APPL';
-		mCreator = inText.GetOSTypeFromText();//AUtil::GetOSTypeFromAText(inText);
-		mAppAccType = kAppAccType_Creator;
-		return true;
+		}*/
+		
+		if( inText.GetItemCount() == 4 )
+		{
+			mProcessType = 'APPL';
+			mCreator = inText.GetOSTypeFromText();//AUtil::GetOSTypeFromAText(inText);
+			mAppAccType = kAppAccType_Creator;
+			return true;
+		}
 	}
 	
 	mFile.CopyFrom(appFile);
