@@ -1003,7 +1003,15 @@
                     <menu key="submenu" title="Help" systemMenu="help" id="993">
                         <items>
                             <menuItem title="mi Text Editor Help" tag="3201" keyEquivalent="?" id="994"/>
+                            <menuItem isSeparatorItem="YES" id="sti-uW-xQm"/>
                             <menuItem title="Read Me First" tag="3202" id="fQo-RO-Cde">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="W9E-tO-Bq6"/>
+                            <menuItem title="Web Site" tag="3203" id="xzo-gd-j2b">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="FAQ" tag="3204" id="VFh-Vf-sy5">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
