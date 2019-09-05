@@ -762,3 +762,7 @@ Register User ID...
 Register User ID...
 New Find Result Window
 New Find Result Window
+Web Site
+Web Site
+FAQ
+FAQ
