@@ -172,7 +172,7 @@ Tool, toolbar or keybind sends AppleEvent to access other applicaitons.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>mi text editor version 3.0.3 version Copyright © 2019 Daisuke Kamiyama  All rights reserved.  </string>
+	<string>mi text editor version 3.0.4 version Copyright © 2019 Daisuke Kamiyama  All rights reserved.  </string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
