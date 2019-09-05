@@ -212,6 +212,8 @@ ABool	AWindow_TextSheet_CorrectEncoding::EVTDO_Clicked( const AControlID inID, c
 		{
 			NVI_Close();
 			result = true;
+			//doc prefを確定する（ウインドウクローズ時にdoc prefを保存） #1476
+			GetApp().SPI_GetTextDocumentByID(mTextDocumentID).SPI_SetDocPrefFixed();
 			break;
 		}
 	  case kCancelButton:
