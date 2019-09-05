@@ -5595,6 +5595,18 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			SPI_ShowReadMeFirst();
 			break;
 		}
+		//web site #1474
+	  case kMenuItemID_OpenWebSite:
+		{
+			ALaunchWrapper::OpenURL("https://www.mimikaki.net/");
+			break;
+		}
+		//FAQ #1474
+	  case kMenuItemID_OpenFAQ:
+		{
+			ALaunchWrapper::OpenURL("https://www.mimikaki.net/mi/faq/");
+			break;
+		}
 		//#539 #endif
 		//デバッグ
 	  case kMenuItemID_HashStatics://#271
@@ -5972,6 +5984,9 @@ void	AApp::EVTDO_UpdateMenu()
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_Help,true);
 	//#1351
 	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_ReadMeFirst,true);
+	//#1474
+	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_OpenWebSite,true);
+	NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_OpenFAQ,true);
 	//#539#endif
 	//#476
 	GetApp().NVI_GetMenuManager().SetEnableMenuItem(kMenuItemID_FullScreenMode,true);
