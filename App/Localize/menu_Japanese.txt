@@ -762,3 +762,7 @@ Register User ID...
 ユーザー ID 登録...
 New Find Result Window
 検索結果
+Web Site
+Web サイト
+FAQ
+よくあるご質問（FAQ）
