@@ -253,6 +253,8 @@ const AMenuItemID	kMenuItemID_KeyRecordRecentlyPlay		= 'KRRP';
 //#539
 const AMenuItemID	kMenuItemID_Help						= 3201;//'help';
 const AMenuItemID	kMenuItemID_ReadMeFirst					= 3202;//#1351
+const AMenuItemID	kMenuItemID_OpenWebSite					= 3203;//#1474
+const AMenuItemID	kMenuItemID_OpenFAQ						= 3204;//#1474
 //#404
 const AMenuItemID	kMenuItemID_FullScreenMode				= 3301;//'SwFS';
 //#455
