@@ -691,7 +691,7 @@ void	AFileAcc::GetPartialPath( const AFileAcc& inBaseFile, AText& outPath, const
 URLéÊìæ
 */
 #if IMPLEMENTATION_FOR_MACOSX
-ABool	AFileAcc::GetURL( AText& outURL ) const
+ABool	AFileAcc::GetURLText( AText& outURL ) const//#1478
 {
 	//#1425
 	AText	path;
@@ -700,7 +700,7 @@ ABool	AFileAcc::GetURL( AText& outURL ) const
 	NSURL*	url = [NSURL fileURLWithPath:pathstr.GetNSString()];
 	if( url != nil )
 	{
-		outURL.SetFromNSString(url.path);
+		outURL.SetFromNSString(url.absoluteString);//#1478 pathÅ®absoluteString
 		return true;
 	}
 	else
