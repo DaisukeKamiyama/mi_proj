@@ -75,7 +75,7 @@ class AFileAcc : public AObjectArrayItem
 	void	GetPath( AText& outPath, const AFilePathType inFilePathType = kFilePathType_Default ) const;
 	void	GetNormalizedPath( AText& outPath ) const;//B0000
 	void	GetPartialPath( const AFileAcc& inBaseFile, AText& outPath, const AFilePathType inFilePathType = kFilePathType_Default ) const;
-	ABool	GetURL( AText& outURL ) const;//#539
+	ABool	GetURLText( AText& outURL ) const;//#539 #1478
 	static void	GetNormalizedPathString( AText& ioPath );//#1087
 	
 	//ƒtƒ@ƒCƒ‹–¼Žæ“¾
