@@ -75,6 +75,7 @@ class AMenuWrapper
 	static void				GetShortcutDisplayText( const AMenuRef inMenuRef, const AIndex inItemIndex, AText& outText );//#798
 	static void				ClearAllCheckMark( const AMenuRef inMenuRef );
 	static AIndex			GetMenuItemIndexByText( const AMenuRef inMenuRef, const AText& inText );
+	static AIndex			GetMenuItemIndexByID( const AMenuRef inMenuRef, const AMenuItemID inID );//#1477
 	static void				InsertFontMenu( const AMenuRef inMenuRef, const AIndex inMenuItemIndex, const AMenuItemID inItemID );
 	static AMenuRef			RegisterContextMenu( AConstCharPtr inMenuName );
 	
