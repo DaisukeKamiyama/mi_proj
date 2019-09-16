@@ -5585,7 +5585,7 @@ ABool	AApp::EVTDO_DoMenuItemSelected( const AMenuItemID inMenuItemID, const ATex
 			AFileAcc	help;
 			help.SpecifyChild(helpFolder,"index.htm");
 			AText	url;
-			help.GetURL(url);
+			help.GetURLText(url);//#1478
 			ALaunchWrapper::OpenURLWithDefaultBrowser(url);
 			break;
 		}
