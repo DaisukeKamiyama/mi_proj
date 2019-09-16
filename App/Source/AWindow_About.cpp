@@ -82,7 +82,7 @@ ABool	AWindow_About::EVTDO_Clicked( const AControlID inID, const AModifierKeys i
 			AFileAcc	help;
 			help.SpecifyChild(helpFolder,"copyright.htm");
 			AText	url;
-			help.GetURL(url);
+			help.GetURLText(url);//#1478
 			//url.AddCstring("#lua");
 			ALaunchWrapper::OpenURLWithDefaultBrowser(url);
 			break;
