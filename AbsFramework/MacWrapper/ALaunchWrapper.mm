@@ -265,12 +265,15 @@ void	ALaunchWrapper::OpenURLWithSpecifiedApp( const AAppAcc& inApp, const AText&
 */
 void	ALaunchWrapper::OpenURLWithDefaultBrowser( const AText& inURL )
 {
+	/*#1478 LSで開いた方が将来的にも安心
 	//Macではデフォルトブラウザの指定がなさそうなので、Safariを指定する
 	AText	text;
 	text.SetCstring("Safari");
 	AAppAcc	appAcc;
 	appAcc.SetFromToolCommandText(text);
 	OpenURLWithSpecifiedApp(appAcc,inURL);
+	*/
+	OpenURL(inURL);
 }
 
 /**
