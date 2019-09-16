@@ -497,6 +497,23 @@ AIndex	AMenuWrapper::GetMenuItemIndexByText( const AMenuRef inMenuRef, const ATe
 	}
 }
 
+//#1477
+/**
+引数inIDとtagが一致するメニュー項目のインデックスを取得
+*/
+AIndex	AMenuWrapper::GetMenuItemIndexByID( const AMenuRef inMenuRef, const AMenuItemID inID )
+{
+	NSInteger	index = [ACocoa::GetNSMenu(inMenuRef) indexOfItemWithTag:inID];
+	if( index == -1 )
+	{
+		return kIndex_Invalid;
+	}
+	else
+	{
+		return index;
+	}
+}
+
 /**
 フォントメニュー設定
 */
