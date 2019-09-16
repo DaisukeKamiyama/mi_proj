@@ -424,7 +424,20 @@ AIndex	AMenuManager::GetRealMenuItemIndex( const AMenuItemID inItemID ) const
 AIndex	AMenuManager::GetRealMenuItemIndexByMenuItemArrayIndex( const AIndex inMenuItemArrayIndex ) const
 {
 	//"OnlyStatic"ならStaticIndexを返す
-	if( mMenuBarMenuItemArray_OnlyStatic.Get(inMenuItemArrayIndex) == true )   return mMenuBarMenuItemArray_MenuItemStaticIndex.Get(inMenuItemArrayIndex);
+	if( mMenuBarMenuItemArray_OnlyStatic.Get(inMenuItemArrayIndex) == true )//#1477   return mMenuBarMenuItemArray_MenuItemStaticIndex.Get(inMenuItemArrayIndex);
+	{
+		//macOS側で自動的にメニュー項目が追加されることがあるので、静的メニューについては、普通に、NSMenuからAMenuItemID(=tag)を検索する #1477
+		AIndex	index = AMenuWrapper::GetMenuItemIndexByID(mMenuBarMenuItemArray_MenuRef.Get(inMenuItemArrayIndex), mMenuBarMenuItemArray_MenuItemID.Get(inMenuItemArrayIndex));
+		if( index != kIndex_Invalid )
+		{
+			return index;
+		}
+		else
+		{
+			//NSMenuから見つからなかった場合は、従来通り、内部データから取得する。
+			return mMenuBarMenuItemArray_MenuItemStaticIndex.Get(inMenuItemArrayIndex);
+		}
+	}
 	
 	//MenuRefが同じで、staticIndexが対象MenuItemのIndexよりも小さいものを検索し、該当するものについて実際のメニュー項目数を足していく。
 	AIndex	realMenuItemIndex = 0;
