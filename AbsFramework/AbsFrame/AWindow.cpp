@@ -223,7 +223,7 @@ ABool	AWindow::EVT_Clicked( const AControlID inID, const AModifierKeys inModifie
 		AFileAcc	helpFolder;
 		AFileWrapper::GetHelpFolder("ja",helpFolder);
 		AText	url;
-		helpFolder.GetURL(url);
+		helpFolder.GetURLText(url);//#1478
 		if( url.GetItemCount() > 0 )
 		{
 			if( url.Get(url.GetItemCount()-1) != '/' )
