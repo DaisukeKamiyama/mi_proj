@@ -349,7 +349,7 @@ void	AApplication::NVI_Sleep()
 NVI_WakeTrigger()で起こされるまでスリープする
 （mWakeFlagがtrueになるまでブロック状態にする）
 */
-ABool	AApplication::NVI_SleepWithTimer( const ANumber inTimerSecond )
+ABool	AApplication::NVI_SleepWithTimer( const float inTimerSecond )//#1483 ANumber→float
 {
 	ABool	result = true;
 	AStMutexLocker	mutexlocker(mWakeFlagMutex);
