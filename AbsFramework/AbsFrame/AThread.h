@@ -54,7 +54,7 @@ class AThread : public AObjectArrayItem
 	ABool					NVI_GetSleepFlag() const { return mSleepFlag; }
   protected:
 	void					NVM_Sleep();
-	void					NVM_SleepWithTimer( const ANumber inTimerSecond );
+	void					NVM_SleepWithTimer( const float inTimerSecond );//#1483 ANumberÅ®float
 	ABool					NVM_IsAborted();
 	ABool								mAborted;
   private:
