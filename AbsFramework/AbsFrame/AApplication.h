@@ -183,7 +183,7 @@ private:
 	//メインスレッド制御
   public:
 	void					NVI_Sleep();
-	ABool					NVI_SleepWithTimer( const ANumber inTimerSecond );
+	ABool					NVI_SleepWithTimer( const float inTimerSecond );//#1483 ANumber→float
 	void					NVI_WakeTrigger();
   private:
   private:
