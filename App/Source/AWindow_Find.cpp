@@ -1103,6 +1103,8 @@ void	AWindow_Find::MakeRecentlyUsedFindTextMenu()//win
 	text.SetLocalizedText("RecentlyMenus_DeleteAll");
 	textArray.Add(text);
 	NVI_SetMenuItemsFromTextArray(kPopup_RecentlyUsedFindText,textArray);
+	//#1481
+	NVI_SetControlNumber(kPopup_RecentlyUsedFindText,0);
 	
 	//win
 	mRecentlyUsedFindTextArray.DeleteAll();//#901
@@ -1124,6 +1126,8 @@ void	AWindow_Find::MakeRecentlyUsedReplaceTextMenu()//win
 	text.SetLocalizedText("RecentlyMenus_DeleteAll");
 	textArray.Add(text);
 	NVI_SetMenuItemsFromTextArray(kPopup_RecentlyUsedReplaceText,textArray);
+	//#1481
+	NVI_SetControlNumber(kPopup_RecentlyUsedReplaceText,0);
 	
 	//win
 	mRecentlyUsedReplaceTextArray.DeleteAll();//#901
@@ -1170,6 +1174,8 @@ void	AWindow_Find::SPI_AddRecentlyUsedFindText( const AFindParameter& inFindPara
 			NVI_DeleteMenuItem(kPopup_RecentlyUsedFindText,128);
 		}
 	}
+	//#1481
+	NVI_SetControlNumber(kPopup_RecentlyUsedFindText,0);
 }
 
 void	AWindow_Find::SPI_AddRecentlyUsedReplaceText( const AFindParameter& inFindParam )
@@ -1206,6 +1212,8 @@ void	AWindow_Find::SPI_AddRecentlyUsedReplaceText( const AFindParameter& inFindP
 			NVI_DeleteMenuItem(kPopup_RecentlyUsedReplaceText,128);
 		}
 	}
+	//#1481
+	NVI_SetControlNumber(kPopup_RecentlyUsedReplaceText,0);
 }
 
 #pragma mark ===========================
