@@ -65,7 +65,7 @@ class AThreadWrapper
   public:
 	static void			InitCondition( AThreadConditionImp& inCond );
 	static void			WaitForCondition( AThreadConditionImp& inCond, AThreadMutexImp& inMutex );
-	static ABool		WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const ANumber inTimerSecond );//B0314
+	static ABool		WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const float inTimerSecond );//B0314 //#1483 ANumber→float
 	static void			SignalWithCondition( AThreadConditionImp& inCond );
 	static void			DeleteCondition( AThreadConditionImp& inCond );
 
@@ -166,13 +166,20 @@ inline void	AThreadWrapper::WaitForCondition( AThreadConditionImp& inCond, AThre
 /**
 条件変数待ち（タイマー付き）
 */
-inline ABool	AThreadWrapper::WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const ANumber inTimerSecond )
+inline ABool	AThreadWrapper::WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const float inTimerSecond )//#1483 ANumber→float
 {
 	struct	timeval	tv;
 	struct	timespec	ts;
 	if( gettimeofday(&tv,NULL) < 0 )   {_ACError("",NULL);return false;}
+	/*#1483
 	ts.tv_sec = tv.tv_sec + inTimerSecond;
 	ts.tv_nsec = tv.tv_usec * 1000;
+	*/
+	//tsへ、現在時刻tvに、inTimerSecond(float)を足した値を設定する #1483 inTimerSecondを整数値からfloat値へ変更
+	long long nsec = tv.tv_usec * 1000 + (long long)(inTimerSecond * 1000000000);
+	ts.tv_sec = tv.tv_sec + nsec/1000000000;
+	ts.tv_nsec = nsec%1000000000;
+	//
 	int err = pthread_cond_timedwait(&inCond,&inMutex,&ts);//inMutexをアンロックしてブロック→戻るときに再度ロック
 	if( err != 0 )   return false;//B0314
 	return true;//B0314
@@ -260,7 +267,7 @@ inline void	AThreadWrapper::WaitForCondition( AThreadConditionImp& inCond, AThre
 	::EnterCriticalSection(&inMutex);
 }
 
-inline ABool	AThreadWrapper::WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const ANumber inTimerSecond )
+inline ABool	AThreadWrapper::WaitForConditionWithTimer( AThreadConditionImp& inCond, AThreadMutexImp& inMutex, const float inTimerSecond )//#1483 ANumber→float
 {
 	//pthread_cond_signalとインターフェイスを合わせるため、mutexを使っている。
 	::LeaveCriticalSection(&inMutex);
