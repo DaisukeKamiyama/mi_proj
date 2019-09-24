@@ -222,7 +222,7 @@ void	AThread::NVM_Sleep()
 
 //NVI_WakeTrigger()で起こされるまでスリープする
 //（mWakeFlagがtrueになるまでブロック状態にする）
-void	AThread::NVM_SleepWithTimer( const ANumber inTimerSecond )
+void	AThread::NVM_SleepWithTimer( const float inTimerSecond )//#1483 ANumber→float
 {
 	if( NVI_IsThreadWorking() == false )   return;
 	AStMutexLocker	mutexlocker(mWakeFlagMutex);
