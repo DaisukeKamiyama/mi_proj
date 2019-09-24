@@ -645,14 +645,15 @@ void	ADocument_Text::StartScreeningForLoadDocumentFile()
 	SPI_SetDocumentInitState(kDocumentInitState_Initial_FileScreeningInThread);
 	
 	//==================スレッド起動==================
+	//過去に、Mac OS X初期？のネットワーク未接続時にネットワークファイルを開こうとしたときにタイムアウトまで非常に時間がかかる問題回避のためスレッドで実行するようにしたが、現OSではスレッド処理は不要かもしれない。（影響度もあるのでスレッド処理のままにしている）
 	AThread_DocumentFileScreeningFactory	factory(NULL);
 	AObjectID	threadObjectID = GetApp().NVI_CreateThread(factory);
 	(dynamic_cast<AThread_DocumentFileScreening&>(GetApp().NVI_GetThreadByID(threadObjectID))).SPNVI_Run(GetObjectID());
 	//最大3秒ウエイト（その前にスクリーニングスレッドが終了したら、スリープ解除される）
-	for( AIndex i = 0; i < 3; i++ )
+	for( AIndex i = 0; i < 300; i++ )//#1483
 	{
 		if( GetApp().NVI_GetThreadByID(threadObjectID).NVI_IsThreadWorking() == false )   break;
-		GetApp().NVI_SleepWithTimer(1);
+		GetApp().NVI_SleepWithTimer(0.01);//#1483 インターバル1s→10ms。sleepなのでProfilerに出てこなかった。。
 	}
 	//スクリーニングスレッド完了していて、エラーが無ければ、状態遷移をここで行う。（これにより、何も表示されていない状態が一瞬表示されるのを防ぐ）
 	//エラーがある場合は、ドキュメントが閉じられてしまい、SPI_DoViewActivating()の後の処理に影響があるので、状態遷移は処理しない。（次回EVT_DoInternalEvent()で処理）
