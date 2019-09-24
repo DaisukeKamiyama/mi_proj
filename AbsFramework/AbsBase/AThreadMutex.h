@@ -140,7 +140,7 @@ class AThreadCondition
 	{
 		AThreadWrapper::WaitForCondition(mCondition,inMutex.mMutex);
 	}
-	ABool	WaitForConditionWithTimer( AThreadMutex& inMutex, const ANumber inTimerSecond )
+	ABool	WaitForConditionWithTimer( AThreadMutex& inMutex, const float inTimerSecond )//#1483 ANumberÅ®float
 	{
 		return AThreadWrapper::WaitForConditionWithTimer(mCondition,inMutex.mMutex,inTimerSecond);
 	}
