@@ -13628,6 +13628,14 @@ void	AWindow_Text::SPI_ShowSaveWindow()
 		defaultfolder.SpecifyParent(GetApp().SPI_GetLastOpenedTextFile());
 	}
 	*/
+	//デフォルトフォルダがアプリ本体フォルダの下のフォルダになっている場合は、デフォルトフォルダは書類フォルダに置き換える #1490
+	AFileAcc	appfolder;
+	AFileWrapper::GetAppFile(appfolder);
+	if( defaultfolder.IsChildOfFolder(appfolder) == true )
+	{
+		AFileWrapper::GetDocumentsFolder(defaultfolder);
+	}
+	//
 	AText	filter;//win 080709
 	GetApp().SPI_GetDefaultFileFilter(filter);//win 080709
 	NVI_ShowSaveWindow(filename,SPI_GetCurrentFocusTextDocument().GetObjectID(),attr,filter,GetEmptyText(),defaultfolder);
