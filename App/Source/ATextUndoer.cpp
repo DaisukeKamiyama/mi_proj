@@ -322,6 +322,8 @@ ABool	ATextUndoer::Undo( AIndex& outSelectTextIndex, AItemCount& outSelectTextLe
 		mUndoMode = true;
 		for( mUndoPosition--; mUndoPosition > 0; mUndoPosition-- )
 		{
+			//#1502
+			AStAutoReleasePool	pool;
 			//#846
 			//プログレス表示（キャンセルは不可）
 			GetApp().SPI_CheckContinueingEditProgressModalSession(kEditProgressType_Undo,0,true,startUndoPosition-mUndoPosition,totalActionCount);
@@ -373,6 +375,8 @@ ABool	ATextUndoer::Redo( AIndex& outSelectTextIndex, AItemCount& outSelectTextLe
 		mUndoMode = true;
 		for( mUndoPosition++; mUndoPosition < GetUndoRecordItemCount(); mUndoPosition++ )
 		{
+			//#1502
+			AStAutoReleasePool	pool;
 			//#846
 			//プログレス表示（キャンセルは不可）
 			GetApp().SPI_CheckContinueingEditProgressModalSession(kEditProgressType_Redo,0,true,mUndoPosition-startUndoPosition,totalActionCount);
