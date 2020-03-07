@@ -2128,5 +2128,23 @@ class AStEditProgressModalSession
 	ABool	mModalSessionStarted;
 };
 
+//#1502
+/**
+auto release pool
+*/
+class AStAutoReleasePool
+{
+  public:
+	AStAutoReleasePool()
+	{
+		mPool = [[NSAutoreleasePool alloc] init];
+	}
+	~AStAutoReleasePool()
+	{
+		[mPool release];
+	}
+  private:
+	NSAutoreleasePool* mPool;
+};
 
 
