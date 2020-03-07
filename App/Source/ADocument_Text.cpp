@@ -9944,6 +9944,8 @@ ABool	ADocument_Text::SPI_ReplaceText( const AFindParameter& inParam,
 			AText	replaceText2;
 			while(true) 
 			{
+				//#1502
+				AStAutoReleasePool	pool;
 				//モーダルセッション継続判定
 				if( GetApp().SPI_CheckContinueingEditProgressModalSession(kEditProgressType_Replace,outReplacedCount,true,startPos-inStart,inEnd-inStart) == false )
 				{
